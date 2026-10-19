@@ -26,7 +26,7 @@ cd ~/Projects/eju-study
 npx tsc --noEmit -p tsconfig.json          # must have no errors in your files
 npx vite build --config web/vite.config.ts --outDir <your-tmp>/dist --emptyOutDir
 mkdir -p <your-tmp>/data && cp content/fixtures/seeded/state-v2.json <your-tmp>/data/
-EJU_DATA_DIR=<your-tmp>/data EJU_WEB_DIST=<your-tmp>/dist PORT=<your-port> node server-v2.mjs &   # your own port
+EJU_DATA_DIR=<your-tmp>/data EJU_WEB_DIST=<your-tmp>/dist PORT=<your-port> node server.mjs &   # your own port
 node tools/v2/shot.mjs "http://127.0.0.1:<your-port>/#/<route>" <your-tmp>/x.png [--dark] [--width=920 --height=650] [--full] [--click=<css>]
 ```
 Then Read the PNG and iterate until it genuinely looks polished (alignment, spacing, hierarchy, contrast, no overflow, dark mode). Kill your server when done (`pkill -f "PORT=<your-port>"` won't work; use `lsof -ti tcp:<port> | xargs kill`). Re-copy the seeded state whenever you want a fresh learner. Never touch `data/` (the learner's real record) and never run anything on port 18763.

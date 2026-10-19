@@ -145,7 +145,7 @@ async function health() {
 }
 
 async function startServer(dist) {
-  server = spawn(process.execPath, ['server-v2.mjs'], {
+  server = spawn(process.execPath, ['server.mjs'], {
     cwd: ROOT,
     env: { ...process.env, EJU_DATA_DIR: DATA, EJU_WEB_DIST: dist, PORT: String(PORT) },
     stdio: ['ignore', 'pipe', 'pipe'],
