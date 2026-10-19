@@ -1,0 +1,198 @@
+{
+  "title": "2018_1 math part",
+  "items": [
+    {
+      "id": "2018_1-math-III",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.trig.func",
+      "tags": [
+        "math.calc.diff"
+      ],
+      "difficulty": 2,
+      "targetSec": 1150,
+      "source": {
+        "kind": "official",
+        "session": "2018_1",
+        "label": "2018年第1回 数学コース2 III（解答欄A〜Y）",
+        "pdf": "/assets/expanded/2018_1-math.pdf",
+        "page": 26
+      },
+      "stem": "$0\\leqq x\\leqq\\pi$ のとき，関数\n\n$$f(x) = 4\\sin^3x+4\\cos^3x-8\\sin2x-7$$\n\nの最大値，最小値を求めよう。\n\n$t=\\sin x+\\cos x$ とおく。\n\n$$\\sin x+\\cos x = \\sqrt{\\bx{A}}\\,\\sin\\left(x+\\frac{\\bx{B}}{\\bx{C}}\\pi\\right)\\qquad\\left(\\text{ただし，}\\bx{B}<\\bx{C}\\right)$$\n\nであるから，$t$ のとる値の範囲は $-\\bx{D}\\leqq t\\leqq\\sqrt{\\bx{E}}$ である。また\n\n$$\\begin{aligned}\\sin2x &= t^2-\\bx{F}\\\\ 4\\sin^3x+4\\cos^3x &= -\\bx{G}\\,t^3+\\bx{H}\\,t\\end{aligned}$$\n\nであるから\n\n$$f(x) = -\\bx{G}\\,t^3-\\bx{I}\\,t^2+\\bx{H}\\,t+\\bx{J}\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nである。① の右辺を $g(t)$ とおき，$t$ で微分すると\n\n$$g'(t) = -\\bx{K}\\left(\\bx{L}\\,t-\\bx{M}\\right)\\left(t+\\bx{N}\\right)$$\n\nである。\n\nしたがって，$g(t)\\ \\bigl(=f(x)\\bigr)$ は，$t=\\dfrac{\\bx{O}}{\\bx{P}}$ で最大値 $\\dfrac{\\bx{QR}}{\\bx{ST}}$ をとり，$t=\\sqrt{\\bx{U}}$ で最小値 $\\bx{V}\\sqrt{\\bx{W}}-\\bx{XY}$ をとる。",
+      "stemZh": "当 $0\\leqq x\\leqq\\pi$ 时，求函数\n\n$$f(x) = 4\\sin^3x+4\\cos^3x-8\\sin2x-7$$\n\n的最大值和最小值。\n\n设 $t=\\sin x+\\cos x$。\n\n$$\\sin x+\\cos x = \\sqrt{\\bx{A}}\\,\\sin\\left(x+\\frac{\\bx{B}}{\\bx{C}}\\pi\\right)\\qquad\\left(\\text{其中 }\\bx{B}<\\bx{C}\\right)$$\n\n所以 $t$ 的取值范围是 $-\\bx{D}\\leqq t\\leqq\\sqrt{\\bx{E}}$。另外\n\n$$\\begin{aligned}\\sin2x &= t^2-\\bx{F}\\\\ 4\\sin^3x+4\\cos^3x &= -\\bx{G}\\,t^3+\\bx{H}\\,t\\end{aligned}$$\n\n所以\n\n$$f(x) = -\\bx{G}\\,t^3-\\bx{I}\\,t^2+\\bx{H}\\,t+\\bx{J}\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n把 ① 的右边记作 $g(t)$，对 $t$ 求导得\n\n$$g'(t) = -\\bx{K}\\left(\\bx{L}\\,t-\\bx{M}\\right)\\left(t+\\bx{N}\\right)$$\n\n因此，$g(t)\\ \\bigl(=f(x)\\bigr)$ 在 $t=\\dfrac{\\bx{O}}{\\bx{P}}$ 处取最大值 $\\dfrac{\\bx{QR}}{\\bx{ST}}$，在 $t=\\sqrt{\\bx{U}}$ 处取最小值 $\\bx{V}\\sqrt{\\bx{W}}-\\bx{XY}$。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "4",
+        "D": "1",
+        "E": "2",
+        "F": "1",
+        "G": "2",
+        "H": "6",
+        "I": "8",
+        "J": "1",
+        "K": "2",
+        "L": "3",
+        "M": "1",
+        "N": "3",
+        "O": "1",
+        "P": "3",
+        "Q": "5",
+        "R": "5",
+        "S": "2",
+        "T": "7",
+        "U": "2",
+        "V": "2",
+        "W": "2",
+        "X": "1",
+        "Y": "5"
+      },
+      "explanation": {
+        "zh": "**思路**\n\n$f(x)$ 里同时出现 $\\sin^3x+\\cos^3x$（关于 $\\sin x,\\cos x$ 对称）和 $\\sin2x=2\\sin x\\cos x$，这是 **$t=\\sin x+\\cos x$ 换元**的标志：\n\n$$t^2=1+2\\sin x\\cos x\\ \\Longrightarrow\\ \\sin x\\cos x=\\frac{t^2-1}{2}$$\n\n于是一切都能写成 $t$ 的多项式，$f(x)$ 变成 $t$ 的三次函数 $g(t)$。剩下两件事：\n\n- **$t$ 的范围**必须由 $0\\leqq x\\leqq\\pi$ 经三角合成算出（不是常见的 $[-\\sqrt2,\\sqrt2]$）；\n- 在这个闭区间上用导数求三次函数的最大、最小值（极值与端点比较）。\n\n**解答**\n\n**1. 三角合成（A, B, C）**\n\n$$\\sin x+\\cos x=\\sqrt2\\left(\\sin x\\cdot\\frac{1}{\\sqrt2}+\\cos x\\cdot\\frac{1}{\\sqrt2}\\right)=\\sqrt2\\left(\\sin x\\cos\\frac{\\pi}{4}+\\cos x\\sin\\frac{\\pi}{4}\\right)=\\sqrt2\\,\\sin\\left(x+\\frac{\\pi}{4}\\right)$$\n\n**A = 2，B = 1，C = 4**（条件 $B<C$ 排除了 $\\frac94\\pi$ 这类等价写法）。\n\n**2. $t$ 的取值范围（D, E）**\n\n$0\\leqq x\\leqq\\pi$ ⇒ $\\dfrac{\\pi}{4}\\leqq x+\\dfrac{\\pi}{4}\\leqq\\dfrac{5}{4}\\pi$。在这个区间里 $\\sin\\theta$ 的最大值是 $1$（$\\theta=\\frac{\\pi}{2}$），最小值是 $\\sin\\frac54\\pi=-\\dfrac{\\sqrt2}{2}$（右端点）。所以\n\n$$-\\frac{\\sqrt2}{2}\\leqq\\sin\\left(x+\\frac{\\pi}{4}\\right)\\leqq1\\ \\Longrightarrow\\ -1\\leqq t\\leqq\\sqrt2$$\n\n**D = 1，E = 2**。（检验：$x=\\pi$ 时 $t=0+(-1)=-1$；$x=\\frac{\\pi}{4}$ 时 $t=\\sqrt2$。）\n\n**3. 用 $t$ 表示 $\\sin2x$（F）**\n\n$$t^2=\\sin^2x+2\\sin x\\cos x+\\cos^2x=1+\\sin2x\\ \\Longrightarrow\\ \\sin2x=t^2-1$$\n\n**F = 1**。\n\n**4. 用 $t$ 表示 $4\\sin^3x+4\\cos^3x$（G, H）**\n\n用 $a^3+b^3=(a+b)^3-3ab(a+b)$，其中 $a+b=t$，$ab=\\sin x\\cos x=\\dfrac{t^2-1}{2}$：\n\n$$\\sin^3x+\\cos^3x=t^3-3\\cdot\\frac{t^2-1}{2}\\cdot t=-\\frac12t^3+\\frac32t$$\n\n乘以 4：\n\n$$4\\sin^3x+4\\cos^3x=-2t^3+6t$$\n\n**G = 2，H = 6**（负号已印在题中）。\n\n**5. 写出 $g(t)$（I, J）**\n\n$$f(x)=(-2t^3+6t)-8(t^2-1)-7=-2t^3-8t^2+6t+1$$\n\n**I = 8，J = 1**。\n\n**6. 求导并因式分解（K, L, M, N）**\n\n$$g'(t)=-6t^2-16t+6=-2(3t^2+8t-3)=-2(3t-1)(t+3)$$\n\n（检验：$(3t-1)(t+3)=3t^2+9t-t-3=3t^2+8t-3$ ✓）\n\n**K = 2，L = 3，M = 1，N = 3**。\n\n**7. 在 $-1\\leqq t\\leqq\\sqrt2$ 上的增减（O, P, QR, ST）**\n\n区间内 $t+3>0$，所以 $g'(t)$ 的符号只看 $-2(3t-1)$：$t<\\frac13$ 时为正，$t>\\frac13$ 时为负。\n\n| $t$ | $-1$ | $\\cdots$ | $\\frac13$ | $\\cdots$ | $\\sqrt2$ |\n|---|---|---|---|---|---|\n| $g'(t)$ |  | $+$ | $0$ | $-$ |  |\n| $g(t)$ | $-11$ | ↗ | $\\frac{55}{27}$（最大） | ↘ | $2\\sqrt2-15$ |\n\n最大值在 $t=\\dfrac13$：\n\n$$g\\left(\\frac13\\right)=-\\frac{2}{27}-\\frac89+2+1=\\frac{-2-24+81}{27}=\\frac{55}{27}$$\n\n**O = 1，P = 3，QR = 55，ST = 27**。（$\\frac13$ 在 $[-1,\\sqrt2]$ 内，且 $t$ 能取遍这个区间，所以确实能取到。）\n\n**8. 最小值（U, V, W, XY）**\n\n函数先增后减，最小值在两个端点之一，必须都算：\n\n$$g(-1)=2-8-6+1=-11$$\n\n$$g(\\sqrt2)=-2\\cdot2\\sqrt2-8\\cdot2+6\\sqrt2+1=2\\sqrt2-15\\approx-12.17$$\n\n$g(\\sqrt2)-g(-1)=2\\sqrt2-4<0$，所以最小值是 $2\\sqrt2-15$，在 $t=\\sqrt2$（即 $x=\\frac{\\pi}{4}$）处取得。\n\n**U = 2，V = 2，W = 2，XY = 15**。\n\n**结论**\n\nA = 2，B = 1，C = 4，D = 1，E = 2，F = 1，G = 2，H = 6，I = 8，J = 1，K = 2，L = 3，M = 1，N = 3，O = 1，P = 3，QR = 55，ST = 27，U = 2，V = 2，W = 2，XY = 15。即 $f(x)$ 的最大值为 $\\dfrac{55}{27}$（$t=\\dfrac13$），最小值为 $2\\sqrt2-15$（$t=\\sqrt2$，$x=\\dfrac{\\pi}{4}$）。",
+        "keyPoints": [
+          "$t=\\sin x+\\cos x$ 换元：$\\sin x\\cos x=\\dfrac{t^2-1}{2}$，$\\sin2x=t^2-1$，$\\sin^3x+\\cos^3x=t^3-3\\cdot\\dfrac{t^2-1}{2}\\cdot t$",
+          "$t$ 的范围由三角合成 $t=\\sqrt2\\sin\\left(x+\\frac{\\pi}{4}\\right)$ 和 $x$ 的范围决定：$0\\leqq x\\leqq\\pi$ 时 $-1\\leqq t\\leqq\\sqrt2$",
+          "闭区间上三次函数的最值：列增减表，极大值 vs 两端点值逐一比较"
+        ],
+        "traps": [
+          "把 $t$ 的范围写成 $[-\\sqrt2,\\sqrt2]$：此时会算出 $g(-\\sqrt2)=-2\\sqrt2-15$ 作为“最小值”，是错的；$x+\\frac{\\pi}{4}$ 最多到 $\\frac54\\pi$，$\\sin$ 最小只有 $-\\frac{\\sqrt2}{2}$",
+          "$\\sin2x=t^2-1$，而 $\\sin x\\cos x=\\dfrac{t^2-1}{2}$，两者差 2 倍，代入时别混",
+          "最小值要把两个端点 $g(-1)=-11$ 与 $g(\\sqrt2)=2\\sqrt2-15$ 都算出来比较；题中已印负号的格（$-\\bx{G}$、$-\\bx{K}$、$-\\bx{D}$）只填正数"
+        ],
+        "terms": [
+          {
+            "ja": "最大値",
+            "kana": "さいだいち",
+            "zh": "函数在给定范围内能取到的最大的值"
+          },
+          {
+            "ja": "最小値",
+            "kana": "さいしょうち",
+            "zh": "函数在给定范围内能取到的最小的值"
+          },
+          {
+            "ja": "とおく",
+            "kana": "とおく",
+            "zh": "“设……为……”，引入新变量（换元）时的说法"
+          },
+          {
+            "ja": "値の範囲",
+            "kana": "あたいのはんい",
+            "zh": "取值范围（变量能取到的所有值）"
+          },
+          {
+            "ja": "右辺",
+            "kana": "うへん",
+            "zh": "等号右边的式子"
+          },
+          {
+            "ja": "微分する",
+            "kana": "びぶんする",
+            "zh": "求导数"
+          }
+        ],
+        "shortcut": "$\\sin^3x+\\cos^3x$ 也可直接用 $a^3+b^3=(a+b)(a^2-ab+b^2)=t\\left(1-\\dfrac{t^2-1}{2}\\right)=\\dfrac{t(3-t^2)}{2}$，乘 4 得 $-2t^3+6t$。算 $g(\\sqrt2)$ 时记住 $t^2=2$、$t^3=2\\sqrt2$；比较端点时只需看 $2\\sqrt2-15$ 与 $-11$ 之差 $2\\sqrt2-4<0$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2018_1-math-IV",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.int",
+      "tags": [
+        "math.func.limit",
+        "math.seq.seq"
+      ],
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "official",
+        "session": "2018_1",
+        "label": "2018年第1回 数学コース2 IV（解答欄A〜U）",
+        "pdf": "/assets/expanded/2018_1-math.pdf",
+        "page": 28
+      },
+      "stem": "$a_n=\\displaystyle\\int_0^1x^{2n}\\sqrt{1-x^2}\\,dx\\ \\ (n=0,\\,1,\\,2,\\,\\cdots)$ とおくとき，極限値 $\\displaystyle\\lim_{n\\to\\infty}\\frac{a_n}{a_{n-1}}$ を求めよう。\n\n(1)　まず，$a_0,\\ a_1$ を求めてみよう。半径 1 の円の面積は $\\pi$ であるから\n\n$$a_0 = \\int_0^1\\sqrt{1-x^2}\\,dx = \\frac{\\pi}{\\bx{A}}$$\n\nである。$a_1$ は部分積分法により\n\n$$\\begin{aligned}a_1 &= \\int_0^1x^2\\sqrt{1-x^2}\\,dx\\\\ &= -\\frac{\\bx{B}}{\\bx{C}}\\left[\\,x(1-x^2)^{\\frac{\\bx{D}}{\\bx{E}}}\\,\\right]_0^1+\\frac{\\bx{F}}{\\bx{G}}\\int_0^1(1-x^2)^{\\frac{\\bx{H}}{\\bx{I}}}\\,dx\\\\ &= \\frac{\\bx{J}}{\\bx{K}}\\left\\{\\int_0^1\\sqrt{1-x^2}\\,dx-\\int_0^1x^{\\bx{L}}\\sqrt{1-x^2}\\,dx\\right\\}\\end{aligned}$$\n\nとなる。よって，$a_1=\\dfrac{\\pi}{\\bx{MN}}$ である。\n\n(2)　次の文中の \\bx{O} 〜 \\bx{U} には，下の選択肢 ⓪ 〜 ⑨ の中から適するものを選びなさい。\n\n$a_1$ を求めたのと同様にして，$a_n$ は部分積分法により\n\n$$a_n = \\frac{\\bx{O}}{\\bx{P}}\\left\\{\\int_0^1x^{\\bx{Q}}\\sqrt{1-x^2}\\,dx-\\int_0^1x^{\\bx{R}}\\sqrt{1-x^2}\\,dx\\right\\}\\qquad(n=1,\\,2,\\,3,\\,\\cdots)$$\n\nとなる。よって\n\n$$\\left(\\bx{S}\\right)a_n = \\left(\\bx{T}\\right)a_{n-1}$$\n\nとなる。したがって\n\n$$\\lim_{n\\to\\infty}\\frac{a_n}{a_{n-1}} = \\bx{U}$$\n\nを得る。\n\n⓪ $0$　　① $1$　　② $2$　　③ $3$　　④ $4$\n⑤ $2n-2$　　⑥ $2n-1$　　⑦ $2n$　　⑧ $2n+1$　　⑨ $2n+2$\n\n注）部分積分法：the partial integral method",
+      "stemZh": "设 $a_n=\\displaystyle\\int_0^1x^{2n}\\sqrt{1-x^2}\\,dx\\ \\ (n=0,\\,1,\\,2,\\,\\cdots)$，求极限值 $\\displaystyle\\lim_{n\\to\\infty}\\frac{a_n}{a_{n-1}}$。\n\n(1)　首先求 $a_0,\\ a_1$。半径为 1 的圆的面积是 $\\pi$，所以\n\n$$a_0 = \\int_0^1\\sqrt{1-x^2}\\,dx = \\frac{\\pi}{\\bx{A}}$$\n\n用分部积分法求 $a_1$：\n\n$$\\begin{aligned}a_1 &= \\int_0^1x^2\\sqrt{1-x^2}\\,dx\\\\ &= -\\frac{\\bx{B}}{\\bx{C}}\\left[\\,x(1-x^2)^{\\frac{\\bx{D}}{\\bx{E}}}\\,\\right]_0^1+\\frac{\\bx{F}}{\\bx{G}}\\int_0^1(1-x^2)^{\\frac{\\bx{H}}{\\bx{I}}}\\,dx\\\\ &= \\frac{\\bx{J}}{\\bx{K}}\\left\\{\\int_0^1\\sqrt{1-x^2}\\,dx-\\int_0^1x^{\\bx{L}}\\sqrt{1-x^2}\\,dx\\right\\}\\end{aligned}$$\n\n因此 $a_1=\\dfrac{\\pi}{\\bx{MN}}$。\n\n(2)　下文中的 \\bx{O} 〜 \\bx{U} 请从下面的选项 ⓪ 〜 ⑨ 中选出合适的。\n\n与求 $a_1$ 的方法相同，用分部积分法得\n\n$$a_n = \\frac{\\bx{O}}{\\bx{P}}\\left\\{\\int_0^1x^{\\bx{Q}}\\sqrt{1-x^2}\\,dx-\\int_0^1x^{\\bx{R}}\\sqrt{1-x^2}\\,dx\\right\\}\\qquad(n=1,\\,2,\\,3,\\,\\cdots)$$\n\n于是\n\n$$\\left(\\bx{S}\\right)a_n = \\left(\\bx{T}\\right)a_{n-1}$$\n\n所以\n\n$$\\lim_{n\\to\\infty}\\frac{a_n}{a_{n-1}} = \\bx{U}$$\n\n⓪ $0$　　① $1$　　② $2$　　③ $3$　　④ $4$\n⑤ $2n-2$　　⑥ $2n-1$　　⑦ $2n$　　⑧ $2n+1$　　⑨ $2n+2$\n\n注）部分積分法：分部积分法（the partial integral method）",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "1",
+        "C": "3",
+        "D": "3",
+        "E": "2",
+        "F": "1",
+        "G": "3",
+        "H": "3",
+        "I": "2",
+        "J": "1",
+        "K": "3",
+        "L": "2",
+        "M": "1",
+        "N": "6",
+        "O": "6",
+        "P": "3",
+        "Q": "5",
+        "R": "7",
+        "S": "9",
+        "T": "6",
+        "U": "1"
+      },
+      "explanation": {
+        "zh": "**思路**\n\n$a_n$ 是 Wallis（沃利斯）型积分，标准做法是用**分部积分**建立递推式 $a_n$ ↔ $a_{n-1}$。关键的拆法：\n\n$$x^{2n}\\sqrt{1-x^2}=x^{2n-1}\\cdot\\underbrace{x\\sqrt{1-x^2}}_{\\text{好积分}}$$\n\n因为 $x\\sqrt{1-x^2}$ 有原函数 $-\\dfrac13(1-x^2)^{\\frac32}$（求导检验：$-\\dfrac13\\cdot\\dfrac32(1-x^2)^{\\frac12}\\cdot(-2x)=x\\sqrt{1-x^2}$ ✓）。分部积分后出现 $(1-x^2)^{\\frac32}=(1-x^2)\\sqrt{1-x^2}$，再拆开就变回 $a_{n-1}-a_n$。\n\n(2) 的格子填的是**选项编号**（⓪〜⑨），不是数值本身。\n\n**解答**\n\n**1. $a_0$（A）**\n\n$y=\\sqrt{1-x^2}$（$0\\leqq x\\leqq1$）是单位圆在第一象限的那 $\\frac14$ 段圆弧，所以 $a_0$ 是四分之一圆的面积：\n\n$$a_0=\\frac{\\pi}{4}$$\n\n**A = 4**。\n\n**2. $a_1$ 的分部积分（B, C, D, E, F, G, H, I）**\n\n取 $u=x$（求导得 $1$），$v'=x\\sqrt{1-x^2}$（积分得 $v=-\\frac13(1-x^2)^{\\frac32}$）：\n\n$$a_1=\\int_0^1x\\cdot x\\sqrt{1-x^2}\\,dx=\\left[x\\cdot\\left(-\\frac13\\right)(1-x^2)^{\\frac32}\\right]_0^1-\\int_0^1 1\\cdot\\left(-\\frac13\\right)(1-x^2)^{\\frac32}\\,dx$$\n\n$$=-\\frac13\\left[x(1-x^2)^{\\frac32}\\right]_0^1+\\frac13\\int_0^1(1-x^2)^{\\frac32}\\,dx$$\n\n**B = 1，C = 3，D = 3，E = 2，F = 1，G = 3，H = 3，I = 2**。\n\n**3. 化回 $a_0,a_1$（J, K, L）**\n\n边界项：$x=1$ 时 $1\\cdot0=0$，$x=0$ 时 $0$，所以为 $0$。又\n\n$$(1-x^2)^{\\frac32}=(1-x^2)\\sqrt{1-x^2}=\\sqrt{1-x^2}-x^2\\sqrt{1-x^2}$$\n\n所以\n\n$$a_1=\\frac13\\left\\{\\int_0^1\\sqrt{1-x^2}\\,dx-\\int_0^1x^2\\sqrt{1-x^2}\\,dx\\right\\}$$\n\n**J = 1，K = 3，L = 2**。\n\n**4. 解出 $a_1$（MN）**\n\n括号里正是 $a_0-a_1$：\n\n$$a_1=\\frac13(a_0-a_1)\\ \\Longrightarrow\\ 4a_1=a_0=\\frac{\\pi}{4}\\ \\Longrightarrow\\ a_1=\\frac{\\pi}{16}$$\n\n**MN = 16**。\n\n**5. 一般的 $a_n$（O, P, Q, R）**\n\n$n\\geqq1$ 时取 $u=x^{2n-1}$（$u'=(2n-1)x^{2n-2}$），$v'=x\\sqrt{1-x^2}$：\n\n$$a_n=\\left[-\\frac13x^{2n-1}(1-x^2)^{\\frac32}\\right]_0^1+\\frac{2n-1}{3}\\int_0^1x^{2n-2}(1-x^2)^{\\frac32}\\,dx$$\n\n边界项在 $x=1$ 和 $x=0$ 都为 $0$（$n\\geqq1$ 保证 $2n-1\\geqq1$）。再拆 $(1-x^2)^{\\frac32}=\\sqrt{1-x^2}-x^2\\sqrt{1-x^2}$：\n\n$$a_n=\\frac{2n-1}{3}\\left\\{\\int_0^1x^{2n-2}\\sqrt{1-x^2}\\,dx-\\int_0^1x^{2n}\\sqrt{1-x^2}\\,dx\\right\\}$$\n\n对照选项：$2n-1$ 是 ⑥，$3$ 是 ③，$2n-2$ 是 ⑤，$2n$ 是 ⑦。\n\n**O = 6，P = 3，Q = 5，R = 7**。\n\n**6. 递推式（S, T）**\n\n括号里是 $a_{n-1}-a_n$：\n\n$$a_n=\\frac{2n-1}{3}(a_{n-1}-a_n)\\ \\Longrightarrow\\ 3a_n+(2n-1)a_n=(2n-1)a_{n-1}\\ \\Longrightarrow\\ (2n+2)\\,a_n=(2n-1)\\,a_{n-1}$$\n\n$2n+2$ 是 ⑨，$2n-1$ 是 ⑥。**S = 9，T = 6**。（检验 $n=1$：$4a_1=a_0$，与第 4 步一致 ✓）\n\n**7. 极限（U）**\n\n$a_n>0$，所以\n\n$$\\frac{a_n}{a_{n-1}}=\\frac{2n-1}{2n+2}=\\frac{2-\\frac1n}{2+\\frac2n}\\ \\longrightarrow\\ \\frac22=1\\quad(n\\to\\infty)$$\n\n值 $1$ 是 ①，**U = 1**。\n\n**结论**\n\nA = 4，B = 1，C = 3，D = 3，E = 2，F = 1，G = 3，H = 3，I = 2，J = 1，K = 3，L = 2，MN = 16，O = 6，P = 3，Q = 5，R = 7，S = 9，T = 6，U = 1。即 $a_0=\\dfrac{\\pi}{4}$，$a_1=\\dfrac{\\pi}{16}$，$(2n+2)a_n=(2n-1)a_{n-1}$，$\\displaystyle\\lim_{n\\to\\infty}\\frac{a_n}{a_{n-1}}=1$。",
+        "keyPoints": [
+          "$\\int_0^1\\sqrt{1-x^2}\\,dx$ 是单位圆面积的 $\\frac14$，等于 $\\frac{\\pi}{4}$（用几何意义，不必硬积）",
+          "分部积分拆成 $x^{2n-1}\\cdot x\\sqrt{1-x^2}$，利用 $\\int x\\sqrt{1-x^2}\\,dx=-\\frac13(1-x^2)^{\\frac32}$；再用 $(1-x^2)^{\\frac32}=\\sqrt{1-x^2}-x^2\\sqrt{1-x^2}$ 得到递推式",
+          "递推式 $(2n+2)a_n=(2n-1)a_{n-1}$ 给出 $\\dfrac{a_n}{a_{n-1}}=\\dfrac{2n-1}{2n+2}\\to1$"
+        ],
+        "traps": [
+          "(2) 的格子填**选项编号**：$a_n$ 的系数分子 $2n-1$ 填 6（⑥），不是填 “2n−1”；P 的值 3 恰好也是 ③，U 的值 1 恰好也是 ①，别被巧合误导而在其他格直接填数值",
+          "$u=x^{2n-1}$ 的导数是 $(2n-1)x^{2n-2}$，所以第一个积分的指数是 $2n-2$（⑤），不是 $2n-1$（⑥）；第二个是 $2n$（⑦）",
+          "$a_0$ 是四分之一圆（$0\\leqq x\\leqq1$），面积 $\\frac{\\pi}{4}$，不是半圆的 $\\frac{\\pi}{2}$；由 $a_n=\\frac{2n-1}{3}(a_{n-1}-a_n)$ 两边乘 3 再移项，$a_n$ 的系数是 $3+(2n-1)=2n+2$（⑨），别漏掉左边的 3 而写成 $2n-1$ 或 $2n$"
+        ],
+        "terms": [
+          {
+            "ja": "極限値",
+            "kana": "きょくげんち",
+            "zh": "极限的值（n 趋于无穷时数列逼近的数）"
+          },
+          {
+            "ja": "部分積分法",
+            "kana": "ぶぶんせきぶんほう",
+            "zh": "分部积分法：∫u v′dx = uv − ∫u′v dx"
+          },
+          {
+            "ja": "適する",
+            "kana": "てきする",
+            "zh": "合适、符合要求（「適するものを選びなさい」＝选出合适的一项）"
+          },
+          {
+            "ja": "得る",
+            "kana": "える",
+            "zh": "得到、求出（「を得る」＝得出结果）"
+          },
+          {
+            "ja": "同様にして",
+            "kana": "どうようにして",
+            "zh": "用同样的方法（照前面的做法）"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "可供选择的选项"
+          }
+        ],
+        "shortcut": "(2) 的选择题可用 $n=1$ 代回 (1) 检验：$n=1$ 时系数应为 $\\frac{J}{K}=\\frac13$ ⇒ 分子 $2n-1$（⑥）、分母 $3$（③）；两个指数应为 $0$ 和 $L=2$ ⇒ $2n-2$（⑤）与 $2n$（⑦）；递推式应为 $4a_1=a_0$ ⇒ $(2n+2)$（⑨）、$(2n-1)$（⑥）。最后 $\\frac{2n-1}{2n+2}$ 分子分母最高次系数之比 $\\frac22=1$，选 ①。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

@@ -1,0 +1,341 @@
+{
+  "title": "2019_1 math part",
+  "items": [
+    {
+      "id": "2019_1-math-I1",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.quad.func",
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "official",
+        "session": "2019_1",
+        "label": "2019年第1回 数学コース2 Ⅰ 問1",
+        "pdf": "/assets/expanded/2019_1-math.pdf",
+        "page": 18
+      },
+      "stem": "次の文中の \\bx{A} ～ \\bx{K} には，下の選択肢 ⓪ ～ ⑨ の中から適するものを選びなさい。\n\n(1)　グラフが右図のようになる 2 次関数\n\n$$y=ax^2+bx+c$$\n\nを考える。\n\nこのとき，$a,\\ b,\\ c$ は次の式を満たす。\n\n(i)　$a\\ \\bx{A}\\ 0,\\quad b\\ \\bx{B}\\ 0,\\quad c\\ \\bx{C}\\ 0$\n\n(ii)　$a+b+c\\ \\bx{D}\\ 0$\n\n(iii)　$a-b+c\\ \\bx{E}\\ 0$\n\n(iv)　$4a+2b+c\\ \\bx{F}\\ 0$\n\n(v)　$b^2-4ac\\ \\bx{G}\\ 0$\n\n(2)　$a,\\ b,\\ c$ が (1) の (i), (ii) を満たすとき，$a^2-8b-8c$ の値が最小となるような場合を考えよう。\n\nこのとき，$a=\\bx{H}$ であり，$y=ax^2+bx+c$ を $b$ を用いて表すと\n\n$$y=\\bx{H}\\,x^2+bx-b+\\bx{I}$$\n\nとなる。また，$b$ の値の範囲は $\\bx{J}<b<\\bx{K}$ である。\n\n- ⓪ $0$\n- ① $1$\n- ② $2$\n- ③ $3$\n- ④ $4$\n- ⑤ $-2$\n- ⑥ $-4$\n- ⑦ $>$\n- ⑧ $=$\n- ⑨ $<$",
+      "stemZh": "在下文的 \\bx{A} ～ \\bx{K} 中，从下面的选项 ⓪ ～ ⑨ 中选出合适的填入。\n\n(1)　考虑图像如右图所示的二次函数\n\n$$y=ax^2+bx+c$$\n\n此时，$a,\\ b,\\ c$ 满足下列各式。\n\n(i)　$a\\ \\bx{A}\\ 0,\\quad b\\ \\bx{B}\\ 0,\\quad c\\ \\bx{C}\\ 0$\n\n(ii)　$a+b+c\\ \\bx{D}\\ 0$\n\n(iii)　$a-b+c\\ \\bx{E}\\ 0$\n\n(iv)　$4a+2b+c\\ \\bx{F}\\ 0$\n\n(v)　$b^2-4ac\\ \\bx{G}\\ 0$\n\n(2)　当 $a,\\ b,\\ c$ 满足 (1) 中的 (i)、(ii) 时，考虑使 $a^2-8b-8c$ 的值最小的情形。\n\n此时 $a=\\bx{H}$，用 $b$ 表示 $y=ax^2+bx+c$，得\n\n$$y=\\bx{H}\\,x^2+bx-b+\\bx{I}$$\n\n另外，$b$ 的取值范围是 $\\bx{J}<b<\\bx{K}$。\n\n- ⓪ $0$\n- ① $1$\n- ② $2$\n- ③ $3$\n- ④ $4$\n- ⑤ $-2$\n- ⑥ $-4$\n- ⑦ $>$\n- ⑧ $=$\n- ⑨ $<$",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2019_1-math-I1-1.png",
+          "caption": "右図：2 次関数 y = ax² + bx + c のグラフ"
+        }
+      ],
+      "format": "blanks",
+      "blanks": {
+        "A": "9",
+        "B": "7",
+        "C": "7",
+        "D": "8",
+        "E": "9",
+        "F": "9",
+        "G": "7",
+        "H": "6",
+        "I": "4",
+        "J": "0",
+        "K": "4"
+      },
+      "explanation": {
+        "zh": "**思路**　(1) 全是\"读图定符号\"：开口方向定 $a$；对称轴在 $y$ 轴哪一侧（结合 $a$ 的符号）定 $b$；与 $y$ 轴的交点定 $c$。而 $a+b+c$、$a-b+c$、$4a+2b+c$ 恰好是 $f(1)$、$f(-1)$、$f(2)$，只要看图像在 $x=1,\\,-1,\\,2$ 处位于 $x$ 轴的上方、下方还是轴上；判别式看图像与 $x$ 轴的交点个数。(2) 用 (ii) 的等式 $a+b+c=0$ 把 $b+c$ 换成 $-a$，目标式就变成只含 $a$ 的二次函数，配方即可。\n\n**解答**　记 $f(x)=ax^2+bx+c$。\n\n**(1) A～G**\n\n1. 图像开口向下 ⇒ $a<0$，A = ⑨（$<$）。\n2. 顶点在 $y$ 轴右侧：$-\\dfrac{b}{2a}>0$。因为 $a<0$，两边乘以 $-2a>0$ 得 $b>0$，B = ⑦（$>$）。\n3. 图像与 $y$ 轴交于 $(0,\\,c)$，在原点上方 ⇒ $c>0$，C = ⑦（$>$）。\n4. 图像经过点 $(1,\\,0)$（图中的黑点）：$f(1)=a+b+c=0$，D = ⑧（$=$）。\n5. 左侧交点在 $-1$ 与 $0$ 之间，$x=-1$ 在它的左边，图像在 $x$ 轴下方：$f(-1)=a-b+c<0$，E = ⑨（$<$）。\n6. $x=2$ 在右侧交点 $x=1$ 的右边，图像在 $x$ 轴下方：$f(2)=4a+2b+c<0$，F = ⑨（$<$）。\n7. 图像与 $x$ 轴有两个不同交点 ⇒ 判别式 $b^2-4ac>0$，G = ⑦（$>$）。\n\n**(2) H, I, J, K**\n\n1. 由 (ii) $a+b+c=0$ 得 $b+c=-a$，所以\n$$a^2-8b-8c=a^2-8(b+c)=a^2+8a=(a+4)^2-16$$\n2. 条件 (i) 对 $a$ 只要求 $a<0$，$a=-4$ 满足，所以 $a=-4$ 时取最小值 $-16$。H = ⑥（$-4$）。\n3. 此时 $c=-a-b=4-b$，代入得\n$$y=-4x^2+bx-b+4$$\nI = ④（$4$）。\n4. $b$ 的范围：由 (i) 得 $b>0$；又 $c=4-b>0$ ⇒ $b<4$。所以 $0<b<4$，J = ⓪（$0$），K = ④（$4$）。反过来，$0<b<4$ 中任取 $b$，$a=-4$、$c=4-b$ 都满足 (i)(ii)，范围正好如此。\n\n**结论**　A = 9，B = 7，C = 7，D = 8，E = 9，F = 9，G = 7，H = 6，I = 4，J = 0，K = 4（填的都是选项编号：⑨ 表示 $<$，⑦ 表示 $>$，⑧ 表示 $=$，⑥ 表示 $-4$，④ 表示 $4$，⓪ 表示 $0$）。",
+        "keyPoints": [
+          "$a+b+c=f(1)$、$a-b+c=f(-1)$、$4a+2b+c=f(2)$：把系数组合看成函数值，再从图像读符号",
+          "对称轴 $x=-\\dfrac{b}{2a}$ 的位置结合 $a$ 的符号决定 $b$ 的符号；与 $x$ 轴交点个数决定判别式 $b^2-4ac$ 的符号",
+          "有等式约束时先消元：用 $b+c=-a$ 把目标式化成一元二次函数再配方"
+        ],
+        "traps": [
+          "框里填的是选项编号而不是数值：$a=-4$ 填 ⑥，$>$ 填 ⑦，$<$ 填 ⑨，$=$ 填 ⑧",
+          "顶点在右侧 ⇒ $-\\dfrac{b}{2a}>0$，而 $a<0$，所以 $b>0$；不等式两边乘负数时符号最容易翻错",
+          "(2) 中 $b$ 的范围要同时用 $b>0$ 和 $c=4-b>0$ 两个条件，漏掉 $c>0$ 就得不到上界 4"
+        ],
+        "terms": [
+          {
+            "ja": "グラフ",
+            "kana": "ぐらふ",
+            "zh": "函数的图像"
+          },
+          {
+            "ja": "右図",
+            "kana": "みぎず",
+            "zh": "右边的那幅图"
+          },
+          {
+            "ja": "満たす",
+            "kana": "みたす",
+            "zh": "满足（条件或等式）"
+          },
+          {
+            "ja": "値の範囲",
+            "kana": "あたいのはんい",
+            "zh": "取值范围"
+          },
+          {
+            "ja": "最小となる",
+            "kana": "さいしょうとなる",
+            "zh": "取到最小值"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "备选答案、可供选择的选项"
+          }
+        ],
+        "shortcut": "(1) 直接读图像在 $x=-1,\\,0,\\,1,\\,2$ 处的高度符号：$f(0)=c>0$，$f(1)=0$，$f(-1)<0$，$f(2)<0$，一次填完 C、D、E、F。$b$ 的符号可用口诀“左同右异”：顶点在 $y$ 轴左侧则 $a,b$ 同号，在右侧则异号；本题 $a<0$ 且顶点在右，故 $b>0$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2019_1-math-I2",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.prob.prob",
+      "difficulty": 1,
+      "targetSec": 600,
+      "source": {
+        "kind": "official",
+        "session": "2019_1",
+        "label": "2019年第1回 数学コース2 Ⅰ 問2",
+        "pdf": "/assets/expanded/2019_1-math.pdf",
+        "page": 20
+      },
+      "stem": "次のようなサイコロ X を投げる試行について考える。サイコロ X は，1 から 5 までの目が出る確率はすべて同じであるが，6 の目が出る確率は他の目の出る確率の 2 倍である。\n\n(1)　サイコロ X を投げるとき，1 から 5 までの目が出る確率をそれぞれ $p$ とすると，6 の目が出る確率は $\\bx{L}\\,p$ である。全事象の確率は \\bx{M} であるから，$p=\\dfrac{\\bx{N}}{\\bx{O}}$ である。\n\n(2)　いま，サイコロ X を 2 回続けて投げる。「2 回とも 1 から 5 までのいずれかの目が出る」という事象を $A$，「少なくとも 1 回は 6 の目が出る」という事象を $B$ とする。このとき，事象 $A$ の起こる確率 $P(A)$ と事象 $B$ の起こる確率 $P(B)$ は\n\n$$P(A)=\\dfrac{\\bx{PQ}}{\\bx{RS}},\\quad P(B)=\\dfrac{\\bx{TU}}{\\bx{VW}}$$\n\nである。したがって，\\bx{X} である。ただし，\\bx{X} には，下の選択肢 ⓪ ～ ④ の中から適するものを選びなさい。\n\n- ⓪ $P(A)$ の方が $P(B)$ より低く，その差は $\\dfrac{1}{36}$ 以上\n- ① $P(A)$ の方が $P(B)$ より低く，その差は $\\dfrac{1}{36}$ 未満\n- ② $P(A)$ と $P(B)$ は同じ\n- ③ $P(A)$ の方が $P(B)$ より高く，その差は $\\dfrac{1}{36}$ 以上\n- ④ $P(A)$ の方が $P(B)$ より高く，その差は $\\dfrac{1}{36}$ 未満\n\n(3)　次に，サイコロ X を 3 回続けて投げる。「3 回とも 1 から 5 までのいずれかの目が出る」という事象を $C$，「少なくとも 1 回は 6 の目が出る」という事象を $D$ とするとき，確率 $P(C)$ と確率 $P(D)$ を比べると \\bx{Y} である。ただし，\\bx{Y} には，下の選択肢 ⓪ ～ ④ の中から適するものを選びなさい。\n\n- ⓪ $P(C)$ の方が $P(D)$ より低く，$P(D)$ は $P(C)$ の 2 倍以上\n- ① $P(C)$ の方が $P(D)$ より低く，$P(D)$ は $P(C)$ の 2 倍未満\n- ② $P(C)$ と $P(D)$ は同じ\n- ③ $P(C)$ の方が $P(D)$ より高く，$P(C)$ は $P(D)$ の 2 倍以上\n- ④ $P(C)$ の方が $P(D)$ より高く，$P(C)$ は $P(D)$ の 2 倍未満\n\n注）サイコロ：dice",
+      "stemZh": "考虑投掷下面这种骰子 X 的试验。骰子 X 掷出 1 到 5 各点的概率都相同，但掷出 6 点的概率是其他各点概率的 2 倍。\n\n(1)　投掷骰子 X 时，设掷出 1 到 5 各点的概率均为 $p$，则掷出 6 点的概率为 $\\bx{L}\\,p$。全事件的概率为 \\bx{M}，所以 $p=\\dfrac{\\bx{N}}{\\bx{O}}$。\n\n(2)　现在将骰子 X 连续投掷 2 次。设\"2 次都掷出 1 到 5 中的某一点\"为事件 $A$，\"至少有 1 次掷出 6 点\"为事件 $B$。此时事件 $A$ 发生的概率 $P(A)$ 与事件 $B$ 发生的概率 $P(B)$ 为\n\n$$P(A)=\\dfrac{\\bx{PQ}}{\\bx{RS}},\\quad P(B)=\\dfrac{\\bx{TU}}{\\bx{VW}}$$\n\n因此 \\bx{X} 。其中 \\bx{X} 从下面选项 ⓪ ～ ④ 中选出合适的一个。\n\n- ⓪ $P(A)$ 比 $P(B)$ 小，差在 $\\dfrac{1}{36}$ 以上（$\\geqq\\dfrac1{36}$）\n- ① $P(A)$ 比 $P(B)$ 小，差不足 $\\dfrac{1}{36}$（$<\\dfrac1{36}$）\n- ② $P(A)$ 与 $P(B)$ 相等\n- ③ $P(A)$ 比 $P(B)$ 大，差在 $\\dfrac{1}{36}$ 以上\n- ④ $P(A)$ 比 $P(B)$ 大，差不足 $\\dfrac{1}{36}$\n\n(3)　接着将骰子 X 连续投掷 3 次。设\"3 次都掷出 1 到 5 中的某一点\"为事件 $C$，\"至少有 1 次掷出 6 点\"为事件 $D$，比较概率 $P(C)$ 与 $P(D)$，结论是 \\bx{Y} 。其中 \\bx{Y} 从下面选项 ⓪ ～ ④ 中选出合适的一个。\n\n- ⓪ $P(C)$ 比 $P(D)$ 小，且 $P(D)$ 是 $P(C)$ 的 2 倍以上\n- ① $P(C)$ 比 $P(D)$ 小，且 $P(D)$ 不到 $P(C)$ 的 2 倍\n- ② $P(C)$ 与 $P(D)$ 相等\n- ③ $P(C)$ 比 $P(D)$ 大，且 $P(C)$ 是 $P(D)$ 的 2 倍以上\n- ④ $P(C)$ 比 $P(D)$ 大，且 $P(C)$ 不到 $P(D)$ 的 2 倍\n\n注）サイコロ：骰子",
+      "format": "blanks",
+      "blanks": {
+        "L": "2",
+        "M": "1",
+        "N": "1",
+        "O": "7",
+        "P": "2",
+        "Q": "5",
+        "R": "4",
+        "S": "9",
+        "T": "2",
+        "U": "4",
+        "V": "4",
+        "W": "9",
+        "X": "4",
+        "Y": "1"
+      },
+      "explanation": {
+        "zh": "**思路**　这是一个\"不均匀\"的骰子，先用\"所有结果的概率之和为 1\"求出基本概率 $p$。(2)(3) 中，\"每次都出 1～5\"就是\"一次也没出 6\"，它与\"至少出一次 6\"恰好是**对立事件（余事象）**，所以 $P(B)=1-P(A)$，$P(D)=1-P(C)$。\n\n**解答**\n\n**(1) L, M, N, O**\n\n1. 6 点的概率是其他点的 2 倍，即 $2p$，L = 2。\n2. 全事件的概率为 1，M = 1。于是 $5p+2p=7p=1$，$p=\\dfrac17$，N = 1，O = 7。\n\n**(2) PQ, RS, TU, VW, X**\n\n1. 一次投掷掷出 1～5 中某一点的概率为 $5p=\\dfrac57$。两次投掷相互独立：\n$$P(A)=\\left(\\dfrac57\\right)^2=\\dfrac{25}{49}$$\nPQ = 25，RS = 49。\n2. $B$ 是 $A$ 的对立事件：\n$$P(B)=1-\\dfrac{25}{49}=\\dfrac{24}{49}$$\nTU = 24，VW = 49。\n3. $P(A)-P(B)=\\dfrac{1}{49}>0$，所以 $P(A)$ 较大；又 $\\dfrac1{49}<\\dfrac1{36}$（分子相同，分母越大分数越小），差不足 $\\dfrac1{36}$。X = ④。\n\n**(3) Y**\n\n1. $P(C)=\\left(\\dfrac57\\right)^3=\\dfrac{125}{343}$，$P(D)=1-\\dfrac{125}{343}=\\dfrac{218}{343}$。\n2. $P(C)<P(D)$，排除 ②③④。再比较倍数：$2P(C)=\\dfrac{250}{343}>\\dfrac{218}{343}=P(D)$，所以 $P(D)$ 不到 $P(C)$ 的 2 倍。Y = ①。\n\n**结论**　L = 2，M = 1，N = 1，O = 7，PQ = 25，RS = 49，TU = 24，VW = 49，X = 4，Y = 1。",
+        "keyPoints": [
+          "不均匀骰子：设基本概率为 $p$，用“全事件概率为 1”列方程求 $p$",
+          "“至少 1 次”用对立事件：$P(\\text{至少一次})=1-P(\\text{一次也没有})$",
+          "独立重复试验：$n$ 次都发生的概率等于单次概率的 $n$ 次方"
+        ],
+        "traps": [
+          "不能按普通骰子用 $\\dfrac16$：本题 $p=\\dfrac17$，6 点的概率是 $\\dfrac27$",
+          "比较 $\\dfrac1{49}$ 与 $\\dfrac1{36}$：分子相同时分母大的反而小，所以差“未満”$\\dfrac1{36}$",
+          "(3) 选项比的是倍数关系：要比较 $2P(C)$ 与 $P(D)$，而不是两者的差"
+        ],
+        "terms": [
+          {
+            "ja": "サイコロ",
+            "kana": "さいころ",
+            "zh": "骰子"
+          },
+          {
+            "ja": "試行",
+            "kana": "しこう",
+            "zh": "概率论中的一次试验（如投一次骰子）"
+          },
+          {
+            "ja": "全事象",
+            "kana": "ぜんじしょう",
+            "zh": "所有可能结果构成的事件（样本空间），概率为 1"
+          },
+          {
+            "ja": "少なくとも",
+            "kana": "すくなくとも",
+            "zh": "至少"
+          },
+          {
+            "ja": "以上",
+            "kana": "いじょう",
+            "zh": "大于或等于（包含该数）"
+          },
+          {
+            "ja": "未満",
+            "kana": "みまん",
+            "zh": "小于、不足（不包含该数）"
+          }
+        ],
+        "shortcut": "$P(A)-P(B)=2P(A)-1=\\dfrac{50}{49}-1=\\dfrac1{49}$。(3) “$P(D)<2P(C)$”等价于 $1-P(C)<2P(C)$，即 $P(C)>\\dfrac13$；而 $\\left(\\dfrac57\\right)^3=\\dfrac{125}{343}\\approx0.36>\\dfrac13$，立得 ①。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2019_1-math-II1",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.vec.space",
+      "difficulty": 2,
+      "targetSec": 720,
+      "source": {
+        "kind": "official",
+        "session": "2019_1",
+        "label": "2019年第1回 数学コース2 Ⅱ 問1",
+        "pdf": "/assets/expanded/2019_1-math.pdf",
+        "page": 22
+      },
+      "stem": "次の文中の \\bx{A}，\\bx{B}，\\bx{D}，\\bx{E}，\\bx{G} には，下の選択肢 ⓪ ～ ⑨ の中から適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n点 O を中心とする半径 2 の球があり，その球面上に 4 つの頂点を持つ四面体 ABCD を考える。この四面体 ABCD において，$\\mathrm{AB}=\\mathrm{BC}=\\mathrm{CA}=2$ であり，辺 BD は球の直径であるとする。また，$\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，$\\overrightarrow{\\mathrm{OC}}=\\vec{c}$ とおく。\n\n(1)　線分 DA，BC の中点をそれぞれ M，N とすると\n\n$$\\overrightarrow{\\mathrm{DA}}=\\bx{A},\\quad \\overrightarrow{\\mathrm{MN}}=\\dfrac{\\bx{B}}{\\bx{C}}+\\bx{D}$$\n\nである。\n\n(2)　線分 MN の中点を P とし，三角形 BCD の重心を G とすると\n\n$$\\overrightarrow{\\mathrm{OP}}=\\dfrac{\\bx{E}}{\\bx{F}},\\quad \\overrightarrow{\\mathrm{OG}}=\\dfrac{\\bx{G}}{\\bx{H}},\\quad \\left|\\overrightarrow{\\mathrm{PG}}\\right|=\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}}$$\n\nである。\n\nまた，$\\overrightarrow{\\mathrm{AG}}=\\dfrac{\\bx{K}}{\\bx{L}}\\overrightarrow{\\mathrm{AP}}$ であるから，3 点 A，P，G は一直線上にあることがわかる。\n\n- ⓪ $\\vec{a}$\n- ① $\\vec{b}$\n- ② $\\vec{c}$\n- ③ $\\vec{a}-\\vec{b}$\n- ④ $\\vec{b}-\\vec{c}$\n- ⑤ $\\vec{c}-\\vec{a}$\n- ⑥ $\\vec{a}+\\vec{b}$\n- ⑦ $\\vec{b}+\\vec{c}$\n- ⑧ $\\vec{c}+\\vec{a}$\n- ⑨ $\\vec{a}+\\vec{b}+\\vec{c}$\n\n注）重心：center of gravity",
+      "stemZh": "在下文中，\\bx{A}，\\bx{B}，\\bx{D}，\\bx{E}，\\bx{G} 从下面的选项 ⓪ ～ ⑨ 中选出合适的填入，其他的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n有一个以点 O 为球心、半径为 2 的球，考虑 4 个顶点都在该球面上的四面体 ABCD。在四面体 ABCD 中，$\\mathrm{AB}=\\mathrm{BC}=\\mathrm{CA}=2$，且棱 BD 是球的直径。另设 $\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，$\\overrightarrow{\\mathrm{OC}}=\\vec{c}$。\n\n(1)　设线段 DA，BC 的中点分别为 M，N，则\n\n$$\\overrightarrow{\\mathrm{DA}}=\\bx{A},\\quad \\overrightarrow{\\mathrm{MN}}=\\dfrac{\\bx{B}}{\\bx{C}}+\\bx{D}$$\n\n(2)　设线段 MN 的中点为 P，三角形 BCD 的重心为 G，则\n\n$$\\overrightarrow{\\mathrm{OP}}=\\dfrac{\\bx{E}}{\\bx{F}},\\quad \\overrightarrow{\\mathrm{OG}}=\\dfrac{\\bx{G}}{\\bx{H}},\\quad \\left|\\overrightarrow{\\mathrm{PG}}\\right|=\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}}$$\n\n另外，由 $\\overrightarrow{\\mathrm{AG}}=\\dfrac{\\bx{K}}{\\bx{L}}\\overrightarrow{\\mathrm{AP}}$ 可知，A，P，G 三点在同一条直线上。\n\n- ⓪ $\\vec{a}$\n- ① $\\vec{b}$\n- ② $\\vec{c}$\n- ③ $\\vec{a}-\\vec{b}$\n- ④ $\\vec{b}-\\vec{c}$\n- ⑤ $\\vec{c}-\\vec{a}$\n- ⑥ $\\vec{a}+\\vec{b}$\n- ⑦ $\\vec{b}+\\vec{c}$\n- ⑧ $\\vec{c}+\\vec{a}$\n- ⑨ $\\vec{a}+\\vec{b}+\\vec{c}$\n\n注）重心：三角形三条中线的交点（center of gravity）",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "5",
+        "C": "2",
+        "D": "1",
+        "E": "8",
+        "F": "4",
+        "G": "2",
+        "H": "3",
+        "I": "7",
+        "J": "6",
+        "K": "4",
+        "L": "3"
+      },
+      "explanation": {
+        "zh": "**思路**　关键一步：BD 是球的直径 ⇒ 球心 O 是 BD 的中点 ⇒ $\\overrightarrow{\\mathrm{OD}}=-\\vec b$。这样所有点都能用 $\\vec a,\\vec b,\\vec c$ 表示。求长度时要用内积：$|\\vec a|=|\\vec b|=|\\vec c|=2$（半径），又 $\\mathrm{AB}=\\mathrm{BC}=\\mathrm{CA}=2$，所以 $\\triangle\\mathrm{OAB}$、$\\triangle\\mathrm{OBC}$、$\\triangle\\mathrm{OCA}$ 都是边长 2 的正三角形，\n$$\\vec a\\cdot\\vec b=\\vec b\\cdot\\vec c=\\vec c\\cdot\\vec a=2\\cdot2\\cos60^\\circ=2$$\n\n**解答**\n\n**(1) A, B, C, D**\n\n1. $\\overrightarrow{\\mathrm{DA}}=\\overrightarrow{\\mathrm{OA}}-\\overrightarrow{\\mathrm{OD}}=\\vec a-(-\\vec b)=\\vec a+\\vec b$，A = ⑥。\n2. $\\overrightarrow{\\mathrm{OM}}=\\dfrac{\\vec a+(-\\vec b)}{2}=\\dfrac{\\vec a-\\vec b}{2}$，$\\overrightarrow{\\mathrm{ON}}=\\dfrac{\\vec b+\\vec c}{2}$。\n3. 所以\n$$\\overrightarrow{\\mathrm{MN}}=\\overrightarrow{\\mathrm{ON}}-\\overrightarrow{\\mathrm{OM}}=\\dfrac{\\vec b+\\vec c-\\vec a+\\vec b}{2}=\\dfrac{\\vec c-\\vec a}{2}+\\vec b$$\nB = ⑤（$\\vec c-\\vec a$），C = 2，D = ①（$\\vec b$）。\n\n**(2) E, F, G, H, I, J, K, L**\n\n1. P 是 MN 的中点：\n$$\\overrightarrow{\\mathrm{OP}}=\\dfrac12\\left(\\dfrac{\\vec a-\\vec b}{2}+\\dfrac{\\vec b+\\vec c}{2}\\right)=\\dfrac{\\vec c+\\vec a}{4}$$\nE = ⑧，F = 4。\n2. G 是 $\\triangle\\mathrm{BCD}$ 的重心：\n$$\\overrightarrow{\\mathrm{OG}}=\\dfrac{\\vec b+\\vec c+(-\\vec b)}{3}=\\dfrac{\\vec c}{3}$$\nG = ②，H = 3。\n3. $\\overrightarrow{\\mathrm{PG}}=\\dfrac{\\vec c}{3}-\\dfrac{\\vec c+\\vec a}{4}=\\dfrac{\\vec c-3\\vec a}{12}$。先求\n$$|\\vec c-3\\vec a|^2=|\\vec c|^2-6\\,\\vec a\\cdot\\vec c+9|\\vec a|^2=4-12+36=28$$\n所以 $|\\vec c-3\\vec a|=2\\sqrt7$，\n$$\\left|\\overrightarrow{\\mathrm{PG}}\\right|=\\dfrac{2\\sqrt7}{12}=\\dfrac{\\sqrt7}{6}$$\nI = 7，J = 6。\n4. $\\overrightarrow{\\mathrm{AP}}=\\dfrac{\\vec c+\\vec a}{4}-\\vec a=\\dfrac{\\vec c-3\\vec a}{4}$，$\\overrightarrow{\\mathrm{AG}}=\\dfrac{\\vec c}{3}-\\vec a=\\dfrac{\\vec c-3\\vec a}{3}$，因此\n$$\\overrightarrow{\\mathrm{AG}}=\\dfrac43\\,\\overrightarrow{\\mathrm{AP}}$$\nK = 4，L = 3。A、P、G 共线，且 P 在线段 AG 上，$\\mathrm{AP}:\\mathrm{PG}=3:1$（与 $\\left|\\overrightarrow{\\mathrm{PG}}\\right|=\\dfrac14\\left|\\overrightarrow{\\mathrm{AG}}\\right|=\\dfrac14\\cdot\\dfrac{2\\sqrt7}{3}$ 一致）。\n\n**结论**　A = 6，B = 5，C = 2，D = 1，E = 8，F = 4，G = 2，H = 3，I = 7，J = 6，K = 4，L = 3。",
+        "keyPoints": [
+          "球的直径两端关于球心对称：BD 为直径 ⇒ $\\overrightarrow{\\mathrm{OD}}=-\\overrightarrow{\\mathrm{OB}}$",
+          "中点 $\\dfrac{\\vec x+\\vec y}{2}$、三角形重心 $\\dfrac{\\vec x+\\vec y+\\vec z}{3}$ 的位置向量公式",
+          "求长度先平方展开；两边为半径 2、第三边为 2 的三角形是正三角形，内积 $=2\\cdot2\\cos60^\\circ=2$"
+        ],
+        "traps": [
+          "$\\overrightarrow{\\mathrm{DA}}=\\overrightarrow{\\mathrm{OA}}-\\overrightarrow{\\mathrm{OD}}$（终点减起点），代入 $-\\vec b$ 得 $\\vec a+\\vec b$，不是 $\\vec a-\\vec b$",
+          "重心中 $\\vec b$ 与 $-\\vec b$ 抵消只剩 $\\dfrac{\\vec c}{3}$；若把 $\\overrightarrow{\\mathrm{OD}}$ 误写成 $\\vec b$ 会全盘出错",
+          "展开 $|\\vec c-3\\vec a|^2$ 时交叉项是 $-6\\,\\vec a\\cdot\\vec c$，系数 2 容易漏"
+        ],
+        "terms": [
+          {
+            "ja": "球面",
+            "kana": "きゅうめん",
+            "zh": "球的表面"
+          },
+          {
+            "ja": "四面体",
+            "kana": "しめんたい",
+            "zh": "由四个三角形面围成的立体（三棱锥）"
+          },
+          {
+            "ja": "直径",
+            "kana": "ちょっけい",
+            "zh": "经过球心、两端都在球面上的线段，长为半径的 2 倍"
+          },
+          {
+            "ja": "線分",
+            "kana": "せんぶん",
+            "zh": "两点之间的一段直线（线段）"
+          },
+          {
+            "ja": "重心",
+            "kana": "じゅうしん",
+            "zh": "三角形三条中线的交点，位置向量为三顶点的平均"
+          },
+          {
+            "ja": "一直線上にある",
+            "kana": "いっちょくせんじょうにある",
+            "zh": "位于同一条直线上（共线）"
+          }
+        ],
+        "shortcut": "共线检验：$\\overrightarrow{\\mathrm{OG}}=\\dfrac{\\vec c}{3}=-\\dfrac13\\vec a+\\dfrac43\\cdot\\dfrac{\\vec a+\\vec c}{4}=-\\dfrac13\\overrightarrow{\\mathrm{OA}}+\\dfrac43\\overrightarrow{\\mathrm{OP}}$，系数和 $-\\dfrac13+\\dfrac43=1$，立得 $\\overrightarrow{\\mathrm{AG}}=\\dfrac43\\overrightarrow{\\mathrm{AP}}$。$|\\overrightarrow{\\mathrm{PG}}|$ 也可先算 $|\\overrightarrow{\\mathrm{AG}}|^2=\\left|\\dfrac{\\vec c}{3}-\\vec a\\right|^2=\\dfrac49-\\dfrac43+4=\\dfrac{28}{9}$，再取其 $\\dfrac14$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2019_1-math-II2",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.complex.plane",
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "official",
+        "session": "2019_1",
+        "label": "2019年第1回 数学コース2 Ⅱ 問2",
+        "pdf": "/assets/expanded/2019_1-math.pdf",
+        "page": 24
+      },
+      "stem": "複素数平面上の異なる 3 点 A，B，C を表す複素数をそれぞれ $\\alpha,\\ \\beta,\\ \\gamma$ とする。$\\alpha,\\ \\beta,\\ \\gamma$ が\n\n$$(\\gamma-\\alpha)^2+(\\gamma-\\alpha)(\\beta-\\alpha)+(\\beta-\\alpha)^2=0 \\qquad\\cdots\\cdots\\quad\\text{①}$$\n\n$$|\\beta-2\\alpha+\\gamma|=3 \\qquad\\cdots\\cdots\\quad\\text{②}$$\n\nを満たすとき，三角形 ABC の面積を求めよう。\n\nまず，① より\n\n$$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=\\dfrac{-\\bx{M}\\pm\\sqrt{\\bx{N}}\\,i}{\\bx{O}}$$\n\nであるから\n\n$$\\left|\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}\\right|=\\bx{P},\\quad \\arg\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=\\pm\\dfrac{\\bx{Q}}{\\bx{R}}\\pi$$\n\nである。ただし，$-\\pi<\\arg\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}<\\pi$ とする。また\n\n$$\\beta-2\\alpha+\\gamma=(\\beta-\\alpha)\\cdot\\dfrac{\\bx{S}\\pm\\sqrt{\\bx{T}}\\,i}{\\bx{U}}$$\n\nであるから，② より\n\n$$|\\beta-\\alpha|=\\bx{V}$$\n\nとなる。\n\nしたがって，三角形 ABC の面積は $\\dfrac{\\bx{W}\\sqrt{\\bx{X}}}{\\bx{Y}}$ である。\n\n注）複素数平面：complex plane，複素数：complex number",
+      "stemZh": "设表示复平面上不同的 3 点 A，B，C 的复数分别为 $\\alpha,\\ \\beta,\\ \\gamma$。当 $\\alpha,\\ \\beta,\\ \\gamma$ 满足\n\n$$(\\gamma-\\alpha)^2+(\\gamma-\\alpha)(\\beta-\\alpha)+(\\beta-\\alpha)^2=0 \\qquad\\cdots\\cdots\\quad\\text{①}$$\n\n$$|\\beta-2\\alpha+\\gamma|=3 \\qquad\\cdots\\cdots\\quad\\text{②}$$\n\n时，求三角形 ABC 的面积。\n\n首先，由 ① 得\n\n$$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=\\dfrac{-\\bx{M}\\pm\\sqrt{\\bx{N}}\\,i}{\\bx{O}}$$\n\n所以\n\n$$\\left|\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}\\right|=\\bx{P},\\quad \\arg\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=\\pm\\dfrac{\\bx{Q}}{\\bx{R}}\\pi$$\n\n其中 $-\\pi<\\arg\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}<\\pi$。又\n\n$$\\beta-2\\alpha+\\gamma=(\\beta-\\alpha)\\cdot\\dfrac{\\bx{S}\\pm\\sqrt{\\bx{T}}\\,i}{\\bx{U}}$$\n\n所以由 ② 得\n\n$$|\\beta-\\alpha|=\\bx{V}$$\n\n因此，三角形 ABC 的面积为 $\\dfrac{\\bx{W}\\sqrt{\\bx{X}}}{\\bx{Y}}$。\n\n注）複素数平面：复平面；複素数：复数",
+      "format": "blanks",
+      "blanks": {
+        "M": "1",
+        "N": "3",
+        "O": "2",
+        "P": "1",
+        "Q": "2",
+        "R": "3",
+        "S": "1",
+        "T": "3",
+        "U": "2",
+        "V": "3",
+        "W": "9",
+        "X": "3",
+        "Y": "4"
+      },
+      "explanation": {
+        "zh": "**思路**　式 ① 是关于 $\\gamma-\\alpha$ 与 $\\beta-\\alpha$ 的二次齐次式。因为三点不同，$\\beta-\\alpha\\neq0$，两边同除以 $(\\beta-\\alpha)^2$，令\n$$z=\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}$$\n就化成 $z^2+z+1=0$。$z$ 的几何意义：$|z|=\\dfrac{\\mathrm{AC}}{\\mathrm{AB}}$，$\\arg z$ 是从 $\\overrightarrow{\\mathrm{AB}}$ 转到 $\\overrightarrow{\\mathrm{AC}}$ 的角。② 再把 $\\beta-2\\alpha+\\gamma$ 拆成 $(\\beta-\\alpha)+(\\gamma-\\alpha)$ 来求边长。\n\n**解答**\n\n**M, N, O**\n\n1. ① 两边除以 $(\\beta-\\alpha)^2$ 得 $z^2+z+1=0$，由求根公式\n$$z=\\dfrac{-1\\pm\\sqrt{1-4}}{2}=\\dfrac{-1\\pm\\sqrt3\\,i}{2}$$\nM = 1，N = 3，O = 2。\n\n**P, Q, R**\n\n2. $|z|=\\sqrt{\\left(-\\dfrac12\\right)^2+\\left(\\dfrac{\\sqrt3}{2}\\right)^2}=1$，P = 1。\n3. $z=\\cos\\left(\\pm\\dfrac23\\pi\\right)+i\\sin\\left(\\pm\\dfrac23\\pi\\right)$，所以 $\\arg z=\\pm\\dfrac23\\pi$，Q = 2，R = 3。几何上：$\\mathrm{AC}=\\mathrm{AB}$，$\\angle\\mathrm{BAC}=\\dfrac23\\pi=120^\\circ$。\n\n**S, T, U**\n\n4. $\\beta-2\\alpha+\\gamma=(\\beta-\\alpha)+(\\gamma-\\alpha)=(\\beta-\\alpha)(1+z)$，而\n$$1+z=1+\\dfrac{-1\\pm\\sqrt3\\,i}{2}=\\dfrac{1\\pm\\sqrt3\\,i}{2}$$\nS = 1，T = 3，U = 2。\n\n**V**\n\n5. $\\left|\\dfrac{1\\pm\\sqrt3\\,i}{2}\\right|=\\sqrt{\\dfrac14+\\dfrac34}=1$，所以由 ②：$|\\beta-\\alpha|\\cdot1=3$，即 $|\\beta-\\alpha|=3$，V = 3。\n\n**W, X, Y**\n\n6. $\\mathrm{AB}=|\\beta-\\alpha|=3$，$\\mathrm{AC}=|\\gamma-\\alpha|=|z|\\,|\\beta-\\alpha|=3$，夹角 $\\angle\\mathrm{BAC}=\\dfrac23\\pi$，所以\n$$\\triangle\\mathrm{ABC}\\ \\text{的面积}=\\dfrac12\\cdot\\mathrm{AB}\\cdot\\mathrm{AC}\\cdot\\sin\\dfrac23\\pi=\\dfrac12\\cdot3\\cdot3\\cdot\\dfrac{\\sqrt3}{2}=\\dfrac{9\\sqrt3}{4}$$\nW = 9，X = 3，Y = 4。\n\n**结论**　M = 1，N = 3，O = 2，P = 1，Q = 2，R = 3，S = 1，T = 3，U = 2，V = 3，W = 9，X = 3，Y = 4。",
+        "keyPoints": [
+          "$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}$ 的模 $=\\dfrac{\\mathrm{AC}}{\\mathrm{AB}}$，辐角 $=\\angle\\mathrm{BAC}$（从 $\\overrightarrow{\\mathrm{AB}}$ 转到 $\\overrightarrow{\\mathrm{AC}}$ 的角）",
+          "齐次式同除以 $(\\beta-\\alpha)^2$ 化为 $z^2+z+1=0$，其根 $\\omega$ 满足 $|\\omega|=1$，$\\arg\\omega=\\pm\\dfrac23\\pi$",
+          "三角形面积公式 $\\dfrac12\\,bc\\sin A$"
+        ],
+        "traps": [
+          "框前已经印了负号：$z=\\dfrac{-1\\pm\\sqrt3\\,i}{2}$ 中 M 填 1，不是 $-1$",
+          "$\\beta-2\\alpha+\\gamma$ 要拆成 $(\\beta-\\alpha)+(\\gamma-\\alpha)$ 才能提出公因式 $\\beta-\\alpha$",
+          "顶角是 $\\dfrac23\\pi=120^\\circ$，三角形是 $\\mathrm{AB}=\\mathrm{AC}=3$ 的等腰钝角三角形（$\\mathrm{BC}=3\\sqrt3$），不是正三角形；面积要用两边夹角公式 $\\dfrac12\\cdot3\\cdot3\\sin120^\\circ$，只是因为 $\\sin120^\\circ=\\sin60^\\circ$ 数值才与边长 3 的正三角形碰巧相同"
+        ],
+        "terms": [
+          {
+            "ja": "複素数平面",
+            "kana": "ふくそすうへいめん",
+            "zh": "复平面：横轴表示实部、纵轴表示虚部的坐标平面"
+          },
+          {
+            "ja": "複素数",
+            "kana": "ふくそすう",
+            "zh": "形如 a+bi 的数（复数）"
+          },
+          {
+            "ja": "異なる",
+            "kana": "ことなる",
+            "zh": "不同的、互不重合的"
+          },
+          {
+            "ja": "面積",
+            "kana": "めんせき",
+            "zh": "图形所占平面区域的大小"
+          },
+          {
+            "ja": "満たす",
+            "kana": "みたす",
+            "zh": "满足（条件或等式）"
+          },
+          {
+            "ja": "偏角（arg）",
+            "kana": "へんかく",
+            "zh": "辐角：复数对应的向量与实轴正方向所成的角"
+          }
+        ],
+        "shortcut": "看到 $x^2+xy+y^2=0$ 就想到 $\\dfrac{x}{y}=\\omega$（1 的虚立方根）：$|\\omega|=1$，$\\arg\\omega=\\pm120^\\circ$，且 $1+\\omega=-\\omega^2$ 的模也是 1。于是 $\\mathrm{AB}=\\mathrm{AC}$、顶角 $120^\\circ$；② 中 $|\\overrightarrow{\\mathrm{AB}}+\\overrightarrow{\\mathrm{AC}}|$ 等于底边中线长的 2 倍，即 $2\\cdot\\mathrm{AB}\\cos60^\\circ=\\mathrm{AB}$，故 $\\mathrm{AB}=3$，面积 $\\dfrac12\\cdot9\\cdot\\dfrac{\\sqrt3}{2}=\\dfrac{9\\sqrt3}{4}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

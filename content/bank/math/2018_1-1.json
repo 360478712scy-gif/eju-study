@@ -1,0 +1,346 @@
+{
+ "title": "2018_1 math part",
+ "items": [
+  {
+   "id": "2018_1-math-I1",
+   "subject": "math",
+   "order": 1,
+   "topic": "math.quad.func",
+   "difficulty": 2,
+   "targetSec": 660,
+   "source": {
+    "kind": "official",
+    "session": "2018_1",
+    "label": "2018年第1回 数学コース2 Ⅰ 問1",
+    "pdf": "/assets/expanded/2018_1-math.pdf",
+    "page": 18
+   },
+   "stem": "$a$ を実数とし，2次関数\n\n$$f(x)=\\frac{1}{4}x^2-(2a-1)x+a$$\n\nについて考える。\n\n(1)　$y=f(x)$ のグラフの頂点の座標は\n\n$$\\left(\\bx{A}\\,a-\\bx{B},\\ -\\bx{C}\\,a^2+\\bx{D}\\,a-\\bx{E}\\right)$$\n\nである。\n\n(2)　$y=f(x)$ のグラフと $x$ 軸が異なる2点 A, B で交わるような $a$ の値の範囲は\n\n$$a<\\dfrac{\\bx{F}}{\\bx{G}},\\qquad \\bx{H}<a$$\n\nである。\n\n(3)　(2) の2点 A, B で，それらの $x$ 座標がともに 0 以上 6 以下となる $a$ の値の範囲は\n\n$$\\bx{I}<a\\leqq\\dfrac{\\bx{JK}}{\\bx{LM}}$$\n\nである。",
+   "stemZh": "设 $a$ 为实数，考虑二次函数\n\n$$f(x)=\\frac{1}{4}x^2-(2a-1)x+a$$\n\n(1)　$y=f(x)$ 图像的顶点坐标为\n\n$$\\left(\\bx{A}\\,a-\\bx{B},\\ -\\bx{C}\\,a^2+\\bx{D}\\,a-\\bx{E}\\right)$$\n\n(2)　使 $y=f(x)$ 的图像与 $x$ 轴交于不同的两点 A, B 的 $a$ 的取值范围是\n\n$$a<\\dfrac{\\bx{F}}{\\bx{G}},\\qquad \\bx{H}<a$$\n\n(3)　对于 (2) 中的两点 A, B，使它们的 $x$ 坐标都在 0 以上、6 以下（$0\\leqq x\\leqq 6$）的 $a$ 的取值范围是\n\n$$\\bx{I}<a\\leqq\\dfrac{\\bx{JK}}{\\bx{LM}}$$",
+   "format": "blanks",
+   "blanks": {
+    "A": "4",
+    "B": "2",
+    "C": "4",
+    "D": "5",
+    "E": "1",
+    "F": "1",
+    "G": "4",
+    "H": "1",
+    "I": "1",
+    "J": "1",
+    "K": "5",
+    "L": "1",
+    "M": "1"
+   },
+   "explanation": {
+    "zh": "**思路**　(1) 先把 $x^2$ 的系数 $\\frac14$ 提出来再配方，得到顶点。(2) 抛物线开口向上（$x^2$ 系数 $\\frac14>0$），与 $x$ 轴有两个不同交点 $\\iff$ 顶点的 $y$ 坐标 $<0$（等价于判别式 $D>0$）。(3) 是典型的「根的分布」：开口向上的抛物线两个交点都落在 $[0,\\,6]$ 内，要同时满足 **判别式 $>0$、对称轴在区间内、两端点函数值 $\\geqq 0$** 三个条件。\n\n**解答**\n\n**第1步　配方求顶点（A〜E）**\n\n$$f(x)=\\frac14\\left\\{x^2-4(2a-1)x\\right\\}+a=\\frac14\\left\\{x-2(2a-1)\\right\\}^2-\\frac14\\cdot 4(2a-1)^2+a$$\n\n$$=\\frac14\\left\\{x-(4a-2)\\right\\}^2-(2a-1)^2+a$$\n\n其中 $-(2a-1)^2+a=-(4a^2-4a+1)+a=-4a^2+5a-1$。所以顶点为\n\n$$\\left(4a-2,\\ -4a^2+5a-1\\right)$$\n\n即 A=4，B=2，C=4，D=5，E=1。\n\n**第2步　与 $x$ 轴交于不同两点（F, G, H）**\n\n开口向上，所以条件是顶点 $y$ 坐标为负：\n\n$$-4a^2+5a-1<0\\iff 4a^2-5a+1>0\\iff (4a-1)(a-1)>0$$\n\n$$\\therefore\\ a<\\frac14,\\qquad 1<a$$\n\n即 F=1，G=4，H=1。（用判别式检验：$f(x)=0$ 的判别式 $D=(2a-1)^2-4\\cdot\\frac14\\cdot a=4a^2-5a+1>0$，结果相同。）\n\n**第3步　两交点的 $x$ 坐标都在 $0\\leqq x\\leqq 6$（I, JK, LM）**\n\n需要同时满足：\n\n1. 有两个不同交点：$a<\\frac14$ 或 $1<a$；\n2. 对称轴在区间内：$0<4a-2<6\\iff \\frac12<a<2$；\n3. 左端点：$f(0)=a\\geqq 0$；\n4. 右端点：$f(6)=\\frac14\\cdot 36-6(2a-1)+a=9-12a+6+a=15-11a\\geqq 0\\iff a\\leqq\\frac{15}{11}$。\n\n条件 2 的 $a>\\frac12$ 把条件 1 中 $a<\\frac14$ 的部分排除，只剩 $1<a<2$；条件 3 自动成立；再与条件 4 取交集（$\\frac{15}{11}\\approx1.36<2$）：\n\n$$1<a\\leqq\\frac{15}{11}$$\n\n即 I=1，JK=15，LM=11。\n\n（检验右端：$a=\\frac{15}{11}$ 时 $f(6)=0$，$x=6$ 本身是一个交点，题目说「6 以下」包含 6，所以取等号；另一根 $=4(2a-1)-6=\\frac{76}{11}-6=\\frac{10}{11}$，也在区间内。左端 $a=1$ 时是重根，不是「异なる2点」，所以 $a=1$ 取不到。）\n\n**结论**　A=4，B=2，C=4，D=5，E=1，F=1，G=4，H=1，I=1，JK=15，LM=11。",
+    "keyPoints": [
+     "配方时先提出二次项系数：$\\frac14x^2-(2a-1)x=\\frac14\\{x-2(2a-1)\\}^2-(2a-1)^2$",
+     "开口向上的抛物线与 $x$ 轴交于两点 ⇔ 顶点 $y$ 坐标 $<0$ ⇔ 判别式 $D>0$",
+     "两根都在 $[p,q]$ 内：$D>0$、$p<$ 轴 $<q$、$f(p)\\geqq0$、$f(q)\\geqq0$ 四个条件同时成立"
+    ],
+    "traps": [
+     "配方后常数项是 $-(2a-1)^2$，不是 $-\\frac14(2a-1)^2$：$\\frac14\\cdot\\{2(2a-1)\\}^2=(2a-1)^2$",
+     "「0 以上 6 以下」包含端点，所以端点条件用 $f(0)\\geqq0$、$f(6)\\geqq0$，答案右边是 $\\leqq\\frac{15}{11}$；而左边 $a=1$ 时重根，不满足「異なる2点」，只能是 $1<a$",
+     "只写端点条件而漏掉对称轴条件，会错误地保留 $0\\leqq a<\\frac14$ 这一段"
+    ],
+    "terms": [
+     {
+      "ja": "実数",
+      "kana": "じっすう",
+      "zh": "实数（有理数和无理数的总称）"
+     },
+     {
+      "ja": "頂点",
+      "kana": "ちょうてん",
+      "zh": "抛物线的顶点（最低点或最高点）"
+     },
+     {
+      "ja": "座標",
+      "kana": "ざひょう",
+      "zh": "坐标（点的位置数值）"
+     },
+     {
+      "ja": "異なる",
+      "kana": "ことなる",
+      "zh": "不同的、相异的"
+     },
+     {
+      "ja": "値の範囲",
+      "kana": "あたいのはんい",
+      "zh": "取值范围"
+     },
+     {
+      "ja": "以上・以下",
+      "kana": "いじょう・いか",
+      "zh": "≥（含等号）／≤（含等号）；「未満」才是不含等号的 <"
+     }
+    ],
+    "shortcut": "(2) 不必算判别式，直接用顶点 $y$ 坐标 $<0$。(3) 对称轴条件 $\\frac12<a<2$ 一出来就把 $a<\\frac14$ 排除了，接着只需算 $f(6)=15-11a\\geqq0$ 得上界 $\\frac{15}{11}$，$f(0)=a>0$ 显然成立。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2018_1-math-I2",
+   "subject": "math",
+   "order": 2,
+   "topic": "math.prob.count",
+   "difficulty": 2,
+   "targetSec": 600,
+   "source": {
+    "kind": "official",
+    "session": "2018_1",
+    "label": "2018年第1回 数学コース2 Ⅰ 問2",
+    "pdf": "/assets/expanded/2018_1-math.pdf",
+    "page": 20
+   },
+   "stem": "大きさの異なる4枚のカードがある。これらのカードに赤，黒，青，黄の色を塗る。ただし，どのカードにも1つの色のみを使い，また同じ色のカードが2枚以上あってもよいものとする。\n\n(1)　全部で \\bx{NOP} 通りの塗り方がある。\n\n(2)　全部の色を使う塗り方は \\bx{QR} 通りある。\n\n(3)　2枚は赤で，1枚が黒，1枚が青となるような塗り方は \\bx{ST} 通りある。\n\n(4)　3つの色を使う塗り方は \\bx{UVW} 通りある。\n\n(5)　2つの色を使う塗り方は \\bx{XY} 通りある。",
+   "stemZh": "有 4 张大小各不相同的卡片。给这些卡片涂上红、黑、蓝、黄的颜色。其中每张卡片只用 1 种颜色，并且允许有 2 张以上的卡片颜色相同。\n\n(1)　涂法共有 \\bx{NOP} 种。\n\n(2)　4 种颜色全部用上的涂法有 \\bx{QR} 种。\n\n(3)　2 张红色、1 张黑色、1 张蓝色的涂法有 \\bx{ST} 种。\n\n(4)　（恰好）使用 3 种颜色的涂法有 \\bx{UVW} 种。\n\n(5)　（恰好）使用 2 种颜色的涂法有 \\bx{XY} 种。",
+   "format": "blanks",
+   "blanks": {
+    "N": "2",
+    "O": "5",
+    "P": "6",
+    "Q": "2",
+    "R": "4",
+    "S": "1",
+    "T": "2",
+    "U": "1",
+    "V": "4",
+    "W": "4",
+    "X": "8",
+    "Y": "4"
+   },
+   "explanation": {
+    "zh": "**思路**　卡片「大きさの異なる」（大小不同）→ 4 张卡片**可以区分**；颜色可以重复 → 每张卡片独立地从 4 色中选一色。「使用 $k$ 种颜色」指恰好用到 $k$ 种：先选出是哪 $k$ 种颜色，再数「用这 $k$ 种颜色涂 4 张、且每种颜色至少出现一次」的方法数（满射个数，用容斥原理或按颜色分布分类）。字母接着問1 从 N 开始。\n\n**解答**\n\n**(1) 总数（NOP）**　每张卡片有 4 种选择：\n\n$$4^4=256$$\n\nNOP=256。\n\n**(2) 4 色全用（QR）**　4 张卡片、4 种颜色全用上 → 每种颜色恰好 1 张，相当于把 4 种颜色排给 4 张卡片：\n\n$$4!=24$$\n\nQR=24。\n\n**(3) 红 2・黑 1・蓝 1（ST）**　先从 4 张中选 2 张涂红：$\\binom42=6$；剩下 2 张一黑一蓝：$2!=2$。\n\n$$\\binom42\\times2=12\\qquad\\left(\\text{或 }\\frac{4!}{2!\\,1!\\,1!}=12\\right)$$\n\nST=12。\n\n**(4) 恰好 3 色（UVW）**\n\n- 选哪 3 种颜色：$\\binom43=4$；\n- 用这 3 色涂 4 张且 3 色都出现：4 张分成 3 色只能是「2 张＋1 张＋1 张」。选哪种颜色用 2 次：3 种；再按 (3) 的方法分配卡片：12 种。共 $3\\times12=36$。（容斥检验：$3^4-\\binom32\\cdot2^4+\\binom31\\cdot1^4=81-48+3=36$。）\n\n$$4\\times36=144$$\n\nUVW=144。\n\n**(5) 恰好 2 色（XY）**\n\n- 选哪 2 种颜色：$\\binom42=6$；\n- 用这 2 色涂且两色都出现：$2^4-2=14$（减去全涂成同一色的 2 种）。\n\n$$6\\times14=84$$\n\nXY=84。\n\n**检验**　恰好 1 色：4 种。$4+84+144+24=256=4^4$，与 (1) 一致。\n\n**结论**　NOP=256，QR=24，ST=12，UVW=144，XY=84。",
+    "keyPoints": [
+     "可区分的物体、颜色可重复：$n$ 张卡片 $k$ 种颜色共有 $k^n$ 种涂法（重复排列）",
+     "「恰好用 $k$ 种颜色」= 选颜色 $\\binom{4}{k}$ × 每种颜色至少用一次的涂法（容斥：$k^n-\\binom{k}{1}(k-1)^n+\\cdots$）",
+     "同物排列：$\\dfrac{4!}{2!\\,1!\\,1!}=12$"
+    ],
+    "traps": [
+     "(4) 写成 $\\binom43\\times3^4=324$ 是错的：$3^4$ 里包含只用了 1 种或 2 种颜色的涂法",
+     "(5) 忘记减去「4 张全是同一色」的 2 种，得到 $6\\times16=96$",
+     "卡片大小不同、可以区分，不能用重复组合 $_4\\mathrm{H}_4$ 那样「只看各色张数」的方法来数"
+    ],
+    "terms": [
+     {
+      "ja": "枚",
+      "kana": "まい",
+      "zh": "张（薄片状物品的量词）"
+     },
+     {
+      "ja": "塗る",
+      "kana": "ぬる",
+      "zh": "涂（颜色）、上色"
+     },
+     {
+      "ja": "塗り方",
+      "kana": "ぬりかた",
+      "zh": "涂色的方法（这里指情况数）"
+     },
+     {
+      "ja": "通り",
+      "kana": "とおり",
+      "zh": "……种（情况、方法的个数）"
+     },
+     {
+      "ja": "大きさの異なる",
+      "kana": "おおきさのことなる",
+      "zh": "大小各不相同的（意味着可以互相区分）"
+     },
+     {
+      "ja": "黄",
+      "kana": "き",
+      "zh": "黄色"
+     }
+    ],
+    "shortcut": "(4) 也可以用「总数减去其他情况」：$256-24-84-4=144$（4 色、2 色、1 色先算好）。最后一定用 $4+84+144+24=256$ 自检。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2018_1-math-II1",
+   "subject": "math",
+   "order": 3,
+   "topic": "math.vec.space",
+   "difficulty": 3,
+   "targetSec": 720,
+   "source": {
+    "kind": "official",
+    "session": "2018_1",
+    "label": "2018年第1回 数学コース2 Ⅱ 問1",
+    "pdf": "/assets/expanded/2018_1-math.pdf",
+    "page": 22
+   },
+   "stem": "右図の平行六面体は\n\n$$\\mathrm{AB}=2,\\quad \\mathrm{AD}=3,\\quad \\mathrm{AE}=1$$\n$$\\angle\\mathrm{BAD}=60^\\circ,\\quad \\angle\\mathrm{BAE}=90^\\circ,\\quad \\angle\\mathrm{DAE}=120^\\circ$$\n\nを満たしている。辺 GH の中点を M とする。また，辺 BF, DH 上にそれぞれ点 P, Q をとる。このとき，4点 A, P, M, Q は同一平面上にあるとする。そのような P, Q の中で線分 PQ の長さが最大になるものを求めよう。\n\n(1)　$\\overrightarrow{\\mathrm{AB}}=\\vec{a}$，$\\overrightarrow{\\mathrm{AD}}=\\vec{b}$，$\\overrightarrow{\\mathrm{AE}}=\\vec{c}$ とおくと，これらのベクトルの内積について\n\n$$\\vec{a}\\cdot\\vec{b}=\\bx{A},\\qquad \\vec{b}\\cdot\\vec{c}=-\\dfrac{\\bx{B}}{\\bx{C}},\\qquad \\vec{c}\\cdot\\vec{a}=\\bx{D}$$\n\nが成り立つ。\n\n(2)　$s,\\ t$ を $0\\leqq s\\leqq 1,\\ 0\\leqq t\\leqq 1$ とし，$\\mathrm{BP}:\\mathrm{PF}=s:(1-s)$，$\\mathrm{DQ}:\\mathrm{QH}=t:(1-t)$ とおく。4点 A, P, M, Q が同一平面上にあるから\n\n$$\\overrightarrow{\\mathrm{AM}}=\\alpha\\,\\overrightarrow{\\mathrm{AP}}+\\beta\\,\\overrightarrow{\\mathrm{AQ}}$$\n\nが成り立つような実数 $\\alpha,\\ \\beta$ が存在する。したがって，$s,\\ t$ は\n\n$$s=\\bx{E}\\left(\\bx{F}-t\\right)$$\n\nを満たす。このとき，$\\left|\\overrightarrow{\\mathrm{PQ}}\\right|$ は $t$ を用いて\n\n$$\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2=\\bx{G}\\,t^2-\\bx{HI}\\,t+\\bx{JK}$$\n\nと表される。\n\nよって，線分 PQ の長さが最大になるのは \\bx{L} のときである。ただし，\\bx{L} には，下の選択肢 ⓪ 〜 ⑤ の中から適するものを選びなさい。\n\n⓪ $s=0,\\ t=1$　　　① $s=0,\\ t=\\dfrac{1}{2}$　　　② $s=\\dfrac{1}{2},\\ t=\\dfrac{3}{4}$\n③ $s=\\dfrac{2}{3},\\ t=\\dfrac{2}{3}$　　　④ $s=1,\\ t=\\dfrac{1}{2}$　　　⑤ $s=1,\\ t=\\dfrac{2}{3}$\n\n注）内積：inner product",
+   "stemZh": "右图的平行六面体满足\n\n$$\\mathrm{AB}=2,\\quad \\mathrm{AD}=3,\\quad \\mathrm{AE}=1$$\n$$\\angle\\mathrm{BAD}=60^\\circ,\\quad \\angle\\mathrm{BAE}=90^\\circ,\\quad \\angle\\mathrm{DAE}=120^\\circ$$\n\n设棱 GH 的中点为 M。另外，在棱 BF、DH 上分别取点 P、Q，并且 4 点 A, P, M, Q 在同一平面上。在这样的 P、Q 中，求使线段 PQ 的长度最大的那一组。\n\n(1)　设 $\\overrightarrow{\\mathrm{AB}}=\\vec{a}$，$\\overrightarrow{\\mathrm{AD}}=\\vec{b}$，$\\overrightarrow{\\mathrm{AE}}=\\vec{c}$，则这些向量的内积满足\n\n$$\\vec{a}\\cdot\\vec{b}=\\bx{A},\\qquad \\vec{b}\\cdot\\vec{c}=-\\dfrac{\\bx{B}}{\\bx{C}},\\qquad \\vec{c}\\cdot\\vec{a}=\\bx{D}$$\n\n(2)　设 $s,\\ t$ 满足 $0\\leqq s\\leqq 1,\\ 0\\leqq t\\leqq 1$，令 $\\mathrm{BP}:\\mathrm{PF}=s:(1-s)$，$\\mathrm{DQ}:\\mathrm{QH}=t:(1-t)$。因为 4 点 A, P, M, Q 共面，所以存在实数 $\\alpha,\\ \\beta$ 使\n\n$$\\overrightarrow{\\mathrm{AM}}=\\alpha\\,\\overrightarrow{\\mathrm{AP}}+\\beta\\,\\overrightarrow{\\mathrm{AQ}}$$\n\n成立。因此 $s,\\ t$ 满足\n\n$$s=\\bx{E}\\left(\\bx{F}-t\\right)$$\n\n此时，用 $t$ 表示 $\\left|\\overrightarrow{\\mathrm{PQ}}\\right|$ 为\n\n$$\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2=\\bx{G}\\,t^2-\\bx{HI}\\,t+\\bx{JK}$$\n\n所以，线段 PQ 的长度最大是在 \\bx{L} 的时候。其中 \\bx{L} 请从下面的选项 ⓪ ～ ⑤ 中选出合适的一个。\n\n⓪ $s=0,\\ t=1$　　　① $s=0,\\ t=\\dfrac{1}{2}$　　　② $s=\\dfrac{1}{2},\\ t=\\dfrac{3}{4}$\n③ $s=\\dfrac{2}{3},\\ t=\\dfrac{2}{3}$　　　④ $s=1,\\ t=\\dfrac{1}{2}$　　　⑤ $s=1,\\ t=\\dfrac{2}{3}$\n\n注）内積：内积（数量积）",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2018_1-math-II1-1.png",
+     "caption": "右图：平行六面体 ABCD-EFGH（E, F, G, H 分别在 A, B, C, D 下方），P 在棱 BF 上，Q 在棱 DH 上，M 是棱 GH 的中点"
+    }
+   ],
+   "format": "blanks",
+   "blanks": {
+    "A": "3",
+    "B": "3",
+    "C": "2",
+    "D": "0",
+    "E": "2",
+    "F": "1",
+    "G": "9",
+    "H": "2",
+    "I": "1",
+    "J": "1",
+    "K": "7",
+    "L": "4"
+   },
+   "explanation": {
+    "zh": "**思路**　以 A 为起点，用不共面的三个向量 $\\vec a,\\vec b,\\vec c$ 表示所有点。共面条件 $\\overrightarrow{\\mathrm{AM}}=\\alpha\\overrightarrow{\\mathrm{AP}}+\\beta\\overrightarrow{\\mathrm{AQ}}$ 两边都写成 $\\vec a,\\vec b,\\vec c$ 的组合后，因为三者一次独立，可以**比较系数**，得到 $s$ 与 $t$ 的关系。然后把 $\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2$ 写成 $t$ 的二次函数，注意 $t$ 的实际范围要由 $0\\leqq s\\leqq1$ 推出来，再求最大值。\n\n**解答**\n\n**第1步　内积（A, B, C, D）**　$|\\vec a|=2,\\ |\\vec b|=3,\\ |\\vec c|=1$。\n\n$$\\vec a\\cdot\\vec b=2\\cdot3\\cos60^\\circ=3,\\qquad \\vec b\\cdot\\vec c=3\\cdot1\\cos120^\\circ=-\\frac32,\\qquad \\vec c\\cdot\\vec a=1\\cdot2\\cos90^\\circ=0$$\n\nA=3，B=3，C=2，D=0。\n\n**第2步　用 $\\vec a,\\vec b,\\vec c$ 表示各点**　平行六面体中 $\\overrightarrow{\\mathrm{BF}}=\\overrightarrow{\\mathrm{DH}}=\\overrightarrow{\\mathrm{AE}}=\\vec c$，所以\n\n$$\\overrightarrow{\\mathrm{AP}}=\\overrightarrow{\\mathrm{AB}}+s\\,\\overrightarrow{\\mathrm{BF}}=\\vec a+s\\vec c,\\qquad \\overrightarrow{\\mathrm{AQ}}=\\overrightarrow{\\mathrm{AD}}+t\\,\\overrightarrow{\\mathrm{DH}}=\\vec b+t\\vec c$$\n\n$\\overrightarrow{\\mathrm{AG}}=\\vec a+\\vec b+\\vec c$，$\\overrightarrow{\\mathrm{AH}}=\\vec b+\\vec c$，M 为 GH 中点：\n\n$$\\overrightarrow{\\mathrm{AM}}=\\frac{\\overrightarrow{\\mathrm{AG}}+\\overrightarrow{\\mathrm{AH}}}{2}=\\frac12\\vec a+\\vec b+\\vec c$$\n\n**第3步　共面条件（E, F）**\n\n$$\\frac12\\vec a+\\vec b+\\vec c=\\alpha(\\vec a+s\\vec c)+\\beta(\\vec b+t\\vec c)=\\alpha\\vec a+\\beta\\vec b+(\\alpha s+\\beta t)\\vec c$$\n\n$\\vec a,\\vec b,\\vec c$ 不共面（一次独立），比较系数：$\\alpha=\\frac12,\\ \\beta=1,\\ \\alpha s+\\beta t=1$。于是\n\n$$\\frac{s}{2}+t=1\\iff s=2(1-t)$$\n\nE=2，F=1。\n\n**第4步　$\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2$（G, HI, JK）**\n\n$$\\overrightarrow{\\mathrm{PQ}}=\\overrightarrow{\\mathrm{AQ}}-\\overrightarrow{\\mathrm{AP}}=-\\vec a+\\vec b+(t-s)\\vec c=-\\vec a+\\vec b+(3t-2)\\vec c$$\n\n记 $u=3t-2$，展开：\n\n$$\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2=|\\vec a|^2+|\\vec b|^2+u^2|\\vec c|^2-2\\,\\vec a\\cdot\\vec b+2u\\,\\vec b\\cdot\\vec c-2u\\,\\vec c\\cdot\\vec a$$\n\n$$=4+9+u^2-6+2u\\left(-\\frac32\\right)-0=u^2-3u+7$$\n\n代回 $u=3t-2$：\n\n$$(3t-2)^2-3(3t-2)+7=9t^2-12t+4-9t+6+7=9t^2-21t+17$$\n\nG=9，HI=21，JK=17。\n\n**第5步　求最大（L）**　由 $0\\leqq s\\leqq1$：$0\\leqq2(1-t)\\leqq1\\iff\\frac12\\leqq t\\leqq1$（这比题设的 $0\\leqq t\\leqq1$ 更窄）。\n\n$$9t^2-21t+17=9\\left(t-\\frac76\\right)^2+\\frac{19}{4}$$\n\n对称轴 $t=\\frac76>1$，所以在 $\\frac12\\leqq t\\leqq1$ 上单调递减，$t=\\frac12$ 时最大：$\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2=\\frac94-\\frac{21}{2}+17=\\frac{35}{4}$。此时 $s=2\\left(1-\\frac12\\right)=1$（P 与 F 重合）。所以选 ④ $s=1,\\ t=\\frac12$，L=4。\n\n（其他选项：① ⑤ 不满足 $s=2(1-t)$，A, P, M, Q 不共面；⓪ ② ③ 满足关系式，但对应的 $\\left|\\overrightarrow{\\mathrm{PQ}}\\right|^2$ 分别为 $5,\\ \\frac{101}{16},\\ 7$，都小于 $\\frac{35}{4}$。）\n\n**结论**　A=3，B=3，C=2，D=0，E=2，F=1，G=9，HI=21，JK=17，L=4（选项 ④）。",
+    "keyPoints": [
+     "空间向量基底：用不共面的 $\\vec a,\\vec b,\\vec c$ 表示各点，共面条件 $\\overrightarrow{\\mathrm{AM}}=\\alpha\\overrightarrow{\\mathrm{AP}}+\\beta\\overrightarrow{\\mathrm{AQ}}$ 后比较系数",
+     "$|x\\vec a+y\\vec b+z\\vec c|^2$ 展开要用三个模长和三个内积",
+     "二次函数在受限区间上的最值：参数范围要由所有约束（这里 $0\\leqq s\\leqq1$）推出"
+    ],
+    "traps": [
+     "$t$ 的范围是 $\\frac12\\leqq t\\leqq1$，不是 $0\\leqq t\\leqq1$：若在 $[0,1]$ 上看，$t=0$ 时值 17 更大，但此时 $s=2$ 已超出棱 BF",
+     "$\\angle\\mathrm{DAE}=120^\\circ$ 使 $\\vec b\\cdot\\vec c=-\\frac32$ 为负，展开时交叉项 $2u\\,\\vec b\\cdot\\vec c$ 与 $-2\\vec a\\cdot\\vec b$ 的符号易错",
+     "L 要填选项编号 4（④），不是 $s$ 或 $t$ 的值"
+    ],
+    "terms": [
+     {
+      "ja": "平行六面体",
+      "kana": "へいこうろくめんたい",
+      "zh": "六个面都是平行四边形的立体（“斜的长方体”）"
+     },
+     {
+      "ja": "辺",
+      "kana": "へん",
+      "zh": "（立体的）棱、（多边形的）边"
+     },
+     {
+      "ja": "同一平面上",
+      "kana": "どういつへいめんじょう",
+      "zh": "在同一个平面上，即“共面”"
+     },
+     {
+      "ja": "線分",
+      "kana": "せんぶん",
+      "zh": "线段（有两个端点的直线部分）"
+     },
+     {
+      "ja": "内積",
+      "kana": "ないせき",
+      "zh": "向量的数量积（点积）$\\vec a\\cdot\\vec b=|\\vec a||\\vec b|\\cos\\theta$"
+     },
+     {
+      "ja": "中点",
+      "kana": "ちゅうてん",
+      "zh": "线段正中间的点"
+     }
+    ],
+    "shortcut": "共面条件得到 $s=2(1-t)$ 后，先用它筛选选项：只有 ⓪②③④ 满足。$|\\overrightarrow{\\mathrm{PQ}}|^2=9t^2-21t+17$ 的轴 $t=\\frac76$ 在范围右侧，函数在 $[\\frac12,1]$ 递减，$t$ 越小越长，所以选 $t$ 最小的 ④ $(s,t)=(1,\\frac12)$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2018_1-math-II2",
+   "subject": "math",
+   "order": 4,
+   "topic": "math.geo.coord",
+   "difficulty": 2,
+   "targetSec": 720,
+   "source": {
+    "kind": "official",
+    "session": "2018_1",
+    "label": "2018年第1回 数学コース2 Ⅱ 問2",
+    "pdf": "/assets/expanded/2018_1-math.pdf",
+    "page": 24
+   },
+   "stem": "$x>0,\\ y>0$ を満たす $x,\\ y$ に対して，$\\dfrac{y}{x},\\ x,\\ \\dfrac{8}{y}$ の中で最も小さい値を $m$ とおく。\n\nまた，$m=\\dfrac{y}{x}$ となるような点 $(x,\\,y)$ の集合を $A$，$m=\\dfrac{8}{y}$ となるような点 $(x,\\,y)$ の集合を $B$ とする。\n\n(1)　次の文中の \\bx{M} 〜 \\bx{S} には，下の選択肢 ⓪ 〜 ⑦ の中から適するものを選びなさい。\n\n$A,\\ B$ を求めると次のようになる。\n\n$$A=\\left\\{(x,\\,y)\\ \\middle|\\ \\bx{M}\\leqq\\bx{N},\\quad \\bx{O}\\leqq 8\\,\\bx{P}\\right\\}$$\n$$B=\\left\\{(x,\\,y)\\ \\middle|\\ 8\\,\\bx{Q}\\leqq\\bx{R},\\quad 8\\leqq\\bx{S}\\right\\}$$\n\n⓪ $x$　　　① $y$　　　② $x+y$　　　③ $x-y$\n④ $x^2$　　　⑤ $xy$　　　⑥ $y^2$　　　⑦ $x^2+y^2$\n\n(2)　次の文中の \\bx{T}，\\bx{U} には，右ページの選択肢 ⓪ 〜 ⑧ の中から適するものを選びなさい。\n\n$xy$ 平面上に $A,\\ B$ を図示すると，$A$ は \\bx{T}，$B$ は \\bx{U} の灰色部分である。ただし，座標軸は灰色部分に含まれない。\n\n(3)　点 $\\mathrm{P}(x,\\,y)$ が $A\\cup B$ を動くとき，$m$ の最大値を求めよう。\n\n$\\mathrm{P}(x,\\,y)\\in A$ のとき，$y=mx$ であるから，原点 O と P を通る直線の傾きを最大にする点 P を見つければよい。\n\nまた，$\\mathrm{P}(x,\\,y)\\in B$ のとき，$m=\\dfrac{8}{y}$ であるから，P の $y$ 座標が最小になる点 P を見つければよい。\n\n以上より，$m$ は $(x,\\,y)=\\left(\\bx{V},\\ \\bx{W}\\right)$ のとき，最大値 \\bx{X} をとる。\n\n注）灰色部分：shaded portion",
+   "stemZh": "对满足 $x>0,\\ y>0$ 的 $x,\\ y$，设 $\\dfrac{y}{x},\\ x,\\ \\dfrac{8}{y}$ 三者中最小的值为 $m$。\n\n另外，设使 $m=\\dfrac{y}{x}$ 成立的点 $(x,\\,y)$ 的集合为 $A$，使 $m=\\dfrac{8}{y}$ 成立的点 $(x,\\,y)$ 的集合为 $B$。\n\n(1)　下文中的 \\bx{M} ～ \\bx{S} 请从下面的选项 ⓪ ～ ⑦ 中选出合适的填入。\n\n求出 $A,\\ B$ 如下：\n\n$$A=\\left\\{(x,\\,y)\\ \\middle|\\ \\bx{M}\\leqq\\bx{N},\\quad \\bx{O}\\leqq 8\\,\\bx{P}\\right\\}$$\n$$B=\\left\\{(x,\\,y)\\ \\middle|\\ 8\\,\\bx{Q}\\leqq\\bx{R},\\quad 8\\leqq\\bx{S}\\right\\}$$\n\n⓪ $x$　　　① $y$　　　② $x+y$　　　③ $x-y$\n④ $x^2$　　　⑤ $xy$　　　⑥ $y^2$　　　⑦ $x^2+y^2$\n\n(2)　下文中的 \\bx{T}，\\bx{U} 请从右页（下图）的选项 ⓪ ～ ⑧ 中选出合适的填入。\n\n在 $xy$ 平面上画出 $A,\\ B$，$A$ 是 \\bx{T} 的阴影部分，$B$ 是 \\bx{U} 的阴影部分。其中坐标轴不包含在阴影部分内。\n\n(3)　当点 $\\mathrm{P}(x,\\,y)$ 在 $A\\cup B$ 上移动时，求 $m$ 的最大值。\n\n$\\mathrm{P}(x,\\,y)\\in A$ 时，$y=mx$，所以只要找出使经过原点 O 和 P 的直线斜率最大的点 P 即可。\n\n另外，$\\mathrm{P}(x,\\,y)\\in B$ 时，$m=\\dfrac{8}{y}$，所以只要找出使 P 的 $y$ 坐标最小的点 P 即可。\n\n综上，当 $(x,\\,y)=\\left(\\bx{V},\\ \\bx{W}\\right)$ 时，$m$ 取最大值 \\bx{X}。\n\n注）灰色部分：阴影部分",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2018_1-math-II2-1.png",
+     "caption": "[(2) の選択肢] 图 ⓪〜⑧（每图两条曲线，灰色为候选区域）"
+    }
+   ],
+   "format": "blanks",
+   "blanks": {
+    "M": "1",
+    "N": "4",
+    "O": "6",
+    "P": "0",
+    "Q": "0",
+    "R": "6",
+    "S": "5",
+    "T": "0",
+    "U": "7",
+    "V": "2",
+    "W": "4",
+    "X": "2"
+   },
+   "explanation": {
+    "zh": "**思路**　$m$ 是三个数中最小的那个。「$m=\\frac yx$」意思是 $\\frac yx$ 不大于另外两个数，写成两个不等式；因为 $x>0,\\ y>0$，可以放心地乘以 $x$、$y$ 去分母（不等号方向不变），得到用 $x,y$ 表示的区域。边界曲线是 $y=x^2$、$y^2=8x$（即 $y=\\sqrt{8x}$）、$xy=8$（即 $y=\\frac8x$），它们**都经过点 $(2,\\,4)$**，这是全题的关键点。\n\n**解答**\n\n**第1步　集合 $A$（M, N, O, P）**　$m=\\frac yx\\iff \\frac yx\\leqq x$ 且 $\\frac yx\\leqq\\frac8y$。\n\n- $\\frac yx\\leqq x$，两边乘 $x>0$：$y\\leqq x^2$ → M=①（$y$），N=④（$x^2$）；\n- $\\frac yx\\leqq\\frac8y$，两边乘 $xy>0$：$y^2\\leqq8x$ → O=⑥（$y^2$），P=⓪（$x$）。\n\n**第2步　集合 $B$（Q, R, S）**　$m=\\frac8y\\iff \\frac8y\\leqq\\frac yx$ 且 $\\frac8y\\leqq x$。\n\n- $\\frac8y\\leqq\\frac yx$，乘 $xy>0$：$8x\\leqq y^2$ → Q=⓪（$x$），R=⑥（$y^2$）；\n- $\\frac8y\\leqq x$，乘 $y>0$：$8\\leqq xy$ → S=⑤（$xy$）。\n\n**第3步　图示（T, U）**　交点：$y=x^2$ 与 $y^2=8x$ 联立得 $x^4=8x$，$x=2,\\ y=4$；$y^2=8x$ 与 $xy=8$ 联立得 $y^3=64$，$y=4,\\ x=2$。\n\n- $A$：$y\\leqq x^2$ 且 $y\\leqq\\sqrt{8x}$，即在抛物线 $y=x^2$ 和曲线 $y=\\sqrt{8x}$ **两者的下方**（$x$ 轴上方）。图中只有这两条曲线、阴影在两者之下的是 ⓪ → T=0。\n- $B$：$y\\geqq\\sqrt{8x}$ 且 $y\\geqq\\frac8x$，即在 $y=\\sqrt{8x}$ 和双曲线 $y=\\frac8x$ **两者的上方**，是 ⑦ → U=7。\n- 易混的图：① 只在抛物线 $y=x^2$ 上方；② 是夹在 $x^2\\leqq y\\leqq\\sqrt{8x}$ 之间；⑥ 是 $\\sqrt{8x}$ 下方且双曲线上方；⑧ 是两者下方——方向都不对。③④⑤ 用的是抛物线与双曲线，曲线本身就不对。\n\n**第4步　$m$ 的最大值（V, W, X）**\n\n- $\\mathrm P\\in A$ 时 $m=\\frac yx$＝直线 OP 的斜率。$0<x\\leqq2$ 时 $A$ 的上边界是 $y=x^2$，斜率 $\\frac yx\\leqq x\\leqq2$；$x\\geqq2$ 时上边界是 $y=\\sqrt{8x}$，斜率 $\\frac yx\\leqq\\sqrt{\\frac8x}\\leqq2$。所以 $m\\leqq2$，在 $(2,4)$ 取等号。\n- $\\mathrm P\\in B$ 时 $m=\\frac8y$，要 $y$ 最小。$B$ 中 $y\\geqq\\sqrt{8x}$（$x$ 增大时递增）且 $y\\geqq\\frac8x$（$x$ 增大时递减），两条下边界在 $(2,4)$ 相交，所以 $B$ 的最低点是 $(2,4)$，$y\\geqq4$，$m=\\frac8y\\leqq2$。\n\n两种情况都在 $(x,y)=(2,4)$ 时取到最大值 $m=2$（此时 $\\frac yx=x=\\frac8y=2$，三数相等）。\n\n**结论**　M=1，N=4，O=6，P=0，Q=0，R=6，S=5，T=0，U=7，V=2，W=4，X=2。",
+    "keyPoints": [
+     "「三者最小值等于某一个」⇔ 它不大于另外两个，化成不等式组表示区域",
+     "$x>0,\\ y>0$ 时两边乘正数去分母，不等号方向不变；$y\\leqq f(x)$ 是曲线下方，$y\\geqq f(x)$ 是曲线上方",
+     "$\\min$ 型最大值：最优点常在几条边界曲线的公共交点，此处三条曲线都过 $(2,4)$"
+    ],
+    "traps": [
+     "M〜S、T、U 填的是选项编号：M=1（① $y$）、P=0（⓪ $x$）、S=5（⑤ $xy$），不要把式子里的数字直接填进去",
+     "$A$ 中要最大化的是 OP 的斜率 $\\frac yx$，不是 $y$ 本身；$B$ 中是让 $y$ 最小",
+     "选图时 ⓪①② 的两条曲线相同（$y=x^2$ 与 $y=\\sqrt{8x}$），⑥⑦⑧ 的两条曲线相同（$y=\\frac8x$ 与 $y=\\sqrt{8x}$），只有阴影位置不同——先认曲线，再逐个检查“上方/下方”"
+    ],
+    "terms": [
+     {
+      "ja": "最も小さい値",
+      "kana": "もっともちいさいあたい",
+      "zh": "（几个数中）最小的那个值"
+     },
+     {
+      "ja": "集合",
+      "kana": "しゅうごう",
+      "zh": "集合（满足条件的元素全体）"
+     },
+     {
+      "ja": "図示する",
+      "kana": "ずしする",
+      "zh": "用图表示出来、画在坐标平面上"
+     },
+     {
+      "ja": "灰色部分",
+      "kana": "はいいろぶぶん",
+      "zh": "图中涂成灰色的阴影部分"
+     },
+     {
+      "ja": "座標軸",
+      "kana": "ざひょうじく",
+      "zh": "坐标轴（$x$ 轴与 $y$ 轴）"
+     },
+     {
+      "ja": "傾き",
+      "kana": "かたむき",
+      "zh": "（直线的）斜率"
+     }
+    ],
+    "shortcut": "三个正数的积 $\\frac yx\\cdot x\\cdot\\frac8y=8$ 为常数，最小者不超过几何平均：$m^3\\leqq\\frac yx\\cdot x\\cdot\\frac8y=8$，所以 $m\\leqq2$，等号当且仅当 $\\frac yx=x=\\frac8y=2$，即 $(x,y)=(2,4)$。V=2，W=4，X=2 一步得出。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  }
+ ]
+}

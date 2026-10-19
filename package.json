@@ -1,18 +1,29 @@
 {
   "name": "eju-study",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "type": "module",
   "private": true,
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test tests/*.test.mjs",
-    "test:ui": "node tests/browser-v2.mjs && node tests/learning-browser.mjs",
-    "test:desktop": "node tests/desktop-ui-browser.mjs && node tests/desktop-integration.mjs && node tests/desktop-drafts-browser.mjs",
-    "test:native": "node tests/native-desktop.mjs",
-    "test:japanese": "node tests/japanese-v2-browser.mjs",
-    "test:japanese:native": "node tests/japanese-v2-native.mjs"
+    "build": "node tools/v2/build-content.mjs && vite build --config web/vite.config.ts",
+    "build:content": "node tools/v2/build-content.mjs",
+    "build:web": "vite build --config web/vite.config.ts",
+    "dev": "vite --config web/vite.config.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "validate": "node tools/v2/validate.mjs",
+    "test": "node --test tests-v2/*.test.ts",
+    "test:e2e": "node tests-v2/e2e.mjs"
   },
   "devDependencies": {
-    "playwright": "^1.58.2"
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "katex": "^0.16.47",
+    "playwright": "^1.58.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4"
   }
 }

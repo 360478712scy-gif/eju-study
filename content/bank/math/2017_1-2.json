@@ -1,0 +1,182 @@
+{
+  "title": "2017_1 math part",
+  "items": [
+    {
+      "id": "2017_1-math-III",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.explog.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 1100,
+      "source": {
+        "kind": "official",
+        "session": "2017_1",
+        "label": "2017年第1回 数学コース2 III（解答欄A〜Q）",
+        "pdf": "/assets/expanded/2017_1-math.pdf",
+        "page": 26
+      },
+      "stem": "関数 $y=\\dfrac{2^{x^2}}{5^{3x}}\\ (x\\geqq 0)$ を考える。\n\n(1)　$y$ が最小になる $x$ を求めよう。\n\n$y$ を微分して\n\n$$\\frac{dy}{dx}=\\frac{2^{x^2}}{5^{3x}}\\left(2x\\log_e\\bx{A}-\\bx{B}\\log_e\\bx{C}\\right)$$\n\nを得る。\n\nしたがって，$y$ が最小になる $x$ の値を常用対数を用いて表すと\n\n$$x=\\frac{\\bx{D}\\left(1-\\log_{10}\\bx{E}\\right)}{\\bx{F}\\log_{10}\\bx{G}}$$\n\nである。\n\n(2)　$\\dfrac{2^{x^2}}{5^{3x}}>1000$ となるような最小の正の整数 $x$ を求めよう。\n\n不等式 $y>1000$ より\n\n$$x^{\\bx{H}}\\log_{10}\\bx{I}-\\bx{J}\\,x\\log_{10}\\bx{K}-\\bx{L}>0\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nを得る。$\\log_{10}2=0.301\\cdots$ の近似値として $0.3$ を用いて，不等式 ① を解くと\n\n$$x>\\frac{\\bx{M}+\\sqrt{\\bx{NO}}}{\\bx{P}}$$\n\nを得る。\n\nしたがって，$y>1000$ が成り立つような最小の正の整数 $x$ は \\bx{Q} である。\n\n注）常用対数：common logarithm，近似値：approximate value",
+      "stemZh": "考虑函数 $y=\\dfrac{2^{x^2}}{5^{3x}}\\ (x\\geqq 0)$。\n\n(1)　求使 $y$ 取最小值的 $x$。\n\n对 $y$ 求导，得\n\n$$\\frac{dy}{dx}=\\frac{2^{x^2}}{5^{3x}}\\left(2x\\log_e\\bx{A}-\\bx{B}\\log_e\\bx{C}\\right)$$\n\n因此，用常用对数表示使 $y$ 取最小值的 $x$ 的值，为\n\n$$x=\\frac{\\bx{D}\\left(1-\\log_{10}\\bx{E}\\right)}{\\bx{F}\\log_{10}\\bx{G}}$$\n\n(2)　求使 $\\dfrac{2^{x^2}}{5^{3x}}>1000$ 成立的最小正整数 $x$。\n\n由不等式 $y>1000$ 得\n\n$$x^{\\bx{H}}\\log_{10}\\bx{I}-\\bx{J}\\,x\\log_{10}\\bx{K}-\\bx{L}>0\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n用 $0.3$ 作为 $\\log_{10}2=0.301\\cdots$ 的近似值，解不等式 ①，得\n\n$$x>\\frac{\\bx{M}+\\sqrt{\\bx{NO}}}{\\bx{P}}$$\n\n因此，使 $y>1000$ 成立的最小正整数 $x$ 是 \\bx{Q}。\n\n注）常用対数：常用对数（以 10 为底的对数），近似値：近似值",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "3",
+        "C": "5",
+        "D": "3",
+        "E": "2",
+        "F": "2",
+        "G": "2",
+        "H": "2",
+        "I": "2",
+        "J": "3",
+        "K": "5",
+        "L": "3",
+        "M": "7",
+        "N": "8",
+        "O": "9",
+        "P": "2",
+        "Q": "9"
+      },
+      "explanation": {
+        "zh": "**思路**\n\n$y=\\dfrac{2^{x^2}}{5^{3x}}$ 的指数里含 $x$，直接用商的求导法则很繁。两边先取自然对数（**对数求导法**）：\n\n$$\\log_e y=x^2\\log_e 2-3x\\log_e 5$$\n\n右边只是 $x$ 的二次式，求导极简单。又因为 $y>0$，$y'$ 的符号完全由括号里的一次式决定，零点就是最小点。(2) 的指数不等式两边取常用对数，化成二次不等式。\n\n**解答**\n\n**1. 求导（A, B, C）**　对 $\\log_e y=x^2\\log_e 2-3x\\log_e 5$ 两边关于 $x$ 求导：\n\n$$\\frac{y'}{y}=2x\\log_e 2-3\\log_e 5$$\n\n$$\\frac{dy}{dx}=\\frac{2^{x^2}}{5^{3x}}\\left(2x\\log_e 2-3\\log_e 5\\right)$$\n\n所以 **A = 2，B = 3，C = 5**。\n\n（也可直接用 $(a^{u})'=a^{u}\\cdot u'\\log_e a$：$(2^{x^2})'=2^{x^2}\\cdot 2x\\log_e2$，$(5^{-3x})'=5^{-3x}\\cdot(-3)\\log_e5$。）\n\n**2. 最小点（D, E, F, G）**　$\\dfrac{2^{x^2}}{5^{3x}}>0$，所以 $y'$ 与 $2x\\log_e2-3\\log_e5$ 同号，它是关于 $x$ 的增函数（斜率 $2\\log_e2>0$），零点为\n\n$$x_0=\\frac{3\\log_e 5}{2\\log_e 2}$$\n\n| $x$ | $0$ | $\\cdots$ | $x_0$ | $\\cdots$ |\n|---|---|---|---|---|\n| $y'$ | | $-$ | $0$ | $+$ |\n| $y$ | $1$ | ↘ | 最小 | ↗ |\n\n所以 $y$ 在 $x=x_0$ 处取最小值。换成常用对数：由换底公式 $\\dfrac{\\log_e5}{\\log_e2}=\\dfrac{\\log_{10}5}{\\log_{10}2}$，且 $\\log_{10}5=\\log_{10}\\dfrac{10}{2}=1-\\log_{10}2$，得\n\n$$x_0=\\frac{3\\left(1-\\log_{10}2\\right)}{2\\log_{10}2}\\ (\\approx 3.48)$$\n\n所以 **D = 3，E = 2，F = 2，G = 2**。\n\n**3. 化为对数不等式（H, I, J, K, L）**　两边为正，取常用对数（底 $10>1$，不等号方向不变）：\n\n$$y>1000\\iff x^2\\log_{10}2-3x\\log_{10}5>\\log_{10}1000=3$$\n\n$$x^{2}\\log_{10}2-3\\,x\\log_{10}5-3>0\\qquad\\cdots\\text{①}$$\n\n所以 **H = 2，I = 2，J = 3，K = 5，L = 3**。\n\n**4. 解二次不等式（M, NO, P）**　用 $\\log_{10}2=0.3$，则 $\\log_{10}5=1-0.3=0.7$，① 变为\n\n$$0.3x^2-2.1x-3>0\\iff x^2-7x-10>0\\quad(\\text{两边乘}\\ \\tfrac{10}{3})$$\n\n方程 $x^2-7x-10=0$ 的根为 $x=\\dfrac{7\\pm\\sqrt{49+40}}{2}=\\dfrac{7\\pm\\sqrt{89}}{2}$。较小的根为负数，而 $x\\geqq0$，所以\n\n$$x>\\frac{7+\\sqrt{89}}{2}$$\n\n**M = 7，NO = 89，P = 2**。\n\n**5. 最小正整数（Q）**　$9.4^2=88.36<89<90.25=9.5^2$，所以 $9.4<\\sqrt{89}<9.5$，\n\n$$8.2<\\frac{7+\\sqrt{89}}{2}<8.25$$\n\n满足条件的最小正整数是 $9$，**Q = 9**。\n\n（用真实值 $\\log_{10}2=0.30103$ 检验：$x=8$ 时 ① 左边 $\\approx 19.27-16.78-3=-0.51<0$；$x=9$ 时 $\\approx 24.38-18.87-3=2.51>0$。结论不变。）\n\n**结论**　A = 2，B = 3，C = 5；D = 3，E = 2，F = 2，G = 2；H = 2，I = 2，J = 3，K = 5，L = 3；M = 7，NO = 89，P = 2；Q = 9。",
+        "keyPoints": [
+          "对数求导法：$\\log_e y=x^2\\log_e2-3x\\log_e5$，再由 $y'=y\\cdot(\\log_e y)'$ 得导数",
+          "换底公式 + $\\log_{10}5=1-\\log_{10}2$，把最小点写成常用对数",
+          "指数不等式两边取常用对数化为二次不等式，用 $\\sqrt{89}\\approx9.4$ 估算后找最小整数"
+        ],
+        "traps": [
+          "$(2^{x^2})'=2^{x^2}\\cdot2x\\log_e2$，链式法则的 $2x$ 不能漏；$5^{3x}$ 求导出来的系数是 $3$（B = 3）",
+          "$\\log_{10}1000=3$，移项后常数项是 $-3$（L = 3），不要写成 $-1000$",
+          "$x>\\frac{7+\\sqrt{89}}{2}\\approx8.2$，最小正整数是 9 不是 8；负根因 $x\\geqq0$ 舍去"
+        ],
+        "terms": [
+          {
+            "ja": "常用対数",
+            "kana": "じょうようたいすう",
+            "zh": "以 10 为底的对数 $\\log_{10}$"
+          },
+          {
+            "ja": "近似値",
+            "kana": "きんじち",
+            "zh": "代替精确值使用的近似数值"
+          },
+          {
+            "ja": "微分して",
+            "kana": "びぶんして",
+            "zh": "对函数求导之后"
+          },
+          {
+            "ja": "最小になる",
+            "kana": "さいしょうになる",
+            "zh": "取得最小值"
+          },
+          {
+            "ja": "最小の正の整数",
+            "kana": "さいしょうのせいのせいすう",
+            "zh": "满足条件的正整数里最小的一个"
+          },
+          {
+            "ja": "成り立つ",
+            "kana": "なりたつ",
+            "zh": "（等式、不等式）成立"
+          }
+        ],
+        "shortcut": "把 $y$ 看成 $10^{x^2\\log_{10}2-3x\\log_{10}5}$：指数部分 $g(x)=x^2\\log_{10}2-3x\\log_{10}5$ 是开口向上的抛物线，顶点 $x=\\frac{3\\log_{10}5}{2\\log_{10}2}$ 就是最小点，无需列增减表。(2) 中 $0.3x^2-2.1x-3>0$ 乘 $\\frac{10}{3}$ 立得 $x^2-7x-10>0$，$\\sqrt{89}\\approx9.4\\Rightarrow x>8.2\\Rightarrow 9$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2017_1-math-IV",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.int",
+      "tags": [
+        "math.calc.diff",
+        "math.trig.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 1200,
+      "source": {
+        "kind": "official",
+        "session": "2017_1",
+        "label": "2017年第1回 数学コース2 IV（解答欄A〜M）",
+        "pdf": "/assets/expanded/2017_1-math.pdf",
+        "page": 28
+      },
+      "stem": "区間 $0\\leqq x\\leqq\\pi$ で関数 $f(x)=x\\sin^2 x$ を考える。曲線 $y=f(x)$ の接線で原点を通るものを $\\ell$ とする。ただし，$\\ell$ は $x$ 軸ではないとする。このとき，曲線 $y=f(x)$ と接線 $\\ell$ で囲まれる部分の面積 $S$ を求めよう。\n\n(1)　次の文中の \\bx{A} 〜 \\bx{D} には，下の選択肢 ⓪ 〜 ⑨ の中から適するものを選びなさい。\n\n曲線 $y=f(x)$ と接線 $\\ell$ の接点を $(t,\\,f(t))$ とおくと，$\\ell$ は原点を通るので，等式 \\bx{A} が成り立つ。さらに\n\n$$f'(t)=\\bx{B}+2t\\,\\bx{C}$$\n\nであるから，接点の $x$ 座標は $t=\\bx{D}$ である。\n\n⓪ $f(t)=tf'(t)$　　① $f'(t)=tf(t)$\n② $\\sin t$　　③ $\\sin^2 t$　　④ $\\cos^2 t$　　⑤ $\\sin t\\cos t$\n⑥ $\\dfrac{\\pi}{2}$　　⑦ $\\dfrac{\\pi}{3}$　　⑧ $\\dfrac{\\pi}{4}$　　⑨ $\\dfrac{\\pi}{6}$\n\n(2)　次の文中の \\bx{E} 〜 \\bx{G} には，下の選択肢 ⓪ 〜 ⑨ の中から適するものを選びなさい。\n\n関数 $f(x)$ の不定積分は\n\n$$\\int f(x)\\,dx=\\bx{E}\\left(2x^2-2x\\,\\bx{F}-\\bx{G}\\right)+C\\qquad(C\\ \\text{は積分定数})$$\n\nである。\n\n⓪ $\\dfrac{1}{8}$　　① $\\dfrac{1}{4}$　　② $\\dfrac{1}{2}$　　③ $2$　　④ $4$　　⑤ $8$\n⑥ $\\sin x$　　⑦ $\\cos x$　　⑧ $\\sin 2x$　　⑨ $\\cos 2x$\n\n(3)　曲線 $y=f(x)$ と接線 $\\ell$ で囲まれる部分の面積 $S$ は\n\n$$S=\\frac{\\bx{H}}{\\bx{IJ}}\\pi^{\\bx{K}}-\\frac{\\bx{L}}{\\bx{M}}$$\n\nである。\n\n注）不定積分：antiderivative，積分定数：constant of integration",
+      "stemZh": "在区间 $0\\leqq x\\leqq\\pi$ 上考虑函数 $f(x)=x\\sin^2 x$。设曲线 $y=f(x)$ 的切线中经过原点的那条为 $\\ell$，其中 $\\ell$ 不是 $x$ 轴。求曲线 $y=f(x)$ 与切线 $\\ell$ 所围成部分的面积 $S$。\n\n(1)　下文中的 \\bx{A} 〜 \\bx{D} 请从下面的选项 ⓪〜⑨ 中选出合适的。\n\n设曲线 $y=f(x)$ 与切线 $\\ell$ 的切点为 $(t,\\,f(t))$，因为 $\\ell$ 经过原点，所以等式 \\bx{A} 成立。又因为\n\n$$f'(t)=\\bx{B}+2t\\,\\bx{C}$$\n\n所以切点的 $x$ 坐标为 $t=\\bx{D}$。\n\n⓪ $f(t)=tf'(t)$　　① $f'(t)=tf(t)$\n② $\\sin t$　　③ $\\sin^2 t$　　④ $\\cos^2 t$　　⑤ $\\sin t\\cos t$\n⑥ $\\dfrac{\\pi}{2}$　　⑦ $\\dfrac{\\pi}{3}$　　⑧ $\\dfrac{\\pi}{4}$　　⑨ $\\dfrac{\\pi}{6}$\n\n(2)　下文中的 \\bx{E} 〜 \\bx{G} 请从下面的选项 ⓪〜⑨ 中选出合适的。\n\n函数 $f(x)$ 的不定积分为\n\n$$\\int f(x)\\,dx=\\bx{E}\\left(2x^2-2x\\,\\bx{F}-\\bx{G}\\right)+C\\qquad(C\\ \\text{为积分常数})$$\n\n⓪ $\\dfrac{1}{8}$　　① $\\dfrac{1}{4}$　　② $\\dfrac{1}{2}$　　③ $2$　　④ $4$　　⑤ $8$\n⑥ $\\sin x$　　⑦ $\\cos x$　　⑧ $\\sin 2x$　　⑨ $\\cos 2x$\n\n(3)　曲线 $y=f(x)$ 与切线 $\\ell$ 所围成部分的面积 $S$ 为\n\n$$S=\\frac{\\bx{H}}{\\bx{IJ}}\\pi^{\\bx{K}}-\\frac{\\bx{L}}{\\bx{M}}$$\n\n注）不定積分：不定积分（原函数），積分定数：积分常数",
+      "format": "blanks",
+      "blanks": {
+        "A": "0",
+        "B": "3",
+        "C": "5",
+        "D": "6",
+        "E": "0",
+        "F": "8",
+        "G": "9",
+        "H": "1",
+        "I": "1",
+        "J": "6",
+        "K": "2",
+        "L": "1",
+        "M": "4"
+      },
+      "explanation": {
+        "zh": "**思路**\n\n「曲线外一点（这里是原点）引切线」的标准做法：**设切点** $(t,f(t))$，写出切线方程，再让它经过原点，得到关于 $t$ 的方程。求出切线 $\\ell$ 后，面积 = $\\int(\\text{上方}-\\text{下方})\\,dx$。$x\\sin^2x$ 的积分用**降幂公式**把 $\\sin^2x$ 化成 $\\cos2x$，再**分部积分**。\n\n**解答**\n\n**1. 切线过原点的条件（A）**　切点 $(t,f(t))$ 处的切线为\n\n$$y-f(t)=f'(t)(x-t)$$\n\n代入原点 $(0,0)$：$-f(t)=-tf'(t)$，即 $f(t)=tf'(t)$。对应选项 ⓪，**A = 0**。\n\n**2. 求导（B, C）**　积的求导法则：\n\n$$f'(x)=(x)'\\sin^2x+x(\\sin^2x)'=\\sin^2x+x\\cdot2\\sin x\\cos x$$\n\n所以 $f'(t)=\\sin^2t+2t\\sin t\\cos t$。**B = 3**（$\\sin^2t$），**C = 5**（$\\sin t\\cos t$）。\n\n**3. 切点（D）**　代入 $f(t)=tf'(t)$：\n\n$$t\\sin^2t=t\\sin^2t+2t^2\\sin t\\cos t\\ \\Longrightarrow\\ 2t^2\\sin t\\cos t=0\\ \\Longrightarrow\\ t^2\\sin2t=0$$\n\n在 $0\\leqq t\\leqq\\pi$ 内解为 $t=0,\\ \\dfrac{\\pi}{2},\\ \\pi$。\n\n- $t=0$：$f(0)=0,\\ f'(0)=0$，切线为 $y=0$（$x$ 轴），排除；\n- $t=\\pi$：$f(\\pi)=0,\\ f'(\\pi)=0$，切线也是 $x$ 轴，排除；\n- $t=\\dfrac{\\pi}{2}$：符合。\n\n所以 $t=\\dfrac{\\pi}{2}$，选项 ⑥，**D = 6**。此时 $f\\!\\left(\\tfrac{\\pi}{2}\\right)=\\tfrac{\\pi}{2}$，$f'\\!\\left(\\tfrac{\\pi}{2}\\right)=1+0=1$，切线 $\\ell:\\ y=x$。\n\n**4. 不定积分（E, F, G）**　降幂：$\\sin^2x=\\dfrac{1-\\cos2x}{2}$，所以 $f(x)=\\dfrac{x}{2}-\\dfrac{x\\cos2x}{2}$。\n\n分部积分：\n\n$$\\int x\\cos2x\\,dx=x\\cdot\\frac{\\sin2x}{2}-\\int\\frac{\\sin2x}{2}\\,dx=\\frac{x\\sin2x}{2}+\\frac{\\cos2x}{4}$$\n\n于是\n\n$$\\int f(x)\\,dx=\\frac{x^2}{4}-\\frac{x\\sin2x}{4}-\\frac{\\cos2x}{8}+C=\\frac{1}{8}\\left(2x^2-2x\\sin2x-\\cos2x\\right)+C$$\n\n**E = 0**（$\\frac18$），**F = 8**（$\\sin2x$），**G = 9**（$\\cos2x$）。\n\n检验：$\\dfrac{d}{dx}\\dfrac18(2x^2-2x\\sin2x-\\cos2x)=\\dfrac18(4x-2\\sin2x-4x\\cos2x+2\\sin2x)=\\dfrac{x(1-\\cos2x)}{2}=x\\sin^2x$ ✓\n\n**5. 面积（H, IJ, K, L, M）**　上下关系：\n\n$$x-f(x)=x(1-\\sin^2x)=x\\cos^2x\\geqq0$$\n\n所以直线 $y=x$ 在曲线上方，二者在 $x=0$（交点）和 $x=\\dfrac{\\pi}{2}$（切点）相接，围成的部分是 $0\\leqq x\\leqq\\dfrac{\\pi}{2}$。（$x>\\dfrac{\\pi}{2}$ 一侧到 $x=\\pi$ 处曲线回到 $0$ 而直线为 $\\pi$，不再封闭。）\n\n$$S=\\int_0^{\\frac{\\pi}{2}}\\{x-f(x)\\}\\,dx=\\left[\\frac{x^2}{2}\\right]_0^{\\frac{\\pi}{2}}-\\left[\\frac18\\left(2x^2-2x\\sin2x-\\cos2x\\right)\\right]_0^{\\frac{\\pi}{2}}$$\n\n- 第一项：$\\dfrac{\\pi^2}{8}$\n- 第二项：上限 $\\dfrac18\\left(\\dfrac{\\pi^2}{2}-0-\\cos\\pi\\right)=\\dfrac18\\left(\\dfrac{\\pi^2}{2}+1\\right)$，下限 $\\dfrac18(0-0-1)=-\\dfrac18$，差为 $\\dfrac18\\left(\\dfrac{\\pi^2}{2}+2\\right)=\\dfrac{\\pi^2}{16}+\\dfrac14$\n\n$$S=\\frac{\\pi^2}{8}-\\frac{\\pi^2}{16}-\\frac14=\\frac{1}{16}\\pi^2-\\frac{1}{4}\\ (\\approx0.367)$$\n\n**H = 1，IJ = 16，K = 2，L = 1，M = 4**。\n\n**结论**　A = 0，B = 3，C = 5，D = 6；E = 0，F = 8，G = 9；H = 1，IJ = 16，K = 2，L = 1，M = 4，即 $S=\\dfrac{\\pi^2}{16}-\\dfrac14$。",
+        "keyPoints": [
+          "过曲线外一点（原点）的切线：设切点 $(t,f(t))$，条件 $f(t)=tf'(t)$",
+          "$x\\sin^2x$ 的积分：降幂公式 $\\sin^2x=\\frac{1-\\cos2x}{2}$ + 分部积分",
+          "面积 = ∫(上 − 下)：先确认 $x-f(x)=x\\cos^2x\\geqq0$ 和积分区间 $[0,\\frac{\\pi}{2}]$"
+        ],
+        "traps": [
+          "$t=0$、$t=\\pi$ 也满足 $t^2\\sin2t=0$，但它们给出的切线是 $x$ 轴，题目已排除",
+          "分部积分的符号：$\\int x\\cos2x\\,dx=\\frac{x\\sin2x}{2}+\\frac{\\cos2x}{4}$，代入 $f$ 后括号里是 $-\\cos2x$",
+          "代入下限 $x=0$ 时 $-\\cos0=-1\\neq0$，不能把下限当成 0 忽略，否则会得到 $\\frac{\\pi^2}{16}-\\frac18$"
+        ],
+        "terms": [
+          {
+            "ja": "接線",
+            "kana": "せっせん",
+            "zh": "切线：与曲线在某一点相切、斜率等于该点导数的直线"
+          },
+          {
+            "ja": "接点",
+            "kana": "せってん",
+            "zh": "曲线与切线相切的那个点（切点）"
+          },
+          {
+            "ja": "原点を通る",
+            "kana": "げんてんをとおる",
+            "zh": "经过坐标原点 (0, 0)"
+          },
+          {
+            "ja": "不定積分",
+            "kana": "ふていせきぶん",
+            "zh": "不带上下限的积分，即求原函数"
+          },
+          {
+            "ja": "積分定数",
+            "kana": "せきぶんていすう",
+            "zh": "原函数末尾可任取的常数 C"
+          },
+          {
+            "ja": "囲まれる部分",
+            "kana": "かこまれるぶぶん",
+            "zh": "（曲线与直线）围成的封闭区域"
+          }
+        ],
+        "shortcut": "(1) 由 $t^2\\sin t\\cos t=0$ 且选项只有 $\\frac{\\pi}{2},\\frac{\\pi}{3},\\frac{\\pi}{4},\\frac{\\pi}{6}$，只有 $\\cos\\frac{\\pi}{2}=0$，立得 D。(3) 不必用 (2) 的结果：$S=\\int_0^{\\pi/2}x\\cos^2x\\,dx=\\int_0^{\\pi/2}\\left(\\frac{x}{2}+\\frac{x\\cos2x}{2}\\right)dx=\\frac{\\pi^2}{16}+\\left[\\frac{x\\sin2x}{4}+\\frac{\\cos2x}{8}\\right]_0^{\\pi/2}=\\frac{\\pi^2}{16}-\\frac14$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "subjects": {
+    "math": {
+      "name": "数学コース2",
+      "units": [
+        { "id": "math.algebra", "name": "数与式·命题·各种式", "topics": [
+          { "id": "math.algebra.expr", "name": "数与式（绝对值方程/不等式）", "ja": "数と式", "weight": 2 },
+          { "id": "math.algebra.logic", "name": "集合与命题", "ja": "集合と命題", "weight": 2 },
+          { "id": "math.algebra.poly", "name": "二项式定理·余数定理·根与系数", "ja": "いろいろな式", "weight": 2 }
+        ]},
+        { "id": "math.quad", "name": "二次函数", "topics": [
+          { "id": "math.quad.func", "name": "二次函数（最值·平移·不等式）", "ja": "2次関数", "weight": 5 }
+        ]},
+        { "id": "math.geo", "name": "图形", "topics": [
+          { "id": "math.geo.measure", "name": "三角比·图形计量（含空间）", "ja": "図形と計量", "weight": 3 },
+          { "id": "math.geo.plane", "name": "平面几何性质（五心·切割线）", "ja": "図形の性質", "weight": 2 },
+          { "id": "math.geo.coord", "name": "解析几何·轨迹与区域", "ja": "図形と方程式", "weight": 3 }
+        ]},
+        { "id": "math.prob", "name": "排列组合·概率·概率分布", "topics": [
+          { "id": "math.prob.count", "name": "排列组合", "ja": "場合の数", "weight": 3 },
+          { "id": "math.prob.prob", "name": "概率·条件概率·期望", "ja": "確率・期待値", "weight": 4 },
+          { "id": "math.prob.dist", "name": "概率分布·方差·协方差（2026新增）", "ja": "確率分布", "weight": 3 }
+        ]},
+        { "id": "math.int", "name": "整数", "topics": [
+          { "id": "math.int.number", "name": "整数性质·辗转相除·进制", "ja": "整数の性質", "weight": 2 }
+        ]},
+        { "id": "math.trig", "name": "三角函数", "topics": [
+          { "id": "math.trig.func", "name": "三角函数·加法定理·合成", "ja": "三角関数", "weight": 4 }
+        ]},
+        { "id": "math.explog", "name": "指数·对数", "topics": [
+          { "id": "math.explog.func", "name": "指数函数·对数函数", "ja": "指数関数・対数関数", "weight": 3 }
+        ]},
+        { "id": "math.seq", "name": "数列", "topics": [
+          { "id": "math.seq.seq", "name": "数列·求和·递推·归纳法", "ja": "数列", "weight": 4 }
+        ]},
+        { "id": "math.vec", "name": "向量", "topics": [
+          { "id": "math.vec.plane", "name": "平面向量", "ja": "平面ベクトル", "weight": 3 },
+          { "id": "math.vec.space", "name": "空间向量", "ja": "空間ベクトル", "weight": 3 }
+        ]},
+        { "id": "math.complex", "name": "复数平面", "topics": [
+          { "id": "math.complex.plane", "name": "复数平面·极形式·棣莫弗", "ja": "複素数平面", "weight": 4 }
+        ]},
+        { "id": "math.curve", "name": "式与曲线", "topics": [
+          { "id": "math.curve.conic", "name": "二次曲线·参数方程·极坐标", "ja": "式と曲線", "weight": 2 }
+        ]},
+        { "id": "math.func", "name": "函数与极限", "topics": [
+          { "id": "math.func.func", "name": "分式/无理函数·反函数·复合函数", "ja": "関数", "weight": 2 },
+          { "id": "math.func.limit", "name": "极限·无穷级数·连续", "ja": "極限", "weight": 3 }
+        ]},
+        { "id": "math.calc", "name": "微积分", "topics": [
+          { "id": "math.calc.diff", "name": "微分·切线·极值·最值", "ja": "微分法", "weight": 5 },
+          { "id": "math.calc.int", "name": "积分·面积·体积", "ja": "積分法", "weight": 5 }
+        ]}
+      ]
+    },
+    "physics": {
+      "name": "物理",
+      "units": [
+        { "id": "phys.mech", "name": "力学", "topics": [
+          { "id": "phys.mech.kinematics", "name": "运动学·抛体运动", "ja": "運動の表し方", "weight": 3 },
+          { "id": "phys.mech.force", "name": "受力平衡·运动方程", "ja": "力と運動", "weight": 5 },
+          { "id": "phys.mech.moment", "name": "刚体平衡·力矩", "ja": "剛体のつり合い", "weight": 3 },
+          { "id": "phys.mech.energy", "name": "功与能量", "ja": "仕事とエネルギー", "weight": 4 },
+          { "id": "phys.mech.momentum", "name": "动量·碰撞", "ja": "運動量", "weight": 4 },
+          { "id": "phys.mech.circular", "name": "圆周运动·简谐运动", "ja": "円運動・単振動", "weight": 4 },
+          { "id": "phys.mech.gravity", "name": "万有引力", "ja": "万有引力", "weight": 2 }
+        ]},
+        { "id": "phys.thermo", "name": "热学", "topics": [
+          { "id": "phys.thermo.heat", "name": "热量·比热·热平衡", "ja": "熱と温度", "weight": 3 },
+          { "id": "phys.thermo.gas", "name": "气体定律·分子运动论", "ja": "気体の法則", "weight": 3 },
+          { "id": "phys.thermo.first", "name": "热力学第一定律·状态变化", "ja": "熱力学第1法則", "weight": 3 }
+        ]},
+        { "id": "phys.wave", "name": "波动", "topics": [
+          { "id": "phys.wave.basics", "name": "波的性质·波形图·波的式子", "ja": "波の性質", "weight": 3 },
+          { "id": "phys.wave.sound", "name": "声波·多普勒·弦与气柱", "ja": "音", "weight": 3 },
+          { "id": "phys.wave.light", "name": "光·折射·透镜·干涉衍射", "ja": "光", "weight": 3 }
+        ]},
+        { "id": "phys.em", "name": "电磁学", "topics": [
+          { "id": "phys.em.field", "name": "电场·电势·库仑定律", "ja": "電場と電位", "weight": 4 },
+          { "id": "phys.em.capacitor", "name": "电容器", "ja": "コンデンサー", "weight": 4 },
+          { "id": "phys.em.circuit", "name": "直流电路·基尔霍夫·半导体", "ja": "電流と回路", "weight": 4 },
+          { "id": "phys.em.magnetic", "name": "电流磁场·洛伦兹力·带电粒子", "ja": "電流と磁場", "weight": 4 },
+          { "id": "phys.em.induction", "name": "电磁感应", "ja": "電磁誘導", "weight": 4 },
+          { "id": "phys.em.ac", "name": "交流电路·电磁振荡", "ja": "交流", "weight": 2 }
+        ]},
+        { "id": "phys.atom", "name": "原子物理", "topics": [
+          { "id": "phys.atom.quantum", "name": "光电效应·物质波·X射线", "ja": "電子と光", "weight": 2 },
+          { "id": "phys.atom.nuclear", "name": "原子核·放射性·核反应", "ja": "原子と原子核", "weight": 2 }
+        ]}
+      ]
+    },
+    "chemistry": {
+      "name": "化学",
+      "units": [
+        { "id": "chem.struct", "name": "物质的构成", "topics": [
+          { "id": "chem.struct.atom", "name": "原子结构·电子排布·周期表", "ja": "原子の構造と周期表", "weight": 3 },
+          { "id": "chem.struct.bond", "name": "化学键·分子形状·极性·晶体", "ja": "化学結合", "weight": 4 },
+          { "id": "chem.struct.mole", "name": "物质的量·化学计量", "ja": "物質量と化学反応式", "weight": 4 }
+        ]},
+        { "id": "chem.state", "name": "物质的状态", "topics": [
+          { "id": "chem.state.gas", "name": "气体定律·混合气体·蒸气压", "ja": "気体", "weight": 3 },
+          { "id": "chem.state.solution", "name": "溶液·溶解度·依数性", "ja": "溶液", "weight": 3 },
+          { "id": "chem.state.solid", "name": "固体结构·晶胞", "ja": "固体の構造", "weight": 2 }
+        ]},
+        { "id": "chem.react", "name": "物质的变化", "topics": [
+          { "id": "chem.react.acidbase", "name": "酸碱·中和·pH·盐", "ja": "酸と塩基", "weight": 4 },
+          { "id": "chem.react.redox", "name": "氧化还原·滴定", "ja": "酸化還元", "weight": 4 },
+          { "id": "chem.react.electro", "name": "电池·电解", "ja": "電池と電気分解", "weight": 3 },
+          { "id": "chem.react.enthalpy", "name": "焓变ΔH·盖斯定律·键能（2026新写法）", "ja": "化学反応とエンタルピー", "weight": 3 },
+          { "id": "chem.react.rate", "name": "反应速率", "ja": "反応速度", "weight": 2 },
+          { "id": "chem.react.equil", "name": "化学平衡·电离平衡·缓冲·溶度积", "ja": "化学平衡", "weight": 4 }
+        ]},
+        { "id": "chem.inorg", "name": "无机化学", "topics": [
+          { "id": "chem.inorg.nonmetal", "name": "非金属元素及其化合物", "ja": "非金属元素", "weight": 3 },
+          { "id": "chem.inorg.metal", "name": "金属元素·过渡元素", "ja": "金属元素", "weight": 3 },
+          { "id": "chem.inorg.ions", "name": "离子分离·沉淀·气体制备·除杂", "ja": "イオンの分離", "weight": 3 },
+          { "id": "chem.inorg.industry", "name": "工业制法", "ja": "工業的製法", "weight": 2 }
+        ]},
+        { "id": "chem.org", "name": "有机化学", "topics": [
+          { "id": "chem.org.basics", "name": "结构确定·同分异构·元素分析·命名", "ja": "有機化合物の特徴", "weight": 3 },
+          { "id": "chem.org.aliphatic", "name": "脂肪族化合物", "ja": "脂肪族化合物", "weight": 3 },
+          { "id": "chem.org.aromatic", "name": "芳香族化合物", "ja": "芳香族化合物", "weight": 3 },
+          { "id": "chem.org.bio", "name": "糖·氨基酸·蛋白质", "ja": "天然有機化合物", "weight": 2 },
+          { "id": "chem.org.polymer", "name": "高分子·合成树脂", "ja": "高分子化合物", "weight": 2 }
+        ]}
+      ]
+    },
+    "japanese": {
+      "name": "日本语",
+      "units": [
+        { "id": "ja.reading", "name": "读解", "topics": [
+          { "id": "ja.reading.short", "name": "短篇·实用文（Ⅰ–Ⅹ）", "ja": "読解（短文）", "weight": 4 },
+          { "id": "ja.reading.long", "name": "中长篇论说文（ⅩⅠ–ⅩⅦ）", "ja": "読解（中長文）", "weight": 5 }
+        ]},
+        { "id": "ja.listening", "name": "听解", "topics": [
+          { "id": "ja.listening.lr", "name": "听读解（看图表）", "ja": "聴読解", "weight": 4 },
+          { "id": "ja.listening.l", "name": "听解（纯音频选项）", "ja": "聴解", "weight": 5 }
+        ]},
+        { "id": "ja.vocab", "name": "词汇·文型", "topics": [
+          { "id": "ja.vocab.words", "name": "学术词汇", "ja": "語彙", "weight": 3 },
+          { "id": "ja.vocab.grammar", "name": "文型·接续表达", "ja": "文型", "weight": 3 }
+        ]}
+      ]
+    }
+  }
+}

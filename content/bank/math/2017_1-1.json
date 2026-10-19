@@ -1,0 +1,343 @@
+{
+  "title": "2017_1 math part",
+  "items": [
+    {
+      "id": "2017_1-math-I1",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.quad.func",
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "official",
+        "session": "2017_1",
+        "label": "2017年第1回 数学コース2 Ⅰ 問1",
+        "pdf": "/assets/expanded/2017_1-math.pdf",
+        "page": 18
+      },
+      "stem": "2 次関数\n\n$$y=3x^2-6$$\n\nを考える。\n\n(1)　$y=3x^2-6$ のグラフを平行移動して，2 点 $(1,5)$，$(4,14)$ を通るようにする。このとき，このグラフを表す 2 次関数は\n\n$y=\\bx{A}x^2-\\bx{BC}\\,x+\\bx{DE}\\qquad\\cdots\\cdots$　①\n\nである。このグラフは，$y=3x^2-6$ のグラフを $x$ 軸方向に \\bx{F}，$y$ 軸方向に \\bx{G} 平行移動したものである。\n\n(2)　直線 $y=c$ に関して $y=3x^2-6$ のグラフと対称なグラフを表す 2 次関数は\n\n$y=-\\bx{H}x^2+\\bx{I}\\,c+\\bx{J}\\qquad\\cdots\\cdots$　②\n\nである。\n\n2 次関数 ① と ② のグラフが共有点を 1 つだけもつとき，$c=\\bx{K}$ であり，共有点の座標は $(\\bx{L},\\ \\bx{M})$ である。\n\n注）対称な：symmetric",
+      "stemZh": "考虑二次函数\n\n$$y=3x^2-6$$\n\n(1)　将 $y=3x^2-6$ 的图像平移，使其经过两点 $(1,5)$，$(4,14)$。此时表示该图像的二次函数为\n\n$y=\\bx{A}x^2-\\bx{BC}\\,x+\\bx{DE}\\qquad\\cdots\\cdots$　①\n\n该图像是把 $y=3x^2-6$ 的图像沿 $x$ 轴方向平移 \\bx{F}、沿 $y$ 轴方向平移 \\bx{G} 得到的。\n\n(2)　与 $y=3x^2-6$ 的图像关于直线 $y=c$ 对称的图像所表示的二次函数为\n\n$y=-\\bx{H}x^2+\\bx{I}\\,c+\\bx{J}\\qquad\\cdots\\cdots$　②\n\n当二次函数 ① 与 ② 的图像只有 1 个公共点时，$c=\\bx{K}$，公共点的坐标为 $(\\bx{L},\\ \\bx{M})$。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "1",
+        "C": "2",
+        "D": "1",
+        "E": "4",
+        "F": "2",
+        "G": "8",
+        "H": "3",
+        "I": "2",
+        "J": "6",
+        "K": "1",
+        "L": "1",
+        "M": "5"
+      },
+      "explanation": {
+        "zh": "**思路**　平移不会改变抛物线的开口方向和大小，所以 $x^2$ 的系数仍是 $3$，只需用两点定出一次项和常数项；平移量 = 新顶点 − 旧顶点。关于直线 $y=c$ 对称，就是把每个点 $(x,y)$ 换成 $(x,\\,2c-y)$。两条抛物线只有一个公共点，就是联立后得到的二次方程有重根（判别式为 0）。\n\n**解答**\n\n**第1步　求 ①（A, BC, DE）**\n\n平移后 $x^2$ 系数不变，设 $y=3x^2+px+q$。代入两点：\n\n$$(1,5):\\ 3+p+q=5\\ \\Longrightarrow\\ p+q=2$$\n\n$$(4,14):\\ 48+4p+q=14\\ \\Longrightarrow\\ 4p+q=-34$$\n\n两式相减得 $3p=-36$，$p=-12$，$q=14$。所以\n\n$$y=3x^2-12x+14$$\n\nA=3，BC=12（负号已印在题中），DE=14。\n\n**第2步　平移量（F, G）**\n\n配方：$y=3x^2-12x+14=3(x-2)^2+2$，顶点 $(2,\\,2)$。原抛物线 $y=3x^2-6$ 的顶点是 $(0,\\,-6)$。\n\n$$x\\ \\text{方向}:\\ 2-0=2,\\qquad y\\ \\text{方向}:\\ 2-(-6)=8$$\n\nF=2，G=8。\n\n**第3步　关于 $y=c$ 的对称图像（H, I, J）**\n\n点 $(x,y)$ 关于直线 $y=c$ 的对称点是 $(x,\\,2c-y)$（两点纵坐标的平均数为 $c$）。所以对称图像上的点 $(x,Y)$ 满足 $2c-Y=3x^2-6$，即\n\n$$Y=-3x^2+2c+6$$\n\nH=3，I=2，J=6。\n\n**第4步　只有一个公共点（K, L, M）**\n\n联立 ① 与 ②：\n\n$$3x^2-12x+14=-3x^2+2c+6\\ \\Longrightarrow\\ 6x^2-12x+8-2c=0\\ \\Longrightarrow\\ 3x^2-6x+4-c=0$$\n\n只有一个公共点 ⇔ 此方程有重根：\n\n$$\\frac{D}{4}=(-3)^2-3(4-c)=3c-3=0\\ \\Longrightarrow\\ c=1$$\n\n此时 $3x^2-6x+3=3(x-1)^2=0$，$x=1$，代入 ①：$y=3-12+14=5$（代入 ② 也得 $-3+2+6=5$）。\n\nK=1，L=1，M=5。\n\n**结论**　A=3，BC=12，DE=14，F=2，G=8，H=3，I=2，J=6，K=1，L=1，M=5。",
+        "keyPoints": [
+          "平移不改变 $x^2$ 的系数；平移量 = 新顶点坐标 − 原顶点坐标",
+          "关于直线 $y=c$ 对称：把 $y$ 换成 $2c-y$，得 $y=2c-f(x)$",
+          "两抛物线只有一个公共点 ⇔ 联立后的二次方程判别式 $D=0$"
+        ],
+        "traps": [
+          "关于 $y=c$ 对称不是 $y\\to -y$（那只是 $c=0$ 时关于 $x$ 轴对称），常数项是 $2c+6$ 不是 $c+6$",
+          "$y$ 方向平移量是 $2-(-6)=8$，不是新顶点的纵坐标 2",
+          "BC 前面已经印了负号，填 12 而不是 -12"
+        ],
+        "terms": [
+          {
+            "ja": "平行移動",
+            "kana": "へいこういどう",
+            "zh": "平移（图形整体沿某方向移动，形状不变）"
+          },
+          {
+            "ja": "対称な",
+            "kana": "たいしょうな",
+            "zh": "对称的（关于某条直线成镜像）"
+          },
+          {
+            "ja": "共有点",
+            "kana": "きょうゆうてん",
+            "zh": "公共点（两图像的交点或切点）"
+          },
+          {
+            "ja": "軸方向",
+            "kana": "じくほうこう",
+            "zh": "沿坐标轴的方向"
+          },
+          {
+            "ja": "座標",
+            "kana": "ざひょう",
+            "zh": "坐标（表示点位置的有序数对 $(x,y)$）"
+          },
+          {
+            "ja": "通る",
+            "kana": "とおる",
+            "zh": "经过（某点）"
+          }
+        ],
+        "shortcut": "直接设平移后为 $y=3(x-p)^2+q$：两点代入相减，$3\\left[(4-p)^2-(1-p)^2\\right]=14-5=9$，即 $15-6p=3$，$p=2$，再得 $q=2$，一步得到顶点 $(2,2)$，F、G 立即可填。另外 (2) 的切点 $(1,5)$ 恰好是题目给的点，可作验算。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2017_1-math-I2",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.prob.prob",
+      "tags": [
+        "math.prob.count"
+      ],
+      "difficulty": 1,
+      "targetSec": 600,
+      "source": {
+        "kind": "official",
+        "session": "2017_1",
+        "label": "2017年第1回 数学コース2 Ⅰ 問2",
+        "pdf": "/assets/expanded/2017_1-math.pdf",
+        "page": 20
+      },
+      "stem": "白いカードが 4 枚，赤いカードが 3 枚，黒いカードが 3 枚あり，これら 10 枚のカードにはすべて異なる数字が記されている。\n\n(1)　10 枚のカードから 2 枚のカードを選び，それらを 2 つの箱 A, B に 1 枚ずつ入れる。この入れ方は全部で \\bx{NO} 通りある。\n\n(2)　10 枚のカードから 2 枚のカードを選ぶ。2 枚とも同じ色となるような選び方は \\bx{PQ} 通りあり，2 枚の色が異なるような選び方は \\bx{RS} 通りある。\n\n次に，この 10 枚のカードを 1 つの箱に入れ，その中からカードを 1 枚ずつ 2 度取り出す。ただし，最初に取り出したカードは箱に戻さないものとする。\n\n(3)　取り出した 2 枚のカードが同じ色である確率は $\\dfrac{\\bx{T}}{\\bx{UV}}$ である。\n\n(4)　最初に取り出したカードの色が白か赤であり，2 度目に取り出したカードの色が赤か黒である確率は $\\dfrac{\\bx{WX}}{\\bx{YZ}}$ である。",
+      "stemZh": "有白色卡片 4 张、红色卡片 3 张、黑色卡片 3 张，这 10 张卡片上写着互不相同的数字。\n\n(1)　从 10 张卡片中选出 2 张，把它们分别放入 A、B 两个盒子，每个盒子 1 张。这样的放法共有 \\bx{NO} 种。\n\n(2)　从 10 张卡片中选出 2 张。2 张颜色相同的选法有 \\bx{PQ} 种，2 张颜色不同的选法有 \\bx{RS} 种。\n\n接下来，把这 10 张卡片放进 1 个盒子，从中每次取出 1 张，共取 2 次。但第一次取出的卡片不放回盒子。\n\n(3)　取出的 2 张卡片颜色相同的概率是 $\\dfrac{\\bx{T}}{\\bx{UV}}$。\n\n(4)　第一次取出的卡片是白色或红色，且第二次取出的卡片是红色或黑色的概率是 $\\dfrac{\\bx{WX}}{\\bx{YZ}}$。",
+      "format": "blanks",
+      "blanks": {
+        "N": "9",
+        "O": "0",
+        "P": "1",
+        "Q": "2",
+        "R": "3",
+        "S": "3",
+        "T": "4",
+        "U": "1",
+        "V": "5",
+        "W": "1",
+        "X": "3",
+        "Y": "3",
+        "Z": "0"
+      },
+      "explanation": {
+        "zh": "**思路**　10 张卡片数字各不相同，所以每张都是可区分的。(1) 两个盒子 A、B 不同，“放法”与顺序有关，是排列；(2) 只是“选”，与顺序无关，是组合。(3)(4) 是不放回抽取，可以用“有序抽取”统一计数：总情况数 $10\\times9=90$。\n\n**解答**\n\n**第1步　放入 A、B 两盒（NO）**\n\nA 盒有 10 种选择，B 盒从剩下 9 张中选：\n\n$$_{10}\\mathrm{P}_2=10\\times9=90$$\n\nNO=90。\n\n**第2步　同色与异色的选法（PQ, RS）**\n\n同色：白 2 张、红 2 张或黑 2 张：\n\n$$_4\\mathrm{C}_2+{}_3\\mathrm{C}_2+{}_3\\mathrm{C}_2=6+3+3=12$$\n\n全部选法 $_{10}\\mathrm{C}_2=45$，异色用余事件：\n\n$$45-12=33$$\n\nPQ=12，RS=33。\n\n**第3步　两次取出同色的概率（T, UV）**\n\n不放回地取 2 次，结果等价于“一次取出 2 张”，所以\n\n$$P=\\frac{12}{45}=\\frac{4}{15}$$\n\n（按有序计数也一样：$\\dfrac{4\\cdot3+3\\cdot2+3\\cdot2}{10\\cdot9}=\\dfrac{24}{90}=\\dfrac{4}{15}$。）T=4，UV=15。\n\n**第4步　第一次白或红，第二次红或黑（WX, YZ）**\n\n按第一次取出的颜色分类（有序计数，总数 90）：\n\n- 第一次白（4 种）：剩下 9 张中红 3 + 黑 3 = 6 张可取 → $4\\times6=24$\n- 第一次红（3 种）：红只剩 2 张，红 2 + 黑 3 = 5 张可取 → $3\\times5=15$\n\n$$P=\\frac{24+15}{90}=\\frac{39}{90}=\\frac{13}{30}$$\n\nWX=13，YZ=30。\n\n**结论**　NO=90，PQ=12，RS=33，T=4，UV=15，WX=13，YZ=30。",
+        "keyPoints": [
+          "放入不同的盒子 → 有顺序 → 排列 $_n\\mathrm{P}_r$；只是选出 → 组合 $_n\\mathrm{C}_r$",
+          "不放回抽取：用有序计数（总数 $10\\times9$）按第一次的结果分类"
+        ],
+        "traps": [
+          "(4) 第一次是红色时，红色只剩 2 张，第二次“红或黑”只有 5 张，不是 6 张",
+          "(1) 盒子 A、B 不同，答案是 90 而不是 $_{10}\\mathrm{C}_2=45$",
+          "$\\frac{39}{90}$ 要约分成 $\\frac{13}{30}$ 才能填入两位分母"
+        ],
+        "terms": [
+          {
+            "ja": "枚",
+            "kana": "まい",
+            "zh": "张（数纸片、卡片等薄物的量词）"
+          },
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "种（情况数、方法数的量词）"
+          },
+          {
+            "ja": "取り出す",
+            "kana": "とりだす",
+            "zh": "取出、抽出"
+          },
+          {
+            "ja": "戻さない",
+            "kana": "もどさない",
+            "zh": "不放回（抽出后不再放回去）"
+          },
+          {
+            "ja": "異なる",
+            "kana": "ことなる",
+            "zh": "不同的、互不相同"
+          },
+          {
+            "ja": "確率",
+            "kana": "かくりつ",
+            "zh": "概率"
+          }
+        ],
+        "shortcut": "(3) 直接用 (2) 的结果：$\\dfrac{\\text{同色选法}}{\\text{全部选法}}=\\dfrac{12}{45}$。(4) 也可从“第一次白或红”的 7 种出发：$\\dfrac{4}{10}\\cdot\\dfrac{6}{9}+\\dfrac{3}{10}\\cdot\\dfrac{5}{9}=\\dfrac{24+15}{90}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2017_1-math-II1",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.vec.plane",
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "official",
+        "session": "2017_1",
+        "label": "2017年第1回 数学コース2 Ⅱ 問1",
+        "pdf": "/assets/expanded/2017_1-math.pdf",
+        "page": 22
+      },
+      "stem": "右図のように，1 辺 OA を共有する三角形 OAB と三角形 OAC が，次の 2 つの条件を満たしているとする。\n\n(i)　$\\overrightarrow{\\mathrm{OC}}=x\\,\\overrightarrow{\\mathrm{OA}}+\\dfrac{1}{2}\\overrightarrow{\\mathrm{OB}}$\n(ii)　三角形 OAC の重心 G は線分 AB 上にある\n\nこのとき，$x$ の値を求め，$\\overrightarrow{\\mathrm{OG}}$ を $\\overrightarrow{\\mathrm{OA}}$ と $\\overrightarrow{\\mathrm{OB}}$ を用いて表そう。\n\n線分 OC と線分 AB の交点を D とおくと\n\n$$\\overrightarrow{\\mathrm{OD}}=\\dfrac{x}{\\bx{A}}\\overrightarrow{\\mathrm{OA}}+\\dfrac{\\bx{B}}{\\bx{C}}\\overrightarrow{\\mathrm{OB}}$$\n\nとなる。また，D は線分 AB 上にあるので，$x=\\dfrac{\\bx{D}}{\\bx{E}}$ を得る。\n\nしたがって\n\n$$\\overrightarrow{\\mathrm{OG}}=\\dfrac{\\bx{F}}{\\bx{G}}\\overrightarrow{\\mathrm{OA}}+\\dfrac{\\bx{H}}{\\bx{I}}\\overrightarrow{\\mathrm{OB}}$$\n\nである。\n\n特に，$\\mathrm{OA}=1$，$\\mathrm{OB}=2$，$\\angle\\mathrm{AOB}=60^\\circ$ のとき，$\\mathrm{OG}=\\dfrac{\\sqrt{\\bx{JK}}}{\\bx{L}}$ となる。\n\n注）重心：center of gravity",
+      "stemZh": "如右图，共用一条边 OA 的三角形 OAB 与三角形 OAC 满足以下 2 个条件。\n\n(i)　$\\overrightarrow{\\mathrm{OC}}=x\\,\\overrightarrow{\\mathrm{OA}}+\\dfrac{1}{2}\\overrightarrow{\\mathrm{OB}}$\n(ii)　三角形 OAC 的重心 G 在线段 AB 上\n\n求此时 $x$ 的值，并用 $\\overrightarrow{\\mathrm{OA}}$ 和 $\\overrightarrow{\\mathrm{OB}}$ 表示 $\\overrightarrow{\\mathrm{OG}}$。\n\n设线段 OC 与线段 AB 的交点为 D，则\n\n$$\\overrightarrow{\\mathrm{OD}}=\\dfrac{x}{\\bx{A}}\\overrightarrow{\\mathrm{OA}}+\\dfrac{\\bx{B}}{\\bx{C}}\\overrightarrow{\\mathrm{OB}}$$\n\n又因为 D 在线段 AB 上，得 $x=\\dfrac{\\bx{D}}{\\bx{E}}$。\n\n因此\n\n$$\\overrightarrow{\\mathrm{OG}}=\\dfrac{\\bx{F}}{\\bx{G}}\\overrightarrow{\\mathrm{OA}}+\\dfrac{\\bx{H}}{\\bx{I}}\\overrightarrow{\\mathrm{OB}}$$\n\n特别地，当 $\\mathrm{OA}=1$，$\\mathrm{OB}=2$，$\\angle\\mathrm{AOB}=60^\\circ$ 时，$\\mathrm{OG}=\\dfrac{\\sqrt{\\bx{JK}}}{\\bx{L}}$。",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2017_1-math-II1-1.png",
+          "caption": "共用边 OA 的三角形 OAB 与三角形 OAC"
+        }
+      ],
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "4",
+        "D": "3",
+        "E": "2",
+        "F": "5",
+        "G": "6",
+        "H": "1",
+        "I": "6",
+        "J": "3",
+        "K": "9",
+        "L": "6"
+      },
+      "explanation": {
+        "zh": "**思路**　三角形的重心在中线上。三角形 OAC 的重心 G 在从顶点 A 出发的中线 AM 上（M 是边 OC 的中点）。条件 (ii) 说 G 又在线段 AB 上，且 G≠A，所以直线 AB 就是直线 AG = 直线 AM，于是 M 也在 AB 上。M 同时在 OC 上，所以 **OC 与 AB 的交点 D 正是 OC 的中点**。再用“点在线段 AB 上 ⇔ $\\overrightarrow{\\mathrm{OA}}$、$\\overrightarrow{\\mathrm{OB}}$ 的系数和为 1”求 $x$。\n\n**解答**\n\n**第1步　D 是 OC 的中点（A, B, C）**\n\n由上面的分析，D 是 OC 的中点：\n\n$$\\overrightarrow{\\mathrm{OD}}=\\frac12\\overrightarrow{\\mathrm{OC}}=\\frac{x}{2}\\overrightarrow{\\mathrm{OA}}+\\frac{1}{4}\\overrightarrow{\\mathrm{OB}}$$\n\nA=2，B=1，C=4。\n\n**第2步　求 $x$（D, E）**\n\nD 在线段 AB 上 ⇔ $\\overrightarrow{\\mathrm{OD}}=s\\overrightarrow{\\mathrm{OA}}+t\\overrightarrow{\\mathrm{OB}}$ 且 $s+t=1$：\n\n$$\\frac{x}{2}+\\frac14=1\\ \\Longrightarrow\\ x=\\frac32$$\n\nD=3，E=2。\n\n**第3步　求 $\\overrightarrow{\\mathrm{OG}}$（F, G, H, I）**\n\n重心的位置向量是三个顶点的平均，O 自身对应零向量：\n\n$$\\overrightarrow{\\mathrm{OG}}=\\frac{\\vec 0+\\overrightarrow{\\mathrm{OA}}+\\overrightarrow{\\mathrm{OC}}}{3}=\\frac13\\left(\\overrightarrow{\\mathrm{OA}}+\\frac32\\overrightarrow{\\mathrm{OA}}+\\frac12\\overrightarrow{\\mathrm{OB}}\\right)=\\frac56\\overrightarrow{\\mathrm{OA}}+\\frac16\\overrightarrow{\\mathrm{OB}}$$\n\nF=5，G=6，H=1，I=6。（验算：$\\frac56+\\frac16=1$，G 确实在 AB 上，且 AG:GB = 1:5。）\n\n**第4步　求 OG 的长度（JK, L）**\n\n记 $\\vec a=\\overrightarrow{\\mathrm{OA}}$，$\\vec b=\\overrightarrow{\\mathrm{OB}}$：$|\\vec a|=1$，$|\\vec b|=2$，$\\vec a\\cdot\\vec b=1\\cdot2\\cdot\\cos60^\\circ=1$。\n\n$$\\mathrm{OG}^2=\\frac{1}{36}\\left|5\\vec a+\\vec b\\right|^2=\\frac{1}{36}\\left(25|\\vec a|^2+10\\,\\vec a\\cdot\\vec b+|\\vec b|^2\\right)=\\frac{25+10+4}{36}=\\frac{39}{36}$$\n\n$$\\mathrm{OG}=\\frac{\\sqrt{39}}{6}$$\n\nJK=39，L=6。\n\n**结论**　A=2，B=1，C=4，D=3，E=2，F=5，G=6，H=1，I=6，JK=39，L=6。",
+        "keyPoints": [
+          "重心向量：$\\overrightarrow{\\mathrm{OG}}=\\dfrac{\\overrightarrow{\\mathrm{OO}}+\\overrightarrow{\\mathrm{OA}}+\\overrightarrow{\\mathrm{OC}}}{3}$，重心在中线上（分中线 2:1）",
+          "点 P 在直线 AB 上 ⇔ $\\overrightarrow{\\mathrm{OP}}=s\\overrightarrow{\\mathrm{OA}}+t\\overrightarrow{\\mathrm{OB}}$，$s+t=1$",
+          "求长度：先平方，用 $|\\vec a|^2$、$\\vec a\\cdot\\vec b$ 展开"
+        ],
+        "traps": [
+          "重心是 O、A、C 三点的平均，O 对应零向量，别把 $\\frac13$ 漏掉或把 $\\overrightarrow{\\mathrm{OA}}$ 只算一次",
+          "$|\\vec b|^2=4$，不是 2；内积 $\\vec a\\cdot\\vec b=1\\cdot2\\cdot\\frac12=1$",
+          "答案框 G 与题中的点 G（重心）同名，填的是 $\\frac{F}{G}$ 的分母 6"
+        ],
+        "terms": [
+          {
+            "ja": "重心",
+            "kana": "じゅうしん",
+            "zh": "重心（三角形三条中线的交点）"
+          },
+          {
+            "ja": "線分",
+            "kana": "せんぶん",
+            "zh": "线段（两端点之间、有限长的直线部分）"
+          },
+          {
+            "ja": "交点",
+            "kana": "こうてん",
+            "zh": "交点（两线相交的点）"
+          },
+          {
+            "ja": "共有する",
+            "kana": "きょうゆうする",
+            "zh": "共用、共同拥有"
+          },
+          {
+            "ja": "用いて表す",
+            "kana": "もちいてあらわす",
+            "zh": "用……来表示"
+          },
+          {
+            "ja": "辺",
+            "kana": "へん",
+            "zh": "（多边形的）边"
+          }
+        ],
+        "shortcut": "不经过 D 也能直接求 $x$：$\\overrightarrow{\\mathrm{OG}}=\\dfrac{\\overrightarrow{\\mathrm{OA}}+\\overrightarrow{\\mathrm{OC}}}{3}=\\dfrac{x+1}{3}\\overrightarrow{\\mathrm{OA}}+\\dfrac16\\overrightarrow{\\mathrm{OB}}$，G 在 AB 上 ⇒ $\\dfrac{x+1}{3}+\\dfrac16=1$，$x=\\dfrac32$；再由“D 是 OC 中点”写出 A=2，B/C=1/4。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2017_1-math-II2",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.complex.plane",
+      "tags": [
+        "math.trig.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 720,
+      "source": {
+        "kind": "official",
+        "session": "2017_1",
+        "label": "2017年第1回 数学コース2 Ⅱ 問2",
+        "pdf": "/assets/expanded/2017_1-math.pdf",
+        "page": 24
+      },
+      "stem": "$z$ は $|z|=2$ を満たす複素数とする。原点を O とする複素数平面上で $1+z$，$1-\\dfrac{1}{2}z$ を表す点をそれぞれ A, B とおく。\n\nまず，複素数 $z$ は\n\n$$z=\\bx{M}\\,(\\cos\\theta+i\\sin\\theta)\\qquad(-\\pi\\leqq\\theta<\\pi)$$\n\nと表すことができる。\n\n(1)　$z$ が実数でないとき，三角形 OAB の面積 $S$ は $S=\\bx{N}$ である。ただし，\\bx{N} には次の選択肢 ⓪ ～ ⑧ の中から適するものを選びなさい。\n\nしたがって，$\\theta=\\pm\\dfrac{\\bx{O}}{\\bx{P}}\\pi$ のとき $S$ は最大になる。\n\n- ⓪ $\\dfrac{1}{2}\\left|\\sin\\left(\\theta+\\dfrac{1}{3}\\pi\\right)\\right|$\n- ① $\\dfrac{1}{2}|\\sin\\theta|$\n- ② $\\dfrac{1}{2}\\left|\\sin\\left(\\theta-\\dfrac{1}{3}\\pi\\right)\\right|$\n- ③ $\\left|\\sin\\left(\\theta+\\dfrac{1}{3}\\pi\\right)\\right|$\n- ④ $|\\sin\\theta|$\n- ⑤ $\\left|\\sin\\left(\\theta-\\dfrac{1}{3}\\pi\\right)\\right|$\n- ⑥ $\\dfrac{3}{2}\\left|\\sin\\left(\\theta+\\dfrac{1}{3}\\pi\\right)\\right|$\n- ⑦ $\\dfrac{3}{2}|\\sin\\theta|$\n- ⑧ $\\dfrac{3}{2}\\left|\\sin\\left(\\theta-\\dfrac{1}{3}\\pi\\right)\\right|$\n\n(2)　三角形 OAB が $\\mathrm{OA}=\\mathrm{OB}$ である二等辺三角形となるとき\n\n$$|1+z|=\\left|1-\\dfrac{1}{2}z\\right|=\\sqrt{\\bx{Q}}$$\n\nである。また，$-\\pi\\leqq\\arg(1+z)<\\pi$，$-\\pi\\leqq\\arg\\left(1-\\dfrac{1}{2}z\\right)<\\pi$ とすると\n\n$$\\arg(1+z)=\\pm\\dfrac{\\bx{R}}{\\bx{S}}\\pi,\\qquad\\arg\\left(1-\\dfrac{1}{2}z\\right)=\\mp\\dfrac{\\bx{T}}{\\bx{U}}\\pi\\qquad(\\text{複号同順})$$\n\nである。\n\n注）複素数：complex number，複素数平面：complex plane",
+      "stemZh": "设 $z$ 是满足 $|z|=2$ 的复数。在以 O 为原点的复平面上，把表示 $1+z$，$1-\\dfrac{1}{2}z$ 的点分别记为 A，B。\n\n首先，复数 $z$ 可以表示为\n\n$$z=\\bx{M}\\,(\\cos\\theta+i\\sin\\theta)\\qquad(-\\pi\\leqq\\theta<\\pi)$$\n\n(1)　当 $z$ 不是实数时，三角形 OAB 的面积 $S$ 为 $S=\\bx{N}$。其中 \\bx{N} 请从下列选项 ⓪ ～ ⑧ 中选出合适的一项。\n\n因此，当 $\\theta=\\pm\\dfrac{\\bx{O}}{\\bx{P}}\\pi$ 时 $S$ 取最大值。\n\n- ⓪ $\\dfrac{1}{2}\\left|\\sin\\left(\\theta+\\dfrac{1}{3}\\pi\\right)\\right|$\n- ① $\\dfrac{1}{2}|\\sin\\theta|$\n- ② $\\dfrac{1}{2}\\left|\\sin\\left(\\theta-\\dfrac{1}{3}\\pi\\right)\\right|$\n- ③ $\\left|\\sin\\left(\\theta+\\dfrac{1}{3}\\pi\\right)\\right|$\n- ④ $|\\sin\\theta|$\n- ⑤ $\\left|\\sin\\left(\\theta-\\dfrac{1}{3}\\pi\\right)\\right|$\n- ⑥ $\\dfrac{3}{2}\\left|\\sin\\left(\\theta+\\dfrac{1}{3}\\pi\\right)\\right|$\n- ⑦ $\\dfrac{3}{2}|\\sin\\theta|$\n- ⑧ $\\dfrac{3}{2}\\left|\\sin\\left(\\theta-\\dfrac{1}{3}\\pi\\right)\\right|$\n\n(2)　当三角形 OAB 是 $\\mathrm{OA}=\\mathrm{OB}$ 的等腰三角形时\n\n$$|1+z|=\\left|1-\\dfrac{1}{2}z\\right|=\\sqrt{\\bx{Q}}$$\n\n又若取 $-\\pi\\leqq\\arg(1+z)<\\pi$，$-\\pi\\leqq\\arg\\left(1-\\dfrac{1}{2}z\\right)<\\pi$，则\n\n$$\\arg(1+z)=\\pm\\dfrac{\\bx{R}}{\\bx{S}}\\pi,\\qquad\\arg\\left(1-\\dfrac{1}{2}z\\right)=\\mp\\dfrac{\\bx{T}}{\\bx{U}}\\pi\\qquad(\\text{正负号按上下对应})$$",
+      "format": "blanks",
+      "blanks": {
+        "M": "2",
+        "N": "7",
+        "O": "1",
+        "P": "2",
+        "Q": "3",
+        "R": "1",
+        "S": "2",
+        "T": "1",
+        "U": "6"
+      },
+      "explanation": {
+        "zh": "**思路**　$|z|=2$ 直接写成极形式 $z=2(\\cos\\theta+i\\sin\\theta)$，把 A、B 写成坐标。原点与两点 $(x_1,y_1)$、$(x_2,y_2)$ 构成的三角形面积是 $S=\\dfrac12\\left|x_1y_2-x_2y_1\\right|$。(2) 用 $|w|^2=(\\text{实部})^2+(\\text{虚部})^2$ 列等式求 $\\cos\\theta$，再求出 $1+z$、$1-\\frac12z$ 的具体值读出辐角。\n\n**解答**\n\n**第1步　极形式（M）**\n\n$|z|=2$，所以 $z=2(\\cos\\theta+i\\sin\\theta)$，M=2。\n\n**第2步　面积 $S$（N）**\n\n$$\\mathrm{A}:\\ 1+z=(1+2\\cos\\theta)+2i\\sin\\theta,\\qquad \\mathrm{B}:\\ 1-\\frac12z=(1-\\cos\\theta)-i\\sin\\theta$$\n\n$$x_Ay_B-x_By_A=(1+2\\cos\\theta)(-\\sin\\theta)-(1-\\cos\\theta)(2\\sin\\theta)=-\\sin\\theta-2\\sin\\theta\\cos\\theta-2\\sin\\theta+2\\sin\\theta\\cos\\theta=-3\\sin\\theta$$\n\n$$S=\\frac12\\left|-3\\sin\\theta\\right|=\\frac32|\\sin\\theta|$$\n\n对应选项 ⑦，N=7。（$z$ 不是实数 ⇔ $\\sin\\theta\\neq0$，三角形才不退化。）\n\n**第3步　$S$ 最大（O, P）**\n\n$|\\sin\\theta|\\leqq1$，在 $-\\pi\\leqq\\theta<\\pi$ 内 $|\\sin\\theta|=1$ 当且仅当 $\\theta=\\pm\\dfrac{\\pi}{2}$，即 $\\theta=\\pm\\dfrac12\\pi$，最大值 $S=\\dfrac32$。O=1，P=2。\n\n**第4步　等腰条件（Q）**\n\n$$|1+z|^2=(1+2\\cos\\theta)^2+4\\sin^2\\theta=5+4\\cos\\theta$$\n\n$$\\left|1-\\frac12z\\right|^2=(1-\\cos\\theta)^2+\\sin^2\\theta=2-2\\cos\\theta$$\n\n令二者相等：$5+4\\cos\\theta=2-2\\cos\\theta$，$\\cos\\theta=-\\dfrac12$。代回：$|1+z|^2=5-2=3$（另一边 $2+1=3$ 一致），所以长度为 $\\sqrt3$，Q=3。\n\n**第5步　辐角（RS, TU）**\n\n$\\cos\\theta=-\\dfrac12$ ⇒ $\\theta=\\pm\\dfrac23\\pi$，$\\sin\\theta=\\pm\\dfrac{\\sqrt3}{2}$（复号同顺）。\n\n$$1+z=1+2\\left(-\\frac12\\pm\\frac{\\sqrt3}{2}i\\right)=\\pm\\sqrt3\\,i\\ \\Longrightarrow\\ \\arg(1+z)=\\pm\\frac12\\pi$$\n\n$$1-\\frac12z=1-\\left(-\\frac12\\pm\\frac{\\sqrt3}{2}i\\right)=\\frac32\\mp\\frac{\\sqrt3}{2}i=\\sqrt3\\left\\{\\cos\\left(\\mp\\frac{\\pi}{6}\\right)+i\\sin\\left(\\mp\\frac{\\pi}{6}\\right)\\right\\}\\ \\Longrightarrow\\ \\arg\\left(1-\\frac12z\\right)=\\mp\\frac16\\pi$$\n\nRS=12，TU=16。例如 $\\theta=\\frac23\\pi$ 时 $\\arg(1+z)=\\frac{\\pi}{2}$，$\\arg\\left(1-\\frac12z\\right)=-\\frac{\\pi}{6}$。\n\n验算：此时 $\\angle\\mathrm{AOB}=\\frac{\\pi}{2}+\\frac{\\pi}{6}=\\frac23\\pi$，$S=\\frac12\\cdot\\sqrt3\\cdot\\sqrt3\\cdot\\sin\\frac23\\pi=\\frac{3\\sqrt3}{4}$，与 $\\frac32|\\sin\\frac23\\pi|=\\frac{3\\sqrt3}{4}$ 一致。\n\n**结论**　M=2，N=7，O=1，P=2，Q=3，RS=12，TU=16。",
+        "keyPoints": [
+          "原点与 $(x_1,y_1)$、$(x_2,y_2)$ 围成的三角形面积 $S=\\dfrac12|x_1y_2-x_2y_1|$（复数形式：$\\dfrac12\\left|\\mathrm{Im}(\\bar\\alpha\\beta)\\right|$）",
+          "$|w|^2=(\\mathrm{Re}\\,w)^2+(\\mathrm{Im}\\,w)^2=w\\bar w$，长度相等先比较平方",
+          "复号同顺：上面的符号与上面的符号对应，下面与下面对应"
+        ],
+        "traps": [
+          "面积公式要加绝对值，否则 $\\theta<0$ 时会得到负面积",
+          "带 $\\theta\\pm\\frac{\\pi}{3}$ 的选项 ⓪②③⑤⑥⑧ 是干扰项：计算中 $\\pm2\\sin\\theta\\cos\\theta$ 两项正好抵消，结果只剩 $\\sin\\theta$；也别漏掉系数 $\\frac32$ 而误选 ① 或 ④",
+          "$\\arg\\left(1-\\frac12z\\right)$ 与 $\\theta$ 的符号相反（$\\mp$），不要写成同号"
+        ],
+        "terms": [
+          {
+            "ja": "複素数平面",
+            "kana": "ふくそすうへいめん",
+            "zh": "复平面（横轴为实部、纵轴为虚部的平面）"
+          },
+          {
+            "ja": "実数",
+            "kana": "じっすう",
+            "zh": "实数（虚部为 0 的数）"
+          },
+          {
+            "ja": "二等辺三角形",
+            "kana": "にとうへんさんかっけい",
+            "zh": "等腰三角形"
+          },
+          {
+            "ja": "複号同順",
+            "kana": "ふくごうどうじゅん",
+            "zh": "正负号按上下顺序对应取（± 取上则 ∓ 也取上）"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "选项"
+          },
+          {
+            "ja": "面積",
+            "kana": "めんせき",
+            "zh": "面积（图形在平面上所占的大小）"
+          }
+        ],
+        "shortcut": "面积用复数公式：$\\overline{(1+z)}\\left(1-\\frac12z\\right)=1+\\bar z-\\frac12z-\\frac12|z|^2=-1+\\bar z-\\frac12z$，其虚部为 $-2\\sin\\theta-\\sin\\theta=-3\\sin\\theta$，所以 $S=\\frac12|{-3\\sin\\theta}|=\\frac32|\\sin\\theta|$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

@@ -1,0 +1,521 @@
+{
+ "title": "2015_2 physics part",
+ "items": [
+  {
+   "id": "2015_2-phy-07",
+   "subject": "physics",
+   "order": 7,
+   "topic": "phys.thermo.heat",
+   "difficulty": 1,
+   "targetSec": 110,
+   "source": {
+    "kind": "official",
+    "session": "2015_2",
+    "label": "2015年第2回 物理 Ⅱ 問1（解答番号7）",
+    "pdf": "/assets/expanded/2015_2-science.pdf",
+    "page": 10
+   },
+   "stem": "次の問い **A**（問1），**B**（問2），**C**（問3）に答えなさい。\n\n**A**　質量 $1.0\\times10^{2}\\,\\mathrm{g}$ の物質Aに $3.0\\times10^{3}\\,\\mathrm{J}$ の熱量を与えたところ温度が $1.5\\times10^{1}\\,\\mathrm{K}$ 上昇した。質量 $1.0\\times10^{2}\\,\\mathrm{g}$ の物質Bに $4.0\\times10^{3}\\,\\mathrm{J}$ の熱量を与えたところ温度が $1.0\\times10^{1}\\,\\mathrm{K}$ 上昇した。質量 $4.0\\times10^{2}\\,\\mathrm{g}$ の物質Aと質量 $3.0\\times10^{2}\\,\\mathrm{g}$ の物質Bを，同じ温度で接触させ，$1.0\\times10^{4}\\,\\mathrm{J}$ の熱量を与えたところ，物質Aと物質Bの温度がともに $t\\,[\\mathrm{K}]$ 上昇した。\n\n**問1**　$t\\,[\\mathrm{K}]$ はいくらか。最も適当な値を，次の①～⑥の中から一つ選びなさい。　$\\boxed{\\,7\\,}\\ \\mathrm{K}$",
+   "stemZh": "回答下列问题 **A**（问1）、**B**（问2）、**C**（问3）。\n\n**A**　给质量 $1.0\\times10^{2}\\,\\mathrm{g}$ 的物质A提供 $3.0\\times10^{3}\\,\\mathrm{J}$ 的热量，温度上升了 $1.5\\times10^{1}\\,\\mathrm{K}$。给质量 $1.0\\times10^{2}\\,\\mathrm{g}$ 的物质B提供 $4.0\\times10^{3}\\,\\mathrm{J}$ 的热量，温度上升了 $1.0\\times10^{1}\\,\\mathrm{K}$。让质量 $4.0\\times10^{2}\\,\\mathrm{g}$ 的物质A与质量 $3.0\\times10^{2}\\,\\mathrm{g}$ 的物质B在相同温度下相互接触，再提供 $1.0\\times10^{4}\\,\\mathrm{J}$ 的热量，结果物质A和物质B的温度都上升了 $t\\,[\\mathrm{K}]$。\n\n**问1**　$t\\,[\\mathrm{K}]$ 是多少？从下列①～⑥中选出最合适的值。　$\\boxed{\\,7\\,}\\ \\mathrm{K}$",
+   "format": "choice",
+   "options": [
+    "$1.0$",
+    "$2.0$",
+    "$3.0$",
+    "$4.0$",
+    "$5.0$",
+    "$6.0$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥"
+   ],
+   "answer": 4,
+   "explanation": {
+    "zh": "**思路**\n\n前两句话是「实验数据」，用来求A、B各自的**比热** $c=\\dfrac{Q}{m\\,\\Delta T}$；第三句把 A、B 放在一起加热。二者初温相同、互相接触，所以始终保持同一温度、一起升高 $t$。这时整体的**热容**是两者之和 $C=m_{\\mathrm{A}}c_{\\mathrm{A}}+m_{\\mathrm{B}}c_{\\mathrm{B}}$，于是 $Q=C\\,t$。\n\n**解答**\n\n1. 物质A的比热：\n$$c_{\\mathrm{A}}=\\frac{3.0\\times10^{3}}{1.0\\times10^{2}\\times1.5\\times10^{1}}=2.0\\,\\mathrm{J/(g\\cdot K)}$$\n2. 物质B的比热：\n$$c_{\\mathrm{B}}=\\frac{4.0\\times10^{3}}{1.0\\times10^{2}\\times1.0\\times10^{1}}=4.0\\,\\mathrm{J/(g\\cdot K)}$$\n3. 第三次实验中两物体的热容：\n$$C_{\\mathrm{A}}=4.0\\times10^{2}\\times2.0=8.0\\times10^{2}\\,\\mathrm{J/K},\\qquad C_{\\mathrm{B}}=3.0\\times10^{2}\\times4.0=1.2\\times10^{3}\\,\\mathrm{J/K}$$\n4. 总热容 $C=8.0\\times10^{2}+1.2\\times10^{3}=2.0\\times10^{3}\\,\\mathrm{J/K}$，所以\n$$t=\\frac{Q}{C}=\\frac{1.0\\times10^{4}}{2.0\\times10^{3}}=5.0\\,\\mathrm{K}$$\n\n**其他选项为何错**：若只算物质A（$1.0\\times10^{4}\\div800=12.5$）或只算物质B（$\\approx8.3$），结果都偏大且不在选项中；若把A、B的比热对调（$c_{\\mathrm{A}}=4.0$、$c_{\\mathrm{B}}=2.0$），得 $t=\\dfrac{10^{4}}{1600+600}\\approx4.5\\,\\mathrm{K}$，也对不上任何选项——一旦算出「不整齐」的数，就该回头检查比热是否算反。\n\n**结论**　答案 ⑤ $5.0\\,\\mathrm{K}$",
+    "keyPoints": [
+     "比热 c = Q/(mΔT)：由「给热量→升温」的数据反求",
+     "物体的热容 C = mc；接触后同温一起升温时，总热容 = 各热容之和，Q = (C_A + C_B)t"
+    ],
+    "traps": [
+     "比热按 100 g 的数据求出后，第三次实验要换成 400 g、300 g 的实际质量",
+     "A、B 的升温数据不同（15 K 与 10 K），算比热时别把 ΔT 对调"
+    ],
+    "terms": [
+     {
+      "ja": "熱量",
+      "kana": "ねつりょう",
+      "zh": "热量：物体吸收或放出的热能，单位 J"
+     },
+     {
+      "ja": "上昇",
+      "kana": "じょうしょう",
+      "zh": "上升（这里指温度升高）"
+     },
+     {
+      "ja": "接触させ",
+      "kana": "せっしょくさせ",
+      "zh": "使……相互接触（让两物体贴在一起，可以互相传热）"
+     },
+     {
+      "ja": "ともに",
+      "kana": "ともに",
+      "zh": "两者都、一起（A和B升高相同的温度）"
+     },
+     {
+      "ja": "物質",
+      "kana": "ぶっしつ",
+      "zh": "物质、材料"
+     }
+    ],
+    "shortcut": "直接按「每升高 1 K 需要多少焦耳」思考：A 每 100 g 需 200 J/K，400 g 需 800 J/K；B 每 100 g 需 400 J/K，300 g 需 1200 J/K；合计 2000 J/K，$10000\\div2000=5.0\\,\\mathrm{K}$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2015_2-phy-08",
+   "subject": "physics",
+   "order": 8,
+   "topic": "phys.thermo.gas",
+   "difficulty": 2,
+   "targetSec": 110,
+   "source": {
+    "kind": "official",
+    "session": "2015_2",
+    "label": "2015年第2回 物理 Ⅱ 問2（解答番号8）",
+    "pdf": "/assets/expanded/2015_2-science.pdf",
+    "page": 11
+   },
+   "stem": "次の問い **A**（問1），**B**（問2），**C**（問3）に答えなさい。\n\n**B**　次の図のように，断熱容器が，熱を伝えなめらかに動くことのできるしきりで，2つの領域AとBに分けられている。領域Aには分子 $N_{\\mathrm{A}}$ 個からなる理想気体（1分子の質量 $m_{\\mathrm{A}}$）が，領域Bには分子 $N_{\\mathrm{B}}$ 個からなる理想気体（1分子の質量 $m_{\\mathrm{B}}$）がそれぞれ入っていて，同じ温度，同じ圧力で熱平衡状態にある。領域Aの気体の体積を $V_{\\mathrm{A}}$，気体分子の2乗平均速度を $\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}$ とし，領域Bの気体の体積を $V_{\\mathrm{B}}$，気体分子の2乗平均速度を $\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}$ とする。\n\n**問2**　$\\dfrac{V_{\\mathrm{A}}}{V_{\\mathrm{B}}}$ と $\\dfrac{\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}}{\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}}$ はどのように表されるか。正しい組み合わせを，次の①～④の中から一つ選びなさい。　$\\boxed{\\,8\\,}$\n\n|  | $\\dfrac{V_{\\mathrm{A}}}{V_{\\mathrm{B}}}$ | $\\dfrac{\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}}{\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}}$ |\n|---|---|---|\n| ① | $\\dfrac{N_{\\mathrm{A}}}{N_{\\mathrm{B}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{A}}}{m_{\\mathrm{B}}}}$ |\n| ② | $\\dfrac{N_{\\mathrm{A}}}{N_{\\mathrm{B}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{B}}}{m_{\\mathrm{A}}}}$ |\n| ③ | $\\dfrac{N_{\\mathrm{B}}}{N_{\\mathrm{A}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{A}}}{m_{\\mathrm{B}}}}$ |\n| ④ | $\\dfrac{N_{\\mathrm{B}}}{N_{\\mathrm{A}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{B}}}{m_{\\mathrm{A}}}}$ |",
+   "stemZh": "回答下列问题 **A**（问1）、**B**（问2）、**C**（问3）。\n\n**B**　如图所示，一个绝热容器被一块能导热、且能无摩擦地平滑移动的隔板分成A、B两个区域。区域A中装有由 $N_{\\mathrm{A}}$ 个分子组成的理想气体（1个分子的质量为 $m_{\\mathrm{A}}$），区域B中装有由 $N_{\\mathrm{B}}$ 个分子组成的理想气体（1个分子的质量为 $m_{\\mathrm{B}}$），两者处于温度相同、压强相同的热平衡状态。设区域A气体的体积为 $V_{\\mathrm{A}}$、气体分子的方均根速率为 $\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}$；区域B气体的体积为 $V_{\\mathrm{B}}$、气体分子的方均根速率为 $\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}$。\n\n**问2**　$\\dfrac{V_{\\mathrm{A}}}{V_{\\mathrm{B}}}$ 与 $\\dfrac{\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}}{\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}}$ 分别如何表示？从下列①～④中选出正确的组合。　$\\boxed{\\,8\\,}$\n\n|  | $\\dfrac{V_{\\mathrm{A}}}{V_{\\mathrm{B}}}$ | $\\dfrac{\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}}{\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}}$ |\n|---|---|---|\n| ① | $\\dfrac{N_{\\mathrm{A}}}{N_{\\mathrm{B}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{A}}}{m_{\\mathrm{B}}}}$ |\n| ② | $\\dfrac{N_{\\mathrm{A}}}{N_{\\mathrm{B}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{B}}}{m_{\\mathrm{A}}}}$ |\n| ③ | $\\dfrac{N_{\\mathrm{B}}}{N_{\\mathrm{A}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{A}}}{m_{\\mathrm{B}}}}$ |\n| ④ | $\\dfrac{N_{\\mathrm{B}}}{N_{\\mathrm{A}}}$ | $\\sqrt{\\dfrac{m_{\\mathrm{B}}}{m_{\\mathrm{A}}}}$ |",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2015_2-phy-08-1.png",
+     "caption": "断熱容器としきりで分けられた領域AとB"
+    }
+   ],
+   "format": "choice",
+   "options": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路**\n\n先读懂条件：隔板「熱を伝え」→ 两边**温度相同**；隔板「なめらかに動く」→ 两边**压强相同**（题目也直接写了同温同压）。\n\n- 体积比：用分子数形式的状态方程 $pV=NkT$（$k$ 为玻尔兹曼常数），同 $p$、同 $T$ 时 $V\\propto N$。\n- 速率比：分子运动论给出一个分子的平均平动动能 $\\dfrac12 m\\overline{v^{2}}=\\dfrac32kT$，**只由温度决定**。同温时 $m\\overline{v^{2}}$ 相同，所以方均根速率 $\\sqrt{\\overline{v^{2}}}\\propto\\dfrac{1}{\\sqrt{m}}$。\n\n**解答**\n\n1. $pV_{\\mathrm{A}}=N_{\\mathrm{A}}kT$，$pV_{\\mathrm{B}}=N_{\\mathrm{B}}kT$，相除：\n$$\\frac{V_{\\mathrm{A}}}{V_{\\mathrm{B}}}=\\frac{N_{\\mathrm{A}}}{N_{\\mathrm{B}}}$$\n2. 同温时 $\\dfrac12m_{\\mathrm{A}}\\overline{v_{\\mathrm{A}}^{2}}=\\dfrac12m_{\\mathrm{B}}\\overline{v_{\\mathrm{B}}^{2}}=\\dfrac32kT$，所以\n$$\\frac{\\overline{v_{\\mathrm{A}}^{2}}}{\\overline{v_{\\mathrm{B}}^{2}}}=\\frac{m_{\\mathrm{B}}}{m_{\\mathrm{A}}}\\quad\\Rightarrow\\quad\\frac{\\sqrt{\\overline{v_{\\mathrm{A}}^{2}}}}{\\sqrt{\\overline{v_{\\mathrm{B}}^{2}}}}=\\sqrt{\\frac{m_{\\mathrm{B}}}{m_{\\mathrm{A}}}}$$\n3. 两项组合对应表中的 ②。\n\n**其他选项为何错**：①③ 的速率比写成 $\\sqrt{m_{\\mathrm{A}}/m_{\\mathrm{B}}}$，等于说「分子越重跑得越快」，与 $\\sqrt{\\overline{v^{2}}}=\\sqrt{3kT/m}$ 相反；③④ 的体积比上下颠倒——同温同压下分子越多占的体积越大，应为 $N_{\\mathrm{A}}/N_{\\mathrm{B}}$。注意体积比与分子质量无关。\n\n**结论**　答案 ②",
+    "keyPoints": [
+     "同温同压下，理想气体的体积与分子数成正比（pV = NkT）",
+     "分子平均平动动能 ½m·v²平均 = (3/2)kT 只由温度决定，方均根速率 √(3kT/m) ∝ 1/√m"
+    ],
+    "traps": [
+     "质量比在根号里写反：分子越重，方均根速率越小",
+     "误以为体积比与分子质量有关——同温同压时只看分子数"
+    ],
+    "terms": [
+     {
+      "ja": "断熱容器",
+      "kana": "だんねつようき",
+      "zh": "绝热容器：与外界不交换热量的容器"
+     },
+     {
+      "ja": "しきり（仕切り）",
+      "kana": "しきり",
+      "zh": "隔板，把容器分成两个区域的板"
+     },
+     {
+      "ja": "熱平衡状態",
+      "kana": "ねつへいこうじょうたい",
+      "zh": "热平衡状态：各部分温度相同、不再有净热量流动"
+     },
+     {
+      "ja": "2乗平均速度",
+      "kana": "にじょうへいきんそくど",
+      "zh": "方均根速率：速度平方的平均值再开方，√(v²的平均)"
+     },
+     {
+      "ja": "領域",
+      "kana": "りょういき",
+      "zh": "区域、部分"
+     }
+    ],
+    "shortcut": "记住 $\\sqrt{\\overline{v^{2}}}=\\sqrt{\\dfrac{3kT}{m}}$：同温「重的慢」，所以 A 比 B 的速率比 $=\\sqrt{m_{\\mathrm{B}}/m_{\\mathrm{A}}}$；体积按分子数分配，$N_{\\mathrm{A}}/N_{\\mathrm{B}}$。两条都对上的只有 ②。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2015_2-phy-09",
+   "subject": "physics",
+   "order": 9,
+   "topic": "phys.thermo.first",
+   "tags": [
+    "phys.thermo.gas"
+   ],
+   "difficulty": 2,
+   "targetSec": 110,
+   "source": {
+    "kind": "official",
+    "session": "2015_2",
+    "label": "2015年第2回 物理 Ⅱ 問3（解答番号9）",
+    "pdf": "/assets/expanded/2015_2-science.pdf",
+    "page": 12
+   },
+   "stem": "次の問い **A**（問1），**B**（問2），**C**（問3）に答えなさい。\n\n**C**　物質量 $n$ モルの理想気体の圧力 $p$ と体積 $V$ を次の図のように，A→B→Cと変化させた。状態Aの体積は $V_0$，圧力は $2p_0$ である。状態Bの体積は $V_0$，圧力は $p_0$，絶対温度は $T_0$ である。状態Cの体積は $2V_0$，圧力は $p_0$ である。この気体の定積モル比熱を $C_V$，定圧モル比熱を $C_p$ とし，気体定数を $R$ とする。\n\n**問3**　A→B→Cの過程全体で気体が吸収した正味の熱量はどのように表されるか。正しいものを，次の①～⑧の中から一つ選びなさい。　$\\boxed{\\,9\\,}$",
+   "stemZh": "回答下列问题 **A**（问1）、**B**（问2）、**C**（问3）。\n\n**C**　使物质的量为 $n$ mol 的理想气体的压强 $p$ 和体积 $V$ 如图所示按 A→B→C 变化。状态A的体积为 $V_0$，压强为 $2p_0$。状态B的体积为 $V_0$，压强为 $p_0$，热力学温度为 $T_0$。状态C的体积为 $2V_0$，压强为 $p_0$。设该气体的定容摩尔热容为 $C_V$，定压摩尔热容为 $C_p$，气体常数为 $R$。\n\n**问3**　在 A→B→C 整个过程中，气体吸收的净热量如何表示？从下列①～⑧中选出正确的一项。　$\\boxed{\\,9\\,}$",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2015_2-phy-09-1.png",
+     "caption": "p-V図：A→B（定積）→C（定圧）"
+    }
+   ],
+   "format": "choice",
+   "options": [
+    "$-nRT_0$",
+    "$-nC_VT_0$",
+    "$-nC_pT_0$",
+    "$-n(C_V+C_p)T_0$",
+    "$nRT_0$",
+    "$nC_VT_0$",
+    "$nC_pT_0$",
+    "$n(C_V+C_p)T_0$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧"
+   ],
+   "answer": 4,
+   "explanation": {
+    "zh": "**思路**\n\n过程分两段：A→B 体积不变（**定容**，$W=0$），B→C 压强不变（**定压**）。两段的吸热分别用 $Q=nC_V\\Delta T$、$Q=nC_p\\Delta T$ 计算，因此先用 $pV=nRT$（$pV\\propto T$）求出各状态的温度。最后用**迈耶关系** $C_p-C_V=R$ 化简。\n\n**解答**\n\n1. 各状态温度（以 B 的 $p_0V_0\\leftrightarrow T_0$ 为基准）：\n$$T_{\\mathrm{A}}=\\frac{2p_0\\cdot V_0}{p_0V_0}T_0=2T_0,\\qquad T_{\\mathrm{C}}=\\frac{p_0\\cdot2V_0}{p_0V_0}T_0=2T_0$$\n2. A→B（定容，温度 $2T_0\\to T_0$）：\n$$Q_1=nC_V(T_0-2T_0)=-nC_VT_0\\quad(\\text{放热})$$\n3. B→C（定压，温度 $T_0\\to2T_0$）：\n$$Q_2=nC_p(2T_0-T_0)=nC_pT_0\\quad(\\text{吸热})$$\n4. 净吸热：\n$$Q=Q_1+Q_2=n(C_p-C_V)T_0=nRT_0$$\n5. 用第一定律验算：$T_{\\mathrm{A}}=T_{\\mathrm{C}}$，所以全过程 $\\Delta U=0$，$Q=W$。只有 B→C 做功 $W=p_0(2V_0-V_0)=p_0V_0=nRT_0$，与上面一致。\n\n**其他选项为何错**：⑦ $nC_pT_0$ 只算了 B→C 的吸热，漏掉 A→B 的放热；② $-nC_VT_0$ 只算了 A→B；⑧ 把 A→B 的放热也当成吸热相加；⑥ $nC_VT_0$ 只是 B→C 段的内能增量 $\\Delta U_{\\mathrm{BC}}$，漏掉了该段对外做的功 $p_0V_0$，也漏掉了 A→B 的放热。① $-nRT_0$ 大小对但符号反了——净过程是吸热（气体对外做正功 $p_0V_0$ 且 $\\Delta U=0$），所以必须为正；③④ 同样是把吸热、放热的符号弄反。\n\n**结论**　答案 ⑤ $nRT_0$",
+    "keyPoints": [
+     "定容过程 Q = nC_VΔT（W = 0），定压过程 Q = nC_pΔT",
+     "迈耶关系 C_p − C_V = R（理想气体）",
+     "始末温度相同 → ΔU = 0，净吸热 = 净对外做功 = p-V 图线下面积"
+    ],
+    "traps": [
+     "A→B 降温是放热，Q 为负，不能当吸热相加",
+     "误以为状态 A 的温度也是 T₀——A 的压强是 B 的 2 倍、体积相同，温度为 2T₀",
+     "算出 n(C_p − C_V)T₀ 后忘记用迈耶关系化成 nRT₀，在选项里找不到"
+    ],
+    "terms": [
+     {
+      "ja": "物質量",
+      "kana": "ぶっしつりょう",
+      "zh": "物质的量（单位 mol）"
+     },
+     {
+      "ja": "定積モル比熱",
+      "kana": "ていせきモルひねつ",
+      "zh": "定容摩尔热容 C_V：体积不变时 1 mol 升高 1 K 吸收的热量"
+     },
+     {
+      "ja": "定圧モル比熱",
+      "kana": "ていあつモルひねつ",
+      "zh": "定压摩尔热容 C_p：压强不变时 1 mol 升高 1 K 吸收的热量"
+     },
+     {
+      "ja": "気体定数",
+      "kana": "きたいていすう",
+      "zh": "气体常数 R ≈ 8.31 J/(mol·K)"
+     },
+     {
+      "ja": "正味",
+      "kana": "しょうみ",
+      "zh": "净的（吸热与放热相抵后的结果）"
+     },
+     {
+      "ja": "吸収",
+      "kana": "きゅうしゅう",
+      "zh": "吸收"
+     }
+    ],
+    "shortcut": "先看始末温度：$T_{\\mathrm{A}}=T_{\\mathrm{C}}=2T_0$ ⇒ $\\Delta U=0$ ⇒ 净吸热 = 气体对外做的功 = p-V 图中 B→C 线下的长方形面积 $p_0V_0=nRT_0$。一步得 ⑤。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2015_2-phy-10",
+   "subject": "physics",
+   "order": 10,
+   "topic": "phys.wave.basics",
+   "difficulty": 2,
+   "targetSec": 110,
+   "source": {
+    "kind": "official",
+    "session": "2015_2",
+    "label": "2015年第2回 物理 Ⅲ 問1（解答番号10）",
+    "pdf": "/assets/expanded/2015_2-science.pdf",
+    "page": 13
+   },
+   "stem": "次の問い **A**（問1），**B**（問2），**C**（問3）に答えなさい。\n\n**A**　次の図のように，直線ABの境界線で深さの異なる2つの領域IとIIが接する水槽に水が入れてある。この図は水槽を上から見た図である。領域Iから領域IIへと進むとき水面波が屈折し，領域Iで波面と直線ABとの傾きが $60^{\\circ}$ であったものが，領域IIでは $45^{\\circ}$ に変わった。領域Iでの波の速さを $v_{\\mathrm{I}}$，領域IIでの波の速さを $v_{\\mathrm{II}}$ とする。水槽は十分広くて浅いものとする。\n\n**問1**　$\\dfrac{v_{\\mathrm{I}}}{v_{\\mathrm{II}}}$ はいくらか。正しいものを，次の①～④の中から一つ選びなさい。　$\\boxed{\\,10\\,}$",
+   "stemZh": "回答下列问题 **A**（问1）、**B**（问2）、**C**（问3）。\n\n**A**　如图所示，一个水槽以直线AB为分界线，由深度不同的两个区域I和II相接而成，槽中装有水。此图是从上方俯视水槽的图。水面波从区域I进入区域II时发生折射：在区域I中波面与直线AB的倾斜角为 $60^{\\circ}$，到区域II中变为 $45^{\\circ}$。设区域I中的波速为 $v_{\\mathrm{I}}$，区域II中的波速为 $v_{\\mathrm{II}}$。水槽足够宽且足够浅。\n\n**问1**　$\\dfrac{v_{\\mathrm{I}}}{v_{\\mathrm{II}}}$ 是多少？从下列①～④中选出正确的一项。　$\\boxed{\\,10\\,}$",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2015_2-phy-10-1.png",
+     "caption": "水槽を上から見た図（波面と境界線AB）"
+    }
+   ],
+   "format": "choice",
+   "options": [
+    "$\\dfrac{\\sqrt{2}}{2}$",
+    "$\\dfrac{\\sqrt{6}}{3}$",
+    "$\\dfrac{\\sqrt{6}}{2}$",
+    "$\\sqrt{2}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路**\n\n图中画的是**波面**（波峰线），不是传播方向。关键几何关系：波的传播方向（射线）垂直于波面，界面的法线垂直于界面 AB；两条线各自转了 $90^{\\circ}$，所以\n\n**波面与界面的夹角 = 射线与法线的夹角 = 入射角（或折射角）**。\n\n于是入射角 $i=60^{\\circ}$、折射角 $r=45^{\\circ}$，再用折射定律 $\\dfrac{\\sin i}{\\sin r}=\\dfrac{v_{\\mathrm{I}}}{v_{\\mathrm{II}}}$。\n\n**解答**\n\n1. 由上面的几何关系：$i=60^{\\circ}$，$r=45^{\\circ}$。\n2. 折射定律：\n$$\\frac{v_{\\mathrm{I}}}{v_{\\mathrm{II}}}=\\frac{\\sin60^{\\circ}}{\\sin45^{\\circ}}=\\frac{\\sqrt3/2}{\\sqrt2/2}=\\frac{\\sqrt3}{\\sqrt2}=\\frac{\\sqrt6}{2}\\approx1.22$$\n3. 合理性检查：比值 $>1$，即领域II中波速变慢。水面波在浅处传得慢，所以领域II是较浅的一侧；同时波面在II中更「贴近」界面（夹角变小），也说明折射角变小、波速变小。\n\n**其他选项为何错**：② $\\dfrac{\\sqrt6}{3}$ 是 $\\dfrac{v_{\\mathrm{II}}}{v_{\\mathrm{I}}}$（比值倒了）；① $\\dfrac{\\sqrt2}{2}=\\dfrac{\\sin30^{\\circ}}{\\sin45^{\\circ}}$，是把 $90^{\\circ}$ 减去夹角（$30^{\\circ}$、$45^{\\circ}$）当成入射角、折射角得到的——误把「波面与界面的夹角」当成了「射线与界面的夹角」；④ $\\sqrt2$ 是①的倒数（余角错误再加上比值倒置）。\n\n**结论**　答案 ③ $\\dfrac{\\sqrt6}{2}$",
+    "keyPoints": [
+     "波面与界面的夹角 = 入射角/折射角（射线⊥波面，法线⊥界面）",
+     "折射定律：sin i / sin r = v₁ / v₂ = λ₁ / λ₂",
+     "水面波在浅处波速小"
+    ],
+    "traps": [
+     "把 90° − 60° = 30°、90° − 45° = 45° 当成入射角和折射角，得到 √2/2（①）",
+     "比值写反成 v_II / v_I，选到 √6/3（②）"
+    ],
+    "terms": [
+     {
+      "ja": "水槽",
+      "kana": "すいそう",
+      "zh": "水槽（波动实验用的浅水盘）"
+     },
+     {
+      "ja": "境界線",
+      "kana": "きょうかいせん",
+      "zh": "分界线（两个区域的交界）"
+     },
+     {
+      "ja": "水面波",
+      "kana": "すいめんは",
+      "zh": "水面波"
+     },
+     {
+      "ja": "屈折",
+      "kana": "くっせつ",
+      "zh": "折射"
+     },
+     {
+      "ja": "波面",
+      "kana": "はめん",
+      "zh": "波面（波阵面），同一时刻相位相同的点连成的线/面，如波峰线"
+     },
+     {
+      "ja": "傾き",
+      "kana": "かたむき",
+      "zh": "倾斜（这里指两条线之间的夹角）"
+     }
+    ],
+    "shortcut": "夹角从 $60^{\\circ}$ 变成 $45^{\\circ}$ ⇒ 折射角变小 ⇒ 速度变小 ⇒ $\\dfrac{v_{\\mathrm{I}}}{v_{\\mathrm{II}}}>1$，先排除①②；再在 ③ $\\approx1.22$ 和 ④ $\\approx1.41$ 中用 $\\dfrac{\\sin60^{\\circ}}{\\sin45^{\\circ}}=\\dfrac{0.866}{0.707}\\approx1.22$ 选 ③。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2015_2-phy-11",
+   "subject": "physics",
+   "order": 11,
+   "topic": "phys.wave.sound",
+   "tags": [
+    "phys.wave.basics"
+   ],
+   "difficulty": 2,
+   "targetSec": 110,
+   "source": {
+    "kind": "official",
+    "session": "2015_2",
+    "label": "2015年第2回 物理 Ⅲ 問2（解答番号11）",
+    "pdf": "/assets/expanded/2015_2-science.pdf",
+    "page": 14
+   },
+   "stem": "次の問い **A**（問1），**B**（問2），**C**（問3）に答えなさい。\n\n**B**　次の図のように，2つのスピーカー $\\mathrm{S_1}$ と $\\mathrm{S_2}$ が $5.0\\,\\mathrm{m}$ 離れて設置され，同じ振動数で同位相の音波を出している。$\\mathrm{S_1}$ から距離 $12\\,\\mathrm{m}$，$\\mathrm{S_2}$ から距離 $13\\,\\mathrm{m}$ 離れた点Pで $\\mathrm{S_1}$ と $\\mathrm{S_2}$ から出た音波を直接観測する。音速を $340\\,\\mathrm{m/s}$ とする。\n\n**問2**　$\\mathrm{S_1}$ と $\\mathrm{S_2}$ から出す音波の振動数を $500\\,\\mathrm{Hz}$ から徐々に大きくしていくとき，Pで観測する音が最初に弱め合うときの振動数は何 Hz か。最も適当な値を，次の①～④の中から一つ選びなさい。　$\\boxed{\\,11\\,}\\ \\mathrm{Hz}$",
+   "stemZh": "回答下列问题 **A**（问1）、**B**（问2）、**C**（问3）。\n\n**B**　如图所示，两个扬声器 $\\mathrm{S_1}$ 和 $\\mathrm{S_2}$ 相距 $5.0\\,\\mathrm{m}$ 放置，以相同频率发出同相位的声波。在距 $\\mathrm{S_1}$ $12\\,\\mathrm{m}$、距 $\\mathrm{S_2}$ $13\\,\\mathrm{m}$ 的点P处，直接观测从 $\\mathrm{S_1}$ 和 $\\mathrm{S_2}$ 发出的声波。声速为 $340\\,\\mathrm{m/s}$。\n\n**问2**　把 $\\mathrm{S_1}$ 和 $\\mathrm{S_2}$ 发出的声波频率从 $500\\,\\mathrm{Hz}$ 开始逐渐增大时，在P处观测到的声音第一次相互减弱时的频率是多少 Hz？从下列①～④中选出最合适的值。　$\\boxed{\\,11\\,}\\ \\mathrm{Hz}$",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2015_2-phy-11-1.png",
+     "caption": "スピーカーS₁，S₂と観測点P"
+    }
+   ],
+   "format": "choice",
+   "options": [
+    "$510$",
+    "$680$",
+    "$850$",
+    "$1020$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路**\n\n两个波源**同相位**，P 点的强弱只由**路程差** $\\Delta=|\\mathrm{S_2P}-\\mathrm{S_1P}|$ 决定：\n\n- 加强（強め合う）：$\\Delta=m\\lambda$\n- 减弱（弱め合う）：$\\Delta=\\left(m+\\dfrac12\\right)\\lambda$　$(m=0,1,2,\\dots)$\n\n把 $\\lambda=\\dfrac{v}{f}$（$v=340\\,\\mathrm{m/s}$ 为声速）代入，就能求出满足减弱条件的全部频率，再挑出「从 500 Hz 往上第一个」。（$5.0\\,\\mathrm{m}$ 只是让三角形成为 5-12-13 直角三角形，计算中用不到。）\n\n**解答**\n\n1. 路程差：$\\Delta=13-12=1.0\\,\\mathrm{m}$。\n2. 减弱条件：\n$$1.0=\\left(m+\\frac12\\right)\\frac{340}{f}\\quad\\Rightarrow\\quad f=340\\left(m+\\frac12\\right)\\,\\mathrm{Hz}$$\n3. 依次为 $f=170,\\ 510,\\ 850,\\ 1190,\\ \\dots\\,\\mathrm{Hz}$。\n4. 频率从 $500\\,\\mathrm{Hz}$ 开始增大，最先遇到的是 $m=1$ 的 $f=510\\,\\mathrm{Hz}$。\n5. 验算：$\\lambda=\\dfrac{340}{510}\\approx0.667\\,\\mathrm{m}$，$\\dfrac{\\Delta}{\\lambda}=\\dfrac{1.0}{0.667}=1.5$，正好是半波长的奇数倍 ✓。\n\n**其他选项为何错**：② $680\\,\\mathrm{Hz}$ 时 $\\lambda=0.50\\,\\mathrm{m}$，$\\Delta=2\\lambda$，是**加强**；④ $1020\\,\\mathrm{Hz}$ 时 $\\Delta=3\\lambda$，也是加强；③ $850\\,\\mathrm{Hz}$ 确实是减弱，但它是 $510\\,\\mathrm{Hz}$ 之后的第二个，不是「最初」。\n\n**结论**　答案 ① $510\\,\\mathrm{Hz}$",
+    "keyPoints": [
+     "同相波源：路程差 = mλ 加强，(m + ½)λ 减弱",
+     "λ = v / f（v 为声速）：频率升高 → 波长变短 → 路程差相当于更多个波长"
+    ],
+    "traps": [
+     "把加强条件 Δ = mλ 当成减弱条件，选到 680 Hz",
+     "忽略「从 500 Hz 开始增大」，选最低的 170 Hz 或跳到第二个减弱点 850 Hz",
+     "用 12 m 或 13 m 本身计算，而不是用路程差 1.0 m"
+    ],
+    "terms": [
+     {
+      "ja": "同位相",
+      "kana": "どういそう",
+      "zh": "同相位：两个波源同时到达波峰、同时到达波谷"
+     },
+     {
+      "ja": "振動数",
+      "kana": "しんどうすう",
+      "zh": "频率（每秒振动次数，单位 Hz）"
+     },
+     {
+      "ja": "弱め合う",
+      "kana": "よわめあう",
+      "zh": "相互减弱（干涉相消）"
+     },
+     {
+      "ja": "徐々に",
+      "kana": "じょじょに",
+      "zh": "逐渐地、慢慢地"
+     },
+     {
+      "ja": "設置",
+      "kana": "せっち",
+      "zh": "安装、放置"
+     },
+     {
+      "ja": "音速",
+      "kana": "おんそく",
+      "zh": "声速"
+     }
+    ],
+    "shortcut": "$\\dfrac{\\Delta}{\\lambda}=\\dfrac{\\Delta\\cdot f}{V}=\\dfrac{f}{340}$。500 Hz 时约为 $1.47$，增大频率后第一个半整数是 $1.5$，所以 $f=1.5\\times340=510\\,\\mathrm{Hz}$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2015_2-phy-12",
+   "subject": "physics",
+   "order": 12,
+   "topic": "phys.wave.light",
+   "difficulty": 1,
+   "targetSec": 110,
+   "source": {
+    "kind": "official",
+    "session": "2015_2",
+    "label": "2015年第2回 物理 Ⅲ 問3（解答番号12）",
+    "pdf": "/assets/expanded/2015_2-science.pdf",
+    "page": 15
+   },
+   "stem": "次の問い **A**（問1），**B**（問2），**C**（問3）に答えなさい。\n\n**C**　次の図のように，単スリット $\\mathrm{S_0}$ と間隔 $d$ の複スリット $\\mathrm{S_1}$，$\\mathrm{S_2}$ に単色光を通したところ，複スリットから十分大きな距離 $\\ell$ 離れた位置にあるスクリーン上に明暗のしまができた。スクリーンの中央付近で隣り合う明線の間隔は $a$ であった。複スリットの間隔を $d$ から $1.5d$ に変化させたとき，隣り合う明線の間隔は $a$ から $a'$ に変化した。ただし，$\\mathrm{S_1}$ と $\\mathrm{S_2}$ の間隔が $d$ のとき，スクリーン上で $\\mathrm{S_1}$ と $\\mathrm{S_2}$ から等距離にある点Oから距離 $x$ の位置にある点をPとすると，$\\mathrm{S_1}$ とPの距離と $\\mathrm{S_2}$ とPの距離の差は $\\dfrac{xd}{\\ell}$ と表されるものとする。\n\n**問3**　$\\dfrac{a'}{a}$ はいくらか。最も適当な値を，次の①～④の中から一つ選びなさい。　$\\boxed{\\,12\\,}$",
+   "stemZh": "回答下列问题 **A**（问1）、**B**（问2）、**C**（问3）。\n\n**C**　如图所示，让单色光通过单缝 $\\mathrm{S_0}$ 和间距为 $d$ 的双缝 $\\mathrm{S_1}$、$\\mathrm{S_2}$，结果在距双缝足够远的距离 $\\ell$ 处的屏上出现了明暗条纹。屏中央附近相邻亮条纹的间距为 $a$。把双缝的间距从 $d$ 改为 $1.5d$ 时，相邻亮条纹的间距从 $a$ 变为 $a'$。另外，当 $\\mathrm{S_1}$ 与 $\\mathrm{S_2}$ 的间距为 $d$ 时，设屏上到 $\\mathrm{S_1}$、$\\mathrm{S_2}$ 距离相等的点为O，距O为 $x$ 的点为P，则 $\\mathrm{S_1}$ 到P的距离与 $\\mathrm{S_2}$ 到P的距离之差可表示为 $\\dfrac{xd}{\\ell}$。\n\n**问3**　$\\dfrac{a'}{a}$ 是多少？从下列①～④中选出最合适的值。　$\\boxed{\\,12\\,}$",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2015_2-phy-12-1.png",
+     "caption": "単スリットS₀・複スリットS₁S₂とスクリーン"
+    }
+   ],
+   "format": "choice",
+   "options": [
+    "$0.33$",
+    "$0.67$",
+    "$1.5$",
+    "$3.0$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路**\n\n杨氏双缝干涉。题目已给出路程差 $\\dfrac{xd}{\\ell}$，令它等于 $m\\lambda$ 就得到亮条纹的位置，进而得到相邻亮条纹间距 $\\Delta x=\\dfrac{\\ell\\lambda}{d}$——间距与缝距 $d$ **成反比**。\n\n**解答**\n\n1. 亮条纹（明線）条件：$\\dfrac{xd}{\\ell}=m\\lambda$，所以第 $m$ 条亮纹位置 $x_m=\\dfrac{m\\ell\\lambda}{d}$。\n2. 相邻亮纹间距：\n$$a=x_{m+1}-x_m=\\frac{\\ell\\lambda}{d}$$\n3. 缝距变为 $1.5d$（$\\ell$、$\\lambda$ 不变）：\n$$a'=\\frac{\\ell\\lambda}{1.5d}$$\n4. 相除：\n$$\\frac{a'}{a}=\\frac{1}{1.5}=\\frac23\\approx0.67$$\n\n**其他选项为何错**：③ $1.5$ 是误以为间距与 $d$ 成正比；① $0.33$、④ $3.0$ 分别对应间距变为 $\\dfrac13$ 倍、$3$ 倍，而缝距只变了 $1.5$ 倍，按 $a\\propto\\dfrac1d$ 间距只能变为 $\\dfrac{1}{1.5}$ 倍。单缝 $\\mathrm{S_0}$ 的作用只是让照到 $\\mathrm{S_1}$、$\\mathrm{S_2}$ 的光相位一致（成为相干光源），不影响间距公式。\n\n**结论**　答案 ② $0.67$",
+    "keyPoints": [
+     "双缝干涉亮纹条件：路程差 xd/ℓ = mλ",
+     "相邻亮纹间距 Δx = ℓλ/d：与 λ、ℓ 成正比，与缝距 d 成反比"
+    ],
+    "traps": [
+     "误以为缝距变大条纹间距也变大（选 1.5）",
+     "把题中给出的路程差 xd/ℓ 直接当作条纹间距使用"
+    ],
+    "terms": [
+     {
+      "ja": "単スリット",
+      "kana": "たんスリット",
+      "zh": "单缝"
+     },
+     {
+      "ja": "複スリット",
+      "kana": "ふくスリット",
+      "zh": "双缝"
+     },
+     {
+      "ja": "単色光",
+      "kana": "たんしょくこう",
+      "zh": "单色光（只有一种波长的光）"
+     },
+     {
+      "ja": "明暗のしま",
+      "kana": "めいあんのしま",
+      "zh": "明暗条纹（干涉条纹）"
+     },
+     {
+      "ja": "明線",
+      "kana": "めいせん",
+      "zh": "亮条纹（明亮的线）"
+     },
+     {
+      "ja": "隣り合う",
+      "kana": "となりあう",
+      "zh": "相邻的"
+     }
+    ],
+    "shortcut": "只记 $\\Delta x=\\dfrac{\\ell\\lambda}{d}\\propto\\dfrac1d$：$d$ 变为 $1.5$ 倍，间距变为 $\\dfrac{1}{1.5}\\approx0.67$ 倍。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  }
+ ]
+}

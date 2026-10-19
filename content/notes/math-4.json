@@ -1,0 +1,218 @@
+{
+  "notes": [
+    {
+      "topic": "math.func.func",
+      "body": "**核心概念与公式**\n\n- 分式函数：$y=\\dfrac{k}{x-p}+q$ 是 $y=\\dfrac{k}{x}$ 平移 $(p,\\,q)$ 得到，渐近线 $x=p,\\ y=q$，图像关于点 $(p,\\,q)$ 对称。\n- 一般式先做除法：$y=\\dfrac{ax+b}{cx+d}=\\dfrac{a}{c}+\\dfrac{bc-ad}{c(cx+d)}\\ (c\\neq0)$，渐近线 $x=-\\dfrac{d}{c},\\ y=\\dfrac{a}{c}$。\n- 无理函数：$y=\\sqrt{a(x-p)}$ 是抛物线 $y^2=a(x-p)$ 的上半支；定义域 $a(x-p)\\geqq0$，值域 $y\\geqq0$，端点 $(p,\\,0)$。\n- 无理方程：$\\sqrt{f(x)}=g(x)\\iff f(x)=\\{g(x)\\}^2$ 且 $g(x)\\geqq0$。\n- 反函数：$f$ 必须一一对应（通常是单调）。由 $y=f(x)$ 解出 $x$，再交换 $x,y$；$f^{-1}$ 的定义域＝$f$ 的值域；两图像关于直线 $y=x$ 对称。$y=\\dfrac{ax+b}{cx+d}$ 的反函数是 $y=\\dfrac{-dx+b}{cx-a}$。\n- 复合函数：$(g\\circ f)(x)=g(f(x))$，先算内层 $f$；一般 $g\\circ f\\neq f\\circ g$；$f^{-1}(f(x))=x$。\n\n**EJU 怎么考**\n\n常见三类：① 由渐近线和所过点确定 $a,b,c$，或求分式函数在某区间上的值域（画图看端点与渐近线）；② \"$\\sqrt{x+2}=x+k$ 的实数解个数\"、分式/无理不等式——一律转成两图像的共有点：半抛物线与一族平行直线，临界位置只有\"直线过端点\"和\"直线与曲线相切\"（相切用判别式 $D=0$）；③ 求反函数并写出定义域，求 $g(f(x))$ 的式子，或求使 $f\\circ g=g\\circ f$ 成立的参数。最快路线：先化成标准形画草图，只算临界值，不要两边平方后大量验根。\n\n**易错点**\n\n- 反函数忘写定义域（必须等于原函数的值域），如 $f(x)=\\sqrt{x-1}$ 的反函数要带 $x\\geqq0$。\n- 无理方程平方后不验根，漏掉 $g(x)\\geqq0$ 会多出增根。\n- 分式不等式直接去分母而不管分母正负；应两边乘 $(x-p)^2$ 或直接看图。\n- 单调递增函数与其反函数图像的交点一定在 $y=x$ 上；递减函数不一定，不能只解 $f(x)=x$。\n\n**30 秒自检**\n\n- Q：$y=\\dfrac{2x+1}{x-1}$ 的渐近线？ → A：$y=2+\\dfrac{3}{x-1}$，渐近线 $x=1,\\ y=2$。\n- Q：$f(x)=\\sqrt{x-1}$ 的反函数？ → A：$f^{-1}(x)=x^2+1\\ (x\\geqq0)$。\n- Q：$\\sqrt{x+2}=x+k$ 恰有 2 个实数解时 $k$ 的范围？ → A：过端点 $(-2,0)$ 时 $k=2$，相切时 $k=\\dfrac94$，故 $2\\leqq k<\\dfrac94$。",
+      "terms": [
+        {
+          "ja": "分数関数",
+          "kana": "ぶんすうかんすう",
+          "zh": "分式函数：分母含 x 的函数，图像是双曲线"
+        },
+        {
+          "ja": "無理関数",
+          "kana": "むりかんすう",
+          "zh": "根号里含 x 的函数，图像是半条抛物线"
+        },
+        {
+          "ja": "漸近線",
+          "kana": "ぜんきんせん",
+          "zh": "渐近线：图像无限靠近但永不相交的直线"
+        },
+        {
+          "ja": "逆関数",
+          "kana": "ぎゃくかんすう",
+          "zh": "反函数：把 x 与 y 的对应关系倒过来的函数"
+        },
+        {
+          "ja": "合成関数",
+          "kana": "ごうせいかんすう",
+          "zh": "复合函数：把一个函数的输出代入另一个函数"
+        },
+        {
+          "ja": "定義域",
+          "kana": "ていぎいき",
+          "zh": "定义域：自变量 x 允许取值的范围"
+        },
+        {
+          "ja": "値域",
+          "kana": "ちいき",
+          "zh": "值域：函数值 y 实际能取到的范围"
+        },
+        {
+          "ja": "平行移動",
+          "kana": "へいこういどう",
+          "zh": "平移：图像整体沿 x、y 方向移动"
+        },
+        {
+          "ja": "共有点",
+          "kana": "きょうゆうてん",
+          "zh": "两图像的公共点（交点或切点），常问其个数"
+        }
+      ]
+    },
+    {
+      "topic": "math.func.limit",
+      "body": "**核心概念与公式**\n\n$$\\lim_{n\\to\\infty}r^n=\\begin{cases}0 & (|r|<1)\\\\ 1 & (r=1)\\\\ \\infty & (r>1)\\end{cases}$$\n\n- $r\\leqq-1$ 时 $r^n$ 振动（发散），所以 $\\{r^n\\}$ 收敛 $\\iff -1<r\\leqq1$。\n- $\\dfrac{\\infty}{\\infty}$ 型：分子分母同除\"最强项\"（$n$ 的最高次幂，或底数最大的 $a^n$）。$\\infty-\\infty$ 型含根号：分子有理化，如 $\\displaystyle\\lim_{n\\to\\infty}(\\sqrt{n^2+n}-n)=\\frac12$。\n- 夹逼原理：$a_n\\leqq c_n\\leqq b_n$ 且 $\\lim a_n=\\lim b_n=\\alpha$ ⇒ $\\lim c_n=\\alpha$（常配合 $-1\\leqq\\sin\\theta\\leqq1$）。\n- 无穷等比级数 $\\displaystyle\\sum_{n=1}^{\\infty}ar^{n-1}$：收敛 $\\iff a=0$ 或 $|r|<1$；$|r|<1$ 时和为 $\\dfrac{a}{1-r}$。一般级数先求部分和 $S_n$（裂项 $\\dfrac{1}{k(k+1)}=\\dfrac1k-\\dfrac{1}{k+1}$）再取极限。\n- $\\sum a_n$ 收敛 ⇒ $\\lim a_n=0$；反之不成立（$\\sum\\frac1n$ 发散）。所以 $a_n\\not\\to0$ 可直接判发散。\n- 函数极限：$\\displaystyle\\lim_{x\\to0}\\frac{\\sin x}{x}=1$（弧度制），$\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos x}{x^2}=\\frac12$，$\\displaystyle\\lim_{x\\to0}(1+x)^{\\frac1x}=e$，$\\displaystyle\\lim_{x\\to0}\\frac{e^x-1}{x}=1$，$\\displaystyle\\lim_{x\\to0}\\frac{\\log(1+x)}{x}=1$。\n- 连续：$\\displaystyle\\lim_{x\\to a}f(x)=f(a)$。中间值定理：$f$ 在 $[a,b]$ 上连续且 $f(a)f(b)<0$ ⇒ $(a,b)$ 内至少有一个实数解。可微 ⇒ 连续，反之不成立（$y=|x|$ 在 $x=0$ 连续但不可微）。\n\n**EJU 怎么考**\n\n① 由递推式求出一般项后取极限（大问Ⅲ/Ⅳ 的最后一问常见）：$a_{n+1}=pa_n+q$ 型先求不动点 $\\alpha=\\dfrac{q}{1-p}$，化成 $a_{n+1}-\\alpha=p(a_n-\\alpha)$，于是 $|p|<1$ 时 $a_n\\to\\alpha$，不必算完整通项；② 含 $x$ 的无穷等比级数：求收敛的 $x$ 范围与和 $S(x)$，再问 $S(x)$ 是否连续；③ 图形无限重复（正方形内接、相似三角形不断缩小）：相邻两图形的面积比就是公比，直接用 $\\dfrac{a}{1-r}$（先确认首项 $a$ 是题目要求求和的第 1 个图形）；④ 0/0 型确定参数：$\\displaystyle\\lim_{x\\to2}\\frac{x^2+ax+b}{x-2}=5$，极限有限 ⇒ 分子在 $x=2$ 为 0：$4+2a+b=0$，约分得 $4+a=5$，故 $a=1,\\ b=-6$。快法：看主导项秒判 $\\infty/\\infty$；三角函数凑成 $\\dfrac{\\sin\\square}{\\square}$。\n\n**易错点**\n\n- $r=-1$ 时 $r^n$ 不收敛；无穷等比级数漏掉\"首项为 0\"的情形。\n- $x\\to-\\infty$ 带根号：先置换 $x=-t$，因为 $\\sqrt{x^2}=|x|=-x$。例：$\\displaystyle\\lim_{x\\to-\\infty}(\\sqrt{x^2+x}+x)=-\\frac12$。\n- $\\dfrac{\\sin x}{x}\\to1$ 只在 $x\\to0$ 时成立；$x\\to\\infty$ 时由夹逼得 $\\dfrac{\\sin x}{x}\\to0$。\n- $\\lim a_n=0$ 不能推出 $\\sum a_n$ 收敛。\n\n**30 秒自检**\n\n- Q：$\\displaystyle\\lim_{n\\to\\infty}\\frac{3^{n+1}+2^n}{3^n-2^n}$？ → A：同除 $3^n$，得 $3$。\n- Q：$\\displaystyle\\sum_{n=1}^{\\infty}x(1-x)^{n-1}$ 收敛时 $x$ 的范围？ → A：$x=0$ 或 $|1-x|<1$，即 $0\\leqq x<2$（$x=0$ 时和为 0，$0<x<2$ 时和为 1，故 $S(x)$ 在 $x=0$ 不连续）。\n- Q：$\\displaystyle\\lim_{x\\to0}\\frac{\\sin3x}{x}$？ → A：$3\\cdot\\dfrac{\\sin3x}{3x}\\to3$。",
+      "terms": [
+        {
+          "ja": "極限値",
+          "kana": "きょくげんち",
+          "zh": "极限值：n 或 x 无限趋近时所逼近的确定数值"
+        },
+        {
+          "ja": "収束",
+          "kana": "しゅうそく",
+          "zh": "收敛：趋于一个确定的有限值"
+        },
+        {
+          "ja": "発散",
+          "kana": "はっさん",
+          "zh": "发散：不收敛，包括趋于 ±∞ 和振动"
+        },
+        {
+          "ja": "振動",
+          "kana": "しんどう",
+          "zh": "发散的一种：既不趋于定值也不趋于 ±∞，如 (−1)ⁿ"
+        },
+        {
+          "ja": "無限等比級数",
+          "kana": "むげんとうひきゅうすう",
+          "zh": "无穷等比级数：等比数列无穷多项之和"
+        },
+        {
+          "ja": "部分和",
+          "kana": "ぶぶんわ",
+          "zh": "前 n 项和 Sₙ，级数的和定义为其极限"
+        },
+        {
+          "ja": "はさみうちの原理",
+          "kana": "はさみうちのげんり",
+          "zh": "夹逼准则：被两侧同极限的式子夹住"
+        },
+        {
+          "ja": "連続",
+          "kana": "れんぞく",
+          "zh": "连续：极限值等于函数值，图像不断开"
+        },
+        {
+          "ja": "中間値の定理",
+          "kana": "ちゅうかんちのていり",
+          "zh": "介值定理：连续函数两端异号则中间必有零点"
+        }
+      ]
+    },
+    {
+      "topic": "math.calc.diff",
+      "body": "**核心概念与公式**\n\n$$f'(a)=\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}$$\n\n- 基本导数（EJU 中 $\\log x$ 指自然对数 $\\ln x$）：$(x^\\alpha)'=\\alpha x^{\\alpha-1}$，$(\\sin x)'=\\cos x$，$(\\cos x)'=-\\sin x$，$(\\tan x)'=\\dfrac{1}{\\cos^2x}$，$(e^x)'=e^x$，$(a^x)'=a^x\\log a$，$(\\log|x|)'=\\dfrac1x$，$(\\log_a x)'=\\dfrac{1}{x\\log a}$。\n- 运算：$(fg)'=f'g+fg'$，$\\left(\\dfrac fg\\right)'=\\dfrac{f'g-fg'}{g^2}$，$\\{f(g(x))\\}'=f'(g(x))\\,g'(x)$；参数式 $\\dfrac{dy}{dx}=\\dfrac{dy/dt}{dx/dt}$。\n- 切线：$y-f(a)=f'(a)(x-a)$；法线：$y-f(a)=-\\dfrac{1}{f'(a)}(x-a)\\ (f'(a)\\neq0)$。\n- 增减与极值：$f'(x)>0$ 的区间递增；$f'(a)=0$ 且 $f'$ 在 $a$ 两侧变号才是极值（$+\\to-$ 为极大，$-\\to+$ 为极小）。$f''(x)>0$ 的区间下凸，$f''$ 变号处为拐点。\n- 最值：把极值与区间端点的值（或 $x\\to\\pm\\infty$ 时的极限）一起比较。\n- 三次函数有极值 $\\iff f'(x)=0$ 有两个不同实根（判别式 $D>0$）。\n- 画图常用极限：$\\displaystyle\\lim_{x\\to\\infty}\\frac{x}{e^x}=0$，$\\displaystyle\\lim_{x\\to\\infty}\\frac{\\log x}{x}=0$（题目常作为提示给出）。\n\n**EJU 怎么考**\n\n大问Ⅲ/Ⅳ 的主线：求 $f'(x)$ → 因式分解 → 增减表 → 极值/最值 → 用图像回答\"方程 $f(x)=k$ 的实数解个数\"或\"不等式恒成立的参数范围\"。典型函数：$xe^{-x}$、$\\dfrac{\\log x}{x}$、$x+2\\cos x$、$e^x\\sin x$。另一类：过曲线外一点作切线——设切点 $(t,\\,f(t))$，代入该点得关于 $t$ 的方程，其实根个数＝切线条数；两曲线相切：$f(t)=g(t)$ 且 $f'(t)=g'(t)$。快法：$f'$ 中恒为正的因子（$e^x$、$x^2+1$）直接忽略，只看决定符号的因子；含参数时把参数分离到一边，变成\"水平线 $y=k$ 与固定曲线的共有点\"。证明不等式 $f(x)\\geqq g(x)$：设 $h(x)=f(x)-g(x)$，证其最小值 $\\geqq0$；一次求导定不了号就再对 $h'$ 求导。\n\n**易错点**\n\n- $f'(a)=0$ 不一定是极值（$y=x^3$ 在 $x=0$ 处）。\n- 忘记定义域（$\\log x$ 要求 $x>0$），求最值时忘记比较端点。\n- 复合函数漏乘内层导数：$(\\sin2x)'=2\\cos2x$，$(e^{-x^2})'=-2xe^{-x^2}$。\n- 把 $\\log$ 当成常用对数：$(\\log x)'=\\dfrac1x$ 只对自然对数成立。\n\n**30 秒自检**\n\n- Q：$f(x)=xe^{-x}$ 的极值？ → A：$f'(x)=(1-x)e^{-x}$，$x=1$ 时极大值 $\\dfrac1e$，没有极小值。\n- Q：过原点作 $y=\\log x$ 的切线？ → A：切点 $(t,\\log t)$ 需满足 $\\log t=1$，$t=e$，切线 $y=\\dfrac{x}{e}$。\n- Q：$f(x)=x^3+ax^2+3x$ 有极值的条件？ → A：$f'(x)=3x^2+2ax+3$，$\\dfrac D4=a^2-9>0$，即 $a<-3$ 或 $a>3$。",
+      "terms": [
+        {
+          "ja": "微分係数",
+          "kana": "びぶんけいすう",
+          "zh": "某一点处的导数值 f′(a)，即切线斜率"
+        },
+        {
+          "ja": "導関数",
+          "kana": "どうかんすう",
+          "zh": "导函数 f′(x)：对每个 x 给出导数值的函数"
+        },
+        {
+          "ja": "接線",
+          "kana": "せっせん",
+          "zh": "切线：在切点处与曲线相切的直线，斜率为 f′(a)"
+        },
+        {
+          "ja": "法線",
+          "kana": "ほうせん",
+          "zh": "法线：过切点且与切线垂直的直线"
+        },
+        {
+          "ja": "増減表",
+          "kana": "ぞうげんひょう",
+          "zh": "增减表：列出 f′ 的符号与 f 的升降、极值的表格"
+        },
+        {
+          "ja": "極大値",
+          "kana": "きょくだいち",
+          "zh": "极大值：由增转减处的函数值（局部最大）"
+        },
+        {
+          "ja": "極小値",
+          "kana": "きょくしょうち",
+          "zh": "极小值：由减转增处的函数值（局部最小）"
+        },
+        {
+          "ja": "変曲点",
+          "kana": "へんきょくてん",
+          "zh": "拐点：图像凹凸方向改变的点（f″ 变号）"
+        },
+        {
+          "ja": "下に凸",
+          "kana": "したにとつ",
+          "zh": "像 y=x² 那样向下鼓出的弯曲，对应 f″>0"
+        },
+        {
+          "ja": "自然対数",
+          "kana": "しぜんたいすう",
+          "zh": "以 e 为底的对数，EJU 中 log x 即 ln x"
+        }
+      ]
+    },
+    {
+      "topic": "math.calc.int",
+      "body": "**核心概念与公式**\n\n- 基本：$\\displaystyle\\int x^\\alpha dx=\\frac{x^{\\alpha+1}}{\\alpha+1}+C\\ (\\alpha\\neq-1)$，$\\displaystyle\\int\\frac{dx}{x}=\\log|x|+C$，$\\displaystyle\\int e^x dx=e^x+C$，$\\displaystyle\\int\\sin x\\,dx=-\\cos x+C$，$\\displaystyle\\int\\cos x\\,dx=\\sin x+C$，$\\displaystyle\\int\\frac{dx}{\\cos^2x}=\\tan x+C$，$\\displaystyle\\int\\frac{f'(x)}{f(x)}dx=\\log|f(x)|+C$。\n- 降次：$\\sin^2x=\\dfrac{1-\\cos2x}{2}$，$\\cos^2x=\\dfrac{1+\\cos2x}{2}$。\n- 换元（置换积分）：定积分换元要同时换上下限；$\\sqrt{a^2-x^2}$ 用 $x=a\\sin\\theta$，$\\dfrac{1}{x^2+a^2}$ 用 $x=a\\tan\\theta$。\n- 分部积分：$\\displaystyle\\int fg'\\,dx=fg-\\int f'g\\,dx$，如 $\\int xe^x dx=(x-1)e^x+C$，$\\int\\log x\\,dx=x\\log x-x+C$。\n- 奇偶性：$\\int_{-a}^{a}$ 奇函数 $=0$，偶函数 $=2\\int_0^a$。微积分基本定理：$\\dfrac{d}{dx}\\displaystyle\\int_a^x f(t)\\,dt=f(x)$。\n- 面积：$S=\\displaystyle\\int_a^b|f(x)-g(x)|\\,dx$；抛物线与直线：$\\displaystyle\\int_\\alpha^\\beta(x-\\alpha)(x-\\beta)\\,dx=-\\frac{(\\beta-\\alpha)^3}{6}$。\n- 体积：截面积 $V=\\displaystyle\\int_a^b S(x)\\,dx$；绕 $x$ 轴 $V=\\pi\\displaystyle\\int_a^b\\{f(x)\\}^2dx$，绕 $y$ 轴 $V=\\pi\\displaystyle\\int_c^d x^2\\,dy$。\n- 直线运动：速度 $v(t)$ 时，位置变化量 $=\\displaystyle\\int_{t_1}^{t_2}v\\,dt$，走过的路程 $=\\displaystyle\\int_{t_1}^{t_2}|v|\\,dt$（$v$ 变号时要分段）。\n- 区分求积：$\\displaystyle\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^{n}f\\!\\left(\\frac kn\\right)=\\int_0^1f(x)\\,dx$。\n- 曲线长：$L=\\displaystyle\\int_a^b\\sqrt{1+\\{f'(x)\\}^2}\\,dx$；参数式 $L=\\displaystyle\\int\\sqrt{\\left(\\frac{dx}{dt}\\right)^2+\\left(\\frac{dy}{dt}\\right)^2}\\,dt$。\n\n**EJU 怎么考**\n\n① 曲线与切线/直线围成的面积，再让参数变化求面积最小值（先用 1/6 公式把面积写成参数的函数）；② 旋转体体积：先画图确定上下关系和交点，再列 $\\pi\\int(R^2-r^2)\\,dx$（$R$ 外半径、$r$ 内半径）；③ 积分方程 $f(x)=x+\\int_0^1f(t)\\,dt$：令常数 $k=\\int_0^1f(t)\\,dt$ 代回求 $k$；上限含 $x$ 的积分先两边求导；④ 区分求积：把和的极限化成 $\\int_0^1$；⑤ $\\int e^x\\sin x\\,dx$ 型：分部积分两次得到含原积分 $I$ 的方程，解出 $I$；⑥ 积分与不等式：在 $k\\leqq x\\leqq k+1$ 上 $\\dfrac{1}{k+1}\\leqq\\dfrac1x\\leqq\\dfrac1k$，积分后对 $k$ 求和，用面积夹住 $\\sum\\dfrac1k$ 并估计 $\\log n$。快法：交点用根与系数关系，对称区间用奇偶性，面积尽量套 1/6 公式。\n\n**易错点**\n\n- 两曲线在区间内交叉时，面积要在交点处分段，不能直接 $\\int(f-g)\\,dx$。\n- 换元后忘换上下限，或漏掉 $dx=a\\cos\\theta\\,d\\theta$；$\\int\\frac{dx}{x}$ 的结果要带绝对值 $\\log|x|$。\n- 两曲线之间的区域绕 $x$ 轴：$V=\\pi\\int(f^2-g^2)\\,dx$，不是 $\\pi\\int(f-g)^2dx$；区域跨过 $x$ 轴时先把下方部分翻折上来，取外轮廓。\n- $\\dfrac{d}{dx}\\displaystyle\\int_a^x(x-t)f(t)\\,dt$：先拆成 $x\\int_a^xf(t)\\,dt-\\int_a^xtf(t)\\,dt$ 再求导，结果为 $\\int_a^xf(t)\\,dt$。\n\n**30 秒自检**\n\n- Q：$y=x^2$ 与 $y=x+2$ 围成的面积？ → A：交点 $x=-1,\\,2$，$S=\\dfrac{3^3}{6}=\\dfrac92$。\n- Q：$\\displaystyle\\int_1^e\\log x\\,dx$？ → A：$\\big[x\\log x-x\\big]_1^e=0-(-1)=1$。\n- Q：$\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^{n}\\frac{1}{n+k}$？ → A：$=\\dfrac1n\\sum\\dfrac{1}{1+\\frac kn}\\to\\displaystyle\\int_0^1\\frac{dx}{1+x}=\\log2$。",
+      "terms": [
+        {
+          "ja": "不定積分",
+          "kana": "ふていせきぶん",
+          "zh": "求原函数（结果带积分常数 C）"
+        },
+        {
+          "ja": "定積分",
+          "kana": "ていせきぶん",
+          "zh": "给定上下限的积分，结果是一个数"
+        },
+        {
+          "ja": "原始関数",
+          "kana": "げんしかんすう",
+          "zh": "原函数：求导后得到 f(x) 的函数"
+        },
+        {
+          "ja": "積分定数",
+          "kana": "せきぶんていすう",
+          "zh": "不定积分末尾的任意常数 C"
+        },
+        {
+          "ja": "置換積分法",
+          "kana": "ちかんせきぶんほう",
+          "zh": "换元积分法：令 t=g(x) 换变量"
+        },
+        {
+          "ja": "部分積分法",
+          "kana": "ぶぶんせきぶんほう",
+          "zh": "分部积分法：∫fg′ = fg − ∫f′g"
+        },
+        {
+          "ja": "区分求積法",
+          "kana": "くぶんきゅうせきほう",
+          "zh": "把 (1/n)Σf(k/n) 的极限化为定积分的方法"
+        },
+        {
+          "ja": "回転体",
+          "kana": "かいてんたい",
+          "zh": "旋转体：平面图形绕轴旋转一周形成的立体"
+        },
+        {
+          "ja": "囲まれた部分",
+          "kana": "かこまれたぶぶん",
+          "zh": "（曲线、直线）所围成的区域，面积题的固定说法"
+        },
+        {
+          "ja": "曲線の長さ",
+          "kana": "きょくせんのながさ",
+          "zh": "曲线长（弧长）"
+        }
+      ]
+    }
+  ]
+}

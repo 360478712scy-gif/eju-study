@@ -1,0 +1,181 @@
+{
+  "title": "2017_2 math part",
+  "items": [
+    {
+      "id": "2017_2-math-III",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.explog.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 1100,
+      "source": {
+        "kind": "official",
+        "session": "2017_2",
+        "label": "2017年第2回 数学コース2 III（解答欄A〜I）",
+        "pdf": "/assets/expanded/2017_2-math.pdf",
+        "page": 26
+      },
+      "stem": "すべての正の実数 $x$ に対して，不等式\n\n$$\\frac{\\log 3x}{4x+1} \\leqq \\log\\left(\\frac{2kx}{4x+1}\\right)\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nが成り立つような正の実数 $k$ の値の範囲を求めよう。ただし，$\\log$ は自然対数とする。\n\n(1)　次の文中の \\bx{A}，\\bx{B} には，下の選択肢 ⓪ 〜 ⑧ の中から適するものを選びなさい。\n\n不等式 ① を変形して\n\n$$\\log k \\geqq \\bx{A}\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\nを得る。\n\nここで，② の右辺を $g(x)$ とおき，$g(x)$ を $x$ で微分すると\n\n$$g'(x) = \\bx{B}$$\n\nである。\n\n- ⓪ $\\dfrac{\\log 3x}{4x+1}-\\log(4x+1)-\\log 2x$\n- ① $\\dfrac{\\log 3x}{4x+1}-\\log(4x+1)+\\log 2x$\n- ② $\\dfrac{\\log 3x}{4x+1}+\\log(4x+1)+\\log 2x$\n- ③ $\\dfrac{\\log 3x}{4x+1}+\\log(4x+1)-\\log 2x$\n- ④ $\\dfrac{4\\log 3x}{(4x+1)^2}$\n- ⑤ $\\dfrac{3x+2+\\log 3x}{(4x+1)^2}$\n- ⑥ $-\\dfrac{4\\log 3x}{(4x+1)^2}$\n- ⑦ $\\dfrac{3x-2-\\log 2x}{(4x+1)^2}$\n- ⑧ $-\\dfrac{3\\log 2x}{(4x+1)^2}$\n\n(2)　次の文中の \\bx{E}，\\bx{F}，\\bx{G} には，下の選択肢 ⓪ 〜 ③ の中から適するものを選び，他の $\\boxed{\\phantom{\\text{A}}}$ には適する数を入れなさい。\n\n$g(x)$ は区間 $0<x<\\dfrac{\\bx{C}}{\\bx{D}}$ で \\bx{E} し，また，区間 $\\dfrac{\\bx{C}}{\\bx{D}}<x$ で \\bx{F} する。よって，$g(x)$ は $x=\\dfrac{\\bx{C}}{\\bx{D}}$ で \\bx{G} になる。\n\nしたがって，すべての正の実数 $x$ に対して不等式 ① が成り立つような $k$ の値の範囲は\n\n$$k \\geqq \\frac{\\bx{H}}{\\bx{I}}$$\n\nである。\n\n⓪ 増加　　① 減少　　② 最大　　③ 最小",
+      "stemZh": "求使不等式\n\n$$\\frac{\\log 3x}{4x+1} \\leqq \\log\\left(\\frac{2kx}{4x+1}\\right)\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n对所有正实数 $x$ 都成立的正实数 $k$ 的取值范围。其中 $\\log$ 为自然对数。\n\n(1)　下文中的 \\bx{A}、\\bx{B} 请从下面的选项 ⓪〜⑧ 中选出合适的。\n\n将不等式 ① 变形，得到\n\n$$\\log k \\geqq \\bx{A}\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\n把 ② 的右边记为 $g(x)$，将 $g(x)$ 对 $x$ 求导，得\n\n$$g'(x) = \\bx{B}$$\n\n- ⓪ $\\dfrac{\\log 3x}{4x+1}-\\log(4x+1)-\\log 2x$\n- ① $\\dfrac{\\log 3x}{4x+1}-\\log(4x+1)+\\log 2x$\n- ② $\\dfrac{\\log 3x}{4x+1}+\\log(4x+1)+\\log 2x$\n- ③ $\\dfrac{\\log 3x}{4x+1}+\\log(4x+1)-\\log 2x$\n- ④ $\\dfrac{4\\log 3x}{(4x+1)^2}$\n- ⑤ $\\dfrac{3x+2+\\log 3x}{(4x+1)^2}$\n- ⑥ $-\\dfrac{4\\log 3x}{(4x+1)^2}$\n- ⑦ $\\dfrac{3x-2-\\log 2x}{(4x+1)^2}$\n- ⑧ $-\\dfrac{3\\log 2x}{(4x+1)^2}$\n\n(2)　下文中的 \\bx{E}、\\bx{F}、\\bx{G} 请从下面的选项 ⓪〜③ 中选出合适的，其余方框填入合适的数。\n\n$g(x)$ 在区间 $0<x<\\dfrac{\\bx{C}}{\\bx{D}}$ 上 \\bx{E}，在区间 $\\dfrac{\\bx{C}}{\\bx{D}}<x$ 上 \\bx{F}。因此，$g(x)$ 在 $x=\\dfrac{\\bx{C}}{\\bx{D}}$ 处取 \\bx{G}。\n\n所以，使不等式 ① 对所有正实数 $x$ 都成立的 $k$ 的取值范围是\n\n$$k \\geqq \\frac{\\bx{H}}{\\bx{I}}$$\n\n⓪ 增加（递增）　　① 减少（递减）　　② 最大（值）　　③ 最小（值）",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "6",
+        "C": "1",
+        "D": "3",
+        "E": "0",
+        "F": "1",
+        "G": "2",
+        "H": "7",
+        "I": "2"
+      },
+      "explanation": {
+        "zh": "**思路**\n\n「对所有 $x>0$ 都成立」的恒成立问题，最稳的做法是**分离参数**：把含 $k$ 的部分单独放到一边，变成 $\\log k \\geqq g(x)$。它对所有 $x>0$ 成立 $\\iff$ $\\log k$ 不小于 $g(x)$ 的最大值。于是问题变成：用导数求 $g(x)$ 的最大值。\n\n**解答**\n\n**1. 变形（A）**　$x>0,\\ k>0$ 时真数为正，可以拆开右边：\n\n$$\\log\\frac{2kx}{4x+1}=\\log k+\\log 2x-\\log(4x+1)$$\n\n代入 ①：$\\dfrac{\\log 3x}{4x+1}\\leqq \\log k+\\log 2x-\\log(4x+1)$，把 $\\log 2x,\\ -\\log(4x+1)$ 移到左边：\n\n$$\\log k \\geqq \\frac{\\log 3x}{4x+1}+\\log(4x+1)-\\log 2x$$\n\n与选项 ③ 一致，**A = 3**。\n\n**2. 求导（B）**　$g(x)=\\dfrac{\\log 3x}{4x+1}+\\log(4x+1)-\\log 2x$。注意 $(\\log 3x)'=\\dfrac{3}{3x}=\\dfrac1x$，$(\\log 2x)'=\\dfrac1x$，$\\{\\log(4x+1)\\}'=\\dfrac{4}{4x+1}$。\n\n第一项用商的求导法则：\n\n$$\\left(\\frac{\\log 3x}{4x+1}\\right)'=\\frac{\\frac1x\\cdot(4x+1)-4\\log 3x}{(4x+1)^2}=\\frac{1}{x(4x+1)}-\\frac{4\\log 3x}{(4x+1)^2}$$\n\n后两项：\n\n$$\\frac{4}{4x+1}-\\frac1x=\\frac{4x-(4x+1)}{x(4x+1)}=-\\frac{1}{x(4x+1)}$$\n\n相加时 $\\dfrac{1}{x(4x+1)}$ 正好抵消：\n\n$$g'(x)=-\\frac{4\\log 3x}{(4x+1)^2}$$\n\n与选项 ⑥ 一致，**B = 6**。\n\n**3. 增减（C, D, E, F, G）**　分母 $(4x+1)^2>0$，所以 $g'(x)$ 的符号与 $-\\log 3x$ 相同；$\\log 3x=0 \\iff 3x=1 \\iff x=\\dfrac13$。\n\n- $0<x<\\dfrac13$：$3x<1$，$\\log 3x<0$，$g'(x)>0$，$g(x)$ **增加** → **E = 0**\n\n- $x>\\dfrac13$：$\\log 3x>0$，$g'(x)<0$，$g(x)$ **减少** → **F = 1**\n\n- 左增右减，且 $x=\\dfrac13$ 是唯一的极值点，所以 $g(x)$ 在 $x=\\dfrac13$ 取**最大**值 → **G = 2**，**C = 1，D = 3**\n\n| $x$ | $0$ | $\\cdots$ | $\\frac13$ | $\\cdots$ |\n|---|---|---|---|---|\n| $g'(x)$ | | $+$ | $0$ | $-$ |\n| $g(x)$ | | ↗ | 最大 $\\log\\frac72$ | ↘ |\n\n**4. 求 k 的范围（H, I）**　最大值：\n\n$$g\\left(\\tfrac13\\right)=\\frac{\\log 1}{\\frac73}+\\log\\frac73-\\log\\frac23=0+\\log\\left(\\frac73\\cdot\\frac32\\right)=\\log\\frac72$$\n\n$\\log k\\geqq g(x)$ 对所有 $x>0$ 成立 $\\iff \\log k\\geqq \\log\\dfrac72 \\iff k\\geqq\\dfrac72$（$\\log$ 是增函数）。**H = 7，I = 2**。\n\n**检验**：把 $g(x)$ 改写成 $g(x)=\\log\\frac32+\\log(4x+1)-\\dfrac{4x\\log 3x}{4x+1}$（因为 $\\dfrac{\\log3x}{4x+1}=\\log3x-\\dfrac{4x\\log3x}{4x+1}$），由 $x\\log 3x\\to0$ 知 $x\\to+0$ 时 $g(x)\\to\\log\\frac32$；$x\\to\\infty$ 时 $\\dfrac{\\log3x}{4x+1}\\to0$，$\\log\\dfrac{4x+1}{2x}\\to\\log2$，故 $g(x)\\to\\log 2$。两端都小于 $\\log\\frac72$，与「中间取最大」吻合。\n\n**结论**　A = 3，B = 6，C = 1，D = 3，E = 0，F = 1，G = 2，H = 7，I = 2，即 $k\\geqq\\dfrac72$。",
+        "keyPoints": [
+          "恒成立问题分离参数：$\\log k\\geqq g(x)$ 对所有 $x>0$ 成立 $\\iff \\log k\\geqq \\max g(x)$",
+          "对数求导 $(\\log ax)'=\\dfrac1x$（与系数 $a$ 无关）+ 商的求导法则",
+          "唯一极值点且左增右减 → 该点就是整个区间上的最大值"
+        ],
+        "traps": [
+          "移项变号：$\\log\\frac{2kx}{4x+1}=\\log k+\\log 2x-\\log(4x+1)$，移到左边后变成 $+\\log(4x+1)-\\log 2x$，容易误选 ⓪ 或 ①",
+          "$(\\log 3x)'=\\dfrac1x$，不是 $\\dfrac3x$ 也不是 $\\dfrac{1}{3x}$",
+          "最后求的是 $k$：$\\log k\\geqq\\log\\frac72\\Rightarrow k\\geqq\\frac72$，不要把最大值 $\\log\\frac72$ 当成答案"
+        ],
+        "terms": [
+          {
+            "ja": "正の実数",
+            "kana": "せいのじっすう",
+            "zh": "大于 0 的实数"
+          },
+          {
+            "ja": "自然対数",
+            "kana": "しぜんたいすう",
+            "zh": "以 e 为底的对数，即 ln"
+          },
+          {
+            "ja": "微分する",
+            "kana": "びぶんする",
+            "zh": "求导数"
+          },
+          {
+            "ja": "区間",
+            "kana": "くかん",
+            "zh": "数轴上的一段范围（区间）"
+          },
+          {
+            "ja": "増加／減少",
+            "kana": "ぞうか／げんしょう",
+            "zh": "函数单调递增／单调递减"
+          },
+          {
+            "ja": "最大になる",
+            "kana": "さいだいになる",
+            "zh": "取得最大值"
+          }
+        ],
+        "shortcut": "恒成立且参数能单独分离时，直接写成 $\\log k\\geqq\\max g(x)$。求导时先把所有 $\\dfrac1x$ 型的项通分合并，这里 $\\dfrac{1}{x(4x+1)}+\\dfrac{4}{4x+1}-\\dfrac1x=0$ 整体抵消，只剩 $-\\dfrac{4\\log3x}{(4x+1)^2}$；其零点 $x=\\frac13$ 一眼可见。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2017_2-math-IV",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.int",
+      "tags": [
+        "math.trig.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 1200,
+      "source": {
+        "kind": "official",
+        "session": "2017_2",
+        "label": "2017年第2回 数学コース2 IV（解答欄A〜U）",
+        "pdf": "/assets/expanded/2017_2-math.pdf",
+        "page": 28
+      },
+      "stem": "次の 2 つの曲線を考える。\n\n$$x^2+y^2=1\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n$$4xy=1\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\nただし，$x>0$，$y>0$ とする。このとき，曲線 ① と曲線 ② で囲まれる部分の面積 $S$ を求めよう。\n\n(1)　まず，曲線 ① と曲線 ② の交点を P, Q，それらの $x$ 座標をそれぞれ $p,\\ q\\ (p<q)$ とする。\n\n曲線 ① と曲線 ② の交点の座標 $(x,y)$ は，① より，$x=\\cos\\theta$，$y=\\sin\\theta$ $\\left(0<\\theta<\\dfrac{\\pi}{2}\\right)$ とおける。このとき，② より\n\n$$\\sin \\bx{A}\\,\\theta = \\frac{\\bx{B}}{\\bx{C}}$$\n\nとなる。これより\n\n$$\\theta = \\frac{\\bx{D}}{\\bx{EF}}\\pi,\\quad \\frac{\\bx{G}}{\\bx{HI}}\\pi$$\n\nとなる。ただし，$\\dfrac{\\bx{D}}{\\bx{EF}} < \\dfrac{\\bx{G}}{\\bx{HI}}$ となるように答えなさい。\n\nよって\n\n$$p=\\cos\\frac{\\bx{J}}{\\bx{KL}}\\pi,\\quad q=\\cos\\frac{\\bx{M}}{\\bx{NO}}\\pi$$\n\nを得る。\n\n(2)　$S$ の値を求めよう。\n\n$$S=\\int_p^q\\left(\\sqrt{1-x^2}-\\frac{1}{4x}\\right)dx$$\n\nであるから\n\n$$I=\\int_p^q\\sqrt{1-x^2}\\,dx,\\quad J=\\int_p^q\\frac{1}{x}\\,dx$$\n\nの値を求めればよい。\n\n$I$ については，$x=\\cos\\theta$ とおいて置換積分の計算をすると\n\n$$I=\\frac{\\bx{P}}{\\bx{Q}}\\pi$$\n\nとなる。また\n\n$$J=\\log\\left(\\bx{R}+\\sqrt{\\bx{S}}\\right)$$\n\nである。ただし，$\\log$ は自然対数である。\n\n以上より\n\n$$S=\\frac{\\bx{P}}{\\bx{Q}}\\pi-\\frac{\\bx{T}}{\\bx{U}}\\log\\left(\\bx{R}+\\sqrt{\\bx{S}}\\right)$$\n\nとなる。",
+      "stemZh": "考虑下面两条曲线：\n\n$$x^2+y^2=1\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n$$4xy=1\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\n其中 $x>0$，$y>0$。求曲线 ① 与曲线 ② 所围成部分的面积 $S$。\n\n(1)　首先，设曲线 ① 与曲线 ② 的交点为 P, Q，它们的 $x$ 坐标分别为 $p,\\ q\\ (p<q)$。\n\n由 ①，交点坐标 $(x,y)$ 可设为 $x=\\cos\\theta$，$y=\\sin\\theta$ $\\left(0<\\theta<\\dfrac{\\pi}{2}\\right)$。此时由 ② 得\n\n$$\\sin \\bx{A}\\,\\theta = \\frac{\\bx{B}}{\\bx{C}}$$\n\n由此得\n\n$$\\theta = \\frac{\\bx{D}}{\\bx{EF}}\\pi,\\quad \\frac{\\bx{G}}{\\bx{HI}}\\pi$$\n\n作答时请使 $\\dfrac{\\bx{D}}{\\bx{EF}} < \\dfrac{\\bx{G}}{\\bx{HI}}$。\n\n因此\n\n$$p=\\cos\\frac{\\bx{J}}{\\bx{KL}}\\pi,\\quad q=\\cos\\frac{\\bx{M}}{\\bx{NO}}\\pi$$\n\n(2)　求 $S$ 的值。由于\n\n$$S=\\int_p^q\\left(\\sqrt{1-x^2}-\\frac{1}{4x}\\right)dx$$\n\n只需求出\n\n$$I=\\int_p^q\\sqrt{1-x^2}\\,dx,\\quad J=\\int_p^q\\frac{1}{x}\\,dx$$\n\n的值。对于 $I$，令 $x=\\cos\\theta$ 进行换元积分，得\n\n$$I=\\frac{\\bx{P}}{\\bx{Q}}\\pi$$\n\n另外\n\n$$J=\\log\\left(\\bx{R}+\\sqrt{\\bx{S}}\\right)$$\n\n其中 $\\log$ 为自然对数。综上，\n\n$$S=\\frac{\\bx{P}}{\\bx{Q}}\\pi-\\frac{\\bx{T}}{\\bx{U}}\\log\\left(\\bx{R}+\\sqrt{\\bx{S}}\\right)$$",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "2",
+        "D": "1",
+        "E": "1",
+        "F": "2",
+        "G": "5",
+        "H": "1",
+        "I": "2",
+        "J": "5",
+        "K": "1",
+        "L": "2",
+        "M": "1",
+        "N": "1",
+        "O": "2",
+        "P": "1",
+        "Q": "6",
+        "R": "2",
+        "S": "3",
+        "T": "1",
+        "U": "4"
+      },
+      "explanation": {
+        "zh": "**思路**\n\n第一象限内，单位圆 $y=\\sqrt{1-x^2}$ 与双曲线 $y=\\dfrac{1}{4x}$ 交于两点，两交点之间圆弧在上、双曲线在下，面积 $=\\int(\\text{上}-\\text{下})\\,dx$。交点用圆的参数 $x=\\cos\\theta,\\ y=\\sin\\theta$ 代入 ②，会出现二倍角 $\\sin2\\theta$；$I$ 用 $x=\\cos\\theta$ 换元化成 $\\int\\sin^2\\theta\\,d\\theta$；$J$ 是 $\\log$ 型积分，关键是化简 $\\dfrac qp$。\n\n**解答**\n\n**(1) 交点**\n\n**1.（A, B, C）**　把 $x=\\cos\\theta,\\ y=\\sin\\theta$ 代入 ②：\n\n$$4\\cos\\theta\\sin\\theta=1\\ \\Longrightarrow\\ 2\\sin2\\theta=1\\ \\Longrightarrow\\ \\sin2\\theta=\\frac12$$\n\n**A = 2，B = 1，C = 2**。\n\n**2.（D, EF, G, HI）**　$0<\\theta<\\dfrac{\\pi}{2}$，所以 $0<2\\theta<\\pi$。在这个范围内 $\\sin2\\theta=\\dfrac12$ 有两个解：\n\n$$2\\theta=\\frac{\\pi}{6},\\ \\frac{5\\pi}{6}\\ \\Longrightarrow\\ \\theta=\\frac{1}{12}\\pi,\\ \\frac{5}{12}\\pi$$\n\n按从小到大填写：**D = 1，EF = 12，G = 5，HI = 12**。\n\n**3.（J, KL, M, NO）**　$x=\\cos\\theta$ 在 $0<\\theta<\\dfrac{\\pi}{2}$ 上是递减的：$\\theta$ 越大，$x$ 越小。因为 $p<q$，$p$ 对应较大的 $\\theta$：\n\n$$p=\\cos\\frac{5}{12}\\pi,\\qquad q=\\cos\\frac{1}{12}\\pi$$\n\n**J = 5，KL = 12，M = 1，NO = 12**。（数值：$p=\\cos75^\\circ=\\dfrac{\\sqrt6-\\sqrt2}{4}\\approx0.26$，$q=\\cos15^\\circ=\\dfrac{\\sqrt6+\\sqrt2}{4}\\approx0.97$。）\n\n**(2) 面积**\n\n**4. 列式**　在 $p<x<q$ 内圆弧在双曲线上方（例如 $x=\\frac{\\sqrt2}{2}$ 时 $\\sqrt{1-x^2}\\approx0.71>\\frac{1}{4x}\\approx0.35$），所以\n\n$$S=\\int_p^q\\left(\\sqrt{1-x^2}-\\frac{1}{4x}\\right)dx=I-\\frac14J$$\n\n**5. 求 I（P, Q）**　令 $x=\\cos\\theta$，则 $dx=-\\sin\\theta\\,d\\theta$；$x=p\\to\\theta=\\dfrac{5\\pi}{12}$，$x=q\\to\\theta=\\dfrac{\\pi}{12}$；此范围内 $\\sin\\theta>0$，故 $\\sqrt{1-x^2}=\\sin\\theta$。\n\n$$I=\\int_{5\\pi/12}^{\\pi/12}\\sin\\theta\\cdot(-\\sin\\theta)\\,d\\theta=\\int_{\\pi/12}^{5\\pi/12}\\sin^2\\theta\\,d\\theta=\\int_{\\pi/12}^{5\\pi/12}\\frac{1-\\cos2\\theta}{2}\\,d\\theta$$\n\n$$=\\left[\\frac{\\theta}{2}-\\frac{\\sin2\\theta}{4}\\right]_{\\pi/12}^{5\\pi/12}=\\frac12\\left(\\frac{5\\pi}{12}-\\frac{\\pi}{12}\\right)-\\frac14\\left(\\sin\\frac{5\\pi}{6}-\\sin\\frac{\\pi}{6}\\right)=\\frac{\\pi}{6}-0=\\frac{\\pi}{6}$$\n\n**P = 1，Q = 6**。\n\n**6. 求 J（R, S）**　$J=\\Big[\\log x\\Big]_p^q=\\log\\dfrac qp$。\n\n$$\\frac qp=\\frac{\\sqrt6+\\sqrt2}{\\sqrt6-\\sqrt2}=\\frac{(\\sqrt6+\\sqrt2)^2}{(\\sqrt6)^2-(\\sqrt2)^2}=\\frac{8+4\\sqrt3}{4}=2+\\sqrt3$$\n\n（另法：$\\cos\\frac{5\\pi}{12}=\\sin\\frac{\\pi}{12}$，所以 $\\frac qp=\\dfrac{1}{\\tan\\frac{\\pi}{12}}$，而 $\\tan15^\\circ=\\tan(45^\\circ-30^\\circ)=2-\\sqrt3$，倒数为 $2+\\sqrt3$。）\n\n所以 $J=\\log(2+\\sqrt3)$，**R = 2，S = 3**。\n\n**7. 合并（T, U）**\n\n$$S=I-\\frac14J=\\frac{\\pi}{6}-\\frac14\\log\\left(2+\\sqrt3\\right)\\approx0.5236-0.3292\\approx0.194>0$$\n\n**T = 1，U = 4**。\n\n**结论**　A = 2，B = 1，C = 2，D = 1，EF = 12，G = 5，HI = 12，J = 5，KL = 12，M = 1，NO = 12，P = 1，Q = 6，R = 2，S = 3，T = 1，U = 4；$S=\\dfrac{\\pi}{6}-\\dfrac14\\log(2+\\sqrt3)$。",
+        "keyPoints": [
+          "圆上的点用 $x=\\cos\\theta,\\ y=\\sin\\theta$ 参数化，$4xy=1$ 化为二倍角 $\\sin2\\theta=\\dfrac12$",
+          "$\\int\\sqrt{1-x^2}\\,dx$ 用 $x=\\cos\\theta$ 换元，配合降幂公式 $\\sin^2\\theta=\\dfrac{1-\\cos2\\theta}{2}$",
+          "两曲线所围面积 $=\\int_p^q(\\text{上}-\\text{下})\\,dx$；$\\int\\frac1x\\,dx=\\log x$"
+        ],
+        "traps": [
+          "$x=\\cos\\theta$ 递减：$\\theta$ 大的交点 $x$ 小，所以 $p=\\cos\\frac{5}{12}\\pi$，不是 $\\cos\\frac{1}{12}\\pi$",
+          "换元时上下限随之变成 $\\frac{5\\pi}{12}\\to\\frac{\\pi}{12}$，再用 $dx=-\\sin\\theta\\,d\\theta$ 的负号把上下限翻回来，符号别丢",
+          "被积函数里是 $\\frac{1}{4x}$，减去的是 $\\frac14J$，所以 $\\frac{T}{U}=\\frac14$；$2\\theta\\in(0,\\pi)$ 时 $\\sin2\\theta=\\frac12$ 有两解，别漏 $\\frac{5\\pi}{6}$"
+        ],
+        "terms": [
+          {
+            "ja": "曲線",
+            "kana": "きょくせん",
+            "zh": "曲线（此处指圆与双曲线）"
+          },
+          {
+            "ja": "交点",
+            "kana": "こうてん",
+            "zh": "两条曲线的公共点"
+          },
+          {
+            "ja": "囲まれる部分",
+            "kana": "かこまれるぶぶん",
+            "zh": "被（两条曲线）围起来的区域"
+          },
+          {
+            "ja": "座標",
+            "kana": "ざひょう",
+            "zh": "坐标"
+          },
+          {
+            "ja": "置換積分",
+            "kana": "ちかんせきぶん",
+            "zh": "换元积分法（代入新变量求积分）"
+          },
+          {
+            "ja": "自然対数",
+            "kana": "しぜんたいすう",
+            "zh": "以 e 为底的对数，即 ln"
+          }
+        ],
+        "shortcut": "$I$ 可用几何直接求：$I$ 是圆弧下、$x=p$ 到 $x=q$ 之间的面积 = 扇形（圆心角 $\\frac{5\\pi}{12}-\\frac{\\pi}{12}=\\frac{\\pi}{3}$，面积 $\\frac12\\cdot\\frac{\\pi}{3}=\\frac{\\pi}{6}$）+ 三角形 $O\\,(q,0)\\,Q$ − 三角形 $O\\,(p,0)\\,P$。两个三角形面积都是 $\\frac12\\cos\\theta\\sin\\theta=\\frac14\\sin2\\theta=\\frac18$（P、Q 关于 $y=x$ 对称），相互抵消，所以 $I=\\frac{\\pi}{6}$。$J$ 则记住 $\\tan15^\\circ=2-\\sqrt3$，$\\frac qp=\\cot15^\\circ=2+\\sqrt3$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

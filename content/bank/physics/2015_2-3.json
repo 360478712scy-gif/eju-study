@@ -1,0 +1,622 @@
+{
+  "title": "2015_2 physics part",
+  "items": [
+    {
+      "id": "2015_2-phy-13",
+      "subject": "physics",
+      "order": 13,
+      "topic": "phys.em.field",
+      "difficulty": 2,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問13（解答番号13）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 16
+      },
+      "stem": "**A**　次の図のように，長方形ABCDの頂点Aに電気量 $q$（$>0$）の点電荷を，頂点Bに電気量 $-8q$ の点電荷を固定した。辺ADの長さは $a$，辺ABの長さは $\\sqrt{3}\\,a$ である。点Cの電位を $V_\\mathrm{C}$，点Dの電位を $V_\\mathrm{D}$ とする。クーロンの法則の比例定数を $k$ とする。\n\n**問1**　$V_\\mathrm{D}-V_\\mathrm{C}$ はどのように表されるか。正しいものを，次の①～⑧の中から一つ選びなさい。",
+      "stemZh": "**A**　如图，在长方形 ABCD 的顶点 A 固定电荷量为 $q$（$>0$）的点电荷，在顶点 B 固定电荷量为 $-8q$ 的点电荷。边 AD 的长为 $a$，边 AB 的长为 $\\sqrt{3}\\,a$。设点 C 的电势为 $V_\\mathrm{C}$，点 D 的电势为 $V_\\mathrm{D}$。库仑定律的比例常数为 $k$。\n\n**问1**　$V_\\mathrm{D}-V_\\mathrm{C}$ 怎样表示？从①～⑧中选出一个正确的。",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2015_2-phy-13-1.png",
+          "caption": "長方形ABCD：A に q，B に −8q，AD = a，AB = √3 a"
+        }
+      ],
+      "format": "choice",
+      "options": [
+        "$-\\dfrac{11kq}{2a}$",
+        "$-\\dfrac{9kq}{2a}$",
+        "$-\\dfrac{7kq}{2a}$",
+        "$-\\dfrac{5kq}{2a}$",
+        "$\\dfrac{5kq}{2a}$",
+        "$\\dfrac{7kq}{2a}$",
+        "$\\dfrac{9kq}{2a}$",
+        "$\\dfrac{11kq}{2a}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧"
+      ],
+      "answer": 6,
+      "explanation": {
+        "zh": "**思路**　电势是**标量**，多个点电荷产生的电势直接代数相加（以无穷远为 0）：$V=k\\dfrac{Q}{r}$，$Q$ 要带正负号。所以只需要求出 C、D 到 A、B 的距离。\n\n**解答**\n\n1. 距离：$\\mathrm{AD}=\\mathrm{BC}=a$；对角线 $\\mathrm{AC}=\\mathrm{BD}=\\sqrt{(\\sqrt3\\,a)^2+a^2}=2a$。\n2. D 点电势（离 A 为 $a$，离 B 为 $2a$）：$$V_\\mathrm{D}=k\\dfrac{q}{a}+k\\dfrac{-8q}{2a}=\\dfrac{kq}{a}-\\dfrac{4kq}{a}=-\\dfrac{3kq}{a}=-\\dfrac{6kq}{2a}$$\n3. C 点电势（离 A 为 $2a$，离 B 为 $a$）：$$V_\\mathrm{C}=k\\dfrac{q}{2a}+k\\dfrac{-8q}{a}=\\dfrac{kq}{2a}-\\dfrac{16kq}{2a}=-\\dfrac{15kq}{2a}$$\n4. 相减：$$V_\\mathrm{D}-V_\\mathrm{C}=-\\dfrac{6kq}{2a}-\\left(-\\dfrac{15kq}{2a}\\right)=\\dfrac{9kq}{2a}$$\n\n物理意义（定性检验）：D 离正电荷 $q$ 近（$a$）、离负电荷 $-8q$ 远（$2a$）；C 恰好相反。两个因素都使 D 的电势高于 C，所以 $V_\\mathrm{D}-V_\\mathrm{C}>0$，先用这一点就能排除①～④。\n\n**结论**　$V_\\mathrm{D}-V_\\mathrm{C}=\\dfrac{9kq}{2a}$，答案 ⑦。\n\n常见错误：② $-\\dfrac{9kq}{2a}$ 是算成了 $V_\\mathrm{C}-V_\\mathrm{D}$（顺序反了）；③ $-\\dfrac{7kq}{2a}$ 是把 $-8q$ 当成 $+8q$（漏了符号）：$V_\\mathrm{D}=\\dfrac{10kq}{2a}$，$V_\\mathrm{C}=\\dfrac{17kq}{2a}$，差为 $-\\dfrac{7kq}{2a}$。",
+        "keyPoints": [
+          "点电荷电势 $V=k\\dfrac{Q}{r}$（无穷远为 0），多个电荷的电势按**带符号的代数和**叠加，不需要分解方向",
+          "边长 $a$、$\\sqrt3\\,a$ 的长方形，对角线为 $2a$"
+        ],
+        "traps": [
+          "负电荷产生负电势，$-8q$ 的符号不能丢（否则得 ③）",
+          "题目求 $V_\\mathrm{D}-V_\\mathrm{C}$，别算成 $V_\\mathrm{C}-V_\\mathrm{D}$（否则得 ②）"
+        ],
+        "terms": [
+          {
+            "ja": "電位",
+            "kana": "でんい",
+            "zh": "电势（单位伏特 V）；電位差＝电势差（电压）"
+          },
+          {
+            "ja": "点電荷",
+            "kana": "てんでんか",
+            "zh": "可以看成一个点的带电体"
+          },
+          {
+            "ja": "電気量",
+            "kana": "でんきりょう",
+            "zh": "电荷量（带电量）"
+          },
+          {
+            "ja": "頂点",
+            "kana": "ちょうてん",
+            "zh": "图形的角上的点，即顶点"
+          },
+          {
+            "ja": "辺",
+            "kana": "へん",
+            "zh": "多边形的一条边"
+          },
+          {
+            "ja": "比例定数",
+            "kana": "ひれいていすう",
+            "zh": "比例常数，这里指库仑常量 $k$"
+          }
+        ],
+        "shortcut": "以 $\\dfrac{kq}{2a}$ 为单位：A 的贡献 D 处 $+2$、C 处 $+1$；B 的贡献 D 处 $-8$、C 处 $-16$。于是 $V_\\mathrm{D}=-6$，$V_\\mathrm{C}=-15$，差 $=9$ → ⑦。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2015_2-phy-14",
+      "subject": "physics",
+      "order": 14,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問14（解答番号14）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 17
+      },
+      "stem": "**B**　同じ形状の2つの平行板コンデンサーAとBがある。Aの極板間は真空であり，Bの極板間は比誘電率 $\\varepsilon_r$ の誘電体で満たされている。次の図のようにAとBを電池に接続した。このとき，Aに蓄えられた電荷を $Q_\\mathrm{A}$，Aの極板間の電場の強さを $E_\\mathrm{A}$ とし，Bに蓄えられた電荷を $Q_\\mathrm{B}$，Bの極板間の電場の強さを $E_\\mathrm{B}$ とする。\n\n**問2**　$\\dfrac{Q_\\mathrm{B}}{Q_\\mathrm{A}}$ と $\\dfrac{E_\\mathrm{B}}{E_\\mathrm{A}}$ はどのように表されるか。正しい組み合わせを，次の①～⑥の中から一つ選びなさい。\n\n| | ① | ② | ③ | ④ | ⑤ | ⑥ |\n|---|---|---|---|---|---|---|\n| $\\dfrac{Q_\\mathrm{B}}{Q_\\mathrm{A}}$ | $1$ | $1$ | $1$ | $\\varepsilon_r$ | $\\varepsilon_r$ | $\\varepsilon_r$ |\n| $\\dfrac{E_\\mathrm{B}}{E_\\mathrm{A}}$ | $\\dfrac{1}{\\varepsilon_r}$ | $1$ | $\\varepsilon_r$ | $\\dfrac{1}{\\varepsilon_r}$ | $1$ | $\\varepsilon_r$ |",
+      "stemZh": "**B**　有两个形状相同的平行板电容器 A 和 B。A 的极板间为真空，B 的极板间充满相对介电常数为 $\\varepsilon_r$ 的电介质。如图，把 A 和 B 接到电池上。此时，设 A 储存的电荷为 $Q_\\mathrm{A}$、A 极板间的电场强度为 $E_\\mathrm{A}$，B 储存的电荷为 $Q_\\mathrm{B}$、B 极板间的电场强度为 $E_\\mathrm{B}$。\n\n**问2**　$\\dfrac{Q_\\mathrm{B}}{Q_\\mathrm{A}}$ 与 $\\dfrac{E_\\mathrm{B}}{E_\\mathrm{A}}$ 怎样表示？从①～⑥中选出正确的组合。\n\n| | ① | ② | ③ | ④ | ⑤ | ⑥ |\n|---|---|---|---|---|---|---|\n| $\\dfrac{Q_\\mathrm{B}}{Q_\\mathrm{A}}$ | $1$ | $1$ | $1$ | $\\varepsilon_r$ | $\\varepsilon_r$ | $\\varepsilon_r$ |\n| $\\dfrac{E_\\mathrm{B}}{E_\\mathrm{A}}$ | $\\dfrac{1}{\\varepsilon_r}$ | $1$ | $\\varepsilon_r$ | $\\dfrac{1}{\\varepsilon_r}$ | $1$ | $\\varepsilon_r$ |",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2015_2-phy-14-1.png",
+          "caption": "電池にコンデンサーA（真空）とB（誘電体，灰色）を直列に接続"
+        }
+      ],
+      "format": "choice",
+      "options": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　先看连接方式：图中 A、B 上下接在同一条支路上，是**串联**。串联电容器中间那块孤立导体（A 的下极板 + B 的上极板）原来不带电，电荷守恒 ⇒ 两个电容器所带电荷相等。场强用 $E=\\dfrac{V}{d}$，两者形状相同（$d$ 相同），只需比较各自电压。\n\n**解答**\n\n1. 串联 ⇒ $Q_\\mathrm{A}=Q_\\mathrm{B}=Q$，所以 $\\dfrac{Q_\\mathrm{B}}{Q_\\mathrm{A}}=1$。\n2. 电容：$C_\\mathrm{A}=\\varepsilon_0\\dfrac{S}{d}$，$C_\\mathrm{B}=\\varepsilon_r\\varepsilon_0\\dfrac{S}{d}=\\varepsilon_r C_\\mathrm{A}$。\n3. 电压：$V_\\mathrm{A}=\\dfrac{Q}{C_\\mathrm{A}}$，$V_\\mathrm{B}=\\dfrac{Q}{\\varepsilon_r C_\\mathrm{A}}=\\dfrac{V_\\mathrm{A}}{\\varepsilon_r}$。\n4. 场强：$E=\\dfrac{V}{d}$，$d$ 相同 ⇒ $\\dfrac{E_\\mathrm{B}}{E_\\mathrm{A}}=\\dfrac{V_\\mathrm{B}}{V_\\mathrm{A}}=\\dfrac{1}{\\varepsilon_r}$。\n\n另一种理解：两板电荷面密度相同，真空中场强 $E_\\mathrm{A}=\\dfrac{Q}{\\varepsilon_0 S}$；电介质被极化，表面极化电荷削弱电场，$E_\\mathrm{B}=\\dfrac{Q}{\\varepsilon_r\\varepsilon_0 S}=\\dfrac{E_\\mathrm{A}}{\\varepsilon_r}$。\n\n**结论**　$\\dfrac{Q_\\mathrm{B}}{Q_\\mathrm{A}}=1$，$\\dfrac{E_\\mathrm{B}}{E_\\mathrm{A}}=\\dfrac{1}{\\varepsilon_r}$，答案 ①。\n\n常见错误：⑤（$\\varepsilon_r$，$1$）是**并联**时的结果（电压相同 ⇒ 场强相同，电荷与电容成正比）；③ 是误以为放入电介质会让场强变大。",
+        "keyPoints": [
+          "串联电容器所带电荷相等，电压与电容成反比",
+          "平行板电容器 $C=\\varepsilon_r\\varepsilon_0\\dfrac{S}{d}$，极板间场强 $E=\\dfrac{V}{d}$；电荷相同时，电介质中的场强是真空中的 $\\dfrac{1}{\\varepsilon_r}$"
+        ],
+        "traps": [
+          "先判断串联还是并联：并联才是电压相同（误判会选 ⑤）",
+          "电介质使电容变大，但在电荷相同的条件下使场强变小，不是变大（否则选 ③）"
+        ],
+        "terms": [
+          {
+            "ja": "平行板コンデンサー",
+            "kana": "へいこうばんコンデンサー",
+            "zh": "平行板电容器"
+          },
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器的金属板（极板）"
+          },
+          {
+            "ja": "比誘電率",
+            "kana": "ひゆうでんりつ",
+            "zh": "相对介电常数，$\\varepsilon_r=\\varepsilon/\\varepsilon_0$"
+          },
+          {
+            "ja": "誘電体",
+            "kana": "ゆうでんたい",
+            "zh": "电介质（绝缘体，在电场中会极化）"
+          },
+          {
+            "ja": "蓄える",
+            "kana": "たくわえる",
+            "zh": "储存、积蓄（电容器储存电荷）"
+          },
+          {
+            "ja": "電場の強さ",
+            "kana": "でんばのつよさ",
+            "zh": "电场强度的大小（電場也写作 電界）"
+          }
+        ],
+        "shortcut": "串联 ⇒ 电荷比为 1，直接排除 ④⑤⑥；电介质削弱场强 ⇒ $E_\\mathrm{B}<E_\\mathrm{A}$，选 ①。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2015_2-phy-15",
+      "subject": "physics",
+      "order": 15,
+      "topic": "phys.em.circuit",
+      "difficulty": 1,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問15（解答番号15）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 18
+      },
+      "stem": "**C**　次の図のように，抵抗値が $R$ の抵抗4個と，起電力 $V$ の電池を接続した。このとき，回路中の点Aを流れる電流の大きさを $I$ とする。電池の内部抵抗は無視できるものとする。\n\n**問3**　$I$ はどのように表されるか。正しいものを，次の①～⑤の中から一つ選びなさい。",
+      "stemZh": "**C**　如图，把 4 个阻值为 $R$ 的电阻与电动势为 $V$ 的电池连接起来。设此时流过电路中点 A 的电流大小为 $I$。电池的内阻可以忽略。\n\n**问3**　$I$ 怎样表示？从①～⑤中选出一个正确的。",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2015_2-phy-15-1.png",
+          "caption": "起電力 V の電池と抵抗 R ×4 の回路，右上の点 A"
+        }
+      ],
+      "format": "choice",
+      "options": [
+        "$\\dfrac{V}{5R}$",
+        "$\\dfrac{2V}{5R}$",
+        "$\\dfrac{3V}{5R}$",
+        "$\\dfrac{4V}{5R}$",
+        "$\\dfrac{V}{R}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　点 A 在最右边的支路上（右上的 $R$ 与右侧竖直的 $R$ 串联）。先把电路化简求干路电流，再按并联分流求这条支路的电流。\n\n**解答**\n\n1. 右支路：两个 $R$ 串联，$R_\\text{右}=2R$。\n2. 它与中间竖直的 $R$ 并联：$R_\\text{并}=\\dfrac{R\\cdot 2R}{R+2R}=\\dfrac{2R}{3}$。\n3. 再与左上的 $R$ 串联：$R_\\text{总}=R+\\dfrac{2R}{3}=\\dfrac{5R}{3}$，干路电流 $I_0=\\dfrac{V}{R_\\text{总}}=\\dfrac{3V}{5R}$。\n4. 并联部分两端电压：$U=I_0\\cdot\\dfrac{2R}{3}=\\dfrac{3V}{5R}\\cdot\\dfrac{2R}{3}=\\dfrac{2V}{5}$。\n5. 右支路电流（即点 A 的电流）：$I=\\dfrac{U}{2R}=\\dfrac{V}{5R}$。\n\n验算（分流法）：并联两支路电流与电阻成反比，$R:2R$ ⇒ 电流 $2:1$，右支路占干路的 $\\dfrac13$：$I=\\dfrac13\\cdot\\dfrac{3V}{5R}=\\dfrac{V}{5R}$。\n\n**结论**　$I=\\dfrac{V}{5R}$，答案 ①。\n\n常见错误：③ $\\dfrac{3V}{5R}$ 是干路电流；② $\\dfrac{2V}{5R}$ 是中间竖直电阻中的电流。",
+        "keyPoints": [
+          "串并联化简：$R\\parallel 2R=\\dfrac{2R}{3}$",
+          "并联支路电流与电阻成反比（分流）"
+        ],
+        "traps": [
+          "点 A 不在干路上，干路电流 $\\dfrac{3V}{5R}$ 不是答案（③）",
+          "中间电阻的电流 $\\dfrac{2V}{5R}$（②）与右支路电流不同，别混淆"
+        ],
+        "terms": [
+          {
+            "ja": "抵抗値",
+            "kana": "ていこうち",
+            "zh": "电阻的阻值"
+          },
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电动势"
+          },
+          {
+            "ja": "内部抵抗",
+            "kana": "ないぶていこう",
+            "zh": "电池的内阻"
+          },
+          {
+            "ja": "無視できる",
+            "kana": "むしできる",
+            "zh": "可以忽略不计"
+          },
+          {
+            "ja": "回路",
+            "kana": "かいろ",
+            "zh": "电路"
+          }
+        ],
+        "shortcut": "干路 $\\dfrac{3V}{5R}$ 按 $2:1$ 分流，右支路拿 $\\dfrac13$ → $\\dfrac{V}{5R}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2015_2-phy-16",
+      "subject": "physics",
+      "order": 16,
+      "topic": "phys.em.magnetic",
+      "difficulty": 2,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問16（解答番号16）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 19
+      },
+      "stem": "**D**　次の図のように，十分に長い直線導線Aと円形コイルBが同一平面内に置かれている。Bの半径は $r$ であり，Bの中心OとAの距離は $3r$ である。Aに大きさ $I_\\mathrm{A}$ の電流が図中の矢印の向きに流れている。Bに電流 $I_\\mathrm{B}$ を流したところ，Oでの磁場が $0$ になった。ただし，図中の矢印の向きを $I_\\mathrm{B}$ の正の向きとする。\n\n**問4**　$\\dfrac{I_\\mathrm{B}}{I_\\mathrm{A}}$ はどのように表されるか。正しいものを，次の①～⑥の中から一つ選びなさい。",
+      "stemZh": "**D**　如图，足够长的直导线 A 与圆形线圈 B 放在同一平面内。B 的半径为 $r$，B 的中心 O 与 A 的距离为 $3r$。A 中有大小为 $I_\\mathrm{A}$ 的电流沿图中箭头方向流动。给 B 通以电流 $I_\\mathrm{B}$ 后，O 处的磁场变为 $0$。其中，以图中箭头方向为 $I_\\mathrm{B}$ 的正方向。\n\n**问4**　$\\dfrac{I_\\mathrm{B}}{I_\\mathrm{A}}$ 怎样表示？从①～⑥中选出一个正确的。",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2015_2-phy-16-1.png",
+          "caption": "直線導線A（電流 I_A 上向き）と半径 r の円形コイルB，中心O はAから 3r，I_B の正の向きは反時計回り"
+        }
+      ],
+      "format": "choice",
+      "options": [
+        "$-\\dfrac{2}{3\\pi}$",
+        "$-\\dfrac{1}{3\\pi}$",
+        "$-\\dfrac{1}{6\\pi}$",
+        "$\\dfrac{1}{6\\pi}$",
+        "$\\dfrac{1}{3\\pi}$",
+        "$\\dfrac{2}{3\\pi}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "answer": 4,
+      "explanation": {
+        "zh": "**思路**　O 点的磁场 = 直导线 A 产生的磁场 + 圆形线圈 B 产生的磁场。合磁场为 0 ⇒ 两者**大小相等、方向相反**。大小用公式，方向用右手螺旋定则，最后由方向确定 $I_\\mathrm{B}$ 的正负。\n\n**解答**\n\n1. 直导线 A 在 O 处（距离 $3r$）的磁场：$H_\\mathrm{A}=\\dfrac{I_\\mathrm{A}}{2\\pi\\cdot 3r}=\\dfrac{I_\\mathrm{A}}{6\\pi r}$。方向：右手拇指沿电流（向上）握住导线，导线**右侧**四指方向为**垂直纸面向里**。\n2. 圆形线圈在中心的磁场：$H_\\mathrm{B}=\\dfrac{I_\\mathrm{B}}{2r}$。图中正方向的箭头画在线圈上方、指向左，即**逆时针**；逆时针电流在中心产生**垂直纸面向外**的磁场。\n3. 要抵消向里的 $H_\\mathrm{A}$，线圈必须在 O 产生向外的磁场 ⇒ 电流沿正方向（逆时针）⇒ $I_\\mathrm{B}>0$。\n4. 大小相等：$$\\dfrac{I_\\mathrm{B}}{2r}=\\dfrac{I_\\mathrm{A}}{6\\pi r}\\ \\Rightarrow\\ \\dfrac{I_\\mathrm{B}}{I_\\mathrm{A}}=\\dfrac{2r}{6\\pi r}=\\dfrac{1}{3\\pi}$$\n\n（用磁感应强度 $B=\\mu_0H$ 表示也一样，$\\mu_0$ 两边约掉。）\n\n**结论**　$\\dfrac{I_\\mathrm{B}}{I_\\mathrm{A}}=\\dfrac{1}{3\\pi}$，答案 ⑤。\n\n常见错误：② 是方向判断反了；④ $\\dfrac{1}{6\\pi}$ 是把圆电流中心磁场写成 $\\dfrac{I}{r}$（漏了分母的 2）。",
+        "keyPoints": [
+          "直线电流 $H=\\dfrac{I}{2\\pi r}$；圆形电流中心 $H=\\dfrac{I}{2r}$",
+          "右手螺旋定则判方向；合磁场为 0 ⇒ 等大反向"
+        ],
+        "traps": [
+          "圆形线圈中心是 $\\dfrac{I}{2r}$，没有 $\\pi$；直导线才是 $\\dfrac{I}{2\\pi r}$",
+          "正负号由方向决定：A 在 O 处的磁场向里，需要线圈逆时针（正方向）电流产生向外的磁场，所以比值为正"
+        ],
+        "terms": [
+          {
+            "ja": "直線導線",
+            "kana": "ちょくせんどうせん",
+            "zh": "笔直的导线（直导线）"
+          },
+          {
+            "ja": "円形コイル",
+            "kana": "えんけいコイル",
+            "zh": "圆形线圈"
+          },
+          {
+            "ja": "同一平面内",
+            "kana": "どういつへいめんない",
+            "zh": "在同一个平面里"
+          },
+          {
+            "ja": "磁場",
+            "kana": "じば",
+            "zh": "磁场（磁場の強さ $H$，单位 A/m）"
+          },
+          {
+            "ja": "正の向き",
+            "kana": "せいのむき",
+            "zh": "规定为正的方向（正方向）"
+          },
+          {
+            "ja": "十分に長い",
+            "kana": "じゅうぶんにながい",
+            "zh": "足够长（可视为无限长直导线）"
+          }
+        ],
+        "shortcut": "大小：$\\dfrac{I_\\mathrm{B}}{2r}=\\dfrac{I_\\mathrm{A}}{2\\pi(3r)}$ ⇒ $\\dfrac{1}{3\\pi}$，只剩 ②、⑤；再判方向（直导线右侧向里，逆时针线圈中心向外，可抵消）⇒ 取正，⑤。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2015_2-phy-17",
+      "subject": "physics",
+      "order": 17,
+      "topic": "phys.em.magnetic",
+      "difficulty": 2,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問17（解答番号17）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 20
+      },
+      "stem": "**E**　次の図のように，直角二等辺三角形の2等辺の部分PQRをもつ導線に，大きさ $I$ の電流が図中の矢印の向きに流れている。導線は紙面内にあり，導線の一部PQRは一様な磁場中にある。磁場は紙面に垂直で，紙面の表から裏に向かう向きであり，磁束密度の大きさは $B$ である。辺PQと辺QRの長さは $\\ell$ である。導線を流れる電流のつくる磁場の影響は無視できるものとする。\n\n**問5**　導線の部分PQRが受ける力の大きさはどう表されるか。また，その向きは上の図に示した向きa～dのどれか。正しい組み合わせを，次の①～⑧の中から一つ選びなさい。\n\n| | ① | ② | ③ | ④ | ⑤ | ⑥ | ⑦ | ⑧ |\n|---|---|---|---|---|---|---|---|---|\n| 大きさ | $\\sqrt{2}\\,IB\\ell$ | $\\sqrt{2}\\,IB\\ell$ | $\\sqrt{2}\\,IB\\ell$ | $\\sqrt{2}\\,IB\\ell$ | $2IB\\ell$ | $2IB\\ell$ | $2IB\\ell$ | $2IB\\ell$ |\n| 向き | a | b | c | d | a | b | c | d |",
+      "stemZh": "**E**　如图，导线中有一段呈等腰直角三角形两腰形状的部分 PQR，导线中通有大小为 $I$ 的电流，方向如图中箭头所示。导线位于纸面内，其中 PQR 部分处在匀强磁场中。磁场垂直于纸面，方向从纸面正面指向背面（垂直纸面向里），磁感应强度大小为 $B$。边 PQ 与边 QR 的长度均为 $\\ell$。导线中电流产生的磁场的影响可以忽略。\n\n**问5**　导线的 PQR 部分受到的力的大小怎样表示？其方向是上图所示方向 a～d 中的哪一个？从①～⑧中选出正确的组合。\n\n| | ① | ② | ③ | ④ | ⑤ | ⑥ | ⑦ | ⑧ |\n|---|---|---|---|---|---|---|---|---|\n| 大小 | $\\sqrt{2}\\,IB\\ell$ | $\\sqrt{2}\\,IB\\ell$ | $\\sqrt{2}\\,IB\\ell$ | $\\sqrt{2}\\,IB\\ell$ | $2IB\\ell$ | $2IB\\ell$ | $2IB\\ell$ | $2IB\\ell$ |\n| 方向 | a | b | c | d | a | b | c | d |",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2015_2-phy-17-1.png",
+          "caption": "電流 I は左から P→Q→R→右へ，灰色の領域に紙面表から裏向きの磁場 B，PQ = QR = ℓ，下に向き a（右）b（上）c（左）d（下）"
+        }
+      ],
+      "format": "choice",
+      "options": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　在**匀强磁场**中，一段弯曲导线受到的安培力，等于连接其起点和终点的直导线（通同样电流）受到的力。所以 PQR 可以等效成直线 PR。\n\n**解答**\n\n1. 等效长度：PQR 是等腰直角三角形的两腰，斜边 $\\mathrm{PR}=\\sqrt{\\ell^2+\\ell^2}=\\sqrt2\\,\\ell$。\n2. 大小：电流与磁场垂直，$F=IB\\cdot\\mathrm{PR}=\\sqrt2\\,IB\\ell$。\n3. 方向：等效电流 P→R 向右，磁场垂直纸面向里。弗莱明左手定则：食指指磁场（向里）、中指指电流（向右），拇指指向**上方** ⇒ 方向 b。（矢量式 $\\vec F=I\\vec L\\times\\vec B$ 结果相同。）\n4. 分段验算：PQ 段受力 $IB\\ell$，垂直 PQ 指向左上；QR 段受力 $IB\\ell$，垂直 QR 指向右上。两者水平分量抵消，竖直分量各为 $IB\\ell\\cos45^\\circ=\\dfrac{IB\\ell}{\\sqrt2}$，合力 $=\\dfrac{2IB\\ell}{\\sqrt2}=\\sqrt2\\,IB\\ell$，向上。\n\n**结论**　大小 $\\sqrt2\\,IB\\ell$，方向 b，答案 ②。\n\n常见错误：⑥（$2IB\\ell$，b）是把两段的力大小直接相加，忽略了它们方向不同（夹角 $90^\\circ$）。",
+        "keyPoints": [
+          "安培力 $F=IBL$（$I\\perp B$），方向由弗莱明左手定则判定",
+          "匀强磁场中，弯曲导线受力 = 首尾连线（等效直导线）受力"
+        ],
+        "traps": [
+          "两段导线受力方向互相垂直，不能把 $IB\\ell+IB\\ell$ 直接相加（否则选 ⑥）",
+          "左手定则：中指＝电流、食指＝磁场、拇指＝力；用右手会得到相反方向 d"
+        ],
+        "terms": [
+          {
+            "ja": "直角二等辺三角形",
+            "kana": "ちょっかくにとうへんさんかっけい",
+            "zh": "等腰直角三角形"
+          },
+          {
+            "ja": "一様な磁場",
+            "kana": "いちようなじば",
+            "zh": "匀强磁场（各处大小方向都相同）"
+          },
+          {
+            "ja": "磁束密度",
+            "kana": "じそくみつど",
+            "zh": "磁感应强度 $B$（单位 T）"
+          },
+          {
+            "ja": "紙面の表から裏に向かう向き",
+            "kana": "しめんのおもてからうらにむかうむき",
+            "zh": "从纸的正面穿向背面，即垂直纸面向里（⊗）"
+          },
+          {
+            "ja": "導線",
+            "kana": "どうせん",
+            "zh": "导线"
+          }
+        ],
+        "shortcut": "把 PQR 换成 PR：长度 $\\sqrt2\\,\\ell$、电流向右、磁场向里 ⇒ 力向上，②。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2015_2-phy-18",
+      "subject": "physics",
+      "order": 18,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問18（解答番号18）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 21
+      },
+      "stem": "**F**　次の図のように，鉛直上向きで磁束密度の大きさ $B$ の一様な磁場内に，長い2本の平行な金属レールを水平に置き，レールの左端に抵抗Rを接続する。レールの上に導体棒abをレールと垂直になるように乗せ，この導体棒を右向きに一定の速さ $v$ で動かした。導体棒とレールの電気抵抗は無視できるものとする。\n\n**問6**　導体棒に流れる電流の向きと，aとbの電位はどうなるか。最も適当な組み合わせを，次の①～⑥の中から一つ選びなさい。\n\n| | 電流の向き | aとbの電位 |\n|---|---|---|\n| ① | a→b | aの電位の方が高い |\n| ② | a→b | bの電位の方が高い |\n| ③ | a→b | aとbの電位は等しい |\n| ④ | b→a | aの電位の方が高い |\n| ⑤ | b→a | bの電位の方が高い |\n| ⑥ | b→a | aとbの電位は等しい |",
+      "stemZh": "**F**　如图，在方向竖直向上、磁感应强度大小为 $B$ 的匀强磁场中，水平放置两根长的平行金属导轨，导轨左端接电阻 R。把导体棒 ab 垂直于导轨放在导轨上，使导体棒以恒定速率 $v$ 向右运动。导体棒和导轨的电阻可以忽略。\n\n**问6**　导体棒中电流的方向，以及 a 与 b 的电势关系如何？从①～⑥中选出最合适的组合。\n\n| | 电流方向 | a 与 b 的电势 |\n|---|---|---|\n| ① | a→b | a 的电势较高 |\n| ② | a→b | b 的电势较高 |\n| ③ | a→b | a 与 b 电势相等 |\n| ④ | b→a | a 的电势较高 |\n| ⑤ | b→a | b 的电势较高 |\n| ⑥ | b→a | a 与 b 电势相等 |",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2015_2-phy-18-1.png",
+          "caption": "水平な2本のレール，左端に抵抗R，導体棒ab（a は奥，b は手前）が右向きに速さ v，磁場 B は鉛直上向き"
+        }
+      ],
+      "format": "choice",
+      "options": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　导体棒切割磁感线产生感应电动势 $vBL$，**导体棒本身相当于电池**，电阻 R 是外电路。先判断感应电流方向，再利用“电源内部电流从低电势流向高电势”判断 a、b 的电势。\n\n**解答**\n\n1. 看清立体图：两根导轨左右延伸，a 端在里侧（远处）的导轨上，b 端在外侧（近处）的导轨上；棒向右运动，磁场竖直向上。\n2. 电流方向（楞次定律）：棒右移，回路（R—导轨—棒）面积增大，穿过回路向上的磁通量增加；感应电流要产生向下的磁场，从上往下看回路中电流为**顺时针**：里侧导轨上从左向右 → 棒中 **a→b** → 外侧导轨上从右向左 → 经 R 回到里侧。\n（洛伦兹力验证：取向右为 $x$、b→a 方向为 $y$、竖直向上为 $z$，棒中正电荷受力 $q\\vec v\\times\\vec B\\propto\\hat x\\times\\hat z=-\\hat y$，即指向 b。）\n3. 电势：棒是电源，电流在电源内部从负极流向正极。电流在棒中 a→b，所以 b 是正极，**b 的电势高**，$V_\\mathrm{b}-V_\\mathrm{a}=vBL$（$L$ 为导轨间距）。外电路中电流从 b 出发，经外侧导轨、R 流回 a，也符合“外电路中电流从高电势流向低电势”。\n\n**结论**　电流 a→b，b 的电势较高，答案 ②。\n\n常见错误：① 把棒当成普通电阻，以为电流从高电势流向低电势；③ 以为棒的电阻为 0 所以两端等电势——但棒中有感应电动势，两端电势差等于 $vBL$。",
+        "keyPoints": [
+          "动生电动势 $V=vBL$，方向用楞次定律、洛伦兹力或弗莱明右手定则判断",
+          "产生电动势的导体棒是电源：内部电流从低电势端流向高电势端"
+        ],
+        "traps": [
+          "电源内部电流是“低→高”，不能套用外电路的“高→低”（否则选 ①）",
+          "棒电阻为零不代表两端等电势，电势差等于电动势（否则选 ③）",
+          "立体图中 a 在里侧、b 在外侧，先确定空间方向再用定则"
+        ],
+        "terms": [
+          {
+            "ja": "鉛直上向き",
+            "kana": "えんちょくうわむき",
+            "zh": "竖直向上（鉛直＝与重力方向一致的竖直方向）"
+          },
+          {
+            "ja": "導体棒",
+            "kana": "どうたいぼう",
+            "zh": "导体棒（金属棒）"
+          },
+          {
+            "ja": "金属レール",
+            "kana": "きんぞくレール",
+            "zh": "金属导轨"
+          },
+          {
+            "ja": "電位",
+            "kana": "でんい",
+            "zh": "电势"
+          },
+          {
+            "ja": "一定の速さ",
+            "kana": "いっていのはやさ",
+            "zh": "恒定的速率（匀速）"
+          },
+          {
+            "ja": "垂直",
+            "kana": "すいちょく",
+            "zh": "相互垂直（成 90°）"
+          }
+        ],
+        "shortcut": "弗莱明右手定则：拇指＝运动（向右），食指＝磁场（向上），中指＝感应电流 ⇒ 指向 b（a→b）；电源内部电流流向正极 ⇒ b 高，②。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2015_2-phy-19",
+      "subject": "physics",
+      "order": 19,
+      "topic": "phys.atom.quantum",
+      "difficulty": 1,
+      "targetSec": 110,
+      "source": {
+        "kind": "official",
+        "session": "2015_2",
+        "label": "2015年第2回 物理 問19（解答番号19）",
+        "pdf": "/assets/expanded/2015_2-science.pdf",
+        "page": 22
+      },
+      "stem": "**A**　水素原子の $n$ 番目の定常状態のエネルギー準位は次の式で与えられる。\n\n$$E_n=-\\dfrac{2.2\\times10^{-18}}{n^2}\\ \\mathrm{J}$$\n\n**問1**　水素原子が $n=4$ の定常状態から $n=2$ の定常状態へ移るときに放出される光の波長は何 $\\mathrm{m}$ か。最も適当な値を，次の①～⑥の中から一つ選びなさい。ただし，プランク定数は $6.6\\times10^{-34}\\,\\mathrm{J\\cdot s}$，光の速さは $3.0\\times10^{8}\\,\\mathrm{m/s}$ とする。",
+      "stemZh": "**A**　氢原子第 $n$ 个定态的能级由下式给出。\n\n$$E_n=-\\dfrac{2.2\\times10^{-18}}{n^2}\\ \\mathrm{J}$$\n\n**问1**　氢原子从 $n=4$ 的定态跃迁到 $n=2$ 的定态时，放出的光的波长是多少 $\\mathrm{m}$？从①～⑥中选出最合适的值。其中，普朗克常量为 $6.6\\times10^{-34}\\,\\mathrm{J\\cdot s}$，光速为 $3.0\\times10^{8}\\,\\mathrm{m/s}$。",
+      "format": "choice",
+      "options": [
+        "$1.6\\times10^{-7}$",
+        "$2.4\\times10^{-7}$",
+        "$3.2\\times10^{-7}$",
+        "$4.8\\times10^{-7}$",
+        "$6.4\\times10^{-7}$",
+        "$7.2\\times10^{-7}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　玻尔模型：电子从高能级跃迁到低能级时，放出一个光子，光子能量等于两能级之差：$h\\nu=\\dfrac{hc}{\\lambda}=E_4-E_2$。于是 $\\lambda=\\dfrac{hc}{E_4-E_2}$。\n\n**解答**\n\n1. 能级差（能级为负值，高能级减低能级为正）：$$E_4-E_2=-\\dfrac{2.2\\times10^{-18}}{16}-\\left(-\\dfrac{2.2\\times10^{-18}}{4}\\right)=2.2\\times10^{-18}\\times\\left(\\dfrac14-\\dfrac1{16}\\right)=2.2\\times10^{-18}\\times\\dfrac{3}{16}\\approx4.1\\times10^{-19}\\ \\mathrm{J}$$\n2. $hc=6.6\\times10^{-34}\\times3.0\\times10^{8}=1.98\\times10^{-25}\\ \\mathrm{J\\cdot m}$。\n3. 波长：$$\\lambda=\\dfrac{hc}{E_4-E_2}=\\dfrac{1.98\\times10^{-25}}{2.2\\times10^{-18}}\\times\\dfrac{16}{3}=0.90\\times10^{-7}\\times\\dfrac{16}{3}=4.8\\times10^{-7}\\ \\mathrm{m}$$\n\n（这是巴耳末系的蓝绿色可见光，约 $480\\,\\mathrm{nm}$，与实际的 $\\mathrm{H}_\\beta$ 线 $486\\,\\mathrm{nm}$ 吻合。）\n\n**结论**　$\\lambda\\approx4.8\\times10^{-7}\\,\\mathrm{m}$，答案 ④。\n\n自查：若把能级差错算成 $\\dfrac14+\\dfrac1{16}=\\dfrac5{16}$，会得 $\\lambda\\approx2.9\\times10^{-7}\\,\\mathrm{m}$；若忘了平方（$\\dfrac12-\\dfrac14$），会得 $3.6\\times10^{-7}\\,\\mathrm{m}$——都不在选项里，说明某处出错，应回头检查符号和 $n^2$。其余选项与正确计算不符。",
+        "keyPoints": [
+          "玻尔的频率条件：$h\\nu=E_m-E_n$（$m>n$ 时放出光子）",
+          "光子能量与波长：$E=\\dfrac{hc}{\\lambda}$，能级差越大波长越短"
+        ],
+        "traps": [
+          "能级是负数，要用“高能级 − 低能级”得正的能量差，$\\dfrac14-\\dfrac1{16}=\\dfrac3{16}$，别算成 $\\dfrac14+\\dfrac1{16}$",
+          "公式里是 $n^2$：$n=4$ 对应 $\\dfrac1{16}$，$n=2$ 对应 $\\dfrac14$，别漏平方"
+        ],
+        "terms": [
+          {
+            "ja": "定常状態",
+            "kana": "ていじょうじょうたい",
+            "zh": "定态（电子在其中不辐射能量的稳定轨道状态）"
+          },
+          {
+            "ja": "エネルギー準位",
+            "kana": "エネルギーじゅんい",
+            "zh": "能级"
+          },
+          {
+            "ja": "放出",
+            "kana": "ほうしゅつ",
+            "zh": "释放、发射（光子）"
+          },
+          {
+            "ja": "波長",
+            "kana": "はちょう",
+            "zh": "波长"
+          },
+          {
+            "ja": "プランク定数",
+            "kana": "プランクていすう",
+            "zh": "普朗克常量 $h$"
+          },
+          {
+            "ja": "水素原子",
+            "kana": "すいそげんし",
+            "zh": "氢原子"
+          }
+        ],
+        "shortcut": "$\\dfrac{hc}{2.2\\times10^{-18}}=\\dfrac{1.98\\times10^{-25}}{2.2\\times10^{-18}}=9.0\\times10^{-8}\\,\\mathrm{m}$ 是“基准波长”，再乘 $\\dfrac{1}{1/4-1/16}=\\dfrac{16}{3}$ 得 $4.8\\times10^{-7}\\,\\mathrm{m}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      },
+      "tags": [
+        "phys.atom.nuclear"
+      ]
+    }
+  ]
+}

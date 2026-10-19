@@ -1,0 +1,188 @@
+{
+ "title": "2016_1 math part",
+ "items": [
+  {
+   "id": "2016_1-math-III",
+   "subject": "math",
+   "order": 5,
+   "topic": "math.calc.diff",
+   "tags": [
+    "math.geo.coord",
+    "math.algebra.poly",
+    "math.trig.func"
+   ],
+   "difficulty": 2,
+   "targetSec": 1100,
+   "source": {
+    "kind": "official",
+    "session": "2016_1",
+    "label": "2016年第1回 数学コース2 III（解答欄A〜W）",
+    "pdf": "/assets/expanded/2016_1-math.pdf",
+    "page": 26
+   },
+   "stem": "次の 4 つの条件を満たす実数 $x,\\ y,\\ t,\\ u$ を考える。\n\n$$y \\geqq |x|\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n$$x+y=t\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\n$$x^2+y^2=12\\qquad\\cdots\\cdots\\cdots\\quad\\text{③}$$\n\n$$x^3+y^3=u\\qquad\\cdots\\cdots\\cdots\\quad\\text{④}$$\n\nこのとき，$t$ および $u$ がとる値の範囲を求めよう。\n\n(1)　①, ③ より，点 $(x,y)$ は原点を中心とする半径 $\\bx{A}\\sqrt{\\bx{B}}$ の四分円の弧の上にあり，弧の両端の点の座標は\n\n$$\\left(\\sqrt{\\bx{C}},\\ \\sqrt{\\bx{D}}\\right),\\quad \\left(-\\sqrt{\\bx{C}},\\ \\sqrt{\\bx{D}}\\right)$$\n\nである。このことと ② より，$t$ がとる値の範囲は\n\n$$\\bx{E} \\leqq t \\leqq \\bx{F}\\sqrt{\\bx{G}}\\qquad\\cdots\\cdots\\cdots\\quad\\text{⑤}$$\n\nである。\n\n(2)　次に ②, ③ より\n\n$$xy=\\frac{\\bx{H}}{\\bx{I}}\\left(t^2-\\bx{JK}\\right)$$\n\nを得る。さらに，④ を用いて\n\n$$u=\\frac{\\bx{L}}{\\bx{M}}\\left(\\bx{NO}\\,t-t^3\\right)$$\n\nを得る。\n\nしたがって\n\n$$\\frac{du}{dt}=\\frac{\\bx{P}}{\\bx{Q}}\\left(\\bx{RS}-t^2\\right)$$\n\nであるから，⑤ の範囲において $u$ がとる値の範囲は\n\n$$\\bx{T} \\leqq u \\leqq \\bx{UV}\\sqrt{\\bx{W}}$$\n\nである。\n\n注）四分円：quadrant，弧：arc",
+   "stemZh": "考虑满足下面 4 个条件的实数 $x,\\ y,\\ t,\\ u$。\n\n$$y \\geqq |x|\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n$$x+y=t\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\n$$x^2+y^2=12\\qquad\\cdots\\cdots\\cdots\\quad\\text{③}$$\n\n$$x^3+y^3=u\\qquad\\cdots\\cdots\\cdots\\quad\\text{④}$$\n\n求此时 $t$ 和 $u$ 的取值范围。\n\n(1)　由 ①、③，点 $(x,y)$ 在以原点为圆心、半径为 $\\bx{A}\\sqrt{\\bx{B}}$ 的四分之一圆的圆弧上，圆弧两个端点的坐标为\n\n$$\\left(\\sqrt{\\bx{C}},\\ \\sqrt{\\bx{D}}\\right),\\quad \\left(-\\sqrt{\\bx{C}},\\ \\sqrt{\\bx{D}}\\right)$$\n\n由此并结合 ②，$t$ 的取值范围是\n\n$$\\bx{E} \\leqq t \\leqq \\bx{F}\\sqrt{\\bx{G}}\\qquad\\cdots\\cdots\\cdots\\quad\\text{⑤}$$\n\n(2)　接着，由 ②、③ 得\n\n$$xy=\\frac{\\bx{H}}{\\bx{I}}\\left(t^2-\\bx{JK}\\right)$$\n\n再利用 ④，得\n\n$$u=\\frac{\\bx{L}}{\\bx{M}}\\left(\\bx{NO}\\,t-t^3\\right)$$\n\n因此\n\n$$\\frac{du}{dt}=\\frac{\\bx{P}}{\\bx{Q}}\\left(\\bx{RS}-t^2\\right)$$\n\n所以在 ⑤ 的范围内，$u$ 的取值范围是\n\n$$\\bx{T} \\leqq u \\leqq \\bx{UV}\\sqrt{\\bx{W}}$$\n\n注）四分円：四分之一圆（quadrant），弧：圆弧（arc）",
+   "format": "blanks",
+   "blanks": {
+    "A": "2",
+    "B": "3",
+    "C": "6",
+    "D": "6",
+    "E": "0",
+    "F": "2",
+    "G": "6",
+    "H": "1",
+    "I": "2",
+    "J": "1",
+    "K": "2",
+    "L": "1",
+    "M": "2",
+    "N": "3",
+    "O": "6",
+    "P": "3",
+    "Q": "2",
+    "R": "1",
+    "S": "2",
+    "T": "0",
+    "U": "2",
+    "V": "4",
+    "W": "3"
+   },
+   "explanation": {
+    "zh": "**思路**\n\n① $y\\geqq|x|$ 是直线 $y=x$ 与 $y=-x$ 上方、夹角 $90^\\circ$ 的区域；③ 是半径 $2\\sqrt3$ 的圆。两者的公共部分正好是从 $45^\\circ$ 到 $135^\\circ$ 的**四分之一圆弧**。(1) 在这段弧上求 $t=x+y$ 的范围，用三角参数（或直线 $x+y=t$ 的截距）即可。(2) $x^2+y^2$、$x^3+y^3$ 都是**对称式**，可以用 $x+y=t$ 和 $xy$ 表示，于是 $u$ 变成 $t$ 的三次函数；再**带着 ⑤ 的范围**用导数求最值。\n\n**解答**\n\n**(1) 圆弧与 t 的范围**\n\n**1.（A, B）**　③：$x^2+y^2=12$，半径 $\\sqrt{12}=2\\sqrt3$。**A = 2，B = 3**。\n\n**2.（C, D）**　弧的两端是圆与 $y=|x|$ 的交点。右端在 $y=x$ 上：$2x^2=12$，$x^2=6$，得 $(\\sqrt6,\\sqrt6)$；左端在 $y=-x$ 上，得 $(-\\sqrt6,\\sqrt6)$。**C = 6，D = 6**。\n\n**3.（E, F, G）**　设 $x=2\\sqrt3\\cos\\theta,\\ y=2\\sqrt3\\sin\\theta$，① 对应 $\\dfrac{\\pi}{4}\\leqq\\theta\\leqq\\dfrac{3\\pi}{4}$。用三角函数的合成：\n\n$$t=x+y=2\\sqrt3(\\sin\\theta+\\cos\\theta)=2\\sqrt6\\,\\sin\\left(\\theta+\\frac{\\pi}{4}\\right)$$\n\n$\\theta+\\dfrac{\\pi}{4}$ 的范围是 $\\left[\\dfrac{\\pi}{2},\\ \\pi\\right]$，此时 $\\sin$ 取遍 $[0,\\ 1]$，所以\n\n$$0\\leqq t\\leqq 2\\sqrt6\\qquad\\cdots\\cdots\\ \\text{⑤}$$\n\n$t=2\\sqrt6$ 在右端 $(\\sqrt6,\\sqrt6)$ 取到，$t=0$ 在左端 $(-\\sqrt6,\\sqrt6)$ 取到。**E = 0，F = 2，G = 6**。\n\n**(2) u 化为 t 的函数**\n\n**4.（H, I, JK）**　$t^2=(x+y)^2=x^2+y^2+2xy=12+2xy$，所以\n\n$$xy=\\frac{1}{2}\\left(t^2-12\\right)$$\n\n**H = 1，I = 2，JK = 12**。\n\n**5.（L, M, NO）**　用 $x^3+y^3=(x+y)^3-3xy(x+y)$：\n\n$$u=t^3-3\\cdot\\frac{t^2-12}{2}\\cdot t=t^3-\\frac32t^3+18t=\\frac12\\left(36t-t^3\\right)$$\n\n**L = 1，M = 2，NO = 36**。\n\n**6.（P, Q, RS）**\n\n$$\\frac{du}{dt}=\\frac12\\left(36-3t^2\\right)=\\frac32\\left(12-t^2\\right)$$\n\n**P = 3，Q = 2，RS = 12**。\n\n**7.（T, UV, W）**　在 ⑤ $0\\leqq t\\leqq2\\sqrt6$ 内，$\\dfrac{du}{dt}=0\\iff t=2\\sqrt3$（$2\\sqrt3\\approx3.46<2\\sqrt6\\approx4.90$，在区间内）。\n\n| $t$ | $0$ | $\\cdots$ | $2\\sqrt3$ | $\\cdots$ | $2\\sqrt6$ |\n|---|---|---|---|---|---|\n| $\\dfrac{du}{dt}$ | | $+$ | $0$ | $-$ | |\n| $u$ | $0$ | ↗ | $24\\sqrt3$ | ↘ | $12\\sqrt6$ |\n\n- $u(0)=0$\n- $u(2\\sqrt3)=\\dfrac12\\left(72\\sqrt3-24\\sqrt3\\right)=24\\sqrt3$（对应点 $(0,\\,2\\sqrt3)$，此时 $u=y^3=(2\\sqrt3)^3=24\\sqrt3$，可验算）\n- $u(2\\sqrt6)=\\dfrac12\\left(72\\sqrt6-48\\sqrt6\\right)=12\\sqrt6\\approx29.4$\n\n最大值是极大值 $24\\sqrt3\\approx41.6$；两个端点值中较小的是 $u(0)=0$（$12\\sqrt6>0$），故最小值为 $0$：\n\n$$0\\leqq u\\leqq 24\\sqrt3$$\n\n**T = 0，UV = 24，W = 3**。\n\n**结论**　A = 2，B = 3，C = 6，D = 6，E = 0，F = 2，G = 6，H = 1，I = 2，JK = 12，L = 1，M = 2，NO = 36，P = 3，Q = 2，RS = 12，T = 0，UV = 24，W = 3。",
+    "keyPoints": [
+     "$y\\geqq|x|$ 与圆 $x^2+y^2=12$ 的公共部分是 $45^\\circ\\sim135^\\circ$ 的四分之一圆弧，用三角参数 $t=2\\sqrt6\\sin\\left(\\theta+\\frac{\\pi}{4}\\right)$ 求 $t$ 的范围",
+     "对称式化为基本对称式：$xy=\\dfrac{t^2-12}{2}$，$x^3+y^3=(x+y)^3-3xy(x+y)$",
+     "换元后要带上新变量的范围（⑤），在闭区间上比较极值与端点值求三次函数的最值"
+    ],
+    "traps": [
+     "漏掉条件 ①，把 $t$ 的范围当成整个圆上的 $-2\\sqrt6\\leqq t\\leqq2\\sqrt6$，会得到错误的最小值 $u(-2\\sqrt3)=-24\\sqrt3$",
+     "$x^3+y^3=(x+y)^3-3xy(x+y)$ 中是减号；系数 $\\frac32t^3$ 合并后 $u=-\\frac12t^3+18t$，括号内是 $36t-t^3$ 而不是 $18t-t^3$",
+     "最小值要比较两个端点：$u(0)=0$ 与 $u(2\\sqrt6)=12\\sqrt6$，较小的是 $0$；$t$ 的最大值在端点 $(\\sqrt6,\\sqrt6)$ 处，而不是在 $(0,2\\sqrt3)$ 处"
+    ],
+    "terms": [
+     {
+      "ja": "四分円",
+      "kana": "しぶんえん",
+      "zh": "四分之一圆（圆心角为 90° 的那部分圆）"
+     },
+     {
+      "ja": "弧",
+      "kana": "こ",
+      "zh": "圆弧，圆周上的一段"
+     },
+     {
+      "ja": "両端",
+      "kana": "りょうたん",
+      "zh": "两个端点"
+     },
+     {
+      "ja": "座標",
+      "kana": "ざひょう",
+      "zh": "坐标：用有序数对 $(x,y)$ 表示点在平面上的位置"
+     },
+     {
+      "ja": "値の範囲",
+      "kana": "あたいのはんい",
+      "zh": "某个量能取到的全部值构成的范围，即取值范围"
+     },
+     {
+      "ja": "原点を中心とする",
+      "kana": "げんてんをちゅうしんとする",
+      "zh": "以坐标原点为圆心"
+     }
+    ],
+    "shortcut": "$u$ 只依赖于 $t$：$u=\\frac12(36t-t^3)$ 的极值点 $t=2\\sqrt3$ 对应 $xy=0$，即点 $(0,2\\sqrt3)$，直接得 $u_{\\max}=(2\\sqrt3)^3=24\\sqrt3$；端点 $t=0$ 对应 $x=-y$，$u=x^3+y^3=0$。$t$ 的范围也可看直线 $x+y=t$（斜率 $-1$）沿弧从左端滑到右端，截距从 $0$ 增到 $2\\sqrt6$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2016_1-math-IV",
+   "subject": "math",
+   "order": 6,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.calc.diff",
+    "math.trig.func"
+   ],
+   "difficulty": 2,
+   "targetSec": 1100,
+   "source": {
+    "kind": "official",
+    "session": "2016_1",
+    "label": "2016年第1回 数学コース2 IV（解答欄A〜K）",
+    "pdf": "/assets/expanded/2016_1-math.pdf",
+    "page": 28
+   },
+   "stem": "$a>1$ とする。2 つの不等式\n\n$$0 \\leqq x \\leqq \\frac{\\pi}{6},\\quad 0 \\leqq y \\leqq a\\cos 3x$$\n\nで表される領域を直線 $y=1$ で 2 つの部分に分ける。そのうち，$y \\geqq 1$ の部分の面積を $S$，$y \\leqq 1$ の部分の面積を $T$ とおく。このとき，$T-S$ を最大にする $a$ の値と，$T-S$ の最大値を求めよう。\n\n等式 $a\\cos 3x=1$ を満たす $x$ $\\left(0 \\leqq x \\leqq \\dfrac{\\pi}{6}\\right)$ の値を $t$ とおく。このとき\n\n$$S=\\frac{\\sin 3t}{\\bx{A}\\cos 3t}-t$$\n\n$$S+T=\\frac{1}{\\bx{B}\\cos 3t}$$\n\nである。したがって，$f(t)=T-S$ とおくと\n\n$$f'(t)=\\frac{\\left(\\bx{C}-\\bx{D}\\sin 3t\\right)\\sin 3t}{\\cos^{\\bx{E}}3t}$$\n\nであるから，$T-S$ は $t=\\dfrac{\\pi}{\\bx{FG}}$ のとき最大となる。すなわち，$a=\\dfrac{\\bx{H}\\sqrt{\\bx{I}}}{\\bx{J}}$ のとき，$T-S$ は最大値 $\\dfrac{\\pi}{\\bx{K}}$ をとる。\n\n注）領域：region",
+   "stemZh": "设 $a>1$。用直线 $y=1$ 把由两个不等式\n\n$$0 \\leqq x \\leqq \\frac{\\pi}{6},\\quad 0 \\leqq y \\leqq a\\cos 3x$$\n\n表示的区域分成 2 个部分。其中，$y \\geqq 1$ 部分的面积记为 $S$，$y \\leqq 1$ 部分的面积记为 $T$。求使 $T-S$ 取最大的 $a$ 的值，以及 $T-S$ 的最大值。\n\n把满足等式 $a\\cos 3x=1$ 的 $x$ $\\left(0 \\leqq x \\leqq \\dfrac{\\pi}{6}\\right)$ 的值记为 $t$。此时\n\n$$S=\\frac{\\sin 3t}{\\bx{A}\\cos 3t}-t$$\n\n$$S+T=\\frac{1}{\\bx{B}\\cos 3t}$$\n\n因此，令 $f(t)=T-S$，则\n\n$$f'(t)=\\frac{\\left(\\bx{C}-\\bx{D}\\sin 3t\\right)\\sin 3t}{\\cos^{\\bx{E}}3t}$$\n\n所以 $T-S$ 在 $t=\\dfrac{\\pi}{\\bx{FG}}$ 时取最大值。也就是说，当 $a=\\dfrac{\\bx{H}\\sqrt{\\bx{I}}}{\\bx{J}}$ 时，$T-S$ 取最大值 $\\dfrac{\\pi}{\\bx{K}}$。\n\n注）領域：区域（region）",
+   "format": "blanks",
+   "blanks": {
+    "A": "3",
+    "B": "3",
+    "C": "1",
+    "D": "2",
+    "E": "2",
+    "F": "1",
+    "G": "8",
+    "H": "2",
+    "I": "3",
+    "J": "3",
+    "K": "9"
+   },
+   "explanation": {
+    "zh": "**思路**\n\n$a>1$ 时，曲线 $y=a\\cos3x$ 从 $(0,a)$ 单调下降到 $\\left(\\dfrac{\\pi}{6},0\\right)$，必与直线 $y=1$ 恰好交于一点，其横坐标就是 $t$（$\\cos3t=\\dfrac1a$）。\n\n- $S$（$y\\geqq1$ 的部分）$=\\displaystyle\\int_0^t\\left(a\\cos3x-1\\right)dx$\n- $S+T$（整个区域）$=\\displaystyle\\int_0^{\\pi/6}a\\cos3x\\,dx$\n\n再用 $a=\\dfrac{1}{\\cos3t}$ 消去 $a$，把一切写成 $t$ 的函数；$T-S=(S+T)-2S$，对 $t$ 求导找最大值。\n\n**解答**\n\n**1. t 的范围**　$\\cos3t=\\dfrac1a\\in(0,1)$，且 $0\\leqq3t\\leqq\\dfrac{\\pi}{2}$，所以 $0<3t<\\dfrac{\\pi}{2}$，即 $0<t<\\dfrac{\\pi}{6}$。$a=\\dfrac{1}{\\cos3t}$ 随 $t$ 单调增加，$a\\in(1,\\infty)$ 与 $t\\in\\left(0,\\dfrac{\\pi}{6}\\right)$ 一一对应，所以对 $a$ 求最大等价于对 $t$ 求最大。\n\n**2.（A）**\n\n$$S=\\int_0^t\\left(a\\cos3x-1\\right)dx=\\left[\\frac a3\\sin3x-x\\right]_0^t=\\frac a3\\sin3t-t=\\frac{\\sin3t}{3\\cos3t}-t$$\n\n**A = 3**。\n\n**3.（B）**\n\n$$S+T=\\int_0^{\\pi/6}a\\cos3x\\,dx=\\left[\\frac a3\\sin3x\\right]_0^{\\pi/6}=\\frac a3\\sin\\frac{\\pi}{2}=\\frac a3=\\frac{1}{3\\cos3t}$$\n\n**B = 3**。\n\n**4.（C, D, E）**　$T-S=(S+T)-2S$：\n\n$$f(t)=\\frac{1}{3\\cos3t}-\\frac{2\\sin3t}{3\\cos3t}+2t$$\n\n逐项求导，用 $\\left(\\dfrac{1}{\\cos3t}\\right)'=\\dfrac{3\\sin3t}{\\cos^23t}$，$\\left(\\dfrac{\\sin3t}{\\cos3t}\\right)'=(\\tan3t)'=\\dfrac{3}{\\cos^23t}$：\n\n$$f'(t)=\\frac{\\sin3t}{\\cos^23t}-\\frac{2}{\\cos^23t}+2=\\frac{\\sin3t-2+2\\cos^23t}{\\cos^23t}$$\n\n把 $2\\cos^23t=2-2\\sin^23t$ 代入分子：$\\sin3t-2\\sin^23t=(1-2\\sin3t)\\sin3t$，所以\n\n$$f'(t)=\\frac{(1-2\\sin3t)\\sin3t}{\\cos^23t}$$\n\n**C = 1，D = 2，E = 2**。\n\n**5.（FG）**　$0<3t<\\dfrac{\\pi}{2}$ 时 $\\sin3t>0$，$\\cos^23t>0$，$f'(t)$ 的符号由 $1-2\\sin3t$ 决定：\n\n$$f'(t)=0\\iff\\sin3t=\\frac12\\iff3t=\\frac{\\pi}{6}\\iff t=\\frac{\\pi}{18}$$\n\n| $t$ | $0$ | $\\cdots$ | $\\frac{\\pi}{18}$ | $\\cdots$ | $\\frac{\\pi}{6}$ |\n|---|---|---|---|---|---|\n| $f'(t)$ | | $+$ | $0$ | $-$ | |\n| $f(t)$ | | ↗ | 最大 | ↘ | |\n\n所以 $T-S$ 在 $t=\\dfrac{\\pi}{18}$ 时最大。**FG = 18**。\n\n**6.（H, I, J）**\n\n$$a=\\frac{1}{\\cos\\frac{\\pi}{6}}=\\frac{2}{\\sqrt3}=\\frac{2\\sqrt3}{3}\\ (>1\\ \\text{符合})$$\n\n**H = 2，I = 3，J = 3**。\n\n**7.（K）**　$t=\\dfrac{\\pi}{18}$ 时 $\\sin3t=\\dfrac12$，$f(t)$ 中的 $\\dfrac{1-2\\sin3t}{3\\cos3t}$ 恰好为 $0$：\n\n$$f\\left(\\frac{\\pi}{18}\\right)=0+2\\cdot\\frac{\\pi}{18}=\\frac{\\pi}{9}$$\n\n**K = 9**。\n\n**结论**　A = 3，B = 3，C = 1，D = 2，E = 2，FG = 18，H = 2，I = 3，J = 3，K = 9；$a=\\dfrac{2\\sqrt3}{3}$ 时 $T-S$ 取最大值 $\\dfrac{\\pi}{9}$。",
+    "keyPoints": [
+     "以交点横坐标 $t$ 为变量：$a=\\dfrac{1}{\\cos3t}$，把面积全部写成 $t$ 的函数",
+     "$T-S=(S+T)-2S$：整体面积 $S+T=\\dfrac a3$ 一步算出，只需再算 $S=\\int_0^t(a\\cos3x-1)\\,dx$",
+     "求导用 $\\left(\\frac{1}{\\cos3t}\\right)'=\\frac{3\\sin3t}{\\cos^23t}$、$(\\tan3t)'=\\frac{3}{\\cos^23t}$，再用 $\\cos^2=1-\\sin^2$ 因式分解定号"
+    ],
+    "traps": [
+     "$\\int\\cos3x\\,dx=\\dfrac13\\sin3x$，漏掉系数 $\\dfrac13$ 会使 A、B 都填错",
+     "$S$ 是 $y\\geqq1$ 的部分：被积函数是 $a\\cos3x-1$，积分上限是 $t$ 而不是 $\\dfrac{\\pi}{6}$",
+     "题目最后求的是 $a$ 而不是 $t$：$a=\\dfrac{1}{\\cos(\\pi/6)}=\\dfrac{2\\sqrt3}{3}$；由 $a>1$ 得 $0<t<\\dfrac{\\pi}{6}$，故 $\\sin3t>0$，$f'$ 只看 $1-2\\sin3t$ 的符号"
+    ],
+    "terms": [
+     {
+      "ja": "不等式",
+      "kana": "ふとうしき",
+      "zh": "用 ≦、< 等不等号连接的式子"
+     },
+     {
+      "ja": "領域",
+      "kana": "りょういき",
+      "zh": "平面上满足条件的点组成的区域"
+     },
+     {
+      "ja": "面積",
+      "kana": "めんせき",
+      "zh": "平面图形所围部分的大小（面积）"
+     },
+     {
+      "ja": "等式",
+      "kana": "とうしき",
+      "zh": "用等号连接的式子（这里指方程 $a\\cos3x=1$）"
+     },
+     {
+      "ja": "最大値",
+      "kana": "さいだいち",
+      "zh": "函数（或某个量）能取到的最大的那个值"
+     },
+     {
+      "ja": "～とおく",
+      "kana": "～とおく",
+      "zh": "设为、记作（引入字母）"
+     }
+    ],
+    "shortcut": "也可以直接对 $a$ 求导（变上限积分）：$\\dfrac{dS}{da}=\\displaystyle\\int_0^t\\cos3x\\,dx=\\dfrac{\\sin3t}{3}$（被积函数在 $x=t$ 处为 $0$，上限移动不产生额外项），$\\dfrac{d(S+T)}{da}=\\dfrac13$，故 $\\dfrac{d(T-S)}{da}=\\dfrac{1-2\\sin3t}{3}$，零点 $\\sin3t=\\dfrac12$，$t=\\dfrac{\\pi}{18}$。此时 $f$ 的第一项为 $0$，最大值就是 $2t=\\dfrac{\\pi}{9}$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  }
+ ]
+}

@@ -1,0 +1,5015 @@
+{
+ "title": "v1.4 vocabulary (converted)",
+ "entries": [
+  {
+   "id": "v1",
+   "word": "促す",
+   "reading": "うながす",
+   "meaningZh": "通过提醒、劝说或创造条件，使对方尽快行动或使事情向前发展",
+   "category": "general",
+   "example": {
+    "ja": "参加を促す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/77d12f9b1dfa427fe7920092.m4a",
+    "example": "/assets/pronunciation/56fffd1c51af006d81c7b22d.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v2",
+   "word": "妨げる",
+   "reading": "さまたげる",
+   "meaningZh": "使某项活动受到阻碍，不能顺利进行",
+   "category": "general",
+   "example": {
+    "ja": "睡眠を妨げる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0eb26235a5c28b7f18ece5bf.m4a",
+    "example": "/assets/pronunciation/3b543a66556835b4629e4558.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v3",
+   "word": "著しい",
+   "reading": "いちじるしい",
+   "meaningZh": "变化或差别很大，容易被注意到",
+   "category": "general",
+   "example": {
+    "ja": "著しい変化が見られる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8413dec041073c169ef8889e.m4a",
+    "example": "/assets/pronunciation/a1ebd01257eb78680a323fb4.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v4",
+   "word": "見直す",
+   "reading": "みなおす",
+   "meaningZh": "再次检查原来的看法或安排，并在必要时作出修改",
+   "category": "general",
+   "example": {
+    "ja": "計画を見直す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/490f19af78b92bbee56e45dc.m4a",
+    "example": "/assets/pronunciation/0ea516e734a4820f31572f64.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v5",
+   "word": "維持",
+   "reading": "いじ",
+   "meaningZh": "使原来的状态或水平继续保持下去",
+   "category": "general",
+   "example": {
+    "ja": "健康を維持する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5fbedf1a4aaac36469a9d07b.m4a",
+    "example": "/assets/pronunciation/58834571f001bddb7c1c1956.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v6",
+   "word": "傾向",
+   "reading": "けいこう",
+   "meaningZh": "事物往某个方向发展的趋势，或经常出现的表现",
+   "category": "general",
+   "example": {
+    "ja": "増える傾向にある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2c7431e9ba2e004cb7abaf01.m4a",
+    "example": "/assets/pronunciation/b92263cf6ebb172cd3cab035.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v7",
+   "word": "伴う",
+   "reading": "ともなう",
+   "meaningZh": "随着另一件事发生而出现，或与它一起存在",
+   "category": "general",
+   "example": {
+    "ja": "変化に伴う問題。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ac57759e7d9921f0bc5f5871.m4a",
+    "example": "/assets/pronunciation/b6d0faaa0802fb9148979de0.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v8",
+   "word": "必ずしも",
+   "reading": "かならずしも",
+   "meaningZh": "与否定表达配合，表示某个判断并非在所有情况下都成立",
+   "category": "general",
+   "example": {
+    "ja": "高いものが必ずしも良いとは限らない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d3f0224297ac66109c13e3af.m4a",
+    "example": "/assets/pronunciation/c6b32111e4bd9c28dd1f723b.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v9",
+   "word": "むしろ",
+   "reading": "むしろ",
+   "meaningZh": "与前述说法相比，后面的判断更加合适或更符合事实",
+   "category": "general",
+   "example": {
+    "ja": "むしろ逆の結果になった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5ba9202a0ece94e46ead3daf.m4a",
+    "example": "/assets/pronunciation/93ed83e52a85a0a1f40a899e.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v10",
+   "word": "一方",
+   "reading": "いっぽう",
+   "meaningZh": "提出另一面或另一方的情况，与前文形成对照",
+   "category": "general",
+   "example": {
+    "ja": "便利な一方、費用がかかる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/09db107068a7463d0411fd6c.m4a",
+    "example": "/assets/pronunciation/f98a49100fddb4b18784a43e.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v11",
+   "word": "踏まえる",
+   "reading": "ふまえる",
+   "meaningZh": "把已知事实、经验或条件作为进一步判断的依据",
+   "category": "general",
+   "example": {
+    "ja": "結果を踏まえて考える。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/fab6f70ea65ca0f3e1b5d020.m4a",
+    "example": "/assets/pronunciation/729820b6469a0e6859aea856.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v12",
+   "word": "取り組む",
+   "reading": "とりくむ",
+   "meaningZh": "认真着手某项工作或难题，并持续投入精力",
+   "category": "general",
+   "example": {
+    "ja": "課題に取り組む。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6b5ad2cbeffecab965998bba.m4a",
+    "example": "/assets/pronunciation/f4cf8d7bba10a8ed42d2958f.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v13",
+   "word": "補う",
+   "reading": "おぎなう",
+   "meaningZh": "把欠缺的部分补足，或弥补某种不足",
+   "category": "general",
+   "example": {
+    "ja": "不足を補う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e21f3f418d55c9099cf875c2.m4a",
+    "example": "/assets/pronunciation/a67f8e74321b0efc939e5489.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v14",
+   "word": "削減",
+   "reading": "さくげん",
+   "meaningZh": "有计划地减少开支、人员、排放等的数量",
+   "category": "general",
+   "example": {
+    "ja": "費用を削減する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/96950fc5bc46f4660c1e8a49.m4a",
+    "example": "/assets/pronunciation/005e22a11caedff1db050c2d.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v15",
+   "word": "根拠",
+   "reading": "こんきょ",
+   "meaningZh": "能够支持某个判断或说法的事实与理由",
+   "category": "general",
+   "example": {
+    "ja": "根拠を示す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/64a6972bc67609093ffc6edf.m4a",
+    "example": "/assets/pronunciation/33c66ba44816ab4c379f3d1d.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v16",
+   "word": "異なる",
+   "reading": "ことなる",
+   "meaningZh": "两个或多个对象在某些方面不相同",
+   "category": "general",
+   "example": {
+    "ja": "意見が異なる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/23eac43ec3b0f868e6667938.m4a",
+    "example": "/assets/pronunciation/8de84f06f58b9f4991d69fc7.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v17",
+   "word": "占める",
+   "reading": "しめる",
+   "meaningZh": "在整体中具有某一份额，或取得某个位置",
+   "category": "general",
+   "example": {
+    "ja": "全体の半分を占める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9fa65c577b8537282b3ec341.m4a",
+    "example": "/assets/pronunciation/c344b799b85694345f552ef7.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v18",
+   "word": "需要",
+   "reading": "じゅよう",
+   "meaningZh": "人们希望得到某种商品或服务的需要；经济语境还涉及购买能力",
+   "category": "general",
+   "example": {
+    "ja": "需要が増える。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6638fedc861b440b9b24ede0.m4a",
+    "example": "/assets/pronunciation/e05a2a2e70c50ad86751c104.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v19",
+   "word": "供給",
+   "reading": "きょうきゅう",
+   "meaningZh": "把所需物资、能量或服务提供给需要的一方",
+   "category": "general",
+   "example": {
+    "ja": "電力を供給する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5d544dfe3971425ac2298f4d.m4a",
+    "example": "/assets/pronunciation/f2e76e1d7c08b72175d304d4.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v20",
+   "word": "余裕",
+   "reading": "よゆう",
+   "meaningZh": "满足当前需要后仍剩下的时间、空间、资金或精力",
+   "category": "general",
+   "example": {
+    "ja": "時間に余裕がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c114e1f5fa8d26854a2ae98f.m4a",
+    "example": "/assets/pronunciation/83fe14362ffea77b4a46c927.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v21",
+   "word": "延期",
+   "reading": "えんき",
+   "meaningZh": "把原定日期向后推迟",
+   "category": "general",
+   "example": {
+    "ja": "会議が延期された。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b9afa17761ee8b1f80e0c3ba.m4a",
+    "example": "/assets/pronunciation/895a02b7f0191e25e5e28d6e.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v22",
+   "word": "変更",
+   "reading": "へんこう",
+   "meaningZh": "把已经确定的内容或安排改成别的",
+   "category": "general",
+   "example": {
+    "ja": "場所を変更する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2dc9a8ca6494b863738ad93c.m4a",
+    "example": "/assets/pronunciation/53c9a795984810037a9adccc.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v23",
+   "word": "提出",
+   "reading": "ていしゅつ",
+   "meaningZh": "按要求把报告、材料或作品交给接收方",
+   "category": "general",
+   "example": {
+    "ja": "レポートを提出する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/824cfc9b33425216d9427095.m4a",
+    "example": "/assets/pronunciation/bff3c4d91f34eab242c421fc.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v24",
+   "word": "締め切り",
+   "reading": "しめきり",
+   "meaningZh": "允许办理、交件或报名的最后期限",
+   "category": "general",
+   "example": {
+    "ja": "締め切りは金曜日です。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7bb3c7b6b69430c516dd004c.m4a",
+    "example": "/assets/pronunciation/66a9dafcc709c6a2bdd2f172.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v25",
+   "word": "ただし",
+   "reading": "ただし",
+   "meaningZh": "对前面已经成立的说法补充条件、例外或限制",
+   "category": "general",
+   "example": {
+    "ja": "参加は自由です。ただし予約が必要です。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bd442657c2986c5c09f404be.m4a",
+    "example": "/assets/pronunciation/fd3764847e1dbdd361e8769d.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v26",
+   "word": "結局",
+   "reading": "けっきょく",
+   "meaningZh": "经过选择、变化或一番过程后，事情最终到了某个结果",
+   "category": "general",
+   "example": {
+    "ja": "結局、電車で行くことにした。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/eb1dc1a79b72b912a10a3f7e.m4a",
+    "example": "/assets/pronunciation/14900497857b45f14fa762f4.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v27",
+   "word": "従来",
+   "reading": "じゅうらい",
+   "meaningZh": "从过去一直到所说时点以前的做法或情况",
+   "category": "general",
+   "example": {
+    "ja": "従来の方法を改める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/edf23037d98b6f362dde6534.m4a",
+    "example": "/assets/pronunciation/cd4bf10139d0ca277bca4e0a.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v28",
+   "word": "効率",
+   "reading": "こうりつ",
+   "meaningZh": "投入一定时间或资源能够获得成果的程度",
+   "category": "general",
+   "example": {
+    "ja": "作業の効率を上げる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/37c9ffc9c3770474b196696b.m4a",
+    "example": "/assets/pronunciation/293ce5e818950c22f6df7590.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v29",
+   "word": "割合",
+   "reading": "わりあい",
+   "meaningZh": "某一部分在整体中所占的份额",
+   "category": "general",
+   "example": {
+    "ja": "利用者の割合を調べる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/831c538e99bfa8914f1e226f.m4a",
+    "example": "/assets/pronunciation/30d802a2d07d61cccbc367ae.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "v30",
+   "word": "課題",
+   "reading": "かだい",
+   "meaningZh": "需要研究、完成或解决的任务与问题",
+   "category": "general",
+   "example": {
+    "ja": "課題を明らかにする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ee3f026617611f3cc0b8cee3.m4a",
+    "example": "/assets/pronunciation/b879e3ffb0e7dfc34926ebfa.m4a"
+   },
+   "group": "基础学术词"
+  },
+  {
+   "id": "vx001",
+   "word": "したがって",
+   "reading": "したがって",
+   "meaningZh": "承接前面的理由，说明由此得到的结果或判断",
+   "category": "general",
+   "example": {
+    "ja": "気温が下がった。したがって、水の蒸発も遅くなった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b3549bc8921d2d101a6c156e.m4a",
+    "example": "/assets/pronunciation/dd1ccb344034fbcf43429375.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx002",
+   "word": "すなわち",
+   "reading": "すなわち",
+   "meaningZh": "用另一种说法说明同一内容，即“换句话说就是”",
+   "category": "general",
+   "example": {
+    "ja": "この装置は光を電気に変える。すなわち、光エネルギーを利用する装置である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/34d9aff914939c18ef20f363.m4a",
+    "example": "/assets/pronunciation/b606f8ce5a6593a89db07ff2.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx003",
+   "word": "要するに",
+   "reading": "ようするに",
+   "meaningZh": "把前面较多的内容归纳成最主要的一点",
+   "category": "general",
+   "example": {
+    "ja": "要するに、費用だけでなく使いやすさも重要なのだ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/13fc8d68895d590a0d88ef59.m4a",
+    "example": "/assets/pronunciation/9bf72727aa0515f3ab87a5bc.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx004",
+   "word": "なぜなら",
+   "reading": "なぜなら",
+   "meaningZh": "放在理由之前，用来说明前一个判断为什么成立",
+   "category": "general",
+   "example": {
+    "ja": "今は結論を出せない。なぜなら、資料が不足しているからだ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ec41166f04f155dad0cf0f97.m4a",
+    "example": "/assets/pronunciation/af51c98e2a91812ea0ba4de6.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx005",
+   "word": "もっとも",
+   "reading": "もっとも",
+   "meaningZh": "在承认前面说法后，补充一个使其不能完全照搬的限制",
+   "category": "general",
+   "example": {
+    "ja": "この方法は便利だ。もっとも、すべての場合に使えるわけではない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/607f35e5a76d7c98aad9d3d9.m4a",
+    "example": "/assets/pronunciation/bb854bbfc6c9bb2443b6e594.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx006",
+   "word": "なお",
+   "reading": "なお",
+   "meaningZh": "前面的说明结束后，再补充一项有关信息",
+   "category": "general",
+   "example": {
+    "ja": "実験は午後に行います。なお、白衣は各自で用意してください。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8cbfa601728971794b5c6740.m4a",
+    "example": "/assets/pronunciation/7fdbb313702a64f70794ca34.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx007",
+   "word": "ちなみに",
+   "reading": "ちなみに",
+   "meaningZh": "顺着当前话题附带补充一条相关信息，而非推出因果结论",
+   "category": "general",
+   "example": {
+    "ja": "この大学は海に近い。ちなみに、駅からはバスで10分ほどだ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1ede03fe25ac8f575a7e6a2e.m4a",
+    "example": "/assets/pronunciation/cda746199254076a81229224.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx008",
+   "word": "それにもかかわらず",
+   "reading": "それにもかかわらず",
+   "meaningZh": "前述不利条件确实存在，后面的结果却与通常预期相反",
+   "category": "general",
+   "example": {
+    "ja": "十分に練習した。それにもかかわらず、本番では失敗した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3c989c8e900a3ebc9cb6cf17.m4a",
+    "example": "/assets/pronunciation/ac99ac50b6f03fbb40c1990b.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx009",
+   "word": "それどころか",
+   "reading": "それどころか",
+   "meaningZh": "否定前面较轻的判断，进一步指出程度更强或方向相反的情况",
+   "category": "general",
+   "example": {
+    "ja": "雨はやまなかった。それどころか、風まで強くなった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0a587f4764feab26b85149a6.m4a",
+    "example": "/assets/pronunciation/fc2f812375712b15ca32b206.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx010",
+   "word": "かえって",
+   "reading": "かえって",
+   "meaningZh": "实际结果与原先的目的或期待相反",
+   "category": "general",
+   "example": {
+    "ja": "説明を増やしすぎて、かえって分かりにくくなった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4435cd30fd348857f4f4fc06.m4a",
+    "example": "/assets/pronunciation/f8cf0f2e557ee722f56a1a3e.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx011",
+   "word": "たとえ",
+   "reading": "たとえ",
+   "meaningZh": "与ても等表达呼应，表示即使某种条件成立，后面的判断也不变",
+   "category": "general",
+   "example": {
+    "ja": "たとえ失敗しても、原因を調べることには意味がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/583d2e01413e7e62a4f3fdec.m4a",
+    "example": "/assets/pronunciation/6ad23b60d0849918cb2cdcca.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx012",
+   "word": "仮に",
+   "reading": "かりに",
+   "meaningZh": "先把尚未确认的情况当作条件，再讨论它成立时会怎样",
+   "category": "general",
+   "example": {
+    "ja": "仮に参加者が半分になった場合、費用はどうなるだろうか。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/710d3b97f209382984894b3a.m4a",
+    "example": "/assets/pronunciation/6d989629f5ccb64f5d9cc68e.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx013",
+   "word": "いわゆる",
+   "reading": "いわゆる",
+   "meaningZh": "引出人们通常采用的名称或说法，相当于“通常所说的”",
+   "category": "general",
+   "example": {
+    "ja": "これは、いわゆる情報格差の問題である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9c5c9fcb8bfc0f2826c21b63.m4a",
+    "example": "/assets/pronunciation/ac7b45beb001a5d5bcce87d3.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx014",
+   "word": "およそ",
+   "reading": "およそ",
+   "meaningZh": "表示数值是粗略估计，接近该数量而非精确相等",
+   "category": "general",
+   "example": {
+    "ja": "会場にはおよそ百人が集まった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d6664afc8e816fab02ce7806.m4a",
+    "example": "/assets/pronunciation/44b1b0a0274139961050083c.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx015",
+   "word": "あらかじめ",
+   "reading": "あらかじめ",
+   "meaningZh": "在某事开始之前，先做好有关准备",
+   "category": "general",
+   "example": {
+    "ja": "使う器具をあらかじめ机の上に並べておく。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7b66eb91bb942731adf2390a.m4a",
+    "example": "/assets/pronunciation/979e7f7f72d7c98b70911fe9.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx016",
+   "word": "あえて",
+   "reading": "あえて",
+   "meaningZh": "明知有困难或可能引起反对，仍有意去做某事",
+   "category": "general",
+   "example": {
+    "ja": "議論を深めるため、あえて反対の立場から考えてみる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f015f456e6aea55c9e579518.m4a",
+    "example": "/assets/pronunciation/8d5f5ef1897cbb81d7afa864.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx017",
+   "word": "たしかに",
+   "reading": "たしかに",
+   "meaningZh": "承认某一点符合事实，后面也常接不同角度的补充",
+   "category": "general",
+   "example": {
+    "ja": "たしかに便利だが、価格が高すぎる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bb21736a271b1f83dc053135.m4a",
+    "example": "/assets/pronunciation/07701c7924037392df668267.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx018",
+   "word": "やがて",
+   "reading": "やがて",
+   "meaningZh": "经过一段时间以后，某种变化终于到来",
+   "category": "general",
+   "example": {
+    "ja": "小さな芽は、やがて大きな木に育つ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b32e78954f8f0f246e2d6520.m4a",
+    "example": "/assets/pronunciation/b0baaffd9fb252ec75935c98.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx019",
+   "word": "ひとまず",
+   "reading": "ひとまず",
+   "meaningZh": "先做到当前这个阶段，后续处理暂时放一放",
+   "category": "general",
+   "example": {
+    "ja": "ひとまずデータを保存し、分析は明日行う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/36f5401eb9ba6faa0335acb9.m4a",
+    "example": "/assets/pronunciation/4ca73f246b468117d7a4ac05.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx020",
+   "word": "少なくとも",
+   "reading": "すくなくとも",
+   "meaningZh": "指出可确定的最低数量或最低限度",
+   "category": "general",
+   "example": {
+    "ja": "この実験には少なくとも三人が必要だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/858a2685a91d72ae937b5dd0.m4a",
+    "example": "/assets/pronunciation/e081091bb9807459e429864e.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx021",
+   "word": "いずれ",
+   "reading": "いずれ",
+   "meaningZh": "在这里表示未来某个时候终将发生，具体时点尚未确定",
+   "category": "general",
+   "example": {
+    "ja": "今は使いにくい技術でも、いずれ広く利用されるかもしれない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/61507ada720116caa7d34f95.m4a",
+    "example": "/assets/pronunciation/5b2bf0927f7f83b75b5d9092.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx022",
+   "word": "もっぱら",
+   "reading": "もっぱら",
+   "meaningZh": "活动集中在某一方面，主要或专门做这件事",
+   "category": "general",
+   "example": {
+    "ja": "最近は、もっぱら図書館で勉強している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f4ae0c0a37d7f57a8efc449e.m4a",
+    "example": "/assets/pronunciation/673c8606a2e8dbecd441b101.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx023",
+   "word": "わずか",
+   "reading": "わずか",
+   "meaningZh": "数量很少，或程度只有一点点",
+   "category": "general",
+   "example": {
+    "ja": "温度をわずかに変えただけで、結果が変わった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2e8076b859c5366548286bbf.m4a",
+    "example": "/assets/pronunciation/f3a52f92c0ca9b9e132ae197.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx024",
+   "word": "おおむね",
+   "reading": "おおむね",
+   "meaningZh": "就整体而言大致如此，允许存在少量例外",
+   "category": "general",
+   "example": {
+    "ja": "調査の結果は、おおむね予想どおりだった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/48653211e8cd06f1547d4a3c.m4a",
+    "example": "/assets/pronunciation/fb0c15b317e2cedba54960f6.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx025",
+   "word": "とりわけ",
+   "reading": "とりわけ",
+   "meaningZh": "从多个对象中突出一个程度更高或更值得注意的对象",
+   "category": "general",
+   "example": {
+    "ja": "多くの地域で人口が減っているが、とりわけ山間部で深刻だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7eb322a200368ced36be1452.m4a",
+    "example": "/assets/pronunciation/bedd2a1fd4058aea83452d32.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx026",
+   "word": "あくまで",
+   "reading": "あくまで",
+   "meaningZh": "强调说法成立的界限，不应把它扩大到别的范围",
+   "category": "general",
+   "example": {
+    "ja": "この数字はあくまで予測であり、確定した値ではない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c213fa6c1f8513c51deee14a.m4a",
+    "example": "/assets/pronunciation/237e54d71b15a2a3f8b886cb.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx027",
+   "word": "そもそも",
+   "reading": "そもそも",
+   "meaningZh": "回到事情的起点或根本问题，重新追问它本来怎样",
+   "category": "general",
+   "example": {
+    "ja": "そもそも、なぜこの制度が必要になったのだろうか。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5357b7d04887bffb30081081.m4a",
+    "example": "/assets/pronunciation/05413a63f9db41dda7d49108.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx028",
+   "word": "まさに",
+   "reading": "まさに",
+   "meaningZh": "强调某件事恰好符合所说的判断",
+   "category": "general",
+   "example": {
+    "ja": "この発見は、まさに研究者が探していた証拠だった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a02acec5fd58f08bc591770f.m4a",
+    "example": "/assets/pronunciation/498e7acbacf864eea862a6d6.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx029",
+   "word": "それぞれ",
+   "reading": "それぞれ",
+   "meaningZh": "针对多个对象中的每一个，分别说明其情况",
+   "category": "general",
+   "example": {
+    "ja": "二つの方法には、それぞれ長所と短所がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/065c98128f746a490490ceaa.m4a",
+    "example": "/assets/pronunciation/a99ac39da2bcf5d0916d8a0c.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx030",
+   "word": "互いに",
+   "reading": "たがいに",
+   "meaningZh": "双方或多方都对对方作出相应行为",
+   "category": "general",
+   "example": {
+    "ja": "参加者は互いに意見を交換した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/edbd2b737c28b96ee61af7a7.m4a",
+    "example": "/assets/pronunciation/6ffc20a2f97b05ce58ed7559.m4a"
+   },
+   "group": "论述与连接"
+  },
+  {
+   "id": "vx031",
+   "word": "概念",
+   "reading": "がいねん",
+   "meaningZh": "对一类事物的抽象认识",
+   "category": "general",
+   "example": {
+    "ja": "まず「文化」という概念を整理する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b19b7d1c2f80530ee4a6c6cb.m4a",
+    "example": "/assets/pronunciation/b97d3526801bce6dbf99576a.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx032",
+   "word": "定義",
+   "reading": "ていぎ",
+   "meaningZh": "规定词语或概念的含义",
+   "category": "general",
+   "example": {
+    "ja": "この論文では、若者を十八歳から二十九歳までと定義する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ed5d005407fdd27e43515f2d.m4a",
+    "example": "/assets/pronunciation/77e0fec872bf5b3c1f017b14.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx033",
+   "word": "仮説",
+   "reading": "かせつ",
+   "meaningZh": "有待验证的解释",
+   "category": "general",
+   "example": {
+    "ja": "温度が反応速度に影響するという仮説を立てた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/91ebfcded1463d624be89235.m4a",
+    "example": "/assets/pronunciation/5a62732533eedcef354c06c4.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx034",
+   "word": "検証",
+   "reading": "けんしょう",
+   "meaningZh": "核实是否成立",
+   "category": "general",
+   "example": {
+    "ja": "別の実験で仮説を検証する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d6147c24350b6d9104f5e1db.m4a",
+    "example": "/assets/pronunciation/45e93c3bdeb344ff2345affe.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx035",
+   "word": "推論",
+   "reading": "すいろん",
+   "meaningZh": "从已经知道的事实或条件，推出尚未直接观察到的判断",
+   "category": "general",
+   "example": {
+    "ja": "限られた資料から、当時の生活について推論した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7e5c24f925d19693f651a9b0.m4a",
+    "example": "/assets/pronunciation/f4ae2c003e74bc9b6c51edc4.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx036",
+   "word": "論証",
+   "reading": "ろんしょう",
+   "meaningZh": "组织理由与证据，说明某个主张为什么能够成立",
+   "category": "general",
+   "example": {
+    "ja": "筆者は具体的な事例を挙げて自分の主張を論証している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1bce193dd4cc5d9c17341322.m4a",
+    "example": "/assets/pronunciation/487edf04faa25a59b3aeefbf.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx037",
+   "word": "前提",
+   "reading": "ぜんてい",
+   "meaningZh": "推理成立所依据的条件",
+   "category": "general",
+   "example": {
+    "ja": "すべての参加者が同じ説明を受けたことを前提とする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8e04f1a0f16e2eb3d3d42a74.m4a",
+    "example": "/assets/pronunciation/3f52e7675da0bfdfc7d428ed.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx038",
+   "word": "結論",
+   "reading": "けつろん",
+   "meaningZh": "考察后得到的判断",
+   "category": "general",
+   "example": {
+    "ja": "結果だけを見て、急いで結論を出してはいけない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8afdb1772ba06c20d89a7783.m4a",
+    "example": "/assets/pronunciation/e2daf5f459684af677df9fe1.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx039",
+   "word": "要因",
+   "reading": "よういん",
+   "meaningZh": "造成某种结果的原因之一",
+   "category": "general",
+   "example": {
+    "ja": "売り上げが落ちた要因を調べる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d20bfc24c491c184352cf1ca.m4a",
+    "example": "/assets/pronunciation/c8ff1974f946b2e516b554a2.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx040",
+   "word": "背景",
+   "reading": "はいけい",
+   "meaningZh": "事件背后的社会情况或条件",
+   "category": "general",
+   "example": {
+    "ja": "制度が生まれた歴史的な背景を説明する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7bdd9dd08276e7b93dbcb85c.m4a",
+    "example": "/assets/pronunciation/3547a6c8bb806939f6c812a7.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx041",
+   "word": "影響",
+   "reading": "えいきょう",
+   "meaningZh": "对其他事物产生的作用",
+   "category": "general",
+   "example": {
+    "ja": "睡眠不足が集中力に与える影響を調べた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a52badbf14c8ead23ac35d79.m4a",
+    "example": "/assets/pronunciation/d1c592e35debeeed6c2f5434.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx042",
+   "word": "関連",
+   "reading": "かんれん",
+   "meaningZh": "事物之间的联系",
+   "category": "general",
+   "example": {
+    "ja": "二つの現象の関連について考える。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f36bc758de84b2365609243e.m4a",
+    "example": "/assets/pronunciation/30e73fea6b0bfde612921c25.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx043",
+   "word": "矛盾",
+   "reading": "むじゅん",
+   "meaningZh": "两种说法不能同时成立",
+   "category": "general",
+   "example": {
+    "ja": "彼の説明には矛盾がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2a35d8c529e965a722eee0f8.m4a",
+    "example": "/assets/pronunciation/c1166bd2ce6a9fb82127751c.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx044",
+   "word": "妥当",
+   "reading": "だとう",
+   "meaningZh": "判断或方法合理恰当",
+   "category": "general",
+   "example": {
+    "ja": "この条件での比較が妥当かどうかを検討する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6bd49b96e4baab9d81884ad0.m4a",
+    "example": "/assets/pronunciation/04d54502790c48b152bf4ac7.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx045",
+   "word": "客観的",
+   "reading": "きゃっかんてき",
+   "meaningZh": "尽量不受个人好恶影响",
+   "category": "general",
+   "example": {
+    "ja": "印象ではなく、客観的な資料に基づいて判断する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/480900aec0d2960dc2e12b38.m4a",
+    "example": "/assets/pronunciation/40e1df0a3b7abb5fe98574c2.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx046",
+   "word": "主観的",
+   "reading": "しゅかんてき",
+   "meaningZh": "基于个人感受或看法",
+   "category": "general",
+   "example": {
+    "ja": "「おいしい」という評価には主観的な面がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/47a7aa7a967ebb0da4669982.m4a",
+    "example": "/assets/pronunciation/1248bd81a260df5c61bcc023.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx047",
+   "word": "抽象的",
+   "reading": "ちゅうしょうてき",
+   "meaningZh": "未具体落实到个别事物",
+   "category": "general",
+   "example": {
+    "ja": "説明が抽象的なので、例を一つ示してほしい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e0223c79ef344e7d4e46d2f6.m4a",
+    "example": "/assets/pronunciation/5b5ef073c8c9ca26b13e1de0.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx048",
+   "word": "具体的",
+   "reading": "ぐたいてき",
+   "meaningZh": "明确落实到实际内容",
+   "category": "general",
+   "example": {
+    "ja": "計画を実行するための具体的な手順を示す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3c45990c3b330159cadbdd2a.m4a",
+    "example": "/assets/pronunciation/2d8bcaf3d2cd76b3bd1b1ec7.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx049",
+   "word": "普遍的",
+   "reading": "ふへんてき",
+   "meaningZh": "广泛成立或适用",
+   "category": "general",
+   "example": {
+    "ja": "時代や地域を超えた普遍的な問題を扱う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/395b60d126af2bbfda68e77e.m4a",
+    "example": "/assets/pronunciation/72157032b46f1ddf5c46ebca.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx050",
+   "word": "相対的",
+   "reading": "そうたいてき",
+   "meaningZh": "通过与其他对象比较来确定",
+   "category": "general",
+   "example": {
+    "ja": "豊かさは比較する相手によって変わる相対的な概念でもある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c14b929eb44c4b8b06a6f8c3.m4a",
+    "example": "/assets/pronunciation/d1f168ebdc03442846d892ec.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx051",
+   "word": "本質",
+   "reading": "ほんしつ",
+   "meaningZh": "事物最根本的性质",
+   "category": "general",
+   "example": {
+    "ja": "表面的な違いよりも、問題の本質を見る必要がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d88beabc1bf72f5664eb7ee6.m4a",
+    "example": "/assets/pronunciation/1de593706d0d31162bdc8aec.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx052",
+   "word": "観点",
+   "reading": "かんてん",
+   "meaningZh": "观察、讨论或作出判断时所采用的角度",
+   "category": "general",
+   "example": {
+    "ja": "利用者の観点から制度を検討する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f2e6ce9cb342aed733269352.m4a",
+    "example": "/assets/pronunciation/d0221991c6fc7726eacab9a0.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx053",
+   "word": "側面",
+   "reading": "そくめん",
+   "meaningZh": "事物的某一面",
+   "category": "general",
+   "example": {
+    "ja": "この技術には便利な側面と危険な側面がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1b10fb85d066156da5183798.m4a",
+    "example": "/assets/pronunciation/334b5d5ecdfe50d682d34ef6.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx054",
+   "word": "体系",
+   "reading": "たいけい",
+   "meaningZh": "相互联系并有组织的整体",
+   "category": "general",
+   "example": {
+    "ja": "知識を一つの体系として整理する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c5f93ee54813f2fb289bbd9e.m4a",
+    "example": "/assets/pronunciation/1201c413c94899de820e2c4e.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx055",
+   "word": "解釈",
+   "reading": "かいしゃく",
+   "meaningZh": "对内容或意义的理解",
+   "category": "general",
+   "example": {
+    "ja": "同じ文章でも、読み手によって解釈が異なる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/75ce69dab4873f653564833f.m4a",
+    "example": "/assets/pronunciation/9e7342a5695467b441cbc962.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx056",
+   "word": "把握",
+   "reading": "はあく",
+   "meaningZh": "准确了解情况或内容",
+   "category": "general",
+   "example": {
+    "ja": "議論の前に、現状を把握しておく。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7961ae734f5b05f7f74353d0.m4a",
+    "example": "/assets/pronunciation/7ced6694a2df6e7f984d4a28.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx057",
+   "word": "考察",
+   "reading": "こうさつ",
+   "meaningZh": "结合资料与结果，深入思考现象的原因、意义或关系",
+   "category": "general",
+   "example": {
+    "ja": "結果の違いが生じた理由を考察する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/69fedcf04f7cd5724636f794.m4a",
+    "example": "/assets/pronunciation/a08a43a79ae6570824a260ef.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx058",
+   "word": "分析",
+   "reading": "ぶんせき",
+   "meaningZh": "把材料分成成分、类别或环节，研究其结构与原因",
+   "category": "general",
+   "example": {
+    "ja": "集めたデータを年齢別に分析した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/307dbb209c6a2c21801426dd.m4a",
+    "example": "/assets/pronunciation/b1c2c0018d38c0ac8e6d41f1.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx059",
+   "word": "比較",
+   "reading": "ひかく",
+   "meaningZh": "把两个或多个对象放在一起，找出相同点与不同点",
+   "category": "general",
+   "example": {
+    "ja": "二つの地域の交通事情を比較する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4bdaa75e2486cab1c772d419.m4a",
+    "example": "/assets/pronunciation/fb162972ed0e86d5576732e9.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx060",
+   "word": "分類",
+   "reading": "ぶんるい",
+   "meaningZh": "按照一定标准分组",
+   "category": "general",
+   "example": {
+    "ja": "回答を内容によって三種類に分類する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c7941b581344345361758b49.m4a",
+    "example": "/assets/pronunciation/b274771fd522734289b76532.m4a"
+   },
+   "group": "学术论证"
+  },
+  {
+   "id": "vx061",
+   "word": "調査",
+   "reading": "ちょうさ",
+   "meaningZh": "系统收集有关情况",
+   "category": "general",
+   "example": {
+    "ja": "学生の読書習慣について調査を行った。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e28f0badb5da70a12c1e67bf.m4a",
+    "example": "/assets/pronunciation/e6280ae66d9978bfaa53099a.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx062",
+   "word": "標本",
+   "reading": "ひょうほん",
+   "meaningZh": "从总体中选出的调查对象",
+   "category": "general",
+   "example": {
+    "ja": "この調査では、千人を標本として選んだ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9fbcf26ed7181909a5076d8e.m4a",
+    "example": "/assets/pronunciation/9e8ddd0a279c087574fd6a0e.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx063",
+   "word": "母集団",
+   "reading": "ぼしゅうだん",
+   "meaningZh": "研究所针对的全部对象",
+   "category": "general",
+   "example": {
+    "ja": "全国の大学生を母集団とする調査である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1b68a1e2c1aafeffcf07b7b6.m4a",
+    "example": "/assets/pronunciation/867ba0ce96633cddb802a2ea.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx064",
+   "word": "抽出",
+   "reading": "ちゅうしゅつ",
+   "meaningZh": "按研究或处理目的，从整体中选出或取出一部分",
+   "category": "general",
+   "example": {
+    "ja": "名簿から百人を無作為に抽出する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/fea1e872a9e656368ad59bf4.m4a",
+    "example": "/assets/pronunciation/6ec225e4cf89e644e43f6808.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx065",
+   "word": "測定",
+   "reading": "そくてい",
+   "meaningZh": "用仪器确定数值",
+   "category": "general",
+   "example": {
+    "ja": "一定の間隔で水温を測定する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2438467d2d8bdae5a6a8b9e7.m4a",
+    "example": "/assets/pronunciation/77bb6423c3c12c5f564eab16.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx066",
+   "word": "観測",
+   "reading": "かんそく",
+   "meaningZh": "观察并记录自然现象",
+   "category": "general",
+   "example": {
+    "ja": "山の上で雲の動きを観測した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cd9e3ae131a337632c09b5c7.m4a",
+    "example": "/assets/pronunciation/24c01fe9f8718abe4fdd4d71.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx067",
+   "word": "実証",
+   "reading": "じっしょう",
+   "meaningZh": "以事实或实验加以证明",
+   "category": "general",
+   "example": {
+    "ja": "新しい方法の効果を実証するには、追加の資料が必要だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/20e84f5ef9d5a0c01ef91d51.m4a",
+    "example": "/assets/pronunciation/52d136880fb2c8aec1bb0b9d.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx068",
+   "word": "再現性",
+   "reading": "さいげんせい",
+   "meaningZh": "相同条件下再次得到相近结果的性质",
+   "category": "general",
+   "example": {
+    "ja": "別の研究室でも実験の再現性が確認された。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/21dd5e71cb5dd099ec79724a.m4a",
+    "example": "/assets/pronunciation/db11a6672205ff509ac8f994.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx069",
+   "word": "誤差",
+   "reading": "ごさ",
+   "meaningZh": "测得值与真值之间的差",
+   "category": "general",
+   "example": {
+    "ja": "この温度計には多少の誤差がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/07528057bd04a58bf517f25a.m4a",
+    "example": "/assets/pronunciation/20364856ac1c7b4476d09913.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx070",
+   "word": "偏り",
+   "reading": "かたより",
+   "meaningZh": "分布或选择不均衡",
+   "category": "general",
+   "example": {
+    "ja": "回答者の年齢に偏りがあるため、全体の意見とは言い切れない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bb9da6ef06e3e37eb16255a2.m4a",
+    "example": "/assets/pronunciation/9a35786e47795667c173545e.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx071",
+   "word": "平均値",
+   "reading": "へいきんち",
+   "meaningZh": "数值总和除以个数",
+   "category": "general",
+   "example": {
+    "ja": "五回の測定値から平均値を求める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/27b33a51cf40d171a3b86841.m4a",
+    "example": "/assets/pronunciation/b74813dae6d6c72538f82dec.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx072",
+   "word": "中央値",
+   "reading": "ちゅうおうち",
+   "meaningZh": "数据排序后位于中央的代表值；偶数个数据时通常取中间两数的平均",
+   "category": "general",
+   "example": {
+    "ja": "極端に大きな値があるので、中央値も確認する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/422ce3f3fd583ba7bbe77390.m4a",
+    "example": "/assets/pronunciation/e4c55dc72e4751c425f99159.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx073",
+   "word": "分散",
+   "reading": "ぶんさん",
+   "meaningZh": "用偏离平均值的平方来表示数据离散程度的统计量",
+   "category": "general",
+   "example": {
+    "ja": "平均値が同じでも、分散が大きい集団では値のばらつきが大きい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/dd82d9f01e3089b75ae6c9b2.m4a",
+    "example": "/assets/pronunciation/b0b347e76cc50007d7728bc3.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx074",
+   "word": "相関",
+   "reading": "そうかん",
+   "meaningZh": "两个量在统计上共同变化的关系，本身不能证明谁导致谁",
+   "category": "general",
+   "example": {
+    "ja": "運動時間と体力の間に相関が見られた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f147892770c374673c9a88a1.m4a",
+    "example": "/assets/pronunciation/909ec909ec6e8c166924e8ff.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx075",
+   "word": "因果関係",
+   "reading": "いんがかんけい",
+   "meaningZh": "一方成为另一方发生的原因",
+   "category": "general",
+   "example": {
+    "ja": "相関があっても、因果関係があるとは限らない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ee5ff38f2757c38fcf144154.m4a",
+    "example": "/assets/pronunciation/529df218f99278c44f99d274.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx076",
+   "word": "有意",
+   "reading": "ゆうい",
+   "meaningZh": "统计检验达到预先设定的显著性标准，不等于实际作用一定很大",
+   "category": "general",
+   "example": {
+    "ja": "二つの集団の平均値には統計的に有意な差が見られた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e3358608da698af642e7db95.m4a",
+    "example": "/assets/pronunciation/ef3602d0718ffc779706a734.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx077",
+   "word": "信頼性",
+   "reading": "しんらいせい",
+   "meaningZh": "资料或结果值得信任的程度",
+   "category": "general",
+   "example": {
+    "ja": "出典を確認して、情報の信頼性を判断する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e3f568c48157113775366b97.m4a",
+    "example": "/assets/pronunciation/5e10ca7d4d2e3bf009a3e81f.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx078",
+   "word": "変数",
+   "reading": "へんすう",
+   "meaningZh": "可以取不同数值的量",
+   "category": "general",
+   "example": {
+    "ja": "この式では、時間を変数として扱う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/59db127884348e24c1bbf779.m4a",
+    "example": "/assets/pronunciation/628aa1a7ce8a38d1ae3ad04f.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx079",
+   "word": "定数",
+   "reading": "ていすう",
+   "meaningZh": "在所讨论条件下保持固定的数值",
+   "category": "general",
+   "example": {
+    "ja": "温度を一定に保ち、この値を定数とみなす。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1fbf3691edede2dd8ee9caa8.m4a",
+    "example": "/assets/pronunciation/5a938a1059decac33726b9ba.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx080",
+   "word": "範囲",
+   "reading": "はんい",
+   "meaningZh": "所讨论或允许的内容、数值、地域等到哪里为止的界限",
+   "category": "general",
+   "example": {
+    "ja": "調査の範囲を市内の高校に限定する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/92c837a265f10910be56c8fc.m4a",
+    "example": "/assets/pronunciation/d92b12358947cac300a597d4.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx081",
+   "word": "分布",
+   "reading": "ぶんぷ",
+   "meaningZh": "对象或数值如何散布",
+   "category": "general",
+   "example": {
+    "ja": "地図に店舗の分布を示す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ae854310f2978e61b292ee25.m4a",
+    "example": "/assets/pronunciation/b6626afdc32d9bb3462bb68e.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx082",
+   "word": "頻度",
+   "reading": "ひんど",
+   "meaningZh": "某件事发生的次数或频繁程度",
+   "category": "general",
+   "example": {
+    "ja": "図書館を利用する頻度を尋ねた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8c2f61ca890ea1cf1abfdd8d.m4a",
+    "example": "/assets/pronunciation/f604cd0a323ba0d0096ee94b.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx083",
+   "word": "累積",
+   "reading": "るいせき",
+   "meaningZh": "逐次加起来",
+   "category": "general",
+   "example": {
+    "ja": "毎月の販売数を累積して一年分を求める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cfbbada4bba2ff11ecc3ab0a.m4a",
+    "example": "/assets/pronunciation/e48c4bbe8aaea7fd2098e90a.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx084",
+   "word": "比率",
+   "reading": "ひりつ",
+   "meaningZh": "两个数值相比所得的比例",
+   "category": "general",
+   "example": {
+    "ja": "費用全体に対する人件費の比率を求める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a2188a5a2c04f3acf5102444.m4a",
+    "example": "/assets/pronunciation/98cd2290939a1c9fc3bbf09f.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx085",
+   "word": "推移",
+   "reading": "すいい",
+   "meaningZh": "数值随时间的变动",
+   "category": "general",
+   "example": {
+    "ja": "このグラフは十年間の人口の推移を示している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/91a81eecbb781628fa854bc7.m4a",
+    "example": "/assets/pronunciation/cbef9e4baee8383a4621cf7f.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx086",
+   "word": "増加",
+   "reading": "ぞうか",
+   "meaningZh": "某个范围内的数量、人数或数值变得更多",
+   "category": "general",
+   "example": {
+    "ja": "駅の利用者数は前年より増加した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/65a62ba2d706c11be2736b7d.m4a",
+    "example": "/assets/pronunciation/98f4edb42256d30b87254595.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx087",
+   "word": "減少",
+   "reading": "げんしょう",
+   "meaningZh": "某个范围内的数量、人数或数值变得更少",
+   "category": "general",
+   "example": {
+    "ja": "工場の数は年々減少している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/49e0d552538d573c16b97893.m4a",
+    "example": "/assets/pronunciation/8ede7bd13108e81cbfec7e8f.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx088",
+   "word": "変動",
+   "reading": "へんどう",
+   "meaningZh": "数值或状况发生变化",
+   "category": "general",
+   "example": {
+    "ja": "価格の変動が大きいため、予測が難しい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/746a6e0fb0071ef1d80d0371.m4a",
+    "example": "/assets/pronunciation/54bb2f1d790f8b5d64f5da32.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx089",
+   "word": "横ばい",
+   "reading": "よこばい",
+   "meaningZh": "没有明显上升或下降",
+   "category": "general",
+   "example": {
+    "ja": "今年の売り上げは、ほぼ横ばいである。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0c9031bfb804730b231659c5.m4a",
+    "example": "/assets/pronunciation/b83cb429295543ff973aa849.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx090",
+   "word": "急激",
+   "reading": "きゅうげき",
+   "meaningZh": "短时间内变化很大",
+   "category": "general",
+   "example": {
+    "ja": "雨のあと、川の水位が急激に上がった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/aef9c5a9d9292a7c9543ef27.m4a",
+    "example": "/assets/pronunciation/2d2d7c5ff42afaa8b30ff4e6.m4a"
+   },
+   "group": "调查与数据"
+  },
+  {
+   "id": "vx091",
+   "word": "溶液",
+   "reading": "ようえき",
+   "meaningZh": "溶质均匀溶解在溶剂中形成的体系",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "食塩を水に溶かして溶液を作る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b75be5e56fa22e2d3344f3d3.m4a",
+    "example": "/assets/pronunciation/927dd66dc0f4fff0f7090f38.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx092",
+   "word": "溶媒",
+   "reading": "ようばい",
+   "meaningZh": "用来溶解其他物质的物质",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "この実験では、水を溶媒として使う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4d340a0bff24378c0c487c2d.m4a",
+    "example": "/assets/pronunciation/3b79e5f9969d5efdab8b8044.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx093",
+   "word": "溶質",
+   "reading": "ようしつ",
+   "meaningZh": "被溶剂溶解的物质",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "食塩水では、食塩が溶質である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/69dff0ec9da2c4486249c405.m4a",
+    "example": "/assets/pronunciation/168c7ea973679d28a271a95b.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx094",
+   "word": "濃度",
+   "reading": "のうど",
+   "meaningZh": "混合物中某成分所占的量的大小",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "溶液の濃度を一定にそろえる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b565bcae6bc137409ba036bc.m4a",
+    "example": "/assets/pronunciation/ccafc415a4388ea047d9c01a.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx095",
+   "word": "希釈",
+   "reading": "きしゃく",
+   "meaningZh": "加入溶剂使浓度降低",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "濃い溶液を水で希釈する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f3bcef0a4612937f7a5bda5f.m4a",
+    "example": "/assets/pronunciation/be8a5b768679435842752347.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx096",
+   "word": "攪拌",
+   "reading": "かくはん",
+   "meaningZh": "搅动使物质混合",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "液体をゆっくり攪拌して、全体を均一にする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7778557ab5189f220f4739b9.m4a",
+    "example": "/assets/pronunciation/987fcc223a87536c175b3906.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx097",
+   "word": "沈殿",
+   "reading": "ちんでん",
+   "meaningZh": "溶液中形成并析出的难溶固体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "二つの水溶液を混ぜると、白い沈殿が生じた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/de009cc4ea20ac41857bf2cb.m4a",
+    "example": "/assets/pronunciation/ffcb1166466cff1d6e07dd45.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx098",
+   "word": "濾過",
+   "reading": "ろか",
+   "meaningZh": "让混合物通过滤纸等材料，以分离其中的难溶固体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "濾過して、液体と沈殿を分ける。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/27642aa3d0761ada026393ac.m4a",
+    "example": "/assets/pronunciation/3ca72b33287a06a954bcef07.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx099",
+   "word": "蒸留",
+   "reading": "じょうりゅう",
+   "meaningZh": "汽化后再冷凝以分离或提纯",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "液体を蒸留して、沸点の違いを利用して分離する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c51450a62cc578c3bdf69abc.m4a",
+    "example": "/assets/pronunciation/8baf148a7df13269facf9961.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx100",
+   "word": "蒸発",
+   "reading": "じょうはつ",
+   "meaningZh": "液体从表面变成气体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "皿に入れた水が少しずつ蒸発した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/96018aac894ba487d0dce090.m4a",
+    "example": "/assets/pronunciation/69e63991c9830845f3ba7be9.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx101",
+   "word": "凝縮",
+   "reading": "ぎょうしゅく",
+   "meaningZh": "气体变成液体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "冷たい管に触れた水蒸気が凝縮した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cba8f0e04570ddf88f2cb28a.m4a",
+    "example": "/assets/pronunciation/8a961b44617b17b862c3dbbb.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx102",
+   "word": "融解",
+   "reading": "ゆうかい",
+   "meaningZh": "固体变成液体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "氷を温めると融解が始まる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f888a136b0e48820bb3c49fd.m4a",
+    "example": "/assets/pronunciation/eb4eb80e3db4e631bf64bb85.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx103",
+   "word": "凝固",
+   "reading": "ぎょうこ",
+   "meaningZh": "液体变成固体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "水を十分に冷やすと凝固する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bf69bb472c89493e95397ea0.m4a",
+    "example": "/assets/pronunciation/5246ca87a4c8b07a430b657e.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx104",
+   "word": "昇華",
+   "reading": "しょうか",
+   "meaningZh": "固体直接变成气体",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "ドライアイスは液体にならずに昇華する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e43e1337fc5e2e5b7d57b012.m4a",
+    "example": "/assets/pronunciation/10817711b68b8a70078066fe.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx105",
+   "word": "吸収",
+   "reading": "きゅうしゅう",
+   "meaningZh": "将外部物质或能量纳入内部",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "黒い面は白い面より光を吸収しやすい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/156fd4696a26ec6228dfb68b.m4a",
+    "example": "/assets/pronunciation/5263bc1df6d6be6e60733c35.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx106",
+   "word": "放出",
+   "reading": "ほうしゅつ",
+   "meaningZh": "向外排出物质或能量",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "この反応では熱が放出される。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f80b559a00377ba46c2ab349.m4a",
+    "example": "/assets/pronunciation/ab99a12aeda725eb60704cf6.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx107",
+   "word": "加熱",
+   "reading": "かねつ",
+   "meaningZh": "向物体供热",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "容器の中の水を加熱する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/84705c8fa56aaeb12d1ac52a.m4a",
+    "example": "/assets/pronunciation/38922725dc1b02c2d070fdc1.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx108",
+   "word": "冷却",
+   "reading": "れいきゃく",
+   "meaningZh": "使温度降低",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "測定の前に試料を冷却する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7c199c84693c4c4a2c64729d.m4a",
+    "example": "/assets/pronunciation/f65e2811cdb181de2fa96085.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx109",
+   "word": "沸騰",
+   "reading": "ふっとう",
+   "meaningZh": "液体内部也产生大量气泡的汽化",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "水が沸騰したら、温度を記録する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9a59a617bc25fda251147700.m4a",
+    "example": "/assets/pronunciation/af36613fca54d5b5e740e825.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx110",
+   "word": "密閉",
+   "reading": "みっぺい",
+   "meaningZh": "封闭容器，使气体等不易与外界交换",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "気体が漏れないように容器を密閉する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ea002239cb37080dd888fcb0.m4a",
+    "example": "/assets/pronunciation/3c5cf37c65295a6478d25d51.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx111",
+   "word": "接触",
+   "reading": "せっしょく",
+   "meaningZh": "物体相互碰到",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "二つの金属が直接接触しないようにする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7a6bb16dda87a7d9784d63be.m4a",
+    "example": "/assets/pronunciation/2a5073731b927ba67f4d0641.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx112",
+   "word": "摩擦",
+   "reading": "まさつ",
+   "meaningZh": "接触的物体之间阻碍相对运动或相对运动趋势的作用",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "床と物体の間の摩擦を小さくする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/337e241dd11617132746a100.m4a",
+    "example": "/assets/pronunciation/856bd95909bf0e5f93d79f13.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx113",
+   "word": "抵抗",
+   "reading": "ていこう",
+   "meaningZh": "电路语境中，元件对电流通过的阻碍程度，常用Ω表示",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "同じ電圧なら、抵抗が大きいほど電流は小さくなる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/674f7500408423760cccc7c3.m4a",
+    "example": "/assets/pronunciation/3d744a6daf6ca397082cd819.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx114",
+   "word": "電圧",
+   "reading": "でんあつ",
+   "meaningZh": "两点间的电势差",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "電池の両端の電圧を測る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/533adc9f1c1dc930c9928f93.m4a",
+    "example": "/assets/pronunciation/f0934ac2f3c6c7beebaf3d88.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx115",
+   "word": "電流",
+   "reading": "でんりゅう",
+   "meaningZh": "电荷的定向流动",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "回路に流れる電流の向きを確認する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4bae0e83a04bb359e09c8817.m4a",
+    "example": "/assets/pronunciation/5193d414ff658746205d2ca2.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx116",
+   "word": "磁場",
+   "reading": "じば",
+   "meaningZh": "磁力作用的场",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "コイルの近くに磁場が生じる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e698f39497dacf291cae07f8.m4a",
+    "example": "/assets/pronunciation/56ec8f88a7a4781672dea4ec.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx117",
+   "word": "波長",
+   "reading": "はちょう",
+   "meaningZh": "同一时刻沿传播方向相邻同相位点间的最小正距离",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "隣り合う波の山の間隔から波長を読む。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2cf1854595e388a539701a2f.m4a",
+    "example": "/assets/pronunciation/787abc8453f783f07f718b4c.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx118",
+   "word": "振幅",
+   "reading": "しんぷく",
+   "meaningZh": "相对平衡位置的最大位移",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "振幅が大きいほど、振動の幅が大きい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d9a6a8d318a917db42032df5.m4a",
+    "example": "/assets/pronunciation/39dc17a8f23080c0aede5da2.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx119",
+   "word": "屈折",
+   "reading": "くっせつ",
+   "meaningZh": "波进入另一介质时，因波速改变而可能发生传播方向的偏转",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "光が空気から水に斜めに入ると屈折する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5a9c015392b2614cbd30a19c.m4a",
+    "example": "/assets/pronunciation/35edc8571ece8e0df9bdca29.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx120",
+   "word": "反射",
+   "reading": "はんしゃ",
+   "meaningZh": "波在界面返回原介质",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "鏡の表面で光が反射する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/621279eecf367072079e01bc.m4a",
+    "example": "/assets/pronunciation/771b10023619b612970817b6.m4a"
+   },
+   "group": "实验现象"
+  },
+  {
+   "id": "vx121",
+   "word": "容器",
+   "reading": "ようき",
+   "meaningZh": "盛放物品的器皿",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "透明な容器に水を入れる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cbfff7697b9eb69dbdb20981.m4a",
+    "example": "/assets/pronunciation/bc1974d6d9f58033aa4609d1.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx122",
+   "word": "器具",
+   "reading": "きぐ",
+   "meaningZh": "操作时使用的工具",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "使用した器具を洗って片付ける。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/921b3b82b0dc1ec53823bcde.m4a",
+    "example": "/assets/pronunciation/3f93e76337a6aa8648ce1494.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx123",
+   "word": "試料",
+   "reading": "しりょう",
+   "meaningZh": "供实验或检验的材料",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "同じ試料を三つの容器に分ける。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/863ded65dd0567a4476afe51.m4a",
+    "example": "/assets/pronunciation/b318666200ea78629e9ac1ae.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx124",
+   "word": "試薬",
+   "reading": "しやく",
+   "meaningZh": "用于化学实验或检验的药品",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "試薬の名称を確認してから使用する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/aa0ad902af36d43de7c7955f.m4a",
+    "example": "/assets/pronunciation/b060a00f102e51de4e9d98ea.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx125",
+   "word": "操作",
+   "reading": "そうさ",
+   "meaningZh": "按照方法使用工具或进行处理",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "複雑な操作は、手順を確認してから行う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b59511b972e9f46c1b69ae5f.m4a",
+    "example": "/assets/pronunciation/8baedb430b2b5cbd2e0faf0a.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx126",
+   "word": "手順",
+   "reading": "てじゅん",
+   "meaningZh": "进行某项工作的先后次序",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "実験の手順をノートに書く。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a50cb3a15579e84dd6107353.m4a",
+    "example": "/assets/pronunciation/15af3cd750bcc4c50471f60c.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx127",
+   "word": "装置",
+   "reading": "そうち",
+   "meaningZh": "为特定目的组合起来的设备",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "この装置で気体の体積を測定する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d81611013f140525804d3a8c.m4a",
+    "example": "/assets/pronunciation/75a53a38e0d6919e89a5dabd.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx128",
+   "word": "試行",
+   "reading": "しこう",
+   "meaningZh": "作为一次尝试实施实验或活动",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "同じ条件で十回の試行を行う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/292b16d5a1036c61e6d659c7.m4a",
+    "example": "/assets/pronunciation/3d78758193c0ba65018fd3c2.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx129",
+   "word": "誤作動",
+   "reading": "ごさどう",
+   "meaningZh": "设备发生不符合预期的运行",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "センサーの誤作動で警報が鳴った。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e55913003f82cce362147e30.m4a",
+    "example": "/assets/pronunciation/af39e7c2b135bb1865728366.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx130",
+   "word": "点検",
+   "reading": "てんけん",
+   "meaningZh": "逐项确认是否正常",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "実験の前に配線を点検する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1d4006f700980b04b85bdb68.m4a",
+    "example": "/assets/pronunciation/30bfb48b88c72bbc90ae3ae4.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx131",
+   "word": "調整",
+   "reading": "ちょうせい",
+   "meaningZh": "调整到合适的状态或数值",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "温度が一定になるように装置を調整する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c949efd042e4775a474b0027.m4a",
+    "example": "/assets/pronunciation/e318f52ce2ffdeee6e3fd331.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx132",
+   "word": "制御",
+   "reading": "せいぎょ",
+   "meaningZh": "使动作或变化按照要求进行",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "コンピューターで機械の動きを制御する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8266d53384013bb3550069c3.m4a",
+    "example": "/assets/pronunciation/9568e149ea7ac8c986301a58.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx133",
+   "word": "記録",
+   "reading": "きろく",
+   "meaningZh": "将结果保存下来",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "一分ごとに温度を記録する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8a5d3e84bab414c3adc2341b.m4a",
+    "example": "/assets/pronunciation/15e134d10f71b9491bfab3ba.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx134",
+   "word": "目盛り",
+   "reading": "めもり",
+   "meaningZh": "尺、量筒等测量器具上，用来读出数值的线条或标记",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "目盛りを正面から読み取る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2ec12c55576b207e1aa62dc9.m4a",
+    "example": "/assets/pronunciation/7292994eeb2b196a7ad34140.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx135",
+   "word": "荷重",
+   "reading": "かじゅう",
+   "meaningZh": "由承载对象或外部作用施加在构件、物体上的负荷",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "橋にかかる荷重を計算する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c23b152476600667826053d3.m4a",
+    "example": "/assets/pronunciation/b09c4d05f01be7fb815040d0.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx136",
+   "word": "張力",
+   "reading": "ちょうりょく",
+   "meaningZh": "绳或线受到拉伸时传递的力",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "糸の張力が物体を上向きに引いている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/67eac25d445051611c16660b.m4a",
+    "example": "/assets/pronunciation/18fb3b57dfbb89ce4c0f03a3.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx137",
+   "word": "密度",
+   "reading": "みつど",
+   "meaningZh": "单位体积的质量",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "質量を体積で割って密度を求める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8750dea79f86d90fcec6c548.m4a",
+    "example": "/assets/pronunciation/d9f64766bdd6a68b50b7212a.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx138",
+   "word": "質量",
+   "reading": "しつりょう",
+   "meaningZh": "描述物体惯性大小等性质的物理量，常用kg表示",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "はかりを使って物体の質量を測る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/dc813ba46304aead3c7757a2.m4a",
+    "example": "/assets/pronunciation/be8bd7761e3babd94850642c.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx139",
+   "word": "体積",
+   "reading": "たいせき",
+   "meaningZh": "物体占据空间的大小",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "水の量の変化から石の体積を求める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7105d69942d48a93325d9bcd.m4a",
+    "example": "/assets/pronunciation/8dd649d7b0d5a154a9607579.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx140",
+   "word": "圧力",
+   "reading": "あつりょく",
+   "meaningZh": "物理语境中，垂直作用在单位面积上的力的大小，常用Pa表示",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "同じ力でも、面積が小さいほど圧力は大きい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b80bdba9edb135b0e4e59ec4.m4a",
+    "example": "/assets/pronunciation/ff64ec4985520c3ea44ab752.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx141",
+   "word": "浮力",
+   "reading": "ふりょく",
+   "meaningZh": "通常重力场中，液体或气体因压强差对浸入物体产生的向上合力",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "水中の物体には上向きの浮力が働く。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/688ebcf7bb464b6061033f40.m4a",
+    "example": "/assets/pronunciation/6a72dbd7661aa69be0203949.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx142",
+   "word": "慣性",
+   "reading": "かんせい",
+   "meaningZh": "保持原有运动状态的性质",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "急にバスが止まると、慣性によって体が前に動こうとする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/848e4d0b210d77e186d40564.m4a",
+    "example": "/assets/pronunciation/f39c1f6c2f6b4a3420452173.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx143",
+   "word": "運動量",
+   "reading": "うんどうりょう",
+   "meaningZh": "质量与速度的乘积对应的矢量",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "外力が働かない系では、全体の運動量が保存される。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5e391a68973ee944e26871bd.m4a",
+    "example": "/assets/pronunciation/c111eed3af9afbe6bbf9c305.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx144",
+   "word": "熱量",
+   "reading": "ねつりょう",
+   "meaningZh": "因温度差而传递的能量的量",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "水が受け取った熱量を計算する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bb6616133ad04a51255fccd5.m4a",
+    "example": "/assets/pronunciation/670bbf5bdf9bca9258671f26.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx145",
+   "word": "断熱",
+   "reading": "だんねつ",
+   "meaningZh": "阻止或忽略热量进出",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "外部との熱の移動を防ぐため、容器を断熱する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c698ce16068f04fe0ff24b4b.m4a",
+    "example": "/assets/pronunciation/9da29c5e412c48cc3465e29e.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx146",
+   "word": "絶縁",
+   "reading": "ぜつえん",
+   "meaningZh": "阻止电流通过或漏电",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "導線の表面はゴムで絶縁されている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7882709101bcff8ced017f03.m4a",
+    "example": "/assets/pronunciation/6269b1ffb7ff0ac3b1e2c9ec.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx147",
+   "word": "導体",
+   "reading": "どうたい",
+   "meaningZh": "容易传导电流的物质",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "銅は電流を通しやすい導体である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ce6470712bae91a336f201f0.m4a",
+    "example": "/assets/pronunciation/a8592e70eb3ed290b4d2b1b2.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx148",
+   "word": "半導体",
+   "reading": "はんどうたい",
+   "meaningZh": "导电性质介于导体与绝缘体之间的材料",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "半導体は電子機器の部品に使われる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/db333e25835b45902e6df3ba.m4a",
+    "example": "/assets/pronunciation/790583e76d0bd75c71fa875e.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx149",
+   "word": "電極",
+   "reading": "でんきょく",
+   "meaningZh": "电流进入或离开介质的导电部件",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "二本の電極を溶液に入れる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/35f6f4e06610bd2dec458db6.m4a",
+    "example": "/assets/pronunciation/bda52b3291f356c2f9f53e0f.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx150",
+   "word": "触媒",
+   "reading": "しょくばい",
+   "meaningZh": "改变化学反应速率，而反应前后自身化学性质和总量不变的物质",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "触媒を加えると、反応が速く進んだ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d63ccb3f499c4e4036425392.m4a",
+    "example": "/assets/pronunciation/6b2a9e5817408e72b71ad163.m4a"
+   },
+   "group": "实验器具与物理量"
+  },
+  {
+   "id": "vx151",
+   "word": "少子化",
+   "reading": "しょうしか",
+   "meaningZh": "出生儿童的数量减少，或儿童在总人口中的比重降低",
+   "category": "general",
+   "example": {
+    "ja": "少子化によって、学校の統合が進んでいる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c861692e8f5c7e594173b9f0.m4a",
+    "example": "/assets/pronunciation/9e5f56944c6d7aa927975b9b.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx152",
+   "word": "高齢化",
+   "reading": "こうれいか",
+   "meaningZh": "老年人口占比提高的现象",
+   "category": "general",
+   "example": {
+    "ja": "高齢化に対応した交通サービスが必要だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8750f22fae5596fd4211aa68.m4a",
+    "example": "/assets/pronunciation/41da3ff474d98bd53c1edd86.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx153",
+   "word": "世帯",
+   "reading": "せたい",
+   "meaningZh": "共同生活并维持生计的单位",
+   "category": "general",
+   "example": {
+    "ja": "一人暮らしの世帯が増えている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4ccd9a31fc2172c5a4f9e8b6.m4a",
+    "example": "/assets/pronunciation/a4c5e0f07bb15a17f69687ed.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx154",
+   "word": "人口密度",
+   "reading": "じんこうみつど",
+   "meaningZh": "单位面积的人口数量",
+   "category": "general",
+   "example": {
+    "ja": "都心部は人口密度が高い。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/eabc01e25e969b55707a0fe4.m4a",
+    "example": "/assets/pronunciation/215c64650ebb773bacde763f.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx155",
+   "word": "過疎",
+   "reading": "かそ",
+   "meaningZh": "人口稀少到影响地区功能的状态",
+   "category": "general",
+   "example": {
+    "ja": "過疎が進む地域では、公共交通の維持が難しい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d329d5e5466e493c22e5c185.m4a",
+    "example": "/assets/pronunciation/b4404a7d2d7c7676233ddebc.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx156",
+   "word": "過密",
+   "reading": "かみつ",
+   "meaningZh": "人口等过分集中",
+   "category": "general",
+   "example": {
+    "ja": "人口の過密によって住宅不足が起きた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4384a93ebe5bcc340e1e0ca6.m4a",
+    "example": "/assets/pronunciation/aa1b6a5667ef949b142c94fc.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx157",
+   "word": "都市化",
+   "reading": "としか",
+   "meaningZh": "人口与产业向城市集中，乡村地区逐渐具有城市形态的过程",
+   "category": "general",
+   "example": {
+    "ja": "都市化に伴って、農地が住宅地に変わった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0fe46e1fe08d1132804524d8.m4a",
+    "example": "/assets/pronunciation/3133b2803dffd73753cf8c9b.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx158",
+   "word": "格差",
+   "reading": "かくさ",
+   "meaningZh": "群体之间的水平差异",
+   "category": "general",
+   "example": {
+    "ja": "地域間の教育格差を小さくする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/face2b517c00c4331c72e7eb.m4a",
+    "example": "/assets/pronunciation/6c6ae17b190fd9a78b0c4c26.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx159",
+   "word": "貧困",
+   "reading": "ひんこん",
+   "meaningZh": "缺少维持基本生活所需的资源",
+   "category": "general",
+   "example": {
+    "ja": "子どもの貧困が学習機会に影響している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1d56b2b92644d45e3ba3ac88.m4a",
+    "example": "/assets/pronunciation/8dc56853b6370e61c8ad3c27.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx160",
+   "word": "福祉",
+   "reading": "ふくし",
+   "meaningZh": "增进社会成员生活保障和幸福的制度或活动",
+   "category": "general",
+   "example": {
+    "ja": "地域の福祉を支える人材を育てる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4a909531f6e264910da2d414.m4a",
+    "example": "/assets/pronunciation/c4294af8d64b579f3d800035.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx161",
+   "word": "負担",
+   "reading": "ふたん",
+   "meaningZh": "承担的费用或压力",
+   "category": "general",
+   "example": {
+    "ja": "利用者の費用負担を減らす。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7ce18f44790cf3237795ed7f.m4a",
+    "example": "/assets/pronunciation/cbe983e8bfc19124d05d0305.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx162",
+   "word": "保障",
+   "reading": "ほしょう",
+   "meaningZh": "通过法律、制度或实际措施，使人的权利、生活或安全得到保护",
+   "category": "general",
+   "example": {
+    "ja": "すべての人に学ぶ機会を保障する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/43965f7fcc920544a1142eef.m4a",
+    "example": "/assets/pronunciation/79b804f15c6e0edecf1cd86c.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx163",
+   "word": "制度",
+   "reading": "せいど",
+   "meaningZh": "社会或组织中，人们共同遵循的成套规则与办事机制",
+   "category": "general",
+   "example": {
+    "ja": "新しい支援制度が来年から始まる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6ab5b5033f0e7cc25ee4c0d6.m4a",
+    "example": "/assets/pronunciation/8303814d97d0e70b7341566c.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx164",
+   "word": "政策",
+   "reading": "せいさく",
+   "meaningZh": "政府等为达到某个公共目标而制定的行动方针与措施",
+   "category": "general",
+   "example": {
+    "ja": "子育てを支える政策が求められている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3812ed047f7edb866249d5ed.m4a",
+    "example": "/assets/pronunciation/b382cd7de5af740ad96224fc.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx165",
+   "word": "規制",
+   "reading": "きせい",
+   "meaningZh": "通过规则限制行为",
+   "category": "general",
+   "example": {
+    "ja": "安全のため、車の通行を規制する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/afcb67a53b3033f08c12785d.m4a",
+    "example": "/assets/pronunciation/48bfccc4594efdf0950606ef.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx166",
+   "word": "緩和",
+   "reading": "かんわ",
+   "meaningZh": "减轻限制或严峻程度",
+   "category": "general",
+   "example": {
+    "ja": "混雑を緩和するため、開館時間を延ばした。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d905f1a18a6338d29a663379.m4a",
+    "example": "/assets/pronunciation/ebe7463fad77282dc54024a1.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx167",
+   "word": "雇用",
+   "reading": "こよう",
+   "meaningZh": "雇用劳动者工作",
+   "category": "general",
+   "example": {
+    "ja": "新しい工場が地域の雇用を生み出した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5a08eefe9462f16aa04c4665.m4a",
+    "example": "/assets/pronunciation/d06bb460e33fe077de7d2c29.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx168",
+   "word": "失業",
+   "reading": "しつぎょう",
+   "meaningZh": "有劳动能力且愿意工作，却没有获得工作的状态",
+   "category": "general",
+   "example": {
+    "ja": "失業した人の再就職を支援する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/98b10009a8fa334d34947d81.m4a",
+    "example": "/assets/pronunciation/8610b34662548ae0e3e55317.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx169",
+   "word": "労働",
+   "reading": "ろうどう",
+   "meaningZh": "为生产或服务付出的活动",
+   "category": "general",
+   "example": {
+    "ja": "長時間労働を減らす取り組みが進んでいる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/03a56bedd04804d5caa07de6.m4a",
+    "example": "/assets/pronunciation/a9141b0d4c07cd4ea49481c1.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx170",
+   "word": "賃金",
+   "reading": "ちんぎん",
+   "meaningZh": "劳动者因劳动获得的报酬",
+   "category": "general",
+   "example": {
+    "ja": "労働時間に応じて賃金が支払われる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1a31465d5dde0a1a1b43f53b.m4a",
+    "example": "/assets/pronunciation/de3d3556fa3da94862a6b67a.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx171",
+   "word": "所得",
+   "reading": "しょとく",
+   "meaningZh": "一定期间获得的收入或经济收益",
+   "category": "general",
+   "example": {
+    "ja": "世帯の所得によって利用料が変わる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/53811d74da1b31ec81ce2b06.m4a",
+    "example": "/assets/pronunciation/d7d4ad3da7862da9d3b94363.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx172",
+   "word": "消費",
+   "reading": "しょうひ",
+   "meaningZh": "为满足需要使用商品或服务",
+   "category": "general",
+   "example": {
+    "ja": "物価の上昇で家庭の消費が落ち込んだ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d16a53f2dd68b80ce9ccbfca.m4a",
+    "example": "/assets/pronunciation/a1b5f035d0fc89bca10b0694.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx173",
+   "word": "投資",
+   "reading": "とうし",
+   "meaningZh": "为未来收益投入资金等资源",
+   "category": "general",
+   "example": {
+    "ja": "企業が新しい設備に投資する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f8a1c67c165d648a30362eab.m4a",
+    "example": "/assets/pronunciation/760ddf382aab3e345eb7e305.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx174",
+   "word": "景気",
+   "reading": "けいき",
+   "meaningZh": "经济活动的活跃程度",
+   "category": "general",
+   "example": {
+    "ja": "景気が回復し、求人が増えた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/eec7ad54b407dcd785dd228c.m4a",
+    "example": "/assets/pronunciation/68c7e249bb353fb4a444ea2e.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx175",
+   "word": "財政",
+   "reading": "ざいせい",
+   "meaningZh": "政府等公共机构的收支活动",
+   "category": "general",
+   "example": {
+    "ja": "自治体の財政が厳しくなっている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/91c26905f3ab60fe98239a8f.m4a",
+    "example": "/assets/pronunciation/3533645a95786b11686de299.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx176",
+   "word": "税収",
+   "reading": "ぜいしゅう",
+   "meaningZh": "政府征税取得的收入",
+   "category": "general",
+   "example": {
+    "ja": "人口の減少によって税収も減った。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/78ea43127a4f9352f9731135.m4a",
+    "example": "/assets/pronunciation/2ed310bbb16b77eb03de0403.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx177",
+   "word": "予算",
+   "reading": "よさん",
+   "meaningZh": "预先制定的收支额度或计划",
+   "category": "general",
+   "example": {
+    "ja": "限られた予算をどの事業に使うか検討する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/06e7b2b364476038e24fceda.m4a",
+    "example": "/assets/pronunciation/a119fd83d820003987af1d3e.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx178",
+   "word": "補助金",
+   "reading": "ほじょきん",
+   "meaningZh": "为支持特定活动提供的资金",
+   "category": "general",
+   "example": {
+    "ja": "省エネ設備の購入に補助金が出る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/18592dfce5a5af2b54915a96.m4a",
+    "example": "/assets/pronunciation/8df6c2dcf87920ed02f8c7d1.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx179",
+   "word": "競争",
+   "reading": "きょうそう",
+   "meaningZh": "为取得同一目标而相互较量",
+   "category": "general",
+   "example": {
+    "ja": "企業間の競争によって価格が下がった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5aaaaa3703fac029550604a3.m4a",
+    "example": "/assets/pronunciation/64a81e6cdca7429627acfd38.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx180",
+   "word": "独占",
+   "reading": "どくせん",
+   "meaningZh": "由一个主体占有或控制",
+   "category": "general",
+   "example": {
+    "ja": "一社が市場を独占すると、競争が弱くなる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6d2eab9c5d4b659dd5d7ab7c.m4a",
+    "example": "/assets/pronunciation/d1a87ca484c9db33a5f2c87c.m4a"
+   },
+   "group": "社会与经济"
+  },
+  {
+   "id": "vx181",
+   "word": "資源",
+   "reading": "しげん",
+   "meaningZh": "可供利用的自然物或要素",
+   "category": "general",
+   "example": {
+    "ja": "限りある資源を大切に使う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/45b5d3d4b5b84c289bb636fe.m4a",
+    "example": "/assets/pronunciation/5b806b50b5ffa63aadb0c30d.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx182",
+   "word": "再生",
+   "reading": "さいせい",
+   "meaningZh": "使失去功能的事物恢复或重新利用",
+   "category": "general",
+   "example": {
+    "ja": "使い終わった紙を再生して新しい紙にする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/941f48b12b2237fb79f17d0b.m4a",
+    "example": "/assets/pronunciation/a48ea4b8b234173007b18a0b.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx183",
+   "word": "循環",
+   "reading": "じゅんかん",
+   "meaningZh": "按照一定路径反复流动或运行",
+   "category": "general",
+   "example": {
+    "ja": "自然界では水が循環している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b969db8546c5ce00a3a5a1e1.m4a",
+    "example": "/assets/pronunciation/164e26a4dee644ed139317ac.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx184",
+   "word": "持続可能",
+   "reading": "じぞくかのう",
+   "meaningZh": "能够长期维持而不过度损害未来条件",
+   "category": "general",
+   "example": {
+    "ja": "持続可能な社会を目指す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/542fb107c631fac9cccbd13e.m4a",
+    "example": "/assets/pronunciation/6f7c9f760834bd76ce68a205.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx185",
+   "word": "枯渇",
+   "reading": "こかつ",
+   "meaningZh": "水、能源等储藏已经用尽或干涸，不能再继续提供",
+   "category": "general",
+   "example": {
+    "ja": "地下水の枯渇を防ぐため、使用量を制限する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ae4bac95e2f935186ec2d4c6.m4a",
+    "example": "/assets/pronunciation/743eec99a36c4daf1c8100f0.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx186",
+   "word": "排出",
+   "reading": "はいしゅつ",
+   "meaningZh": "把气体、液体或其他物质从内部送到外部",
+   "category": "general",
+   "example": {
+    "ja": "工場から排出される二酸化炭素を減らす。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/153a66c0d3006c43fcbed5c6.m4a",
+    "example": "/assets/pronunciation/c95827f1c32ba01b0eeacc12.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx187",
+   "word": "汚染",
+   "reading": "おせん",
+   "meaningZh": "受到有害物质影响而变脏或有害",
+   "category": "general",
+   "example": {
+    "ja": "川の汚染が周辺の生物に影響している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/578dc02885ae33192420c482.m4a",
+    "example": "/assets/pronunciation/3f79e962137e9544377dea3e.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx188",
+   "word": "浄化",
+   "reading": "じょうか",
+   "meaningZh": "去除污染物使其洁净",
+   "category": "general",
+   "example": {
+    "ja": "汚れた水を浄化してから川へ戻す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/beae6289f4eb8c78588d4d95.m4a",
+    "example": "/assets/pronunciation/24212e59ed7dc43bb3a7d1ed.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx189",
+   "word": "生態系",
+   "reading": "せいたいけい",
+   "meaningZh": "生物与其环境相互作用的整体",
+   "category": "general",
+   "example": {
+    "ja": "一種類の生物が減ると、生態系全体に影響が出ることがある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f2fb9e20e4f1550b3528376e.m4a",
+    "example": "/assets/pronunciation/5a0c4e83a5766aada67ec973.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx190",
+   "word": "生物多様性",
+   "reading": "せいぶつたようせい",
+   "meaningZh": "生命在基因、物种及其所处生态系统等层面具有不同类型的状态",
+   "category": "general",
+   "example": {
+    "ja": "生物多様性を守るため、森林を保護する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/689b06459be44b1a7636c203.m4a",
+    "example": "/assets/pronunciation/db49ea222e56344d4371acf5.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx191",
+   "word": "絶滅",
+   "reading": "ぜつめつ",
+   "meaningZh": "某一类生物完全消失",
+   "category": "general",
+   "example": {
+    "ja": "この鳥は絶滅の危険にさらされている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b0c91ebbd29849b9a5cc0c26.m4a",
+    "example": "/assets/pronunciation/f0f61fe4a3498a822c26f577.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx192",
+   "word": "保全",
+   "reading": "ほぜん",
+   "meaningZh": "保护使其保持良好状态",
+   "category": "general",
+   "example": {
+    "ja": "湿地の保全と観光を両立させる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6dd3cc3f75b78ba2410245f5.m4a",
+    "example": "/assets/pronunciation/a9f67a74fc7faf7d5136b5f8.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx193",
+   "word": "開発",
+   "reading": "かいはつ",
+   "meaningZh": "发展建设或研制新事物",
+   "category": "general",
+   "example": {
+    "ja": "駅の周辺で大規模な開発が進んでいる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/adab6b8941d0da49525f4939.m4a",
+    "example": "/assets/pronunciation/7f6938a761356fa29603162b.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx194",
+   "word": "開拓",
+   "reading": "かいたく",
+   "meaningZh": "开辟土地或新的活动领域",
+   "category": "general",
+   "example": {
+    "ja": "企業が海外の市場を開拓する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b2165ad059b8b4ff267a06c1.m4a",
+    "example": "/assets/pronunciation/10b32383a98cd5d86546172c.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx195",
+   "word": "森林",
+   "reading": "しんりん",
+   "meaningZh": "大面积树木生长的区域",
+   "category": "general",
+   "example": {
+    "ja": "森林は多くの生物のすみかとなる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/620cd74ed29b0f1a99f05b82.m4a",
+    "example": "/assets/pronunciation/df816872c62d4cbce13d647a.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx196",
+   "word": "土壌",
+   "reading": "どじょう",
+   "meaningZh": "地表可供植物生长的层",
+   "category": "general",
+   "example": {
+    "ja": "土壌に含まれる水分を測る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f883cd8090ee5f8f42cfd33c.m4a",
+    "example": "/assets/pronunciation/0a3c265bd2d09c8583811538.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx197",
+   "word": "干ばつ",
+   "reading": "かんばつ",
+   "meaningZh": "长时间少雨导致缺水",
+   "category": "general",
+   "example": {
+    "ja": "干ばつのため、農作物が十分に育たなかった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1f422022382fafd3ba7e4dfc.m4a",
+    "example": "/assets/pronunciation/79dc5bb847b1253aaed9bea8.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx198",
+   "word": "洪水",
+   "reading": "こうずい",
+   "meaningZh": "大量水流溢出河道等的灾害",
+   "category": "general",
+   "example": {
+    "ja": "大雨による洪水に備えて避難場所を確認する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/91b0c06f5f136f6bf2e6c5e8.m4a",
+    "example": "/assets/pronunciation/76ae569c885a0364b1c0e085.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx199",
+   "word": "地震",
+   "reading": "じしん",
+   "meaningZh": "由地下岩层运动等原因引起的地面震动现象",
+   "category": "general",
+   "example": {
+    "ja": "地震が起きたら、まず身の安全を確保する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0e6ba83109cd964f31c3496d.m4a",
+    "example": "/assets/pronunciation/62128cbe99cc6ff84d2add1d.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx200",
+   "word": "避難",
+   "reading": "ひなん",
+   "meaningZh": "离开危险地点到安全处",
+   "category": "general",
+   "example": {
+    "ja": "川の近くの住民に避難を呼びかけた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6834011d1ab88a53d079d018.m4a",
+    "example": "/assets/pronunciation/9d6690661654dbde416cb8e4.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx201",
+   "word": "防災",
+   "reading": "ぼうさい",
+   "meaningZh": "预防灾害并减轻损失的活动",
+   "category": "general",
+   "example": {
+    "ja": "地域で防災訓練を行う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/48f02c0b3aff13d459b64dc7.m4a",
+    "example": "/assets/pronunciation/81ce51e4e12ea7dc542f3ac0.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx202",
+   "word": "復旧",
+   "reading": "ふっきゅう",
+   "meaningZh": "恢复到受损前的状态",
+   "category": "general",
+   "example": {
+    "ja": "台風で止まった電車が復旧した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f6abcf96c1a3492e1cb0d46a.m4a",
+    "example": "/assets/pronunciation/dd0b75bdf07bd86846b6653e.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx203",
+   "word": "復興",
+   "reading": "ふっこう",
+   "meaningZh": "灾后重建并恢复地区活力",
+   "category": "general",
+   "example": {
+    "ja": "被災地の復興には長い時間がかかる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7634c1d3ce7e278fc505b3e8.m4a",
+    "example": "/assets/pronunciation/628b5b99a0f6c8d22e9c2dcc.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx204",
+   "word": "備蓄",
+   "reading": "びちく",
+   "meaningZh": "为未来或紧急情况预先存储",
+   "category": "general",
+   "example": {
+    "ja": "災害に備えて飲料水を備蓄する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/06f6cdc391f473fe463e6c6a.m4a",
+    "example": "/assets/pronunciation/4086068f897703fb905b6fe3.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx205",
+   "word": "廃棄",
+   "reading": "はいき",
+   "meaningZh": "作为不再使用的物品处理",
+   "category": "general",
+   "example": {
+    "ja": "使えなくなった機械を廃棄する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a8afbdc23cd8ab69ab323bee.m4a",
+    "example": "/assets/pronunciation/88cd876e25b9357907061ed2.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx206",
+   "word": "回収",
+   "reading": "かいしゅう",
+   "meaningZh": "将已分散出去的物品收集回来",
+   "category": "general",
+   "example": {
+    "ja": "市が古い電池を回収している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ad8a0d3397514c39bb01c2fc.m4a",
+    "example": "/assets/pronunciation/a0ab560b2246cc365e0103d0.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx207",
+   "word": "分別",
+   "reading": "ぶんべつ",
+   "meaningZh": "按种类分开处理",
+   "category": "general",
+   "example": {
+    "ja": "ごみを種類ごとに分別する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/886b651583d8b18f96b3095e.m4a",
+    "example": "/assets/pronunciation/e8224872dd1c6e89d58b3d95.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx208",
+   "word": "再利用",
+   "reading": "さいりよう",
+   "meaningZh": "把用过的物品重新使用",
+   "category": "general",
+   "example": {
+    "ja": "洗った瓶を再利用する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/03947d771b1bf43cbefaa57d.m4a",
+    "example": "/assets/pronunciation/db10c2b6fead255086c78643.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx209",
+   "word": "節約",
+   "reading": "せつやく",
+   "meaningZh": "减少不必要的消耗",
+   "category": "general",
+   "example": {
+    "ja": "必要のない照明を消して電気を節約する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f9997cedf69816a3afc27611.m4a",
+    "example": "/assets/pronunciation/f43e19f6284c3b2bac66a093.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx210",
+   "word": "浪費",
+   "reading": "ろうひ",
+   "meaningZh": "无益地消耗资源或时间",
+   "category": "general",
+   "example": {
+    "ja": "水の浪費を減らすため、蛇口をこまめに閉める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c7e50ff82f5d2275d5555176.m4a",
+    "example": "/assets/pronunciation/9d62e6e4a9305b890cb8e358.m4a"
+   },
+   "group": "环境与城市生活"
+  },
+  {
+   "id": "vx211",
+   "word": "履修",
+   "reading": "りしゅう",
+   "meaningZh": "按课程要求学习某门课程",
+   "category": "general",
+   "example": {
+    "ja": "卒業までに必要な科目を履修する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/14d80a9303ff46c9e1f4a4b2.m4a",
+    "example": "/assets/pronunciation/6b135470c98bc21b48b9df0d.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx212",
+   "word": "単位",
+   "reading": "たんい",
+   "meaningZh": "课程学习成果的计量单位",
+   "category": "general",
+   "example": {
+    "ja": "この授業に合格すると二単位を取得できる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c4a0050dde62fd0db0285789.m4a",
+    "example": "/assets/pronunciation/d50f8ad231e8d87462639019.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx213",
+   "word": "講義",
+   "reading": "こうぎ",
+   "meaningZh": "以讲授为主的大学课程",
+   "category": "general",
+   "example": {
+    "ja": "午前中に経済学の講義を受ける。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c976e59dc177054d4e6e180b.m4a",
+    "example": "/assets/pronunciation/622b7a2fb21d87c10f3ce157.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx214",
+   "word": "演習",
+   "reading": "えんしゅう",
+   "meaningZh": "通过讨论和练习学习",
+   "category": "general",
+   "example": {
+    "ja": "演習では少人数で論文を読み、意見を交わす。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0b931e653553b7e74b6c8906.m4a",
+    "example": "/assets/pronunciation/f52526b6562ea2e9d9989197.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx215",
+   "word": "実習",
+   "reading": "じっしゅう",
+   "meaningZh": "通过实际操作学习技能",
+   "category": "general",
+   "example": {
+    "ja": "病院で実習を行い、現場の仕事を学ぶ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cf454581a96acdf2bed27907.m4a",
+    "example": "/assets/pronunciation/90b1116335e457e66d0bcacb.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx216",
+   "word": "出席",
+   "reading": "しゅっせき",
+   "meaningZh": "参加应到场的活动",
+   "category": "general",
+   "example": {
+    "ja": "初回の授業には必ず出席してください。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/99d1ae435733abcdee4ae53d.m4a",
+    "example": "/assets/pronunciation/f7f7258c264e068ed1b4e609.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx217",
+   "word": "欠席",
+   "reading": "けっせき",
+   "meaningZh": "应当参加课程、会议等活动时，没有到场",
+   "category": "general",
+   "example": {
+    "ja": "病気で授業を欠席した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/dba79cd394fc3b25ea841e88.m4a",
+    "example": "/assets/pronunciation/e7aab10428a6776395ca091f.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx218",
+   "word": "遅刻",
+   "reading": "ちこく",
+   "meaningZh": "已经到场，但到达时间晚于规定的开始时间",
+   "category": "general",
+   "example": {
+    "ja": "電車が遅れて、講義に遅刻した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e0c923a4b99d07d70025d715.m4a",
+    "example": "/assets/pronunciation/f19014e13c40731791b400b9.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx219",
+   "word": "休講",
+   "reading": "きゅうこう",
+   "meaningZh": "原定课程取消一次或一段时间",
+   "category": "general",
+   "example": {
+    "ja": "担当教員の都合で、明日の授業は休講です。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f577d03d33f93baee331e6b7.m4a",
+    "example": "/assets/pronunciation/e5c61b6d7d1c011a7ef5c81b.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx220",
+   "word": "補講",
+   "reading": "ほこう",
+   "meaningZh": "补上未能进行的课程",
+   "category": "general",
+   "example": {
+    "ja": "休講になった授業の補講を土曜日に行う。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9541a7a8bb2f4fe133267348.m4a",
+    "example": "/assets/pronunciation/9af7261b615811769ee09455.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx221",
+   "word": "履歴",
+   "reading": "りれき",
+   "meaningZh": "过去经历或活动的记录",
+   "category": "general",
+   "example": {
+    "ja": "申請書に学習の履歴を記入する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8a6dc076514f28c09f12fb0d.m4a",
+    "example": "/assets/pronunciation/a660d31771457186ff04fa4a.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx222",
+   "word": "専攻",
+   "reading": "せんこう",
+   "meaningZh": "集中研究学习的领域",
+   "category": "general",
+   "example": {
+    "ja": "大学では環境工学を専攻している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8fba8775741bcf061f8bdb95.m4a",
+    "example": "/assets/pronunciation/ea29be0e294e188d45fdeeec.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx223",
+   "word": "教養",
+   "reading": "きょうよう",
+   "meaningZh": "广泛的文化知识与修养",
+   "category": "general",
+   "example": {
+    "ja": "専門以外の分野を学び、教養を深める。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/dcf0054e4d86f067f51d4afb.m4a",
+    "example": "/assets/pronunciation/355265673acb1c217bf04f21.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx224",
+   "word": "専門",
+   "reading": "せんもん",
+   "meaningZh": "特别研究或从事的学科或业务",
+   "category": "general",
+   "example": {
+    "ja": "この先生の専門は日本近代史である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a355a11e87b1ba46daf5592a.m4a",
+    "example": "/assets/pronunciation/61ec52057f5fff202fc8e7d1.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx225",
+   "word": "必修",
+   "reading": "ひっしゅう",
+   "meaningZh": "规定必须修读",
+   "category": "general",
+   "example": {
+    "ja": "この科目は一年生の必修科目である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/08bfaf2cb85ade1a7839eb8a.m4a",
+    "example": "/assets/pronunciation/c401c40b0a4f4b1fe32140b7.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx226",
+   "word": "選択",
+   "reading": "せんたく",
+   "meaningZh": "从多个选项中选取",
+   "category": "general",
+   "example": {
+    "ja": "興味に合わせて授業を選択する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c7842174fbc8296fb8eaa8c2.m4a",
+    "example": "/assets/pronunciation/b4cd90cbf080ad84f70d05d0.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx227",
+   "word": "受講",
+   "reading": "じゅこう",
+   "meaningZh": "报名或接受某门课程的教学",
+   "category": "general",
+   "example": {
+    "ja": "この授業を受講するには、事前の登録が必要だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ea86c94cc878bc00c96b4b53.m4a",
+    "example": "/assets/pronunciation/c9f858ae573ed86aeb92a185.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx228",
+   "word": "聴講",
+   "reading": "ちょうこう",
+   "meaningZh": "听取课堂讲授，通常指不按正式修课方式取得相应学分的旁听",
+   "category": "general",
+   "example": {
+    "ja": "他学部の学生も、この公開講座を聴講できる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4adb32f870279f2cbf657e6e.m4a",
+    "example": "/assets/pronunciation/f21eb3d30517e30d3e164a85.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx229",
+   "word": "配布",
+   "reading": "はいふ",
+   "meaningZh": "将资料等分别交给多人",
+   "category": "general",
+   "example": {
+    "ja": "授業の初めに資料を配布します。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/39e641977a40b6ce34f4c25c.m4a",
+    "example": "/assets/pronunciation/e3be4dc6e437d48287a6b897.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx230",
+   "word": "掲示",
+   "reading": "けいじ",
+   "meaningZh": "让众人看到通知",
+   "category": "general",
+   "example": {
+    "ja": "試験の日程は掲示板に掲示される。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5b6263f8636b5f67be6a8405.m4a",
+    "example": "/assets/pronunciation/306751d798e1bbe2a2f89d08.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx231",
+   "word": "申請",
+   "reading": "しんせい",
+   "meaningZh": "正式请求批准或办理",
+   "category": "general",
+   "example": {
+    "ja": "奨学金を申請する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/80ee9051a8df035661de3ddf.m4a",
+    "example": "/assets/pronunciation/d26818b816f8ea7a21661c26.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx232",
+   "word": "手続き",
+   "reading": "てつづき",
+   "meaningZh": "按规则办理所需的程序",
+   "category": "general",
+   "example": {
+    "ja": "入学の手続きを期限までに済ませる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bf0daa7d2733ff1c6c510d5f.m4a",
+    "example": "/assets/pronunciation/15be0c0e3102249014ddc1d5.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx233",
+   "word": "受付",
+   "reading": "うけつけ",
+   "meaningZh": "接收报名或申请的窗口与工作",
+   "category": "general",
+   "example": {
+    "ja": "参加申し込みの受付は来週始まる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/febc21750ee17b2722557bdd.m4a",
+    "example": "/assets/pronunciation/a0fbdc59155f993fa5df5609.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx234",
+   "word": "承認",
+   "reading": "しょうにん",
+   "meaningZh": "正式同意某事成立",
+   "category": "general",
+   "example": {
+    "ja": "計画は委員会の承認を得た。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b2db49d49bf9a1d3d4ab77f3.m4a",
+    "example": "/assets/pronunciation/fc1af2cb4a7068e0e5dea228.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx235",
+   "word": "許可",
+   "reading": "きょか",
+   "meaningZh": "允许实施某种行为",
+   "category": "general",
+   "example": {
+    "ja": "教室を使うには、事務室の許可が必要だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d12f6090fe725ab4df1c28f6.m4a",
+    "example": "/assets/pronunciation/69b07e468621fa4c141ce7d8.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx236",
+   "word": "推薦",
+   "reading": "すいせん",
+   "meaningZh": "介绍合适的人或事物供选择",
+   "category": "general",
+   "example": {
+    "ja": "先生が私を交換留学生の候補に推薦した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5500c88c50d3cad017f2d89f.m4a",
+    "example": "/assets/pronunciation/b2ef1f312365cb976360e235.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx237",
+   "word": "資格",
+   "reading": "しかく",
+   "meaningZh": "具备某种身份或参加条件",
+   "category": "general",
+   "example": {
+    "ja": "募集要項で応募資格を確認する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/08f8a184540c94cbe7fd2df7.m4a",
+    "example": "/assets/pronunciation/75d8bac7eaa8c7b7fe283805.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx238",
+   "word": "評価",
+   "reading": "ひょうか",
+   "meaningZh": "判断价值或成果的水平",
+   "category": "general",
+   "example": {
+    "ja": "試験だけでなく、発表も評価の対象になる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2eb57672de22e5adab0360eb.m4a",
+    "example": "/assets/pronunciation/fcd50dd0743f086032560cbc.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx239",
+   "word": "採点",
+   "reading": "さいてん",
+   "meaningZh": "按照既定标准，给答卷或作业判定分数",
+   "category": "general",
+   "example": {
+    "ja": "答案を採点して、点数を返す。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c66e7853a2c7985604a89189.m4a",
+    "example": "/assets/pronunciation/d1e0134f4b2f740eca8eb25f.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx240",
+   "word": "添削",
+   "reading": "てんさく",
+   "meaningZh": "直接对文章的字词、句子或结构作增删修改，并指出改进处",
+   "category": "general",
+   "example": {
+    "ja": "先生に作文を添削してもらった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3482c4e8a7b31199b8fa09a8.m4a",
+    "example": "/assets/pronunciation/b7de7c06824318a9e6b885b9.m4a"
+   },
+   "group": "大学学习与手续"
+  },
+  {
+   "id": "vx241",
+   "word": "実施",
+   "reading": "じっし",
+   "meaningZh": "把已经制定的计划或方案付诸行动",
+   "category": "general",
+   "example": {
+    "ja": "来月、新しい調査を実施する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/40c73668e7d1ac0313b55b5f.m4a",
+    "example": "/assets/pronunciation/08f06f28ed69bc6c73e4477c.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx242",
+   "word": "実現",
+   "reading": "じつげん",
+   "meaningZh": "使设想成为现实",
+   "category": "general",
+   "example": {
+    "ja": "だれもが利用できる交通サービスを実現したい。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/83b2578fbadb8a967ffb67be.m4a",
+    "example": "/assets/pronunciation/0c57b8305f12ca63bc21965b.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx243",
+   "word": "達成",
+   "reading": "たっせい",
+   "meaningZh": "完成预定目标",
+   "category": "general",
+   "example": {
+    "ja": "予定していた目標を達成した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/57217ef77a95081fe9cd00ed.m4a",
+    "example": "/assets/pronunciation/17b57781b2d3d3108eca0bbe.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx244",
+   "word": "適応",
+   "reading": "てきおう",
+   "meaningZh": "调整自身以适合环境",
+   "category": "general",
+   "example": {
+    "ja": "新しい生活環境に適応するには時間がかかる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/81d67086521ffe2f8e6ef5a2.m4a",
+    "example": "/assets/pronunciation/8c2257dcdb66399f9fdcf404.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx245",
+   "word": "対応",
+   "reading": "たいおう",
+   "meaningZh": "根据情况作出合适的反应",
+   "category": "general",
+   "example": {
+    "ja": "利用者の要望に対応する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/179d5756c6c478843ccf1501.m4a",
+    "example": "/assets/pronunciation/ae342091d2ff54760a990861.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx246",
+   "word": "対処",
+   "reading": "たいしょ",
+   "meaningZh": "针对已发生的问题采取措施",
+   "category": "general",
+   "example": {
+    "ja": "問題が起きたときに、どう対処するかを決めておく。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/32398178df8cff206c31c97e.m4a",
+    "example": "/assets/pronunciation/fa35a663fdd88bc02fbce81d.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx247",
+   "word": "改善",
+   "reading": "かいぜん",
+   "meaningZh": "使不良状况变好",
+   "category": "general",
+   "example": {
+    "ja": "作業環境を改善して、事故を減らす。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/24662b6505d531d41dbb0a49.m4a",
+    "example": "/assets/pronunciation/9bebfb33b3d25e78c39c8878.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx248",
+   "word": "改良",
+   "reading": "かいりょう",
+   "meaningZh": "改进事物的构造或性能",
+   "category": "general",
+   "example": {
+    "ja": "使いやすくするために、道具の形を改良した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c5d99d2a6e7f6129d20de01d.m4a",
+    "example": "/assets/pronunciation/d037f582474c769eeeff2156.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx249",
+   "word": "工夫",
+   "reading": "くふう",
+   "meaningZh": "动脑筋想出更好的办法",
+   "category": "general",
+   "example": {
+    "ja": "図を使うなど、伝え方を工夫する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d83bb0275e11974d9b687527.m4a",
+    "example": "/assets/pronunciation/647f44092def2ec64288d34f.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx250",
+   "word": "導入",
+   "reading": "どうにゅう",
+   "meaningZh": "采用新制度或设备",
+   "category": "general",
+   "example": {
+    "ja": "図書館に新しい予約システムを導入する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8b86ea45d7399390670e15ff.m4a",
+    "example": "/assets/pronunciation/49bed30f0bc25c2b94bbc12a.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx251",
+   "word": "廃止",
+   "reading": "はいし",
+   "meaningZh": "取消已有制度或做法",
+   "category": "general",
+   "example": {
+    "ja": "利用者の少ない制度を廃止する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6dc132015d862d61612a4d5d.m4a",
+    "example": "/assets/pronunciation/2ff75f11957877b990778c5a.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx252",
+   "word": "採用",
+   "reading": "さいよう",
+   "meaningZh": "选中并使用某种方案或人选",
+   "category": "general",
+   "example": {
+    "ja": "話し合いの結果、最初の案を採用した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/543f8a898b4aeba29a5d5a37.m4a",
+    "example": "/assets/pronunciation/1442aaff4e43a53a4f685676.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx253",
+   "word": "棄却",
+   "reading": "ききゃく",
+   "meaningZh": "认为不成立而排除",
+   "category": "general",
+   "example": {
+    "ja": "実験結果に基づいて、最初の仮説を棄却した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d4f4b363d9a23067c2038a97.m4a",
+    "example": "/assets/pronunciation/694f6e585fbd705e11d39ea8.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx254",
+   "word": "拡大",
+   "reading": "かくだい",
+   "meaningZh": "使规模或范围变大",
+   "category": "general",
+   "example": {
+    "ja": "支援の対象を全国に拡大する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3763f9f0efd2865887cb7501.m4a",
+    "example": "/assets/pronunciation/6b27807089f652c5d000b023.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx255",
+   "word": "縮小",
+   "reading": "しゅくしょう",
+   "meaningZh": "使规模或范围变小",
+   "category": "general",
+   "example": {
+    "ja": "利用者の減少に合わせて事業を縮小する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b70d0feee6f19f27c468aaec.m4a",
+    "example": "/assets/pronunciation/6534f723cdb0166922f57079.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx256",
+   "word": "普及",
+   "reading": "ふきゅう",
+   "meaningZh": "广泛传播并被使用",
+   "category": "general",
+   "example": {
+    "ja": "携帯電話が短期間で普及した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/99ad767348abeee84282fe39.m4a",
+    "example": "/assets/pronunciation/29460c70dc67db1a8a8dccfe.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx257",
+   "word": "浸透",
+   "reading": "しんとう",
+   "meaningZh": "逐渐进入并被内部接受",
+   "category": "general",
+   "example": {
+    "ja": "新しい考え方が社会に浸透するまでには時間がかかる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c5b33dd377f1ee42a5c38d4a.m4a",
+    "example": "/assets/pronunciation/385f63b4ec1de3ce30795e28.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx258",
+   "word": "依存",
+   "reading": "いぞん",
+   "meaningZh": "依靠其他事物而存在或成立",
+   "category": "general",
+   "example": {
+    "ja": "一つの情報源だけに依存しないようにする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4021d51f144d26b1a8e73b8c.m4a",
+    "example": "/assets/pronunciation/c0607a51fb2e4e496fc1e367.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx259",
+   "word": "貢献",
+   "reading": "こうけん",
+   "meaningZh": "对社会或他人产生有益作用",
+   "category": "general",
+   "example": {
+    "ja": "研究の成果を通じて社会に貢献する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f30b59124096b2442e2b950a.m4a",
+    "example": "/assets/pronunciation/94195d102e3a7dba5eba3461.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx260",
+   "word": "協調",
+   "reading": "きょうちょう",
+   "meaningZh": "相互配合以共同推进",
+   "category": "general",
+   "example": {
+    "ja": "立場の異なる人々が協調して課題に取り組む。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/111523912b11be7634b21b42.m4a",
+    "example": "/assets/pronunciation/7d3b9de9a868cb679c999d3f.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx261",
+   "word": "共有",
+   "reading": "きょうゆう",
+   "meaningZh": "多人共同拥有或使用",
+   "category": "general",
+   "example": {
+    "ja": "調査の結果をチーム全体で共有する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/440774bf6910542e961400f3.m4a",
+    "example": "/assets/pronunciation/250679a0a5581f6764bdb4a8.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx262",
+   "word": "伝達",
+   "reading": "でんたつ",
+   "meaningZh": "把消息、指示或想法传给接收的人",
+   "category": "general",
+   "example": {
+    "ja": "必要な情報を正確に伝達する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/dbe42f09a0996fb2e7af0a65.m4a",
+    "example": "/assets/pronunciation/33c727a43c8f69022e7032e7.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx263",
+   "word": "提案",
+   "reading": "ていあん",
+   "meaningZh": "提出一个可供他人讨论、决定或采用的办法",
+   "category": "general",
+   "example": {
+    "ja": "会議で新しい方法を提案した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c23e4f5b25b5e325c22a39ec.m4a",
+    "example": "/assets/pronunciation/7b63cc45338507c25079a375.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx264",
+   "word": "指摘",
+   "reading": "してき",
+   "meaningZh": "把具体存在的问题、错误或事实明确说出来，让人注意",
+   "category": "general",
+   "example": {
+    "ja": "先生が説明の矛盾を指摘した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6ae7ddda2e24e5c199daa05f.m4a",
+    "example": "/assets/pronunciation/7cbdc4ee0ed2eead452e3db8.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx265",
+   "word": "承知",
+   "reading": "しょうち",
+   "meaningZh": "了解某种情况",
+   "category": "general",
+   "example": {
+    "ja": "その計画に危険があることは承知している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/33553923a3af133a38d0184c.m4a",
+    "example": "/assets/pronunciation/1fac79e03e32f23122e49c01.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx266",
+   "word": "納得",
+   "reading": "なっとく",
+   "meaningZh": "认为解释有道理",
+   "category": "general",
+   "example": {
+    "ja": "詳しい説明を聞いて、ようやく納得した。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/10ec5ff00318db22ad2586c9.m4a",
+    "example": "/assets/pronunciation/cb4bfa76c0f79d90c3f7c0f1.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx267",
+   "word": "反省",
+   "reading": "はんせい",
+   "meaningZh": "检查自身行为中的不足",
+   "category": "general",
+   "example": {
+    "ja": "失敗を反省して、次の準備に生かす。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/20a0504bf496a6464d54d35d.m4a",
+    "example": "/assets/pronunciation/042e376d26aa08a241e302bd.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx268",
+   "word": "振り返る",
+   "reading": "ふりかえる",
+   "meaningZh": "重新审视过去的经历",
+   "category": "general",
+   "example": {
+    "ja": "一週間の学習を振り返る。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cb3fd9d46ebbbb1a171adf7d.m4a",
+    "example": "/assets/pronunciation/9d492daf701d8f20ae7aece1.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx269",
+   "word": "見積もる",
+   "reading": "みつもる",
+   "meaningZh": "预先计算费用或数量",
+   "category": "general",
+   "example": {
+    "ja": "工事に必要な費用を見積もる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8c23352f75ad9c4bd7e33d60.m4a",
+    "example": "/assets/pronunciation/4bba50aeefdd569029cf2183.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx270",
+   "word": "見込む",
+   "reading": "みこむ",
+   "meaningZh": "判断未来可能出现的情况",
+   "category": "general",
+   "example": {
+    "ja": "来年の利用者数を今年より多く見込む。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/fb12760cbd363306fa0df945.m4a",
+    "example": "/assets/pronunciation/a33463b3c695449c1fc4a3c6.m4a"
+   },
+   "group": "研究与行动"
+  },
+  {
+   "id": "vx271",
+   "word": "迅速",
+   "reading": "じんそく",
+   "meaningZh": "行动快而及时",
+   "category": "general",
+   "example": {
+    "ja": "事故のあと、迅速な対応が求められた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c533ba379f682b08e68f6e90.m4a",
+    "example": "/assets/pronunciation/6c73daf50af3b46b7d6f1d10.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx272",
+   "word": "適切",
+   "reading": "てきせつ",
+   "meaningZh": "符合具体情况或目的",
+   "category": "general",
+   "example": {
+    "ja": "目的に合った適切な方法を選ぶ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ee640842905b834ee0f32d0c.m4a",
+    "example": "/assets/pronunciation/ec2393e12fe6021c767f991d.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx273",
+   "word": "的確",
+   "reading": "てきかく",
+   "meaningZh": "判断恰到好处",
+   "category": "general",
+   "example": {
+    "ja": "問題点を的確に指摘する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0be0860b61af8df0c71124cf.m4a",
+    "example": "/assets/pronunciation/25ae31c03448560aff587731.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx274",
+   "word": "正確",
+   "reading": "せいかく",
+   "meaningZh": "没有错误或偏差",
+   "category": "general",
+   "example": {
+    "ja": "日時を正確に記入する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a6377b7cd78ecd3a736feadb.m4a",
+    "example": "/assets/pronunciation/ca410f1ac5b71696f1c4426b.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx275",
+   "word": "精密",
+   "reading": "せいみつ",
+   "meaningZh": "细致且精度很高",
+   "category": "general",
+   "example": {
+    "ja": "微小な変化を調べるには、精密な測定が必要だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f48646405b8ef2740fb7cd5e.m4a",
+    "example": "/assets/pronunciation/f8a62e3e9b63de6031afedce.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx276",
+   "word": "複雑",
+   "reading": "ふくざつ",
+   "meaningZh": "多种因素交织而不简单",
+   "category": "general",
+   "example": {
+    "ja": "原因が複雑で、一つだけには決められない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6e02569c59063f12dbdffe49.m4a",
+    "example": "/assets/pronunciation/f9c0d528c912807fb24bfa72.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx277",
+   "word": "単純",
+   "reading": "たんじゅん",
+   "meaningZh": "结构或关系不复杂",
+   "category": "general",
+   "example": {
+    "ja": "最初は単純なモデルで考える。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d0bf80e642a31cbd1c986b5f.m4a",
+    "example": "/assets/pronunciation/b27ff95bcec51dfe242409c1.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx278",
+   "word": "曖昧",
+   "reading": "あいまい",
+   "meaningZh": "界限或意思不清楚",
+   "category": "general",
+   "example": {
+    "ja": "条件が曖昧なまま実験を始めてはいけない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/650e675d38fcf5de46a3f444.m4a",
+    "example": "/assets/pronunciation/efc1eb2caae51769e8698878.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx279",
+   "word": "明確",
+   "reading": "めいかく",
+   "meaningZh": "内容或界限清楚",
+   "category": "general",
+   "example": {
+    "ja": "調査の目的を明確にする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/853fb9872344921973ccc9d5.m4a",
+    "example": "/assets/pronunciation/66a20d4f6debd88ed8486068.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx280",
+   "word": "深刻",
+   "reading": "しんこく",
+   "meaningZh": "问题程度深且难以忽视",
+   "category": "general",
+   "example": {
+    "ja": "人手不足が深刻な問題になっている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/484893d17d40fdcc54ddae43.m4a",
+    "example": "/assets/pronunciation/92a7871fb01a1cb5066d2ab9.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx281",
+   "word": "重大",
+   "reading": "じゅうだい",
+   "meaningZh": "影响或责任很大",
+   "category": "general",
+   "example": {
+    "ja": "安全に関わる重大な欠陥が見つかった。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/19b1230ccbcabb411e41c720.m4a",
+    "example": "/assets/pronunciation/cbd6fa7756b21c2ca1bde9bc.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx282",
+   "word": "貴重",
+   "reading": "きちょう",
+   "meaningZh": "难得且有价值",
+   "category": "general",
+   "example": {
+    "ja": "これは当時の生活を知るための貴重な資料だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/fe18c6aa7c785535d330c21b.m4a",
+    "example": "/assets/pronunciation/dd35e195b3e11b107ff9def7.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx283",
+   "word": "豊富",
+   "reading": "ほうふ",
+   "meaningZh": "数量或种类充足",
+   "category": "general",
+   "example": {
+    "ja": "この地域は水資源が豊富である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a688a2b2e7848e79a7c0eec2.m4a",
+    "example": "/assets/pronunciation/7ac5e04cad09c5776df0765b.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx284",
+   "word": "乏しい",
+   "reading": "とぼしい",
+   "meaningZh": "数量或内容不足",
+   "category": "general",
+   "example": {
+    "ja": "資料が乏しいため、詳しいことは分からない。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c38a27a8a8c60cac506c03cd.m4a",
+    "example": "/assets/pronunciation/919c50555e25065c1eb416b3.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx285",
+   "word": "緩やか",
+   "reading": "ゆるやか",
+   "meaningZh": "坡度较小，或变化逐步发生而不陡急",
+   "category": "general",
+   "example": {
+    "ja": "人口は緩やかに減少している。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0fb2fa65430e7ef2b7086531.m4a",
+    "example": "/assets/pronunciation/1dc304ae2074bcc3dbb22934.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx286",
+   "word": "頻繁",
+   "reading": "ひんぱん",
+   "meaningZh": "多次反复发生",
+   "category": "general",
+   "example": {
+    "ja": "この地域では小さな地震が頻繁に起きる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/44db1dae26380dee27175914.m4a",
+    "example": "/assets/pronunciation/0cadc006504f7cb75f80e688.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx287",
+   "word": "稀",
+   "reading": "まれ",
+   "meaningZh": "发生的次数很少，平常不容易遇到",
+   "category": "general",
+   "example": {
+    "ja": "この条件で大きな誤差が出ることは稀だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/48e05987f833a40dee82fc6e.m4a",
+    "example": "/assets/pronunciation/89c454b260ae39c63405900f.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx288",
+   "word": "偶然",
+   "reading": "ぐうぜん",
+   "meaningZh": "并非有意安排而碰巧发生",
+   "category": "general",
+   "example": {
+    "ja": "調査中に偶然、新しい資料を見つけた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/551836f7de4caae42547fa59.m4a",
+    "example": "/assets/pronunciation/91431ec8bc5701583b046d02.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx289",
+   "word": "必然",
+   "reading": "ひつぜん",
+   "meaningZh": "按条件和规律必定如此",
+   "category": "general",
+   "example": {
+    "ja": "この結果は、設定した条件から導かれる必然の結果である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/332d008a9c4fde97e4c2c13b.m4a",
+    "example": "/assets/pronunciation/3ca9c44b2cd2555ac1cc05eb.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx290",
+   "word": "均等",
+   "reading": "きんとう",
+   "meaningZh": "分给各方的份额、机会或负担相同，侧重分配关系",
+   "category": "general",
+   "example": {
+    "ja": "作業時間を四人に均等に割り当てる。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ee07ed15297a79f96734031f.m4a",
+    "example": "/assets/pronunciation/f18c365857d4a1c92d9e077f.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx291",
+   "word": "均一",
+   "reading": "きんいつ",
+   "meaningZh": "物体各部分的成分、浓度或品质没有差别，侧重内部一致",
+   "category": "general",
+   "example": {
+    "ja": "よく混ぜて、溶液の濃度を均一にする。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/74ce2115e8cdadebc872d6f5.m4a",
+    "example": "/assets/pronunciation/5ab3c6dfd1206b2fb412bab7.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx292",
+   "word": "一定",
+   "reading": "いってい",
+   "meaningZh": "保持同一个数值或条件",
+   "category": "general",
+   "example": {
+    "ja": "実験中は温度を一定に保つ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cb1558a2cd75569faaf11a5a.m4a",
+    "example": "/assets/pronunciation/f30cf3bb4ed252ac2c148e07.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx293",
+   "word": "不規則",
+   "reading": "ふきそく",
+   "meaningZh": "没有固定规律",
+   "category": "general",
+   "example": {
+    "ja": "この信号は不規則に変化する。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f26309bba96954980c219604.m4a",
+    "example": "/assets/pronunciation/53bc4223fabe49a1250ab032.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx294",
+   "word": "連続",
+   "reading": "れんぞく",
+   "meaningZh": "中间没有中断",
+   "category": "general",
+   "example": {
+    "ja": "三時間連続で測定を行った。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2436bd09db13daf0eb2fc1b1.m4a",
+    "example": "/assets/pronunciation/6ccc7fae111710a4d442e8cc.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx295",
+   "word": "断続的",
+   "reading": "だんぞくてき",
+   "meaningZh": "间隔着反复出现",
+   "category": "general",
+   "example": {
+    "ja": "雨が断続的に降っている。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bb034e2a1ec1f39bd0936c8d.m4a",
+    "example": "/assets/pronunciation/ab995fcc813970df28329d52.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx296",
+   "word": "独自",
+   "reading": "どくじ",
+   "meaningZh": "具有自身特色而不同于其他",
+   "category": "general",
+   "example": {
+    "ja": "この地域は独自の文化を発展させてきた。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/42de9e13cedcb44bf7944273.m4a",
+    "example": "/assets/pronunciation/f0727532e211a03d30a652a1.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx297",
+   "word": "共通",
+   "reading": "きょうつう",
+   "meaningZh": "多个对象都具有",
+   "category": "general",
+   "example": {
+    "ja": "二つの事例には共通する特徴がある。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a35602be41a9a614b893a904.m4a",
+    "example": "/assets/pronunciation/d349398de95762a3e42eb3d2.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx298",
+   "word": "有益",
+   "reading": "ゆうえき",
+   "meaningZh": "能够带来好处",
+   "category": "general",
+   "example": {
+    "ja": "経験者の意見は、計画を立てるうえで有益だ。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c1c23a3898d8f00608a90068.m4a",
+    "example": "/assets/pronunciation/ce05352457a5651ca44fdb10.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx299",
+   "word": "不可欠",
+   "reading": "ふかけつ",
+   "meaningZh": "缺少就无法成立",
+   "category": "general",
+   "example": {
+    "ja": "安全な水は生活に不可欠である。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cdb60a927a34b4a2381cadaf.m4a",
+    "example": "/assets/pronunciation/0108b048629a91d4cbb03c89.m4a"
+   },
+   "group": "性质与程度"
+  },
+  {
+   "id": "vx300",
+   "word": "長期的",
+   "reading": "ちょうきてき",
+   "meaningZh": "从较长时间范围考虑",
+   "category": "general",
+   "example": {
+    "ja": "目先の利益だけでなく、長期的な影響も考える。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ccae9bce50823b5c89f8d90c.m4a",
+    "example": "/assets/pronunciation/c6d8d339b403e1c01ddc95d1.m4a"
+   },
+   "group": "性质与程度"
+  }
+ ]
+}

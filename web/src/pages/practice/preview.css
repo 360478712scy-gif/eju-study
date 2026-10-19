@@ -1,0 +1,30 @@
+.ip-title { display: inline-flex; align-items: center; gap: 10px; font-size: var(--fs-md); font-weight: 650; }
+.ip-body { display: flex; flex-direction: column; gap: 16px; padding-top: 2px; }
+.ip-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--text-3); font-size: var(--fs-sm); }
+.ip-meta-item { display: inline-flex; align-items: center; gap: 5px; }
+.ip-meta-item.is-right { color: var(--success-text); }
+.ip-meta-item.is-wrong { color: var(--danger-text); }
+.ip-diff { display: inline-flex; gap: 2px; margin-right: 2px; }
+.ip-diff i { width: 6px; height: 6px; border-radius: 50%; background: var(--border-strong); }
+.ip-diff i.on { background: var(--text-2); }
+.ip-note {
+  padding: 9px 12px; border-radius: var(--radius-sm); background: var(--tone-soft); color: var(--tone-text);
+  font-size: var(--fs-sm); font-weight: 560; display: flex; align-items: center; gap: 8px;
+}
+.ip-audio { display: flex; align-items: center; gap: 10px; }
+.ip-answer { display: flex; flex-direction: column; gap: 8px; }
+.ip-answer-label { color: var(--text-3); font-size: var(--fs-sm); font-weight: 600; }
+.ip-ex { border-top: 1px solid var(--border); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.ip-ex-head { display: flex; align-items: center; gap: 6px; font-weight: 680; color: var(--text); }
+.ip-ex-head svg { color: var(--warning); }
+.ip-reveal {
+  display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+  padding: 14px; border: 1px dashed var(--border-strong); border-radius: var(--radius);
+  background: var(--bg-sunken); color: var(--text-2); font-weight: 600; cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.ip-reveal:hover { background: var(--primary-soft); color: var(--primary-text); border-color: var(--primary); }
+.ip-reveal .faint { font-weight: 450; font-size: var(--fs-sm); }
+.ip-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
+.ip-star.is-on { color: var(--warning-text); }
+.ip-star.is-on svg { fill: var(--warning); stroke: var(--warning); }

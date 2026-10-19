@@ -1,0 +1,197 @@
+{
+  "title": "2020_2 math part",
+  "items": [
+    {
+      "id": "2020_2-math-III",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.trig.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 1100,
+      "source": {
+        "kind": "official",
+        "session": "2020_2",
+        "label": "2020年第2回 数学コース2 Ⅲ",
+        "pdf": "/assets/papers/2020_2-math.pdf",
+        "page": 26
+      },
+      "stem": "関数 $f(x)=x^3-4x+4$ について考える。\n\n$y=f(x)$ のグラフ上の点 $\\mathrm{A}(-1,7)$ における接線を $\\ell$ とし，$y=f(x)$ のグラフに点 $\\mathrm{B}(0,-12)$ から引いた接線を $m$ とする。また，2 つの接線 $\\ell$ と $m$ の交点を $\\mathrm{C}$ とおく。2 直線 $\\ell$, $m$ のなす角を $\\theta$ $\\left(0<\\theta<\\dfrac{\\pi}{2}\\right)$ とするとき，$\\tan\\theta$ の値を求めよう。\n\n(1)　$f(x)$ の導関数 $f'(x)$ は\n\n$$f'(x)=\\bx{A}\\,x^{\\bx{B}}-\\bx{C}$$\n\nである。したがって，接線 $\\ell$ の傾きは \\bx{DE} であり，接線 $\\ell$ の方程式は\n\n$$y=\\bx{DE}\\,x+\\bx{F}$$\n\nである。\n\n(2)　$y=f(x)$ のグラフと接線 $m$ との接点の $x$ 座標を $a$ とする。このとき，接線 $m$ の方程式は $a$ を用いて\n\n$$y=\\left(\\bx{G}\\,a^{\\bx{H}}-\\bx{I}\\right)x-\\bx{J}\\,a^{\\bx{K}}+\\bx{L}$$\n\nと表せる。この直線が点 $\\mathrm{B}(0,-12)$ を通るから，$a=\\bx{M}$ で，接線 $m$ の方程式は\n\n$$y=\\bx{N}\\,x-\\bx{OP}$$\n\nとなる。したがって，2 直線 $\\ell$ と $m$ の交点 $\\mathrm{C}$ の座標は $\\left(\\bx{Q},\\ \\bx{R}\\right)$ である。\n\n(3)　2 直線 $\\ell$, $m$ と $x$ 軸の正の向きとのなす角をそれぞれ $\\alpha$, $\\beta$ とすると\n\n$$\\tan\\alpha=\\bx{ST},\\qquad \\tan\\beta=\\bx{U}$$\n\nであるから\n\n$$\\tan\\theta=\\dfrac{\\bx{V}}{\\bx{W}}$$\n\nを得る。\n\n注）導関数：derivative",
+      "stemZh": "考虑函数 $f(x)=x^3-4x+4$。\n\n设 $y=f(x)$ 的图像上点 $\\mathrm{A}(-1,7)$ 处的切线为 $\\ell$，从点 $\\mathrm{B}(0,-12)$ 向 $y=f(x)$ 的图像所作的切线为 $m$。再设两条切线 $\\ell$ 与 $m$ 的交点为 $\\mathrm{C}$。设两直线 $\\ell$、$m$ 所成的角为 $\\theta$ $\\left(0<\\theta<\\dfrac{\\pi}{2}\\right)$，求 $\\tan\\theta$ 的值。\n\n(1)　$f(x)$ 的导函数 $f'(x)$ 为\n\n$$f'(x)=\\bx{A}\\,x^{\\bx{B}}-\\bx{C}$$\n\n因此，切线 $\\ell$ 的斜率为 \\bx{DE}，切线 $\\ell$ 的方程为\n\n$$y=\\bx{DE}\\,x+\\bx{F}$$\n\n(2)　设 $y=f(x)$ 的图像与切线 $m$ 的切点的 $x$ 坐标为 $a$。此时，切线 $m$ 的方程用 $a$ 可表示为\n\n$$y=\\left(\\bx{G}\\,a^{\\bx{H}}-\\bx{I}\\right)x-\\bx{J}\\,a^{\\bx{K}}+\\bx{L}$$\n\n由于这条直线经过点 $\\mathrm{B}(0,-12)$，所以 $a=\\bx{M}$，切线 $m$ 的方程为\n\n$$y=\\bx{N}\\,x-\\bx{OP}$$\n\n因此，两直线 $\\ell$ 与 $m$ 的交点 $\\mathrm{C}$ 的坐标为 $\\left(\\bx{Q},\\ \\bx{R}\\right)$。\n\n(3)　设两直线 $\\ell$、$m$ 与 $x$ 轴正方向所成的角分别为 $\\alpha$、$\\beta$，则\n\n$$\\tan\\alpha=\\bx{ST},\\qquad \\tan\\beta=\\bx{U}$$\n\n所以\n\n$$\\tan\\theta=\\dfrac{\\bx{V}}{\\bx{W}}$$",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "4",
+        "D": "-",
+        "E": "1",
+        "F": "6",
+        "G": "3",
+        "H": "2",
+        "I": "4",
+        "J": "2",
+        "K": "3",
+        "L": "4",
+        "M": "2",
+        "N": "8",
+        "O": "1",
+        "P": "2",
+        "Q": "2",
+        "R": "4",
+        "S": "-",
+        "T": "1",
+        "U": "8",
+        "V": "9",
+        "W": "7"
+      },
+      "explanation": {
+        "zh": "**思路**\n本题三步走：① 求导得切线斜率；② \"从曲线外一点 B 引切线\"不能直接用 $f'(0)$，要**设切点** $(a,f(a))$ 写出切线方程，再代入 B 解出 $a$；③ 两直线的夹角用各自的倾斜角 $\\alpha,\\beta$ 与正切差角公式求。\n\n**解答**\n\n1. **求导（A, B, C）**\n$$f'(x)=3x^2-4$$\n所以 A=3，B=2，C=4。\n\n2. **切线 $\\ell$（DE, F）**\nA$(-1,7)$ 确实在曲线上：$f(-1)=-1+4+4=7$。斜率 $f'(-1)=3-4=-1$，故 DE=−1（D 填\"-\"，E 填 1）。\n$$y-7=-(x+1)\\ \\Longrightarrow\\ y=-x+6$$\n所以 F=6。\n\n3. **用 $a$ 表示切线 $m$（G〜L）**\n切点 $(a,\\ a^3-4a+4)$，斜率 $f'(a)=3a^2-4$：\n$$y=(3a^2-4)(x-a)+a^3-4a+4=(3a^2-4)x-3a^3+4a+a^3-4a+4=(3a^2-4)x-2a^3+4$$\n所以 G=3，H=2，I=4，J=2，K=3，L=4。\n\n4. **代入 B 求 $a$ 与 $m$（M, N, OP）**\n把 $(0,-12)$ 代入：$-12=-2a^3+4\\Rightarrow a^3=8\\Rightarrow a=2$（实数解唯一，所以从 B 只能引一条切线），M=2。\n斜率 $3\\cdot2^2-4=8$，截距 $-2\\cdot8+4=-12$：\n$$m:\\ y=8x-12$$\n所以 N=8，OP=12。\n\n5. **交点 C（Q, R）**\n$$-x+6=8x-12\\ \\Rightarrow\\ 9x=18\\ \\Rightarrow\\ x=2,\\ y=4$$\nC$(2,4)$，所以 Q=2，R=4。（顺便注意：$f(2)=8-8+4=4$，C 正好就是 $m$ 的切点。）\n\n6. **夹角（ST, U, V, W）**\n直线的斜率 = 倾斜角的正切：$\\tan\\alpha=-1$，所以 ST=−1（S 填\"-\"，T 填 1）；$\\tan\\beta=8$，所以 U=8。\n$\\tan\\alpha=-1$ 且 $0\\leqq\\alpha<\\pi$，得 $\\alpha=\\dfrac{3}{4}\\pi$；$\\tan\\beta=8>1$，得 $\\dfrac{\\pi}{4}<\\beta<\\dfrac{\\pi}{2}$。于是 $0<\\alpha-\\beta<\\dfrac{\\pi}{2}$，两直线所成锐角 $\\theta=\\alpha-\\beta$：\n$$\\tan\\theta=\\tan(\\alpha-\\beta)=\\frac{\\tan\\alpha-\\tan\\beta}{1+\\tan\\alpha\\tan\\beta}=\\frac{-1-8}{1+(-1)\\cdot 8}=\\frac{-9}{-7}=\\frac{9}{7}$$\n所以 V=9，W=7。\n\n**结论**\nA=3，B=2，C=4，DE=−1，F=6，G=3，H=2，I=4，J=2，K=3，L=4，M=2，N=8，OP=12，Q=2，R=4，ST=−1，U=8，V=9，W=7。",
+        "keyPoints": [
+          "过曲线外一点作切线：设切点 $(a,f(a))$，切线 $y=f'(a)(x-a)+f(a)$，代入已知点解出 $a$",
+          "两直线所成锐角：$\\tan\\theta=\\left|\\dfrac{m_1-m_2}{1+m_1m_2}\\right|$（$m_1,m_2$ 为斜率，$m_1m_2\\neq-1$）"
+        ],
+        "traps": [
+          "「点 A における接線」中 A 是切点；「点 B から引いた接線」中 B 不在曲线上（$f(0)=4\\neq-12$），不能用 $f'(0)$ 当斜率",
+          "DE、ST 都是 $-1$：第一格填负号“-”，第二格填 1",
+          "差角公式算出负值时要取绝对值（或像解答中那样判断 $\\alpha-\\beta$ 为锐角），θ 是锐角，$\\tan\\theta>0$"
+        ],
+        "terms": [
+          {
+            "ja": "導関数",
+            "kana": "どうかんすう",
+            "zh": "导函数，即 $f'(x)$"
+          },
+          {
+            "ja": "接線",
+            "kana": "せっせん",
+            "zh": "切线"
+          },
+          {
+            "ja": "接点",
+            "kana": "せってん",
+            "zh": "切点（切线与曲线相切的那一点）"
+          },
+          {
+            "ja": "傾き",
+            "kana": "かたむき",
+            "zh": "（直线的）斜率"
+          },
+          {
+            "ja": "なす角",
+            "kana": "なすかく",
+            "zh": "两条直线（或直线与坐标轴）所成的角、夹角"
+          },
+          {
+            "ja": "正の向き",
+            "kana": "せいのむき",
+            "zh": "正方向（x 轴正方向）"
+          }
+        ],
+        "shortcut": "三次函数与切线之差含重因式：$f(x)-(-x+6)=x^3-3x-2=(x+1)^2(x-2)$，说明 $\\ell$ 还穿过曲线上的点 $(2,4)$；而 $m$ 的切点正是 $x=2$，所以交点 C 就是 $(2,4)$，不必再解联立方程。夹角直接算 $\\left|\\dfrac{-1-8}{1+(-1)\\cdot8}\\right|=\\dfrac{9}{7}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2020_2-math-IV",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.calc.int",
+        "math.trig.func"
+      ],
+      "difficulty": 3,
+      "targetSec": 1250,
+      "source": {
+        "kind": "official",
+        "session": "2020_2",
+        "label": "2020年第2回 数学コース2 Ⅳ",
+        "pdf": "/assets/papers/2020_2-math.pdf",
+        "page": 28
+      },
+      "stem": "区間 $0\\leqq x\\leqq\\pi$ において，関数\n\n$$f(x)=\\sin x+\\dfrac{\\sin 2x}{2}+\\dfrac{\\sin 3x}{3}$$\n\nを考える。このとき，$0<x<\\pi$ で $f(x)>0$ を示して，さらに，曲線 $y=f(x)$ と $x$ 軸とで囲まれた部分の面積 $S$ を求めよう。\n\n(1)　次の文中の \\bx{K}，\\bx{N}，\\bx{Q}，\\bx{R} には，次の選択肢\n\n⓪　増加　　　①　減少\n\nのどちらかから適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n$f(x)$ を微分すると\n\n$$f'(x)=\\left(\\bx{A}\\cos^2 x-\\bx{B}\\right)\\left(\\bx{C}\\cos x+\\bx{D}\\right)$$\n\nである。$f'(x)=0$ となる $x$ は $0\\leqq x\\leqq\\pi$ の範囲に 3 個存在して，それらを小さい順に並べると\n\n$$x=\\dfrac{\\pi}{\\bx{E}},\\quad \\dfrac{\\bx{F}}{\\bx{G}}\\pi,\\quad \\dfrac{\\bx{H}}{\\bx{I}}\\pi$$\n\nである。\n\n次に，$f(x)$ の増減を調べると\n\n$0\\leqq x\\leqq\\dfrac{\\pi}{\\bx{J}}$　のとき，\\bx{K}\n$\\dfrac{\\pi}{\\bx{J}}\\leqq x\\leqq\\dfrac{\\bx{L}}{\\bx{M}}\\pi$　のとき，\\bx{N}\n$\\dfrac{\\bx{L}}{\\bx{M}}\\pi\\leqq x\\leqq\\dfrac{\\bx{O}}{\\bx{P}}\\pi$　のとき，\\bx{Q}\n$\\dfrac{\\bx{O}}{\\bx{P}}\\pi\\leqq x\\leqq\\pi$　のとき，\\bx{R}\n\nである。また\n\n$$f(0)=0,\\quad f(\\pi)=0,\\quad f\\left(\\dfrac{\\bx{L}}{\\bx{M}}\\pi\\right)=\\dfrac{\\sqrt{\\bx{S}}}{\\bx{T}}>0$$\n\nである。したがって，$0<x<\\pi$ のとき $f(x)>0$ である。\n\n(2)　曲線 $y=f(x)$ と $x$ 軸とで囲まれた部分の面積 $S$ は\n\n$$S=\\dfrac{\\bx{UV}}{\\bx{W}}$$\n\nである。",
+      "stemZh": "在区间 $0\\leqq x\\leqq\\pi$ 上考虑函数\n\n$$f(x)=\\sin x+\\dfrac{\\sin 2x}{2}+\\dfrac{\\sin 3x}{3}$$\n\n证明当 $0<x<\\pi$ 时 $f(x)>0$，并求曲线 $y=f(x)$ 与 $x$ 轴所围部分的面积 $S$。\n\n(1)　下文中的 \\bx{K}、\\bx{N}、\\bx{Q}、\\bx{R} 请从下列选项\n\n⓪　增加　　　①　减少\n\n中选出合适的一个，其余的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n对 $f(x)$ 求导得\n\n$$f'(x)=\\left(\\bx{A}\\cos^2 x-\\bx{B}\\right)\\left(\\bx{C}\\cos x+\\bx{D}\\right)$$\n\n在 $0\\leqq x\\leqq\\pi$ 范围内使 $f'(x)=0$ 的 $x$ 共有 3 个，按从小到大的顺序排列为\n\n$$x=\\dfrac{\\pi}{\\bx{E}},\\quad \\dfrac{\\bx{F}}{\\bx{G}}\\pi,\\quad \\dfrac{\\bx{H}}{\\bx{I}}\\pi$$\n\n接着考察 $f(x)$ 的增减：\n\n$0\\leqq x\\leqq\\dfrac{\\pi}{\\bx{J}}$　时，\\bx{K}\n$\\dfrac{\\pi}{\\bx{J}}\\leqq x\\leqq\\dfrac{\\bx{L}}{\\bx{M}}\\pi$　时，\\bx{N}\n$\\dfrac{\\bx{L}}{\\bx{M}}\\pi\\leqq x\\leqq\\dfrac{\\bx{O}}{\\bx{P}}\\pi$　时，\\bx{Q}\n$\\dfrac{\\bx{O}}{\\bx{P}}\\pi\\leqq x\\leqq\\pi$　时，\\bx{R}\n\n另外\n\n$$f(0)=0,\\quad f(\\pi)=0,\\quad f\\left(\\dfrac{\\bx{L}}{\\bx{M}}\\pi\\right)=\\dfrac{\\sqrt{\\bx{S}}}{\\bx{T}}>0$$\n\n因此，当 $0<x<\\pi$ 时 $f(x)>0$。\n\n(2)　曲线 $y=f(x)$ 与 $x$ 轴所围部分的面积 $S$ 为\n\n$$S=\\dfrac{\\bx{UV}}{\\bx{W}}$$",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "2",
+        "D": "1",
+        "E": "4",
+        "F": "2",
+        "G": "3",
+        "H": "3",
+        "I": "4",
+        "J": "4",
+        "K": "0",
+        "L": "2",
+        "M": "3",
+        "N": "1",
+        "O": "3",
+        "P": "4",
+        "Q": "0",
+        "R": "1",
+        "S": "3",
+        "T": "4",
+        "U": "2",
+        "V": "0",
+        "W": "9"
+      },
+      "explanation": {
+        "zh": "**思路**\n$f'(x)=\\cos x+\\cos 2x+\\cos 3x$ 里有 $x,2x,3x$ 三种角，统一成 $\\cos x$ 的多项式（二倍角、三倍角公式）后因式分解，就能找出驻点并按因式符号列增减表；只要整个区间上的\"最低点\"（端点或极小值）都不小于 0，且只在端点取 0，就证明了 $f(x)>0$。面积就是 $\\displaystyle\\int_0^{\\pi}f(x)\\,dx$。\n\n**解答**\n\n1. **求导并因式分解（A〜D）**\n$$f'(x)=\\cos x+\\frac{2\\cos 2x}{2}+\\frac{3\\cos 3x}{3}=\\cos x+\\cos 2x+\\cos 3x$$\n令 $c=\\cos x$，用 $\\cos 2x=2c^2-1$，$\\cos 3x=4c^3-3c$：\n$$f'(x)=c+(2c^2-1)+(4c^3-3c)=4c^3+2c^2-2c-1$$\n分组提公因式：\n$$4c^3+2c^2-2c-1=2c^2(2c+1)-(2c+1)=(2c^2-1)(2c+1)$$\n即 $f'(x)=(2\\cos^2x-1)(2\\cos x+1)$，所以 A=2，B=1，C=2，D=1。\n\n2. **驻点（E〜I）**\n$f'(x)=0\\iff\\cos x=\\pm\\dfrac{1}{\\sqrt2}$ 或 $\\cos x=-\\dfrac12$。因为 $\\cos x$ 在 $0\\leqq x\\leqq\\pi$ 上单调减少，每个余弦值恰好对应一个 $x$，所以驻点共 3 个：\n$\\cos x=\\dfrac{1}{\\sqrt2}\\Rightarrow x=\\dfrac{\\pi}{4}$；$\\cos x=-\\dfrac{1}{\\sqrt2}\\Rightarrow x=\\dfrac{3}{4}\\pi$；$\\cos x=-\\dfrac12\\Rightarrow x=\\dfrac{2}{3}\\pi$。\n从小到大：$\\dfrac{\\pi}{4}<\\dfrac{2}{3}\\pi<\\dfrac{3}{4}\\pi$，所以 E=4，F=2，G=3，H=3，I=4。\n\n3. **增减表（J〜R）**\n在 $[0,\\pi]$ 上 $\\cos x$ 单调减少，按区间看两个因式的符号：\n\n| 区间 | $\\cos x$ 的范围 | $2\\cos^2x-1$ | $2\\cos x+1$ | $f'(x)$ | $f(x)$ |\n|---|---|---|---|---|---|\n| $0\\leqq x\\leqq\\frac{\\pi}{4}$ | $\\frac{1}{\\sqrt2}\\sim1$ | $+$ | $+$ | $+$ | 增加 ⓪ |\n| $\\frac{\\pi}{4}\\leqq x\\leqq\\frac{2}{3}\\pi$ | $-\\frac12\\sim\\frac{1}{\\sqrt2}$ | $-$ | $+$ | $-$ | 减少 ① |\n| $\\frac{2}{3}\\pi\\leqq x\\leqq\\frac{3}{4}\\pi$ | $-\\frac{1}{\\sqrt2}\\sim-\\frac12$ | $-$ | $-$ | $+$ | 增加 ⓪ |\n| $\\frac{3}{4}\\pi\\leqq x\\leqq\\pi$ | $-1\\sim-\\frac{1}{\\sqrt2}$ | $+$ | $-$ | $-$ | 减少 ① |\n\n所以 J=4，K=0，L=2，M=3，N=1，O=3，P=4，Q=0，R=1。\n\n4. **极小值与 $f(x)>0$（S, T）**\n$$f\\left(\\frac{2}{3}\\pi\\right)=\\sin\\frac{2}{3}\\pi+\\frac12\\sin\\frac{4}{3}\\pi+\\frac13\\sin2\\pi=\\frac{\\sqrt3}{2}-\\frac{\\sqrt3}{4}+0=\\frac{\\sqrt3}{4}$$\n所以 S=3，T=4。\n由增减表：$f$ 从 $f(0)=0$ 开始增加，所以在 $\\left(0,\\frac{\\pi}{4}\\right]$ 上 $f>0$；之后减少到极小值 $\\frac{\\sqrt3}{4}>0$，再增加到 $\\frac34\\pi$，所以在 $\\left[\\frac{\\pi}{4},\\frac34\\pi\\right]$ 上 $f\\geqq\\frac{\\sqrt3}{4}>0$；最后减少到 $f(\\pi)=0$，所以在 $\\left[\\frac34\\pi,\\pi\\right)$ 上 $f>0$。故 $0<x<\\pi$ 时 $f(x)>0$。\n\n5. **面积（UV, W）**\n因为 $f(x)\\geqq0$，所求面积就是定积分：\n$$S=\\int_0^{\\pi}\\left(\\sin x+\\frac{\\sin2x}{2}+\\frac{\\sin3x}{3}\\right)dx=\\left[-\\cos x-\\frac{\\cos2x}{4}-\\frac{\\cos3x}{9}\\right]_0^{\\pi}$$\n上限 $x=\\pi$：$1-\\frac14+\\frac19$；下限 $x=0$：$-1-\\frac14-\\frac19$。\n$$S=\\left(1-\\frac14+\\frac19\\right)-\\left(-1-\\frac14-\\frac19\\right)=2+\\frac29=\\frac{20}{9}$$\n所以 UV=20，W=9。\n\n**结论**\nA=2，B=1，C=2，D=1，E=4，F=2，G=3，H=3，I=4，J=4，K=0，L=2，M=3，N=1，O=3，P=4，Q=0，R=1，S=3，T=4，UV=20，W=9。",
+        "keyPoints": [
+          "倍角公式 $\\cos2x=2\\cos^2x-1$、$\\cos3x=4\\cos^3x-3\\cos x$：把导数化成 $\\cos x$ 的三次式再因式分解",
+          "用增减表找区间上的最小值（端点值与极小值）来证明 $f(x)>0$",
+          "$\\displaystyle\\int_0^{\\pi}\\sin kx\\,dx=\\frac{1-\\cos k\\pi}{k}$：$k$ 为奇数时得 $\\frac{2}{k}$，偶数时得 0"
+        ],
+        "traps": [
+          "$\\cos x$ 在 $[0,\\pi]$ 上是减函数：$x$ 越大 $\\cos x$ 越小，判断因式符号时别把区间对应反",
+          "驻点排序：$\\frac{2}{3}\\pi\\approx0.67\\pi<\\frac{3}{4}\\pi=0.75\\pi$，所以 $\\frac{2}{3}\\pi$ 在中间（F/G=2/3，H/I=3/4）",
+          "K、N、Q、R 填选项编号（增加→0，减少→1），不是导数的符号；$\\int\\frac{\\sin3x}{3}dx=-\\frac{\\cos3x}{9}$，别漏掉内层求导产生的 $\\frac13$"
+        ],
+        "terms": [
+          {
+            "ja": "区間",
+            "kana": "くかん",
+            "zh": "区间（自变量取值的范围）"
+          },
+          {
+            "ja": "微分する",
+            "kana": "びぶんする",
+            "zh": "求导"
+          },
+          {
+            "ja": "増減",
+            "kana": "ぞうげん",
+            "zh": "增减（函数的单调性：何处递增、何处递减）"
+          },
+          {
+            "ja": "増加・減少",
+            "kana": "ぞうか・げんしょう",
+            "zh": "递增、递减"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "选项"
+          },
+          {
+            "ja": "囲まれた部分の面積",
+            "kana": "かこまれたぶぶんのめんせき",
+            "zh": "（曲线与 x 轴）所围成部分的面积"
+          }
+        ],
+        "shortcut": "面积可逐项心算：$\\int_0^{\\pi}\\sin x\\,dx=2$，$\\int_0^{\\pi}\\sin2x\\,dx=0$，$\\int_0^{\\pi}\\sin3x\\,dx=\\frac23$，所以 $S=2+\\frac12\\cdot0+\\frac13\\cdot\\frac23=2+\\frac29=\\frac{20}{9}$。因式分解也可试根：$c=-\\frac12$ 代入 $4c^3+2c^2-2c-1$ 得 0，直接提出 $(2c+1)$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

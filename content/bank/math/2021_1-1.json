@@ -1,0 +1,324 @@
+{
+  "title": "2021_1 math part",
+  "items": [
+    {
+      "id": "2021_1-math-I1",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.quad.func",
+      "difficulty": 1,
+      "targetSec": 600,
+      "source": {
+        "kind": "official",
+        "session": "2021_1",
+        "label": "2021年第1回 数学コース2 Ⅰ 問1",
+        "pdf": "/assets/papers/2021_1-math.pdf",
+        "page": 18
+      },
+      "stem": "2 つの 2 次関数\n\n$$f(x)=-2x^2,\\quad g(x)=x^2+ax+b$$\n\nを考える。関数 $g(x)$ は次の 2 つの条件を満たしている。\n\n(i)　$g(x)$ の値は $x=3$ で最小になる。\n\n(ii)　$g(4)=f(4)$\n\n(1)　条件 (i) より $a=-\\bx{A}$ である。さらに，条件 (ii) より $b=-\\bx{BC}$ を得る。したがって，関数 $g(x)$ の最小値は $-\\bx{DE}$ である。\n\n(2)　$f(x)=g(x)$ を満たす $x$ で 4 と異なるものを求めよう。$x$ は\n\n$$x^2-\\bx{F}\\,x-\\bx{G}=0$$\n\nを満たすから，$x=-\\bx{H}$ である。\n\n(3)　$-\\bx{H}\\leqq x\\leqq 4$ において，$f(x)-g(x)$ の値は $x=\\bx{I}$ のとき最大になり，その値は \\bx{JK} である。",
+      "stemZh": "考虑两个二次函数\n\n$$f(x)=-2x^2,\\quad g(x)=x^2+ax+b$$\n\n函数 $g(x)$ 满足下面两个条件。\n\n(i)　$g(x)$ 在 $x=3$ 处取得最小值。\n\n(ii)　$g(4)=f(4)$\n\n(1)　由条件 (i) 得 $a=-\\bx{A}$。再由条件 (ii) 得 $b=-\\bx{BC}$。因此，函数 $g(x)$ 的最小值为 $-\\bx{DE}$。\n\n(2)　求满足 $f(x)=g(x)$ 且不等于 4 的 $x$。$x$ 满足\n\n$$x^2-\\bx{F}\\,x-\\bx{G}=0$$\n\n所以 $x=-\\bx{H}$。\n\n(3)　在 $-\\bx{H}\\leqq x\\leqq 4$ 范围内，$f(x)-g(x)$ 的值在 $x=\\bx{I}$ 时最大，最大值为 \\bx{JK}。",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "2",
+        "C": "4",
+        "D": "3",
+        "E": "3",
+        "F": "2",
+        "G": "8",
+        "H": "2",
+        "I": "1",
+        "J": "2",
+        "K": "7"
+      },
+      "explanation": {
+        "zh": "**思路**　$g(x)=x^2+ax+b$ 开口向上，最小值在顶点处取得，顶点横坐标 $x=-\\dfrac a2$，由 (i) 立刻得 $a$；(ii) 是一个关于 $b$ 的一次方程。(2) 注意条件 (ii) 本身就说明 $x=4$ 是 $f(x)=g(x)$ 的一个解，所以只需找另一个根。(3) 把 $h(x)=f(x)-g(x)$ 配方，看顶点是否落在区间内。\n\n**解答**\n\n**(1) A, BC, DE**\n\n1. 顶点横坐标 $-\\dfrac a2=3$，所以 $a=-6$，A = 6。\n2. $g(4)=16+4a+b=16-24+b=b-8$，$f(4)=-2\\cdot16=-32$。由 $b-8=-32$ 得 $b=-24$，BC = 24。\n3. 配方：\n\n$$g(x)=x^2-6x-24=(x-3)^2-33$$\n\n最小值为 $g(3)=-33$，DE = 33。\n\n**(2) F, G, H**\n\n$$-2x^2=x^2-6x-24 \\iff 3x^2-6x-24=0 \\iff x^2-2x-8=0$$\n\n所以 F = 2，G = 8。因式分解 $(x-4)(x+2)=0$，与 4 不同的解是 $x=-2$，H = 2。\n\n**(3) I, JK**　在 $-2\\leqq x\\leqq 4$ 上考虑\n\n$$h(x)=f(x)-g(x)=-2x^2-(x^2-6x-24)=-3x^2+6x+24=-3(x-1)^2+27$$\n\n$h(x)$ 开口向下，顶点 $x=1$ 在区间 $[-2,\\,4]$ 内，所以 $x=1$ 时最大，最大值 $27$。I = 1，JK = 27。\n\n（几何意义：在两图像的交点 $x=-2$ 与 $x=4$ 之间，$f(x)\\geqq g(x)$，$h(x)$ 是两条抛物线之间的竖直距离，两端为 0，中间最大。）\n\n**结论**　A = 6，BC = 24，DE = 33，F = 2，G = 8，H = 2，I = 1，JK = 27。",
+        "keyPoints": [
+          "$y=x^2+ax+b$ 的顶点横坐标为 $-\\dfrac a2$；开口向上时最小值在顶点",
+          "已知一个交点 $x=4$ 时，用因式分解或根与系数关系直接求另一个交点",
+          "闭区间上二次函数的最值：先配方，再看顶点是否在区间内"
+        ],
+        "traps": [
+          "框前已经印了负号：$a=-6$ 时 A 填 6，$b=-24$ 时 BC 填 24，最小值 $-33$ 时 DE 填 33",
+          "(2) 整理成 $3x^2-6x-24=0$ 后要两边除以 3，才能对上 $x^2-\\bx{F}x-\\bx{G}$ 的形式",
+          "(3) 求的是 $f(x)-g(x)$，不是 $g(x)-f(x)$；后者在顶点取的是最小值 $-27$"
+        ],
+        "terms": [
+          {
+            "ja": "2次関数",
+            "kana": "にじかんすう",
+            "zh": "二次函数（最高次为 2 次的函数）"
+          },
+          {
+            "ja": "条件を満たす",
+            "kana": "じょうけんをみたす",
+            "zh": "满足条件"
+          },
+          {
+            "ja": "最小値",
+            "kana": "さいしょうち",
+            "zh": "函数能取到的最小的值"
+          },
+          {
+            "ja": "最大になる",
+            "kana": "さいだいになる",
+            "zh": "取得最大值"
+          },
+          {
+            "ja": "異なる",
+            "kana": "ことなる",
+            "zh": "不同的、不相等的"
+          }
+        ],
+        "shortcut": "(2) 因为 (ii) 已告诉你 $x=4$ 是 $x^2-2x-8=0$ 的根，由两根之和 $=2$ 立得另一根 $2-4=-2$。(3) $h(x)=-3x^2+6x+24=-3(x-4)(x+2)$，开口向下的抛物线最高点在两根正中间 $x=\\dfrac{-2+4}{2}=1$，$h(1)=-3\\cdot(-3)\\cdot3=27$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2021_1-math-I2",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.prob.prob",
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "official",
+        "session": "2021_1",
+        "label": "2021年第1回 数学コース2 Ⅰ 問2",
+        "pdf": "/assets/papers/2021_1-math.pdf",
+        "page": 20
+      },
+      "stem": "A と B の 2 人はともに 3 枚のカードが入っている袋をもっている。袋の中の 3 枚のカードには，それぞれ 1，2，3 の数字が 1 つずつ書かれている。2 人が同時に自分の袋から 1 枚のカードを取り出し，書かれている数の大きさで勝負を競う。同じ数が書かれたカードを取り出したときは引き分けとし，カードの数が異なるときは大きい数のカードを取り出した方を勝ちとする。\n\n(1)　1 回の勝負で引き分けになる確率は $\\dfrac{\\bx{L}}{\\bx{M}}$ である。\n\n(2)　以下，この勝負を 4 回実行するとき，次の確率を求めよう。ただし，取り出したカードは毎回元の袋に戻すこととする。\n\n(i)　A が 3 勝以上する確率は $\\dfrac{\\bx{N}}{\\bx{O}}$ である。\n\n(ii)　A が 1 勝 1 敗 2 引き分けになる確率は $\\dfrac{\\bx{P}}{\\bx{QR}}$ である。\n\n(iii)　A の勝つ回数と B の勝つ回数が同じになる確率は $\\dfrac{\\bx{ST}}{\\bx{UV}}$ である。したがって，A の勝つ回数が B の勝つ回数より多くなる確率は $\\dfrac{\\bx{WX}}{\\bx{UV}}$ である。",
+      "stemZh": "A、B 两人各有一个装着 3 张卡片的袋子。袋中 3 张卡片上分别写着数字 1、2、3 各一个。两人同时从自己的袋中取出 1 张卡片，按卡片上数字的大小比胜负。取出的数字相同时为平局；数字不同时，取出较大数字的一方获胜。\n\n(1)　1 次比赛为平局的概率是 $\\dfrac{\\bx{L}}{\\bx{M}}$。\n\n(2)　以下，进行 4 次这样的比赛，求下列概率。其中，取出的卡片每次都放回原来的袋子。\n\n(i)　A 赢 3 次及以上的概率是 $\\dfrac{\\bx{N}}{\\bx{O}}$。\n\n(ii)　A 1 胜 1 负 2 平的概率是 $\\dfrac{\\bx{P}}{\\bx{QR}}$。\n\n(iii)　A 赢的次数与 B 赢的次数相同的概率是 $\\dfrac{\\bx{ST}}{\\bx{UV}}$。因此，A 赢的次数多于 B 赢的次数的概率是 $\\dfrac{\\bx{WX}}{\\bx{UV}}$。",
+      "format": "blanks",
+      "blanks": {
+        "L": "1",
+        "M": "3",
+        "N": "1",
+        "O": "9",
+        "P": "4",
+        "Q": "2",
+        "R": "7",
+        "S": "1",
+        "T": "9",
+        "U": "8",
+        "V": "1",
+        "W": "3",
+        "X": "1"
+      },
+      "explanation": {
+        "zh": "**思路**　先把 1 回合的结果概率算清楚：两人各抽 1 张，共 $3\\times3=9$ 种等可能结果。算出来 A 胜、平、A 负**各占 $\\frac13$**。因为每次放回，4 回合相互独立，之后每一问都是「4 个独立回合中各结果出现几次」的**多项分布（反复试验）**问题：$P=\\dfrac{4!}{w!\\,l!\\,d!}\\left(\\dfrac13\\right)^4$（$w$ 胜、$l$ 负、$d$ 平）。\n\n**解答**\n\n**(1) L, M**　平局是 $(1,1),(2,2),(3,3)$ 共 3 种，概率 $\\dfrac39=\\dfrac13$，L = 1，M = 3。\n\nA 胜：$(2,1),(3,1),(3,2)$ 共 3 种，概率 $\\dfrac13$；由对称性 A 负的概率也是 $\\dfrac13$。\n\n**(2)(i) N, O**　「3 胜以上」= 恰好 3 胜 或 4 胜。每回合 A 胜的概率 $\\frac13$，不胜的概率 $\\frac23$：\n\n$$ {}_4\\mathrm{C}_3\\left(\\frac13\\right)^3\\left(\\frac23\\right)+\\left(\\frac13\\right)^4=\\frac{8}{81}+\\frac{1}{81}=\\frac{9}{81}=\\frac19$$\n\nN = 1，O = 9。\n\n**(ii) P, QR**　1 胜 1 负 2 平：4 个回合中安排「胜、负、平、平」的方法数为 $\\dfrac{4!}{1!\\,1!\\,2!}=12$，\n\n$$12\\times\\left(\\frac13\\right)^4=\\frac{12}{81}=\\frac{4}{27}$$\n\nP = 4，QR = 27。\n\n**(iii) ST, UV**　A 胜次数 = B 胜次数（= A 负次数），总共 4 回合，可能的情况：\n\n| A 胜 | A 负 | 平 | 排列数 | 概率 |\n|---|---|---|---|---|\n| 0 | 0 | 4 | 1 | $\\frac{1}{81}$ |\n| 1 | 1 | 2 | $\\frac{4!}{1!1!2!}=12$ | $\\frac{12}{81}$ |\n| 2 | 2 | 0 | $\\frac{4!}{2!2!}=6$ | $\\frac{6}{81}$ |\n\n合计 $\\dfrac{1+12+6}{81}=\\dfrac{19}{81}$（19 是质数，已是最简），ST = 19，UV = 81。\n\n**WX**　A、B 的地位完全对称，所以「A 胜次数多」与「B 胜次数多」的概率相等：\n\n$$P(\\text{A 多})=\\frac12\\left(1-\\frac{19}{81}\\right)=\\frac12\\cdot\\frac{62}{81}=\\frac{31}{81}$$\n\nWX = 31（分母仍是 UV = 81）。\n\n**结论**　L = 1，M = 3，N = 1，O = 9，P = 4，QR = 27，ST = 19，UV = 81，WX = 31。",
+        "keyPoints": [
+          "放回抽取 → 各回合独立；胜、平、负各 $\\frac13$",
+          "多项分布：$w$ 胜 $l$ 负 $d$ 平的概率 $=\\dfrac{n!}{w!\\,l!\\,d!}p^w q^l r^d$",
+          "利用对称性：$P(\\text{A 多})=P(\\text{B 多})=\\dfrac{1-P(\\text{相同})}{2}$"
+        ],
+        "traps": [
+          "(i)「3 勝以上」包括 4 胜，不能只算恰好 3 胜（只算会得 $\\frac{8}{81}$）",
+          "(ii) 排列数是 $\\frac{4!}{2!}=12$，不是 ${}_4\\mathrm{C}_2=6$——胜和负是不同的结果，要区分",
+          "(iii) 别漏掉「4 局全平（0 胜 0 负）」这一种，它也属于胜次数相同"
+        ],
+        "terms": [
+          {
+            "ja": "袋",
+            "kana": "ふくろ",
+            "zh": "袋子、口袋"
+          },
+          {
+            "ja": "勝負を競う",
+            "kana": "しょうぶをきそう",
+            "zh": "比输赢、一决胜负"
+          },
+          {
+            "ja": "引き分け",
+            "kana": "ひきわけ",
+            "zh": "平局、和局"
+          },
+          {
+            "ja": "元の袋に戻す",
+            "kana": "もとのふくろにもどす",
+            "zh": "放回原来的袋子（放回抽取）"
+          },
+          {
+            "ja": "3勝以上",
+            "kana": "さんしょういじょう",
+            "zh": "赢 3 次或更多（含 3 次）"
+          },
+          {
+            "ja": "1勝1敗",
+            "kana": "いっしょういっぱい",
+            "zh": "赢 1 次、输 1 次"
+          }
+        ],
+        "shortcut": "每回合三种结果等概率 $\\frac13$，所以 4 回合共 $3^4=81$ 种等可能的「胜/平/负」序列，所有答案都可以写成「序列个数 / 81」：(i) $4+1=9$ 个，(ii) 12 个，(iii) $1+12+6=19$ 个，A 多：$(81-19)/2=31$ 个。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2021_1-math-II1",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.vec.space",
+      "difficulty": 2,
+      "targetSec": 720,
+      "source": {
+        "kind": "official",
+        "session": "2021_1",
+        "label": "2021年第1回 数学コース2 Ⅱ 問1",
+        "pdf": "/assets/papers/2021_1-math.pdf",
+        "page": 22
+      },
+      "stem": "次の文中の \\bx{C}，\\bx{D}，\\bx{E}，\\bx{F}，\\bx{G} には，下の選択肢 ⓪ ～ ⑨ の中から適するものを選び，その他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n1 辺の長さが 1 である正四面体 OABC を考える。$x$ は $0<x<1$ を満たす数とし，辺 AB を $x:(1-x)$ に内分する点を P，辺 BC を $x:(1-x)$ に内分する点を Q とする。また，$\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，$\\overrightarrow{\\mathrm{OC}}=\\vec{c}$ とおく。このとき，$\\cos\\angle\\mathrm{POQ}$ の値の範囲を求めよう。\n\n$\\vec{a}$，$\\vec{b}$，$\\vec{c}$ は\n\n$$\\vec{a}\\cdot\\vec{b}=\\vec{b}\\cdot\\vec{c}=\\vec{c}\\cdot\\vec{a}=\\dfrac{\\bx{A}}{\\bx{B}}$$\n\nを満たす。\n\n次に，$\\overrightarrow{\\mathrm{OP}}$ と $\\overrightarrow{\\mathrm{OQ}}$ は，$\\overrightarrow{\\mathrm{OP}}=\\bx{C}$，$\\overrightarrow{\\mathrm{OQ}}=\\bx{D}$ と表せるから\n\n$$\\left|\\overrightarrow{\\mathrm{OP}}\\right|=\\left|\\overrightarrow{\\mathrm{OQ}}\\right|=\\sqrt{\\bx{E}},\\qquad \\overrightarrow{\\mathrm{OP}}\\cdot\\overrightarrow{\\mathrm{OQ}}=\\bx{F}$$\n\nとなる。よって\n\n$$\\cos\\angle\\mathrm{POQ}=\\dfrac{1}{\\bx{G}}-\\dfrac{\\bx{H}}{\\bx{I}}$$\n\nである。\n\nしたがって，これより，求める値の範囲は\n\n$$\\dfrac{\\bx{J}}{\\bx{K}}<\\cos\\angle\\mathrm{POQ}\\leqq\\dfrac{\\bx{L}}{\\bx{M}}$$\n\nである。\n\n- ⓪ $(1-x)\\vec{a}+x\\vec{b}$\n- ① $x\\vec{a}+(1-x)\\vec{b}$\n- ② $(1-x)\\vec{b}+x\\vec{c}$\n- ③ $x\\vec{b}+(1-x)\\vec{c}$\n- ④ $x^2+x+1$\n- ⑤ $x^2-x+1$\n- ⑥ $x^2-x-1$\n- ⑦ $\\dfrac{1}{2}\\left(-x^2+x+1\\right)$\n- ⑧ $\\dfrac{1}{2}\\left(-x^2-x+1\\right)$\n- ⑨ $\\dfrac{1}{2}\\left(-x^2+x-1\\right)$\n\n注）正四面体：regular tetrahedron，内分する：divide internally",
+      "stemZh": "下文中的 \\bx{C}，\\bx{D}，\\bx{E}，\\bx{F}，\\bx{G} 从下面的选项 ⓪ ～ ⑨ 中选出合适的，其余的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n考虑棱长为 1 的正四面体 OABC。设 $x$ 满足 $0<x<1$，把棱 AB 按 $x:(1-x)$ 内分的点记为 P，把棱 BC 按 $x:(1-x)$ 内分的点记为 Q。又设 $\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，$\\overrightarrow{\\mathrm{OC}}=\\vec{c}$。求此时 $\\cos\\angle\\mathrm{POQ}$ 的取值范围。\n\n$\\vec{a}$，$\\vec{b}$，$\\vec{c}$ 满足\n\n$$\\vec{a}\\cdot\\vec{b}=\\vec{b}\\cdot\\vec{c}=\\vec{c}\\cdot\\vec{a}=\\dfrac{\\bx{A}}{\\bx{B}}$$\n\n其次，$\\overrightarrow{\\mathrm{OP}}$ 与 $\\overrightarrow{\\mathrm{OQ}}$ 可以表示为 $\\overrightarrow{\\mathrm{OP}}=\\bx{C}$，$\\overrightarrow{\\mathrm{OQ}}=\\bx{D}$，所以\n\n$$\\left|\\overrightarrow{\\mathrm{OP}}\\right|=\\left|\\overrightarrow{\\mathrm{OQ}}\\right|=\\sqrt{\\bx{E}},\\qquad \\overrightarrow{\\mathrm{OP}}\\cdot\\overrightarrow{\\mathrm{OQ}}=\\bx{F}$$\n\n因此\n\n$$\\cos\\angle\\mathrm{POQ}=\\dfrac{1}{\\bx{G}}-\\dfrac{\\bx{H}}{\\bx{I}}$$\n\n由此，所求的取值范围是\n\n$$\\dfrac{\\bx{J}}{\\bx{K}}<\\cos\\angle\\mathrm{POQ}\\leqq\\dfrac{\\bx{L}}{\\bx{M}}$$\n\n- ⓪ $(1-x)\\vec{a}+x\\vec{b}$\n- ① $x\\vec{a}+(1-x)\\vec{b}$\n- ② $(1-x)\\vec{b}+x\\vec{c}$\n- ③ $x\\vec{b}+(1-x)\\vec{c}$\n- ④ $x^2+x+1$\n- ⑤ $x^2-x+1$\n- ⑥ $x^2-x-1$\n- ⑦ $\\dfrac{1}{2}\\left(-x^2+x+1\\right)$\n- ⑧ $\\dfrac{1}{2}\\left(-x^2-x+1\\right)$\n- ⑨ $\\dfrac{1}{2}\\left(-x^2+x-1\\right)$",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "2",
+        "C": "0",
+        "D": "2",
+        "E": "5",
+        "F": "7",
+        "G": "5",
+        "H": "1",
+        "I": "2",
+        "J": "1",
+        "K": "2",
+        "L": "5",
+        "M": "6"
+      },
+      "explanation": {
+        "zh": "**思路**　正四面体的每个面都是边长 1 的正三角形，所以 $\\vec a,\\vec b,\\vec c$ 两两夹角 $60^\\circ$、长度都是 1。用内分点公式把 $\\overrightarrow{\\mathrm{OP}},\\overrightarrow{\\mathrm{OQ}}$ 写成 $\\vec a,\\vec b,\\vec c$ 的组合，再展开求长度和内积。最后把 $\\cos\\angle\\mathrm{POQ}$ 写成只含 $t=x^2-x+1$ 的式子，求 $t$ 的范围即可。\n\n**解答**\n\n**A, B**　$\\vec a\\cdot\\vec b=|\\vec a||\\vec b|\\cos60^\\circ=1\\cdot1\\cdot\\dfrac12=\\dfrac12$，其余两组同理。A = 1，B = 2。\n\n**C, D（内分点）**　P 把 AB 分成 $\\mathrm{AP}:\\mathrm{PB}=x:(1-x)$：\n\n$$\\overrightarrow{\\mathrm{OP}}=\\frac{(1-x)\\vec a+x\\vec b}{x+(1-x)}=(1-x)\\vec a+x\\vec b$$\n\nC = ⓪，即填 0。同理 Q 把 BC 分成 $\\mathrm{BQ}:\\mathrm{QC}=x:(1-x)$：$\\overrightarrow{\\mathrm{OQ}}=(1-x)\\vec b+x\\vec c$，D = ②，填 2。\n\n**E（长度）**\n\n$$|\\overrightarrow{\\mathrm{OP}}|^2=(1-x)^2|\\vec a|^2+2x(1-x)\\,\\vec a\\cdot\\vec b+x^2|\\vec b|^2=(1-x)^2+x(1-x)+x^2=x^2-x+1$$\n\n$|\\overrightarrow{\\mathrm{OQ}}|^2$ 的计算形式完全相同，也是 $x^2-x+1$。所以 E = ⑤，填 5。\n\n**F（内积）**　展开四项，注意 $|\\vec b|^2=1$，其他内积都是 $\\frac12$：\n\n$$\\overrightarrow{\\mathrm{OP}}\\cdot\\overrightarrow{\\mathrm{OQ}}=(1-x)^2\\,\\vec a\\cdot\\vec b+x(1-x)\\,\\vec a\\cdot\\vec c+x(1-x)\\,|\\vec b|^2+x^2\\,\\vec b\\cdot\\vec c$$\n\n$$=\\frac12(1-x)^2+\\frac12x(1-x)+x(1-x)+\\frac12x^2=\\frac12\\left\\{(1-x)^2+3x(1-x)+x^2\\right\\}=\\frac12\\left(-x^2+x+1\\right)$$\n\nF = ⑦，填 7。\n\n**G, H, I**　令 $t=x^2-x+1$，则 $-x^2+x+1=2-t$：\n\n$$\\cos\\angle\\mathrm{POQ}=\\frac{\\frac12(2-t)}{\\sqrt t\\cdot\\sqrt t}=\\frac{2-t}{2t}=\\frac1t-\\frac12=\\frac{1}{x^2-x+1}-\\frac12$$\n\nG = ⑤（填 5），H = 1，I = 2。\n\n**J, K, L, M（范围）**　$t=\\left(x-\\frac12\\right)^2+\\frac34$。在 $0<x<1$ 上：$x=\\frac12$ 时最小 $t=\\frac34$；$x\\to0$ 或 $x\\to1$ 时 $t\\to1$，但端点取不到，所以 $\\frac34\\leqq t<1$。于是 $1<\\frac1t\\leqq\\frac43$，\n\n$$\\frac12<\\cos\\angle\\mathrm{POQ}\\leqq\\frac43-\\frac12=\\frac56$$\n\nJ = 1，K = 2，L = 5，M = 6。\n\n**检验**　$x\\to0$ 时 P→A、Q→B，$\\angle\\mathrm{POQ}\\to\\angle\\mathrm{AOB}=60^\\circ$，$\\cos\\to\\frac12$ ✓；$x=\\frac12$ 时 P、Q 是中点，$\\mathrm{OP}=\\mathrm{OQ}=\\frac{\\sqrt3}{2}$，$\\mathrm{PQ}=\\frac12$，余弦定理得 $\\cos=\\dfrac{\\frac34+\\frac34-\\frac14}{2\\cdot\\frac34}=\\frac56$ ✓。\n\n**结论**　A = 1，B = 2，C = 0，D = 2，E = 5，F = 7，G = 5，H = 1，I = 2，J = 1，K = 2，L = 5，M = 6。",
+        "keyPoints": [
+          "正四面体（棱长 1）：$|\\vec a|=|\\vec b|=|\\vec c|=1$，两两内积 $\\frac12$",
+          "内分点：AB 按 $m:n$ 内分 → $\\dfrac{n\\vec a+m\\vec b}{m+n}$（权重交叉）",
+          "分式换元 $t=x^2-x+1$，把求 cos 的范围化为求二次式在开区间上的值域"
+        ],
+        "traps": [
+          "内分点权重交叉：P 离 A 近时 $\\vec a$ 的系数大，$\\overrightarrow{\\mathrm{OP}}=(1-x)\\vec a+x\\vec b$，选 ① 就反了",
+          "$0<x<1$ 是开区间：$t<1$ 取不到，所以下界 $\\frac12$ 用「$<$」；$x=\\frac12$ 能取到，上界 $\\frac56$ 用「$\\leqq$」",
+          "C～G 填的是选项编号（⓪→0、②→2、⑤→5、⑦→7），不是把式子里的数字抄进去"
+        ],
+        "terms": [
+          {
+            "ja": "正四面体",
+            "kana": "せいしめんたい",
+            "zh": "四个面都是全等正三角形的四面体，6 条棱一样长"
+          },
+          {
+            "ja": "辺",
+            "kana": "へん",
+            "zh": "（立体图形的）棱；（多边形的）边"
+          },
+          {
+            "ja": "内分する",
+            "kana": "ないぶんする",
+            "zh": "在线段内部取点，按给定比例把线段分成两段"
+          },
+          {
+            "ja": "値の範囲",
+            "kana": "あたいのはんい",
+            "zh": "取值范围"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "可供选择的答案选项"
+          }
+        ],
+        "shortcut": "用余弦定理绕开内积展开：在 $\\triangle\\mathrm{PBQ}$ 中 $\\mathrm{BP}=1-x$，$\\mathrm{BQ}=x$，$\\angle\\mathrm{B}=60^\\circ$，所以 $\\mathrm{PQ}^2=(1-x)^2+x^2-x(1-x)=3x^2-3x+1=3t-2$。再在 $\\triangle\\mathrm{OPQ}$ 中 $\\cos\\angle\\mathrm{POQ}=\\dfrac{t+t-(3t-2)}{2t}=\\dfrac{2-t}{2t}=\\dfrac1t-\\dfrac12$。范围：$\\dfrac1t-\\dfrac12$ 随 $t$ 增大而减小，$t$ 在 $x=\\frac12$ 取最小 $\\frac34$（cos 取最大 $\\frac56$，P、Q 为中点），在端点附近 $t\\to1$（cos $\\to\\frac12$，即 $\\angle\\mathrm{POQ}\\to\\angle\\mathrm{AOB}=60^\\circ$，取不到）。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2021_1-math-II2",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.complex.plane",
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "official",
+        "session": "2021_1",
+        "label": "2021年第1回 数学コース2 Ⅱ 問2",
+        "pdf": "/assets/papers/2021_1-math.pdf",
+        "page": 24
+      },
+      "stem": "複素数平面上の 3 点 A$(\\alpha)$，B$(\\beta)$，C$(\\gamma)$ を頂点とする三角形 ABC において\n\n$$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=1-i$$\n\nであるとする。以下，偏角 $\\theta$ の範囲は $0\\leqq\\theta<2\\pi$ とする。\n\n(1)　複素数 $\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}$ を極形式で表すと\n\n$$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=\\sqrt{\\bx{N}}\\left(\\cos\\dfrac{\\bx{O}}{\\bx{P}}\\pi+i\\sin\\dfrac{\\bx{O}}{\\bx{P}}\\pi\\right)$$\n\nである。よって，点 C は，点 B を点 A を中心として $\\dfrac{\\bx{Q}}{\\bx{R}}\\pi$ だけ回転し，さらに点 A からの距離を $\\sqrt{\\bx{S}}$ 倍した点である。これより，複素数 $w=\\dfrac{\\gamma-\\beta}{\\alpha-\\beta}$ の絶対値と偏角は\n\n$$|w|=\\bx{T},\\qquad \\arg w=\\dfrac{\\bx{U}}{\\bx{V}}\\pi$$\n\nである。\n\n(2)　$\\alpha+\\beta+\\gamma=0$ とすると\n\n$$|\\alpha|:|\\beta|:|\\gamma|=\\sqrt{\\bx{W}}:\\sqrt{\\bx{X}}:\\sqrt{\\bx{Y}}$$\n\nである。\n\n注）複素数平面：complex plane，偏角：argument，極形式：polar form",
+      "stemZh": "在以复平面上的 3 点 A$(\\alpha)$，B$(\\beta)$，C$(\\gamma)$ 为顶点的三角形 ABC 中，设\n\n$$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=1-i$$\n\n以下，辐角 $\\theta$ 的范围取 $0\\leqq\\theta<2\\pi$。\n\n(1)　把复数 $\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}$ 写成极式（三角形式），得\n\n$$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=\\sqrt{\\bx{N}}\\left(\\cos\\dfrac{\\bx{O}}{\\bx{P}}\\pi+i\\sin\\dfrac{\\bx{O}}{\\bx{P}}\\pi\\right)$$\n\n因此，点 C 是把点 B 以点 A 为中心旋转 $\\dfrac{\\bx{Q}}{\\bx{R}}\\pi$，再把到点 A 的距离变为 $\\sqrt{\\bx{S}}$ 倍所得的点。由此，复数 $w=\\dfrac{\\gamma-\\beta}{\\alpha-\\beta}$ 的绝对值与辐角为\n\n$$|w|=\\bx{T},\\qquad \\arg w=\\dfrac{\\bx{U}}{\\bx{V}}\\pi$$\n\n(2)　若 $\\alpha+\\beta+\\gamma=0$，则\n\n$$|\\alpha|:|\\beta|:|\\gamma|=\\sqrt{\\bx{W}}:\\sqrt{\\bx{X}}:\\sqrt{\\bx{Y}}$$",
+      "format": "blanks",
+      "blanks": {
+        "N": "2",
+        "O": "7",
+        "P": "4",
+        "Q": "7",
+        "R": "4",
+        "S": "2",
+        "T": "1",
+        "U": "1",
+        "V": "2",
+        "W": "5",
+        "X": "2",
+        "Y": "5"
+      },
+      "explanation": {
+        "zh": "**思路**　$z=\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}$ 表示「以 A 为中心，把 $\\overrightarrow{\\mathrm{AB}}$ 旋转 $\\arg z$、伸缩 $|z|$ 倍得到 $\\overrightarrow{\\mathrm{AC}}$」。所以先把 $1-i$ 化成极式。$w$ 是以 B 为中心的同类比值，可以直接用 $z$ 表示：$w=1-z$。(2) 设 $\\delta=\\beta-\\alpha$，把 $\\alpha,\\beta,\\gamma$ 都用 $\\delta$ 表示后取绝对值。\n\n**解答**\n\n**(1) N, O, P**　$|1-i|=\\sqrt{1^2+(-1)^2}=\\sqrt2$，\n\n$$1-i=\\sqrt2\\left(\\frac{1}{\\sqrt2}-\\frac{1}{\\sqrt2}i\\right)=\\sqrt2\\left(\\cos\\frac74\\pi+i\\sin\\frac74\\pi\\right)$$\n\n（$\\cos\\theta=\\frac{1}{\\sqrt2}$，$\\sin\\theta=-\\frac{1}{\\sqrt2}$，在 $0\\leqq\\theta<2\\pi$ 中 $\\theta=\\frac74\\pi$。）N = 2，O = 7，P = 4。\n\n**Q, R, S**　$\\gamma-\\alpha=z(\\beta-\\alpha)$，即 $\\overrightarrow{\\mathrm{AC}}$ 是 $\\overrightarrow{\\mathrm{AB}}$ 绕 A 旋转 $\\frac74\\pi$（相当于顺时针 $\\frac{\\pi}{4}$）再放大 $\\sqrt2$ 倍。Q = 7，R = 4，S = 2。\n\n**T, U, V**　把 $w$ 的分子分母都改写成以 A 为起点的差：\n\n$$w=\\frac{\\gamma-\\beta}{\\alpha-\\beta}=\\frac{(\\gamma-\\alpha)-(\\beta-\\alpha)}{-(\\beta-\\alpha)}=-(z-1)=1-z=1-(1-i)=i$$\n\n$i=\\cos\\frac{\\pi}{2}+i\\sin\\frac{\\pi}{2}$，所以 $|w|=1$，$\\arg w=\\frac12\\pi$。T = 1，U = 1，V = 2。\n\n几何意义：$|\\mathrm{BC}|=|\\mathrm{BA}|$ 且 $\\angle\\mathrm{ABC}=90^\\circ$，△ABC 是以 B 为直角顶点的**等腰直角三角形**（与 $\\mathrm{AC}=\\sqrt2\\,\\mathrm{AB}$、$\\angle\\mathrm{A}=45^\\circ$ 一致）。\n\n**(2) W, X, Y**　设 $\\delta=\\beta-\\alpha\\ (\\neq0)$，则 $\\beta=\\alpha+\\delta$，$\\gamma=\\alpha+(1-i)\\delta$。代入条件：\n\n$$\\alpha+\\beta+\\gamma=3\\alpha+(2-i)\\delta=0\\ \\Rightarrow\\ \\alpha=-\\frac{2-i}{3}\\delta$$\n\n$$\\beta=\\alpha+\\delta=\\frac{1+i}{3}\\delta,\\qquad \\gamma=\\alpha+(1-i)\\delta=\\frac{1-2i}{3}\\delta$$\n\n取绝对值：$|\\alpha|=\\frac{\\sqrt5}{3}|\\delta|$，$|\\beta|=\\frac{\\sqrt2}{3}|\\delta|$，$|\\gamma|=\\frac{\\sqrt5}{3}|\\delta|$，\n\n$$|\\alpha|:|\\beta|:|\\gamma|=\\sqrt5:\\sqrt2:\\sqrt5$$\n\nW = 5，X = 2，Y = 5。\n\n**结论**　N = 2，O = 7，P = 4，Q = 7，R = 4，S = 2，T = 1，U = 1，V = 2，W = 5，X = 2，Y = 5。",
+        "keyPoints": [
+          "$\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}=r(\\cos\\theta+i\\sin\\theta)$ ⇔ AC 是 AB 绕 A 旋转 $\\theta$ 再伸缩 $r$ 倍",
+          "换中心的比值：$\\dfrac{\\gamma-\\beta}{\\alpha-\\beta}=1-\\dfrac{\\gamma-\\alpha}{\\beta-\\alpha}$",
+          "$\\alpha+\\beta+\\gamma=0$ ⇔ 三角形重心在原点，$|\\alpha|,|\\beta|,|\\gamma|$ 是重心到各顶点的距离"
+        ],
+        "traps": [
+          "辐角限定 $0\\leqq\\theta<2\\pi$：$1-i$ 的辐角要写 $\\frac74\\pi$，不能写 $-\\frac{\\pi}{4}$",
+          "$w$ 的分母是 $\\alpha-\\beta$ 而不是 $\\beta-\\alpha$；弄反会得到 $w=-i$、$\\arg w=\\frac32\\pi$",
+          "(2) 求的是 $|\\alpha|:|\\beta|:|\\gamma|$（到原点的距离），不是三边长之比 $1:1:\\sqrt2$"
+        ],
+        "terms": [
+          {
+            "ja": "複素数平面",
+            "kana": "ふくそすうへいめん",
+            "zh": "复平面（用平面上的点表示复数）"
+          },
+          {
+            "ja": "頂点",
+            "kana": "ちょうてん",
+            "zh": "（多边形的）角上的点，顶点"
+          },
+          {
+            "ja": "偏角",
+            "kana": "へんかく",
+            "zh": "辐角（复数对应向量与实轴正方向的夹角）"
+          },
+          {
+            "ja": "極形式",
+            "kana": "きょくけいしき",
+            "zh": "极式／三角形式 $r(\\cos\\theta+i\\sin\\theta)$"
+          },
+          {
+            "ja": "絶対値",
+            "kana": "ぜったいち",
+            "zh": "复数的模（到原点的距离）"
+          },
+          {
+            "ja": "回転",
+            "kana": "かいてん",
+            "zh": "旋转"
+          }
+        ],
+        "shortcut": "形状只由 $z$ 决定，可直接取 $\\alpha=0,\\ \\beta=1$，则 $\\gamma=1-i$：$w=\\dfrac{(1-i)-1}{0-1}=i$。(2) 用重心：B 为直角顶点、直角边长 1 的等腰直角三角形，取 B(0,0)，A(1,0)，C(0,1)，三条中线长 $\\mathrm{AM}=\\frac{\\sqrt5}{2}$，$\\mathrm{BM'}=\\frac{\\sqrt2}{2}$，$\\mathrm{CM''}=\\frac{\\sqrt5}{2}$，重心到顶点的距离是中线的 $\\frac23$，比为 $\\sqrt5:\\sqrt2:\\sqrt5$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

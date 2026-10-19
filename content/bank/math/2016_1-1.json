@@ -1,0 +1,347 @@
+{
+ "title": "2016_1 math part",
+ "items": [
+  {
+   "id": "2016_1-math-I1",
+   "subject": "math",
+   "order": 1,
+   "topic": "math.quad.func",
+   "difficulty": 2,
+   "targetSec": 600,
+   "source": {
+    "kind": "official",
+    "session": "2016_1",
+    "label": "2016年第1回 数学コース2 Ⅰ 問1",
+    "pdf": "/assets/expanded/2016_1-math.pdf",
+    "page": 18
+   },
+   "stem": "$x$ の2次関数\n\n$$y=-\\dfrac{1}{8}x^2+ax+b\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nを考える。関数 ① のグラフの頂点の座標を $(p,\\,q)$ とすると\n\n$$p=\\bx{A}\\,a,\\qquad q=\\bx{B}\\,a^2+b$$\n\nである。\n\n(1)　点 $(p,\\,q)$ が直線 $x+y=1$ の上を動くとき，$a,\\,b$ は\n\n$$b=\\bx{CD}\\,a^2-\\bx{E}\\,a+\\bx{F}$$\n\nを満たす。\n\nこのとき，$8a+b$ は $a=\\bx{G}$ で最大値 \\bx{H} をとる。\n\n(2)　関数 ① のグラフが $x$ 軸に接するとき，$a+b$ の値の範囲は\n\n$$a+b\\leqq\\dfrac{\\bx{I}}{\\bx{J}}$$\n\nである。",
+   "stemZh": "考虑关于 $x$ 的二次函数\n\n$$y=-\\dfrac{1}{8}x^2+ax+b\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n设函数 ① 的图像的顶点坐标为 $(p,\\,q)$，则\n\n$$p=\\bx{A}\\,a,\\qquad q=\\bx{B}\\,a^2+b$$\n\n(1)　当点 $(p,\\,q)$ 在直线 $x+y=1$ 上移动时，$a,\\,b$ 满足\n\n$$b=\\bx{CD}\\,a^2-\\bx{E}\\,a+\\bx{F}$$\n\n此时，$8a+b$ 在 $a=\\bx{G}$ 时取得最大值 \\bx{H}。\n\n(2)　当函数 ① 的图像与 $x$ 轴相切时，$a+b$ 的取值范围是\n\n$$a+b\\leqq\\dfrac{\\bx{I}}{\\bx{J}}$$",
+   "format": "blanks",
+   "blanks": {
+    "A": "4",
+    "B": "2",
+    "C": "-",
+    "D": "2",
+    "E": "4",
+    "F": "1",
+    "G": "1",
+    "H": "3",
+    "I": "1",
+    "J": "8"
+   },
+   "explanation": {
+    "zh": "**思路**　先对 $x$ 配方求出顶点 $(p,\\,q)$（用 $a,\\,b$ 表示）。(1) 把顶点代入直线 $x+y=1$ 得到 $b$ 与 $a$ 的关系，于是 $8a+b$ 变成只含 $a$ 的二次函数，配方求最大值。(2)「与 $x$ 轴相切」⇔ 顶点在 $x$ 轴上 ⇔ $q=0$，由此 $b=-2a^2$，$a+b$ 又是 $a$ 的开口向下的二次函数，它的取值范围就是「$\\leqq$ 最大值」。\n\n**解答**\n\n**第1步　配方求顶点（A, B）**\n\n$$y=-\\frac18\\left(x^2-8ax\\right)+b=-\\frac18\\left(x-4a\\right)^2+\\frac18\\cdot16a^2+b=-\\frac18(x-4a)^2+2a^2+b$$\n\n所以顶点 $(p,\\,q)=(4a,\\ 2a^2+b)$，即 $p=4a$，$q=2a^2+b$：**A=4，B=2**。\n\n**第2步　(1) 顶点在直线 $x+y=1$ 上（CD, E, F）**\n\n$$p+q=1\\ \\Longrightarrow\\ 4a+2a^2+b=1\\ \\Longrightarrow\\ b=-2a^2-4a+1$$\n\n所以 **CD=-2，E=4，F=1**。\n\n**第3步　$8a+b$ 的最大值（G, H）**\n\n$$8a+b=8a-2a^2-4a+1=-2a^2+4a+1=-2(a-1)^2+3$$\n\n$a$ 可取任意实数（$b$ 随之确定），开口向下，所以 $a=1$ 时取最大值 $3$：**G=1，H=3**。\n\n**第4步　(2) 图像与 $x$ 轴相切（I, J）**\n\n抛物线开口向下，与 $x$ 轴相切 ⇔ 顶点恰好在 $x$ 轴上 ⇔ $q=0$：$2a^2+b=0$，即 $b=-2a^2$。\n\n（用判别式检验：$-\\frac18x^2+ax+b=0\\iff x^2-8ax-8b=0$，$\\frac D4=16a^2+8b=0$，同样得 $b=-2a^2$。）\n\n$$a+b=-2a^2+a=-2\\left(a-\\frac14\\right)^2+\\frac18$$\n\n$a$ 取遍全体实数，$a+b$ 在 $a=\\frac14$ 时取最大值 $\\frac18$，且可以取到任意更小的值，所以 $a+b\\leqq\\dfrac18$：**I=1，J=8**。\n\n**结论**　A=4，B=2，CD=-2，E=4，F=1，G=1，H=3，I=1，J=8。",
+    "keyPoints": [
+     "配方求顶点：$y=-\\frac18x^2+ax+b$ 的顶点为 $(4a,\\ 2a^2+b)$",
+     "点在直线上→代入消元，把两变量问题化为一元二次函数的最值",
+     "开口向下的抛物线与 $x$ 轴相切 ⇔ 顶点纵坐标 $q=0$（⇔ 判别式 $D=0$）"
+    ],
+    "traps": [
+     "提出 $-\\frac18$ 后括号内是 $x^2-8ax$，顶点横坐标是 $4a$；补项时 $-\\frac18\\cdot(-16a^2)=+2a^2$，符号容易弄反",
+     "CD 是一个两格的框，填 $-2$（负号占一格）",
+     "(2) 问的是 $a+b$ 的范围，要先用 $q=0$ 消去 $b$，再对 $a$ 配方；答案是上界 $\\frac18$，不是 $a$ 的值 $\\frac14$"
+    ],
+    "terms": [
+     {
+      "ja": "2次関数",
+      "kana": "にじかんすう",
+      "zh": "二次函数"
+     },
+     {
+      "ja": "頂点",
+      "kana": "ちょうてん",
+      "zh": "顶点（抛物线最高或最低的那一点）"
+     },
+     {
+      "ja": "座標",
+      "kana": "ざひょう",
+      "zh": "坐标"
+     },
+     {
+      "ja": "直線",
+      "kana": "ちょくせん",
+      "zh": "直线"
+     },
+     {
+      "ja": "x軸に接する",
+      "kana": "えっくすじくにせっする",
+      "zh": "与 x 轴相切（图像与 x 轴恰有一个公共点）"
+     },
+     {
+      "ja": "値の範囲",
+      "kana": "あたいのはんい",
+      "zh": "取值范围"
+     }
+    ],
+    "shortcut": "顶点公式：$y=\\alpha x^2+\\beta x+\\gamma$ 的顶点横坐标 $-\\dfrac{\\beta}{2\\alpha}=-\\dfrac{a}{2\\cdot(-1/8)}=4a$，纵坐标 $\\gamma-\\dfrac{\\beta^2}{4\\alpha}=b-\\dfrac{a^2}{-1/2}=b+2a^2$，不用配方直接得 A、B。之后 (1)(2) 都是「代入消元 → 对 $a$ 配方」。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2016_1-math-I2",
+   "subject": "math",
+   "order": 2,
+   "topic": "math.prob.count",
+   "difficulty": 2,
+   "targetSec": 600,
+   "source": {
+    "kind": "official",
+    "session": "2016_1",
+    "label": "2016年第1回 数学コース2 Ⅰ 問2",
+    "pdf": "/assets/expanded/2016_1-math.pdf",
+    "page": 20
+   },
+   "stem": "座標平面上に，右の図のように 12 個の点が並んでいる。これらの点から 3 個の点を選び，それらを頂点とする三角形を作る。このとき，三角形が全部で何個できるかを調べよう。\n\nまず，12 個の点から 3 個の点を選び出す場合の数は \\bx{KLM} 通りである。\n\n次に，12 個の点のうち，3 個以上が一直線上に並ぶ場合の数を数えよう。\n\nこのような直線のうち\n\n(i)　4 点を通る直線は \\bx{N} 本ある。\n(ii)　3 点を通る直線は \\bx{O} 本ある。\n\nしたがって，同一直線上にあり，三角形の頂点とならない 3 点の組み合わせは，(i) の場合は \\bx{PQ} 通りあり，(ii) の場合は \\bx{R} 通りある。\n\n以上より，求める三角形は \\bx{STU} 個である。\n\n特に，点 $(1,\\,1)$ を A，点 $(4,\\,1)$ を B とするとき，線分 AB 上に 2 つの頂点をもつ三角形は \\bx{VW} 個である。",
+   "stemZh": "在坐标平面上，如右图所示排列着 12 个点。从这些点中选出 3 个点，作以它们为顶点的三角形。下面研究一共能作出多少个三角形。\n\n首先，从 12 个点中选出 3 个点的情况数为 \\bx{KLM} 种。\n\n其次，数一数 12 个点中有 3 个以上的点排在同一条直线上的情况。\n\n在这样的直线中，\n\n(i)　经过 4 个点的直线有 \\bx{N} 条。\n(ii)　经过 3 个点的直线有 \\bx{O} 条。\n\n因此，位于同一直线上、不能成为三角形顶点的 3 点组合，(i) 的情况有 \\bx{PQ} 种，(ii) 的情况有 \\bx{R} 种。\n\n综上，所求三角形有 \\bx{STU} 个。\n\n特别地，设点 $(1,\\,1)$ 为 A，点 $(4,\\,1)$ 为 B，则有 2 个顶点在线段 AB 上的三角形有 \\bx{VW} 个。",
+   "figures": [
+    {
+     "src": "/assets/v2/fig/2016_1-math-I2-1.png",
+     "caption": "12 个点：$x=1,2,3,4$，$y=1,2,3$ 的格点"
+    }
+   ],
+   "format": "blanks",
+   "blanks": {
+    "K": "2",
+    "L": "2",
+    "M": "0",
+    "N": "3",
+    "O": "8",
+    "P": "1",
+    "Q": "2",
+    "R": "8",
+    "S": "2",
+    "T": "0",
+    "U": "0",
+    "V": "4",
+    "W": "8"
+   },
+   "explanation": {
+    "zh": "**思路**　三角形个数 = 任取 3 点的总数 − 三点共线（退化，不成三角形）的组数。关键是把「至少过 3 个点的直线」不重不漏地找全：横线、竖线，以及斜率 $\\pm1$ 的斜线。图中点是 $x\\in\\{1,2,3,4\\}$、$y\\in\\{1,2,3\\}$ 的 $4\\times3$ 格点。\n\n**解答**\n\n**第1步　任取 3 点（KLM）**\n\n$$_{12}\\mathrm{C}_3=\\frac{12\\cdot11\\cdot10}{3\\cdot2\\cdot1}=220$$\n\n**KLM=220**。\n\n**第2步　过 4 个点的直线（N）**\n\n每一行有 4 个点：$y=1,\\ y=2,\\ y=3$ 三条横线。竖线每条只有 3 个点，斜线最多 3 个点。所以 **N=3**。\n\n**第3步　恰好过 3 个点的直线（O）**\n\n- 竖线 $x=1,2,3,4$：4 条\n- 斜率 $1$：$(1,1),(2,2),(3,3)$ 与 $(2,1),(3,2),(4,3)$：2 条\n- 斜率 $-1$：$(1,3),(2,2),(3,1)$ 与 $(2,3),(3,2),(4,1)$：2 条\n- 其他斜率（$\\pm2,\\ \\pm\\frac12$ 等）：要放下 3 个点，$y$ 方向需跨 4 格或 $x$ 方向需跨 4 格，超出范围，没有。\n\n合计 $4+2+2=8$ 条，**O=8**。\n\n**第4步　共线的 3 点组（PQ, R）**\n\n(i) 每条 4 点直线上任取 3 点：$_4\\mathrm{C}_3=4$ 组，共 $3\\times4=12$ 组，**PQ=12**。\n\n(ii) 每条 3 点直线上只有 $_3\\mathrm{C}_3=1$ 组，共 $8\\times1=8$ 组，**R=8**。\n\n**第5步　三角形个数（STU）**\n\n$$220-12-8=200$$\n\n**STU=200**。\n\n**第6步　2 个顶点在线段 AB 上（VW）**\n\n线段 AB 上的点是 $(1,1),(2,1),(3,1),(4,1)$ 共 4 个，从中选 2 个：$_4\\mathrm{C}_2=6$ 种。第 3 个顶点不能在直线 $y=1$ 上（否则三点共线），只能从 $y=2,\\ 3$ 两行的 8 个点中选：8 种。这样选出的 3 点一定构成三角形，且恰有 2 个顶点在 AB 上。\n\n$$6\\times8=48$$\n\n**VW=48**。\n\n**结论**　KLM=220，N=3，O=8，PQ=12，R=8，STU=200，VW=48。",
+    "keyPoints": [
+     "三角形个数 = $_n\\mathrm{C}_3$ − 各条直线上共线 3 点组数 $\\sum{}_m\\mathrm{C}_3$",
+     "格点共线要系统地按方向找：横、竖、斜率 $\\pm1$、其他斜率",
+     "「恰有 2 个顶点在某线段上」= 线上选 2 点 × 线外选 1 点"
+    ],
+    "traps": [
+     "漏掉斜率 $-1$ 的两条斜线，或只找到经过中心 $(2,2)$ 的那一条",
+     "4 点直线上的共线 3 点组是 $_4\\mathrm{C}_3=4$ 组，不是 1 组",
+     "VW 中第 3 个点若也取在 $y=1$ 上就不成三角形，只能从另外 8 个点中选"
+    ],
+    "terms": [
+     {
+      "ja": "座標平面",
+      "kana": "ざひょうへいめん",
+      "zh": "坐标平面"
+     },
+     {
+      "ja": "場合の数",
+      "kana": "ばあいのかず",
+      "zh": "情况数（满足条件的方法总数）"
+     },
+     {
+      "ja": "一直線上に並ぶ",
+      "kana": "いっちょくせんじょうにならぶ",
+      "zh": "排在同一条直线上（共线）"
+     },
+     {
+      "ja": "組み合わせ",
+      "kana": "くみあわせ",
+      "zh": "组合（不计顺序的选取）"
+     },
+     {
+      "ja": "線分",
+      "kana": "せんぶん",
+      "zh": "线段"
+     },
+     {
+      "ja": "通り",
+      "kana": "とおり",
+      "zh": "（计数单位）种，种情况"
+     }
+    ],
+    "shortcut": "一行算完：$_{12}\\mathrm{C}_3-3\\cdot{}_4\\mathrm{C}_3-8\\cdot{}_3\\mathrm{C}_3=220-12-8=200$。数斜线时只需看 $3\\times3$ 的子方阵：$4\\times3$ 格点里有 2 个 $3\\times3$ 子方阵（$x=1\\sim3$ 与 $x=2\\sim4$），每个有 2 条对角线，共 4 条斜线。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2016_1-math-II1",
+   "subject": "math",
+   "order": 3,
+   "topic": "math.vec.plane",
+   "tags": [
+    "math.func.limit",
+    "math.calc.int",
+    "math.seq.seq"
+   ],
+   "difficulty": 2,
+   "targetSec": 720,
+   "source": {
+    "kind": "official",
+    "session": "2016_1",
+    "label": "2016年第1回 数学コース2 Ⅱ 問1",
+    "pdf": "/assets/expanded/2016_1-math.pdf",
+    "page": 22
+   },
+   "stem": "三角形 ABC は\n\n$$\\mathrm{AB}=2,\\quad \\mathrm{BC}=3,\\quad \\mathrm{CA}=4$$\n\nを満たしている。\n\n(1)　$\\angle\\mathrm{ABC}=\\theta$ とおくと，ベクトル $\\overrightarrow{\\mathrm{AB}}$ とベクトル $\\overrightarrow{\\mathrm{BC}}$ の内積 $\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}$ は\n\n$$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=\\bx{AB}\\cos\\theta$$\n\nである。また，余弦定理より $\\cos\\theta$ の値を求めて\n\n$$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=\\dfrac{\\bx{C}}{\\bx{D}}\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nを得る。\n\n(2)　辺 BC を $n$ 等分する点を B から近い順に $\\mathrm{P}_1,\\,\\mathrm{P}_2,\\,\\cdots,\\,\\mathrm{P}_{n-1}$ とおき，$\\mathrm{B}=\\mathrm{P}_0$，$\\mathrm{C}=\\mathrm{P}_n$ とおく。このとき，$\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}$ を求めよう。\n\nまず，$\\overrightarrow{\\mathrm{AP}_{k-1}}$ と $\\overrightarrow{\\mathrm{AP}_{k}}$ の内積を ① を用いて計算すると\n\n$$\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}=\\bx{E}+\\dfrac{\\bx{F}\\,k-\\bx{G}}{2n}+\\dfrac{\\bx{H}\\,(k^2-k)}{n^2}$$\n\nである。\n\nしたがって\n\n$$\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}=\\dfrac{\\bx{IJ}}{\\bx{K}}$$\n\nとなる。\n\n注）内積：inner product，余弦定理：the law of cosines",
+   "stemZh": "三角形 ABC 满足\n\n$$\\mathrm{AB}=2,\\quad \\mathrm{BC}=3,\\quad \\mathrm{CA}=4$$\n\n(1)　设 $\\angle\\mathrm{ABC}=\\theta$，则向量 $\\overrightarrow{\\mathrm{AB}}$ 与向量 $\\overrightarrow{\\mathrm{BC}}$ 的数量积（内积）$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}$ 为\n\n$$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=\\bx{AB}\\cos\\theta$$\n\n另外，由余弦定理求出 $\\cos\\theta$ 的值，得到\n\n$$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=\\dfrac{\\bx{C}}{\\bx{D}}\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n(2)　把边 BC $n$ 等分，分点按离 B 由近到远依次记为 $\\mathrm{P}_1,\\,\\mathrm{P}_2,\\,\\cdots,\\,\\mathrm{P}_{n-1}$，并记 $\\mathrm{B}=\\mathrm{P}_0$，$\\mathrm{C}=\\mathrm{P}_n$。下面求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}$。\n\n首先，利用 ① 计算 $\\overrightarrow{\\mathrm{AP}_{k-1}}$ 与 $\\overrightarrow{\\mathrm{AP}_{k}}$ 的数量积，得\n\n$$\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}=\\bx{E}+\\dfrac{\\bx{F}\\,k-\\bx{G}}{2n}+\\dfrac{\\bx{H}\\,(k^2-k)}{n^2}$$\n\n因此\n\n$$\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}=\\dfrac{\\bx{IJ}}{\\bx{K}}$$\n\n注）内積：数量积（内积），余弦定理：余弦定理",
+   "format": "blanks",
+   "blanks": {
+    "A": "-",
+    "B": "6",
+    "C": "3",
+    "D": "2",
+    "E": "4",
+    "F": "6",
+    "G": "3",
+    "H": "9",
+    "I": "1",
+    "J": "7",
+    "K": "2"
+   },
+   "explanation": {
+    "zh": "**思路**　(1) 求向量夹角时两向量必须**起点相同**。$\\overrightarrow{\\mathrm{AB}}$ 与 $\\overrightarrow{\\mathrm{BC}}$ 是「首尾相接」的，它们的夹角不是 $\\theta=\\angle\\mathrm{ABC}$，而是 $180^\\circ-\\theta$，所以会出现负号。(2) 用分点公式把 $\\overrightarrow{\\mathrm{AP}_k}$ 写成 $\\overrightarrow{\\mathrm{AB}}+\\frac kn\\overrightarrow{\\mathrm{BC}}$，展开内积后用求和公式（或区分求积法）求极限。\n\n**解答**\n\n**第1步　用 $\\cos\\theta$ 表示内积（AB）**\n\n$$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=-\\,\\overrightarrow{\\mathrm{BA}}\\cdot\\overrightarrow{\\mathrm{BC}}=-|\\overrightarrow{\\mathrm{BA}}||\\overrightarrow{\\mathrm{BC}}|\\cos\\theta=-2\\cdot3\\cos\\theta=-6\\cos\\theta$$\n\n（$\\overrightarrow{\\mathrm{BA}}$ 与 $\\overrightarrow{\\mathrm{BC}}$ 起点都是 B，夹角才是 $\\theta$。）所以 **AB=-6**（这里的 AB 是答案框的字母，不是线段 AB）。\n\n**第2步　余弦定理求 $\\cos\\theta$（C, D）**\n\n$$\\mathrm{CA}^2=\\mathrm{AB}^2+\\mathrm{BC}^2-2\\cdot\\mathrm{AB}\\cdot\\mathrm{BC}\\cos\\theta\\ \\Longrightarrow\\ 16=4+9-12\\cos\\theta\\ \\Longrightarrow\\ \\cos\\theta=-\\frac14$$\n\n$$\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=-6\\cdot\\left(-\\frac14\\right)=\\frac32$$\n\n**C=3，D=2**。（$\\cos\\theta<0$，$\\theta$ 是钝角，因此内积为正。）\n\n**第3步　展开 $\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_k}$（E, F, G, H）**\n\n$\\mathrm{P}_k$ 在 BC 上且 $\\mathrm{BP}_k=\\frac kn\\,\\mathrm{BC}$，所以 $\\overrightarrow{\\mathrm{AP}_{k}}=\\overrightarrow{\\mathrm{AB}}+\\dfrac kn\\overrightarrow{\\mathrm{BC}}$，$\\overrightarrow{\\mathrm{AP}_{k-1}}=\\overrightarrow{\\mathrm{AB}}+\\dfrac{k-1}{n}\\overrightarrow{\\mathrm{BC}}$。\n\n$$\\begin{aligned}\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_{k}}&=|\\overrightarrow{\\mathrm{AB}}|^2+\\left(\\frac{k-1}{n}+\\frac kn\\right)\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}+\\frac{k(k-1)}{n^2}|\\overrightarrow{\\mathrm{BC}}|^2\\\\&=4+\\frac{2k-1}{n}\\cdot\\frac32+\\frac{9(k^2-k)}{n^2}\\\\&=4+\\frac{6k-3}{2n}+\\frac{9(k^2-k)}{n^2}\\end{aligned}$$\n\n**E=4，F=6，G=3，H=9**。\n\n**第4步　求和取极限（IJ, K）**\n\n逐项计算 $\\dfrac1n\\displaystyle\\sum_{k=1}^{n}$：\n\n- 常数项：$\\dfrac1n\\cdot4n=4$\n- 一次项：$\\dfrac{1}{2n^2}\\displaystyle\\sum_{k=1}^{n}(6k-3)=\\dfrac{1}{2n^2}\\left(3n(n+1)-3n\\right)=\\dfrac{3n^2}{2n^2}=\\dfrac32$\n- 二次项：$\\dfrac{9}{n^3}\\displaystyle\\sum_{k=1}^{n}k(k-1)=\\dfrac{9}{n^3}\\cdot\\dfrac{(n-1)n(n+1)}{3}=3\\left(1-\\dfrac1{n^2}\\right)\\to3$\n\n$$\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^{n}\\overrightarrow{\\mathrm{AP}_{k-1}}\\cdot\\overrightarrow{\\mathrm{AP}_k}=4+\\frac32+3=\\frac{17}{2}$$\n\n**IJ=17，K=2**。\n\n**结论**　AB=-6，C=3，D=2，E=4，F=6，G=3，H=9，IJ=17，K=2。",
+    "keyPoints": [
+     "向量夹角要把起点对齐：$\\overrightarrow{\\mathrm{AB}}$ 与 $\\overrightarrow{\\mathrm{BC}}$ 的夹角是 $180^\\circ-\\angle\\mathrm{ABC}$",
+     "分点公式：$\\overrightarrow{\\mathrm{AP}_k}=\\overrightarrow{\\mathrm{AB}}+\\dfrac kn\\overrightarrow{\\mathrm{BC}}$，再用内积的分配律展开",
+     "区分求积法：$\\displaystyle\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^{n}f\\!\\left(\\frac kn\\right)=\\int_0^1f(x)\\,dx$"
+    ],
+    "traps": [
+     "直接写 $\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=6\\cos\\theta$（漏掉负号）；AB 框要填 $-6$",
+     "$\\cos\\theta=-\\frac14$ 为负，再乘 $-6$ 得正的 $\\frac32$，两次符号都要处理",
+     "$\\sum k(k-1)=\\dfrac{(n-1)n(n+1)}{3}$，不要和 $\\sum k^2$ 混淆"
+    ],
+    "terms": [
+     {
+      "ja": "内積",
+      "kana": "ないせき",
+      "zh": "数量积（点积），$\\vec a\\cdot\\vec b=|\\vec a||\\vec b|\\cos\\theta$"
+     },
+     {
+      "ja": "余弦定理",
+      "kana": "よげんていり",
+      "zh": "余弦定理（由三边求某角的余弦）"
+     },
+     {
+      "ja": "辺",
+      "kana": "へん",
+      "zh": "（多边形的）边"
+     },
+     {
+      "ja": "n等分する",
+      "kana": "えぬとうぶんする",
+      "zh": "分成 n 等份"
+     },
+     {
+      "ja": "近い順に",
+      "kana": "ちかいじゅんに",
+      "zh": "按距离由近到远的顺序"
+     },
+     {
+      "ja": "ベクトル",
+      "kana": "べくとる",
+      "zh": "向量"
+     }
+    ],
+    "shortcut": "(1) 免求角：$\\overrightarrow{\\mathrm{AC}}=\\overrightarrow{\\mathrm{AB}}+\\overrightarrow{\\mathrm{BC}}$，平方得 $16=4+2\\,\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}+9$，直接 $\\overrightarrow{\\mathrm{AB}}\\cdot\\overrightarrow{\\mathrm{BC}}=\\frac32$。(2) 区分求积：$n\\to\\infty$ 时 $\\frac{6k-3}{2n}\\approx3\\cdot\\frac kn$，$\\frac{9(k^2-k)}{n^2}\\approx9\\left(\\frac kn\\right)^2$，所以极限 $=\\int_0^1(4+3x+9x^2)\\,dx=4+\\frac32+3=\\frac{17}{2}$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2016_1-math-II2",
+   "subject": "math",
+   "order": 4,
+   "topic": "math.complex.plane",
+   "tags": [
+    "math.geo.coord"
+   ],
+   "difficulty": 2,
+   "targetSec": 660,
+   "source": {
+    "kind": "official",
+    "session": "2016_1",
+    "label": "2016年第1回 数学コース2 Ⅱ 問2",
+    "pdf": "/assets/expanded/2016_1-math.pdf",
+    "page": 24
+   },
+   "stem": "複素数 $z$ が条件\n\n$$z\\overline{z}-(1-2i)z-(1+2i)\\overline{z}\\leqq 15\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nを満たすとする。\n\n(1)　複素数平面上で不等式 ① が表す図形は，中心 $\\bx{L}+\\bx{M}\\,i$，半径 $\\bx{N}\\sqrt{\\bx{O}}$ の円の内部および円周である。\n\n(2)　直線 $(1-i)z-(1+i)\\overline{z}=2i$ 上にあり，不等式 ① を満たすすべての複素数 $z$ の中で，$|z|$ が最大であるものを $z_1$，$|z|$ が最小であるものを $z_2$ と表すと\n\n$$z_1=\\sqrt{\\bx{PQ}}+\\bx{R}+\\left(\\sqrt{\\bx{ST}}+\\bx{U}\\right)i,$$\n\n$$z_2=-\\dfrac{\\bx{V}}{\\bx{W}}+\\dfrac{\\bx{X}}{\\bx{Y}}\\,i$$\n\nである。\n\n注）複素数：complex number，複素数平面：complex number plane",
+   "stemZh": "设复数 $z$ 满足条件\n\n$$z\\overline{z}-(1-2i)z-(1+2i)\\overline{z}\\leqq 15\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n(1)　在复平面上，不等式 ① 表示的图形是以 $\\bx{L}+\\bx{M}\\,i$ 为圆心、$\\bx{N}\\sqrt{\\bx{O}}$ 为半径的圆的内部及圆周。\n\n(2)　在直线 $(1-i)z-(1+i)\\overline{z}=2i$ 上且满足不等式 ① 的所有复数 $z$ 中，把 $|z|$ 最大的记为 $z_1$，$|z|$ 最小的记为 $z_2$，则\n\n$$z_1=\\sqrt{\\bx{PQ}}+\\bx{R}+\\left(\\sqrt{\\bx{ST}}+\\bx{U}\\right)i,$$\n\n$$z_2=-\\dfrac{\\bx{V}}{\\bx{W}}+\\dfrac{\\bx{X}}{\\bx{Y}}\\,i$$\n\n注）複素数：复数，複素数平面：复平面",
+   "format": "blanks",
+   "blanks": {
+    "L": "1",
+    "M": "2",
+    "N": "2",
+    "O": "5",
+    "P": "1",
+    "Q": "0",
+    "R": "1",
+    "S": "1",
+    "T": "0",
+    "U": "2",
+    "V": "1",
+    "W": "2",
+    "X": "1",
+    "Y": "2"
+   },
+   "explanation": {
+    "zh": "**思路**　(1) 看到 $z\\overline z-\\overline{\\alpha}z-\\alpha\\overline z$ 的形式，就补上 $|\\alpha|^2$ 配成 $|z-\\alpha|^2$：$\\overline z$ 的系数（去掉负号）就是圆心 $\\alpha$。(2) 设 $z=x+yi$ 把直线化成 $xy$ 平面上的直线，它与圆盘的交集是一条线段；$|z|$ 是到原点的距离，最小在原点到直线的垂足，最大在线段的某个端点。\n\n**解答**\n\n**第1步　配方得圆（L, M, N, O）**\n\n取 $\\alpha=1+2i$，则 $\\overline\\alpha=1-2i$，$|\\alpha|^2=1+4=5$。因为\n\n$$|z-\\alpha|^2=(z-\\alpha)(\\overline z-\\overline\\alpha)=z\\overline z-\\overline\\alpha z-\\alpha\\overline z+|\\alpha|^2$$\n\n所以 ① 等价于\n\n$$|z-(1+2i)|^2\\leqq15+5=20\\iff|z-(1+2i)|\\leqq\\sqrt{20}=2\\sqrt5$$\n\n圆心 $1+2i$，半径 $2\\sqrt5$：**L=1，M=2，N=2，O=5**。\n\n**第2步　把直线化成 $x,\\,y$ 的方程**\n\n设 $z=x+yi$（$x,\\,y$ 为实数）：\n\n$$(1-i)(x+yi)=(x+y)+(y-x)i,\\qquad(1+i)(x-yi)=(x+y)+(x-y)i$$\n\n两式相减：$2(y-x)i=2i$，所以直线是 $y=x+1$。它经过圆心 $(1,\\,2)$，因此直线与圆盘的交集是一条**直径**。\n\n**第3步　交集线段的范围**\n\n把 $y=x+1$ 代入 $(x-1)^2+(y-2)^2\\leqq20$：$2(x-1)^2\\leqq20$，即\n\n$$1-\\sqrt{10}\\leqq x\\leqq1+\\sqrt{10}$$\n\n**第4步　$|z|$ 的最小值（V, W, X, Y）**\n\n$$|z|^2=x^2+(x+1)^2=2x^2+2x+1=2\\left(x+\\frac12\\right)^2+\\frac12$$\n\n$x=-\\frac12$ 在范围内（$1-\\sqrt{10}\\approx-2.16$），所以最小时 $x=-\\frac12,\\ y=\\frac12$：$z_2=-\\dfrac12+\\dfrac12i$。这正是原点到直线 $y=x+1$ 的垂足。**V=1，W=2，X=1，Y=2**。\n\n**第5步　$|z|$ 的最大值（PQ, R, ST, U）**\n\n$|z|^2$ 关于 $x=-\\frac12$ 对称，离 $-\\frac12$ 越远越大。两端点到 $-\\frac12$ 的距离分别为 $\\sqrt{10}+\\frac32$（右端）和 $\\sqrt{10}-\\frac32$（左端），所以取右端点 $x=1+\\sqrt{10}$，$y=x+1=2+\\sqrt{10}$：\n\n$$z_1=\\sqrt{10}+1+\\left(\\sqrt{10}+2\\right)i$$\n\n**PQ=10，R=1，ST=10，U=2**。\n\n**结论**　L=1，M=2，N=2，O=5，PQ=10，R=1，ST=10，U=2，V=1，W=2，X=1，Y=2。",
+    "keyPoints": [
+     "$z\\overline z-\\overline\\alpha z-\\alpha\\overline z\\leqq r\\iff|z-\\alpha|^2\\leqq r+|\\alpha|^2$（圆盘）",
+     "含 $z,\\ \\overline z$ 的直线方程：设 $z=x+yi$ 化成实系数直线",
+     "$|z|$ = 到原点距离：在线段上，最小在垂足（若在线段内），最大在离垂足较远的端点"
+    ],
+    "traps": [
+     "半径是 $\\sqrt{15+|\\alpha|^2}=\\sqrt{20}=2\\sqrt5$，不是 $\\sqrt{15}$",
+     "展开 $(1+i)\\overline z=(1+i)(x-yi)$ 时，$-yi\\cdot i=+y$，符号易错",
+     "最大值要比较两个端点；左端点 $1-\\sqrt{10}+(2-\\sqrt{10})i$ 的模更小"
+    ],
+    "terms": [
+     {
+      "ja": "複素数",
+      "kana": "ふくそすう",
+      "zh": "复数"
+     },
+     {
+      "ja": "複素数平面",
+      "kana": "ふくそすうへいめん",
+      "zh": "复平面（用平面上的点表示复数）"
+     },
+     {
+      "ja": "円の内部および円周",
+      "kana": "えんのないぶおよびえんしゅう",
+      "zh": "圆的内部及圆周（闭圆盘）"
+     },
+     {
+      "ja": "中心",
+      "kana": "ちゅうしん",
+      "zh": "（圆的）圆心；日语题目里「中心」就指圆心"
+     },
+     {
+      "ja": "表す",
+      "kana": "あらわす",
+      "zh": "表示；「①が表す図形」=①所表示的图形，「z₁と表す」=记作 z₁"
+     },
+     {
+      "ja": "満たす",
+      "kana": "みたす",
+      "zh": "满足（条件）"
+     }
+    ],
+    "shortcut": "直线 $y=x+1$ 过圆心 $(1,2)$，方向向量 $\\frac{1}{\\sqrt2}(1,1)$，半径 $2\\sqrt5$，所以直径两端 = 圆心 $\\pm2\\sqrt5\\cdot\\frac{1}{\\sqrt2}(1,1)=(1,2)\\pm(\\sqrt{10},\\sqrt{10})$。原点到直线的垂足是 $\\left(-\\frac12,\\frac12\\right)$，圆心 $(1,2)$ 在垂足的 $(1,1)$ 方向一侧，所以沿 $(1,1)$ 方向的那个端点离垂足更远、离原点也更远，故 $z_1=(1+\\sqrt{10})+(2+\\sqrt{10})i$；垂足 $z_2$ 用点到直线 $x-y+1=0$ 的垂足公式即得 $\\left(-\\frac12,\\frac12\\right)$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  }
+ ]
+}

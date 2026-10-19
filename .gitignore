@@ -16,3 +16,8 @@ desktop/backups/
 desktop/qa/
 cleanup-records/
 .DS_Store
+content/work/
+content/dist/
+web/dist/
+data/state-v2.json
+data/backups-v2/

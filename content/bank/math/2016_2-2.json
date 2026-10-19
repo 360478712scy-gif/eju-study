@@ -1,0 +1,267 @@
+{
+ "title": "2016_2 math part",
+ "items": [
+  {
+   "id": "2016_2-math-III",
+   "subject": "math",
+   "order": 4,
+   "topic": "math.complex.plane",
+   "tags": [
+    "math.geo.coord"
+   ],
+   "difficulty": 3,
+   "targetSec": 1200,
+   "source": {
+    "kind": "official",
+    "session": "2016_2",
+    "label": "2016年第2回 数学コース2 Ⅲ（解答欄A〜Q）",
+    "pdf": "/assets/expanded/2016_2-math.pdf",
+    "page": 24
+   },
+   "stem": "2 次方程式 $x^2+\\sqrt{3}x+1=0$ の 2 つの解を $\\alpha,\\ \\beta$ とする。ただし，$0<\\arg\\alpha<\\arg\\beta<2\\pi$ である。このとき，次の 3 つの条件を満たす複素数 $z$ を考える。\n\n$$\\begin{cases}\\arg\\dfrac{\\alpha-z}{\\beta-z}=\\dfrac{\\pi}{2} & \\qquad\\cdots\\cdots\\cdots\\quad\\text{①}\\\\[2mm] (1+i)z+(1-i)\\overline{z}+k=0 & \\qquad\\cdots\\cdots\\cdots\\quad\\text{②}\\\\[2mm] \\dfrac{\\pi}{2}<\\arg z<\\pi & \\qquad\\cdots\\cdots\\cdots\\quad\\text{③}\\end{cases}$$\n\nただし，$k$ は実数とする。\n\nまた，複素数平面上で $\\alpha,\\ \\beta,\\ z$ を表す点をそれぞれ A, B, P とおく。\n\n(1)　$\\alpha,\\ \\beta$ の偏角は\n\n$$\\arg\\alpha=\\frac{\\bx{A}}{\\bx{B}}\\pi,\\qquad \\arg\\beta=\\frac{\\bx{C}}{\\bx{D}}\\pi$$\n\nである。\n\n(2)　次の文中の \\bx{E} 〜 \\bx{Q} には，下の ⓪ 〜 ⑨ の中から適するものを選びなさい。\n\n① より，$\\bx{E}=\\dfrac{\\pi}{2}$ であるから，点 P は中心 $-\\dfrac{\\sqrt{\\bx{F}}}{\\bx{G}}$，半径 $\\dfrac{\\bx{H}}{\\bx{I}}$ の円周上にある。\n\nまた，② より，点 P は傾きが \\bx{J} であり，虚軸との交点が $\\dfrac{\\bx{K}}{\\bx{L}}ki$ であるような直線の上にある。\n\n以上より，①, ②, ③ を同時に満たす複素数 $z$ の個数を $n$ とすると，$n$ の最大値は \\bx{M} であり，そのときの $k$ の値の範囲は\n\n$$\\bx{N}+\\sqrt{\\bx{O}}<k<\\sqrt{\\bx{P}}+\\sqrt{\\bx{Q}}$$\n\nである。ただし，$\\bx{P}<\\bx{Q}$ とする。\n\n- ⓪ $0$\n- ① $1$\n- ② $2$\n- ③ $3$\n- ④ $4$\n- ⑤ $5$\n- ⑥ $6$\n- ⑦ $\\angle\\mathrm{PAB}$\n- ⑧ $\\angle\\mathrm{PBA}$\n- ⑨ $\\angle\\mathrm{APB}$\n\n注）複素数：complex number，複素数平面：complex plane，偏角：argument，虚軸：imaginary axis",
+   "stemZh": "设二次方程 $x^2+\\sqrt{3}x+1=0$ 的两个解为 $\\alpha,\\ \\beta$，其中 $0<\\arg\\alpha<\\arg\\beta<2\\pi$。考虑满足下面 3 个条件的复数 $z$：\n\n$$\\begin{cases}\\arg\\dfrac{\\alpha-z}{\\beta-z}=\\dfrac{\\pi}{2} & \\qquad\\cdots\\cdots\\cdots\\quad\\text{①}\\\\[2mm] (1+i)z+(1-i)\\overline{z}+k=0 & \\qquad\\cdots\\cdots\\cdots\\quad\\text{②}\\\\[2mm] \\dfrac{\\pi}{2}<\\arg z<\\pi & \\qquad\\cdots\\cdots\\cdots\\quad\\text{③}\\end{cases}$$\n\n其中 $k$ 为实数。\n\n另外，在复平面上把表示 $\\alpha,\\ \\beta,\\ z$ 的点分别记为 A, B, P。\n\n(1)　$\\alpha,\\ \\beta$ 的辐角为\n\n$$\\arg\\alpha=\\frac{\\bx{A}}{\\bx{B}}\\pi,\\qquad \\arg\\beta=\\frac{\\bx{C}}{\\bx{D}}\\pi$$\n\n(2)　下文中的 \\bx{E} 〜 \\bx{Q}，请从下面的 ⓪ 〜 ⑨ 中选出合适的。\n\n由 ① 得 $\\bx{E}=\\dfrac{\\pi}{2}$，所以点 P 在以 $-\\dfrac{\\sqrt{\\bx{F}}}{\\bx{G}}$ 为圆心、$\\dfrac{\\bx{H}}{\\bx{I}}$ 为半径的圆周上。\n\n又由 ②，点 P 在斜率为 \\bx{J}、与虚轴的交点为 $\\dfrac{\\bx{K}}{\\bx{L}}ki$ 的直线上。\n\n综上，设同时满足 ①, ②, ③ 的复数 $z$ 的个数为 $n$，则 $n$ 的最大值为 \\bx{M}，此时 $k$ 的取值范围是\n\n$$\\bx{N}+\\sqrt{\\bx{O}}<k<\\sqrt{\\bx{P}}+\\sqrt{\\bx{Q}}$$\n\n其中 $\\bx{P}<\\bx{Q}$。\n\n- ⓪ $0$\n- ① $1$\n- ② $2$\n- ③ $3$\n- ④ $4$\n- ⑤ $5$\n- ⑥ $6$\n- ⑦ $\\angle\\mathrm{PAB}$\n- ⑧ $\\angle\\mathrm{PBA}$\n- ⑨ $\\angle\\mathrm{APB}$\n\n注）複素数：复数，複素数平面：复平面，偏角：辐角，虚軸：虚轴",
+   "format": "blanks",
+   "blanks": {
+    "A": "5",
+    "B": "6",
+    "C": "7",
+    "D": "6",
+    "E": "9",
+    "F": "3",
+    "G": "2",
+    "H": "1",
+    "I": "2",
+    "J": "1",
+    "K": "1",
+    "L": "2",
+    "M": "2",
+    "N": "1",
+    "O": "3",
+    "P": "2",
+    "Q": "3"
+   },
+   "explanation": {
+    "zh": "**思路**\n\n先解二次方程求出 $\\alpha,\\ \\beta$（都是模为 1 的复数），读出辐角。然后把三个条件分别翻译成图形：\n\n- ①：$\\arg\\dfrac{\\alpha-z}{\\beta-z}$ 是从向量 $\\overrightarrow{\\mathrm{PB}}$（$=\\beta-z$）转到向量 $\\overrightarrow{\\mathrm{PA}}$（$=\\alpha-z$）的**有向角**。它等于 $\\dfrac{\\pi}{2}$ ⇒ $\\angle\\mathrm{APB}=90^\\circ$ ⇒ P 在以 AB 为直径的圆上，而且由于是\"逆时针转 $+90^\\circ$\"，只能在其中**一个半圆**上。\n- ②：令 $z=x+yi$，化成一条直线。\n- ③：P 在第二象限（不含坐标轴）。\n\n最后数\"直线与剩下那段圆弧\"的交点个数。\n\n**解答**\n\n**(1) 偏角（A, B, C, D）**\n\n**1.** 由求根公式\n\n$$x=\\frac{-\\sqrt3\\pm\\sqrt{3-4}}{2}=-\\frac{\\sqrt3}{2}\\pm\\frac12 i$$\n\n两根的模都是 $\\sqrt{\\frac34+\\frac14}=1$：\n\n$$-\\frac{\\sqrt3}{2}+\\frac12 i=\\cos\\frac56\\pi+i\\sin\\frac56\\pi,\\qquad -\\frac{\\sqrt3}{2}-\\frac12 i=\\cos\\frac76\\pi+i\\sin\\frac76\\pi$$\n\n因为 $\\arg\\alpha<\\arg\\beta$，所以 $\\alpha=-\\dfrac{\\sqrt3}{2}+\\dfrac12 i$，$\\beta=-\\dfrac{\\sqrt3}{2}-\\dfrac12 i$，\n\n$$\\arg\\alpha=\\frac56\\pi,\\qquad \\arg\\beta=\\frac76\\pi$$\n\n**A = 5，B = 6，C = 7，D = 6**。点 A$\\left(-\\frac{\\sqrt3}{2},\\ \\frac12\\right)$，B$\\left(-\\frac{\\sqrt3}{2},\\ -\\frac12\\right)$。\n\n**(2)**\n\n**2.（E）** $\\arg\\dfrac{\\alpha-z}{\\beta-z}=\\arg(\\alpha-z)-\\arg(\\beta-z)$，表示从 $\\overrightarrow{\\mathrm{PB}}$ 转到 $\\overrightarrow{\\mathrm{PA}}$ 的角，其大小就是 $\\angle\\mathrm{APB}$。所以 ① 说明 $\\angle\\mathrm{APB}=\\dfrac{\\pi}{2}$，选 ⑨：**E = 9**。\n\n**3.（F, G, H, I）** 直径所对的圆周角是直角，所以 P 在以 AB 为直径的圆上：\n\n- 圆心 = AB 中点 $=\\dfrac{\\alpha+\\beta}{2}=-\\dfrac{\\sqrt3}{2}$（由韦达定理 $\\alpha+\\beta=-\\sqrt3$）\n- 半径 $=\\dfrac{|\\alpha-\\beta|}{2}=\\dfrac{|i|}{2}=\\dfrac12$\n\n**F = 3，G = 2，H = 1，I = 2**。\n\n**判断是哪半个圆**（后面计数要用）：取圆的最左点 $z_0=-\\dfrac{\\sqrt3}{2}-\\dfrac12$，则 $\\alpha-z_0=\\dfrac{1+i}{2}$，$\\beta-z_0=\\dfrac{1-i}{2}$，\n\n$$\\frac{\\alpha-z_0}{\\beta-z_0}=\\frac{1+i}{1-i}=i,\\quad \\arg i=\\frac{\\pi}{2}\\ \\checkmark$$\n\n而最右点 $z_1=-\\dfrac{\\sqrt3}{2}+\\dfrac12$ 给出比值 $-i$（辐角 $-\\dfrac{\\pi}{2}$），不满足。所以满足 ① 的 P 是**直线 AB 左侧的半圆**（$x<-\\dfrac{\\sqrt3}{2}$），不含端点 A, B（$z=\\alpha$ 或 $\\beta$ 时辐角无定义）。\n\n**4.（J, K, L）** 令 $z=x+yi$：\n\n$$(1+i)(x+yi)=(x-y)+(x+y)i,\\qquad (1-i)(x-yi)=(x-y)-(x+y)i$$\n\n两式相加为 $2(x-y)$，所以 ② 化为\n\n$$2x-2y+k=0\\iff y=x+\\frac{k}{2}$$\n\n斜率为 1，与虚轴交于 $\\dfrac12 ki$。**J = 1，K = 1，L = 2**。\n\n**5.（M）** ③ $\\dfrac{\\pi}{2}<\\arg z<\\pi$ 表示 $x<0,\\ y>0$（第二象限，不含坐标轴）。与第 3 步合起来，P 的轨迹是圆 $\\left(x+\\frac{\\sqrt3}{2}\\right)^2+y^2=\\frac14$ 的**左上 1/4 圆弧**：从 $\\mathrm{L}\\left(-\\frac{\\sqrt3}{2}-\\frac12,\\ 0\\right)$ 到 $\\mathrm{A}\\left(-\\frac{\\sqrt3}{2},\\ \\frac12\\right)$，两端点都不含。\n\n关键观察：弦 LA 的斜率\n\n$$\\frac{\\frac12-0}{-\\frac{\\sqrt3}{2}-\\left(-\\frac{\\sqrt3}{2}-\\frac12\\right)}=\\frac{1/2}{1/2}=1$$\n\n正好与直线 ② 的斜率相同！所以斜率为 1 的直线在\"弦 LA\"与\"平行于它的切线\"之间移动时，与这段圆弧有 **2** 个交点；其他位置最多 1 个。故 $n$ 的最大值为 **M = 2**。\n\n**6.（N, O, P, Q）** 直线写成 $x-y+\\dfrac k2=0$。\n\n- 过 L（同时过 A）：$\\dfrac k2=y-x=0+\\dfrac{\\sqrt3+1}{2}$，$k=1+\\sqrt3$。此时两个交点恰为被排除的端点，交点数为 0。\n- 相切：圆心 $\\left(-\\frac{\\sqrt3}{2},0\\right)$ 到直线的距离等于 $\\dfrac12$：\n\n$$\\frac{\\left|-\\frac{\\sqrt3}{2}+\\frac k2\\right|}{\\sqrt2}=\\frac12\\iff|k-\\sqrt3|=\\sqrt2\\iff k=\\sqrt3\\pm\\sqrt2$$\n\n$k$ 越大直线越往左上方移动，切在左上 1/4 圆弧（切点在圆心的 $135^\\circ$ 方向）上的是 $k=\\sqrt3+\\sqrt2$（$k=\\sqrt3-\\sqrt2$ 切在右下方，不在轨迹上）。\n\n所以 $n=2$ 的范围是\n\n$$1+\\sqrt3<k<\\sqrt2+\\sqrt3\\qquad(\\approx2.73<k<3.15)$$\n\n**N = 1，O = 3，P = 2，Q = 3**（满足 P < Q）。\n\n交点个数随 $k$ 的变化汇总：$k\\leqq1+\\sqrt3$ 时 $n=0$（等号时两交点恰为被排除的 L, A）；$1+\\sqrt3<k<\\sqrt2+\\sqrt3$ 时 $n=2$；$k=\\sqrt2+\\sqrt3$ 时 $n=1$（相切）；$k>\\sqrt2+\\sqrt3$ 时 $n=0$。所以 $n$ 的最大值确实是 2。\n\n**结论**　A = 5，B = 6，C = 7，D = 6，E = 9，F = 3，G = 2，H = 1，I = 2，J = 1，K = 1，L = 2，M = 2，N = 1，O = 3，P = 2，Q = 3；$n$ 的最大值为 2，此时 $1+\\sqrt3<k<\\sqrt2+\\sqrt3$。",
+    "keyPoints": [
+     "$\\arg\\dfrac{\\alpha-z}{\\beta-z}$ 是从 $\\overrightarrow{\\mathrm{PB}}$ 转到 $\\overrightarrow{\\mathrm{PA}}$ 的有向角：等于 $\\dfrac{\\pi}{2}$ ⇒ $\\angle\\mathrm{APB}=90^\\circ$，P 在以 AB 为直径的圆上，且只在其中一个半圆上",
+     "$(1+i)z+(1-i)\\overline{z}=2\\,\\mathrm{Re}\\{(1+i)z\\}=2(x-y)$，条件 ② 是直线 $y=x+\\dfrac k2$",
+     "数直线与圆弧的交点：平行直线族在“过弧两端点的弦”与“切线”之间时交点最多"
+    ],
+    "traps": [
+     "有向角为 $+\\dfrac{\\pi}{2}$ 只对应 AB 左侧的半圆，不是整个圆；用一个具体点（如最左点）代入验证方向",
+     "弧的两个端点 L（实轴上，$\\arg z=\\pi$ 不满足 ③）和 A（$z=\\alpha$ 时辐角无定义）都不在轨迹上，所以 $k=1+\\sqrt3$ 时交点数是 0，范围两端都取不等号",
+     "切线有 $k=\\sqrt3\\pm\\sqrt2$ 两条，只有 $k=\\sqrt3+\\sqrt2$ 切在左上 1/4 圆弧上"
+    ],
+    "terms": [
+     {
+      "ja": "偏角",
+      "kana": "へんかく",
+      "zh": "辐角（复数对应的向量与实轴正方向所成的角，arg）"
+     },
+     {
+      "ja": "複素数平面",
+      "kana": "ふくそすうへいめん",
+      "zh": "复平面（横轴表示实部、纵轴表示虚部的平面）"
+     },
+     {
+      "ja": "虚軸",
+      "kana": "きょじく",
+      "zh": "虚轴（复平面的纵轴）"
+     },
+     {
+      "ja": "円周",
+      "kana": "えんしゅう",
+      "zh": "圆周（圆上所有点组成的曲线）"
+     },
+     {
+      "ja": "傾き",
+      "kana": "かたむき",
+      "zh": "（直线的）斜率"
+     },
+     {
+      "ja": "個数",
+      "kana": "こすう",
+      "zh": "（满足条件的东西的）数目"
+     }
+    ],
+    "shortcut": "画图即可：A, B 关于实轴对称，弧端点 L 与 A 的连线斜率恰为 1，与直线 ② 平行。所以答案的左端是“过 L 的直线”$k=2\\cdot\\dfrac{1+\\sqrt3}{2}=1+\\sqrt3$，右端是“切线”$k=\\sqrt3+\\sqrt2$：直线 $y=x+\\frac k2$ 过圆心 $\\left(-\\frac{\\sqrt3}{2},0\\right)$ 时 $k=\\sqrt3$；斜率 1 的直线沿法向平移距离 $d$，截距 $\\frac k2$ 变化 $\\sqrt2\\,d$，相切时 $d=\\frac12$，所以 $k$ 再增加 $2\\cdot\\frac{\\sqrt2}{2}=\\sqrt2$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2016_2-math-IV1",
+   "subject": "math",
+   "order": 5,
+   "topic": "math.explog.func",
+   "tags": [
+    "math.calc.diff"
+   ],
+   "difficulty": 2,
+   "targetSec": 600,
+   "source": {
+    "kind": "official",
+    "session": "2016_2",
+    "label": "2016年第2回 数学コース2 Ⅳ 問1（解答欄A〜M）",
+    "pdf": "/assets/expanded/2016_2-math.pdf",
+    "page": 26
+   },
+   "stem": "$x$ が不等式\n\n$$2\\left(\\log_{\\frac{1}{3}}x\\right)^2+9\\log_{\\frac{1}{3}}x+9\\leqq 0\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nを満たすとき，関数\n\n$$f(x)=(\\log_3 x)\\left(\\log_3\\frac{x}{3}\\right)\\left(\\log_3\\frac{x}{9}\\right)\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\nの最大値を求めよう。\n\n① を満たす $x$ の値の範囲は\n\n$$\\bx{A}\\sqrt{\\bx{B}}\\leqq x\\leqq\\bx{CD}$$\n\nである。\n\nここで，$\\log_3 x=t$ とおくと，$t$ のとる値の範囲は\n\n$$\\frac{\\bx{E}}{\\bx{F}}\\leqq t\\leqq\\bx{G}$$\n\nである。\n\nまた，② の右辺を $t$ で表して，その式が表す関数を $g(t)$ とおくと，その導関数は\n\n$$g'(t)=\\bx{H}t^2-\\bx{I}t+\\bx{J}$$\n\nである。したがって，$f(x)$ は $x=\\bx{KL}$ で最大値 \\bx{M} をとる。\n\n注）導関数：derivative",
+   "stemZh": "当 $x$ 满足不等式\n\n$$2\\left(\\log_{\\frac{1}{3}}x\\right)^2+9\\log_{\\frac{1}{3}}x+9\\leqq 0\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n时，求函数\n\n$$f(x)=(\\log_3 x)\\left(\\log_3\\frac{x}{3}\\right)\\left(\\log_3\\frac{x}{9}\\right)\\qquad\\cdots\\cdots\\cdots\\quad\\text{②}$$\n\n的最大值。\n\n满足 ① 的 $x$ 的取值范围是\n\n$$\\bx{A}\\sqrt{\\bx{B}}\\leqq x\\leqq\\bx{CD}$$\n\n这里令 $\\log_3 x=t$，则 $t$ 的取值范围是\n\n$$\\frac{\\bx{E}}{\\bx{F}}\\leqq t\\leqq\\bx{G}$$\n\n另外，把 ② 的右边用 $t$ 表示，把该式表示的函数记为 $g(t)$，则其导函数为\n\n$$g'(t)=\\bx{H}t^2-\\bx{I}t+\\bx{J}$$\n\n因此，$f(x)$ 在 $x=\\bx{KL}$ 时取得最大值 \\bx{M}。\n\n注）導関数：导函数",
+   "format": "blanks",
+   "blanks": {
+    "A": "3",
+    "B": "3",
+    "C": "2",
+    "D": "7",
+    "E": "3",
+    "F": "2",
+    "G": "3",
+    "H": "3",
+    "I": "6",
+    "J": "2",
+    "K": "2",
+    "L": "7",
+    "M": "6"
+   },
+   "explanation": {
+    "zh": "**思路**\n\n底数 $\\dfrac13$ 的对数换成底数 3：$\\log_{\\frac13}x=-\\log_3x=-t$，① 就变成关于 $t$ 的二次不等式；② 的三个因式分别是 $t,\\ t-1,\\ t-2$，$f$ 变成三次函数 $g(t)$。在闭区间上求三次函数的最大值：求导、看极值点是否落在区间内、再和端点值比较。\n\n**解答**\n\n**1. 换底**\n\n$$\\log_{\\frac13}x=\\frac{\\log_3x}{\\log_3\\frac13}=\\frac{t}{-1}=-t$$\n\n**2. 解 ①（E, F, G）** 代入 ①：\n\n$$2t^2-9t+9\\leqq0\\iff(2t-3)(t-3)\\leqq0\\iff\\frac32\\leqq t\\leqq3$$\n\n**E = 3，F = 2，G = 3**。\n\n**3. 求 x 的范围（A, B, CD）** $x=3^t$ 是增函数：\n\n$$3^{\\frac32}\\leqq x\\leqq3^3\\iff3\\sqrt3\\leqq x\\leqq27$$\n\n**A = 3，B = 3，CD = 27**。（题目先问 $x$ 再问 $t$，实际先算 $t$ 更快。）\n\n**4. 写出 g(t) 并求导（H, I, J）**\n\n$$\\log_3\\frac x3=t-1,\\qquad\\log_3\\frac x9=t-2$$\n\n$$g(t)=t(t-1)(t-2)=t^3-3t^2+2t,\\qquad g'(t)=3t^2-6t+2$$\n\n**H = 3，I = 6，J = 2**。\n\n**5. 增减表（KL, M）** $g'(t)=0\\iff t=1\\pm\\dfrac{\\sqrt3}{3}$。$1-\\dfrac{\\sqrt3}{3}\\approx0.42$ 不在区间内；$1+\\dfrac{\\sqrt3}{3}\\approx1.58$ **在** $\\left[\\dfrac32,\\ 3\\right]$ 内（因为 $\\dfrac{\\sqrt3}{3}\\approx0.577>0.5$），而且它是**极小值点**：\n\n| $t$ | $\\frac32$ | $\\cdots$ | $1+\\frac{\\sqrt3}{3}$ | $\\cdots$ | $3$ |\n|---|---|---|---|---|---|\n| $g'(t)$ | | $-$ | $0$ | $+$ | |\n| $g(t)$ | $-\\frac38$ | ↘ | 极小 | ↗ | $6$ |\n\n最大值只能在端点取得：\n\n$$g\\left(\\tfrac32\\right)=\\tfrac32\\cdot\\tfrac12\\cdot\\left(-\\tfrac12\\right)=-\\tfrac38,\\qquad g(3)=3\\cdot2\\cdot1=6$$\n\n所以 $t=3$，即 $x=3^3=27$ 时取最大值 6。**KL = 27，M = 6**。\n\n**结论**　A = 3，B = 3，CD = 27，E = 3，F = 2，G = 3，H = 3，I = 6，J = 2，KL = 27，M = 6；$f(x)$ 在 $x=27$ 时取最大值 6。",
+    "keyPoints": [
+     "换底：$\\log_{\\frac13}x=-\\log_3x$，对数不等式化为 $t=\\log_3x$ 的二次不等式",
+     "$\\log_3\\dfrac{x}{3^k}=t-k$，把 $f(x)$ 化为三次函数 $g(t)=t(t-1)(t-2)$",
+     "闭区间上三次函数的最大值：比较区间内极大值与两端点值"
+    ],
+    "traps": [
+     "底数 $\\dfrac13<1$：$\\log_{\\frac13}x=-t$，代入后一次项变号成 $-9t$；若漏掉负号会得到 $-3\\leqq t\\leqq-\\dfrac32$",
+     "$g'(t)=0$ 的根 $1+\\dfrac{\\sqrt3}{3}\\approx1.58$ 在区间内，但它是极小值点，不是最大值；最大值在端点 $t=3$",
+     "$x=3^{\\frac32}$ 要按答题格式 A$\\sqrt{\\text{B}}$ 写成 $3\\sqrt3$，不是 $\\sqrt{27}$"
+    ],
+    "terms": [
+     {
+      "ja": "不等式",
+      "kana": "ふとうしき",
+      "zh": "用 ≦、< 等不等号连接的式子"
+     },
+     {
+      "ja": "導関数",
+      "kana": "どうかんすう",
+      "zh": "导函数（对函数求导得到的函数）"
+     },
+     {
+      "ja": "右辺",
+      "kana": "うへん",
+      "zh": "等号右边的式子"
+     },
+     {
+      "ja": "値の範囲",
+      "kana": "あたいのはんい",
+      "zh": "取值范围"
+     },
+     {
+      "ja": "最大値",
+      "kana": "さいだいち",
+      "zh": "函数能取到的最大的值"
+     },
+     {
+      "ja": "～とおく",
+      "kana": "～とおく",
+      "zh": "设为、记作（引入新字母）"
+     }
+    ],
+    "shortcut": "不用增减表也能秒判：$g(t)=t(t-1)(t-2)$ 在 $\\dfrac32\\leqq t\\leqq2$ 时因 $t-2\\leqq0$ 而 $g\\leqq0$；在 $2\\leqq t\\leqq3$ 时三个因式都非负且随 $t$ 增大，$g$ 单调增。所以最大值是 $g(3)=6$，对应 $x=27$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  },
+  {
+   "id": "2016_2-math-IV2",
+   "subject": "math",
+   "order": 6,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.calc.diff"
+   ],
+   "difficulty": 2,
+   "targetSec": 660,
+   "source": {
+    "kind": "official",
+    "session": "2016_2",
+    "label": "2016年第2回 数学コース2 Ⅳ 問2（解答欄N〜Z）",
+    "pdf": "/assets/expanded/2016_2-math.pdf",
+    "page": 28
+   },
+   "stem": "$a>0$ とする。曲線 $y=\\sqrt{x}\\,e^{-x}$ と $x$ 軸および $x$ 軸上の点 $\\mathrm{A}(a,\\,0)$ を通る直線 $x=a$ で囲まれた部分を，$x$ 軸の周りに 1 回転してできる立体の体積を $V$ とする。\n\n(1)　$V$ は $a$ の関数として\n\n$$V=-\\frac{\\pi}{4}\\left\\{\\left(\\bx{N}a+\\bx{O}\\right)e^{-\\bx{P}a}-\\bx{Q}\\right\\}$$\n\nと表される。\n\n(2)　点 A は原点を出発して，$x$ 軸上を正の方向に移動し，その $t$ 秒後の速度を $4t$ とする。このとき，$t$ 秒後の $V$ の変化率を求めると\n\n$$\\frac{dV}{dt}=\\bx{R}\\pi t^{\\bx{S}}e^{-\\bx{T}t^{\\bx{U}}}$$\n\nである。また，この変化率が最も大きくなるのは\n\n$$t=\\frac{\\sqrt{\\bx{V}}}{4}$$\n\nのときで，そのときの $V$ の値は\n\n$$V=-\\frac{\\pi}{8}\\left(\\bx{W}e^{-\\frac{\\bx{X}}{\\bx{Y}}}-\\bx{Z}\\right)$$\n\nである。",
+   "stemZh": "设 $a>0$。由曲线 $y=\\sqrt{x}\\,e^{-x}$、$x$ 轴以及过 $x$ 轴上的点 $\\mathrm{A}(a,\\,0)$ 的直线 $x=a$ 所围成的部分，绕 $x$ 轴旋转一周得到的立体的体积记为 $V$。\n\n(1)　$V$ 作为 $a$ 的函数可表示为\n\n$$V=-\\frac{\\pi}{4}\\left\\{\\left(\\bx{N}a+\\bx{O}\\right)e^{-\\bx{P}a}-\\bx{Q}\\right\\}$$\n\n(2)　点 A 从原点出发，沿 $x$ 轴向正方向移动，$t$ 秒后的速度为 $4t$。此时求 $t$ 秒后 $V$ 的变化率，得\n\n$$\\frac{dV}{dt}=\\bx{R}\\pi t^{\\bx{S}}e^{-\\bx{T}t^{\\bx{U}}}$$\n\n另外，该变化率最大是在\n\n$$t=\\frac{\\sqrt{\\bx{V}}}{4}$$\n\n的时候，此时 $V$ 的值为\n\n$$V=-\\frac{\\pi}{8}\\left(\\bx{W}e^{-\\frac{\\bx{X}}{\\bx{Y}}}-\\bx{Z}\\right)$$",
+   "format": "blanks",
+   "blanks": {
+    "N": "2",
+    "O": "1",
+    "P": "2",
+    "Q": "1",
+    "R": "8",
+    "S": "3",
+    "T": "4",
+    "U": "2",
+    "V": "6",
+    "W": "5",
+    "X": "3",
+    "Y": "2",
+    "Z": "2"
+   },
+   "explanation": {
+    "zh": "**思路**\n\n绕 $x$ 轴旋转体的体积 $V=\\pi\\displaystyle\\int_0^a y^2\\,dx$，这里 $y^2=xe^{-2x}$，用分部积分。(2) 是\"相关变化率\"：$V$ 是 $a$ 的函数、$a$ 又是 $t$ 的函数，用链式法则 $\\dfrac{dV}{dt}=\\dfrac{dV}{da}\\cdot\\dfrac{da}{dt}$；其中 $\\dfrac{dV}{da}$ 直接用\"变上限积分的导数 = 被积函数\"得到。位置 $a$ 由速度 $4t$ 积分得到。\n\n**解答**\n\n**(1) 体积（N, O, P, Q）**\n\n**1.** $y^2=\\left(\\sqrt x\\,e^{-x}\\right)^2=xe^{-2x}$，所以\n\n$$V=\\pi\\int_0^a xe^{-2x}\\,dx$$\n\n**2.** 分部积分（$u=x$，$dv=e^{-2x}dx$，$v=-\\frac12e^{-2x}$）：\n\n$$\\int xe^{-2x}\\,dx=-\\frac x2e^{-2x}+\\frac12\\int e^{-2x}\\,dx=-\\frac x2e^{-2x}-\\frac14e^{-2x}=-\\frac14(2x+1)e^{-2x}$$\n\n**3.**\n\n$$V=\\pi\\left[-\\frac14(2x+1)e^{-2x}\\right]_0^a=-\\frac{\\pi}{4}\\left\\{(2a+1)e^{-2a}-1\\right\\}$$\n\n**N = 2，O = 1，P = 2，Q = 1**。\n\n**(2) 变化率（R, S, T, U）**\n\n**4. 位置** A 从原点出发、速度为 $4t$，所以\n\n$$a=\\int_0^t4s\\,ds=2t^2,\\qquad\\frac{da}{dt}=4t$$\n\n**5. 链式法则**\n\n$$\\frac{dV}{da}=\\pi ae^{-2a}\\quad\\left(\\text{被积函数在 }x=a\\text{ 处的值}\\right)$$\n\n（也可对 (1) 的结果求导验证：$-\\dfrac{\\pi}{4}\\left\\{2e^{-2a}-2(2a+1)e^{-2a}\\right\\}=-\\dfrac{\\pi}{4}\\cdot(-4a)e^{-2a}=\\pi ae^{-2a}$。）\n\n$$\\frac{dV}{dt}=\\pi ae^{-2a}\\cdot4t=\\pi\\cdot2t^2\\cdot e^{-4t^2}\\cdot4t=8\\pi t^3e^{-4t^2}$$\n\n**R = 8，S = 3，T = 4，U = 2**。\n\n**6. 变化率最大（V）** 令 $h(t)=t^3e^{-4t^2}\\ (t>0)$：\n\n$$h'(t)=3t^2e^{-4t^2}+t^3\\cdot(-8t)e^{-4t^2}=t^2\\left(3-8t^2\\right)e^{-4t^2}$$\n\n$t>0$ 时 $h'(t)$ 的符号由 $3-8t^2$ 决定：$t^2<\\dfrac38$ 时为正、$t^2>\\dfrac38$ 时为负，所以 $t^2=\\dfrac38$ 时最大：\n\n$$t=\\sqrt{\\frac38}=\\frac{\\sqrt6}{4}$$\n\n**V = 6**。\n\n**7. 此时的体积（W, X, Y, Z）** $a=2t^2=2\\cdot\\dfrac38=\\dfrac34$，所以 $2a+1=\\dfrac52$，$2a=\\dfrac32$：\n\n$$V=-\\frac{\\pi}{4}\\left\\{\\frac52e^{-\\frac32}-1\\right\\}=-\\frac{\\pi}{8}\\left(5e^{-\\frac32}-2\\right)$$\n\n**W = 5，X = 3，Y = 2，Z = 2**。（检验：$5e^{-1.5}\\approx1.12<2$，括号内为负，$V\\approx0.35>0$，合理。）\n\n**结论**　N = 2，O = 1，P = 2，Q = 1，R = 8，S = 3，T = 4，U = 2，V = 6，W = 5，X = 3，Y = 2，Z = 2；$\\dfrac{dV}{dt}=8\\pi t^3e^{-4t^2}$ 在 $t=\\dfrac{\\sqrt6}{4}$ 时最大，此时 $V=-\\dfrac{\\pi}{8}\\left(5e^{-\\frac32}-2\\right)$。",
+    "keyPoints": [
+     "绕 $x$ 轴旋转体体积 $V=\\pi\\displaystyle\\int y^2\\,dx$；$\\int xe^{-2x}dx$ 用分部积分",
+     "相关变化率：$\\dfrac{dV}{dt}=\\dfrac{dV}{da}\\cdot\\dfrac{da}{dt}$，且 $\\dfrac{d}{da}\\displaystyle\\int_0^a F(x)\\,dx=F(a)$",
+     "由速度求位置：$a=\\displaystyle\\int_0^t4s\\,ds=2t^2$；求“变化率最大”要对 $\\dfrac{dV}{dt}$ 再求导"
+    ],
+    "traps": [
+     "体积公式是 $\\pi\\int y^2dx$，平方后指数变为 $e^{-2x}$；写成 $\\pi\\int y\\,dx$ 或忘记平方指数都会错",
+     "$4t$ 是速度不是位置：$a=2t^2$，$\\dfrac{da}{dt}=4t$，两者都要用到",
+     "“变化率最大”是令 $\\dfrac{d}{dt}\\left(t^3e^{-4t^2}\\right)=0$，不是令 $\\dfrac{dV}{dt}=0$（后者只有 $t=0$）"
+    ],
+    "terms": [
+     {
+      "ja": "体積",
+      "kana": "たいせき",
+      "zh": "体积（立体所占空间的大小）"
+     },
+     {
+      "ja": "1回転",
+      "kana": "いっかいてん",
+      "zh": "旋转一周（360°）"
+     },
+     {
+      "ja": "～の周りに",
+      "kana": "～のまわりに",
+      "zh": "绕着……（旋转轴）"
+     },
+     {
+      "ja": "囲まれた部分",
+      "kana": "かこまれたぶぶん",
+      "zh": "被（几条线）围起来的区域"
+     },
+     {
+      "ja": "変化率",
+      "kana": "へんかりつ",
+      "zh": "变化的快慢，这里指对时间的导数 $\\dfrac{dV}{dt}$"
+     },
+     {
+      "ja": "速度",
+      "kana": "そくど",
+      "zh": "速度（位置对时间的导数）"
+     }
+    ],
+    "shortcut": "$\\dfrac{dV}{da}$ 不必对 (1) 的结果求导，直接写被积函数 $\\pi ae^{-2a}$。求 $t^3e^{-4t^2}$ 的最大值可取对数：$\\dfrac{d}{dt}\\left(3\\log t-4t^2\\right)=\\dfrac3t-8t=0\\Rightarrow t^2=\\dfrac38$。此时 $a=2t^2=\\dfrac34$ 直接代回 (1)。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "官方正解表 + 独立求解一致"
+   }
+  }
+ ]
+}

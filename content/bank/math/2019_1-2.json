@@ -1,0 +1,200 @@
+{
+  "title": "2019_1 math part",
+  "items": [
+    {
+      "id": "2019_1-math-III",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.trig.func",
+      "tags": [
+        "math.calc.diff"
+      ],
+      "difficulty": 2,
+      "targetSec": 1100,
+      "source": {
+        "kind": "official",
+        "session": "2019_1",
+        "label": "2019年第1回 数学コース2 Ⅲ",
+        "pdf": "/assets/expanded/2019_1-math.pdf",
+        "page": 26
+      },
+      "stem": "座標平面上に，原点 O を中心とする半径 1 の円 $C$ を考える。$x$ 軸の正の部分から角 $\\theta$ だけ回転した動径と $C$ の交点を P とおき，$x$ 軸の正の部分から角 $3\\theta$ だけ回転した動径と $C$ の交点を Q とおく。ただし，$0\\leqq\\theta\\leqq\\pi$ とする。\n\nまた，点 P を通り $x$ 軸に垂直な直線と $x$ 軸との交点を A，点 Q を通り $x$ 軸に垂直な直線と $x$ 軸との交点を B とおく。さらに，線分 AB の長さを $\\ell$ とおく。\n\n(1)　$\\theta=\\dfrac{\\pi}{3}$ のとき，$\\ell=\\dfrac{\\bx{A}}{\\bx{B}}$ である。\n\n(2)　$\\ell$ の最大値を求めよう。$\\cos\\theta=t$ とおき，$\\ell$ を $t$ を用いて表すと\n\n$$\\ell=\\left|\\,\\bx{C}\\,t^{\\bx{D}}-\\bx{E}\\,t\\,\\right|$$\n\nである。また，$g(t)=\\bx{C}\\,t^{\\bx{D}}-\\bx{E}\\,t$ とおくと\n\n$$g'(t)=\\bx{F}\\left(\\bx{G}\\,t^{\\bx{H}}-1\\right)$$\n\nである。したがって\n\n$$\\cos\\theta=\\pm\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}}$$\n\nのとき $\\ell$ は最大になり，その値は $\\dfrac{\\bx{K}\\sqrt{\\bx{L}}}{\\bx{M}}$ である。\n\n(3)　次の文中の \\bx{N} 〜 \\bx{S} には，下の選択肢 ⓪ 〜 ⑨ の中から適するものを選びなさい。\n\n$\\ell$ が最大になるような点 P と Q は 2 組あり，それらの座標は\n\n$$\\mathrm{P}\\left(\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}},\\ \\bx{N}\\right),\\quad \\mathrm{Q}\\left(\\bx{O},\\ \\bx{P}\\right)$$\n\nと\n\n$$\\mathrm{P}\\left(-\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}},\\ \\bx{Q}\\right),\\quad \\mathrm{Q}\\left(\\bx{R},\\ \\bx{S}\\right)$$\n\nである。\n\n⓪　$\\dfrac{\\sqrt{6}}{3}$　　　①　$\\dfrac{\\sqrt{6}}{2}$　　　②　$\\dfrac{4\\sqrt{3}}{9}$　　　③　$-\\dfrac{4\\sqrt{3}}{9}$\n④　$\\dfrac{5\\sqrt{3}}{9}$　　　⑤　$-\\dfrac{5\\sqrt{3}}{9}$　　　⑥　$\\dfrac{\\sqrt{6}}{9}$　　　⑦　$-\\dfrac{\\sqrt{6}}{9}$\n⑧　$\\dfrac{2\\sqrt{6}}{9}$　　　⑨　$-\\dfrac{2\\sqrt{6}}{9}$",
+      "stemZh": "在坐标平面上，考虑以原点 O 为圆心、半径为 1 的圆 $C$。从 $x$ 轴正半轴旋转角 $\\theta$ 所得的动径（射线）与 $C$ 的交点记为 P，从 $x$ 轴正半轴旋转角 $3\\theta$ 所得的动径与 $C$ 的交点记为 Q。其中 $0\\leqq\\theta\\leqq\\pi$。\n\n另外，过点 P 作 $x$ 轴的垂线，与 $x$ 轴的交点记为 A；过点 Q 作 $x$ 轴的垂线，与 $x$ 轴的交点记为 B。再把线段 AB 的长度记为 $\\ell$。\n\n(1)　当 $\\theta=\\dfrac{\\pi}{3}$ 时，$\\ell=\\dfrac{\\bx{A}}{\\bx{B}}$。\n\n(2)　求 $\\ell$ 的最大值。令 $\\cos\\theta=t$，用 $t$ 表示 $\\ell$，得\n\n$$\\ell=\\left|\\,\\bx{C}\\,t^{\\bx{D}}-\\bx{E}\\,t\\,\\right|$$\n\n再令 $g(t)=\\bx{C}\\,t^{\\bx{D}}-\\bx{E}\\,t$，则\n\n$$g'(t)=\\bx{F}\\left(\\bx{G}\\,t^{\\bx{H}}-1\\right)$$\n\n因此，当\n\n$$\\cos\\theta=\\pm\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}}$$\n\n时 $\\ell$ 取最大值，最大值为 $\\dfrac{\\bx{K}\\sqrt{\\bx{L}}}{\\bx{M}}$。\n\n(3)　下文中的 \\bx{N} ～ \\bx{S}，请从下面的选项 ⓪ ～ ⑨ 中选出合适的填入。\n\n使 $\\ell$ 最大的点 P 与 Q 共有 2 组，它们的坐标是\n\n$$\\mathrm{P}\\left(\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}},\\ \\bx{N}\\right),\\quad \\mathrm{Q}\\left(\\bx{O},\\ \\bx{P}\\right)$$\n\n和\n\n$$\\mathrm{P}\\left(-\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}},\\ \\bx{Q}\\right),\\quad \\mathrm{Q}\\left(\\bx{R},\\ \\bx{S}\\right)$$\n\n⓪　$\\dfrac{\\sqrt{6}}{3}$　　　①　$\\dfrac{\\sqrt{6}}{2}$　　　②　$\\dfrac{4\\sqrt{3}}{9}$　　　③　$-\\dfrac{4\\sqrt{3}}{9}$\n④　$\\dfrac{5\\sqrt{3}}{9}$　　　⑤　$-\\dfrac{5\\sqrt{3}}{9}$　　　⑥　$\\dfrac{\\sqrt{6}}{9}$　　　⑦　$-\\dfrac{\\sqrt{6}}{9}$\n⑧　$\\dfrac{2\\sqrt{6}}{9}$　　　⑨　$-\\dfrac{2\\sqrt{6}}{9}$\n\n（注意：(3) 中坐标里的方框 P、Q 是填空编号，与点 P、Q 同名但含义不同。）",
+      "figures": [
+        {
+          "src": "/assets/v2/fig/2019_1-math-III-1.png",
+          "caption": "Ⅲ 的图：单位圆 $C$，动径角 $\\theta$ 与 $3\\theta$ 对应的点 P、Q 及其在 $x$ 轴上的垂足 A、B"
+        }
+      ],
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "4",
+        "D": "3",
+        "E": "4",
+        "F": "4",
+        "G": "3",
+        "H": "2",
+        "I": "3",
+        "J": "3",
+        "K": "8",
+        "L": "3",
+        "M": "9",
+        "N": "0",
+        "O": "5",
+        "P": "6",
+        "Q": "0",
+        "R": "4",
+        "S": "6"
+      },
+      "explanation": {
+        "zh": "**思路**\nA、B 分别是 P、Q 在 $x$ 轴上的投影，所以它们的 $x$ 坐标就是 $\\cos\\theta$ 与 $\\cos3\\theta$，于是 $\\ell=\\left|\\cos\\theta-\\cos3\\theta\\right|$。用**三倍角公式** $\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$ 把 $\\ell$ 化成 $t=\\cos\\theta$ 的三次式的绝对值；因为 $0\\leqq\\theta\\leqq\\pi$，$t$ 的范围是 $-1\\leqq t\\leqq1$（且 $\\theta$ 与 $t$ 一一对应）。在闭区间上求 $|g(t)|$ 的最大值：比较**极值**和**端点值**。(3) 由 $t$ 求 $\\sin\\theta$（注意 $\\sin\\theta\\geqq0$），再用三倍角公式求 Q 的坐标，从选项中对号入座。\n\n**解答**\n\n1. **(1) $\\theta=\\dfrac{\\pi}{3}$（A, B）**\n$P\\left(\\cos\\dfrac{\\pi}{3},\\ \\sin\\dfrac{\\pi}{3}\\right)=\\left(\\dfrac12,\\ \\dfrac{\\sqrt3}{2}\\right)$，所以垂足（点）A 的 $x$ 坐标为 $\\dfrac12$。\n$3\\theta=\\pi$，$Q=(\\cos\\pi,\\ \\sin\\pi)=(-1,\\ 0)$，Q 本身就在 $x$ 轴上，垂足（点）B 的 $x$ 坐标为 $-1$。\n$$\\ell=\\dfrac12-(-1)=\\dfrac32$$\n所以方框 A=3，B=2。\n\n2. **(2) 用 $t$ 表示 $\\ell$（C, D, E）**\n$$\\ell=\\left|\\cos\\theta-\\cos3\\theta\\right|=\\left|t-\\left(4t^3-3t\\right)\\right|=\\left|-4t^3+4t\\right|=\\left|4t^3-4t\\right|$$\n所以 C=4，D=3，E=4。\n\n3. **求导（F, G, H）**\n$$g(t)=4t^3-4t,\\qquad g'(t)=12t^2-4=4\\left(3t^2-1\\right)$$\n所以 F=4，G=3，H=2。\n\n4. **增减表与最大值（I, J, K, L, M）**\n$g'(t)=0\\iff t=\\pm\\dfrac{1}{\\sqrt3}=\\pm\\dfrac{\\sqrt3}{3}$。计算\n$$g\\left(\\dfrac{\\sqrt3}{3}\\right)=4\\cdot\\dfrac{\\sqrt3}{9}-\\dfrac{4\\sqrt3}{3}=\\dfrac{4\\sqrt3-12\\sqrt3}{9}=-\\dfrac{8\\sqrt3}{9},\\qquad g\\left(-\\dfrac{\\sqrt3}{3}\\right)=\\dfrac{8\\sqrt3}{9}$$\n（$g$ 是奇函数，两值互为相反数。）\n端点 $g(-1)=g(1)=0$。在 $-1\\leqq t\\leqq1$ 上：\n\n| $t$ | $-1$ | $\\cdots$ | $-\\frac{\\sqrt3}{3}$ | $\\cdots$ | $\\frac{\\sqrt3}{3}$ | $\\cdots$ | $1$ |\n|---|---|---|---|---|---|---|---|\n| $g'(t)$ |  | $+$ | $0$ | $-$ | $0$ | $+$ |  |\n| $g(t)$ | $0$ | ↗ | $\\frac{8\\sqrt3}{9}$ | ↘ | $-\\frac{8\\sqrt3}{9}$ | ↗ | $0$ |\n\n$g(t)$ 的取值范围是 $-\\dfrac{8\\sqrt3}{9}\\leqq g(t)\\leqq\\dfrac{8\\sqrt3}{9}$，所以 $\\ell=|g(t)|$ 的最大值为 $\\dfrac{8\\sqrt3}{9}$，在 $t=\\pm\\dfrac{\\sqrt3}{3}$ 时取到。\n所以 I=3，J=3，K=8，L=3，M=9。\n\n5. **(3) $\\cos\\theta=\\dfrac{\\sqrt3}{3}$ 的一组（N, O, P）**\n$0\\leqq\\theta\\leqq\\pi$ 时 $\\sin\\theta\\geqq0$：\n$$\\sin\\theta=\\sqrt{1-\\dfrac13}=\\sqrt{\\dfrac23}=\\dfrac{\\sqrt6}{3}$$\n所以方框 N=⓪。\nQ 的坐标是 $(\\cos3\\theta,\\ \\sin3\\theta)$：\n$$\\cos3\\theta=4t^3-3t=\\dfrac{4\\sqrt3}{9}-\\sqrt3=\\dfrac{4\\sqrt3-9\\sqrt3}{9}=-\\dfrac{5\\sqrt3}{9}$$\n所以方框 O=⑤。\n$$\\sin3\\theta=3\\sin\\theta-4\\sin^3\\theta=\\sin\\theta\\left(3-4\\sin^2\\theta\\right)=\\dfrac{\\sqrt6}{3}\\left(3-\\dfrac83\\right)=\\dfrac{\\sqrt6}{9}$$\n所以方框 P=⑥（注意这里的 P 是方框编号，不是点 P）。\n检验：$\\left(\\dfrac{5\\sqrt3}{9}\\right)^2+\\left(\\dfrac{\\sqrt6}{9}\\right)^2=\\dfrac{75+6}{81}=1$ ✓，并且 $\\ell=\\dfrac{3\\sqrt3}{9}-\\left(-\\dfrac{5\\sqrt3}{9}\\right)=\\dfrac{8\\sqrt3}{9}$ ✓。\n\n6. **(3) $\\cos\\theta=-\\dfrac{\\sqrt3}{3}$ 的一组（Q, R, S）**\n此时角为 $\\pi-\\theta_1$（$\\theta_1$ 为上一组的角），$\\sin(\\pi-\\theta_1)=\\sin\\theta_1=\\dfrac{\\sqrt6}{3}$，方框 Q=⓪。\n$3(\\pi-\\theta_1)=3\\pi-3\\theta_1$：\n$$\\cos\\left(3\\pi-3\\theta_1\\right)=-\\cos3\\theta_1=\\dfrac{5\\sqrt3}{9},\\qquad \\sin\\left(3\\pi-3\\theta_1\\right)=\\sin3\\theta_1=\\dfrac{\\sqrt6}{9}$$\n所以方框 R=④，S=⑥。\n（也可直接代入：$4t^3-3t=-\\dfrac{4\\sqrt3}{9}+\\sqrt3=\\dfrac{5\\sqrt3}{9}$，$\\sin3\\theta$ 的计算只用到 $\\sin\\theta=\\dfrac{\\sqrt6}{3}$，结果同为 $\\dfrac{\\sqrt6}{9}$。）这组 P、Q 与上一组关于 $y$ 轴对称。\n\n**结论**\nA=3，B=2，C=4，D=3，E=4，F=4，G=3，H=2，I=3，J=3，K=8，L=3，M=9，N=⓪，O=⑤，P=⑥，Q=⓪，R=④，S=⑥。",
+        "keyPoints": [
+          "投影长度：单位圆上动径角为 $\\theta$ 的点，其 $x$ 坐标为 $\\cos\\theta$，所以 $\\ell=\\left|\\cos\\theta-\\cos3\\theta\\right|$",
+          "三倍角公式：$\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$，$\\sin3\\theta=3\\sin\\theta-4\\sin^3\\theta$",
+          "闭区间上 $|g(t)|$ 的最大值：比较极大值、极小值的绝对值和端点值"
+        ],
+        "traps": [
+          "换元 $t=\\cos\\theta$ 后别忘了范围 $-1\\leqq t\\leqq1$；端点 $t=\\pm1$ 时 $\\ell=0$",
+          "$\\ell$ 带绝对值：$g$ 在 $t=\\dfrac{\\sqrt3}{3}$ 处是极小值 $-\\dfrac{8\\sqrt3}{9}$，取绝对值后同样是最大，所以有 2 组 P、Q",
+          "$\\cos3\\theta$ 只算 $4t^3=\\dfrac{4\\sqrt3}{9}$ 而漏掉 $-3t$ 会误选 ②；$\\sin3\\theta$ 的公式是 $3\\sin\\theta-4\\sin^3\\theta$，符号写反会得到负值"
+        ],
+        "terms": [
+          {
+            "ja": "動径",
+            "kana": "どうけい",
+            "zh": "从原点出发、绕原点旋转的射线，表示角的终边"
+          },
+          {
+            "ja": "座標平面",
+            "kana": "ざひょうへいめん",
+            "zh": "带有 x 轴、y 轴的平面直角坐标系"
+          },
+          {
+            "ja": "垂直な直線",
+            "kana": "すいちょくなちょくせん",
+            "zh": "与某直线成直角相交的直线（这里即作 x 轴的垂线）"
+          },
+          {
+            "ja": "線分",
+            "kana": "せんぶん",
+            "zh": "两端点之间的一段直线，即线段"
+          },
+          {
+            "ja": "最大値",
+            "kana": "さいだいち",
+            "zh": "在给定范围内取到的最大的函数值"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "供挑选的备选答案（选项）"
+          }
+        ],
+        "shortcut": "和差化积一步到位：$\\cos\\theta-\\cos3\\theta=2\\sin2\\theta\\sin\\theta=4\\sin^2\\theta\\cos\\theta$，所以 $\\ell=4\\left(1-t^2\\right)|t|=\\left|4t^3-4t\\right|$。用 (1) 验算：$t=\\dfrac12$ 时 $4\\cdot\\dfrac34\\cdot\\dfrac12=\\dfrac32$ ✓。(3) 中两组 P、Q 关于 $y$ 轴对称：$x$ 坐标变号、$y$ 坐标不变，所以方框 Q 与 N 相同（⓪），S 与 P 相同（⑥），R 是 O 的相反数（⑤→④）。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2019_1-math-IV",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.int",
+      "tags": [
+        "math.calc.diff",
+        "math.func.limit"
+      ],
+      "difficulty": 3,
+      "targetSec": 1300,
+      "source": {
+        "kind": "official",
+        "session": "2019_1",
+        "label": "2019年第1回 数学コース2 Ⅳ",
+        "pdf": "/assets/expanded/2019_1-math.pdf",
+        "page": 28
+      },
+      "stem": "次の各問いに答えなさい。ただし，$\\log$ は自然対数とする。\n\n(1)　$f(x)=x-1-\\log x$ とする。このとき，$f(x)$ の最小値を求めよう。$f'(x)$ を求めると\n\n$$f'(x)=\\bx{A}-\\dfrac{\\bx{B}}{x}$$\n\nとなる。また，$f(x)$ の増減を調べると，$x=\\bx{C}$ において最小値 \\bx{D} をとる。これより，不等式 $x-1\\geqq\\log x$ が成り立つ。\n\n(2)　次の文中の \\bx{G} には，下の選択肢 ⓪ 〜 ③ の中から適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n$k$ は正の実数とし，$n$ は正の整数とする。3 直線 $y=\\dfrac{x}{k}-1$，$x=n$，$x=n+1$ と曲線 $y=\\log\\dfrac{x}{k}$ で囲まれた図形の面積を $S$ とおく。このとき，$S$ を $k,\\ n$ の式で表そう。\n\n(1) の結果を用いて $S$ を求めると\n\n$$\\begin{aligned}S&=\\left[\\dfrac{x^{\\bx{E}}}{\\bx{F}\\,k}-x-\\bx{G}+x\\log k\\right]_{n}^{n+1}\\\\&=\\dfrac{\\bx{H}\\,n+1}{\\bx{I}\\,k}+\\log k-\\left(n+\\bx{J}\\right)\\log\\left(n+\\bx{K}\\right)+n\\log n\\end{aligned}$$\n\nとなる。\n\n⓪　$x(\\log x+1)$　　　①　$x(\\log x-1)$　　　②　$\\dfrac{\\log x+1}{x}$　　　③　$\\dfrac{\\log x-1}{x}$\n\n(3)　$n$ を固定し，$k$ を $k>0$ の範囲で動かしたとき，(2) の $S$ の最小値を $a_n$ とする。このとき，$a_n$ および $\\displaystyle\\lim_{n\\to\\infty}a_n$ を求めよう。\n\n$S$ を $k$ で微分すると\n\n$$\\dfrac{dS}{dk}=\\dfrac{\\bx{L}\\,k-\\left(\\bx{M}\\,n+1\\right)}{\\bx{N}\\,k^{2}}$$\n\nである。よって，$S$ は $k=n+\\dfrac{\\bx{O}}{\\bx{P}}$ で最小となるから，\n\n$$a_n=\\bx{Q}-\\log\\left\\{\\left(\\bx{R}+\\dfrac{\\bx{S}}{n}\\right)^{n}\\cdot\\dfrac{\\bx{T}\\,n+\\bx{U}}{\\bx{V}\\,n+1}\\right\\}$$\n\nとなる。したがって\n\n$$\\lim_{n\\to\\infty}a_n=\\bx{W}$$\n\nである。\n\n注）自然対数：natural logarithm",
+      "stemZh": "回答下列各问。其中 $\\log$ 表示自然对数。\n\n(1)　设 $f(x)=x-1-\\log x$，求 $f(x)$ 的最小值。求 $f'(x)$ 得\n\n$$f'(x)=\\bx{A}-\\dfrac{\\bx{B}}{x}$$\n\n再考察 $f(x)$ 的增减，可知 $f(x)$ 在 $x=\\bx{C}$ 处取最小值 \\bx{D}。由此，不等式 $x-1\\geqq\\log x$ 成立。\n\n(2)　下文中的 \\bx{G} 请从下面的选项 ⓪ ～ ③ 中选出合适的填入，其他的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n设 $k$ 为正实数，$n$ 为正整数。由 3 条直线 $y=\\dfrac{x}{k}-1$，$x=n$，$x=n+1$ 与曲线 $y=\\log\\dfrac{x}{k}$ 所围成的图形的面积记为 $S$。用 $k,\\ n$ 的式子表示 $S$。\n\n利用 (1) 的结果求 $S$，得\n\n$$\\begin{aligned}S&=\\left[\\dfrac{x^{\\bx{E}}}{\\bx{F}\\,k}-x-\\bx{G}+x\\log k\\right]_{n}^{n+1}\\\\&=\\dfrac{\\bx{H}\\,n+1}{\\bx{I}\\,k}+\\log k-\\left(n+\\bx{J}\\right)\\log\\left(n+\\bx{K}\\right)+n\\log n\\end{aligned}$$\n\n⓪　$x(\\log x+1)$　　　①　$x(\\log x-1)$　　　②　$\\dfrac{\\log x+1}{x}$　　　③　$\\dfrac{\\log x-1}{x}$\n\n(3)　固定 $n$，让 $k$ 在 $k>0$ 的范围内变化，把 (2) 中 $S$ 的最小值记为 $a_n$。求 $a_n$ 以及 $\\displaystyle\\lim_{n\\to\\infty}a_n$。\n\n将 $S$ 对 $k$ 求导，得\n\n$$\\dfrac{dS}{dk}=\\dfrac{\\bx{L}\\,k-\\left(\\bx{M}\\,n+1\\right)}{\\bx{N}\\,k^{2}}$$\n\n所以 $S$ 在 $k=n+\\dfrac{\\bx{O}}{\\bx{P}}$ 时取最小值，于是\n\n$$a_n=\\bx{Q}-\\log\\left\\{\\left(\\bx{R}+\\dfrac{\\bx{S}}{n}\\right)^{n}\\cdot\\dfrac{\\bx{T}\\,n+\\bx{U}}{\\bx{V}\\,n+1}\\right\\}$$\n\n因此\n\n$$\\lim_{n\\to\\infty}a_n=\\bx{W}$$\n\n注）自然対数：自然对数（natural logarithm，以 $e$ 为底的对数）",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "1",
+        "C": "1",
+        "D": "0",
+        "E": "2",
+        "F": "2",
+        "G": "1",
+        "H": "2",
+        "I": "2",
+        "J": "1",
+        "K": "1",
+        "L": "2",
+        "M": "2",
+        "N": "2",
+        "O": "1",
+        "P": "2",
+        "Q": "1",
+        "R": "1",
+        "S": "1",
+        "T": "2",
+        "U": "2",
+        "V": "2",
+        "W": "0"
+      },
+      "explanation": {
+        "zh": "**思路**\n(1) 是为 (2) 准备的工具：$x-1\\geqq\\log x$（等号仅在 $x=1$）。把 $x$ 换成 $\\dfrac{x}{k}$ 就得到 $\\dfrac{x}{k}-1\\geqq\\log\\dfrac{x}{k}$——直线 $y=\\dfrac{x}{k}-1$ 永远在曲线 $y=\\log\\dfrac{x}{k}$ 的上方（在 $x=k$ 处相切），所以面积就是 $\\displaystyle\\int_n^{n+1}\\left(\\text{直线}-\\text{曲线}\\right)dx$，不用讨论上下位置。积分时用到 $\\displaystyle\\int\\log x\\,dx=x\\log x-x$。(3) 把 $S$ 看成 $k$ 的函数求导找最小值，再把 $a_n$ 整理成含 $\\left(1+\\dfrac1n\\right)^n$ 的形式，利用 $\\displaystyle\\lim_{n\\to\\infty}\\left(1+\\dfrac1n\\right)^n=e$。\n\n**解答**\n\n1. **(1) 最小值（A, B, C, D）**\n定义域 $x>0$。\n$$f'(x)=1-\\dfrac1x=\\dfrac{x-1}{x}$$\n所以 A=1，B=1。$0<x<1$ 时 $f'(x)<0$（减），$x>1$ 时 $f'(x)>0$（增），故 $f(x)$ 在 $x=1$ 处取最小值 $f(1)=1-1-\\log1=0$。所以 C=1，D=0，从而 $x-1-\\log x\\geqq0$，即 $x-1\\geqq\\log x$。\n\n2. **(2) 判断上下位置**\n在 (1) 的不等式中把 $x$ 换成 $\\dfrac{x}{k}\\ (>0)$：\n$$\\dfrac{x}{k}-1\\geqq\\log\\dfrac{x}{k}$$\n（等号仅在 $x=k$ 时成立。）\n所以在 $n\\leqq x\\leqq n+1$ 上直线在曲线上方（或相切）。若 $n<k<n+1$，两线在 $x=k$ 处相切，图形分成左右两块，但被积函数处处 $\\geqq0$，一次积分就得到两块面积之和，同样不必分段：\n$$S=\\int_n^{n+1}\\left\\{\\left(\\dfrac{x}{k}-1\\right)-\\log\\dfrac{x}{k}\\right\\}dx=\\int_n^{n+1}\\left(\\dfrac{x}{k}-1-\\log x+\\log k\\right)dx$$\n\n3. **原函数（E, F, G）**\n逐项积分（$\\log k$ 是常数）：\n$$\\int\\dfrac{x}{k}\\,dx=\\dfrac{x^2}{2k},\\qquad \\int1\\,dx=x,\\qquad \\int\\log x\\,dx=x\\log x-x=x(\\log x-1),\\qquad \\int\\log k\\,dx=x\\log k$$\n其中 $\\displaystyle\\int\\log x\\,dx$ 用分部积分：$\\displaystyle\\int1\\cdot\\log x\\,dx=x\\log x-\\int x\\cdot\\dfrac1x\\,dx=x\\log x-x$。\n$$S=\\left[\\dfrac{x^2}{2k}-x-x(\\log x-1)+x\\log k\\right]_n^{n+1}$$\n所以 E=2，F=2，G=①。\n\n4. **代入上下限（H, I, J, K）**\n- $\\left[\\dfrac{x^2}{2k}\\right]_n^{n+1}=\\dfrac{(n+1)^2-n^2}{2k}=\\dfrac{2n+1}{2k}$\n- $-\\left[x\\right]_n^{n+1}=-1$\n- $-\\left[x\\log x-x\\right]_n^{n+1}=-\\left\\{(n+1)\\log(n+1)-(n+1)-n\\log n+n\\right\\}=-(n+1)\\log(n+1)+n\\log n+1$\n- $\\left[x\\log k\\right]_n^{n+1}=\\log k$\n\n$-1$ 与 $+1$ 抵消：\n$$S=\\dfrac{2n+1}{2k}+\\log k-(n+1)\\log(n+1)+n\\log n$$\n所以 H=2，I=2，J=1，K=1。\n\n5. **(3) 对 $k$ 求导（L, M, N）**\n$n$ 固定，只有前两项含 $k$：\n$$\\dfrac{dS}{dk}=-\\dfrac{2n+1}{2k^2}+\\dfrac1k=\\dfrac{2k-(2n+1)}{2k^2}$$\n所以 L=2，M=2，N=2。\n\n6. **最小点（O, P）**\n分母 $2k^2>0$，$0<k<n+\\dfrac12$ 时 $\\dfrac{dS}{dk}<0$，$k>n+\\dfrac12$ 时 $\\dfrac{dS}{dk}>0$，所以 $S$ 在\n$$k=\\dfrac{2n+1}{2}=n+\\dfrac12$$\n处取最小值。O=1，P=2。\n\n7. **整理 $a_n$（Q, R, S, T, U, V）**\n代入 $k=\\dfrac{2n+1}{2}$：第一项 $\\dfrac{2n+1}{2k}=1$，$\\log k=\\log\\dfrac{2n+1}{2}$，\n$$a_n=1+\\log\\dfrac{2n+1}{2}-(n+1)\\log(n+1)+n\\log n=1-\\log\\dfrac{(n+1)^{n+1}}{n^n\\cdot\\dfrac{2n+1}{2}}$$\n把 $(n+1)^{n+1}=(n+1)^n\\cdot(n+1)$ 拆开：\n$$\\dfrac{(n+1)^{n+1}}{n^n\\cdot\\dfrac{2n+1}{2}}=\\left(\\dfrac{n+1}{n}\\right)^n\\cdot\\dfrac{2(n+1)}{2n+1}=\\left(1+\\dfrac1n\\right)^n\\cdot\\dfrac{2n+2}{2n+1}$$\n$$a_n=1-\\log\\left\\{\\left(1+\\dfrac1n\\right)^n\\cdot\\dfrac{2n+2}{2n+1}\\right\\}$$\n所以 Q=1，R=1，S=1，T=2，U=2，V=2。\n\n8. **极限（W）**\n$\\displaystyle\\lim_{n\\to\\infty}\\left(1+\\dfrac1n\\right)^n=e$，$\\displaystyle\\lim_{n\\to\\infty}\\dfrac{2n+2}{2n+1}=1$，$\\log$ 连续，所以\n$$\\lim_{n\\to\\infty}a_n=1-\\log(e\\cdot1)=1-1=0$$\nW=0。\n\n**结论**\nA=1，B=1，C=1，D=0，E=2，F=2，G=①，H=2，I=2，J=1，K=1，L=2，M=2，N=2，O=1，P=2，Q=1，R=1，S=1，T=2，U=2，V=2，W=0。",
+        "keyPoints": [
+          "$x-1\\geqq\\log x$（等号仅 $x=1$）：把 $x$ 换成 $\\dfrac{x}{k}$ 即知直线 $y=\\dfrac{x}{k}-1$ 是曲线 $y=\\log\\dfrac{x}{k}$ 在 $x=k$ 处的切线且在其上方",
+          "$\\displaystyle\\int\\log x\\,dx=x\\log x-x$（分部积分）；$\\log\\dfrac{x}{k}=\\log x-\\log k$",
+          "含参数的面积对参数求导求最小值；$\\displaystyle\\lim_{n\\to\\infty}\\left(1+\\dfrac1n\\right)^n=e$"
+        ],
+        "traps": [
+          "G 选 ⓪ $x(\\log x+1)$ 是把 $\\log x$ 的原函数记错（$x(\\log x+1)$ 的导数是 $\\log x+2$）；正确是 ① $x(\\log x-1)$",
+          "减去 $x(\\log x-1)$ 时符号要全变：$-x\\log x+x$，代入上下限后得到的 $+1$ 正好与 $-[x]_n^{n+1}=-1$ 抵消",
+          "整理 $a_n$ 时 $(n+1)^{n+1}$ 要拆成 $(n+1)^n(n+1)$，多出来的 $n+1$ 与 $\\dfrac{2n+1}{2}$ 合成 $\\dfrac{2n+2}{2n+1}$；极限 $\\left(1+\\dfrac1n\\right)^n\\to e$，不是 1"
+        ],
+        "terms": [
+          {
+            "ja": "自然対数",
+            "kana": "しぜんたいすう",
+            "zh": "以 $e$ 为底的对数，EJU 中 $\\log$ 不写底时即指它"
+          },
+          {
+            "ja": "増減を調べる",
+            "kana": "ぞうげんをしらべる",
+            "zh": "考察函数的单调性（哪里递增、哪里递减），通常列增减表"
+          },
+          {
+            "ja": "囲まれた図形の面積",
+            "kana": "かこまれたずけいのめんせき",
+            "zh": "由几条线围起来的区域的面积"
+          },
+          {
+            "ja": "正の実数",
+            "kana": "せいのじっすう",
+            "zh": "大于 0 的实数"
+          },
+          {
+            "ja": "固定し",
+            "kana": "こていし",
+            "zh": "把某个量看作常数不让它变（这里 $n$ 不变，只让 $k$ 变化）"
+          },
+          {
+            "ja": "微分する",
+            "kana": "びぶんする",
+            "zh": "求导数"
+          }
+        ],
+        "shortcut": "几何直觉：$y=\\dfrac{x}{k}-1$ 正是曲线 $y=\\log\\dfrac{x}{k}$ 在 $x=k$ 处的切线（该点函数值 0、斜率 $\\dfrac1k$），$S$ 是曲线与切线在宽度为 1 的区间上夹出的面积。切点放在区间中点 $k=n+\\dfrac12$ 时面积最小（与 O/P 一致）；曲线的弯曲程度 $\\left|y''\\right|=\\dfrac{1}{x^2}\\to0$，近似有 $S\\approx\\dfrac{1}{2k^2}\\displaystyle\\int_{-1/2}^{1/2}u^2\\,du=\\dfrac{1}{24k^2}\\to0$，所以 W=0 可以秒判。验算 (2)：$n=k=1$ 时 $S=\\dfrac32-2\\log2\\approx0.114>0$，与直接积分 $\\displaystyle\\int_1^2(x-1-\\log x)\\,dx$ 一致。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}

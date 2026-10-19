@@ -43,6 +43,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         configuration.userContentController.add(self, name: "ejuNative")
         configuration.userContentController.addUserScript(WKUserScript(source: bridgeScript, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         web = WKWebView(frame: .zero, configuration: configuration)
+        let savedZoom = UserDefaults.standard.double(forKey: "pageZoom"); if savedZoom > 0 { web.pageZoom = CGFloat(savedZoom) }
         web.navigationDelegate = self; web.uiDelegate = self
         web.allowsBackForwardNavigationGestures = false
         if #available(macOS 13.3, *) { web.isInspectable = false }
@@ -61,16 +62,21 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         let bar = NSMenu()
         func add(_ title: String, _ items: [NSMenuItem]) { let holder = NSMenuItem(title: title, action: nil, keyEquivalent: ""); let menu = NSMenu(title: title); items.forEach { menu.addItem($0) }; holder.submenu = menu; bar.addItem(holder) }
         add("澄学 EJU", [menuItem("关于澄学 EJU", "", #selector(about), target: self), .separator(), menuItem("隐藏澄学 EJU", "h", #selector(NSApplication.hide(_:)), target: NSApp), menuItem("隐藏其他", "h", #selector(NSApplication.hideOtherApplications(_:)), mask: [.command, .option], target: NSApp), .separator(), menuItem("退出澄学 EJU", "q", #selector(NSApplication.terminate(_:)), target: NSApp)])
-        let navigation = ["今日学习", "课前复习", "我的笔记", "每日复盘"].enumerated().map { i, name -> NSMenuItem in let item = menuItem(name, String(i + 1), #selector(navigateMenu(_:)), target: self); item.tag = i; return item }
-        add("学习", navigation + [.separator(), menuItem("播放／暂停音乐", "m", #selector(musicMenu), mask: [.command, .shift], target: self), menuItem("开始／暂停专注", "f", #selector(focusMenu), mask: [.command, .shift], target: self)])
+        let navigation = ["今日", "题库练习", "错题本", "学习数据"].enumerated().map { i, name -> NSMenuItem in let item = menuItem(name, String(i + 1), #selector(navigateMenu(_:)), target: self); item.tag = i; return item }
+        add("学习", navigation + [.separator(), menuItem("播放／暂停音乐", "m", #selector(musicMenu), mask: [.command, .shift], target: self), menuItem("专注模式", "f", #selector(focusMenu), mask: [.command, .shift], target: self)])
+        add("显示", [menuItem("放大", "=", #selector(zoomIn), target: self), menuItem("缩小", "-", #selector(zoomOut), target: self), menuItem("实际大小", "0", #selector(zoomReset), target: self)])
         add("编辑", [menuItem("撤销", "z", Selector(("undo:"))), menuItem("重做", "z", Selector(("redo:")), mask: [.command, .shift]), .separator(), menuItem("剪切", "x", Selector(("cut:"))), menuItem("复制", "c", Selector(("copy:"))), menuItem("粘贴", "v", Selector(("paste:"))), menuItem("全选", "a", Selector(("selectAll:")))])
         add("窗口", [menuItem("关闭窗口", "w", #selector(closeStudyWindow), target: self), menuItem("最小化", "m", #selector(NSWindow.performMiniaturize(_:))), menuItem("缩放", "", #selector(NSWindow.performZoom(_:))), menuItem("进入／退出全屏", "f", #selector(NSWindow.toggleFullScreen(_:)), mask: [.command, .control])])
         add("帮助", [menuItem("键盘快捷键", "/", #selector(shortcutsMenu), target: self)])
         NSApp.mainMenu = bar
     }
-    @objc func about() { NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "澄学 EJU", .applicationVersion: "1.3.0", .credits: NSAttributedString(string: "每天一步，学有所成。")]) }
+    @objc func about() { NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "澄学 EJU", .applicationVersion: "2.0.0", .credits: NSAttributedString(string: "19 天冲刺，每天一步。")]) }
     @objc func navigateMenu(_ item: NSMenuItem) { command("navigate", page: ["today", "learning", "notebook", "report"][item.tag]) }
     @objc func musicMenu() { command("toggle-music") }
+    @objc func zoomIn() { setZoom(web.pageZoom + 0.1) }
+    @objc func zoomOut() { setZoom(web.pageZoom - 0.1) }
+    @objc func zoomReset() { setZoom(1.0) }
+    func setZoom(_ value: CGFloat) { let z = min(1.6, max(0.7, (value * 10).rounded() / 10)); web.pageZoom = z; UserDefaults.standard.set(Double(z), forKey: "pageZoom") }
     @objc func focusMenu() { command("toggle-focus") }
     @objc func shortcutsMenu() { command("shortcuts") }
     @objc func closeStudyWindow() { window.performClose(nil) }
@@ -88,6 +94,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
             if flags.contains(.shift), ["m", "f"].contains(key) { if !event.isARepeat { command(key == "m" ? "toggle-music" : "toggle-focus") }; return true }
             if key == "/", !flags.contains(.shift) { if !event.isARepeat { command("shortcuts") }; return true }
         }
+        if !flags.contains(.option), ["+", "=", "-", "0"].contains(key) { if !event.isARepeat { key == "-" ? zoomOut() : key == "0" ? zoomReset() : zoomIn() }; return true }
         if ["r", "l", "t", "n", "p", "f", "[", "]", "{", "}", "+", "=", "-", "0"].contains(key) || (flags.contains(.option) && ["i", "j", "c", "u"].contains(key)) { blockedCount += 1; return true }
         return false
     }
@@ -119,7 +126,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         DispatchQueue.global(qos: .userInitiated).async {
             let process = Process(); process.executableURL = URL(fileURLWithPath: "/usr/bin/python3"); process.arguments = [self.projectRoot + "/launch.py", "--server-only", "--json", "--no-error-dialog"]
             let pipe = Pipe(); process.standardOutput = pipe; process.standardError = pipe
-            do { try process.run(); let data = pipe.fileHandleForReading.readDataToEndOfFile(); process.waitUntilExit(); DispatchQueue.main.async { self.loadingBackend = false; if process.terminationStatus == 0 { self.web.load(URLRequest(url: self.baseURL)) } else { self.showError(String(data: data, encoding: .utf8) ?? "启动服务失败。") } } }
+            do { try process.run(); DispatchQueue.global().asyncAfter(deadline: .now() + 30) { if process.isRunning { process.terminate() } }; let data = pipe.fileHandleForReading.readDataToEndOfFile(); process.waitUntilExit(); DispatchQueue.main.async { self.loadingBackend = false; if process.terminationStatus == 0 { self.web.load(URLRequest(url: self.baseURL)) } else { let raw = String(data: data, encoding: .utf8) ?? ""; let parsed = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any]; self.showError((parsed?["error"] as? String) ?? (raw.isEmpty ? "启动服务超时。" : raw)) } } }
             catch { DispatchQueue.main.async { self.loadingBackend = false; self.showError(error.localizedDescription) } }
         }
     }

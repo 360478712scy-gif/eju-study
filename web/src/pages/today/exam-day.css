@@ -1,0 +1,73 @@
+/* ── Exam day ── */
+.ex-head { margin-bottom: 22px; }
+.ex-date { display: flex; align-items: center; gap: 6px; color: var(--danger-text); font-size: var(--fs-sm); font-weight: 650; }
+.ex-title { margin-top: 4px; font-size: var(--fs-2xl); font-weight: 720; letter-spacing: -0.02em; }
+.ex-sub { margin-top: 6px; color: var(--text-2); }
+.ex-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.ex-side { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.ex-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.ex-h2 { font-size: var(--fs-md); font-weight: 680; }
+.ex-now { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); font-size: var(--fs-sm); font-weight: 600; }
+
+.ex-slots { list-style: none; margin: 0; padding: 0; position: relative; }
+.ex-slot { position: relative; display: grid; grid-template-columns: 54px 36px minmax(0, 1fr); gap: 12px; padding: 10px 0; }
+.ex-slot:not(:last-child)::after { content: ""; position: absolute; left: calc(54px + 12px + 17px); top: 46px; bottom: -10px; width: 2px; background: var(--border); }
+.ex-slot-time { display: flex; flex-direction: column; align-items: flex-end; font-size: var(--fs-md); font-weight: 700; line-height: 1.25; padding-top: 6px; }
+.ex-slot-end { color: var(--text-3); font-size: var(--fs-sm); font-weight: 560; }
+.ex-slot-dot {
+  position: relative; z-index: 1; width: 36px; height: 36px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--tone-soft); color: var(--tone-text);
+}
+.ex-slot-body { padding: 4px 0 6px; min-width: 0; }
+.ex-slot-name { display: flex; align-items: center; gap: 8px; font-size: var(--fs-lg); font-weight: 700; }
+.ex-slot-detail { margin-top: 2px; color: var(--text-2); font-size: var(--fs-sm); }
+.ex-slot.is-rest .ex-slot-time { font-size: var(--fs-sm); color: var(--text-3); font-weight: 600; }
+.ex-slot.is-rest .ex-slot-name { font-size: var(--fs-base); color: var(--text-2); font-weight: 620; }
+.ex-slot.is-rest .ex-slot-dot { width: 28px; height: 28px; margin: 4px; border-radius: 9px; }
+.ex-slot.is-past { opacity: 0.55; }
+.ex-slot.is-past .ex-slot-dot { background: var(--success-soft); color: var(--success-text); }
+.ex-slot.is-now .ex-slot-dot { background: var(--tone); color: #fff; box-shadow: 0 0 0 4px var(--tone-soft); }
+.ex-tag { padding: 1px 8px; border-radius: var(--radius-pill); background: var(--tone); color: #fff; font-size: var(--fs-xs); font-weight: 650; }
+.ex-tag.is-next { background: var(--primary-soft); color: var(--primary-text); }
+.ex-slot.is-rest .ex-tag { background: var(--bg-sunken); color: var(--text-2); }
+
+.ex-count { padding: 2px 10px; border-radius: var(--radius-pill); background: var(--bg-sunken); color: var(--text-2); font-size: var(--fs-sm); font-weight: 700; }
+.ex-count.is-ok { background: var(--success-soft); color: var(--success-text); }
+.ex-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.ex-item {
+  width: 100%; display: grid; grid-template-columns: 22px auto 1fr; align-items: center; gap: 10px;
+  padding: 8px 8px; border: none; border-radius: var(--radius-sm); background: transparent; cursor: pointer; text-align: left;
+  transition: background var(--dur) var(--ease);
+}
+.ex-item:hover { background: var(--bg-hover); }
+.ex-box { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--border-strong); display: flex; align-items: center; justify-content: center; color: #fff; transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.ex-item.is-on .ex-box { background: var(--success); border-color: var(--success); }
+.ex-item-label { font-weight: 620; }
+.ex-item.is-on .ex-item-label { color: var(--text-2); }
+.ex-item-hint { color: var(--text-3); font-size: var(--fs-xs); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ex-tips ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ex-tips li { display: flex; gap: 8px; align-items: flex-start; color: var(--text-2); font-size: var(--fs-sm); line-height: 1.55; }
+.ex-tips li svg { color: var(--success); margin-top: 3px; }
+
+@media (max-width: 1000px) {
+  .ex-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ── After the exam ── */
+.ex-after { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 40px); }
+.ex-after-card {
+  width: 100%; max-width: 560px; text-align: center;
+  padding: 40px 36px 32px; border-radius: var(--radius-xl);
+  background: radial-gradient(120% 90% at 50% 0%, var(--primary-soft) 0%, transparent 70%), var(--bg-elev);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.ex-after-icon { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; box-shadow: 0 10px 24px rgba(61, 90, 254, 0.28); }
+.ex-after-title { font-size: var(--fs-2xl); font-weight: 720; letter-spacing: -0.02em; }
+.ex-after-sub { margin-top: 8px; color: var(--text-2); }
+.ex-after-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 26px 0 24px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.ex-after-stats div { display: flex; flex-direction: column; gap: 2px; }
+.ex-after-stats .num { font-size: var(--fs-2xl); font-weight: 720; }
+.ex-after-stats small { color: var(--text-3); font-size: var(--fs-xs); font-weight: 600; }
+.ex-after-actions { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.ex-after-link { font-weight: 600; font-size: var(--fs-sm); }

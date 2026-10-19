@@ -1,0 +1,194 @@
+{
+  "title": "2021_1 math part",
+  "items": [
+    {
+      "id": "2021_1-math-III",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.explog.func",
+      "tags": [
+        "math.calc.diff"
+      ],
+      "difficulty": 2,
+      "targetSec": 1100,
+      "source": {
+        "kind": "official",
+        "session": "2021_1",
+        "label": "2021年第1回 数学コース2 Ⅲ",
+        "pdf": "/assets/papers/2021_1-math.pdf",
+        "page": 26
+      },
+      "stem": "関数\n\n$$f(x)=8^{x}+8^{-x}-3\\left(4^{1+x}+4^{1-x}-2^{4+x}-2^{4-x}\\right)-24$$\n\nの最小値と，最小値をとるときの $x$ の値を求めよう。\n\n$2^{x}+2^{-x}=t$ とおくと\n\n$$4^{x}+4^{-x}=t^{2}-\\bx{A},\\qquad 8^{x}+8^{-x}=t^{3}-\\bx{B}\\,t$$\n\nであるから\n\n$$f(x)=t^{3}-\\bx{CD}\\,t^{2}+\\bx{EF}\\,t$$\n\nと表せる。この右辺の $t$ の関数を $g(t)$ とおくと，その導関数は\n\n$$g'(t)=\\bx{G}\\left(t-\\bx{H}\\right)\\left(t-\\bx{I}\\right)$$\n\nである。ただし，$\\bx{H}<\\bx{I}$ とする。\n\nここで，$2^{x}+2^{-x}=t$ であるから $t$ のとる値の範囲は\n\n$$t\\geqq\\bx{J}$$\n\nである。\n\n$t=\\bx{J}$ のとき $g\\left(\\bx{J}\\right)=\\bx{KL}$ であり，$t>\\bx{J}$ のとき $g(t)$ は\n\n$t=\\bx{M}$ で，極大値 \\bx{NO}\n$t=\\bx{P}$ で，極小値 \\bx{QR}\n\nをとる。\n\nしたがって，$f(x)$ の最小値は \\bx{ST} であり，そのときの $x$ の値は\n\n$$x=\\bx{U},\\qquad \\log_{2}\\left(\\bx{V}\\pm\\sqrt{\\bx{WX}}\\right)-\\bx{Y}$$\n\nである。\n\n注）導関数：derivative",
+      "stemZh": "求函数\n\n$$f(x)=8^{x}+8^{-x}-3\\left(4^{1+x}+4^{1-x}-2^{4+x}-2^{4-x}\\right)-24$$\n\n的最小值，以及取最小值时 $x$ 的值。\n\n令 $2^{x}+2^{-x}=t$，则\n\n$$4^{x}+4^{-x}=t^{2}-\\bx{A},\\qquad 8^{x}+8^{-x}=t^{3}-\\bx{B}\\,t$$\n\n所以 $f(x)$ 可以表示为\n\n$$f(x)=t^{3}-\\bx{CD}\\,t^{2}+\\bx{EF}\\,t$$\n\n把右边看作 $t$ 的函数，记为 $g(t)$，其导函数为\n\n$$g'(t)=\\bx{G}\\left(t-\\bx{H}\\right)\\left(t-\\bx{I}\\right)$$\n\n其中 $\\bx{H}<\\bx{I}$。\n\n由于 $2^{x}+2^{-x}=t$，$t$ 的取值范围是\n\n$$t\\geqq\\bx{J}$$\n\n当 $t=\\bx{J}$ 时 $g\\left(\\bx{J}\\right)=\\bx{KL}$；当 $t>\\bx{J}$ 时，$g(t)$\n\n在 $t=\\bx{M}$ 处取极大值 \\bx{NO}，\n在 $t=\\bx{P}$ 处取极小值 \\bx{QR}。\n\n因此，$f(x)$ 的最小值为 \\bx{ST}，此时 $x$ 的值为\n\n$$x=\\bx{U},\\qquad \\log_{2}\\left(\\bx{V}\\pm\\sqrt{\\bx{WX}}\\right)-\\bx{Y}$$\n\n注）導関数：导函数（derivative）",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "3",
+        "C": "1",
+        "D": "2",
+        "E": "4",
+        "F": "5",
+        "G": "3",
+        "H": "3",
+        "I": "5",
+        "J": "2",
+        "K": "5",
+        "L": "0",
+        "M": "3",
+        "N": "5",
+        "O": "4",
+        "P": "5",
+        "Q": "5",
+        "R": "0",
+        "S": "5",
+        "T": "0",
+        "U": "0",
+        "V": "5",
+        "W": "2",
+        "X": "1",
+        "Y": "1"
+      },
+      "explanation": {
+        "zh": "**思路**\n$f(x)$ 里的 $8^{\\pm x}$、$4^{\\pm x}$、$2^{\\pm x}$ 都是 $2^{x}$ 与 $2^{-x}$ 的对称组合，而且 $2^{x}\\cdot2^{-x}=1$。令 $t=2^{x}+2^{-x}$，用 $(a+b)^2$、$(a+b)^3$ 的展开就能把 $f$ 化成 $t$ 的三次函数 $g(t)$。关键有两点：① 换元后要求出新变量的范围 $t\\geqq2$，只在这个范围里找最小值；② 区间上的最小值要比较**端点值**和**极小值**，最后再把 $t$ 还原成 $x$。\n\n**解答**\n\n1. **用 $t$ 表示 $4^{x}+4^{-x}$、$8^{x}+8^{-x}$（A, B）**\n设 $a=2^{x}$，$b=2^{-x}$，则 $ab=1$，$a+b=t$：\n$$4^{x}+4^{-x}=a^2+b^2=(a+b)^2-2ab=t^2-2$$\n$$8^{x}+8^{-x}=a^3+b^3=(a+b)^3-3ab(a+b)=t^3-3t$$\n所以 A=2，B=3。\n\n2. **化成 $t$ 的三次式（CD, EF）**\n先把指数拆开：\n$$4^{1+x}+4^{1-x}=4\\left(4^{x}+4^{-x}\\right)=4(t^2-2),\\qquad 2^{4+x}+2^{4-x}=16\\left(2^{x}+2^{-x}\\right)=16t$$\n代入：\n$$f(x)=(t^3-3t)-3\\left\\{4(t^2-2)-16t\\right\\}-24=t^3-3t-12t^2+24+48t-24=t^3-12t^2+45t$$\n所以 CD=12，EF=45。\n\n3. **求导并因式分解（G, H, I）**\n$$g(t)=t^3-12t^2+45t,\\qquad g'(t)=3t^2-24t+45=3(t^2-8t+15)=3(t-3)(t-5)$$\n按 H<I 的约定：G=3，H=3，I=5。\n\n4. **$t$ 的取值范围（J）**\n$2^{x}>0$，$2^{-x}>0$，由算术–几何平均不等式：\n$$t=2^{x}+2^{-x}\\geqq2\\sqrt{2^{x}\\cdot2^{-x}}=2$$\n等号当且仅当 $2^{x}=2^{-x}$，即 $x=0$ 时成立；而且 $t$ 能取到 $t\\geqq2$ 的所有值。所以 J=2。\n\n5. **端点值与极值（KL, M, NO, P, QR）**\n$$g(2)=8-48+90=50,\\qquad g(3)=27-108+135=54,\\qquad g(5)=125-300+225=50$$\n$t\\geqq2$ 上的增减表：\n\n| $t$ | $2$ | $\\cdots$ | $3$ | $\\cdots$ | $5$ | $\\cdots$ |\n|---|---|---|---|---|---|---|\n| $g'(t)$ |  | $+$ | $0$ | $-$ | $0$ | $+$ |\n| $g(t)$ | $50$ | ↗ | $54$（极大） | ↘ | $50$（极小） | ↗ |\n\n所以 KL=50，M=3，NO=54，P=5，QR=50。\n\n6. **最小值（ST）**\n在 $t\\geqq2$ 上，最小值的候选只有端点值 $g(2)=50$ 和极小值 $g(5)=50$（$t>5$ 时 $g$ 单调增加）。两者相等，所以 $f(x)$ 的最小值为 $50$，ST=50，并且在 $t=2$ 和 $t=5$ 两处都取到。\n\n7. **把 $t$ 还原成 $x$（U, V, WX, Y）**\n- $t=2$：由第 4 步，$x=0$，所以 U=0。\n- $t=5$：令 $u=2^{x}>0$，则 $u+\\dfrac1u=5$，即 $u^2-5u+1=0$，\n$$u=\\frac{5\\pm\\sqrt{21}}{2}\\qquad(\\sqrt{21}\\approx4.58<5，两根都为正，都可取)$$\n$$x=\\log_2\\frac{5\\pm\\sqrt{21}}{2}=\\log_2\\left(5\\pm\\sqrt{21}\\right)-\\log_2 2=\\log_2\\left(5\\pm\\sqrt{21}\\right)-1$$\n所以 V=5，WX=21，Y=1。\n\n**结论**\nA=2，B=3，CD=12，EF=45，G=3，H=3，I=5，J=2，KL=50，M=3，NO=54，P=5，QR=50，ST=50，U=0，V=5，WX=21，Y=1。\n（最小值 50 在 $x=0$ 与 $x=\\log_2\\left(5\\pm\\sqrt{21}\\right)-1$ 共三个 $x$ 处取到。）",
+        "keyPoints": [
+          "$2^{x}+2^{-x}=t$ 型换元：$4^{x}+4^{-x}=t^2-2$，$8^{x}+8^{-x}=t^3-3t$（利用 $2^{x}\\cdot2^{-x}=1$）",
+          "换元后先求新变量的范围：$t=2^{x}+2^{-x}\\geqq2$（算术–几何平均，$x=0$ 时取等号）",
+          "区间上三次函数的最小值 = 端点值与极小值中较小的一个"
+        ],
+        "traps": [
+          "$4^{1+x}=4\\cdot4^{x}$，$2^{4+x}=16\\cdot2^{x}$，$2^{4-x}=16\\cdot2^{-x}$：指数相加对应底数幂相乘，别拆成 $4+4^{x}$",
+          "端点 $g(2)=50$ 与极小值 $g(5)=50$ 相等，最小值在两处取到；只看极小值会漏掉 $x=0$（U=0）",
+          "$\\log_2\\dfrac{5\\pm\\sqrt{21}}{2}$ 要写成 $\\log_2\\left(5\\pm\\sqrt{21}\\right)-1$ 才能对上 V、WX、Y 的格式"
+        ],
+        "terms": [
+          {
+            "ja": "〜とおく",
+            "kana": "とおく",
+            "zh": "（把某式）设为……、令……；如「$2^{x}+2^{-x}=t$ とおく」即“令 $t=2^{x}+2^{-x}$”（汉字写作「置く」）"
+          },
+          {
+            "ja": "導関数",
+            "kana": "どうかんすう",
+            "zh": "导函数，即 $g'(t)$"
+          },
+          {
+            "ja": "極大値",
+            "kana": "きょくだいち",
+            "zh": "极大值：导数由正变负处的函数值（局部最大，不一定是最大值）"
+          },
+          {
+            "ja": "極小値",
+            "kana": "きょくしょうち",
+            "zh": "极小值：导数由负变正处的函数值（局部最小，不一定是最小值）"
+          },
+          {
+            "ja": "とる値の範囲",
+            "kana": "とるあたいのはんい",
+            "zh": "（变量）能够取到的数值范围，即取值范围"
+          },
+          {
+            "ja": "右辺",
+            "kana": "うへん",
+            "zh": "等式（或不等式）右边的式子"
+          }
+        ],
+        "shortcut": "由 $g(2)=50$ 可直接因式分解：$g(t)-50=t^3-12t^2+45t-50=(t-2)(t-5)^2\\geqq0$（$t\\geqq2$），一步看出最小值 50，且只在 $t=2$、$t=5$ 时取等号。检验：$\\left(5+\\sqrt{21}\\right)\\left(5-\\sqrt{21}\\right)=4$，所以 $t=5$ 对应的两个 $x$ 互为相反数（$2^{x}$ 与 $2^{-x}$ 互换），和为 0。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    },
+    {
+      "id": "2021_1-math-IV",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.int",
+      "tags": [
+        "math.trig.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 1200,
+      "source": {
+        "kind": "official",
+        "session": "2021_1",
+        "label": "2021年第1回 数学コース2 Ⅳ",
+        "pdf": "/assets/papers/2021_1-math.pdf",
+        "page": 28
+      },
+      "stem": "$k$ は正の実数とする。2 曲線\n\n$$C_1:y=\\sin^{2}x,\\qquad C_2:y=k\\cos 2x\\qquad\\quad\\left(0\\leqq x\\leqq\\dfrac{\\pi}{2}\\right)$$\n\nを考える。2 曲線 $C_1$，$C_2$ と $y$ 軸で囲まれる部分の面積を $S_1$ とし，2 曲線 $C_1$，$C_2$ と直線 $x=\\dfrac{\\pi}{2}$ で囲まれる部分の面積を $S_2$ とする。このとき，$S_2-S_1$ の値は $k$ の値に関係なく一定であることを示そう。\n\n等式 $\\sin^{2}x=k\\cos 2x$ を満たす $x$ を $\\alpha$ とおくと\n\n$$\\sin\\alpha=\\sqrt{\\dfrac{k}{\\bx{A}\\,k+\\bx{B}}},\\qquad \\cos\\alpha=\\sqrt{\\dfrac{k+\\bx{C}}{\\bx{D}\\,k+\\bx{E}}}$$\n\nである。\n\n次に $S_1$，$S_2$ を求めると\n\n$$\\begin{aligned}S_1&=\\dfrac{\\bx{F}}{\\bx{G}}\\int_0^{\\alpha}\\left\\{\\left(\\bx{H}\\,k+\\bx{I}\\right)\\cos\\bx{J}\\,x-1\\right\\}dx\\\\[4pt]&=\\dfrac{\\bx{K}}{\\bx{L}}\\left\\{\\sqrt{k\\left(k+\\bx{M}\\right)}-\\alpha\\right\\},\\\\[8pt]S_2&=\\dfrac{\\bx{N}}{\\bx{O}}\\left\\{\\sqrt{k\\left(k+\\bx{P}\\right)}-\\alpha\\right\\}+\\dfrac{\\pi}{\\bx{Q}}\\end{aligned}$$\n\nである。したがって\n\n$$S_2-S_1=\\dfrac{\\pi}{\\bx{R}}$$\n\nとなり，$S_2-S_1$ の値は $k$ の値に関係なく一定である。",
+      "stemZh": "设 $k$ 为正实数。考虑两条曲线\n\n$$C_1:y=\\sin^{2}x,\\qquad C_2:y=k\\cos 2x\\qquad\\quad\\left(0\\leqq x\\leqq\\dfrac{\\pi}{2}\\right)$$\n\n设两曲线 $C_1$、$C_2$ 与 $y$ 轴所围部分的面积为 $S_1$，两曲线 $C_1$、$C_2$ 与直线 $x=\\dfrac{\\pi}{2}$ 所围部分的面积为 $S_2$。下面证明：$S_2-S_1$ 的值与 $k$ 的取值无关，是一个定值。\n\n设满足等式 $\\sin^{2}x=k\\cos 2x$ 的 $x$ 为 $\\alpha$，则\n\n$$\\sin\\alpha=\\sqrt{\\dfrac{k}{\\bx{A}\\,k+\\bx{B}}},\\qquad \\cos\\alpha=\\sqrt{\\dfrac{k+\\bx{C}}{\\bx{D}\\,k+\\bx{E}}}$$\n\n接着求 $S_1$、$S_2$，得\n\n$$\\begin{aligned}S_1&=\\dfrac{\\bx{F}}{\\bx{G}}\\int_0^{\\alpha}\\left\\{\\left(\\bx{H}\\,k+\\bx{I}\\right)\\cos\\bx{J}\\,x-1\\right\\}dx\\\\[4pt]&=\\dfrac{\\bx{K}}{\\bx{L}}\\left\\{\\sqrt{k\\left(k+\\bx{M}\\right)}-\\alpha\\right\\},\\\\[8pt]S_2&=\\dfrac{\\bx{N}}{\\bx{O}}\\left\\{\\sqrt{k\\left(k+\\bx{P}\\right)}-\\alpha\\right\\}+\\dfrac{\\pi}{\\bx{Q}}\\end{aligned}$$\n\n因此\n\n$$S_2-S_1=\\dfrac{\\pi}{\\bx{R}}$$\n\n即 $S_2-S_1$ 的值与 $k$ 无关，为定值。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "1",
+        "D": "2",
+        "E": "1",
+        "F": "1",
+        "G": "2",
+        "H": "2",
+        "I": "1",
+        "J": "2",
+        "K": "1",
+        "L": "2",
+        "M": "1",
+        "N": "1",
+        "O": "2",
+        "P": "1",
+        "Q": "4",
+        "R": "4"
+      },
+      "explanation": {
+        "zh": "**思路**\n交点 $\\alpha$ 没法写成具体的角，但积分结果里只会出现 $\\sin2\\alpha=2\\sin\\alpha\\cos\\alpha$，所以只要用 $k$ 表示出 $\\sin\\alpha$、$\\cos\\alpha$ 就够了。被积函数用降幂公式 $\\sin^2x=\\dfrac{1-\\cos2x}{2}$ 统一成 $\\cos2x$。积分前先判断两条曲线在 $\\alpha$ 左右谁在上面。\n\n**解答**\n\n1. **交点 $\\alpha$（A〜E）**\n用 $\\cos2x=1-2\\sin^2x$：\n$$\\sin^2\\alpha=k\\left(1-2\\sin^2\\alpha\\right)\\ \\Longrightarrow\\ (2k+1)\\sin^2\\alpha=k\\ \\Longrightarrow\\ \\sin^2\\alpha=\\frac{k}{2k+1}$$\n$$\\cos^2\\alpha=1-\\frac{k}{2k+1}=\\frac{k+1}{2k+1}$$\n因为 $0<\\alpha<\\dfrac{\\pi}{2}$，$\\sin\\alpha>0$，$\\cos\\alpha>0$，取正的平方根：\n$$\\sin\\alpha=\\sqrt{\\frac{k}{2k+1}},\\qquad \\cos\\alpha=\\sqrt{\\frac{k+1}{2k+1}}$$\n所以 A=2，B=1，C=1，D=2，E=1。\n（交点唯一：$h(x)=\\sin^2x-k\\cos2x$ 在 $\\left[0,\\frac{\\pi}{2}\\right]$ 上单调增加，$h(0)=-k<0$，$h\\left(\\frac{\\pi}{2}\\right)=1+k>0$。）\n\n2. **上下关系**\n$x=0$ 时 $C_1$ 的 $y=0$，$C_2$ 的 $y=k>0$，所以 $0\\leqq x\\leqq\\alpha$ 上 $C_2$ 在上；$x=\\dfrac{\\pi}{2}$ 时 $C_1$ 的 $y=1$，$C_2$ 的 $y=-k$，所以 $\\alpha\\leqq x\\leqq\\dfrac{\\pi}{2}$ 上 $C_1$ 在上。\n\n3. **$S_1$ 的被积函数（F〜J）**\n$$k\\cos2x-\\sin^2x=k\\cos2x-\\frac{1-\\cos2x}{2}=\\frac12\\left\\{(2k+1)\\cos2x-1\\right\\}$$\n$$S_1=\\int_0^{\\alpha}\\left(k\\cos2x-\\sin^2x\\right)dx=\\frac12\\int_0^{\\alpha}\\left\\{(2k+1)\\cos2x-1\\right\\}dx$$\n所以 F=1，G=2，H=2，I=1，J=2。\n\n4. **计算 $S_1$（K, L, M）**\n$$S_1=\\frac12\\left[\\frac{2k+1}{2}\\sin2x-x\\right]_0^{\\alpha}=\\frac12\\left\\{\\frac{2k+1}{2}\\cdot2\\sin\\alpha\\cos\\alpha-\\alpha\\right\\}=\\frac12\\left\\{(2k+1)\\sin\\alpha\\cos\\alpha-\\alpha\\right\\}$$\n代入第 1 步的结果：\n$$(2k+1)\\sin\\alpha\\cos\\alpha=(2k+1)\\sqrt{\\frac{k}{2k+1}}\\sqrt{\\frac{k+1}{2k+1}}=(2k+1)\\cdot\\frac{\\sqrt{k(k+1)}}{2k+1}=\\sqrt{k(k+1)}$$\n$$S_1=\\frac12\\left\\{\\sqrt{k(k+1)}-\\alpha\\right\\}$$\n所以 K=1，L=2，M=1。\n\n5. **计算 $S_2$（N, O, P, Q）**\n$$S_2=\\int_{\\alpha}^{\\frac{\\pi}{2}}\\left(\\sin^2x-k\\cos2x\\right)dx=\\frac12\\int_{\\alpha}^{\\frac{\\pi}{2}}\\left\\{1-(2k+1)\\cos2x\\right\\}dx=\\frac12\\left[x-\\frac{2k+1}{2}\\sin2x\\right]_{\\alpha}^{\\frac{\\pi}{2}}$$\n上限代入：$\\dfrac{\\pi}{2}-\\dfrac{2k+1}{2}\\sin\\pi=\\dfrac{\\pi}{2}$；下限代入：$\\alpha-(2k+1)\\sin\\alpha\\cos\\alpha=\\alpha-\\sqrt{k(k+1)}$。\n$$S_2=\\frac12\\left\\{\\frac{\\pi}{2}-\\alpha+\\sqrt{k(k+1)}\\right\\}=\\frac12\\left\\{\\sqrt{k(k+1)}-\\alpha\\right\\}+\\frac{\\pi}{4}$$\n所以 N=1，O=2，P=1，Q=4。\n\n6. **作差（R）**\n$$S_2-S_1=\\frac{\\pi}{4}$$\n结果不含 $k$，所以与 $k$ 无关，R=4。\n\n**结论**\nA=2，B=1，C=1，D=2，E=1，F=1，G=2，H=2，I=1，J=2，K=1，L=2，M=1，N=1，O=2，P=1，Q=4，R=4。",
+        "keyPoints": [
+          "降幂公式 $\\sin^2x=\\dfrac{1-\\cos2x}{2}$：把被积函数统一成 $\\cos2x$ 再积分",
+          "交点求不出具体角度时，用 $\\sin\\alpha$、$\\cos\\alpha$ 的值表示 $\\sin2\\alpha=2\\sin\\alpha\\cos\\alpha$",
+          "面积差技巧：$S_2-S_1=\\displaystyle\\int_0^{\\frac{\\pi}{2}}\\left(\\sin^2x-k\\cos2x\\right)dx$，交点 $\\alpha$ 自动抵消"
+        ],
+        "traps": [
+          "$S_1$ 的区间上 $C_2$ 在上（被积函数 $k\\cos2x-\\sin^2x$），$S_2$ 的区间上 $C_1$ 在上，上下弄反会差一个负号",
+          "$\\displaystyle\\int\\cos2x\\,dx=\\frac12\\sin2x$，系数 $\\dfrac12$ 漏掉会让 $\\sqrt{k(k+1)}$ 前多出因子 2",
+          "开方取正：$0<\\alpha<\\dfrac{\\pi}{2}$，所以 $\\sin\\alpha>0$，$\\cos\\alpha>0$"
+        ],
+        "terms": [
+          {
+            "ja": "正の実数",
+            "kana": "せいのじっすう",
+            "zh": "大于 0 的实数"
+          },
+          {
+            "ja": "満たす",
+            "kana": "みたす",
+            "zh": "满足（等式、条件）；「等式を満たす $x$」= 使等式成立的 $x$"
+          },
+          {
+            "ja": "囲まれる部分",
+            "kana": "かこまれるぶぶん",
+            "zh": "（几条线）围起来的区域"
+          },
+          {
+            "ja": "関係なく",
+            "kana": "かんけいなく",
+            "zh": "与……无关、不论……取何值"
+          },
+          {
+            "ja": "一定",
+            "kana": "いってい",
+            "zh": "固定不变，即定值、常数"
+          },
+          {
+            "ja": "示そう",
+            "kana": "しめそう",
+            "zh": "「示す」（证明、表明）的意志形：“下面来证明……”，提示本题是按步骤完成的证明"
+          }
+        ],
+        "shortcut": "只求 R 时不用求 $\\alpha$：$S_2-S_1=\\displaystyle\\int_{\\alpha}^{\\frac{\\pi}{2}}(C_1-C_2)\\,dx-\\int_0^{\\alpha}(C_2-C_1)\\,dx=\\int_0^{\\frac{\\pi}{2}}\\left(\\sin^2x-k\\cos2x\\right)dx=\\frac{\\pi}{4}-k\\left[\\frac{\\sin2x}{2}\\right]_0^{\\frac{\\pi}{2}}=\\frac{\\pi}{4}$，立刻得 R=4，也可用来检验 $S_1$、$S_2$ 的计算。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "官方正解表 + 独立求解一致"
+      }
+    }
+  ]
+}
