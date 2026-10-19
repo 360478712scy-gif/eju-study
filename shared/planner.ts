@@ -549,7 +549,13 @@ export function vocabNewLimit(state: AppState, bank: BankIndex, date: string): n
   const phase = phaseFor(daysLeftOn(state, date));
   if (phase === 'final' || phase === 'exam') return 0;
   const cap = phase === 'foundation' ? 30 : 20;
-  return Math.max(0, Math.min(cap, Math.round((120 - vocabDueCount(state, bank, date)) / 4)));
+  // Words already introduced today count against today's allowance (no second batch later in the day).
+  const firstSeen = new Map<string, string>();
+  for (const a of state.vocabAttempts) if (!firstSeen.has(a.vocabId)) firstSeen.set(a.vocabId, a.date);
+  let introducedToday = 0;
+  for (const d of firstSeen.values()) if (d === date) introducedToday++;
+  const dueBefore = vocabDueCount(state, bank, date);
+  return Math.max(0, Math.min(cap, Math.round((120 - dueBefore) / 4)) - introducedToday);
 }
 
 /**
@@ -593,7 +599,7 @@ export function vocabToday(state: AppState, bank: BankIndex, date: string): { du
   return { dueCards, newWords, cards: q.length, minutes: Math.max(1, Math.round((q.length * 9) / 60)) };
 }
 
-function vocabBlock(ctx: Ctx, minutes: number): PlanBlock | null {
+function vocabBlock(ctx: Ctx): PlanBlock | null {
   const t = vocabToday(ctx.state, ctx.bank, ctx.date);
   if (!t.cards) return null;
   return newBlock(ctx, {
@@ -601,7 +607,7 @@ function vocabBlock(ctx: Ctx, minutes: number): PlanBlock | null {
     subject: 'japanese',
     title: `词汇 · ${t.cards} 张卡`,
     reason: `${t.dueCards ? `到期复习 ${Math.min(80, t.dueCards)} 张` : '没有到期的卡'}${t.newWords ? `，新词 ${t.newWords} 个` : '，今天不加新词'}。先看字写读音（不放音频），再选意思。睡前做记得更牢。`,
-    minutes: Math.max(5, Math.min(Math.max(minutes, t.minutes), 30)),
+    minutes: Math.max(5, Math.min(30, t.minutes)),
     itemIds: [],
     vocabCount: t.cards,
   });
@@ -796,7 +802,7 @@ export function buildDayPlan(state: AppState, bank: BankIndex, date: string, opt
   }
 
   // 3) Small daily blocks: vocabulary, recall checks, grammar; notes and trap sheet near the end.
-  if (!kept((b) => b.kind === 'vocab')) take(vocabBlock(ctx, Math.max(10, Math.min(25, Math.round(budget * 0.06)))));
+  if (!kept((b) => b.kind === 'vocab')) take(vocabBlock(ctx));
   if (!small && !kept((b) => b.title.includes('考点速测'))) take(drillBlock(ctx, 'recall', phase === 'final' ? 15 : 10, { maxItems: phase === 'final' ? 20 : 15 }));
   if (!small && phase !== 'final' && !mockToday && !kept((b) => b.title.includes('文型'))) take(drillBlock(ctx, 'ja-grammar', 8, { maxItems: 12, maxTier: 3 }));
   if (phase === 'final' && remaining > 20 && !kept((b) => b.kind === 'notes')) {

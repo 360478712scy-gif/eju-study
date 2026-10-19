@@ -1169,16 +1169,16 @@ async function main() {
   });
 
   if (vocabIdx >= 0)
-    await step('Today: 待复习词汇 counts only the cards the vocab engine schedules', async () => {
+    await step('Today: 待复习词卡 counts only the cards the vocab engine schedules', async () => {
       const st = await getState();
       let words = 0;
       for (const v of bank.bundle.vocab) {
         const p = st.vocab[v.id];
-        if (p && vocabSkills(v).some((k) => p[k] && p[k].due <= today)) words++;
+        if (p) for (const k of vocabSkills(v)) if (p[k] && p[k].due <= today) words++;
       }
       const row = page.locator('.td-due-row.tone-japanese');
       const shown = (await row.innerText()).replace(/\s+/g, ' ');
-      const m = /待复习词汇 (\d+) 个/.exec(shown);
+      const m = /待复习词卡 (\d+) 张/.exec(shown);
       const n = m ? Number(m[1]) : /词汇都复习完了/.test(shown) ? 0 : NaN;
       const stray = bank.bundle.vocab
         .filter((v) => st.vocab[v.id])

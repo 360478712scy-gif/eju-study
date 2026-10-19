@@ -6,12 +6,13 @@ import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
 import { estimateAll, paceStats, SCALE_MAX, streak, topicStats, totalEstimate, type PaceStat, type SubjectEstimate, type TopicStat } from '@shared/stats.ts';
 import { addDays, dateRange, daysBetween, parseDate, weekdayZh } from '@shared/dates.ts';
 import { budgetFor, shortTopic, vocabDueCount, vocabSkills } from '@shared/planner.ts';
-import { useReady } from '../../lib/store.ts';
+import { useReady, useApp } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.ts';
 import { Badge, Button, Card, Empty, PageHeader, Ring, Segmented, SubjectDot, SubjectTag } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { SUBJECT_ORDER, drillOrder, launch } from '../mistakes/helpers.ts';
+import { SUBJECT_ORDER, launch } from '../mistakes/helpers.ts';
+import { pickDrill, reservedMap } from '../practice/practiceData.ts';
 import {
   BAND_TEXT,
   COLOR,
@@ -427,6 +428,7 @@ function Accuracy({ state, today }: { state: AppState; today: string }) {
 // ───────────────────────── Topic mastery ─────────────────────────
 
 function Mastery({ state, bank }: { state: AppState; bank: BankIndex }) {
+  const today = useApp((s) => s.today);
   const stats = useMemo(() => topicStats(state, bank), [state.attempts, state.profile, bank]);
   const [subject, setSubject] = useState<Subject>(() => {
     // Open on the measured subject furthest below its target (fall back to the prior gap).
@@ -522,7 +524,11 @@ function Mastery({ state, bank }: { state: AppState; bank: BankIndex }) {
                   <span className="st-weak-meta num">
                     {pct(w.stat.mastery)} · {w.stat.attempts} 次
                   </span>
-                  <Button size="sm" variant="soft" onClick={() => launch({ kind: 'drill', title: `专项 · ${shortTopic(bank, w.id)}`, items: drillOrder(state, bank, w.id, 8) })}>
+                  <Button size="sm" variant="soft" onClick={() => {
+                      // Same picking rule as 题库练习: never-seen first, avoiding papers held for upcoming mocks.
+                      const pick = pickDrill(state, bank.byTopic.get(w.id) ?? [], 8, reservedMap(state, bank), today + w.id);
+                      launch({ kind: 'drill', title: `专项 · ${shortTopic(bank, w.id)}`, items: pick.ids.map((id) => bank.byId.get(id)!).filter(Boolean) });
+                    }}>
                     练
                   </Button>
                 </li>
