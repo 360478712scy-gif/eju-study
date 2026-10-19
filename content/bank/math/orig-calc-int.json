@@ -1,0 +1,636 @@
+{
+ "title": "原创 · 積分法（定積分・置換/部分積分・面積・回転体・定積分で表された関数）コース2 8题",
+ "items": [
+  {
+   "id": "orig-math-calc-int-1",
+   "subject": "math",
+   "order": 1,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.trig.func"
+   ],
+   "difficulty": 1,
+   "targetSec": 600,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 部分積分（指数関数×三角関数）"
+   },
+   "stem": "定積分\n\n$$I_1=\\int_0^{\\frac{\\pi}{2}}e^{x}\\sin x\\,dx,\\qquad I_2=\\int_0^{\\frac{\\pi}{2}}e^{x}\\cos x\\,dx$$\n\nの値を求めよう。ただし，$e$ は自然対数の底とする。\n\n(1)　部分積分法を用いると\n\n$$I_1=e^{\\frac{\\pi}{\\bx{A}}}-I_2,\\qquad I_2=I_1-\\bx{B}$$\n\nが成り立つ。\n\n(2)　(1) の 2 つの等式より\n\n$$I_1=\\dfrac{e^{\\frac{\\pi}{\\bx{A}}}+\\bx{C}}{\\bx{D}},\\qquad I_2=\\dfrac{e^{\\frac{\\pi}{\\bx{A}}}-\\bx{E}}{\\bx{F}}$$\n\nである。\n\n(3)　加法定理と (2) の結果を用いると\n\n$$\\int_0^{\\frac{\\pi}{2}}e^{x}\\sin\\left(x+\\dfrac{\\pi}{6}\\right)dx=\\dfrac{\\left(\\sqrt{\\bx{G}}+\\bx{H}\\right)e^{\\frac{\\pi}{\\bx{A}}}+\\sqrt{\\bx{G}}-\\bx{I}}{\\bx{J}}$$\n\nである。\n\n注）部分積分法：integration by parts，加法定理：addition theorem",
+   "stemZh": "求定积分\n\n$$I_1=\\int_0^{\\frac{\\pi}{2}}e^{x}\\sin x\\,dx,\\qquad I_2=\\int_0^{\\frac{\\pi}{2}}e^{x}\\cos x\\,dx$$\n\n的值。其中 $e$ 为自然对数的底。\n\n(1)　利用分部积分法，可知\n\n$$I_1=e^{\\frac{\\pi}{\\bx{A}}}-I_2,\\qquad I_2=I_1-\\bx{B}$$\n\n成立。\n\n(2)　由 (1) 的两个等式得\n\n$$I_1=\\dfrac{e^{\\frac{\\pi}{\\bx{A}}}+\\bx{C}}{\\bx{D}},\\qquad I_2=\\dfrac{e^{\\frac{\\pi}{\\bx{A}}}-\\bx{E}}{\\bx{F}}$$\n\n(3)　利用和角公式（加法定理）与 (2) 的结果，得\n\n$$\\int_0^{\\frac{\\pi}{2}}e^{x}\\sin\\left(x+\\dfrac{\\pi}{6}\\right)dx=\\dfrac{\\left(\\sqrt{\\bx{G}}+\\bx{H}\\right)e^{\\frac{\\pi}{\\bx{A}}}+\\sqrt{\\bx{G}}-\\bx{I}}{\\bx{J}}$$\n\n注）部分積分法：分部积分法；加法定理：三角函数的和角公式",
+   "format": "blanks",
+   "blanks": {
+    "A": "2",
+    "B": "1",
+    "C": "1",
+    "D": "2",
+    "E": "1",
+    "F": "2",
+    "G": "3",
+    "H": "1",
+    "I": "1",
+    "J": "4"
+   },
+   "explanation": {
+    "zh": "**思路**\n$e^{x}\\sin x$、$e^{x}\\cos x$ 这类\"指数 × 三角\"的积分，分部积分一次会变出另一个，再分部积分一次又回到原来的。所以不要硬算到底，而是把 $I_1$、$I_2$ 当成两个未知数，各分部积分一次得到两个关系式，联立解方程组（\"循环分部积分\"）。(3) 先用加法定理把 $\\sin\\left(x+\\frac{\\pi}{6}\\right)$ 拆成 $\\sin x$ 与 $\\cos x$ 的线性组合，直接套用 $I_1$、$I_2$ 的值。\n\n**解答**\n\n1. **(1) $I_1$ 的关系式（A）**\n分部积分 $\\int_a^b uv'\\,dx=\\big[uv\\big]_a^b-\\int_a^b u'v\\,dx$，取 $u=\\sin x$，$v'=e^{x}$（$v=e^{x}$）：\n$$I_1=\\Big[e^{x}\\sin x\\Big]_0^{\\frac{\\pi}{2}}-\\int_0^{\\frac{\\pi}{2}}e^{x}\\cos x\\,dx=\\left(e^{\\frac{\\pi}{2}}\\cdot1-e^{0}\\cdot0\\right)-I_2=e^{\\frac{\\pi}{2}}-I_2$$\n所以 A=2。\n\n2. **(1) $I_2$ 的关系式（B）**\n取 $u=\\cos x$，$u'=-\\sin x$：\n$$I_2=\\Big[e^{x}\\cos x\\Big]_0^{\\frac{\\pi}{2}}-\\int_0^{\\frac{\\pi}{2}}e^{x}(-\\sin x)\\,dx=(0-1)+I_1=I_1-1$$\n所以 B=1。\n\n3. **(2) 解方程组（C, D, E, F）**\n两式即 $I_1+I_2=e^{\\frac{\\pi}{2}}$，$I_1-I_2=1$。相加除以 2、相减除以 2：\n$$I_1=\\frac{e^{\\frac{\\pi}{2}}+1}{2},\\qquad I_2=\\frac{e^{\\frac{\\pi}{2}}-1}{2}$$\nC=1，D=2，E=1，F=2。\n\n4. **(3) 加法定理（G, H, I, J）**\n$$\\sin\\left(x+\\frac{\\pi}{6}\\right)=\\sin x\\cos\\frac{\\pi}{6}+\\cos x\\sin\\frac{\\pi}{6}=\\frac{\\sqrt3}{2}\\sin x+\\frac12\\cos x$$\n积分是线性的：\n$$\\int_0^{\\frac{\\pi}{2}}e^{x}\\sin\\left(x+\\frac{\\pi}{6}\\right)dx=\\frac{\\sqrt3}{2}I_1+\\frac12I_2=\\frac{\\sqrt3\\left(e^{\\frac{\\pi}{2}}+1\\right)+\\left(e^{\\frac{\\pi}{2}}-1\\right)}{4}=\\frac{\\left(\\sqrt3+1\\right)e^{\\frac{\\pi}{2}}+\\sqrt3-1}{4}$$\nG=3，H=1，I=1，J=4。\n\n**结论**\nA=2，B=1，C=1，D=2，E=1，F=2，G=3，H=1，I=1，J=4。",
+    "keyPoints": [
+     "$\\int e^{x}\\sin x\\,dx$ 型：各分部积分一次得到 $I_1$、$I_2$ 的两个关系式，联立求解",
+     "分部积分公式 $\\int_a^b uv'\\,dx=\\big[uv\\big]_a^b-\\int_a^b u'v\\,dx$，边界项要先代值算出",
+     "加法定理 $\\sin(x+\\alpha)=\\sin x\\cos\\alpha+\\cos x\\sin\\alpha$ + 积分的线性性"
+    ],
+    "traps": [
+     "$(\\cos x)'=-\\sin x$，所以 $I_2=\\big[e^{x}\\cos x\\big]+\\int e^{x}\\sin x\\,dx$ 是加号；符号错会得到 $I_2=-I_1-1$",
+     "$\\big[e^{x}\\cos x\\big]_0^{\\frac{\\pi}{2}}=0-1=-1$：下限 $e^{0}\\cos0=1$ 别漏",
+     "(3) 中 $\\cos\\frac{\\pi}{6}=\\frac{\\sqrt3}{2}$ 配 $\\sin x$（即 $I_1$），$\\sin\\frac{\\pi}{6}=\\frac12$ 配 $\\cos x$（即 $I_2$），不要配反"
+    ],
+    "terms": [
+     {
+      "ja": "部分積分法",
+      "kana": "ぶぶんせきぶんほう",
+      "zh": "分部积分法"
+     },
+     {
+      "ja": "自然対数の底",
+      "kana": "しぜんたいすうのてい",
+      "zh": "自然对数的底数 $e\\approx2.718$"
+     },
+     {
+      "ja": "加法定理",
+      "kana": "かほうていり",
+      "zh": "三角函数的和角公式（两角和的正弦、余弦公式）"
+     },
+     {
+      "ja": "成り立つ",
+      "kana": "なりたつ",
+      "zh": "（等式、不等式）成立"
+     }
+    ],
+    "shortcut": "记住公式 $\\int e^{x}\\sin x\\,dx=\\frac{e^{x}(\\sin x-\\cos x)}{2}$，$\\int e^{x}\\cos x\\,dx=\\frac{e^{x}(\\sin x+\\cos x)}{2}$（求导即可验证），直接代上下限：$I_1=\\frac{e^{\\frac{\\pi}{2}}(1-0)-(0-1)}{2}=\\frac{e^{\\frac{\\pi}{2}}+1}{2}$。同理 $\\int e^{x}\\sin(x+\\alpha)\\,dx=\\frac{e^{x}\\{\\sin(x+\\alpha)-\\cos(x+\\alpha)\\}}{2}$，可一步验算 (3)。数值检查：(3) 的值约 3.47。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-2",
+   "subject": "math",
+   "order": 2,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.trig.func"
+   ],
+   "difficulty": 2,
+   "targetSec": 600,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 置換積分（x = tanθ）"
+   },
+   "stem": "定積分\n\n$$I_1=\\int_0^1\\dfrac{dx}{(1+x^2)^2},\\qquad I_2=\\int_0^{\\sqrt{3}}\\dfrac{x^2}{(1+x^2)^2}\\,dx$$\n\nを，置換積分法を用いて求めよう。\n\n(1)　$x=\\tan\\theta\\ \\left(-\\dfrac{\\pi}{2}<\\theta<\\dfrac{\\pi}{2}\\right)$ とおくと\n\n$$1+x^2=\\dfrac{1}{\\cos^{\\bx{A}}\\theta},\\qquad \\dfrac{dx}{d\\theta}=\\dfrac{1}{\\cos^{\\bx{A}}\\theta}$$\n\nである。また，$x$ が $0$ から $1$ まで変化するとき，$\\theta$ は $0$ から $\\dfrac{\\pi}{\\bx{B}}$ まで変化する。よって\n\n$$I_1=\\int_0^{\\frac{\\pi}{\\bx{B}}}\\cos^{\\bx{C}}\\theta\\,d\\theta=\\dfrac{\\pi}{\\bx{D}}+\\dfrac{\\bx{E}}{\\bx{F}}$$\n\nである。\n\n(2)　同様にして\n\n$$I_2=\\int_0^{\\frac{\\pi}{\\bx{G}}}\\sin^{2}\\theta\\,d\\theta=\\dfrac{\\pi}{\\bx{H}}-\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}}$$\n\nである。\n\n注）置換積分法：integration by substitution",
+   "stemZh": "用换元积分法求定积分\n\n$$I_1=\\int_0^1\\dfrac{dx}{(1+x^2)^2},\\qquad I_2=\\int_0^{\\sqrt{3}}\\dfrac{x^2}{(1+x^2)^2}\\,dx$$\n\n(1)　令 $x=\\tan\\theta\\ \\left(-\\dfrac{\\pi}{2}<\\theta<\\dfrac{\\pi}{2}\\right)$，则\n\n$$1+x^2=\\dfrac{1}{\\cos^{\\bx{A}}\\theta},\\qquad \\dfrac{dx}{d\\theta}=\\dfrac{1}{\\cos^{\\bx{A}}\\theta}$$\n\n并且当 $x$ 从 $0$ 变到 $1$ 时，$\\theta$ 从 $0$ 变到 $\\dfrac{\\pi}{\\bx{B}}$。所以\n\n$$I_1=\\int_0^{\\frac{\\pi}{\\bx{B}}}\\cos^{\\bx{C}}\\theta\\,d\\theta=\\dfrac{\\pi}{\\bx{D}}+\\dfrac{\\bx{E}}{\\bx{F}}$$\n\n(2)　同理可得\n\n$$I_2=\\int_0^{\\frac{\\pi}{\\bx{G}}}\\sin^{2}\\theta\\,d\\theta=\\dfrac{\\pi}{\\bx{H}}-\\dfrac{\\sqrt{\\bx{I}}}{\\bx{J}}$$\n\n注）置換積分法：换元积分法",
+   "format": "blanks",
+   "blanks": {
+    "A": "2",
+    "B": "4",
+    "C": "2",
+    "D": "8",
+    "E": "1",
+    "F": "4",
+    "G": "3",
+    "H": "6",
+    "I": "3",
+    "J": "8"
+   },
+   "explanation": {
+    "zh": "**思路**\n被积函数含 $1+x^2$ 的幂 → 令 $x=\\tan\\theta$。利用 $1+\\tan^2\\theta=\\dfrac{1}{\\cos^2\\theta}$ 与 $dx=\\dfrac{d\\theta}{\\cos^2\\theta}$，分式会化成 $\\cos\\theta$、$\\sin\\theta$ 的幂，再用降幂公式（半角公式）积分。定积分换元时上下限要一起换，换完不必回代 $x$。\n\n**解答**\n\n1. **(1) 换元公式（A）**\n$$1+\\tan^2\\theta=\\frac{\\cos^2\\theta+\\sin^2\\theta}{\\cos^2\\theta}=\\frac{1}{\\cos^2\\theta},\\qquad \\frac{d}{d\\theta}\\tan\\theta=\\frac{1}{\\cos^2\\theta}$$\n所以 A=2。\n\n2. **上下限（B）**\n$x=0\\Rightarrow\\theta=0$；$x=1\\Rightarrow\\tan\\theta=1\\Rightarrow\\theta=\\frac{\\pi}{4}$。B=4。\n\n3. **化简被积式（C）**\n$$\\frac{dx}{(1+x^2)^2}=\\cos^4\\theta\\cdot\\frac{d\\theta}{\\cos^2\\theta}=\\cos^2\\theta\\,d\\theta$$\nC=2。\n\n4. **积分（D, E, F）** 用 $\\cos^2\\theta=\\frac{1+\\cos2\\theta}{2}$：\n$$I_1=\\int_0^{\\frac{\\pi}{4}}\\frac{1+\\cos2\\theta}{2}\\,d\\theta=\\left[\\frac{\\theta}{2}+\\frac{\\sin2\\theta}{4}\\right]_0^{\\frac{\\pi}{4}}=\\frac{\\pi}{8}+\\frac14$$\nD=8，E=1，F=4。\n\n5. **(2) 上限（G）**\n$x=\\sqrt3\\Rightarrow\\tan\\theta=\\sqrt3\\Rightarrow\\theta=\\frac{\\pi}{3}$，G=3。被积式：\n$$\\frac{x^2}{(1+x^2)^2}\\,dx=\\tan^2\\theta\\cos^4\\theta\\cdot\\frac{d\\theta}{\\cos^2\\theta}=\\tan^2\\theta\\cos^2\\theta\\,d\\theta=\\sin^2\\theta\\,d\\theta$$\n\n6. **积分（H, I, J）** 用 $\\sin^2\\theta=\\frac{1-\\cos2\\theta}{2}$：\n$$I_2=\\left[\\frac{\\theta}{2}-\\frac{\\sin2\\theta}{4}\\right]_0^{\\frac{\\pi}{3}}=\\frac{\\pi}{6}-\\frac14\\cdot\\frac{\\sqrt3}{2}=\\frac{\\pi}{6}-\\frac{\\sqrt3}{8}$$\nH=6，I=3，J=8。\n\n**结论**\nA=2，B=4，C=2，D=8，E=1，F=4，G=3，H=6，I=3，J=8。",
+    "keyPoints": [
+     "见 $1+x^2$（一般 $a^2+x^2$）令 $x=\\tan\\theta$（$x=a\\tan\\theta$）：$1+\\tan^2\\theta=\\frac{1}{\\cos^2\\theta}$，$dx=\\frac{d\\theta}{\\cos^2\\theta}$",
+     "定积分换元：上下限同时换成 $\\theta$ 的值，不必回代",
+     "降幂公式 $\\cos^2\\theta=\\frac{1+\\cos2\\theta}{2}$，$\\sin^2\\theta=\\frac{1-\\cos2\\theta}{2}$"
+    ],
+    "traps": [
+     "忘了乘 $\\frac{d\\theta}{\\cos^2\\theta}$，会把 $I_1$ 错写成 $\\int\\cos^4\\theta\\,d\\theta$",
+     "$x=\\sqrt3$ 对应 $\\theta=\\frac{\\pi}{3}$（$\\tan\\frac{\\pi}{3}=\\sqrt3$），不是 $\\frac{\\pi}{6}$",
+     "$\\sin\\frac{2\\pi}{3}=\\frac{\\sqrt3}{2}>0$，$I_2=\\frac{\\pi}{6}-\\frac{\\sqrt3}{8}\\approx0.31>0$；算出负数说明符号错了"
+    ],
+    "terms": [
+     {
+      "ja": "置換積分法",
+      "kana": "ちかんせきぶんほう",
+      "zh": "换元积分法"
+     },
+     {
+      "ja": "変化する",
+      "kana": "へんかする",
+      "zh": "（变量）变化，「0 から 1 まで変化する」= 从 0 变到 1"
+     },
+     {
+      "ja": "同様にして",
+      "kana": "どうようにして",
+      "zh": "用同样的方法、同理"
+     },
+     {
+      "ja": "定積分",
+      "kana": "ていせきぶん",
+      "zh": "定积分"
+     }
+    ],
+    "shortcut": "$I_1$ 也可不换元：$\\left(\\frac{x}{1+x^2}\\right)'=\\frac{1-x^2}{(1+x^2)^2}=\\frac{2}{(1+x^2)^2}-\\frac{1}{1+x^2}$，所以 $\\int_0^1\\frac{dx}{(1+x^2)^2}=\\frac12\\left(\\left[\\frac{x}{1+x^2}\\right]_0^1+\\int_0^1\\frac{dx}{1+x^2}\\right)=\\frac12\\left(\\frac12+\\frac{\\pi}{4}\\right)$。估算检查：被积函数在 $[0,1]$ 上从 1 降到 $\\frac14$，$I_1\\approx0.64$ 合理。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-3",
+   "subject": "math",
+   "order": 3,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.trig.func"
+   ],
+   "difficulty": 2,
+   "targetSec": 1100,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 三角関数の2曲線間の面積・回転体"
+   },
+   "stem": "$0\\leqq x\\leqq\\pi$ において，2 つの曲線\n\n$$C_1:\\ y=\\sin 2x,\\qquad C_2:\\ y=\\sin x$$\n\nを考える。\n\n(1)　$\\sin 2x-\\sin x=\\sin x\\left(\\bx{A}\\cos x-\\bx{B}\\right)$ であるから，$C_1$ と $C_2$ の共有点の $x$ 座標は\n\n$$x=0,\\quad \\dfrac{\\pi}{\\bx{C}},\\quad \\pi$$\n\nである。\n\n(2)　$C_1$ と $C_2$ で囲まれた 2 つの部分のうち，$0\\leqq x\\leqq\\dfrac{\\pi}{\\bx{C}}$ にある部分の面積を $S_1$，$\\dfrac{\\pi}{\\bx{C}}\\leqq x\\leqq\\pi$ にある部分の面積を $S_2$ とすると\n\n$$S_1=\\dfrac{\\bx{D}}{\\bx{E}},\\qquad S_2=\\dfrac{\\bx{F}}{\\bx{G}}$$\n\nである。よって，$C_1$ と $C_2$ で囲まれた 2 つの部分の面積の和は $\\dfrac{\\bx{H}}{\\bx{I}}$ である。\n\n(3)　$C_1$ と $C_2$ で囲まれた部分のうち $0\\leqq x\\leqq\\dfrac{\\pi}{\\bx{C}}$ にある部分を，$x$ 軸のまわりに 1 回転してできる立体の体積 $V$ を求めよう。\n\n$$\\sin^2 2x-\\sin^2 x=\\dfrac{\\cos\\bx{J}x-\\cos\\bx{K}x}{\\bx{L}}$$\n\nであるから\n\n$$V=\\dfrac{\\bx{M}\\sqrt{\\bx{N}}}{\\bx{OP}}\\pi$$\n\nである。",
+   "stemZh": "在 $0\\leqq x\\leqq\\pi$ 上，考虑两条曲线\n\n$$C_1:\\ y=\\sin 2x,\\qquad C_2:\\ y=\\sin x$$\n\n(1)　由于 $\\sin 2x-\\sin x=\\sin x\\left(\\bx{A}\\cos x-\\bx{B}\\right)$，$C_1$ 与 $C_2$ 的公共点的 $x$ 坐标为\n\n$$x=0,\\quad \\dfrac{\\pi}{\\bx{C}},\\quad \\pi$$\n\n(2)　$C_1$ 与 $C_2$ 所围成的两部分中，位于 $0\\leqq x\\leqq\\dfrac{\\pi}{\\bx{C}}$ 的部分面积记为 $S_1$，位于 $\\dfrac{\\pi}{\\bx{C}}\\leqq x\\leqq\\pi$ 的部分面积记为 $S_2$，则\n\n$$S_1=\\dfrac{\\bx{D}}{\\bx{E}},\\qquad S_2=\\dfrac{\\bx{F}}{\\bx{G}}$$\n\n因此，$C_1$ 与 $C_2$ 所围成的两部分的面积之和为 $\\dfrac{\\bx{H}}{\\bx{I}}$。\n\n(3)　求 $C_1$ 与 $C_2$ 所围部分中位于 $0\\leqq x\\leqq\\dfrac{\\pi}{\\bx{C}}$ 的那一部分绕 $x$ 轴旋转一周所得立体的体积 $V$。\n\n由于\n\n$$\\sin^2 2x-\\sin^2 x=\\dfrac{\\cos\\bx{J}x-\\cos\\bx{K}x}{\\bx{L}}$$\n\n所以\n\n$$V=\\dfrac{\\bx{M}\\sqrt{\\bx{N}}}{\\bx{OP}}\\pi$$",
+   "format": "blanks",
+   "blanks": {
+    "A": "2",
+    "B": "1",
+    "C": "3",
+    "D": "1",
+    "E": "4",
+    "F": "9",
+    "G": "4",
+    "H": "5",
+    "I": "2",
+    "J": "2",
+    "K": "4",
+    "L": "2",
+    "M": "3",
+    "N": "3",
+    "O": "1",
+    "P": "6"
+   },
+   "explanation": {
+    "zh": "**思路**\n先因式分解 $\\sin2x-\\sin x=\\sin x(2\\cos x-1)$，既能求交点，又能判断上下位置。面积 $=\\int(\\text{上}-\\text{下})\\,dx$，与曲线是否跑到 $x$ 轴下方无关。旋转体体积用\"外圆 − 内圆\"：$V=\\pi\\int\\left(f^2-g^2\\right)dx$，再用降幂公式把 $\\sin^2$ 化成 $\\cos2x$、$\\cos4x$。\n\n**解答**\n\n1. **(1) 因式分解与交点（A, B, C）**\n$\\sin2x-\\sin x=2\\sin x\\cos x-\\sin x=\\sin x(2\\cos x-1)$，A=2，B=1。\n令其为 0：$\\sin x=0$ 或 $\\cos x=\\frac12$。在 $0\\leqq x\\leqq\\pi$ 上得 $x=0,\\ \\pi$ 与 $x=\\frac{\\pi}{3}$，C=3。\n\n2. **上下位置**\n- $0<x<\\frac{\\pi}{3}$：$\\sin x>0$，$2\\cos x-1>0$，所以 $\\sin2x>\\sin x$，$C_1$ 在上。\n- $\\frac{\\pi}{3}<x<\\pi$：$\\sin x>0$，$2\\cos x-1<0$，所以 $\\sin x>\\sin2x$，$C_2$ 在上。\n\n3. **(2) $S_1$（D, E）**\n$$S_1=\\int_0^{\\frac{\\pi}{3}}(\\sin2x-\\sin x)\\,dx=\\left[-\\frac{\\cos2x}{2}+\\cos x\\right]_0^{\\frac{\\pi}{3}}=\\left(\\frac14+\\frac12\\right)-\\left(-\\frac12+1\\right)=\\frac14$$\nD=1，E=4。\n\n4. **$S_2$（F, G）**\n$$S_2=\\int_{\\frac{\\pi}{3}}^{\\pi}(\\sin x-\\sin2x)\\,dx=\\left[-\\cos x+\\frac{\\cos2x}{2}\\right]_{\\frac{\\pi}{3}}^{\\pi}=\\left(1+\\frac12\\right)-\\left(-\\frac12-\\frac14\\right)=\\frac94$$\nF=9，G=4。（$\\frac{\\pi}{2}<x<\\pi$ 时 $\\sin2x<0$，但\"上 − 下\"始终 $\\geqq0$，不必在 $x=\\frac{\\pi}{2}$ 处拆开。）\n\n5. **面积和（H, I）**\n$S_1+S_2=\\frac14+\\frac94=\\frac52$，H=5，I=2。\n\n6. **(3) 降幂（J, K, L）**\n$\\sin^22x=\\frac{1-\\cos4x}{2}$，$\\sin^2x=\\frac{1-\\cos2x}{2}$，相减：\n$$\\sin^22x-\\sin^2x=\\frac{\\cos2x-\\cos4x}{2}$$\nJ=2，K=4，L=2。\n\n7. **体积（M, N, OP）**\n在 $0\\leqq x\\leqq\\frac{\\pi}{3}$ 上 $\\sin2x\\geqq\\sin x\\geqq0$，截面是外半径 $\\sin2x$、内半径 $\\sin x$ 的圆环：\n$$V=\\pi\\int_0^{\\frac{\\pi}{3}}\\left(\\sin^22x-\\sin^2x\\right)dx=\\frac{\\pi}{2}\\left[\\frac{\\sin2x}{2}-\\frac{\\sin4x}{4}\\right]_0^{\\frac{\\pi}{3}}=\\frac{\\pi}{2}\\left(\\frac{\\sqrt3}{4}+\\frac{\\sqrt3}{8}\\right)=\\frac{3\\sqrt3}{16}\\pi$$\n（$\\sin\\frac{4\\pi}{3}=-\\frac{\\sqrt3}{2}$，减去它变成加。）M=3，N=3，OP=16。\n\n**结论**\nA=2，B=1，C=3，D=1，E=4，F=9，G=4，H=5，I=2，J=2，K=4，L=2，M=3，N=3，OP=16。",
+    "keyPoints": [
+     "两曲线间面积 $=\\int(\\text{上}-\\text{下})\\,dx$：先求交点、按区间判断上下，与是否在 $x$ 轴下方无关",
+     "绕 $x$ 轴旋转（两曲线同侧）：$V=\\pi\\int\\left(f^2-g^2\\right)dx$",
+     "降幂：$\\sin^2\\theta=\\frac{1-\\cos2\\theta}{2}$，所以 $\\sin^22x=\\frac{1-\\cos4x}{2}$"
+    ],
+    "traps": [
+     "体积不是 $\\pi\\int(\\sin2x-\\sin x)^2dx$；圆环面积是 $\\pi(R^2-r^2)$，不是 $\\pi(R-r)^2$",
+     "解 $\\sin2x=\\sin x$ 时两边约去 $\\sin x$ 会丢掉 $x=0,\\pi$；要因式分解",
+     "$\\sin\\frac{4\\pi}{3}=-\\frac{\\sqrt3}{2}$（第三象限为负），这里符号错会得到 $\\frac{\\sqrt3}{16}\\pi$"
+    ],
+    "terms": [
+     {
+      "ja": "共有点",
+      "kana": "きょうゆうてん",
+      "zh": "公共点（交点或切点）"
+     },
+     {
+      "ja": "囲まれた部分",
+      "kana": "かこまれたぶぶん",
+      "zh": "（曲线、直线）围成的区域"
+     },
+     {
+      "ja": "x軸のまわりに1回転",
+      "kana": "xじくのまわりにいっかいてん",
+      "zh": "绕 x 轴旋转一周"
+     },
+     {
+      "ja": "立体の体積",
+      "kana": "りったいのたいせき",
+      "zh": "立体（这里是旋转体）的体积"
+     },
+     {
+      "ja": "面積の和",
+      "kana": "めんせきのわ",
+      "zh": "面积之和"
+     }
+    ],
+    "shortcut": "$\\int_0^{\\pi}(\\sin x-\\sin2x)\\,dx=\\big[-\\cos x\\big]_0^{\\pi}-\\left[-\\frac{\\cos2x}{2}\\right]_0^{\\pi}=2-0=2$，而它等于 $S_2-S_1$（前一段被积函数为负），所以 $S_2=S_1+2=\\frac94$，只需算 $S_1$ 一个积分。数值检查：$V=\\frac{3\\sqrt3}{16}\\pi\\approx1.02$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-4",
+   "subject": "math",
+   "order": 4,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.calc.diff",
+    "math.explog.func"
+   ],
+   "difficulty": 3,
+   "targetSec": 1200,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 接線と面積・x軸/y軸まわりの回転体"
+   },
+   "stem": "曲線 $C:\\ y=e^{x}$ に原点 O から引いた接線を $\\ell$ とする。また，曲線 $C$，直線 $\\ell$ および $y$ 軸で囲まれた部分を $D$ とする。ただし，$e$ は自然対数の底，$\\log$ は自然対数とする。\n\n(1)　曲線 $C$ 上の点 $(t,\\ e^{t})$ における接線の方程式は\n\n$$y=e^{t}x+\\left(\\bx{A}-t\\right)e^{t}$$\n\nである。これが原点 O を通るから $t=\\bx{B}$ であり，$\\ell$ の方程式は $y=ex$ である。\n\n(2)　$D$ の面積は $\\dfrac{e}{\\bx{C}}-\\bx{D}$ である。\n\n(3)　$D$ を $x$ 軸のまわりに 1 回転してできる立体の体積を $V_x$ とすると\n\n$$V_x=\\pi\\int_0^{\\bx{B}}\\left(e^{\\bx{E}x}-e^{2}x^{\\bx{F}}\\right)dx=\\dfrac{\\pi}{\\bx{G}}\\left(e^{2}-\\bx{H}\\right)$$\n\nである。\n\n(4)　$D$ を $y$ 軸のまわりに 1 回転してできる立体の体積 $V_y$ を求めよう。\n\n$V_y$ は，直線 $\\ell$，直線 $y=e$ および $y$ 軸で囲まれた三角形を $y$ 軸のまわりに 1 回転してできる円錐の体積から，曲線 $C$，直線 $y=e$ および $y$ 軸で囲まれた部分を $y$ 軸のまわりに 1 回転してできる立体の体積を引いたものである。曲線 $C$ の方程式は $x=\\log y$ とも表されるから\n\n$$V_y=\\dfrac{\\pi e}{\\bx{I}}-\\pi\\int_1^{e}(\\log y)^2\\,dy$$\n\nである。ここで，部分積分法を用いると\n\n$$\\int_1^{e}(\\log y)^2\\,dy=\\Big[\\,y(\\log y)^2-\\bx{J}\\,y\\log y+\\bx{K}\\,y\\,\\Big]_1^{e}=e-\\bx{L}$$\n\nであるから\n\n$$V_y=\\dfrac{\\bx{M}\\pi}{\\bx{N}}\\left(\\bx{O}-e\\right)$$\n\nである。\n\n注）円錐：cone",
+   "stemZh": "从原点 O 向曲线 $C:\\ y=e^{x}$ 作切线，记为 $\\ell$。又把曲线 $C$、直线 $\\ell$ 及 $y$ 轴所围成的部分记为 $D$。其中 $e$ 为自然对数的底，$\\log$ 为自然对数。\n\n(1)　曲线 $C$ 上点 $(t,\\ e^{t})$ 处的切线方程为\n\n$$y=e^{t}x+\\left(\\bx{A}-t\\right)e^{t}$$\n\n它经过原点 O，所以 $t=\\bx{B}$，$\\ell$ 的方程为 $y=ex$。\n\n(2)　$D$ 的面积为 $\\dfrac{e}{\\bx{C}}-\\bx{D}$。\n\n(3)　把 $D$ 绕 $x$ 轴旋转一周所得立体的体积记为 $V_x$，则\n\n$$V_x=\\pi\\int_0^{\\bx{B}}\\left(e^{\\bx{E}x}-e^{2}x^{\\bx{F}}\\right)dx=\\dfrac{\\pi}{\\bx{G}}\\left(e^{2}-\\bx{H}\\right)$$\n\n(4)　求 $D$ 绕 $y$ 轴旋转一周所得立体的体积 $V_y$。\n\n$V_y$ 等于：直线 $\\ell$、直线 $y=e$ 及 $y$ 轴所围三角形绕 $y$ 轴旋转一周所得圆锥的体积，减去曲线 $C$、直线 $y=e$ 及 $y$ 轴所围部分绕 $y$ 轴旋转一周所得立体的体积。曲线 $C$ 的方程也可写成 $x=\\log y$，所以\n\n$$V_y=\\dfrac{\\pi e}{\\bx{I}}-\\pi\\int_1^{e}(\\log y)^2\\,dy$$\n\n这里用分部积分法，得\n\n$$\\int_1^{e}(\\log y)^2\\,dy=\\Big[\\,y(\\log y)^2-\\bx{J}\\,y\\log y+\\bx{K}\\,y\\,\\Big]_1^{e}=e-\\bx{L}$$\n\n因此\n\n$$V_y=\\dfrac{\\bx{M}\\pi}{\\bx{N}}\\left(\\bx{O}-e\\right)$$\n\n注）円錐：圆锥",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "1",
+    "C": "2",
+    "D": "1",
+    "E": "2",
+    "F": "2",
+    "G": "6",
+    "H": "3",
+    "I": "3",
+    "J": "2",
+    "K": "2",
+    "L": "2",
+    "M": "2",
+    "N": "3",
+    "O": "3"
+   },
+   "explanation": {
+    "zh": "**思路**\n(1) \"过曲线外一点作切线\"：先写曲线上一点 $(t,e^{t})$ 处的切线，再把已知点代进去求 $t$。(2) $y=e^{x}$ 是下凸函数，切线在曲线下方，面积 $=\\int(\\text{曲线}-\\text{切线})\\,dx$。(3) 绕 $x$ 轴：截面是圆环，$V_x=\\pi\\int(\\text{外}^2-\\text{内}^2)\\,dx$。(4) 绕 $y$ 轴：改用 $y$ 作积分变量，截面半径是 $x$，所以 $V=\\pi\\int x^2\\,dy$；区域按\"三角形 − 曲边部分\"处理，圆锥体积减去 $\\pi\\int(\\log y)^2dy$。\n\n**解答**\n\n1. **(1) 切线（A, B）**\n$y'=e^{x}$，点 $(t,e^{t})$ 处切线：$y-e^{t}=e^{t}(x-t)$，即 $y=e^{t}x+(1-t)e^{t}$，A=1。\n过原点：$(1-t)e^{t}=0$，而 $e^{t}>0$，所以 $t=1$，B=1。切点 $(1,e)$，$\\ell:\\ y=ex$。\n\n2. **(2) 面积（C, D）**\n在 $0\\leqq x\\leqq1$ 上 $e^{x}\\geqq ex$（下凸函数的图像在切线上方）：\n$$\\int_0^1\\left(e^{x}-ex\\right)dx=\\left[e^{x}-\\frac{e}{2}x^2\\right]_0^1=\\left(e-\\frac e2\\right)-1=\\frac e2-1$$\nC=2，D=1。\n\n3. **(3) $V_x$（E, F, G, H）**\n截面是外半径 $e^{x}$、内半径 $ex$ 的圆环，$(e^{x})^2=e^{2x}$，$(ex)^2=e^2x^2$：\n$$V_x=\\pi\\int_0^1\\left(e^{2x}-e^{2}x^{2}\\right)dx=\\pi\\left[\\frac{e^{2x}}{2}-\\frac{e^{2}x^{3}}{3}\\right]_0^1=\\pi\\left(\\frac{e^2-1}{2}-\\frac{e^2}{3}\\right)=\\frac{\\pi}{6}\\left(e^2-3\\right)$$\nE=2，F=2，G=6，H=3。\n\n4. **(4) 圆锥（I）**\n三角形顶点为 $(0,0)$、$(1,e)$、$(0,e)$，绕 $y$ 轴旋转得到底面半径 1、高 $e$ 的圆锥：\n$$\\frac13\\cdot\\pi\\cdot1^2\\cdot e=\\frac{\\pi e}{3}$$\nI=3。（也可写成 $\\pi\\int_0^{e}\\left(\\frac{y}{e}\\right)^2dy=\\frac{\\pi e}{3}$。）\n被减去的部分：$1\\leqq y\\leqq e$ 时截面是半径 $x=\\log y$ 的圆，体积为 $\\pi\\int_1^{e}(\\log y)^2dy$。\n\n5. **分部积分（J, K, L）**\n取 $u=(\\log y)^2$，$v'=1$：\n$$\\int(\\log y)^2dy=y(\\log y)^2-\\int y\\cdot\\frac{2\\log y}{y}\\,dy=y(\\log y)^2-2\\int\\log y\\,dy=y(\\log y)^2-2y\\log y+2y$$\nJ=2，K=2。代入：$y=e$ 时 $e-2e+2e=e$；$y=1$ 时 $0-0+2=2$。积分值 $=e-2$，L=2。\n\n6. **$V_y$（M, N, O）**\n$$V_y=\\frac{\\pi e}{3}-\\pi(e-2)=2\\pi-\\frac{2\\pi e}{3}=\\frac{2\\pi}{3}(3-e)$$\nM=2，N=3，O=3。（$e<3$，所以 $V_y>0$ ✓）\n\n**结论**\nA=1，B=1，C=2，D=1，E=2，F=2，G=6，H=3，I=3，J=2，K=2，L=2，M=2，N=3，O=3。",
+    "keyPoints": [
+     "过曲线外一点的切线：设切点 $(t,f(t))$，写出 $y=f'(t)(x-t)+f(t)$，代入已知点解 $t$",
+     "绕 $x$ 轴：$V=\\pi\\int\\left\\{f(x)^2-g(x)^2\\right\\}dx$；绕 $y$ 轴：把曲线写成 $x=\\log y$，$V=\\pi\\int x^2\\,dy$",
+     "$\\int\\log y\\,dy=y\\log y-y$，$\\int(\\log y)^2dy=y(\\log y)^2-2y\\log y+2y$"
+    ],
+    "traps": [
+     "$V_x$ 中直线部分平方是 $(ex)^2=e^2x^2$，不是 $ex^2$",
+     "绕 $y$ 轴时，$0\\leqq y\\leqq1$ 截面是整圆（内侧没有曲线），$1\\leqq y\\leqq e$ 才是圆环；用\"圆锥 − 曲边部分\"可避免分段出错",
+     "$\\Big[y(\\log y)^2-2y\\log y+2y\\Big]_1^{e}$ 的下限值是 2 不是 0（$2y$ 在 $y=1$ 时为 2）"
+    ],
+    "terms": [
+     {
+      "ja": "接線",
+      "kana": "せっせん",
+      "zh": "切线"
+     },
+     {
+      "ja": "原点から引いた接線",
+      "kana": "げんてんからひいたせっせん",
+      "zh": "从原点向曲线作的切线（切线经过原点）"
+     },
+     {
+      "ja": "円錐",
+      "kana": "えんすい",
+      "zh": "圆锥"
+     },
+     {
+      "ja": "y軸のまわりに1回転",
+      "kana": "yじくのまわりにいっかいてん",
+      "zh": "绕 y 轴旋转一周"
+     },
+     {
+      "ja": "通る",
+      "kana": "とおる",
+      "zh": "（直线、曲线）经过某点"
+     }
+    ],
+    "shortcut": "$V_y$ 可用柱壳法（バウムクーヘン積分）直接验算：$V_y=2\\pi\\int_0^1x\\left(e^{x}-ex\\right)dx=2\\pi\\left[(x-1)e^{x}-\\frac{e}{3}x^{3}\\right]_0^1=2\\pi\\left(1-\\frac e3\\right)=\\frac{2\\pi}{3}(3-e)$，一步出结果，用来核对答案很快。数值：$V_x\\approx2.30$，$V_y\\approx0.59$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-5",
+   "subject": "math",
+   "order": 5,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.trig.func"
+   ],
+   "difficulty": 2,
+   "targetSec": 660,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 2曲線間の面積・回転体（sin と tan）"
+   },
+   "stem": "$0\\leqq x<\\dfrac{\\pi}{2}$ において，2 つの曲線\n\n$$C_1:\\ y=2\\sin x,\\qquad C_2:\\ y=\\tan x$$\n\nを考える。ただし，$\\log$ は自然対数とする。\n\n(1)　$C_1$ と $C_2$ の共有点の $x$ 座標は，$x=0$ と $x=\\dfrac{\\pi}{\\bx{A}}$ である。\n\n(2)　次の文中の \\bx{B} には，下の選択肢 ⓪ 〜 ③ の中から適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n$0<x<\\dfrac{\\pi}{2}$ において，関数 $\\tan x$ の不定積分の 1 つは \\bx{B} である。よって，$C_1$ と $C_2$ で囲まれた部分の面積 $S$ は\n\n$$S=\\bx{C}-\\log\\bx{D}$$\n\nである。\n\n⓪　$\\log(\\cos x)$　　　①　$-\\log(\\cos x)$　　　②　$\\dfrac{1}{\\cos^2x}$　　　③　$-\\dfrac{1}{\\cos^2x}$\n\n(3)　$C_1$ と $C_2$ で囲まれた部分を $x$ 軸のまわりに 1 回転してできる立体の体積を $V$ とする。\n\n$$4\\sin^2x-\\tan^2x=\\bx{E}-\\bx{F}\\cos2x-\\dfrac{1}{\\cos^2x}$$\n\nであるから\n\n$$V=\\pi\\left(\\pi-\\dfrac{\\bx{G}\\sqrt{\\bx{H}}}{\\bx{I}}\\right)$$\n\nである。\n\n注）不定積分：indefinite integral",
+   "stemZh": "在 $0\\leqq x<\\dfrac{\\pi}{2}$ 上，考虑两条曲线\n\n$$C_1:\\ y=2\\sin x,\\qquad C_2:\\ y=\\tan x$$\n\n其中 $\\log$ 为自然对数。\n\n(1)　$C_1$ 与 $C_2$ 的公共点的 $x$ 坐标为 $x=0$ 与 $x=\\dfrac{\\pi}{\\bx{A}}$。\n\n(2)　下文中的 \\bx{B} 请从下面的选项 ⓪ ～ ③ 中选出合适的填入，其他的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n在 $0<x<\\dfrac{\\pi}{2}$ 上，函数 $\\tan x$ 的一个不定积分（原函数）是 \\bx{B}。所以 $C_1$ 与 $C_2$ 所围部分的面积 $S$ 为\n\n$$S=\\bx{C}-\\log\\bx{D}$$\n\n⓪　$\\log(\\cos x)$　　　①　$-\\log(\\cos x)$　　　②　$\\dfrac{1}{\\cos^2x}$　　　③　$-\\dfrac{1}{\\cos^2x}$\n\n(3)　把 $C_1$ 与 $C_2$ 所围部分绕 $x$ 轴旋转一周所得立体的体积记为 $V$。由于\n\n$$4\\sin^2x-\\tan^2x=\\bx{E}-\\bx{F}\\cos2x-\\dfrac{1}{\\cos^2x}$$\n\n所以\n\n$$V=\\pi\\left(\\pi-\\dfrac{\\bx{G}\\sqrt{\\bx{H}}}{\\bx{I}}\\right)$$\n\n注）不定積分：不定积分",
+   "format": "blanks",
+   "blanks": {
+    "A": "3",
+    "B": "1",
+    "C": "1",
+    "D": "2",
+    "E": "3",
+    "F": "2",
+    "G": "3",
+    "H": "3",
+    "I": "2"
+   },
+   "explanation": {
+    "zh": "**思路**\n联立 $2\\sin x=\\tan x$ 时不要两边约去 $\\sin x$（会漏根），而是移项因式分解；同一个因式还能判断上下位置。$\\tan x=\\dfrac{\\sin x}{\\cos x}=-\\dfrac{(\\cos x)'}{\\cos x}$，属于 $\\int\\dfrac{f'}{f}dx=\\log|f|$ 型。体积需要积 $\\sin^2x$、$\\tan^2x$：前者降幂，后者用 $\\tan^2x=\\dfrac{1}{\\cos^2x}-1$，而 $\\int\\dfrac{dx}{\\cos^2x}=\\tan x$。\n\n**解答**\n\n1. **(1) 交点（A）**\n$2\\sin x-\\tan x=\\sin x\\left(2-\\dfrac{1}{\\cos x}\\right)=\\dfrac{\\sin x(2\\cos x-1)}{\\cos x}$。\n为 0 ⇔ $\\sin x=0$ 或 $\\cos x=\\frac12$，在 $0\\leqq x<\\frac{\\pi}{2}$ 上得 $x=0$、$x=\\frac{\\pi}{3}$。A=3。\n并且 $0<x<\\frac{\\pi}{3}$ 时 $\\cos x>\\frac12$，上式 $>0$，$C_1$ 在上方。\n\n2. **(2) 原函数（B）**\n$$\\left\\{-\\log(\\cos x)\\right\\}'=-\\frac{-\\sin x}{\\cos x}=\\tan x$$\n所以 B=①。（$0<x<\\frac{\\pi}{2}$ 时 $\\cos x>0$，不需要绝对值。）\n\n3. **面积（C, D）**\n$$S=\\int_0^{\\frac{\\pi}{3}}(2\\sin x-\\tan x)\\,dx=\\Big[-2\\cos x+\\log(\\cos x)\\Big]_0^{\\frac{\\pi}{3}}=\\left(-1+\\log\\frac12\\right)-(-2+0)=1-\\log2$$\nC=1，D=2。\n\n4. **(3) 化简（E, F）**\n$4\\sin^2x=4\\cdot\\dfrac{1-\\cos2x}{2}=2-2\\cos2x$，$\\tan^2x=\\dfrac{1}{\\cos^2x}-1$，所以\n$$4\\sin^2x-\\tan^2x=3-2\\cos2x-\\frac{1}{\\cos^2x}$$\nE=3，F=2。\n\n5. **体积（G, H, I）**\n在 $0\\leqq x\\leqq\\frac{\\pi}{3}$ 上 $2\\sin x\\geqq\\tan x\\geqq0$，截面是外半径 $2\\sin x$、内半径 $\\tan x$ 的圆环：\n$$V=\\pi\\int_0^{\\frac{\\pi}{3}}\\left(3-2\\cos2x-\\frac{1}{\\cos^2x}\\right)dx=\\pi\\Big[3x-\\sin2x-\\tan x\\Big]_0^{\\frac{\\pi}{3}}=\\pi\\left(\\pi-\\frac{\\sqrt3}{2}-\\sqrt3\\right)=\\pi\\left(\\pi-\\frac{3\\sqrt3}{2}\\right)$$\nG=3，H=3，I=2。\n\n**结论**\nA=3，B=①，C=1，D=2，E=3，F=2，G=3，H=3，I=2。",
+    "keyPoints": [
+     "$\\int\\tan x\\,dx=-\\log|\\cos x|+C$（$\\int\\frac{f'(x)}{f(x)}dx=\\log|f(x)|+C$ 型）",
+     "$\\tan^2x=\\frac{1}{\\cos^2x}-1$，配合 $\\int\\frac{dx}{\\cos^2x}=\\tan x$",
+     "旋转体体积 $V=\\pi\\int(\\text{外}^2-\\text{内}^2)\\,dx$，先确认两曲线在 $x$ 轴同侧"
+    ],
+    "traps": [
+     "选 ⓪ 是符号错：$\\{\\log(\\cos x)\\}'=\\frac{-\\sin x}{\\cos x}=-\\tan x$",
+     "$\\log\\frac12=-\\log2$，所以 $S=1-\\log2\\approx0.31$；得到 $1+\\log2$ 说明符号错了",
+     "$4\\sin^2x$ 降幂得 $2-2\\cos2x$，系数 4 要乘到两项"
+    ],
+    "terms": [
+     {
+      "ja": "共有点",
+      "kana": "きょうゆうてん",
+      "zh": "公共点（交点或切点）"
+     },
+     {
+      "ja": "不定積分",
+      "kana": "ふていせきぶん",
+      "zh": "不定积分（原函数）"
+     },
+     {
+      "ja": "選択肢",
+      "kana": "せんたくし",
+      "zh": "选项"
+     },
+     {
+      "ja": "適するもの",
+      "kana": "てきするもの",
+      "zh": "合适的（符合条件的）选项"
+     },
+     {
+      "ja": "自然対数",
+      "kana": "しぜんたいすう",
+      "zh": "以 $e$ 为底的对数，EJU 中 $\\log$ 不写底时即指它"
+     }
+    ],
+    "shortcut": "看到 $\\tan^2x$ 立刻换成 $\\frac{1}{\\cos^2x}-1$，看到 $\\tan x$ 立刻想 $-\\log(\\cos x)$，这是 EJU 三角积分的两个固定套路。数值检查：$S\\approx0.307$，$V\\approx\\pi\\times0.544\\approx1.71$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-6",
+   "subject": "math",
+   "order": 6,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.explog.func",
+    "math.calc.diff"
+   ],
+   "difficulty": 2,
+   "targetSec": 720,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 定積分で表された関数"
+   },
+   "stem": "次の問いに答えなさい。ただし，$e$ は自然対数の底，$\\log$ は自然対数とする。\n\n(1)　関数 $f(x)$ は，すべての実数 $x$ に対して等式\n\n$$f(x)=\\sin x+2\\int_0^{\\frac{\\pi}{2}}f(t)\\cos t\\,dt$$\n\nを満たしている。$a=\\displaystyle\\int_0^{\\frac{\\pi}{2}}f(t)\\cos t\\,dt$ とおくと，$a$ は定数であり，$f(x)=\\sin x+2a$ と表される。これを $a$ を定める式の右辺に代入すると\n\n$$a=\\dfrac{\\bx{A}}{\\bx{B}}+\\bx{C}\\,a$$\n\nとなる。よって，$a=\\dfrac{\\bx{DE}}{\\bx{F}}$ であり，$f(x)=\\sin x-\\bx{G}$ である。\n\n(2)　関数 $g(x)$ と定数 $c$ は，すべての実数 $x$ に対して等式\n\n$$\\int_c^{x}g(t)\\,dt=e^{2x}-4e^{x}+3\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nを満たしている。① の両辺を $x$ で微分すると\n\n$$g(x)=\\bx{H}\\,e^{2x}-\\bx{I}\\,e^{x}$$\n\nである。また，① に $x=c$ を代入すると，$c$ の値は\n\n$$c=\\bx{J},\\quad \\log\\bx{K}$$\n\nである。\n\n(3)　① の左辺を $F(x)$ とおく。$F(x)$ は $x=\\log\\bx{L}$ のとき，最小値 $\\bx{MN}$ をとる。",
+   "stemZh": "回答下列问题。其中 $e$ 为自然对数的底，$\\log$ 为自然对数。\n\n(1)　函数 $f(x)$ 对所有实数 $x$ 满足等式\n\n$$f(x)=\\sin x+2\\int_0^{\\frac{\\pi}{2}}f(t)\\cos t\\,dt$$\n\n设 $a=\\displaystyle\\int_0^{\\frac{\\pi}{2}}f(t)\\cos t\\,dt$，则 $a$ 是常数，$f(x)$ 可写成 $f(x)=\\sin x+2a$。把它代入定义 $a$ 的式子的右边，得\n\n$$a=\\dfrac{\\bx{A}}{\\bx{B}}+\\bx{C}\\,a$$\n\n所以 $a=\\dfrac{\\bx{DE}}{\\bx{F}}$，$f(x)=\\sin x-\\bx{G}$。\n\n(2)　函数 $g(x)$ 与常数 $c$ 对所有实数 $x$ 满足等式\n\n$$\\int_c^{x}g(t)\\,dt=e^{2x}-4e^{x}+3\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n将 ① 两边对 $x$ 求导，得\n\n$$g(x)=\\bx{H}\\,e^{2x}-\\bx{I}\\,e^{x}$$\n\n另外，在 ① 中代入 $x=c$，得 $c$ 的值为\n\n$$c=\\bx{J},\\quad \\log\\bx{K}$$\n\n(3)　把 ① 的左边记为 $F(x)$。$F(x)$ 在 $x=\\log\\bx{L}$ 时取最小值 $\\bx{MN}$。",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "2",
+    "C": "2",
+    "D": "-",
+    "E": "1",
+    "F": "2",
+    "G": "1",
+    "H": "2",
+    "I": "4",
+    "J": "0",
+    "K": "3",
+    "L": "2",
+    "M": "-",
+    "N": "1"
+   },
+   "explanation": {
+    "zh": "**思路**\n(1) 上下限都是常数的定积分 $\\int_0^{\\frac{\\pi}{2}}f(t)\\cos t\\,dt$ 算出来是一个**数**，设为 $a$，代回原式得到关于 $a$ 的一次方程。(2) 上限含 $x$ 的积分：两边对 $x$ 求导，用 $\\dfrac{d}{dx}\\displaystyle\\int_c^{x}g(t)\\,dt=g(x)$；再令 $x=c$ 使左边 $\\int_c^c=0$，从而求出 $c$。(3) $F(x)=e^{2x}-4e^{x}+3$，令 $u=e^{x}>0$ 化成二次函数。\n\n**解答**\n\n1. **(1) 关于 $a$ 的方程（A, B, C）**\n把 $f(t)=\\sin t+2a$ 代入 $a$ 的定义：\n$$a=\\int_0^{\\frac{\\pi}{2}}(\\sin t+2a)\\cos t\\,dt=\\int_0^{\\frac{\\pi}{2}}\\sin t\\cos t\\,dt+2a\\int_0^{\\frac{\\pi}{2}}\\cos t\\,dt$$\n其中 $\\int_0^{\\frac{\\pi}{2}}\\sin t\\cos t\\,dt=\\left[\\frac{\\sin^2t}{2}\\right]_0^{\\frac{\\pi}{2}}=\\frac12$，$\\int_0^{\\frac{\\pi}{2}}\\cos t\\,dt=\\Big[\\sin t\\Big]_0^{\\frac{\\pi}{2}}=1$。\n所以 $a=\\frac12+2a$，A=1，B=2，C=2。\n\n2. **解 $a$ 与 $f(x)$（DE, F, G）**\n$a=\\frac12+2a\\Rightarrow a=-\\frac12$，DE=−1（D 填「−」，E 填 1），F=2。\n$f(x)=\\sin x+2\\cdot\\left(-\\frac12\\right)=\\sin x-1$，G=1。\n（验算：$\\int_0^{\\frac{\\pi}{2}}(\\sin t-1)\\cos t\\,dt=\\frac12-1=-\\frac12=a$ ✓）\n\n3. **(2) 求导（H, I）**\n左边对 $x$ 求导得 $g(x)$；右边 $(e^{2x})'=2e^{2x}$，$(4e^{x})'=4e^{x}$：\n$$g(x)=2e^{2x}-4e^{x}$$\nH=2，I=4。\n\n4. **求 $c$（J, K）**\n$x=c$ 时左边 $=\\int_c^cg(t)\\,dt=0$，所以 $e^{2c}-4e^{c}+3=0$，即 $(e^{c}-1)(e^{c}-3)=0$。\n$e^{c}=1\\Rightarrow c=0$；$e^{c}=3\\Rightarrow c=\\log3$。J=0，K=3。\n\n5. **(3) 最小值（L, MN）**\n$$F(x)=e^{2x}-4e^{x}+3=\\left(e^{x}-2\\right)^2-1$$\n$e^{x}$ 可以取所有正数，所以 $e^{x}=2$ 即 $x=\\log2$ 时取最小值 $-1$。L=2，MN=−1。\n（用导数：$F'(x)=g(x)=2e^{x}(e^{x}-2)$，$x<\\log2$ 时为负、$x>\\log2$ 时为正，结论相同。）\n\n**结论**\nA=1，B=2，C=2，DE=−1，F=2，G=1，H=2，I=4，J=0，K=3，L=2，MN=−1。",
+    "keyPoints": [
+     "上下限为常数的定积分是常数：设 $a=\\int_0^{\\frac{\\pi}{2}}f(t)\\cos t\\,dt$，代回得到 $a$ 的方程",
+     "$\\frac{d}{dx}\\int_c^{x}g(t)\\,dt=g(x)$；令 $x=c$ 得 $\\int_c^c=0$，用来确定常数",
+     "$e^{2x}=(e^{x})^2$，令 $u=e^{x}>0$ 化成二次函数求最值"
+    ],
+    "traps": [
+     "DE、MN 是负数：答案栏第一格填「−」，第二格填 1",
+     "$e^{2x}$ 的导数是 $2e^{2x}$，不是 $e^{2x}$；合成函数求导别漏乘内层导数",
+     "$c$ 有两个值，不要漏掉 $c=\\log3$；(1) 中 $a$ 是常数，积分时可以直接提到积分号外"
+    ],
+    "terms": [
+     {
+      "ja": "等式を満たす",
+      "kana": "とうしきをみたす",
+      "zh": "满足等式"
+     },
+     {
+      "ja": "定数",
+      "kana": "ていすう",
+      "zh": "常数"
+     },
+     {
+      "ja": "両辺を x で微分する",
+      "kana": "りょうへんを x でびぶんする",
+      "zh": "两边对 x 求导"
+     },
+     {
+      "ja": "代入する",
+      "kana": "だいにゅうする",
+      "zh": "代入"
+     },
+     {
+      "ja": "最小値をとる",
+      "kana": "さいしょうちをとる",
+      "zh": "取得最小值"
+     },
+     {
+      "ja": "左辺・右辺",
+      "kana": "さへん・うへん",
+      "zh": "等式的左边、右边"
+     }
+    ],
+    "shortcut": "(1) 可直接设 $f(x)=\\sin x+k$（$k$ 为常数）代回原式：$k=2\\left(\\frac12+k\\right)\\Rightarrow k=-1$，一步得到 G=1，再由 $k=2a$ 得 $a=-\\frac12$。(2) 求 $c$ 其实就是解 $F(x)=0$，即 $u^2-4u+3=0$ 的正根 $u=1,3$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-7",
+   "subject": "math",
+   "order": 7,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.calc.diff",
+    "math.explog.func"
+   ],
+   "difficulty": 2,
+   "targetSec": 1100,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 絶対値を含む定積分の最小値"
+   },
+   "stem": "$a$ を正の定数とし\n\n$$I(a)=\\int_0^1\\left|e^{x}-a\\right|dx$$\n\nとおく。$I(a)$ の最小値を求めよう。ただし，$e$ は自然対数の底，$\\log$ は自然対数とする。\n\n(1)　次の文中の \\bx{C}，\\bx{D} には，下の選択肢 ⓪，① のどちらかから適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n$0<a\\leqq1$ のとき $I(a)=e-\\bx{A}-a$ であり，$a\\geqq e$ のとき $I(a)=a-e+\\bx{B}$ である。したがって，$I(a)$ は $0<a\\leqq1$ の範囲で \\bx{C} し，$a\\geqq e$ の範囲で \\bx{D} する。\n\n⓪　増加　　　①　減少\n\n(2)　$1<a<e$ のとき，$e^{x}=a$ となる $x$ の値は $\\log a$ であり，$0<\\log a<1$ である。このとき\n\n$$\\int_0^{\\log a}\\left(a-e^{x}\\right)dx=a\\log a-a+\\bx{E}$$\n\n$$\\int_{\\log a}^{1}\\left(e^{x}-a\\right)dx=a\\log a-\\bx{F}\\,a+e$$\n\nであるから\n\n$$I(a)=\\bx{G}\\,a\\log a-\\bx{H}\\,a+e+\\bx{I}$$\n\nである。\n\n(3)　$1<a<e$ のとき\n\n$$I'(a)=\\bx{J}\\log a-\\bx{K}$$\n\nである。(1) の結果とあわせると，$I(a)$ は $a=e^{\\frac{\\bx{L}}{\\bx{M}}}$ のとき最小となり，その最小値は\n\n$$e-\\bx{N}\\sqrt{e}+\\bx{O}$$\n\nである。",
+   "stemZh": "设 $a$ 为正的常数，令\n\n$$I(a)=\\int_0^1\\left|e^{x}-a\\right|dx$$\n\n求 $I(a)$ 的最小值。其中 $e$ 为自然对数的底，$\\log$ 为自然对数。\n\n(1)　下文中的 \\bx{C}、\\bx{D} 请从下面的选项 ⓪、① 中选出合适的填入，其他的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n当 $0<a\\leqq1$ 时 $I(a)=e-\\bx{A}-a$；当 $a\\geqq e$ 时 $I(a)=a-e+\\bx{B}$。因此，$I(a)$ 在 $0<a\\leqq1$ 的范围内 \\bx{C}，在 $a\\geqq e$ 的范围内 \\bx{D}。\n\n⓪　递增　　　①　递减\n\n(2)　当 $1<a<e$ 时，使 $e^{x}=a$ 的 $x$ 值为 $\\log a$，且 $0<\\log a<1$。此时\n\n$$\\int_0^{\\log a}\\left(a-e^{x}\\right)dx=a\\log a-a+\\bx{E}$$\n\n$$\\int_{\\log a}^{1}\\left(e^{x}-a\\right)dx=a\\log a-\\bx{F}\\,a+e$$\n\n所以\n\n$$I(a)=\\bx{G}\\,a\\log a-\\bx{H}\\,a+e+\\bx{I}$$\n\n(3)　当 $1<a<e$ 时\n\n$$I'(a)=\\bx{J}\\log a-\\bx{K}$$\n\n结合 (1) 的结果，$I(a)$ 在 $a=e^{\\frac{\\bx{L}}{\\bx{M}}}$ 时取最小值，最小值为\n\n$$e-\\bx{N}\\sqrt{e}+\\bx{O}$$",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "1",
+    "C": "1",
+    "D": "0",
+    "E": "1",
+    "F": "2",
+    "G": "2",
+    "H": "3",
+    "I": "1",
+    "J": "2",
+    "K": "1",
+    "L": "1",
+    "M": "2",
+    "N": "2",
+    "O": "1"
+   },
+   "explanation": {
+    "zh": "**思路**\n绝对值里 $e^{x}-a$ 的符号取决于 $e^{x}$ 与 $a$ 的大小。$0\\leqq x\\leqq1$ 时 $1\\leqq e^{x}\\leqq e$，所以按 $a\\leqq1$、$1<a<e$、$a\\geqq e$ 三种情况讨论：两端情况绝对值可以直接去掉；中间情况在 $x=\\log a$ 处把积分拆成两段。最后把 $I(a)$ 看成 $a$ 的函数，求导找最小值，并结合两端的单调性确认是整体最小。\n\n**解答**\n\n1. **(1) $0<a\\leqq1$（A）**\n$e^{x}\\geqq1\\geqq a$，所以 $|e^{x}-a|=e^{x}-a$：\n$$I(a)=\\int_0^1\\left(e^{x}-a\\right)dx=(e-1)-a$$\nA=1。\n\n2. **$a\\geqq e$（B）**\n$e^{x}\\leqq e\\leqq a$，所以 $|e^{x}-a|=a-e^{x}$：\n$$I(a)=\\int_0^1\\left(a-e^{x}\\right)dx=a-(e-1)=a-e+1$$\nB=1。\n\n3. **单调性（C, D）**\n$e-1-a$ 随 $a$ 增大而减小：C=①（減少）；$a-e+1$ 随 $a$ 增大而增大：D=⓪（増加）。\n\n4. **(2) 第一段（E）**\n$0\\leqq x\\leqq\\log a$ 时 $e^{x}\\leqq a$：\n$$\\int_0^{\\log a}\\left(a-e^{x}\\right)dx=\\Big[ax-e^{x}\\Big]_0^{\\log a}=\\left(a\\log a-a\\right)-(0-1)=a\\log a-a+1$$\n（$e^{\\log a}=a$。）E=1。\n\n5. **第二段（F）**\n$\\log a\\leqq x\\leqq1$ 时 $e^{x}\\geqq a$：\n$$\\int_{\\log a}^{1}\\left(e^{x}-a\\right)dx=\\Big[e^{x}-ax\\Big]_{\\log a}^{1}=(e-a)-\\left(a-a\\log a\\right)=a\\log a-2a+e$$\nF=2。\n\n6. **相加（G, H, I）**\n$$I(a)=2a\\log a-3a+e+1$$\nG=2，H=3，I=1。\n\n7. **(3) 求导（J, K）**\n$(a\\log a)'=\\log a+a\\cdot\\frac1a=\\log a+1$，所以\n$$I'(a)=2(\\log a+1)-3=2\\log a-1$$\nJ=2，K=1。\n\n8. **最小点（L, M）**\n$I'(a)=0\\iff\\log a=\\frac12\\iff a=e^{\\frac12}=\\sqrt e$（$1<\\sqrt e<e$ ✓）。$1<a<\\sqrt e$ 时 $I'(a)<0$，$\\sqrt e<a<e$ 时 $I'(a)>0$。结合 (1) 与 $I(a)$ 的连续性：\n\n| $a$ | $0<a\\leqq1$ | $1<a<\\sqrt e$ | $\\sqrt e$ | $\\sqrt e<a<e$ | $a\\geqq e$ |\n|---|---|---|---|---|---|\n| $I(a)$ | 递减 | 递减 | 最小 | 递增 | 递增 |\n\n所以整体最小在 $a=e^{\\frac12}$，L=1，M=2。\n\n9. **最小值（N, O）**\n代入 $a=\\sqrt e$，$\\log a=\\frac12$：\n$$I\\left(\\sqrt e\\right)=2\\sqrt e\\cdot\\frac12-3\\sqrt e+e+1=e-2\\sqrt e+1=\\left(\\sqrt e-1\\right)^2$$\nN=2，O=1。\n\n**结论**\nA=1，B=1，C=①，D=⓪，E=1，F=2，G=2，H=3，I=1，J=2，K=1，L=1，M=2，N=2，O=1。",
+    "keyPoints": [
+     "含绝对值的定积分：找绝对值内为 0 的点（$x=\\log a$），按它是否落在积分区间内分类讨论",
+     "$(a\\log a)'=\\log a+1$，$e^{\\log a}=a$",
+     "含参数积分的最值：先积分得到参数的函数，再对参数求导；各段单调性 + 连续性拼成整体"
+    ],
+    "traps": [
+     "$a$ 是参数、$x$ 是积分变量：积分完得到的是 $a$ 的函数，(3) 是对 $a$ 求导",
+     "$\\Big[e^{x}-ax\\Big]_{\\log a}^{1}$ 的下限值是 $a-a\\log a$，整体减去时两项都要变号",
+     "只在 $1<a<e$ 内找到极值还不够，要用 (1) 确认 $a\\leqq1$ 递减、$a\\geqq e$ 递增，才能断定是整体最小"
+    ],
+    "terms": [
+     {
+      "ja": "正の定数",
+      "kana": "せいのていすう",
+      "zh": "正的常数"
+     },
+     {
+      "ja": "最小値",
+      "kana": "さいしょうち",
+      "zh": "最小值"
+     },
+     {
+      "ja": "増加",
+      "kana": "ぞうか",
+      "zh": "（函数）递增"
+     },
+     {
+      "ja": "減少",
+      "kana": "げんしょう",
+      "zh": "（函数）递减"
+     },
+     {
+      "ja": "あわせると",
+      "kana": "あわせると",
+      "zh": "结合起来看、综合起来"
+     },
+     {
+      "ja": "範囲",
+      "kana": "はんい",
+      "zh": "范围、区间"
+     }
+    ],
+    "shortcut": "几何意义：$I(a)$ 是曲线 $y=e^{x}$ 与直线 $y=a$ 在 $0\\leqq x\\leqq1$ 上夹出的面积。把直线向上平移 $\\Delta a$，左段 $0\\leqq x\\leqq\\log a$（直线在曲线上方，夹在两者之间的部分）增加约 $\\log a\\cdot\\Delta a$，右段 $\\log a\\leqq x\\leqq1$（曲线在直线上方）减少约 $(1-\\log a)\\Delta a$，所以 $I'(a)=\\log a-(1-\\log a)=2\\log a-1$；最优时交点 $x=\\log a=\\frac12$ 恰好在区间中点（\"中位数\"性质）。数值：$(\\sqrt e-1)^2\\approx0.42$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-calc-int-8",
+   "subject": "math",
+   "order": 8,
+   "topic": "math.calc.int",
+   "tags": [
+    "math.func.limit"
+   ],
+   "difficulty": 3,
+   "targetSec": 1200,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 積分法 部分積分による漸化式と極限"
+   },
+   "stem": "自然数 $n$ に対して\n\n$$I_n=\\int_1^{e}(\\log x)^n\\,dx$$\n\nとおく。ただし，$\\log$ は自然対数，$e$ は自然対数の底とする。\n\n次の文中の \\bx{B}，\\bx{C}，\\bx{L}，\\bx{M}，\\bx{N} には，下の選択肢 ⓪ 〜 ⑨ の中から適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n(1)　部分積分法を用いると，$I_1=\\bx{A}$ である。\n\n(2)　$n\\geqq2$ のとき，部分積分法により\n\n$$I_n=e-\\left(\\bx{B}\\right)I_{\\bx{C}}$$\n\nが成り立つ。これを用いると\n\n$$I_2=e-\\bx{D},\\qquad I_3=\\bx{E}-\\bx{F}\\,e,\\qquad I_4=\\bx{G}\\,e-\\bx{HI}$$\n\nである。\n\n(3)　$1<x<e$ のとき $0<\\log x<1$ であるから，すべての自然数 $n$ に対して $0<I_{n+1}<I_n$ が成り立つ。(2) の関係式を用いると，不等式 $I_{n+1}<I_n$ は $I_n>\\dfrac{e}{n+\\bx{J}}$ と同値であり，$n\\geqq2$ のとき，不等式 $I_n<I_{n-1}$ は $I_n<\\dfrac{e}{n+\\bx{K}}$ と同値である。よって，$n\\geqq2$ のとき\n\n$$\\dfrac{e}{n+\\bx{J}}<I_n<\\dfrac{e}{n+\\bx{K}}$$\n\nが成り立つから\n\n$$\\lim_{n\\to\\infty}I_n=\\bx{L},\\qquad \\lim_{n\\to\\infty}nI_n=\\bx{M},\\qquad \\lim_{n\\to\\infty}\\dfrac{I_{n+1}}{I_n}=\\bx{N}$$\n\nである。\n\n⓪　$0$　　①　$1$　　②　$2$　　③　$n-1$　　④　$n$\n⑤　$n+1$　　⑥　$e$　　⑦　$\\dfrac{1}{e}$　　⑧　$e-1$　　⑨　$\\infty$\n\n注）部分積分法：integration by parts，同値：equivalent",
+   "stemZh": "对自然数 $n$，令\n\n$$I_n=\\int_1^{e}(\\log x)^n\\,dx$$\n\n其中 $\\log$ 为自然对数，$e$ 为自然对数的底。\n\n下文中的 \\bx{B}、\\bx{C}、\\bx{L}、\\bx{M}、\\bx{N} 请从下面的选项 ⓪ ～ ⑨ 中选出合适的填入，其他的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n(1)　利用分部积分法，$I_1=\\bx{A}$。\n\n(2)　当 $n\\geqq2$ 时，由分部积分法得\n\n$$I_n=e-\\left(\\bx{B}\\right)I_{\\bx{C}}$$\n\n成立。利用它得\n\n$$I_2=e-\\bx{D},\\qquad I_3=\\bx{E}-\\bx{F}\\,e,\\qquad I_4=\\bx{G}\\,e-\\bx{HI}$$\n\n(3)　当 $1<x<e$ 时 $0<\\log x<1$，所以对所有自然数 $n$，$0<I_{n+1}<I_n$ 成立。利用 (2) 的关系式，不等式 $I_{n+1}<I_n$ 等价于 $I_n>\\dfrac{e}{n+\\bx{J}}$；当 $n\\geqq2$ 时，不等式 $I_n<I_{n-1}$ 等价于 $I_n<\\dfrac{e}{n+\\bx{K}}$。所以当 $n\\geqq2$ 时\n\n$$\\dfrac{e}{n+\\bx{J}}<I_n<\\dfrac{e}{n+\\bx{K}}$$\n\n成立，因此\n\n$$\\lim_{n\\to\\infty}I_n=\\bx{L},\\qquad \\lim_{n\\to\\infty}nI_n=\\bx{M},\\qquad \\lim_{n\\to\\infty}\\dfrac{I_{n+1}}{I_n}=\\bx{N}$$\n\n⓪　$0$　　①　$1$　　②　$2$　　③　$n-1$　　④　$n$\n⑤　$n+1$　　⑥　$e$　　⑦　$\\dfrac{1}{e}$　　⑧　$e-1$　　⑨　$\\infty$\n\n注）部分積分法：分部积分法；同値：等价",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "4",
+    "C": "3",
+    "D": "2",
+    "E": "6",
+    "F": "2",
+    "G": "9",
+    "H": "2",
+    "I": "4",
+    "J": "2",
+    "K": "1",
+    "L": "0",
+    "M": "6",
+    "N": "1"
+   },
+   "explanation": {
+    "zh": "**思路**\n$\\int(\\log x)^n\\,dx$ 用分部积分：取 $u=(\\log x)^n$、$v'=1$（$v=x$），求导后 $\\log$ 的次数降 1，而 $x\\cdot\\frac1x=1$ 正好消掉，得到递推式 $I_n=e-nI_{n-1}$。极限部分用夹逼：由 $0<\\log x<1$ 得 $I_n$ 单调递减，再把\"递减\"代入递推式，得到 $I_n$ 的上下界。\n\n**解答**\n\n1. **(1)（A）**\n$$I_1=\\int_1^{e}\\log x\\,dx=\\Big[x\\log x-x\\Big]_1^{e}=(e-e)-(0-1)=1$$\nA=1。\n\n2. **(2) 递推式（B, C）**\n$u=(\\log x)^n$，$u'=n(\\log x)^{n-1}\\cdot\\frac1x$，$v=x$：\n$$I_n=\\Big[x(\\log x)^n\\Big]_1^{e}-\\int_1^{e}x\\cdot n(\\log x)^{n-1}\\cdot\\frac1x\\,dx=(e\\cdot1-1\\cdot0)-nI_{n-1}=e-nI_{n-1}$$\nB=④（$n$），C=③（$n-1$）。\n\n3. **具体值（D, E, F, G, HI）**\n- $I_2=e-2I_1=e-2$，D=2。\n- $I_3=e-3I_2=e-3(e-2)=6-2e$，E=6，F=2。\n- $I_4=e-4I_3=e-4(6-2e)=9e-24$，G=9，HI=24。\n\n4. **(3) 单调性**\n$1<x<e$ 时 $0<\\log x<1$，所以 $0<(\\log x)^{n+1}<(\\log x)^{n}$，积分得 $0<I_{n+1}<I_n$。\n\n5. **下界（J）**\n递推式中把 $n$ 换成 $n+1$：$I_{n+1}=e-(n+1)I_n$（对所有 $n\\geqq1$ 成立）。代入 $I_{n+1}<I_n$，逐步等价变形：\n$$I_{n+1}<I_n\\iff e-(n+1)I_n<I_n\\iff(n+2)I_n>e\\iff I_n>\\frac{e}{n+2}$$\n每一步都是\"当且仅当\"，所以与 $I_{n+1}<I_n$ 同值的只能是 $I_n>\\frac{e}{n+2}$，J=2。\n\n6. **上界（K）**\n$n\\geqq2$ 时递推式 $I_n=e-nI_{n-1}$ 可用。把 $I_n<I_{n-1}$ 两边乘 $-n$（变号）再加 $e$：\n$$I_n<I_{n-1}\\iff e-nI_{n-1}<e-nI_n\\iff I_n<e-nI_n\\iff(n+1)I_n<e\\iff I_n<\\frac{e}{n+1}$$\nK=1。（另法：由 $0<I_{n+1}=e-(n+1)I_n$ 也直接得 $I_n<\\frac{e}{n+1}$，且对 $n=1$ 也成立。）\n\n7. **极限（L, M, N）**\n- $\\frac{e}{n+2}<I_n<\\frac{e}{n+1}$，两端都 $\\to0$，所以 $\\lim I_n=0$，L=⓪。\n- 乘以 $n$：$\\frac{ne}{n+2}<nI_n<\\frac{ne}{n+1}$，两端都 $\\to e$，所以 $\\lim nI_n=e$，M=⑥。\n- $\\frac{I_{n+1}}{I_n}<1$，且 $\\frac{I_{n+1}}{I_n}>\\frac{e/(n+3)}{e/(n+1)}=\\frac{n+1}{n+3}\\to1$，所以 $\\lim\\frac{I_{n+1}}{I_n}=1$，N=①。\n\n**结论**\nA=1，B=④，C=③，D=2，E=6，F=2，G=9，HI=24，J=2，K=1，L=⓪，M=⑥，N=①。",
+    "keyPoints": [
+     "$\\int(\\log x)^n\\,dx$：取 $u=(\\log x)^n,\\ v'=1$ 分部积分，得递推式 $I_n=e-nI_{n-1}$",
+     "被积函数比大小 ⇒ 积分比大小：$0<\\log x<1$ ⇒ $I_{n+1}<I_n$",
+     "把单调性代入递推式得到上下界，再用夹逼定理（はさみうちの原理）求极限"
+    ],
+    "traps": [
+     "计算细节：$\\Big[x(\\log x)^n\\Big]_1^{e}=e\\cdot1-1\\cdot0=e$（下限 $\\log1=0$）；$I_3=e-3(e-2)=6-2e\\approx0.56$，展开括号注意符号，$I_n$ 必须为正，可用来自检",
+     "$\\lim nI_n$ 不是 0：$I_n\\to0$，但它大约像 $\\frac{e}{n}$ 那样趋于 0，所以 $nI_n\\to e$",
+     "题目问的是与 $I_{n+1}<I_n$「同値」的不等式：$I_n>\\frac{e}{n+3}$ 虽然也成立，但不与它等价，所以 J 只能填 2"
+    ],
+    "terms": [
+     {
+      "ja": "自然数",
+      "kana": "しぜんすう",
+      "zh": "自然数（EJU 中指正整数 1, 2, 3, …）"
+     },
+     {
+      "ja": "部分積分法",
+      "kana": "ぶぶんせきぶんほう",
+      "zh": "分部积分法"
+     },
+     {
+      "ja": "関係式",
+      "kana": "かんけいしき",
+      "zh": "关系式（这里指递推式）"
+     },
+     {
+      "ja": "極限",
+      "kana": "きょくげん",
+      "zh": "极限"
+     },
+     {
+      "ja": "はさみうちの原理",
+      "kana": "はさみうちのげんり",
+      "zh": "夹逼定理（本题解析所用的方法）"
+     },
+     {
+      "ja": "同値",
+      "kana": "どうち",
+      "zh": "等价（两个条件可以互相推出，即“当且仅当”）"
+     }
+    ],
+    "shortcut": "M 也可直接从递推式读出：$nI_{n-1}=e-I_n\\to e-0=e$，即 $nI_{n-1}\\to e$，从而 $nI_n\\to e$。数值检查：$I_2\\approx0.718$，$I_3\\approx0.563$，$I_4\\approx0.465$，都落在 $\\left(\\frac{e}{n+2},\\ \\frac{e}{n+1}\\right)$ 内且递减。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  }
+ ]
+}

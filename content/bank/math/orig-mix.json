@@ -1,0 +1,653 @@
+{
+ "title": "原创 · 数列・ベクトル・複素数平面（コース2 大問形式 8题）",
+ "items": [
+  {
+   "id": "orig-math-mix-1",
+   "subject": "math",
+   "order": 1,
+   "topic": "math.seq.seq",
+   "difficulty": 1,
+   "targetSec": 600,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 数列（漸化式・和）"
+   },
+   "stem": "数列 $\\{a_n\\}$ は\n\n$$a_1=3,\\qquad a_{n+1}=3a_n-4n+6\\qquad(n=1,\\,2,\\,3,\\,\\cdots)$$\n\nで定められている。\n\n(1)　$a_2=\\bx{AB}$ である。\n\n(2)　$b_n=a_n+pn+q$ とおく。数列 $\\{b_n\\}$ が公比 3 の等比数列となるような定数 $p,\\ q$ の値は\n\n$$p=\\bx{CD},\\qquad q=\\bx{E}$$\n\nである。したがって，数列 $\\{a_n\\}$ の一般項は\n\n$$a_n=\\bx{F}^{\\,n}+\\bx{G}\\,n-\\bx{H}$$\n\nである。\n\n(3)　数列 $\\{a_n\\}$ の初項から第 $n$ 項までの和を $S_n$ とすると\n\n$$S_n=\\dfrac{\\bx{I}^{\\,n+1}-\\bx{J}}{\\bx{K}}+n^{\\bx{L}}-n$$\n\nである。また，$S_n>1000$ を満たす最小の自然数 $n$ は $n=\\bx{M}$ である。\n\n注）等比数列：geometric sequence，公比：common ratio，一般項：general term",
+   "stemZh": "数列 $\\{a_n\\}$ 由\n\n$$a_1=3,\\qquad a_{n+1}=3a_n-4n+6\\qquad(n=1,\\,2,\\,3,\\,\\cdots)$$\n\n确定。\n\n(1)　$a_2=\\bx{AB}$。\n\n(2)　令 $b_n=a_n+pn+q$。使数列 $\\{b_n\\}$ 成为公比为 3 的等比数列的常数 $p,\\ q$ 的值为\n\n$$p=\\bx{CD},\\qquad q=\\bx{E}$$\n\n因此，数列 $\\{a_n\\}$ 的通项为\n\n$$a_n=\\bx{F}^{\\,n}+\\bx{G}\\,n-\\bx{H}$$\n\n(3)　设数列 $\\{a_n\\}$ 从首项到第 $n$ 项的和为 $S_n$，则\n\n$$S_n=\\dfrac{\\bx{I}^{\\,n+1}-\\bx{J}}{\\bx{K}}+n^{\\bx{L}}-n$$\n\n另外，满足 $S_n>1000$ 的最小自然数 $n$ 为 $n=\\bx{M}$。\n\n注）等比数列：等比数列，公比：公比，一般項：通项（一般项）",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "1",
+    "C": "-",
+    "D": "2",
+    "E": "2",
+    "F": "3",
+    "G": "2",
+    "H": "2",
+    "I": "3",
+    "J": "3",
+    "K": "2",
+    "L": "2",
+    "M": "6"
+   },
+   "explanation": {
+    "zh": "**思路**　$a_{n+1}=3a_n+(n\\text{ 的一次式})$ 型递推：设 $b_n=a_n+pn+q$，选 $p,\\,q$ 让多出来的一次式被“吸收”，$\\{b_n\\}$ 就成了公比 3 的等比数列。求出通项后，$S_n$ 拆成“等比部分 + 等差部分”分别求和。\n\n**解答**\n\n**(1) AB**\n\n$a_2=3a_1-4\\cdot1+6=9-4+6=11$，AB = 11。\n\n**(2) CD, E, F, G, H**\n\n1. 要求 $b_{n+1}=3b_n$，即\n$$a_{n+1}+p(n+1)+q=3(a_n+pn+q)$$\n把 $a_{n+1}=3a_n-4n+6$ 代入，两边的 $3a_n$ 消去：\n$$-4n+6+pn+p+q=3pn+3q\\iff(-2p-4)\\,n+(p-2q+6)=0$$\n2. 对所有 $n$ 都成立 ⇒ $-2p-4=0$ 且 $p-2q+6=0$，得 $p=-2$，$q=2$。CD = $-2$（C 填「−」，D = 2），E = 2。\n3. $b_n=a_n-2n+2$，$b_1=3-2+2=3$，所以 $b_n=3\\cdot3^{n-1}=3^n$，\n$$a_n=3^n+2n-2$$\nF = 3，G = 2，H = 2。（检验：$a_2=9+4-2=11$ ✓）\n\n**(3) I, J, K, L, M**\n\n1. $$S_n=\\sum_{k=1}^{n}3^k+\\sum_{k=1}^{n}(2k-2)=\\frac{3(3^n-1)}{3-1}+n(n+1)-2n=\\frac{3^{n+1}-3}{2}+n^2-n$$\nI = 3，J = 3，K = 2，L = 2。\n2. 因为 $a_n>0$，$S_n$ 单调递增。$S_5=\\dfrac{729-3}{2}+20=383$，$S_6=\\dfrac{2187-3}{2}+30=1122$，所以满足 $S_n>1000$ 的最小 $n$ 是 6，M = 6。\n\n**结论**　AB = 11，CD = $-2$，E = 2，F = 3，G = 2，H = 2，I = 3，J = 3，K = 2，L = 2，M = 6。",
+    "keyPoints": [
+     "$a_{n+1}=ra_n+(\\text{一次式})$：设 $b_n=a_n+pn+q$ 化为等比数列，比较 $n$ 的系数与常数项定出 $p,\\,q$",
+     "等比部分求和：$\\sum_{k=1}^{n}3^k=\\dfrac{3(3^n-1)}{2}=\\dfrac{3^{n+1}-3}{2}$"
+    ],
+    "traps": [
+     "$p=-2$ 是负数，C 格要填「−」；比较系数时别漏掉 $p(n+1)$ 展开出的常数 $p$",
+     "$\\sum_{k=1}^{n}3^k$ 的首项是 3 不是 1：结果是 $\\dfrac{3^{n+1}-3}{2}$，不是 $\\dfrac{3^n-1}{2}$",
+     "$\\sum_{k=1}^{n}(2k-2)=n(n+1)-2n=n^2-n$，常数 $-2$ 要乘以项数 $n$"
+    ],
+    "terms": [
+     {
+      "ja": "定める",
+      "kana": "さだめる",
+      "zh": "规定、定义（数列由……确定）"
+     },
+     {
+      "ja": "定数",
+      "kana": "ていすう",
+      "zh": "常数（与 n 无关的数）"
+     },
+     {
+      "ja": "公比",
+      "kana": "こうひ",
+      "zh": "等比数列相邻两项之比"
+     },
+     {
+      "ja": "一般項",
+      "kana": "いっぱんこう",
+      "zh": "通项公式，用 n 表示的第 n 项"
+     },
+     {
+      "ja": "初項",
+      "kana": "しょこう",
+      "zh": "首项（第 1 项）"
+     },
+     {
+      "ja": "自然数",
+      "kana": "しぜんすう",
+      "zh": "正整数 1, 2, 3, …（日本的自然数不含 0）"
+     }
+    ],
+    "shortcut": "找“特解”更快：设 $a_n=An+B$ 满足递推式，$A(n+1)+B=3(An+B)-4n+6$ ⇒ $A=2$，$B=-2$。于是 $a_n-(2n-2)$ 是公比 3 的等比数列，$a_n=3^n+2n-2$；对应 $b_n=a_n-2n+2$，即 $p=-2$，$q=2$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-2",
+   "subject": "math",
+   "order": 2,
+   "topic": "math.seq.seq",
+   "difficulty": 2,
+   "targetSec": 1150,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 数列（和と一般項・Σk·2^k・部分分数分解）"
+   },
+   "stem": "数列 $\\{a_n\\}$ の初項から第 $n$ 項までの和 $S_n$ が\n\n$$S_n=2a_n-2n\\qquad(n=1,\\,2,\\,3,\\,\\cdots)$$\n\nを満たしている。\n\n(1)　$a_1=\\bx{A}$ である。また，$a_{n+1}=S_{n+1}-S_n$ を用いると\n\n$$a_{n+1}=\\bx{B}\\,a_n+\\bx{C}$$\n\nが得られる。よって，数列 $\\{a_n\\}$ の一般項は\n\n$$a_n=\\bx{D}^{\\,n+\\bx{E}}-\\bx{F}$$\n\nである。\n\n(2)　$b_n=n\\,(a_n+2)$ とおき，数列 $\\{b_n\\}$ の初項から第 $n$ 項までの和を $T_n$ とする。$T_n-2T_n$ を計算すると\n\n$$-T_n=\\left(2^2+2^3+\\cdots+2^{n+1}\\right)-n\\cdot2^{\\,n+\\bx{G}}$$\n\nとなるから\n\n$$T_n=\\left(n-\\bx{H}\\right)\\cdot2^{\\,n+\\bx{I}}+\\bx{J}$$\n\nである。\n\n(3)　$c_n=\\dfrac{1}{\\log_2(a_n+2)\\cdot\\log_2(a_{n+1}+2)}$ とおくと\n\n$$c_n=\\dfrac{1}{n+\\bx{K}}-\\dfrac{1}{n+\\bx{L}}$$\n\nであるから，数列 $\\{c_n\\}$ の初項から第 $n$ 項までの和を $U_n$ とすると\n\n$$U_n=\\dfrac{n}{\\bx{M}\\,(n+\\bx{N})}$$\n\nである。したがって，$U_n>\\dfrac{49}{100}$ を満たす最小の自然数 $n$ は $n=\\bx{OP}$ である。\n\n注）一般項：general term",
+   "stemZh": "数列 $\\{a_n\\}$ 从首项到第 $n$ 项的和 $S_n$ 满足\n\n$$S_n=2a_n-2n\\qquad(n=1,\\,2,\\,3,\\,\\cdots)$$\n\n(1)　$a_1=\\bx{A}$。另外，利用 $a_{n+1}=S_{n+1}-S_n$ 可得\n\n$$a_{n+1}=\\bx{B}\\,a_n+\\bx{C}$$\n\n因此，数列 $\\{a_n\\}$ 的通项为\n\n$$a_n=\\bx{D}^{\\,n+\\bx{E}}-\\bx{F}$$\n\n(2)　令 $b_n=n\\,(a_n+2)$，设数列 $\\{b_n\\}$ 从首项到第 $n$ 项的和为 $T_n$。计算 $T_n-2T_n$，得\n\n$$-T_n=\\left(2^2+2^3+\\cdots+2^{n+1}\\right)-n\\cdot2^{\\,n+\\bx{G}}$$\n\n所以\n\n$$T_n=\\left(n-\\bx{H}\\right)\\cdot2^{\\,n+\\bx{I}}+\\bx{J}$$\n\n(3)　令 $c_n=\\dfrac{1}{\\log_2(a_n+2)\\cdot\\log_2(a_{n+1}+2)}$，则\n\n$$c_n=\\dfrac{1}{n+\\bx{K}}-\\dfrac{1}{n+\\bx{L}}$$\n\n因此，设数列 $\\{c_n\\}$ 从首项到第 $n$ 项的和为 $U_n$，则\n\n$$U_n=\\dfrac{n}{\\bx{M}\\,(n+\\bx{N})}$$\n\n于是，满足 $U_n>\\dfrac{49}{100}$ 的最小自然数 $n$ 为 $n=\\bx{OP}$。\n\n注）一般項：通项",
+   "format": "blanks",
+   "blanks": {
+    "A": "2",
+    "B": "2",
+    "C": "2",
+    "D": "2",
+    "E": "1",
+    "F": "2",
+    "G": "2",
+    "H": "1",
+    "I": "2",
+    "J": "4",
+    "K": "1",
+    "L": "2",
+    "M": "2",
+    "N": "2",
+    "O": "9",
+    "P": "9"
+   },
+   "explanation": {
+    "zh": "**思路**　已知 $S_n$ 与 $a_n$ 的关系：先代 $n=1$ 求首项，再用 $a_{n+1}=S_{n+1}-S_n$ 消去 $S$，得到递推式。(2) 是“等差 × 等比”型求和，用错位相减（算 $T_n-rT_n$）。(3) 分母是相邻两个整数之积，用裂项相消。\n\n**解答**\n\n**(1) A, B, C, D, E, F**\n\n1. $n=1$：$S_1=a_1=2a_1-2$，所以 $a_1=2$，A = 2。\n2. $S_{n+1}-S_n=\\{2a_{n+1}-2(n+1)\\}-(2a_n-2n)$，左边就是 $a_{n+1}$：\n$$a_{n+1}=2a_{n+1}-2a_n-2\\iff a_{n+1}=2a_n+2$$\nB = 2，C = 2。\n3. 由 $\\alpha=2\\alpha+2$ 得 $\\alpha=-2$，于是 $a_{n+1}+2=2(a_n+2)$，且 $a_1+2=4$：\n$$a_n+2=4\\cdot2^{n-1}=2^{n+1},\\qquad a_n=2^{n+1}-2$$\nD = 2，E = 1，F = 2。（检验：$S_1=2=2\\cdot2-2$ ✓）\n\n**(2) G, H, I, J**\n\n1. $b_n=n\\cdot2^{n+1}$，把 $T_n$ 和 $2T_n$ 错开一位对齐：\n$$\\begin{aligned}T_n&=1\\cdot2^2+2\\cdot2^3+\\cdots+n\\cdot2^{n+1}\\\\2T_n&=1\\cdot2^3+\\cdots+(n-1)\\cdot2^{n+1}+n\\cdot2^{n+2}\\end{aligned}$$\n相减：$-T_n=(2^2+2^3+\\cdots+2^{n+1})-n\\cdot2^{n+2}$，G = 2。\n2. 括号内是首项 4、公比 2、共 $n$ 项的等比数列之和：$\\dfrac{4(2^n-1)}{2-1}=2^{n+2}-4$。\n$$-T_n=2^{n+2}-4-n\\cdot2^{n+2}\\iff T_n=(n-1)\\cdot2^{n+2}+4$$\nH = 1，I = 2，J = 4。（检验：$T_1=b_1=4$ ✓；$T_2=4+16=20=1\\cdot16+4$ ✓）\n\n**(3) K, L, M, N, OP**\n\n1. $\\log_2(a_n+2)=\\log_2 2^{n+1}=n+1$，$\\log_2(a_{n+1}+2)=n+2$，所以\n$$c_n=\\frac{1}{(n+1)(n+2)}=\\frac{1}{n+1}-\\frac{1}{n+2}$$\nK = 1，L = 2。\n2. 裂项相消：\n$$U_n=\\left(\\frac12-\\frac13\\right)+\\left(\\frac13-\\frac14\\right)+\\cdots+\\left(\\frac{1}{n+1}-\\frac{1}{n+2}\\right)=\\frac12-\\frac{1}{n+2}=\\frac{n}{2(n+2)}$$\nM = 2，N = 2。\n3. $\\dfrac{n}{2(n+2)}>\\dfrac{49}{100}\\iff100n>98n+196\\iff n>98$，最小的自然数 $n=99$，OP = 99。\n\n**结论**　A = 2，B = 2，C = 2，D = 2，E = 1，F = 2，G = 2，H = 1，I = 2，J = 4，K = 1，L = 2，M = 2，N = 2，OP = 99。",
+    "keyPoints": [
+     "由 $S_n$ 求 $a_n$：$a_1=S_1$，$a_{n+1}=S_{n+1}-S_n$；关系式里同时有 $S_n$ 和 $a_n$ 时，相邻两式相减消去 $S$",
+     "“等差 × 等比”求和用错位相减 $T_n-rT_n$；“相邻因子之积”用裂项 $\\dfrac{1}{(n+1)(n+2)}=\\dfrac{1}{n+1}-\\dfrac{1}{n+2}$"
+    ],
+    "traps": [
+     "错位相减后最后一项是 $-n\\cdot2^{n+2}$（指数是 $n+2$，不是 $n+1$），整理 $-T_n$ 时符号别丢",
+     "$\\log_2(a_n+2)=n+1$，不是 $n$：因为 $a_n+2=2^{n+1}$",
+     "$U_n>\\dfrac{49}{100}$ 解得 $n>98$，最小的是 99 而不是 98"
+    ],
+    "terms": [
+     {
+      "ja": "初項",
+      "kana": "しょこう",
+      "zh": "首项（第 1 项）"
+     },
+     {
+      "ja": "和",
+      "kana": "わ",
+      "zh": "和；这里指前 n 项和"
+     },
+     {
+      "ja": "一般項",
+      "kana": "いっぱんこう",
+      "zh": "通项公式"
+     },
+     {
+      "ja": "満たす",
+      "kana": "みたす",
+      "zh": "满足（某个关系式）"
+     },
+     {
+      "ja": "用いる",
+      "kana": "もちいる",
+      "zh": "使用、利用"
+     },
+     {
+      "ja": "最小の自然数",
+      "kana": "さいしょうのしぜんすう",
+      "zh": "最小的正整数"
+     }
+    ],
+    "shortcut": "(2) $\\sum_{k=1}^{n}k\\cdot r^{k}$ 的结果一定形如 $(An+B)r^{n}+C$：用 $T_1=4$、$T_2=20$、$T_3=68$ 待定系数也能核对 $(n-1)\\cdot2^{n+2}+4$。(3) 裂项和只剩“第一项的前半 − 最后一项的后半”：$\\dfrac12-\\dfrac{1}{n+2}$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-3",
+   "subject": "math",
+   "order": 3,
+   "topic": "math.vec.plane",
+   "difficulty": 2,
+   "targetSec": 660,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 平面ベクトル（位置ベクトル・交点・面積）"
+   },
+   "stem": "三角形 OAB において\n\n$$\\mathrm{OA}=3,\\qquad \\mathrm{OB}=2,\\qquad \\cos\\angle\\mathrm{AOB}=\\dfrac{1}{3}$$\n\nとする。辺 OA を $2:1$ に内分する点を C，辺 OB を $3:1$ に内分する点を D とし，線分 AD と線分 BC の交点を P とする。また，$\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$ とおく。\n\n(1)　点 P は線分 AD 上にあるから，実数 $s$ を用いて $\\overrightarrow{\\mathrm{OP}}=(1-s)\\,\\vec{a}+\\dfrac{3}{4}s\\,\\vec{b}$ と表せる。また，点 P は線分 BC 上にあるから，実数 $t$ を用いて $\\overrightarrow{\\mathrm{OP}}=\\dfrac{2}{3}t\\,\\vec{a}+(1-t)\\,\\vec{b}$ と表せる。$\\vec{a}$ と $\\vec{b}$ は 1 次独立であるから\n\n$$\\overrightarrow{\\mathrm{OP}}=\\dfrac{\\bx{A}}{\\bx{B}}\\,\\vec{a}+\\dfrac{\\bx{C}}{\\bx{D}}\\,\\vec{b}$$\n\nである。\n\n(2)　直線 OP と辺 AB の交点を Q とすると\n\n$$\\mathrm{AQ}:\\mathrm{QB}=\\bx{E}:\\bx{F},\\qquad \\mathrm{OP}:\\mathrm{PQ}=\\bx{G}:\\bx{H}$$\n\nである。\n\n(3)　$\\vec{a}\\cdot\\vec{b}=\\bx{I}$ であるから\n\n$$\\left|\\overrightarrow{\\mathrm{OP}}\\right|=\\dfrac{\\bx{J}\\sqrt{\\bx{K}}}{\\bx{L}}$$\n\nである。また，三角形 PAB の面積は $\\dfrac{\\sqrt{\\bx{M}}}{\\bx{N}}$ である。\n\n注）内分する：divide internally，1 次独立：linearly independent",
+   "stemZh": "在三角形 OAB 中，\n\n$$\\mathrm{OA}=3,\\qquad \\mathrm{OB}=2,\\qquad \\cos\\angle\\mathrm{AOB}=\\dfrac{1}{3}$$\n\n设把边 OA 内分为 $2:1$ 的点为 C，把边 OB 内分为 $3:1$ 的点为 D，线段 AD 与线段 BC 的交点为 P。另设 $\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$。\n\n(1)　点 P 在线段 AD 上，所以可用实数 $s$ 表示为 $\\overrightarrow{\\mathrm{OP}}=(1-s)\\,\\vec{a}+\\dfrac{3}{4}s\\,\\vec{b}$。又点 P 在线段 BC 上，所以可用实数 $t$ 表示为 $\\overrightarrow{\\mathrm{OP}}=\\dfrac{2}{3}t\\,\\vec{a}+(1-t)\\,\\vec{b}$。由于 $\\vec{a}$ 与 $\\vec{b}$ 线性无关（一次独立），\n\n$$\\overrightarrow{\\mathrm{OP}}=\\dfrac{\\bx{A}}{\\bx{B}}\\,\\vec{a}+\\dfrac{\\bx{C}}{\\bx{D}}\\,\\vec{b}$$\n\n(2)　设直线 OP 与边 AB 的交点为 Q，则\n\n$$\\mathrm{AQ}:\\mathrm{QB}=\\bx{E}:\\bx{F},\\qquad \\mathrm{OP}:\\mathrm{PQ}=\\bx{G}:\\bx{H}$$\n\n(3)　因为 $\\vec{a}\\cdot\\vec{b}=\\bx{I}$，所以\n\n$$\\left|\\overrightarrow{\\mathrm{OP}}\\right|=\\dfrac{\\bx{J}\\sqrt{\\bx{K}}}{\\bx{L}}$$\n\n另外，三角形 PAB 的面积为 $\\dfrac{\\sqrt{\\bx{M}}}{\\bx{N}}$。\n\n注）内分する：内分，1 次独立：线性无关",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "3",
+    "C": "1",
+    "D": "2",
+    "E": "3",
+    "F": "2",
+    "G": "5",
+    "H": "1",
+    "I": "2",
+    "J": "2",
+    "K": "6",
+    "L": "3",
+    "M": "2",
+    "N": "3"
+   },
+   "explanation": {
+    "zh": "**思路**　求交点的标准做法：把 $\\overrightarrow{\\mathrm{OP}}$ 用两种方式表示（P 在 AD 上、P 在 BC 上），因为 $\\vec a,\\vec b$ 一次独立，对应系数相等。直线 OP 与 AB 的交点：$\\overrightarrow{\\mathrm{OQ}}=k\\overrightarrow{\\mathrm{OP}}$ 且 $\\vec a,\\vec b$ 的系数和为 1。长度用 $|\\overrightarrow{\\mathrm{OP}}|^2$ 展开成内积计算。\n\n**解答**\n\n**(1) A, B, C, D**\n\n1. $\\overrightarrow{\\mathrm{OC}}=\\dfrac23\\vec a$，$\\overrightarrow{\\mathrm{OD}}=\\dfrac34\\vec b$。\n2. 比较两种表示的系数：\n$$1-s=\\frac23t,\\qquad \\frac34s=1-t$$\n由第二式 $t=1-\\dfrac34s$，代入第一式：$1-s=\\dfrac23-\\dfrac12s$，得 $s=\\dfrac23$，$t=\\dfrac12$。\n3. $\\overrightarrow{\\mathrm{OP}}=\\dfrac13\\vec a+\\dfrac12\\vec b$，A = 1，B = 3，C = 1，D = 2。\n\n**(2) E, F, G, H**\n\n1. Q 在直线 OP 上：$\\overrightarrow{\\mathrm{OQ}}=k\\overrightarrow{\\mathrm{OP}}=\\dfrac k3\\vec a+\\dfrac k2\\vec b$。Q 在直线 AB 上 ⇒ 系数和为 1：$\\dfrac k3+\\dfrac k2=1$，$k=\\dfrac65$。\n2. $\\overrightarrow{\\mathrm{OQ}}=\\dfrac25\\vec a+\\dfrac35\\vec b=\\dfrac{2\\vec a+3\\vec b}{3+2}$，这正是把 AB 内分为 $3:2$ 的点的公式，所以 $\\mathrm{AQ}:\\mathrm{QB}=3:2$，E = 3，F = 2。\n3. $\\mathrm{OQ}=\\dfrac65\\mathrm{OP}$ ⇒ $\\mathrm{PQ}=\\dfrac15\\mathrm{OP}$，$\\mathrm{OP}:\\mathrm{PQ}=5:1$，G = 5，H = 1。\n\n**(3) I, J, K, L, M, N**\n\n1. $\\vec a\\cdot\\vec b=|\\vec a||\\vec b|\\cos\\angle\\mathrm{AOB}=3\\cdot2\\cdot\\dfrac13=2$，I = 2。\n2. $$\\left|\\overrightarrow{\\mathrm{OP}}\\right|^2=\\frac19|\\vec a|^2+2\\cdot\\frac13\\cdot\\frac12\\,\\vec a\\cdot\\vec b+\\frac14|\\vec b|^2=1+\\frac23+1=\\frac83$$\n$\\left|\\overrightarrow{\\mathrm{OP}}\\right|=\\sqrt{\\dfrac83}=\\dfrac{2\\sqrt6}{3}$，J = 2，K = 6，L = 3。\n3. $\\sin\\angle\\mathrm{AOB}=\\sqrt{1-\\dfrac19}=\\dfrac{2\\sqrt2}{3}$，$\\triangle\\mathrm{OAB}=\\dfrac12\\cdot3\\cdot2\\cdot\\dfrac{2\\sqrt2}{3}=2\\sqrt2$。\n4. △PAB 与 △OAB 共用底边 AB，高之比等于 $\\mathrm{PQ}:\\mathrm{OQ}=1:6$，所以 $\\triangle\\mathrm{PAB}=\\dfrac16\\cdot2\\sqrt2=\\dfrac{\\sqrt2}{3}$，M = 2，N = 3。\n\n**结论**　A = 1，B = 3，C = 1，D = 2，E = 3，F = 2，G = 5，H = 1，I = 2，J = 2，K = 6，L = 3，M = 2，N = 3。",
+    "keyPoints": [
+     "交点：同一个向量用两种方式表示 + 一次独立 ⇒ 比较系数",
+     "$\\overrightarrow{\\mathrm{OQ}}=x\\vec a+y\\vec b$ 中 Q 在直线 AB 上 ⇔ $x+y=1$，此时 $\\mathrm{AQ}:\\mathrm{QB}=y:x$",
+     "共底三角形的面积比 = 高之比 = $\\mathrm{PQ}:\\mathrm{OQ}$"
+    ],
+    "traps": [
+     "$\\overrightarrow{\\mathrm{OQ}}=\\dfrac25\\vec a+\\dfrac35\\vec b$ 时 $\\mathrm{AQ}:\\mathrm{QB}=3:2$（系数“交叉”对应），不是 $2:3$",
+     "展开 $|\\overrightarrow{\\mathrm{OP}}|^2$ 时交叉项是 $2\\cdot\\dfrac13\\cdot\\dfrac12\\,\\vec a\\cdot\\vec b$，别漏掉系数 2",
+     "$\\mathrm{OP}:\\mathrm{PQ}$ 问的是 OP 与 PQ（不是 OP 与 OQ），$5:1$ 而不是 $5:6$"
+    ],
+    "terms": [
+     {
+      "ja": "内分する",
+      "kana": "ないぶんする",
+      "zh": "内分：在线段内部按给定比例取分点"
+     },
+     {
+      "ja": "交点",
+      "kana": "こうてん",
+      "zh": "两条线的交点"
+     },
+     {
+      "ja": "1次独立",
+      "kana": "いちじどくりつ",
+      "zh": "线性无关：两向量都非零且不平行"
+     },
+     {
+      "ja": "線分",
+      "kana": "せんぶん",
+      "zh": "线段"
+     },
+     {
+      "ja": "辺",
+      "kana": "へん",
+      "zh": "（多边形的）边"
+     },
+     {
+      "ja": "面積",
+      "kana": "めんせき",
+      "zh": "面积"
+     }
+    ],
+    "shortcut": "(1) 直接设 $\\overrightarrow{\\mathrm{OP}}=x\\vec a+y\\vec b$：P 在 AD 上 ⇒ $x\\overrightarrow{\\mathrm{OA}}+\\dfrac43y\\overrightarrow{\\mathrm{OD}}$ 的系数和 $x+\\dfrac43y=1$；P 在 BC 上 ⇒ $\\dfrac32x+y=1$。两式联立得 $x=\\dfrac13$，$y=\\dfrac12$，比设 $s,\\,t$ 少一步。(2) 用 $k=\\dfrac{1}{x+y}=\\dfrac65$ 一步得 Q。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-4",
+   "subject": "math",
+   "order": 4,
+   "topic": "math.vec.plane",
+   "difficulty": 2,
+   "targetSec": 720,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 平面ベクトル（内積・外心・垂心）"
+   },
+   "stem": "三角形 OAB は\n\n$$\\mathrm{OA}=2,\\qquad \\mathrm{OB}=3,\\qquad \\mathrm{AB}=\\sqrt{7}$$\n\nを満たしている。$\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$ とおき，三角形 OAB の外心を P，垂心を H とする。\n\n(1)　$\\vec{a}\\cdot\\vec{b}=\\bx{A}$ である。\n\n(2)　$\\overrightarrow{\\mathrm{OP}}=s\\,\\vec{a}+t\\,\\vec{b}$ とおく。P から辺 OA，OB に下ろした垂線の足は，それぞれ辺 OA，OB の中点であるから\n\n$$\\overrightarrow{\\mathrm{OP}}\\cdot\\vec{a}=\\bx{B},\\qquad \\overrightarrow{\\mathrm{OP}}\\cdot\\vec{b}=\\dfrac{9}{2}$$\n\nが成り立つ。これより\n\n$$s=\\dfrac{\\bx{C}}{\\bx{D}},\\qquad t=\\dfrac{\\bx{E}}{\\bx{F}}$$\n\nであり，三角形 OAB の外接円の半径は $\\dfrac{\\sqrt{\\bx{GH}}}{\\bx{I}}$ である。\n\n(3)　$\\overrightarrow{\\mathrm{OH}}=x\\,\\vec{a}+y\\,\\vec{b}$ とおく。$\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AB}}$，$\\overrightarrow{\\mathrm{AH}}\\perp\\overrightarrow{\\mathrm{OB}}$ であるから\n\n$$x=\\dfrac{\\bx{J}}{\\bx{K}},\\qquad y=\\dfrac{1}{\\bx{L}}$$\n\nである。したがって\n\n$$\\overrightarrow{\\mathrm{OH}}=\\vec{a}+\\vec{b}-\\bx{M}\\,\\overrightarrow{\\mathrm{OP}}$$\n\nが成り立つ。\n\n注）外心：circumcenter，垂心：orthocenter，外接円：circumscribed circle，垂線の足：foot of the perpendicular",
+   "stemZh": "三角形 OAB 满足\n\n$$\\mathrm{OA}=2,\\qquad \\mathrm{OB}=3,\\qquad \\mathrm{AB}=\\sqrt{7}$$\n\n设 $\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，三角形 OAB 的外心为 P，垂心为 H。\n\n(1)　$\\vec{a}\\cdot\\vec{b}=\\bx{A}$。\n\n(2)　设 $\\overrightarrow{\\mathrm{OP}}=s\\,\\vec{a}+t\\,\\vec{b}$。从 P 向边 OA，OB 所作垂线的垂足分别是边 OA，OB 的中点，所以\n\n$$\\overrightarrow{\\mathrm{OP}}\\cdot\\vec{a}=\\bx{B},\\qquad \\overrightarrow{\\mathrm{OP}}\\cdot\\vec{b}=\\dfrac{9}{2}$$\n\n成立。由此得\n\n$$s=\\dfrac{\\bx{C}}{\\bx{D}},\\qquad t=\\dfrac{\\bx{E}}{\\bx{F}}$$\n\n三角形 OAB 的外接圆半径为 $\\dfrac{\\sqrt{\\bx{GH}}}{\\bx{I}}$。\n\n(3)　设 $\\overrightarrow{\\mathrm{OH}}=x\\,\\vec{a}+y\\,\\vec{b}$。因为 $\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AB}}$，$\\overrightarrow{\\mathrm{AH}}\\perp\\overrightarrow{\\mathrm{OB}}$，所以\n\n$$x=\\dfrac{\\bx{J}}{\\bx{K}},\\qquad y=\\dfrac{1}{\\bx{L}}$$\n\n因此\n\n$$\\overrightarrow{\\mathrm{OH}}=\\vec{a}+\\vec{b}-\\bx{M}\\,\\overrightarrow{\\mathrm{OP}}$$\n\n成立。\n\n注）外心：外接圆圆心，垂心：三条高的交点，外接円：外接圆，垂線の足：垂足",
+   "format": "blanks",
+   "blanks": {
+    "A": "3",
+    "B": "2",
+    "C": "1",
+    "D": "6",
+    "E": "4",
+    "F": "9",
+    "G": "2",
+    "H": "1",
+    "I": "3",
+    "J": "2",
+    "K": "3",
+    "L": "9",
+    "M": "2"
+   },
+   "explanation": {
+    "zh": "**思路**　外心 P 在各边的垂直平分线上 ⇒ P 在 OA 上的正射影是 OA 的中点 ⇒ $\\overrightarrow{\\mathrm{OP}}\\cdot\\vec a=|\\vec a|\\cdot\\dfrac{|\\vec a|}{2}=\\dfrac12|\\vec a|^2$，对 $\\vec b$ 同理。垂心 H：把两个“垂直”分别写成“内积 = 0”联立。\n\n**解答**\n\n**(1) A**\n\n$|\\vec b-\\vec a|^2=|\\vec a|^2-2\\vec a\\cdot\\vec b+|\\vec b|^2$：$7=4-2\\vec a\\cdot\\vec b+9$，所以 $\\vec a\\cdot\\vec b=3$，A = 3。\n\n**(2) B, C, D, E, F, GH, I**\n\n1. $\\overrightarrow{\\mathrm{OP}}\\cdot\\vec a=\\dfrac12|\\vec a|^2=\\dfrac42=2$，B = 2（同理 $\\overrightarrow{\\mathrm{OP}}\\cdot\\vec b=\\dfrac92$）。\n2. 代入 $\\overrightarrow{\\mathrm{OP}}=s\\vec a+t\\vec b$：\n$$\\begin{cases}4s+3t=2\\\\[1mm]3s+9t=\\dfrac92\\end{cases}$$\n第一式 ×3 减第二式：$9s=\\dfrac32$，$s=\\dfrac16$；$t=\\dfrac{2-4s}{3}=\\dfrac49$。C = 1，D = 6，E = 4，F = 9。\n3. 外接圆半径 $R=|\\overrightarrow{\\mathrm{OP}}|$，利用第 1 步的两个内积：\n$$\\left|\\overrightarrow{\\mathrm{OP}}\\right|^2=\\overrightarrow{\\mathrm{OP}}\\cdot(s\\vec a+t\\vec b)=s\\cdot2+t\\cdot\\frac92=\\frac13+2=\\frac73$$\n$R=\\sqrt{\\dfrac73}=\\dfrac{\\sqrt{21}}{3}$，GH = 21，I = 3。\n（检验：$\\cos\\angle\\mathrm{AOB}=\\dfrac{3}{2\\cdot3}=\\dfrac12$，$\\angle\\mathrm{AOB}=60^\\circ$，正弦定理 $R=\\dfrac{\\sqrt7}{2\\sin60^\\circ}=\\dfrac{\\sqrt7}{\\sqrt3}=\\dfrac{\\sqrt{21}}{3}$ ✓）\n\n**(3) J, K, L, M**\n\n1. $\\overrightarrow{\\mathrm{OH}}\\cdot\\overrightarrow{\\mathrm{AB}}=(x\\vec a+y\\vec b)\\cdot(\\vec b-\\vec a)=x(3-4)+y(9-3)=-x+6y=0$。\n2. $\\overrightarrow{\\mathrm{AH}}\\cdot\\vec b=\\{(x-1)\\vec a+y\\vec b\\}\\cdot\\vec b=3(x-1)+9y=0$，即 $x+3y=1$。\n3. 联立：$x=6y$ 代入得 $9y=1$，$y=\\dfrac19$，$x=\\dfrac23$。J = 2，K = 3，L = 9。\n4. $\\vec a+\\vec b-2\\overrightarrow{\\mathrm{OP}}=\\left(1-\\dfrac13\\right)\\vec a+\\left(1-\\dfrac89\\right)\\vec b=\\dfrac23\\vec a+\\dfrac19\\vec b=\\overrightarrow{\\mathrm{OH}}$，M = 2。\n\n**结论**　A = 3，B = 2，C = 1，D = 6，E = 4，F = 9，GH = 21，I = 3，J = 2，K = 3，L = 9，M = 2。",
+    "keyPoints": [
+     "外心：$\\overrightarrow{\\mathrm{OP}}\\cdot\\vec a=\\dfrac12|\\vec a|^2$，$\\overrightarrow{\\mathrm{OP}}\\cdot\\vec b=\\dfrac12|\\vec b|^2$（P 在两边上的正射影是中点）",
+     "垂心：两条“垂直 ⇔ 内积为 0”联立；注意 $\\overrightarrow{\\mathrm{AH}}=\\overrightarrow{\\mathrm{OH}}-\\vec a$",
+     "欧拉关系：外心为 P 时 $\\overrightarrow{\\mathrm{PH}}=\\overrightarrow{\\mathrm{PO}}+\\overrightarrow{\\mathrm{PA}}+\\overrightarrow{\\mathrm{PB}}$，改以 O 为起点即 $\\overrightarrow{\\mathrm{OH}}=\\vec a+\\vec b-2\\overrightarrow{\\mathrm{OP}}$"
+    ],
+    "traps": [
+     "$\\overrightarrow{\\mathrm{OP}}\\cdot\\vec a=\\dfrac12|\\vec a|^2=2$，不是 $|\\vec a|^2=4$，也不是 $\\dfrac12|\\vec a|=1$",
+     "垂心条件 $\\overrightarrow{\\mathrm{AH}}\\perp\\overrightarrow{\\mathrm{OB}}$ 要用 $\\overrightarrow{\\mathrm{OH}}-\\vec a$，直接拿 $\\overrightarrow{\\mathrm{OH}}\\cdot\\vec b=0$ 就错了",
+     "GH 是一个两位数 21（$\\sqrt{21}$），根号内要化到最简：$\\sqrt{\\dfrac73}=\\dfrac{\\sqrt{21}}{3}$"
+    ],
+    "terms": [
+     {
+      "ja": "外心",
+      "kana": "がいしん",
+      "zh": "外心：外接圆圆心，三边垂直平分线的交点"
+     },
+     {
+      "ja": "垂心",
+      "kana": "すいしん",
+      "zh": "垂心：三条高（顶点到对边的垂线）的交点"
+     },
+     {
+      "ja": "外接円",
+      "kana": "がいせつえん",
+      "zh": "外接圆：经过三角形三个顶点的圆"
+     },
+     {
+      "ja": "垂線の足",
+      "kana": "すいせんのあし",
+      "zh": "垂足：垂线与直线的交点"
+     },
+     {
+      "ja": "中点",
+      "kana": "ちゅうてん",
+      "zh": "线段的中点"
+     },
+     {
+      "ja": "成り立つ",
+      "kana": "なりたつ",
+      "zh": "成立"
+     }
+    ],
+    "shortcut": "半径直接用余弦定理 + 正弦定理：$\\cos O=\\dfrac{4+9-7}{2\\cdot2\\cdot3}=\\dfrac12$，$R=\\dfrac{\\mathrm{AB}}{2\\sin O}=\\dfrac{\\sqrt{21}}{3}$。M 用欧拉关系 $\\overrightarrow{\\mathrm{OH}}=\\vec a+\\vec b-2\\overrightarrow{\\mathrm{OP}}$ 一眼得 2，再反过来检查 $x,\\,y$：$1-2\\cdot\\dfrac16=\\dfrac23$，$1-2\\cdot\\dfrac49=\\dfrac19$ ✓。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-5",
+   "subject": "math",
+   "order": 5,
+   "topic": "math.vec.space",
+   "difficulty": 3,
+   "targetSec": 1250,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 空間ベクトル（垂線の足・体積・内接球）"
+   },
+   "stem": "次の文中の \\bx{C}，\\bx{D} には，下の選択肢 ⓪ ～ ⑨ の中から適するものを選び，他の $\\boxed{\\phantom{0}}$ には適する数を入れなさい。\n\n四面体 OABC は\n\n$$\\mathrm{OA}=1,\\qquad \\mathrm{OB}=\\mathrm{OC}=2,\\qquad \\angle\\mathrm{AOB}=\\angle\\mathrm{AOC}=90^\\circ,\\qquad \\angle\\mathrm{BOC}=60^\\circ$$\n\nを満たしている。$\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，$\\overrightarrow{\\mathrm{OC}}=\\vec{c}$ とおき，頂点 O から平面 ABC に下ろした垂線と平面 ABC との交点を H とする。\n\n(1)　$\\vec{a}\\cdot\\vec{b}=\\vec{c}\\cdot\\vec{a}=\\bx{A}$，$\\vec{b}\\cdot\\vec{c}=\\bx{B}$ である。\n\n(2)　点 H は平面 ABC 上にあるから，実数 $s,\\ t$ を用いて\n\n$$\\overrightarrow{\\mathrm{OH}}=(1-s-t)\\,\\vec{a}+s\\,\\vec{b}+t\\,\\vec{c}$$\n\nと表せる。$\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AB}}$ より $\\bx{C}=0$，$\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AC}}$ より $\\bx{D}=0$ が成り立つ。これらを解くと $s=t=\\dfrac{1}{\\bx{E}}$ であるから\n\n$$\\overrightarrow{\\mathrm{OH}}=\\dfrac{\\bx{F}}{\\bx{G}}\\,\\vec{a}+\\dfrac{1}{\\bx{E}}\\left(\\vec{b}+\\vec{c}\\right),\\qquad \\left|\\overrightarrow{\\mathrm{OH}}\\right|=\\dfrac{\\sqrt{\\bx{H}}}{\\bx{I}}$$\n\nである。また，直線 AH と辺 BC の交点を M とすると，$\\mathrm{AH}:\\mathrm{HM}=\\bx{J}:\\bx{K}$ である。\n\n(3)　四面体 OABC の体積は $\\dfrac{\\sqrt{\\bx{L}}}{\\bx{M}}$，三角形 ABC の面積は $\\bx{N}$ である。\n\nしたがって，四面体 OABC のすべての面に接する球の半径は\n\n$$\\dfrac{\\bx{O}\\sqrt{\\bx{P}}-\\bx{Q}}{\\bx{RS}}$$\n\nである。\n\n- ⓪ $2s+4t-1$\n- ① $4s+2t-1$\n- ② $3s+3t-1$\n- ③ $5s+3t-1$\n- ④ $3s+5t-1$\n- ⑤ $5s+t-1$\n- ⑥ $s+5t-1$\n- ⑦ $5s+3t+1$\n- ⑧ $3s+5t+1$\n- ⑨ $4s+4t-1$\n\n注）四面体：tetrahedron，垂線：perpendicular，体積：volume",
+   "stemZh": "下文中的 \\bx{C}，\\bx{D} 请从下面的选项 ⓪ ～ ⑨ 中选出合适的，其他的 $\\boxed{\\phantom{0}}$ 填入合适的数。\n\n四面体 OABC 满足\n\n$$\\mathrm{OA}=1,\\qquad \\mathrm{OB}=\\mathrm{OC}=2,\\qquad \\angle\\mathrm{AOB}=\\angle\\mathrm{AOC}=90^\\circ,\\qquad \\angle\\mathrm{BOC}=60^\\circ$$\n\n设 $\\overrightarrow{\\mathrm{OA}}=\\vec{a}$，$\\overrightarrow{\\mathrm{OB}}=\\vec{b}$，$\\overrightarrow{\\mathrm{OC}}=\\vec{c}$，从顶点 O 向平面 ABC 作垂线，垂线与平面 ABC 的交点为 H。\n\n(1)　$\\vec{a}\\cdot\\vec{b}=\\vec{c}\\cdot\\vec{a}=\\bx{A}$，$\\vec{b}\\cdot\\vec{c}=\\bx{B}$。\n\n(2)　点 H 在平面 ABC 上，所以可用实数 $s,\\ t$ 表示为\n\n$$\\overrightarrow{\\mathrm{OH}}=(1-s-t)\\,\\vec{a}+s\\,\\vec{b}+t\\,\\vec{c}$$\n\n由 $\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AB}}$ 得 $\\bx{C}=0$，由 $\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AC}}$ 得 $\\bx{D}=0$。解之得 $s=t=\\dfrac{1}{\\bx{E}}$，因此\n\n$$\\overrightarrow{\\mathrm{OH}}=\\dfrac{\\bx{F}}{\\bx{G}}\\,\\vec{a}+\\dfrac{1}{\\bx{E}}\\left(\\vec{b}+\\vec{c}\\right),\\qquad \\left|\\overrightarrow{\\mathrm{OH}}\\right|=\\dfrac{\\sqrt{\\bx{H}}}{\\bx{I}}$$\n\n另外，设直线 AH 与边 BC 的交点为 M，则 $\\mathrm{AH}:\\mathrm{HM}=\\bx{J}:\\bx{K}$。\n\n(3)　四面体 OABC 的体积为 $\\dfrac{\\sqrt{\\bx{L}}}{\\bx{M}}$，三角形 ABC 的面积为 $\\bx{N}$。\n\n因此，与四面体 OABC 的所有面都相切的球的半径为\n\n$$\\dfrac{\\bx{O}\\sqrt{\\bx{P}}-\\bx{Q}}{\\bx{RS}}$$\n\n- ⓪ $2s+4t-1$\n- ① $4s+2t-1$\n- ② $3s+3t-1$\n- ③ $5s+3t-1$\n- ④ $3s+5t-1$\n- ⑤ $5s+t-1$\n- ⑥ $s+5t-1$\n- ⑦ $5s+3t+1$\n- ⑧ $3s+5t+1$\n- ⑨ $4s+4t-1$\n\n注）四面体：四面体（三棱锥），垂線：垂线，体積：体积",
+   "format": "blanks",
+   "blanks": {
+    "A": "0",
+    "B": "2",
+    "C": "3",
+    "D": "4",
+    "E": "8",
+    "F": "3",
+    "G": "4",
+    "H": "3",
+    "I": "2",
+    "J": "1",
+    "K": "3",
+    "L": "3",
+    "M": "3",
+    "N": "2",
+    "O": "4",
+    "P": "3",
+    "Q": "3",
+    "R": "1",
+    "S": "3"
+   },
+   "explanation": {
+    "zh": "**思路**　求“O 到平面 ABC 的垂足 H”：设 $\\overrightarrow{\\mathrm{OH}}=(1-s-t)\\vec a+s\\vec b+t\\vec c$（系数和为 1 保证 H 在平面 ABC 上），再要求 $\\overrightarrow{\\mathrm{OH}}$ 与平面内两条不平行的向量 $\\overrightarrow{\\mathrm{AB}},\\ \\overrightarrow{\\mathrm{AC}}$ 都垂直。体积用“底面积 × 高 ÷ 3”，并可反过来求另一个面的面积；内切球半径用 $V=\\dfrac13rS$（$S$ 为表面积）。\n\n**解答**\n\n**(1) A, B**\n\n$\\angle\\mathrm{AOB}=\\angle\\mathrm{AOC}=90^\\circ$ ⇒ $\\vec a\\cdot\\vec b=\\vec c\\cdot\\vec a=0$，A = 0；$\\vec b\\cdot\\vec c=2\\cdot2\\cos60^\\circ=2$，B = 2。\n\n**(2) C, D, E, F, G, H, I, J, K**\n\n1. 先算 $\\overrightarrow{\\mathrm{OH}}$ 与 $\\vec a,\\vec b,\\vec c$ 的内积（$|\\vec a|^2=1$，$|\\vec b|^2=|\\vec c|^2=4$）：\n$$\\overrightarrow{\\mathrm{OH}}\\cdot\\vec a=1-s-t,\\qquad \\overrightarrow{\\mathrm{OH}}\\cdot\\vec b=4s+2t,\\qquad \\overrightarrow{\\mathrm{OH}}\\cdot\\vec c=2s+4t$$\n2. $\\overrightarrow{\\mathrm{OH}}\\cdot\\overrightarrow{\\mathrm{AB}}=\\overrightarrow{\\mathrm{OH}}\\cdot\\vec b-\\overrightarrow{\\mathrm{OH}}\\cdot\\vec a=(4s+2t)-(1-s-t)=5s+3t-1$，所以 C = 3（③）。\n$\\overrightarrow{\\mathrm{OH}}\\cdot\\overrightarrow{\\mathrm{AC}}=(2s+4t)-(1-s-t)=3s+5t-1$，所以 D = 4（④）。\n3. 两式相减得 $2s-2t=0$，$s=t$；代回 $8s-1=0$，$s=t=\\dfrac18$，E = 8。\n4. $1-s-t=\\dfrac34$，所以 $\\overrightarrow{\\mathrm{OH}}=\\dfrac34\\vec a+\\dfrac18(\\vec b+\\vec c)$，F = 3，G = 4。\n5. 因为 $\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AH}}$，$\\left|\\overrightarrow{\\mathrm{OH}}\\right|^2=\\overrightarrow{\\mathrm{OH}}\\cdot(\\vec a+\\overrightarrow{\\mathrm{AH}})=\\overrightarrow{\\mathrm{OH}}\\cdot\\vec a=\\dfrac34$，\n$\\left|\\overrightarrow{\\mathrm{OH}}\\right|=\\dfrac{\\sqrt3}{2}$，H = 3，I = 2。\n（直接展开也行：$\\dfrac{9}{16}|\\vec a|^2+\\dfrac{1}{64}\\left(|\\vec b|^2+2\\vec b\\cdot\\vec c+|\\vec c|^2\\right)=\\dfrac{9}{16}+\\dfrac{12}{64}=\\dfrac34$，交叉项因 $\\vec a\\cdot\\vec b=\\vec a\\cdot\\vec c=0$ 为 0 ✓）\n6. 设 BC 中点为 $\\mathrm{M}'$，$\\overrightarrow{\\mathrm{OM'}}=\\dfrac12(\\vec b+\\vec c)$，则\n$$\\overrightarrow{\\mathrm{OH}}=\\frac34\\overrightarrow{\\mathrm{OA}}+\\frac14\\overrightarrow{\\mathrm{OM'}}$$\n系数和为 1 且都为正，所以 H 在线段 $\\mathrm{AM'}$ 上，直线 AH 与 BC 交于 $\\mathrm{M'}$，即 M 是 BC 的中点，且 $\\mathrm{AH}:\\mathrm{HM}=\\dfrac14:\\dfrac34=1:3$。J = 1，K = 3。\n\n**(3) L, M, N, O, P, Q, RS**\n\n1. $\\vec a\\perp\\vec b$，$\\vec a\\perp\\vec c$ ⇒ OA ⊥ 平面 OBC，以 △OBC 为底、OA = 1 为高。△OBC 是边长 2 的正三角形（$\\mathrm{OB}=\\mathrm{OC}=2$，夹角 $60^\\circ$），面积 $\\sqrt3$：\n$$V=\\frac13\\cdot\\sqrt3\\cdot1=\\frac{\\sqrt3}{3}$$\nL = 3，M = 3。\n2. 又 $V=\\dfrac13\\cdot\\triangle\\mathrm{ABC}\\cdot\\left|\\overrightarrow{\\mathrm{OH}}\\right|$，所以 $\\triangle\\mathrm{ABC}=\\dfrac{3V}{|\\overrightarrow{\\mathrm{OH}}|}=\\dfrac{\\sqrt3}{\\sqrt3/2}=2$，N = 2。\n（直接验算：$\\mathrm{AB}=\\mathrm{AC}=\\sqrt{1+4}=\\sqrt5$，$\\mathrm{BC}=2$，底边 BC 上的高 $\\sqrt{5-1}=2$，面积 $\\dfrac12\\cdot2\\cdot2=2$ ✓）\n3. 四个面的面积：△OAB = △OAC = $\\dfrac12\\cdot1\\cdot2=1$，△OBC = $\\sqrt3$，△ABC = 2，表面积 $S=4+\\sqrt3$。\n4. 内切球球心到四个面的距离都是 $r$，以球心为顶点把四面体切成 4 个小四面体：$V=\\dfrac13rS$，\n$$r=\\frac{3V}{S}=\\frac{\\sqrt3}{4+\\sqrt3}=\\frac{\\sqrt3\\,(4-\\sqrt3)}{16-3}=\\frac{4\\sqrt3-3}{13}$$\nO = 4，P = 3，Q = 3，RS = 13。\n\n**结论**　A = 0，B = 2，C = 3（③），D = 4（④），E = 8，F = 3，G = 4，H = 3，I = 2，J = 1，K = 3，L = 3，M = 3，N = 2，O = 4，P = 3，Q = 3，RS = 13。",
+    "keyPoints": [
+     "平面 ABC 上的点：$\\overrightarrow{\\mathrm{OH}}=(1-s-t)\\vec a+s\\vec b+t\\vec c$；垂足条件：与 $\\overrightarrow{\\mathrm{AB}}$、$\\overrightarrow{\\mathrm{AC}}$ 的内积都为 0",
+     "同一个四面体的体积可用不同的“底面 + 高”计算，由此反求 △ABC 的面积",
+     "内切球半径 $r=\\dfrac{3V}{S_{\\text{表面积}}}$"
+    ],
+    "traps": [
+     "$\\overrightarrow{\\mathrm{OH}}\\cdot\\vec a=1-s-t$：$|\\vec a|^2=1$ 而 $|\\vec b|^2=|\\vec c|^2=4$，且 $\\vec a\\cdot\\vec b=\\vec a\\cdot\\vec c=0$，三个内积的系数各不相同，别套错",
+     "$\\overrightarrow{\\mathrm{OH}}=\\dfrac34\\overrightarrow{\\mathrm{OA}}+\\dfrac14\\overrightarrow{\\mathrm{OM}}$ 说明 H 靠近 A，$\\mathrm{AH}:\\mathrm{HM}=1:3$，不是 $3:1$",
+     "分母有理化：$\\dfrac{\\sqrt3}{4+\\sqrt3}$ 上下同乘 $4-\\sqrt3$，分母是 $16-3=13$"
+    ],
+    "terms": [
+     {
+      "ja": "四面体",
+      "kana": "しめんたい",
+      "zh": "四面体（三棱锥）"
+     },
+     {
+      "ja": "頂点",
+      "kana": "ちょうてん",
+      "zh": "顶点"
+     },
+     {
+      "ja": "垂線を下ろす",
+      "kana": "すいせんをおろす",
+      "zh": "（从一点向平面/直线）作垂线"
+     },
+     {
+      "ja": "体積",
+      "kana": "たいせき",
+      "zh": "体积"
+     },
+     {
+      "ja": "すべての面に接する球",
+      "kana": "すべてのめんにせっするきゅう",
+      "zh": "与所有面都相切的球，即内切球"
+     },
+     {
+      "ja": "選択肢",
+      "kana": "せんたくし",
+      "zh": "选项"
+     }
+    ],
+    "shortcut": "$\\vec b,\\ \\vec c$ 的条件完全对称，立刻可知 $s=t$，只需解 $5s+3s-1=0$。又因 $\\overrightarrow{\\mathrm{OH}}\\perp\\overrightarrow{\\mathrm{AH}}$，$\\left|\\overrightarrow{\\mathrm{OH}}\\right|^2=\\overrightarrow{\\mathrm{OH}}\\cdot\\vec a=1-2s=\\dfrac34$，不必展开。△ABC 的面积用 $3V\\div|\\overrightarrow{\\mathrm{OH}}|$ 反求最快。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-6",
+   "subject": "math",
+   "order": 6,
+   "topic": "math.complex.plane",
+   "difficulty": 1,
+   "targetSec": 600,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 複素数平面（極形式・ド・モアブルの定理）"
+   },
+   "stem": "複素数 $z=\\dfrac{1+\\sqrt{3}\\,i}{1+i}$ を考える。\n\n(1)　$z$ を $a+bi$（$a,\\ b$ は実数）の形で表すと\n\n$$z=\\dfrac{1+\\sqrt{\\bx{A}}}{2}+\\dfrac{\\sqrt{\\bx{A}}-1}{2}\\,i$$\n\nである。\n\n(2)　$1+\\sqrt{3}\\,i$，$1+i$ をそれぞれ極形式で表して $z$ を計算すると\n\n$$z=\\sqrt{\\bx{B}}\\left(\\cos\\dfrac{\\pi}{\\bx{CD}}+i\\sin\\dfrac{\\pi}{\\bx{CD}}\\right)$$\n\nである。これと (1) の結果を比べると\n\n$$\\cos\\dfrac{\\pi}{\\bx{CD}}=\\dfrac{\\sqrt{\\bx{E}}+\\sqrt{\\bx{F}}}{\\bx{G}}$$\n\nが得られる。ただし，$\\bx{E}>\\bx{F}$ とする。\n\n(3)　$z^n$ が実数となるような最小の自然数 $n$ は $n=\\bx{HI}$ であり，そのとき $z^n=\\bx{JKL}$ である。\n\n注）複素数：complex number，極形式：polar form",
+   "stemZh": "考虑复数 $z=\\dfrac{1+\\sqrt{3}\\,i}{1+i}$。\n\n(1)　把 $z$ 写成 $a+bi$（$a,\\ b$ 为实数）的形式，则\n\n$$z=\\dfrac{1+\\sqrt{\\bx{A}}}{2}+\\dfrac{\\sqrt{\\bx{A}}-1}{2}\\,i$$\n\n(2)　把 $1+\\sqrt{3}\\,i$，$1+i$ 分别写成极形式（三角形式）来计算 $z$，得\n\n$$z=\\sqrt{\\bx{B}}\\left(\\cos\\dfrac{\\pi}{\\bx{CD}}+i\\sin\\dfrac{\\pi}{\\bx{CD}}\\right)$$\n\n把它与 (1) 的结果比较，可得\n\n$$\\cos\\dfrac{\\pi}{\\bx{CD}}=\\dfrac{\\sqrt{\\bx{E}}+\\sqrt{\\bx{F}}}{\\bx{G}}$$\n\n其中 $\\bx{E}>\\bx{F}$。\n\n(3)　使 $z^n$ 为实数的最小自然数 $n$ 为 $n=\\bx{HI}$，此时 $z^n=\\bx{JKL}$。\n\n注）複素数：复数，極形式：极形式（三角形式）",
+   "format": "blanks",
+   "blanks": {
+    "A": "3",
+    "B": "2",
+    "C": "1",
+    "D": "2",
+    "E": "6",
+    "F": "2",
+    "G": "4",
+    "H": "1",
+    "I": "2",
+    "J": "-",
+    "K": "6",
+    "L": "4"
+   },
+   "explanation": {
+    "zh": "**思路**　复数相除有两条路：代数形式用“分母实数化”（乘共轭）；极形式用“模相除、辐角相减”。两种结果是同一个数，对比实部就得到 $\\cos\\dfrac{\\pi}{12}$ 的值。(3) 用棣莫弗定理：$z^n$ 的辐角是 $\\dfrac{n\\pi}{12}$，$z^n$ 为实数 ⇔ 辐角是 $\\pi$ 的整数倍。\n\n**解答**\n\n**(1) A**\n\n$$z=\\frac{(1+\\sqrt3 i)(1-i)}{(1+i)(1-i)}=\\frac{1-i+\\sqrt3 i+\\sqrt3}{2}=\\frac{1+\\sqrt3}{2}+\\frac{\\sqrt3-1}{2}i$$\n（$-\\sqrt3 i\\cdot i=+\\sqrt3$）A = 3。\n\n**(2) B, CD, E, F, G**\n\n1. $1+\\sqrt3 i=2\\left(\\cos\\dfrac\\pi3+i\\sin\\dfrac\\pi3\\right)$，$1+i=\\sqrt2\\left(\\cos\\dfrac\\pi4+i\\sin\\dfrac\\pi4\\right)$。\n2. $|z|=\\dfrac{2}{\\sqrt2}=\\sqrt2$，$\\arg z=\\dfrac\\pi3-\\dfrac\\pi4=\\dfrac{\\pi}{12}$：\n$$z=\\sqrt2\\left(\\cos\\frac{\\pi}{12}+i\\sin\\frac{\\pi}{12}\\right)$$\nB = 2，CD = 12。\n3. 实部对比：$\\sqrt2\\cos\\dfrac{\\pi}{12}=\\dfrac{1+\\sqrt3}{2}$，\n$$\\cos\\frac{\\pi}{12}=\\frac{1+\\sqrt3}{2\\sqrt2}=\\frac{\\sqrt2+\\sqrt6}{4}$$\n按 $E>F$ 的顺序：E = 6，F = 2，G = 4。\n\n**(3) HI, JKL**\n\n1. 棣莫弗定理：$z^n=(\\sqrt2)^n\\left(\\cos\\dfrac{n\\pi}{12}+i\\sin\\dfrac{n\\pi}{12}\\right)$。\n2. $z^n$ 为实数 ⇔ $\\sin\\dfrac{n\\pi}{12}=0$ ⇔ $n$ 是 12 的倍数，最小 $n=12$，HI = 12。\n3. $z^{12}=(\\sqrt2)^{12}(\\cos\\pi+i\\sin\\pi)=64\\cdot(-1)=-64$，JKL = $-64$（J 填「−」，K = 6，L = 4）。\n\n**结论**　A = 3，B = 2，CD = 12，E = 6，F = 2，G = 4，HI = 12，JKL = $-64$。",
+    "keyPoints": [
+     "极形式下：乘法“模相乘、辐角相加”，除法“模相除、辐角相减”；乘方用棣莫弗定理",
+     "代数形式与极形式对比，可求特殊角的三角函数值，如 $\\cos\\dfrac{\\pi}{12}=\\dfrac{\\sqrt6+\\sqrt2}{4}$"
+    ],
+    "traps": [
+     "$z^n$ 为实数只要求辐角是 $\\pi$ 的整数倍（不必是 $2\\pi$），所以 $n=12$ 而不是 24",
+     "$(\\sqrt2)^{12}=2^6=64$，再乘 $\\cos\\pi=-1$，符号格 J 填「−」",
+     "$\\dfrac{1+\\sqrt3}{2\\sqrt2}$ 要有理化成 $\\dfrac{\\sqrt2+\\sqrt6}{4}$，并按 $E>F$ 填成 6、2"
+    ],
+    "terms": [
+     {
+      "ja": "複素数",
+      "kana": "ふくそすう",
+      "zh": "复数（a+bi 形式的数）"
+     },
+     {
+      "ja": "極形式",
+      "kana": "きょくけいしき",
+      "zh": "复数的极形式（三角形式）r(cosθ+i sinθ)"
+     },
+     {
+      "ja": "実数",
+      "kana": "じっすう",
+      "zh": "实数"
+     },
+     {
+      "ja": "形で表す",
+      "kana": "かたちであらわす",
+      "zh": "写成……的形式"
+     },
+     {
+      "ja": "比べる",
+      "kana": "くらべる",
+      "zh": "比较、对照"
+     }
+    ],
+    "shortcut": "$z^n$ 为实数的最小 $n$ 就是 $\\dfrac{\\pi}{\\arg z}=\\dfrac{\\pi}{\\pi/12}=12$；此时 $z^{12}=|z|^{12}\\cdot\\cos\\pi=-2^6=-64$。$\\cos15^\\circ=\\dfrac{\\sqrt6+\\sqrt2}{4}\\approx0.966$ 也是值得背下来的值。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-7",
+   "subject": "math",
+   "order": 7,
+   "topic": "math.complex.plane",
+   "difficulty": 2,
+   "targetSec": 690,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 複素数平面（回転・三角形の形状）"
+   },
+   "stem": "0 でない複素数 $\\alpha,\\ \\beta$ が\n\n$$\\alpha^2-2\\alpha\\beta+4\\beta^2=0$$\n\nを満たしている。原点を O とする複素数平面上で，$\\alpha,\\ \\beta$ を表す点をそれぞれ A，B とする。\n\n(1)　等式の両辺を $\\beta^2$ で割ると $\\dfrac{\\alpha}{\\beta}$ についての 2 次方程式が得られ，\n\n$$\\dfrac{\\alpha}{\\beta}=\\bx{A}\\pm\\sqrt{\\bx{B}}\\,i$$\n\nである。これを極形式で表すと\n\n$$\\dfrac{\\alpha}{\\beta}=\\bx{C}\\left\\{\\cos\\left(\\pm\\dfrac{\\pi}{\\bx{D}}\\right)+i\\sin\\left(\\pm\\dfrac{\\pi}{\\bx{D}}\\right)\\right\\}\\qquad(\\text{複号同順})$$\n\nとなる。\n\n(2)　次の文中の \\bx{F} には，下の選択肢 ⓪ ～ ② の中から適するものを選びなさい。\n\n(1) より，点 A は，点 B を原点 O を中心として $\\pm\\dfrac{\\pi}{\\bx{D}}$ だけ回転し，O からの距離を \\bx{C} 倍した点である。よって，$\\mathrm{AB}=\\sqrt{\\bx{E}}\\,\\mathrm{OB}$ となり，三角形 OAB は $\\bx{F}=\\dfrac{\\pi}{2}$ の直角三角形である。\n\n- ⓪ $\\angle\\mathrm{AOB}$\n- ① $\\angle\\mathrm{OAB}$\n- ② $\\angle\\mathrm{OBA}$\n\n(3)　$\\beta=1+\\sqrt{3}\\,i$ とする。このとき，三角形 OAB の面積は $\\bx{G}\\sqrt{\\bx{H}}$ である。また，$\\alpha$ が実数のとき $\\alpha=\\bx{I}$ であり，$\\alpha$ が実数でないとき\n\n$$\\alpha=\\bx{JK}+\\bx{L}\\sqrt{\\bx{M}}\\,i$$\n\nである。\n\n注）複素数平面：complex plane，極形式：polar form，複号同順：the double signs correspond in the same order",
+   "stemZh": "非零复数 $\\alpha,\\ \\beta$ 满足\n\n$$\\alpha^2-2\\alpha\\beta+4\\beta^2=0$$\n\n在以 O 为原点的复平面上，设表示 $\\alpha,\\ \\beta$ 的点分别为 A，B。\n\n(1)　等式两边除以 $\\beta^2$，得到关于 $\\dfrac{\\alpha}{\\beta}$ 的二次方程，解得\n\n$$\\dfrac{\\alpha}{\\beta}=\\bx{A}\\pm\\sqrt{\\bx{B}}\\,i$$\n\n把它写成极形式，则\n\n$$\\dfrac{\\alpha}{\\beta}=\\bx{C}\\left\\{\\cos\\left(\\pm\\dfrac{\\pi}{\\bx{D}}\\right)+i\\sin\\left(\\pm\\dfrac{\\pi}{\\bx{D}}\\right)\\right\\}\\qquad(\\text{正负号按同一顺序对应})$$\n\n(2)　下文中的 \\bx{F} 请从下面的选项 ⓪ ～ ② 中选出合适的。\n\n由 (1)，点 A 是把点 B 绕原点 O 旋转 $\\pm\\dfrac{\\pi}{\\bx{D}}$，并把到 O 的距离变为 \\bx{C} 倍所得的点。因此 $\\mathrm{AB}=\\sqrt{\\bx{E}}\\,\\mathrm{OB}$，三角形 OAB 是 $\\bx{F}=\\dfrac{\\pi}{2}$ 的直角三角形。\n\n- ⓪ $\\angle\\mathrm{AOB}$\n- ① $\\angle\\mathrm{OAB}$\n- ② $\\angle\\mathrm{OBA}$\n\n(3)　设 $\\beta=1+\\sqrt{3}\\,i$。此时三角形 OAB 的面积为 $\\bx{G}\\sqrt{\\bx{H}}$。另外，$\\alpha$ 为实数时 $\\alpha=\\bx{I}$；$\\alpha$ 不是实数时\n\n$$\\alpha=\\bx{JK}+\\bx{L}\\sqrt{\\bx{M}}\\,i$$\n\n注）複素数平面：复平面，極形式：极形式（三角形式），複号同順：复号同序（上面的符号对应上面的，下面的对应下面的）",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "3",
+    "C": "2",
+    "D": "3",
+    "E": "3",
+    "F": "2",
+    "G": "2",
+    "H": "3",
+    "I": "4",
+    "J": "-",
+    "K": "2",
+    "L": "2",
+    "M": "3"
+   },
+   "explanation": {
+    "zh": "**思路**　齐次式 $\\alpha^2-2\\alpha\\beta+4\\beta^2=0$ 两边除以 $\\beta^2$，变成关于 $\\dfrac\\alpha\\beta$ 的二次方程。$\\dfrac\\alpha\\beta=r(\\cos\\theta+i\\sin\\theta)$ 的几何意义：$\\alpha=\\beta\\cdot r(\\cos\\theta+i\\sin\\theta)$，即 A 是把 B 绕原点旋转 $\\theta$、再伸缩 $r$ 倍得到的点 ⇒ $\\mathrm{OA}=r\\cdot\\mathrm{OB}$，$\\angle\\mathrm{AOB}=|\\theta|$。\n\n**解答**\n\n**(1) A, B, C, D**\n\n1. 设 $x=\\dfrac\\alpha\\beta$：$x^2-2x+4=0$，$x=1\\pm\\sqrt{1-4}=1\\pm\\sqrt3\\,i$，A = 1，B = 3。\n2. $|1\\pm\\sqrt3 i|=\\sqrt{1+3}=2$，$\\cos\\theta=\\dfrac12$，$\\sin\\theta=\\pm\\dfrac{\\sqrt3}{2}$：\n$$\\frac\\alpha\\beta=2\\left\\{\\cos\\left(\\pm\\frac\\pi3\\right)+i\\sin\\left(\\pm\\frac\\pi3\\right)\\right\\}$$\nC = 2，D = 3。\n\n**(2) E, F**\n\n1. 由 (1)：$\\mathrm{OA}=2\\,\\mathrm{OB}$，$\\angle\\mathrm{AOB}=\\dfrac\\pi3$。设 $\\mathrm{OB}=k$，则 $\\mathrm{OA}=2k$，余弦定理：\n$$\\mathrm{AB}^2=(2k)^2+k^2-2\\cdot2k\\cdot k\\cdot\\cos\\frac\\pi3=3k^2,\\qquad \\mathrm{AB}=\\sqrt3\\,\\mathrm{OB}$$\nE = 3。\n2. $\\mathrm{OB}^2+\\mathrm{AB}^2=k^2+3k^2=4k^2=\\mathrm{OA}^2$，由勾股定理的逆定理，OA 是斜边，直角顶点在 B：$\\angle\\mathrm{OBA}=\\dfrac\\pi2$，F = 2（②）。\n这是 $\\mathrm{OB}:\\mathrm{AB}:\\mathrm{OA}=1:\\sqrt3:2$ 的 30°-60°-90° 三角形。\n\n**(3) G, H, I, JK, L, M**\n\n1. $|\\beta|=|1+\\sqrt3 i|=2$，所以 $\\mathrm{OB}=2$，$\\mathrm{AB}=2\\sqrt3$，面积 $\\dfrac12\\cdot\\mathrm{OB}\\cdot\\mathrm{AB}=\\dfrac12\\cdot2\\cdot2\\sqrt3=2\\sqrt3$，G = 2，H = 3。\n2. $\\alpha=\\beta(1\\pm\\sqrt3 i)$ 的两种情况：\n- $\\alpha=(1+\\sqrt3 i)(1-\\sqrt3 i)=1+3=4$（实数），I = 4。\n- $\\alpha=(1+\\sqrt3 i)^2=1+2\\sqrt3 i-3=-2+2\\sqrt3 i$，JK = $-2$（J 填「−」，K = 2），L = 2，M = 3。\n\n**结论**　A = 1，B = 3，C = 2，D = 3，E = 3，F = 2（②），G = 2，H = 3，I = 4，JK = $-2$，L = 2，M = 3。",
+    "keyPoints": [
+     "齐次二次式 $=0$：两边除以 $\\beta^2$，化为 $\\dfrac\\alpha\\beta$ 的二次方程",
+     "$\\dfrac\\alpha\\beta$ 的模 = 边长之比 $\\dfrac{\\mathrm{OA}}{\\mathrm{OB}}$，辐角 = 旋转角 $\\angle\\mathrm{AOB}$；由此判断三角形形状"
+    ],
+    "traps": [
+     "直角在 B（$\\angle\\mathrm{OBA}$），不是在 O：OA 最长，是斜边",
+     "两个解 $1\\pm\\sqrt3 i$ 都要用，(3) 中 $\\alpha$ 才会出现“实数”和“非实数”两种情况",
+     "$(1+\\sqrt3 i)^2=1+2\\sqrt3 i+3i^2=-2+2\\sqrt3 i$，$i^2=-1$ 别算成 $+3$"
+    ],
+    "terms": [
+     {
+      "ja": "複素数平面",
+      "kana": "ふくそすうへいめん",
+      "zh": "复平面"
+     },
+     {
+      "ja": "原点",
+      "kana": "げんてん",
+      "zh": "原点"
+     },
+     {
+      "ja": "極形式",
+      "kana": "きょくけいしき",
+      "zh": "复数的极形式（三角形式）"
+     },
+     {
+      "ja": "複号同順",
+      "kana": "ふくごうどうじゅん",
+      "zh": "复号同序：± 和 ∓ 按上下位置对应"
+     },
+     {
+      "ja": "回転する",
+      "kana": "かいてんする",
+      "zh": "旋转"
+     },
+     {
+      "ja": "直角三角形",
+      "kana": "ちょっかくさんかくけい",
+      "zh": "直角三角形"
+     }
+    ],
+    "shortcut": "看到 $\\dfrac\\alpha\\beta=2(\\cos60^\\circ\\pm i\\sin60^\\circ)$：$\\mathrm{OB}=\\mathrm{OA}\\cos60^\\circ$ 恰好成立，说明 B 就是 A 在直线 OB 上的垂足，∠B 必为直角；面积 $=\\dfrac12\\cdot\\mathrm{OA}\\cdot\\mathrm{OB}\\sin60^\\circ=\\dfrac12\\cdot4\\cdot2\\cdot\\dfrac{\\sqrt3}{2}=2\\sqrt3$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  },
+  {
+   "id": "orig-math-mix-8",
+   "subject": "math",
+   "order": 8,
+   "topic": "math.complex.plane",
+   "tags": [
+    "math.geo.coord"
+   ],
+   "difficulty": 3,
+   "targetSec": 1200,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 複素数平面（円・偏角の範囲・w=1/z の像）"
+   },
+   "stem": "複素数平面上で，点 $z$ が円 $|z-2i|=1$ の周上を動くとする。また，$w=\\dfrac{1}{z}$ とおく。\n\n(1)　$z$ の偏角 $\\arg z$ を $0\\leqq\\arg z<2\\pi$ の範囲で考えると，$\\arg z$ のとりうる値の範囲は\n\n$$\\dfrac{\\bx{A}}{\\bx{B}}\\pi\\leqq\\arg z\\leqq\\dfrac{\\bx{C}}{\\bx{D}}\\pi$$\n\nであり，$|z|$ のとりうる値の範囲は $\\bx{E}\\leqq|z|\\leqq\\bx{F}$ である。\n\n(2)　$z=\\dfrac{1}{w}$ を $|z-2i|=1$ に代入して整理すると\n\n$$\\left|w+\\dfrac{1}{\\bx{G}}\\,i\\right|=\\dfrac{1}{\\bx{H}}\\,|w|$$\n\nが得られる。$w=u+vi$（$u,\\ v$ は実数）とおくと\n\n$$u^2+v^2+\\dfrac{\\bx{I}}{\\bx{J}}\\,v+\\dfrac{1}{\\bx{K}}=0$$\n\nとなるから，点 $w$ は中心 $-\\dfrac{\\bx{L}}{\\bx{M}}\\,i$，半径 $\\dfrac{1}{\\bx{N}}$ の円の周上を動く。\n\n(3)　$|w-1|$ の最大値は $\\dfrac{\\sqrt{\\bx{OP}}+\\bx{Q}}{\\bx{R}}$ である。\n\n注）複素数平面：complex plane，偏角：argument",
+   "stemZh": "在复平面上，点 $z$ 在圆 $|z-2i|=1$ 的圆周上运动。另设 $w=\\dfrac{1}{z}$。\n\n(1)　在 $0\\leqq\\arg z<2\\pi$ 的范围内考虑 $z$ 的辐角 $\\arg z$，则 $\\arg z$ 可取值的范围为\n\n$$\\dfrac{\\bx{A}}{\\bx{B}}\\pi\\leqq\\arg z\\leqq\\dfrac{\\bx{C}}{\\bx{D}}\\pi$$\n\n$|z|$ 可取值的范围为 $\\bx{E}\\leqq|z|\\leqq\\bx{F}$。\n\n(2)　把 $z=\\dfrac{1}{w}$ 代入 $|z-2i|=1$ 并整理，得\n\n$$\\left|w+\\dfrac{1}{\\bx{G}}\\,i\\right|=\\dfrac{1}{\\bx{H}}\\,|w|$$\n\n设 $w=u+vi$（$u,\\ v$ 为实数），则\n\n$$u^2+v^2+\\dfrac{\\bx{I}}{\\bx{J}}\\,v+\\dfrac{1}{\\bx{K}}=0$$\n\n所以点 $w$ 在圆心为 $-\\dfrac{\\bx{L}}{\\bx{M}}\\,i$、半径为 $\\dfrac{1}{\\bx{N}}$ 的圆周上运动。\n\n(3)　$|w-1|$ 的最大值为 $\\dfrac{\\sqrt{\\bx{OP}}+\\bx{Q}}{\\bx{R}}$。\n\n注）複素数平面：复平面，偏角：辐角",
+   "format": "blanks",
+   "blanks": {
+    "A": "1",
+    "B": "3",
+    "C": "2",
+    "D": "3",
+    "E": "1",
+    "F": "3",
+    "G": "2",
+    "H": "2",
+    "I": "4",
+    "J": "3",
+    "K": "3",
+    "L": "2",
+    "M": "3",
+    "N": "3",
+    "O": "1",
+    "P": "3",
+    "Q": "1",
+    "R": "3"
+   },
+   "explanation": {
+    "zh": "**思路**　(1) 圆 $|z-2i|=1$：圆心 $2i$、半径 1，不经过原点。$\\arg z$ 的范围由“从原点向圆引的两条切线”决定；$|z|$ 的范围是“圆心到原点的距离 ± 半径”。(2) $w=\\dfrac1z$（反演）：把 $z=\\dfrac1w$ 代入后两边乘 $|w|$，得到“到两定点距离之比一定”的阿波罗尼斯圆。(3) 圆上的点到定点的最大距离 = 圆心到该点的距离 + 半径。\n\n**解答**\n\n**(1) A, B, C, D, E, F**\n\n1. 圆心 $2i$ 到原点的距离是 2，半径是 1。设切线与虚轴正方向的夹角为 $\\varphi$，则 $\\sin\\varphi=\\dfrac12$，$\\varphi=\\dfrac\\pi6$。\n2. 虚轴正方向的辐角是 $\\dfrac\\pi2$，所以 $\\dfrac\\pi2-\\dfrac\\pi6\\leqq\\arg z\\leqq\\dfrac\\pi2+\\dfrac\\pi6$，即\n$$\\frac13\\pi\\leqq\\arg z\\leqq\\frac23\\pi$$\nA = 1，B = 3，C = 2，D = 3。\n3. $|z|$ 最小、最大的点在直线“原点—圆心”上：$2-1\\leqq|z|\\leqq2+1$，E = 1，F = 3。\n\n**(2) G, H, I, J, K, L, M, N**\n\n1. $\\left|\\dfrac1w-2i\\right|=1$，两边乘 $|w|$：$|1-2iw|=|w|$。\n2. $1-2iw=-2i\\left(w-\\dfrac{1}{2i}\\right)=-2i\\left(w+\\dfrac i2\\right)$（因为 $\\dfrac{1}{2i}=-\\dfrac i2$），而 $|-2i|=2$，所以 $2\\left|w+\\dfrac i2\\right|=|w|$：\n$$\\left|w+\\frac12 i\\right|=\\frac12|w|$$\nG = 2，H = 2。\n3. 两边平方，代入 $w=u+vi$：$u^2+\\left(v+\\dfrac12\\right)^2=\\dfrac14(u^2+v^2)$，乘 4 整理得 $3u^2+3v^2+4v+1=0$，\n$$u^2+v^2+\\frac43v+\\frac13=0$$\nI = 4，J = 3，K = 3。\n4. 配方：$u^2+\\left(v+\\dfrac23\\right)^2=\\dfrac49-\\dfrac13=\\dfrac19$，圆心 $-\\dfrac23 i$，半径 $\\dfrac13$。L = 2，M = 3，N = 3。\n（与 (1) 对照：$1\\leqq|z|\\leqq3$ ⇒ $\\dfrac13\\leqq|w|\\leqq1$，正好是 $\\dfrac23\\mp\\dfrac13$ ✓；$\\arg w=-\\arg z\\in\\left[-\\dfrac23\\pi,-\\dfrac13\\pi\\right]$ 也与圆的位置一致 ✓）\n\n**(3) OP, Q, R**\n\n圆心 $-\\dfrac23 i$ 到点 1 的距离为 $\\sqrt{1^2+\\left(\\dfrac23\\right)^2}=\\dfrac{\\sqrt{13}}{3}$，所以\n$$|w-1|\\ \\text{的最大值}=\\frac{\\sqrt{13}}{3}+\\frac13=\\frac{\\sqrt{13}+1}{3}$$\nOP = 13，Q = 1，R = 3。\n\n**结论**　A = 1，B = 3，C = 2，D = 3，E = 1，F = 3，G = 2，H = 2，I = 4，J = 3，K = 3，L = 2，M = 3，N = 3，OP = 13，Q = 1，R = 3。",
+    "keyPoints": [
+     "从圆外一点（原点）看圆：辐角范围由两条切线决定，$\\sin\\varphi=\\dfrac{\\text{半径}}{\\text{圆心距}}$",
+     "$w=\\dfrac1z$ 把不过原点的圆变成圆：代入 $z=\\dfrac1w$ 后乘 $|w|$，化成 $|w-p|=k|w|$ 型（阿波罗尼斯圆）",
+     "圆上的点到定点距离的最大值 = 圆心距 + 半径，最小值 = |圆心距 − 半径|"
+    ],
+    "traps": [
+     "$\\dfrac{1}{2i}=-\\dfrac i2$，符号弄反会把圆心算成 $+\\dfrac23 i$",
+     "由 $u^2+v^2+\\dfrac43v+\\dfrac13=0$ 配方：半径的平方是 $\\dfrac49-\\dfrac13=\\dfrac19$，不是 $\\dfrac49$",
+     "$\\arg z$ 的范围要用切线求，不是用圆的最左点/最右点（$-1+2i$、$1+2i$）的辐角"
+    ],
+    "terms": [
+     {
+      "ja": "偏角",
+      "kana": "へんかく",
+      "zh": "辐角 arg z"
+     },
+     {
+      "ja": "周上",
+      "kana": "しゅうじょう",
+      "zh": "（圆的）圆周上"
+     },
+     {
+      "ja": "とりうる値の範囲",
+      "kana": "とりうるあたいのはんい",
+      "zh": "可能取到的值的范围（值域）"
+     },
+     {
+      "ja": "代入する",
+      "kana": "だいにゅうする",
+      "zh": "代入"
+     },
+     {
+      "ja": "整理する",
+      "kana": "せいりする",
+      "zh": "整理、化简"
+     },
+     {
+      "ja": "最大値",
+      "kana": "さいだいち",
+      "zh": "最大值"
+     }
+    ],
+    "shortcut": "反演速算：原圆与直线“原点—圆心”（虚轴）交于 $i$ 和 $3i$，它们的像 $\\dfrac1i=-i$、$\\dfrac{1}{3i}=-\\dfrac i3$ 也在虚轴上，并且就是像圆的直径两端（像圆关于虚轴对称）。所以圆心 $=\\dfrac{-i-\\frac i3}{2}=-\\dfrac23 i$，半径 $=\\dfrac12\\left(1-\\dfrac13\\right)=\\dfrac13$，一步得 L, M, N。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
+   }
+  }
+ ]
+}

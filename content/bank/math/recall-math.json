@@ -1,0 +1,2297 @@
+{
+  "title": "原创 · 考点速测 数学（公式与结论 40 题）",
+  "items": [
+    {
+      "id": "recall-math-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.trig.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\tan(\\alpha+\\beta)$ を $\\tan\\alpha,\\ \\tan\\beta$ を用いて表した式として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "用 $\\tan\\alpha,\\ \\tan\\beta$ 表示 $\\tan(\\alpha+\\beta)$，正确的式子是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{\\tan\\alpha+\\tan\\beta}{1+\\tan\\alpha\\tan\\beta}$",
+        "$\\dfrac{\\tan\\alpha+\\tan\\beta}{1-\\tan\\alpha\\tan\\beta}$",
+        "$\\dfrac{\\tan\\alpha-\\tan\\beta}{1+\\tan\\alpha\\tan\\beta}$",
+        "$\\tan\\alpha+\\tan\\beta$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　$\\tan=\\dfrac{\\sin}{\\cos}$：把 $\\sin(\\alpha+\\beta)$ 与 $\\cos(\\alpha+\\beta)$ 相除，分子分母同除以 $\\cos\\alpha\\cos\\beta$。\n\n**解答**　$\\tan(\\alpha+\\beta)=\\dfrac{\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta}=\\dfrac{\\tan\\alpha+\\tan\\beta}{1-\\tan\\alpha\\tan\\beta}$。\n\n**结论**　答案 ①。\n\n**记忆**　“分子同号，分母反号”：和角的分母是 $1-\\tan\\alpha\\tan\\beta$；差角 $\\tan(\\alpha-\\beta)=\\dfrac{\\tan\\alpha-\\tan\\beta}{1+\\tan\\alpha\\tan\\beta}$。",
+        "keyPoints": [
+          "$\\tan(\\alpha\\pm\\beta)=\\dfrac{\\tan\\alpha\\pm\\tan\\beta}{1\\mp\\tan\\alpha\\tan\\beta}$",
+          "EJU 常用它求两直线的夹角：斜率为 $m_1,\\ m_2$ 时 $\\tan\\theta=\\left|\\dfrac{m_1-m_2}{1+m_1m_2}\\right|$"
+        ],
+        "traps": [
+          "分母符号与分子相反，最容易写成 $1+\\tan\\alpha\\tan\\beta$",
+          "分子相减、分母 $1+\\cdots$ 的那个是 $\\tan(\\alpha-\\beta)$，不是和角"
+        ],
+        "terms": [
+          {
+            "ja": "加法定理",
+            "kana": "かほうていり",
+            "zh": "三角函数的和差角公式"
+          },
+          {
+            "ja": "用いて表す",
+            "kana": "もちいてあらわす",
+            "zh": "用……来表示"
+          }
+        ],
+        "shortcut": "代 $\\alpha=\\beta=\\dfrac{\\pi}{4}$：$\\tan\\dfrac{\\pi}{2}$ 不存在，只有分母为 $1-1\\cdot1=0$ 的式子符合。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.trig.func",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\sin3\\theta$ を $\\sin\\theta$ だけで表した式として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "只用 $\\sin\\theta$ 表示 $\\sin3\\theta$，正确的式子是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$4\\sin^3\\theta-3\\sin\\theta$",
+        "$3\\sin\\theta+4\\sin^3\\theta$",
+        "$3\\sin\\theta-\\sin^3\\theta$",
+        "$3\\sin\\theta-4\\sin^3\\theta$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　拆成 $\\sin(2\\theta+\\theta)$，用加法定理和 2 倍角公式，再用 $\\cos^2\\theta=1-\\sin^2\\theta$ 统一成 $\\sin$。\n\n**解答**　$\\sin3\\theta=\\sin2\\theta\\cos\\theta+\\cos2\\theta\\sin\\theta=2\\sin\\theta(1-\\sin^2\\theta)+(1-2\\sin^2\\theta)\\sin\\theta=3\\sin\\theta-4\\sin^3\\theta$。\n\n**结论**　答案 ③。\n\n**记忆**　“sin 三倍：3 正 4 负；cos 三倍：4 正 3 负”，即 $\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$。",
+        "keyPoints": [
+          "$\\sin3\\theta=3\\sin\\theta-4\\sin^3\\theta$，$\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta$"
+        ],
+        "traps": [
+          "与 $\\cos$ 的三倍角公式记混，写成 $4\\sin^3\\theta-3\\sin\\theta$"
+        ],
+        "terms": [
+          {
+            "ja": "3倍角の公式",
+            "kana": "さんばいかくのこうしき",
+            "zh": "三倍角公式（用 sinθ、cosθ 表示 sin3θ、cos3θ）"
+          },
+          {
+            "ja": "〜だけで表す",
+            "kana": "〜だけであらわす",
+            "zh": "只用……来表示"
+          }
+        ],
+        "shortcut": "代 $\\theta=\\dfrac{\\pi}{2}$：$\\sin\\dfrac{3\\pi}{2}=-1$，四个选项分别得 $1,\\ 7,\\ 2,\\ -1$，只有最后一个符合。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.trig.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\sin^2\\theta$ を $\\cos2\\theta$ を用いて表した式として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "用 $\\cos2\\theta$ 表示 $\\sin^2\\theta$，正确的式子是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{1-\\cos2\\theta}{2}$",
+        "$\\dfrac{1+\\cos2\\theta}{2}$",
+        "$\\dfrac{1-\\cos\\theta}{2}$",
+        "$\\dfrac{\\cos2\\theta-1}{2}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　由 2 倍角公式 $\\cos2\\theta=1-2\\sin^2\\theta$ 反解出 $\\sin^2\\theta$（降次）。\n\n**解答**　$2\\sin^2\\theta=1-\\cos2\\theta$，所以 $\\sin^2\\theta=\\dfrac{1-\\cos2\\theta}{2}$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“sin 配减号，cos 配加号”：$\\cos^2\\theta=\\dfrac{1+\\cos2\\theta}{2}$。求 $\\displaystyle\\int\\sin^2x\\,dx$、$\\displaystyle\\int\\cos^2x\\,dx$ 都要先这样降次。",
+        "keyPoints": [
+          "降次：$\\sin^2\\theta=\\dfrac{1-\\cos2\\theta}{2}$，$\\cos^2\\theta=\\dfrac{1+\\cos2\\theta}{2}$",
+          "$\\displaystyle\\int\\sin^2x\\,dx=\\dfrac{x}{2}-\\dfrac{\\sin2x}{4}+C$"
+        ],
+        "traps": [
+          "角度是 $2\\theta$：$\\dfrac{1-\\cos\\theta}{2}$ 等于 $\\sin^2\\dfrac{\\theta}{2}$，不是 $\\sin^2\\theta$"
+        ],
+        "terms": [
+          {
+            "ja": "半角の公式",
+            "kana": "はんかくのこうしき",
+            "zh": "半角公式（降幂公式）；日本教材把降次也归在这里"
+          },
+          {
+            "ja": "用いて",
+            "kana": "もちいて",
+            "zh": "用、使用"
+          }
+        ],
+        "shortcut": "代 $\\theta=\\dfrac{\\pi}{2}$：$\\sin^2\\theta=1$，四个选项分别得 $1,\\ 0,\\ \\dfrac12,\\ -1$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-04",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.trig.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\sin\\theta+\\sqrt{3}\\cos\\theta$ を $r\\sin(\\theta+\\alpha)$（$r>0,\\ -\\pi<\\alpha\\leqq\\pi$）の形に変形したものとして正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "把 $\\sin\\theta+\\sqrt{3}\\cos\\theta$ 化成 $r\\sin(\\theta+\\alpha)$（$r>0,\\ -\\pi<\\alpha\\leqq\\pi$）的形式，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$2\\sin\\left(\\theta+\\dfrac{\\pi}{6}\\right)$",
+        "$2\\sin\\left(\\theta-\\dfrac{\\pi}{3}\\right)$",
+        "$2\\sin\\left(\\theta+\\dfrac{\\pi}{3}\\right)$",
+        "$4\\sin\\left(\\theta+\\dfrac{\\pi}{3}\\right)$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　合成公式 $a\\sin\\theta+b\\cos\\theta=\\sqrt{a^2+b^2}\\sin(\\theta+\\alpha)$，其中 $\\cos\\alpha=\\dfrac{a}{\\sqrt{a^2+b^2}},\\ \\sin\\alpha=\\dfrac{b}{\\sqrt{a^2+b^2}}$。\n\n**解答**　$a=1,\\ b=\\sqrt3$，$r=\\sqrt{1+3}=2$；$\\cos\\alpha=\\dfrac12,\\ \\sin\\alpha=\\dfrac{\\sqrt3}{2}$，所以 $\\alpha=\\dfrac{\\pi}{3}$，原式 $=2\\sin\\left(\\theta+\\dfrac{\\pi}{3}\\right)$。\n\n**结论**　答案 ②。\n\n**记忆**　把点 $(a,\\ b)=(\\sin\\text{ 的系数},\\ \\cos\\text{ 的系数})$ 画在坐标平面上：它到原点的距离是 $r$，与 $x$ 轴正方向的夹角就是 $\\alpha$。",
+        "keyPoints": [
+          "$a\\sin\\theta+b\\cos\\theta=\\sqrt{a^2+b^2}\\sin(\\theta+\\alpha)$，$\\alpha$ 是点 $(a,\\ b)$ 的方向角"
+        ],
+        "traps": [
+          "把 $\\cos\\alpha$ 与 $\\sin\\alpha$ 弄反，得到 $\\dfrac{\\pi}{6}$"
+        ],
+        "terms": [
+          {
+            "ja": "三角関数の合成",
+            "kana": "さんかくかんすうのごうせい",
+            "zh": "辅助角公式（把 a sinθ + b cosθ 合成为一个正弦）"
+          },
+          {
+            "ja": "変形する",
+            "kana": "へんけいする",
+            "zh": "变形、化成某种形式"
+          }
+        ],
+        "shortcut": "代 $\\theta=0$：原式 $=\\sqrt3$；$2\\sin\\dfrac{\\pi}{3}=\\sqrt3$ 符合，其余为 $1,\\ -\\sqrt3,\\ 2\\sqrt3$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-05",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.trig.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "半径 $r$，中心角 $\\theta$（ラジアン）の扇形の面積 $S$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "半径为 $r$、圆心角为 $\\theta$（弧度）的扇形，其面积 $S$ 正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$S=r\\theta$",
+        "$S=\\dfrac{1}{2}r\\theta$",
+        "$S=\\dfrac{1}{2}r^2\\theta$",
+        "$S=\\pi r^2\\theta$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　弧度制下，弧长和面积都与圆心角成正比。\n\n**解答**　弧长 $\\ell=r\\theta$；面积 $S=\\pi r^2\\cdot\\dfrac{\\theta}{2\\pi}=\\dfrac12r^2\\theta=\\dfrac12\\ell r$。\n\n**结论**　答案 ②。\n\n**记忆**　把扇形看成底为弧长 $\\ell$、高为 $r$ 的“三角形”：$S=\\dfrac12\\ell r$。",
+        "keyPoints": [
+          "弧长 $\\ell=r\\theta$，面积 $S=\\dfrac12r^2\\theta=\\dfrac12\\ell r$（$\\theta$ 用弧度）"
+        ],
+        "traps": [
+          "$r\\theta$ 是弧长，不是面积",
+          "角度制的 $\\pi r^2\\cdot\\dfrac{x^\\circ}{360^\\circ}$ 与弧度公式混用"
+        ],
+        "terms": [
+          {
+            "ja": "扇形",
+            "kana": "おうぎがた",
+            "zh": "扇形（两条半径与一段圆弧围成的图形）"
+          },
+          {
+            "ja": "中心角",
+            "kana": "ちゅうしんかく",
+            "zh": "圆心角"
+          },
+          {
+            "ja": "ラジアン",
+            "kana": "ラジアン",
+            "zh": "弧度（弧度法＝弧度制）"
+          }
+        ],
+        "shortcut": "$\\theta=2\\pi$ 时应得整圆面积：$\\dfrac12r^2\\cdot2\\pi=\\pi r^2$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-06",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.trig.func",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\sin\\theta+\\cos\\theta=t$ とおくとき，$\\sin\\theta\\cos\\theta$ を $t$ で表したものとして正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "设 $\\sin\\theta+\\cos\\theta=t$，用 $t$ 表示 $\\sin\\theta\\cos\\theta$，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{t^2-1}{2}$",
+        "$\\dfrac{t^2+1}{2}$",
+        "$t^2-1$",
+        "$\\dfrac{1-t^2}{2}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　和的平方里含有积：$(\\sin\\theta+\\cos\\theta)^2=1+2\\sin\\theta\\cos\\theta$。\n\n**解答**　$t^2=\\sin^2\\theta+\\cos^2\\theta+2\\sin\\theta\\cos\\theta=1+2\\sin\\theta\\cos\\theta$，所以 $\\sin\\theta\\cos\\theta=\\dfrac{t^2-1}{2}$。又 $t=\\sqrt2\\sin\\left(\\theta+\\dfrac{\\pi}{4}\\right)$，故 $-\\sqrt2\\leqq t\\leqq\\sqrt2$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“平方一下就出来”；若 $\\sin\\theta-\\cos\\theta=t$，则 $\\sin\\theta\\cos\\theta=\\dfrac{1-t^2}{2}$。",
+        "keyPoints": [
+          "$\\sin\\theta\\cos\\theta=\\dfrac{t^2-1}{2}$，且 $-\\sqrt2\\leqq t\\leqq\\sqrt2$",
+          "同时含 $\\sin\\theta+\\cos\\theta$ 与 $\\sin\\theta\\cos\\theta$ 的函数 → 换元成 $t$ 的二次函数"
+        ],
+        "traps": [
+          "换元后忘记 $t$ 的范围 $-\\sqrt2\\leqq t\\leqq\\sqrt2$，最值求错"
+        ],
+        "terms": [
+          {
+            "ja": "とおく",
+            "kana": "とおく",
+            "zh": "设、令（$t$ とおく＝令其为 $t$）"
+          },
+          {
+            "ja": "表す",
+            "kana": "あらわす",
+            "zh": "表示"
+          }
+        ],
+        "shortcut": "代 $\\theta=\\dfrac{\\pi}{4}$：$t=\\sqrt2$，$\\sin\\theta\\cos\\theta=\\dfrac12$，只有 $\\dfrac{t^2-1}{2}$ 符合。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-07",
+      "subject": "math",
+      "order": 7,
+      "topic": "math.calc.diff",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "関数 $y=\\tan x$ の導関数として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "函数 $y=\\tan x$ 的导函数，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$-\\dfrac{1}{\\cos^2x}$",
+        "$\\dfrac{1}{\\sin^2x}$",
+        "$-\\dfrac{1}{\\sin^2x}$",
+        "$\\dfrac{1}{\\cos^2x}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　$\\tan x=\\dfrac{\\sin x}{\\cos x}$，用商的求导法则。\n\n**解答**　$(\\tan x)'=\\dfrac{\\cos x\\cdot\\cos x-\\sin x\\cdot(-\\sin x)}{\\cos^2x}=\\dfrac{\\cos^2x+\\sin^2x}{\\cos^2x}=\\dfrac{1}{\\cos^2x}$。\n\n**结论**　答案 ③。\n\n**记忆**　$\\tan x$ 在每个区间上单调递增 → 导数恒正；反过来 $\\displaystyle\\int\\dfrac{dx}{\\cos^2x}=\\tan x+C$。",
+        "keyPoints": [
+          "$(\\tan x)'=\\dfrac{1}{\\cos^2x}=1+\\tan^2x$"
+        ],
+        "traps": [
+          "与 $\\left(\\dfrac{1}{\\tan x}\\right)'=-\\dfrac{1}{\\sin^2x}$ 混淆"
+        ],
+        "terms": [
+          {
+            "ja": "導関数",
+            "kana": "どうかんすう",
+            "zh": "导函数（f′(x)）"
+          },
+          {
+            "ja": "関数",
+            "kana": "かんすう",
+            "zh": "函数"
+          }
+        ],
+        "shortcut": "$x=0$ 处 $\\tan x$ 的切线斜率为 $1$：$\\dfrac{1}{\\cos^20}=1$；其余选项为 $-1$ 或无定义。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-08",
+      "subject": "math",
+      "order": 8,
+      "topic": "math.calc.diff",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$a>0,\\ a\\neq1$ とする。関数 $y=a^x$ の導関数として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$\\log$ は自然対数を表す。",
+      "stemZh": "设 $a>0,\\ a\\neq1$。函数 $y=a^x$ 的导函数，正确的是下列 ⓪～③ 中的哪一个？其中 $\\log$ 表示自然对数。",
+      "format": "choice",
+      "options": [
+        "$xa^{x-1}$",
+        "$a^x\\log a$",
+        "$a^x$",
+        "$\\dfrac{a^x}{\\log a}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　把底换成 $e$：$a^x=e^{x\\log a}$，再用复合函数求导。\n\n**解答**　$(a^x)'=e^{x\\log a}\\cdot\\log a=a^x\\log a$。\n\n**结论**　答案 ①。\n\n**记忆**　“指数函数求导乘 $\\log a$，积分除以 $\\log a$”：$\\displaystyle\\int a^x\\,dx=\\dfrac{a^x}{\\log a}+C$；对数 $(\\log_ax)'=\\dfrac{1}{x\\log a}$。",
+        "keyPoints": [
+          "$(a^x)'=a^x\\log a$，$(e^x)'=e^x$，$(\\log_ax)'=\\dfrac{1}{x\\log a}$"
+        ],
+        "traps": [
+          "与幂函数 $(x^n)'=nx^{n-1}$ 混淆，写成 $xa^{x-1}$",
+          "日本教材里不写底的 $\\log$ 就是自然对数（中国写作 $\\ln$）"
+        ],
+        "terms": [
+          {
+            "ja": "自然対数",
+            "kana": "しぜんたいすう",
+            "zh": "自然对数（以 e 为底，EJU 写作 log）"
+          },
+          {
+            "ja": "導関数",
+            "kana": "どうかんすう",
+            "zh": "导函数 f′(x)（某一点处的值叫 微分係数）"
+          }
+        ],
+        "shortcut": "取 $a=e^2$ 检验：$a^x=e^{2x}$，链式法则给出导数 $2e^{2x}$。$a^x\\log a=e^{2x}\\cdot2$ 符合；$a^x$ 少了因子 2，$\\dfrac{a^x}{\\log a}$ 变成除以 2，$xa^{x-1}$ 更不对。（注意别取 $a=e$：那时 $a^x$、$\\dfrac{a^x}{\\log a}$ 也都等于 $e^x$，区分不开。）"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-09",
+      "subject": "math",
+      "order": 9,
+      "topic": "math.calc.diff",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$g(x)\\neq0$ とする。$\\left\\{\\dfrac{f(x)}{g(x)}\\right\\}'$ に等しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "设 $g(x)\\neq0$。与 $\\left\\{\\dfrac{f(x)}{g(x)}\\right\\}'$ 相等的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{f'(x)g(x)-f(x)g'(x)}{\\{g(x)\\}^2}$",
+        "$\\dfrac{f(x)g'(x)-f'(x)g(x)}{\\{g(x)\\}^2}$",
+        "$\\dfrac{f'(x)g(x)+f(x)g'(x)}{\\{g(x)\\}^2}$",
+        "$\\dfrac{f'(x)}{g'(x)}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　商的求导：分子“先导上、后导下”，中间是减号，分母平方。\n\n**解答**　$\\left\\{\\dfrac{f(x)}{g(x)}\\right\\}'=\\dfrac{f'(x)g(x)-f(x)g'(x)}{\\{g(x)\\}^2}$；特别地 $\\left\\{\\dfrac{1}{g(x)}\\right\\}'=-\\dfrac{g'(x)}{\\{g(x)\\}^2}$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“上导下不导，减去上不导下导，除以下的平方”。",
+        "keyPoints": [
+          "$\\left(\\dfrac{f}{g}\\right)'=\\dfrac{f'g-fg'}{g^2}$；积的求导 $(fg)'=f'g+fg'$ 是加号"
+        ],
+        "traps": [
+          "分子两项顺序写反（结果差一个负号）",
+          "误以为可以分子分母分别求导再相除"
+        ],
+        "terms": [
+          {
+            "ja": "商の微分法",
+            "kana": "しょうのびぶんほう",
+            "zh": "商的求导法则"
+          },
+          {
+            "ja": "等しい",
+            "kana": "ひとしい",
+            "zh": "相等"
+          }
+        ],
+        "shortcut": "用 $f=1,\\ g=x$ 检验：$\\left(\\dfrac1x\\right)'=-\\dfrac{1}{x^2}$，只有正确公式给出负号。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-10",
+      "subject": "math",
+      "order": 10,
+      "topic": "math.calc.diff",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "関数 $y=e^{-x^2}$ の導関数として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "函数 $y=e^{-x^2}$ 的导函数，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$e^{-x^2}$",
+        "$-2e^{-x^2}$",
+        "$-2xe^{-x^2}$",
+        "$-x^2e^{-x^2-1}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　复合函数 $y=e^u,\\ u=-x^2$：“外导 × 内导”。\n\n**解答**　$\\dfrac{dy}{dx}=\\dfrac{dy}{du}\\cdot\\dfrac{du}{dx}=e^{-x^2}\\cdot(-2x)=-2xe^{-x^2}$。\n\n**结论**　答案 ②。\n\n**记忆**　$\\left\\{e^{g(x)}\\right\\}'=g'(x)\\,e^{g(x)}$：指数部分原样抄下，再乘上指数的导数。",
+        "keyPoints": [
+          "合成関数の微分：$\\{f(g(x))\\}'=f'(g(x))\\,g'(x)$"
+        ],
+        "traps": [
+          "把 $e^u$ 当成幂函数求导，得到 $-x^2e^{-x^2-1}$",
+          "只对 $e$ 求导、忘了乘内层导数 $-2x$"
+        ],
+        "terms": [
+          {
+            "ja": "合成関数の微分法",
+            "kana": "ごうせいかんすうのびぶんほう",
+            "zh": "复合函数求导（链式法则）"
+          },
+          {
+            "ja": "導関数",
+            "kana": "どうかんすう",
+            "zh": "导函数"
+          }
+        ],
+        "shortcut": "$x=0$ 是最大值点，导数应为 $0$，排除 $e^{-x^2}$、$-2e^{-x^2}$；$x<0$ 时函数递增，导数应为正，排除恒 $\\leqq0$ 的 $-x^2e^{-x^2-1}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-11",
+      "subject": "math",
+      "order": 11,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "不定積分 $\\displaystyle\\int\\dfrac{2x}{x^2+1}\\,dx$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$C$ は積分定数とし，$\\log$ は自然対数を表す。",
+      "stemZh": "不定积分 $\\displaystyle\\int\\dfrac{2x}{x^2+1}\\,dx$ 正确的是下列 ⓪～③ 中的哪一个？其中 $C$ 为积分常数，$\\log$ 表示自然对数。",
+      "format": "choice",
+      "options": [
+        "$2\\log(x^2+1)+C$",
+        "$\\dfrac{1}{2}\\log(x^2+1)+C$",
+        "$-\\dfrac{1}{x^2+1}+C$",
+        "$\\log(x^2+1)+C$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　分子 $2x$ 恰好是分母 $x^2+1$ 的导数。\n\n**解答**　$\\displaystyle\\int\\dfrac{f'(x)}{f(x)}\\,dx=\\log|f(x)|+C$；$f(x)=x^2+1>0$，所以结果为 $\\log(x^2+1)+C$。\n\n**结论**　答案 ③。\n\n**记忆**　“分子是分母的导数 → 直接取 log 分母”。例：$\\displaystyle\\int\\tan x\\,dx=\\int\\dfrac{\\sin x}{\\cos x}\\,dx=-\\log|\\cos x|+C$。",
+        "keyPoints": [
+          "$\\displaystyle\\int\\dfrac{f'(x)}{f(x)}\\,dx=\\log|f(x)|+C$"
+        ],
+        "traps": [
+          "分子差常数倍时要补系数：$\\displaystyle\\int\\dfrac{x}{x^2+1}\\,dx=\\dfrac12\\log(x^2+1)+C$",
+          "$-\\dfrac{1}{x^2+1}$ 的导数是 $\\dfrac{2x}{(x^2+1)^2}$，分母多了一次方"
+        ],
+        "terms": [
+          {
+            "ja": "不定積分",
+            "kana": "ふていせきぶん",
+            "zh": "不定积分（求原函数，结果要带积分常数 C）"
+          },
+          {
+            "ja": "積分定数",
+            "kana": "せきぶんていすう",
+            "zh": "积分常数 C"
+          }
+        ],
+        "shortcut": "对选项求导验算：$\\{\\log(x^2+1)\\}'=\\dfrac{2x}{x^2+1}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-12",
+      "subject": "math",
+      "order": 12,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "不定積分 $\\displaystyle\\int(2x+1)^3\\,dx$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$C$ は積分定数とする。",
+      "stemZh": "不定积分 $\\displaystyle\\int(2x+1)^3\\,dx$ 正确的是下列 ⓪～③ 中的哪一个？其中 $C$ 为积分常数。",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{(2x+1)^4}{4}+C$",
+        "$\\dfrac{(2x+1)^4}{8}+C$",
+        "$\\dfrac{(2x+1)^4}{2}+C$",
+        "$6(2x+1)^2+C$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　被积函数是一次式 $ax+b$ 的函数，积分后要除以 $a$。\n\n**解答**　$\\displaystyle\\int(ax+b)^n\\,dx=\\dfrac1a\\cdot\\dfrac{(ax+b)^{n+1}}{n+1}+C$。$a=2,\\ n=3$：$\\dfrac12\\cdot\\dfrac{(2x+1)^4}{4}=\\dfrac{(2x+1)^4}{8}$。\n\n**结论**　答案 ①。\n\n**记忆**　“里面套一次式，积完除以 $a$”：$\\displaystyle\\int e^{3x}\\,dx=\\dfrac13e^{3x}+C$，$\\displaystyle\\int\\cos2x\\,dx=\\dfrac12\\sin2x+C$。",
+        "keyPoints": [
+          "$\\displaystyle\\int f(ax+b)\\,dx=\\dfrac1aF(ax+b)+C$（$F$ 为 $f$ 的原函数）"
+        ],
+        "traps": [
+          "忘记除以 $a$，得到 $\\dfrac{(2x+1)^4}{4}$",
+          "反而乘以 $a$，得到 $\\dfrac{(2x+1)^4}{2}$"
+        ],
+        "terms": [
+          {
+            "ja": "置換積分法",
+            "kana": "ちかんせきぶんほう",
+            "zh": "换元积分法"
+          },
+          {
+            "ja": "積分定数",
+            "kana": "せきぶんていすう",
+            "zh": "积分常数 C"
+          }
+        ],
+        "shortcut": "求导验算：$\\left\\{\\dfrac{(2x+1)^4}{8}\\right\\}'=\\dfrac{4(2x+1)^3\\cdot2}{8}=(2x+1)^3$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-13",
+      "subject": "math",
+      "order": 13,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "不定積分 $\\displaystyle\\int xe^x\\,dx$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$C$ は積分定数とする。",
+      "stemZh": "不定积分 $\\displaystyle\\int xe^x\\,dx$ 正确的是下列 ⓪～③ 中的哪一个？其中 $C$ 为积分常数。",
+      "format": "choice",
+      "options": [
+        "$xe^x+C$",
+        "$(x+1)e^x+C$",
+        "$(x-1)e^x+C$",
+        "$\\dfrac{x^2}{2}e^x+C$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　多项式 × 指数 → 分部积分，让多项式 $x$ 被求导。\n\n**解答**　$\\displaystyle\\int fg'\\,dx=fg-\\int f'g\\,dx$。取 $f=x,\\ g'=e^x$：$\\displaystyle\\int xe^x\\,dx=xe^x-\\int e^x\\,dx=(x-1)e^x+C$。\n\n**结论**　答案 ②。\n\n**记忆**　选“求导后变简单”的作 $f$：多项式 ×（$e^x,\\ \\sin x,\\ \\cos x$）让多项式求导；多项式 × $\\log x$ 则让 $\\log x$ 求导。",
+        "keyPoints": [
+          "部分積分：$\\displaystyle\\int f(x)g'(x)\\,dx=f(x)g(x)-\\int f'(x)g(x)\\,dx$"
+        ],
+        "traps": [
+          "$fg$ 后面是减号，写成加号会得到 $(x+1)e^x$"
+        ],
+        "terms": [
+          {
+            "ja": "部分積分法",
+            "kana": "ぶぶんせきぶんほう",
+            "zh": "分部积分法"
+          },
+          {
+            "ja": "不定積分",
+            "kana": "ふていせきぶん",
+            "zh": "不定积分（求原函数，结果要带积分常数 C）"
+          }
+        ],
+        "shortcut": "求导验算：$\\{(x-1)e^x\\}'=e^x+(x-1)e^x=xe^x$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-14",
+      "subject": "math",
+      "order": 14,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "不定積分 $\\displaystyle\\int\\log x\\,dx$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$C$ は積分定数とし，$\\log$ は自然対数を表す。",
+      "stemZh": "不定积分 $\\displaystyle\\int\\log x\\,dx$ 正确的是下列 ⓪～③ 中的哪一个？其中 $C$ 为积分常数，$\\log$ 表示自然对数。",
+      "format": "choice",
+      "options": [
+        "$x\\log x-x+C$",
+        "$x\\log x+C$",
+        "$\\dfrac{1}{x}+C$",
+        "$\\dfrac{(\\log x)^2}{2}+C$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　把 $\\log x$ 看作 $1\\cdot\\log x$，用分部积分，让 $\\log x$ 被求导。\n\n**解答**　取 $f=\\log x,\\ g'=1\\ (g=x)$：$\\displaystyle\\int\\log x\\,dx=x\\log x-\\int x\\cdot\\dfrac1x\\,dx=x\\log x-x+C$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“$\\log$ 前面藏着一个 1”。另：$\\displaystyle\\int\\dfrac{\\log x}{x}\\,dx=\\dfrac{(\\log x)^2}{2}+C$（令 $t=\\log x$）。",
+        "keyPoints": [
+          "$\\displaystyle\\int\\log x\\,dx=x\\log x-x+C$"
+        ],
+        "traps": [
+          "$\\dfrac1x$ 是 $\\log x$ 的导数，不是原函数",
+          "$\\dfrac{(\\log x)^2}{2}$ 是 $\\dfrac{\\log x}{x}$ 的原函数"
+        ],
+        "terms": [
+          {
+            "ja": "部分積分法",
+            "kana": "ぶぶんせきぶんほう",
+            "zh": "分部积分法"
+          },
+          {
+            "ja": "自然対数",
+            "kana": "しぜんたいすう",
+            "zh": "自然对数（以 e 为底）"
+          }
+        ],
+        "shortcut": "求导验算：$(x\\log x-x)'=\\log x+1-1=\\log x$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-15",
+      "subject": "math",
+      "order": 15,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "定積分 $\\displaystyle\\int_0^1\\sqrt{1-x^2}\\,dx$ の値として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "定积分 $\\displaystyle\\int_0^1\\sqrt{1-x^2}\\,dx$ 的值，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{2}{3}$",
+        "$\\dfrac{\\pi}{4}$",
+        "$1$",
+        "$\\dfrac{\\pi}{2}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　$y=\\sqrt{1-x^2}$ 是单位圆 $x^2+y^2=1$ 的上半部分，$0\\leqq x\\leqq1$ 的部分是四分之一圆。\n\n**解答**　所求 $=\\dfrac14\\pi\\cdot1^2=\\dfrac{\\pi}{4}$。也可置换 $x=\\sin\\theta$：$\\displaystyle\\int_0^{\\frac{\\pi}{2}}\\cos^2\\theta\\,d\\theta=\\dfrac{\\pi}{4}$。\n\n**结论**　答案 ①。\n\n**记忆**　$\\displaystyle\\int_0^a\\sqrt{a^2-x^2}\\,dx=\\dfrac{\\pi a^2}{4}$（四分之一圆），$\\displaystyle\\int_{-a}^a\\sqrt{a^2-x^2}\\,dx=\\dfrac{\\pi a^2}{2}$（半圆）。",
+        "keyPoints": [
+          "$\\sqrt{a^2-x^2}$ 的定积分 → 先想圆的面积；算不出时用 $x=a\\sin\\theta$"
+        ],
+        "traps": [
+          "当成 $\\displaystyle\\int_0^1(1-x^2)\\,dx=\\dfrac23$",
+          "区间是 $[-1,\\ 1]$（半圆）时才是 $\\dfrac{\\pi}{2}$"
+        ],
+        "terms": [
+          {
+            "ja": "定積分",
+            "kana": "ていせきぶん",
+            "zh": "定积分（有上下限，结果是一个数）"
+          },
+          {
+            "ja": "置換",
+            "kana": "ちかん",
+            "zh": "换元（置換積分＝换元积分）"
+          }
+        ],
+        "shortcut": "画图：四分之一单位圆，不用计算。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-16",
+      "subject": "math",
+      "order": 16,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "定積分 $\\displaystyle\\int_0^1\\dfrac{dx}{1+x^2}$ を求めるときに用いる置換として最も適したものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "求定积分 $\\displaystyle\\int_0^1\\dfrac{dx}{1+x^2}$ 时，最合适的换元是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$x=\\sin\\theta$",
+        "$x=\\tan\\theta$",
+        "$t=1+x^2$",
+        "$t=x^2$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　分母是 $a^2+x^2$ 型 → 用 $x=a\\tan\\theta$，利用 $1+\\tan^2\\theta=\\dfrac{1}{\\cos^2\\theta}$。\n\n**解答**　$x=\\tan\\theta$，$dx=\\dfrac{d\\theta}{\\cos^2\\theta}$，$x:0\\to1$ 对应 $\\theta:0\\to\\dfrac{\\pi}{4}$；$\\displaystyle\\int_0^1\\dfrac{dx}{1+x^2}=\\int_0^{\\frac{\\pi}{4}}\\cos^2\\theta\\cdot\\dfrac{d\\theta}{\\cos^2\\theta}=\\dfrac{\\pi}{4}$。\n\n**结论**　答案 ①。\n\n**记忆**　$\\sqrt{a^2-x^2}$ → $x=a\\sin\\theta$；$\\dfrac{1}{a^2+x^2}$ → $x=a\\tan\\theta$。",
+        "keyPoints": [
+          "$\\dfrac{1}{a^2+x^2}$ 型用 $x=a\\tan\\theta$；$1+\\tan^2\\theta=\\dfrac{1}{\\cos^2\\theta}$"
+        ],
+        "traps": [
+          "$t=1+x^2$ 只在分子有 $x$ 时好用（如 $\\displaystyle\\int\\dfrac{x}{1+x^2}\\,dx$）",
+          "换元后忘记同时改积分上下限"
+        ],
+        "terms": [
+          {
+            "ja": "置換積分法",
+            "kana": "ちかんせきぶんほう",
+            "zh": "换元积分法"
+          },
+          {
+            "ja": "適した",
+            "kana": "てきした",
+            "zh": "合适的"
+          }
+        ],
+        "shortcut": "看到分母 $1+x^2$、分子为常数 → 立刻想到 $\\tan$ 换元。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-17",
+      "subject": "math",
+      "order": 17,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\alpha<\\beta$ とする。定積分 $\\displaystyle\\int_\\alpha^\\beta(x-\\alpha)(x-\\beta)\\,dx$ の値として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "设 $\\alpha<\\beta$。定积分 $\\displaystyle\\int_\\alpha^\\beta(x-\\alpha)(x-\\beta)\\,dx$ 的值，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$-\\dfrac{1}{6}(\\beta-\\alpha)^3$",
+        "$\\dfrac{1}{6}(\\beta-\\alpha)^3$",
+        "$-\\dfrac{1}{3}(\\beta-\\alpha)^3$",
+        "$-\\dfrac{1}{12}(\\beta-\\alpha)^3$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　这就是“$\\dfrac16$ 公式”。被积函数在 $\\alpha<x<\\beta$ 上为负，结果必为负（先排除 ①）；具体数值用平移 $t=x-\\alpha$ 算一次就记住了。\n\n**解答**\n\n1. 令 $t=x-\\alpha$，$h=\\beta-\\alpha$，则 $x-\\beta=t-h$，$x:\\alpha\\to\\beta$ 对应 $t:0\\to h$。\n2. $\\displaystyle\\int_\\alpha^\\beta(x-\\alpha)(x-\\beta)\\,dx=\\int_0^h t(t-h)\\,dt=\\left[\\dfrac{t^3}{3}-\\dfrac{ht^2}{2}\\right]_0^h=\\dfrac{h^3}{3}-\\dfrac{h^3}{2}=-\\dfrac{h^3}{6}$，即 $-\\dfrac16(\\beta-\\alpha)^3$。\n3. 应用：抛物线与直线（或两条抛物线）交于 $x=\\alpha,\\ \\beta$ 时，围成的面积 $S=\\dfrac{|a|}{6}(\\beta-\\alpha)^3$（$a$ 为两式 $x^2$ 系数之差）。\n\n**结论**　答案 ⓪。\n\n**记忆**　“交点距离的立方，除以 6，再乘 $|a|$”。",
+        "keyPoints": [
+          "$\\displaystyle\\int_\\alpha^\\beta(x-\\alpha)(x-\\beta)\\,dx=-\\dfrac16(\\beta-\\alpha)^3$"
+        ],
+        "traps": [
+          "求面积时忘记乘 $x^2$ 系数 $|a|$",
+          "定积分本身是负的，面积要取绝对值"
+        ],
+        "terms": [
+          {
+            "ja": "定積分",
+            "kana": "ていせきぶん",
+            "zh": "定积分（有上下限，结果是一个数）"
+          },
+          {
+            "ja": "放物線",
+            "kana": "ほうぶつせん",
+            "zh": "抛物线"
+          },
+          {
+            "ja": "囲まれた部分",
+            "kana": "かこまれたぶぶん",
+            "zh": "围成的部分"
+          }
+        ],
+        "shortcut": "代 $\\alpha=0,\\ \\beta=1$：$\\displaystyle\\int_0^1x(x-1)\\,dx=\\dfrac13-\\dfrac12=-\\dfrac16$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-18",
+      "subject": "math",
+      "order": 18,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "曲線 $y=f(x)$ と $x$ 軸および 2 直線 $x=a,\\ x=b\\ (a<b)$ で囲まれた部分を，$x$ 軸のまわりに 1 回転してできる立体の体積 $V$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "曲线 $y=f(x)$ 与 $x$ 轴及两直线 $x=a,\\ x=b\\ (a<b)$ 围成的部分绕 $x$ 轴旋转一周，所得立体的体积 $V$ 正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$V=2\\pi\\displaystyle\\int_a^bf(x)\\,dx$",
+        "$V=\\pi\\left\\{\\displaystyle\\int_a^bf(x)\\,dx\\right\\}^2$",
+        "$V=\\pi\\displaystyle\\int_a^b\\{f(x)\\}^2\\,dx$",
+        "$V=\\displaystyle\\int_a^b\\{f(x)\\}^2\\,dx$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　用垂直于 $x$ 轴的平面去截：截面是半径 $|f(x)|$ 的圆，面积 $\\pi\\{f(x)\\}^2$，再沿 $x$ 积分。\n\n**解答**　$V=\\displaystyle\\int_a^bS(x)\\,dx=\\pi\\int_a^b\\{f(x)\\}^2\\,dx$。\n\n**结论**　答案 ②。\n\n**记忆**　“截面积再积分”；绕 $y$ 轴旋转时 $V=\\pi\\displaystyle\\int_c^dx^2\\,dy$。",
+        "keyPoints": [
+          "体积 $V=\\displaystyle\\int_a^bS(x)\\,dx$（$S(x)$ 为截面积）；绕 $x$ 轴：$S(x)=\\pi\\{f(x)\\}^2$"
+        ],
+        "traps": [
+          "平方在积分号里面，不是积分后再平方",
+          "漏掉 $\\pi$"
+        ],
+        "terms": [
+          {
+            "ja": "回転体",
+            "kana": "かいてんたい",
+            "zh": "旋转体"
+          },
+          {
+            "ja": "体積",
+            "kana": "たいせき",
+            "zh": "体积（立体所占空间的大小）"
+          },
+          {
+            "ja": "〜のまわりに1回転する",
+            "kana": "〜のまわりにいっかいてんする",
+            "zh": "绕……旋转一周"
+          }
+        ],
+        "shortcut": "用 $f(x)=r$（常数）、区间 $[0,\\ h]$ 检验：应得圆柱 $\\pi r^2h$，只有 $\\pi\\displaystyle\\int_0^hr^2\\,dx$ 符合。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-19",
+      "subject": "math",
+      "order": 19,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\displaystyle\\sum_{k=1}^{n}k^2$ に等しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "与 $\\displaystyle\\sum_{k=1}^{n}k^2$ 相等的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{n(n+1)}{2}$",
+        "$\\left\\{\\dfrac{n(n+1)}{2}\\right\\}^2$",
+        "$\\dfrac{n(n+1)(n+2)}{6}$",
+        "$\\dfrac{n(n+1)(2n+1)}{6}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　三个基本求和公式要能直接写出。\n\n**解答**　$\\displaystyle\\sum_{k=1}^nk=\\dfrac{n(n+1)}{2}$，$\\displaystyle\\sum_{k=1}^nk^2=\\dfrac{n(n+1)(2n+1)}{6}$，$\\displaystyle\\sum_{k=1}^nk^3=\\left\\{\\dfrac{n(n+1)}{2}\\right\\}^2$。\n\n**结论**　答案 ③。\n\n**记忆**　平方和：“$n,\\ n+1,\\ 2n+1$ 三个因子再除以 6”；立方和 = 和的平方。",
+        "keyPoints": [
+          "$\\displaystyle\\sum k^2=\\dfrac{n(n+1)(2n+1)}{6}$，$\\displaystyle\\sum k^3=\\left\\{\\dfrac{n(n+1)}{2}\\right\\}^2$"
+        ],
+        "traps": [
+          "与立方和混淆",
+          "$\\dfrac{n(n+1)(n+2)}{6}$ 是 $\\displaystyle\\sum_{k=1}^n\\dfrac{k(k+1)}{2}$，不是平方和"
+        ],
+        "terms": [
+          {
+            "ja": "等しい",
+            "kana": "ひとしい",
+            "zh": "相等"
+          },
+          {
+            "ja": "和",
+            "kana": "わ",
+            "zh": "和（数列の和＝数列求和）"
+          }
+        ],
+        "shortcut": "$n=2$ 检验：$1+4=5$，$\\dfrac{2\\cdot3\\cdot5}{6}=5$；其余为 $3,\\ 9,\\ 4$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-20",
+      "subject": "math",
+      "order": 20,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "初項 $a$，公比 $r\\ (r\\neq1)$ の等比数列の初項から第 $n$ 項までの和として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "首项为 $a$、公比为 $r\\ (r\\neq1)$ 的等比数列，从首项到第 $n$ 项的和，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{a(r^{n-1}-1)}{r-1}$",
+        "$\\dfrac{a(r^n-1)}{r-1}$",
+        "$\\dfrac{a(r^{n+1}-1)}{r-1}$",
+        "$\\dfrac{a(1-r^n)}{r-1}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　错位相减：$rS-S$。\n\n**解答**　$S=a+ar+\\cdots+ar^{n-1}$，$rS=ar+\\cdots+ar^n$，相减得 $(r-1)S=a(r^n-1)$，$S=\\dfrac{a(r^n-1)}{r-1}=\\dfrac{a(1-r^n)}{1-r}$。\n\n**结论**　答案 ①。\n\n**记忆**　和公式里 $r$ 的指数 = 项数 $n$；通项才是 $ar^{n-1}$。",
+        "keyPoints": [
+          "$S_n=\\dfrac{a(r^n-1)}{r-1}=\\dfrac{a(1-r^n)}{1-r}\\ (r\\neq1)$，$r=1$ 时 $S_n=na$"
+        ],
+        "traps": [
+          "把通项的 $r^{n-1}$ 带进和公式",
+          "分子分母符号要配套：$\\dfrac{a(1-r^n)}{1-r}$ 或 $\\dfrac{a(r^n-1)}{r-1}$"
+        ],
+        "terms": [
+          {
+            "ja": "初項",
+            "kana": "しょこう",
+            "zh": "首项"
+          },
+          {
+            "ja": "公比",
+            "kana": "こうひ",
+            "zh": "公比 r：等比数列中后项 ÷ 前项的固定值"
+          },
+          {
+            "ja": "等比数列",
+            "kana": "とうひすうれつ",
+            "zh": "等比数列（每一项乘同一个数 r 得到下一项）"
+          },
+          {
+            "ja": "第n項",
+            "kana": "だいnこう",
+            "zh": "第 n 项"
+          }
+        ],
+        "shortcut": "$n=1$ 时和应为 $a$：只有 $\\dfrac{a(r-1)}{r-1}=a$ 符合（其余为 $0,\\ a(r+1),\\ -a$）。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-21",
+      "subject": "math",
+      "order": 21,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\displaystyle\\sum_{k=1}^{n}\\dfrac{1}{k(k+1)}$ に等しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "与 $\\displaystyle\\sum_{k=1}^{n}\\dfrac{1}{k(k+1)}$ 相等的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{1}{n+1}$",
+        "$\\dfrac{n+1}{n}$",
+        "$\\dfrac{n}{n+1}$",
+        "$\\dfrac{n}{2(n+1)}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　部分分式分解后，相邻项相消（裂项相消）。\n\n**解答**　$\\dfrac{1}{k(k+1)}=\\dfrac1k-\\dfrac{1}{k+1}$，和 $=\\left(1-\\dfrac12\\right)+\\left(\\dfrac12-\\dfrac13\\right)+\\cdots+\\left(\\dfrac1n-\\dfrac{1}{n+1}\\right)=1-\\dfrac{1}{n+1}=\\dfrac{n}{n+1}$。\n\n**结论**　答案 ②。\n\n**记忆**　分母两因子相差 $d$：$\\dfrac{1}{k(k+d)}=\\dfrac1d\\left(\\dfrac1k-\\dfrac{1}{k+d}\\right)$，别忘了 $\\dfrac1d$。",
+        "keyPoints": [
+          "$\\dfrac{1}{k(k+1)}=\\dfrac1k-\\dfrac{1}{k+1}$，求和只剩首尾"
+        ],
+        "traps": [
+          "首尾相减时只留下 $\\dfrac{1}{n+1}$，忘了前面的 $1$",
+          "相差 2 时漏掉系数 $\\dfrac12$"
+        ],
+        "terms": [
+          {
+            "ja": "部分分数分解",
+            "kana": "ぶぶんぶんすうぶんかい",
+            "zh": "部分分式分解（裂项）"
+          },
+          {
+            "ja": "等しい",
+            "kana": "ひとしい",
+            "zh": "相等"
+          }
+        ],
+        "shortcut": "$n=2$：$\\dfrac12+\\dfrac16=\\dfrac23$，只有 $\\dfrac{n}{n+1}$ 符合。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-22",
+      "subject": "math",
+      "order": 22,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "数列 $\\{a_n\\}$ の階差数列を $\\{b_n\\}$（$b_n=a_{n+1}-a_n$）とする。$n\\geqq2$ のとき，$a_n$ を表す式として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "设数列 $\\{a_n\\}$ 的阶差数列（差数列）为 $\\{b_n\\}$（$b_n=a_{n+1}-a_n$）。当 $n\\geqq2$ 时，表示 $a_n$ 的正确式子是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$a_n=a_1+\\displaystyle\\sum_{k=1}^{n-1}b_k$",
+        "$a_n=a_1+\\displaystyle\\sum_{k=1}^{n}b_k$",
+        "$a_n=\\displaystyle\\sum_{k=1}^{n-1}b_k$",
+        "$a_n=a_1+\\displaystyle\\sum_{k=2}^{n}b_k$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　从 $a_1$ 走到 $a_n$ 要跨过 $n-1$ 个“台阶” $b_1,\\ \\dots,\\ b_{n-1}$。\n\n**解答**　$a_n=a_1+(a_2-a_1)+\\cdots+(a_n-a_{n-1})=a_1+\\displaystyle\\sum_{k=1}^{n-1}b_k\\ (n\\geqq2)$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“$n$ 棵树之间只有 $n-1$ 个间隔”；求出后要检验 $n=1$ 时是否也成立。",
+        "keyPoints": [
+          "$a_n=a_1+\\displaystyle\\sum_{k=1}^{n-1}b_k\\ (n\\geqq2)$，最后检验 $n=1$"
+        ],
+        "traps": [
+          "上限写成 $n$",
+          "忘记“$n\\geqq2$”的限制，不检验 $n=1$"
+        ],
+        "terms": [
+          {
+            "ja": "階差数列",
+            "kana": "かいさすうれつ",
+            "zh": "阶差数列：相邻两项之差 a(n+1)−a(n) 组成的数列"
+          },
+          {
+            "ja": "表す",
+            "kana": "あらわす",
+            "zh": "表示"
+          }
+        ],
+        "shortcut": "$n=2$ 检验：应有 $a_2=a_1+b_1$，只有上限为 $n-1$ 的式子给出这个结果。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-23",
+      "subject": "math",
+      "order": 23,
+      "topic": "math.vec.space",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "空間の 2 つのベクトル $\\vec{a}=(1,\\ 0,\\ 1)$，$\\vec{b}=(1,\\ 1,\\ 0)$ のなす角 $\\theta\\ (0\\leqq\\theta\\leqq\\pi)$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "空间中两个向量 $\\vec{a}=(1,\\ 0,\\ 1)$，$\\vec{b}=(1,\\ 1,\\ 0)$ 的夹角 $\\theta\\ (0\\leqq\\theta\\leqq\\pi)$，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{\\pi}{6}$",
+        "$\\dfrac{\\pi}{4}$",
+        "$\\dfrac{\\pi}{3}$",
+        "$\\dfrac{\\pi}{2}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　夹角公式 $\\cos\\theta=\\dfrac{\\vec a\\cdot\\vec b}{|\\vec a||\\vec b|}$；空间向量的内积 = 对应分量乘积之和。\n\n**解答**　$\\vec a\\cdot\\vec b=1\\cdot1+0\\cdot1+1\\cdot0=1$，$|\\vec a|=|\\vec b|=\\sqrt2$，$\\cos\\theta=\\dfrac{1}{2}$，$\\theta=\\dfrac{\\pi}{3}$。\n\n**结论**　答案 ②。\n\n**记忆**　$\\cos\\theta=\\dfrac12\\to\\dfrac{\\pi}{3}$，$\\dfrac{\\sqrt2}{2}\\to\\dfrac{\\pi}{4}$，$\\dfrac{\\sqrt3}{2}\\to\\dfrac{\\pi}{6}$，$0\\to\\dfrac{\\pi}{2}$。",
+        "keyPoints": [
+          "$\\vec a\\cdot\\vec b=a_1b_1+a_2b_2+a_3b_3=|\\vec a||\\vec b|\\cos\\theta$"
+        ],
+        "traps": [
+          "把 $\\cos\\theta=\\dfrac12$ 记成 $\\dfrac{\\pi}{6}$",
+          "忘记除以两向量的大小"
+        ],
+        "terms": [
+          {
+            "ja": "なす角",
+            "kana": "なすかく",
+            "zh": "（两向量所成的）夹角"
+          },
+          {
+            "ja": "内積",
+            "kana": "ないせき",
+            "zh": "内积（数量积）"
+          },
+          {
+            "ja": "空間",
+            "kana": "くうかん",
+            "zh": "空间（三维，向量有 x, y, z 三个分量）"
+          }
+        ],
+        "shortcut": "内积为正 → 锐角，先排除 $\\dfrac{\\pi}{2}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-24",
+      "subject": "math",
+      "order": 24,
+      "topic": "math.vec.plane",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$|\\vec{a}|=2,\\ |\\vec{b}|=3,\\ \\vec{a}\\cdot\\vec{b}=1$ のとき，$|\\vec{a}+\\vec{b}|$ の値として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "当 $|\\vec{a}|=2,\\ |\\vec{b}|=3,\\ \\vec{a}\\cdot\\vec{b}=1$ 时，$|\\vec{a}+\\vec{b}|$ 的值正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\sqrt{13}$",
+        "$\\sqrt{14}$",
+        "$\\sqrt{15}$",
+        "$5$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　向量的大小先平方，按 $(a+b)^2$ 展开。\n\n**解答**　$|\\vec a+\\vec b|^2=|\\vec a|^2+2\\vec a\\cdot\\vec b+|\\vec b|^2=4+2+9=15$，所以 $|\\vec a+\\vec b|=\\sqrt{15}$。\n\n**结论**　答案 ②。\n\n**记忆**　中间项是 $2\\vec a\\cdot\\vec b$（不是 $2|\\vec a||\\vec b|$）；同理 $|\\vec a-\\vec b|^2=|\\vec a|^2-2\\vec a\\cdot\\vec b+|\\vec b|^2$。",
+        "keyPoints": [
+          "$|\\vec a\\pm\\vec b|^2=|\\vec a|^2\\pm2\\vec a\\cdot\\vec b+|\\vec b|^2$"
+        ],
+        "traps": [
+          "漏掉系数 2，得 $\\sqrt{14}$",
+          "把大小直接相加，得 $5$"
+        ],
+        "terms": [
+          {
+            "ja": "大きさ",
+            "kana": "おおきさ",
+            "zh": "（向量的）大小、模长"
+          },
+          {
+            "ja": "内積",
+            "kana": "ないせき",
+            "zh": "内积（数量积）"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-25",
+      "subject": "math",
+      "order": 25,
+      "topic": "math.vec.plane",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\overrightarrow{\\mathrm{OA}}=(a_1,\\ a_2)$，$\\overrightarrow{\\mathrm{OB}}=(b_1,\\ b_2)$ のとき，三角形 OAB の面積として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "当 $\\overrightarrow{\\mathrm{OA}}=(a_1,\\ a_2)$，$\\overrightarrow{\\mathrm{OB}}=(b_1,\\ b_2)$ 时，三角形 OAB 的面积正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{1}{2}|a_1b_1+a_2b_2|$",
+        "$|a_1b_2-a_2b_1|$",
+        "$\\dfrac{1}{2}|a_1b_1-a_2b_2|$",
+        "$\\dfrac{1}{2}|a_1b_2-a_2b_1|$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　由 $S=\\dfrac12\\sqrt{|\\vec a|^2|\\vec b|^2-(\\vec a\\cdot\\vec b)^2}$ 代入分量化简。\n\n**解答**　$(a_1^2+a_2^2)(b_1^2+b_2^2)-(a_1b_1+a_2b_2)^2=(a_1b_2-a_2b_1)^2$，所以 $S=\\dfrac12|a_1b_2-a_2b_1|$。\n\n**结论**　答案 ③。\n\n**记忆**　“交叉相乘相减，取绝对值再折半”。",
+        "keyPoints": [
+          "$S=\\dfrac12\\sqrt{|\\vec a|^2|\\vec b|^2-(\\vec a\\cdot\\vec b)^2}=\\dfrac12|a_1b_2-a_2b_1|$"
+        ],
+        "traps": [
+          "忘记 $\\dfrac12$（那是平行四边形的面积）",
+          "与内积 $a_1b_1+a_2b_2$ 混淆"
+        ],
+        "terms": [
+          {
+            "ja": "成分",
+            "kana": "せいぶん",
+            "zh": "（向量的）分量、坐标"
+          },
+          {
+            "ja": "三角形 OAB",
+            "kana": "さんかっけいOAB",
+            "zh": "三角形 OAB（也常写成 △OAB）"
+          }
+        ],
+        "shortcut": "用 $(1,\\ 0)$、$(0,\\ 1)$ 检验：面积应为 $\\dfrac12$。四个选项依次为 $0,\\ 1,\\ 0,\\ \\dfrac12$，只有 ③ 符合。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-26",
+      "subject": "math",
+      "order": 26,
+      "topic": "math.vec.plane",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "2 点 $\\mathrm{A}(\\vec{a})$，$\\mathrm{B}(\\vec{b})$ に対し，線分 AB を $m:n$ に内分する点 P の位置ベクトル $\\vec{p}$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "对两点 $\\mathrm{A}(\\vec{a})$，$\\mathrm{B}(\\vec{b})$，把线段 AB 内分为 $m:n$ 的点 P 的位置向量 $\\vec{p}$，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{n\\vec{a}+m\\vec{b}}{m+n}$",
+        "$\\dfrac{m\\vec{a}+n\\vec{b}}{m+n}$",
+        "$\\dfrac{-n\\vec{a}+m\\vec{b}}{m-n}$",
+        "$\\dfrac{n\\vec{a}+m\\vec{b}}{mn}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　内分点公式：比例数“交叉”相乘。\n\n**解答**　$\\mathrm{AP}:\\mathrm{PB}=m:n$ 时 $\\vec p=\\dfrac{n\\vec a+m\\vec b}{m+n}$（$\\vec a$ 乘 $n$，$\\vec b$ 乘 $m$）。外分时把 $n$ 换成 $-n$：$\\dfrac{-n\\vec a+m\\vec b}{m-n}$。\n\n**结论**　答案 ⓪。\n\n**记忆**　P 离谁近，谁的系数大；$m$ 是靠 A 的那一段，所以 $m$ 乘到 $\\vec b$ 上。",
+        "keyPoints": [
+          "内分 $\\dfrac{n\\vec a+m\\vec b}{m+n}$，外分 $\\dfrac{-n\\vec a+m\\vec b}{m-n}$"
+        ],
+        "traps": [
+          "系数不交叉，写成 $\\dfrac{m\\vec a+n\\vec b}{m+n}$",
+          "把内分与外分公式混用"
+        ],
+        "terms": [
+          {
+            "ja": "内分する",
+            "kana": "ないぶんする",
+            "zh": "内分（分点在线段内部）"
+          },
+          {
+            "ja": "外分",
+            "kana": "がいぶん",
+            "zh": "外分（分点在线段延长线上）"
+          },
+          {
+            "ja": "位置ベクトル",
+            "kana": "いちベクトル",
+            "zh": "位置向量"
+          }
+        ],
+        "shortcut": "$m=n$ 时应为中点 $\\dfrac{\\vec a+\\vec b}{2}$（排除外分式和分母为 $mn$ 的式子）；$m=0$ 时应为 A（排除系数不交叉的式子）。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-27",
+      "subject": "math",
+      "order": 27,
+      "topic": "math.complex.plane",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "複素数 $z=-1+i$ を極形式で表したもの（偏角 $\\theta$ は $0\\leqq\\theta<2\\pi$）として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "把复数 $z=-1+i$ 写成极形式（辐角 $\\theta$ 满足 $0\\leqq\\theta<2\\pi$），正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\sqrt{2}\\left(\\cos\\dfrac{\\pi}{4}+i\\sin\\dfrac{\\pi}{4}\\right)$",
+        "$2\\left(\\cos\\dfrac{3}{4}\\pi+i\\sin\\dfrac{3}{4}\\pi\\right)$",
+        "$\\sqrt{2}\\left(\\cos\\dfrac{7}{4}\\pi+i\\sin\\dfrac{7}{4}\\pi\\right)$",
+        "$\\sqrt{2}\\left(\\cos\\dfrac{3}{4}\\pi+i\\sin\\dfrac{3}{4}\\pi\\right)$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　$z=a+bi$ 的极形式 $r(\\cos\\theta+i\\sin\\theta)$，$r=|z|=\\sqrt{a^2+b^2}$，$\\theta$ 由点所在象限确定。\n\n**解答**　$r=\\sqrt{(-1)^2+1^2}=\\sqrt2$；$\\cos\\theta=-\\dfrac{1}{\\sqrt2},\\ \\sin\\theta=\\dfrac{1}{\\sqrt2}$，点 $(-1,\\ 1)$ 在第 2 象限，$\\theta=\\dfrac34\\pi$。\n\n**结论**　答案 ③。\n\n**记忆**　先在复平面上描点，看象限再定角；$r$ 是 $\\sqrt{a^2+b^2}$，别忘开方。",
+        "keyPoints": [
+          "$z=a+bi=r(\\cos\\theta+i\\sin\\theta)$，$r=\\sqrt{a^2+b^2}$，$\\cos\\theta=\\dfrac ar,\\ \\sin\\theta=\\dfrac br$"
+        ],
+        "traps": [
+          "只看 $|\\tan\\theta|=1$ 取 $\\dfrac{\\pi}{4}$，忽略象限",
+          "$r$ 忘了开方，写成 $2$"
+        ],
+        "terms": [
+          {
+            "ja": "極形式",
+            "kana": "きょくけいしき",
+            "zh": "极形式（三角形式）"
+          },
+          {
+            "ja": "偏角",
+            "kana": "へんかく",
+            "zh": "辐角"
+          },
+          {
+            "ja": "絶対値",
+            "kana": "ぜったいち",
+            "zh": "（复数的）模"
+          }
+        ],
+        "shortcut": "$-1+i$ 在第 2 象限，模为 $\\sqrt2$：只有 $\\sqrt2$ 且角为 $\\dfrac34\\pi$ 的选项同时满足。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-28",
+      "subject": "math",
+      "order": 28,
+      "topic": "math.complex.plane",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$(1+i)^8$ の値として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "$(1+i)^8$ 的值，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$-16$",
+        "$16$",
+        "$16i$",
+        "$256$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　先化为极形式，再用棣莫弗定理。\n\n**解答**　$1+i=\\sqrt2\\left(\\cos\\dfrac{\\pi}{4}+i\\sin\\dfrac{\\pi}{4}\\right)$，$(1+i)^8=(\\sqrt2)^8(\\cos2\\pi+i\\sin2\\pi)=16$。\n\n**结论**　答案 ①。\n\n**记忆**　$\\{r(\\cos\\theta+i\\sin\\theta)\\}^n=r^n(\\cos n\\theta+i\\sin n\\theta)$：“模取 $n$ 次方，辐角乘 $n$”。",
+        "keyPoints": [
+          "ド・モアブルの定理：$(\\cos\\theta+i\\sin\\theta)^n=\\cos n\\theta+i\\sin n\\theta$"
+        ],
+        "traps": [
+          "模算成 $2^8=256$（把 $|1+i|$ 当成 $2$）",
+          "辐角乘 $n$ 后判断 $\\cos,\\ \\sin$ 符号出错"
+        ],
+        "terms": [
+          {
+            "ja": "ド・モアブルの定理",
+            "kana": "ド・モアブルのていり",
+            "zh": "棣莫弗定理"
+          },
+          {
+            "ja": "値",
+            "kana": "あたい",
+            "zh": "值（〜の値＝……的数值，要求算出具体的数）"
+          }
+        ],
+        "shortcut": "$(1+i)^2=2i$，所以 $(1+i)^8=(2i)^4=16i^4=16$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-29",
+      "subject": "math",
+      "order": 29,
+      "topic": "math.complex.plane",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "複素数平面上で，点 $\\beta$ を点 $\\alpha$ を中心として $\\theta$ だけ回転した点を $\\gamma$ とする。$\\gamma$ を表す式として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "在复平面上，把点 $\\beta$ 绕点 $\\alpha$ 旋转 $\\theta$ 得到点 $\\gamma$。表示 $\\gamma$ 的正确式子是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\gamma=\\alpha+(\\beta-\\alpha)(\\cos\\theta+i\\sin\\theta)$",
+        "$\\gamma=\\beta(\\cos\\theta+i\\sin\\theta)$",
+        "$\\gamma=\\alpha+\\beta(\\cos\\theta+i\\sin\\theta)$",
+        "$\\gamma=(\\beta-\\alpha)(\\cos\\theta+i\\sin\\theta)$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　绕 $\\alpha$ 旋转 = 先平移使 $\\alpha$ 到原点，乘旋转因子，再平移回去。\n\n**解答**　$\\gamma-\\alpha=(\\beta-\\alpha)(\\cos\\theta+i\\sin\\theta)$，即 $\\gamma=\\alpha+(\\beta-\\alpha)(\\cos\\theta+i\\sin\\theta)$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“减中心 → 乘 $(\\cos\\theta+i\\sin\\theta)$ → 加回中心”。绕原点转 $\\dfrac{\\pi}{2}$ 就是乘 $i$。",
+        "keyPoints": [
+          "旋转：$\\gamma-\\alpha=(\\beta-\\alpha)(\\cos\\theta+i\\sin\\theta)$"
+        ],
+        "traps": [
+          "忘记最后加回 $\\alpha$",
+          "直接把 $\\beta$ 乘旋转因子——那是绕原点旋转"
+        ],
+        "terms": [
+          {
+            "ja": "複素数平面",
+            "kana": "ふくそすうへいめん",
+            "zh": "复平面"
+          },
+          {
+            "ja": "回転する",
+            "kana": "かいてんする",
+            "zh": "旋转"
+          },
+          {
+            "ja": "〜を中心として",
+            "kana": "〜をちゅうしんとして",
+            "zh": "以……为中心"
+          }
+        ],
+        "shortcut": "取 $\\beta=\\alpha$：中心本身转完不动，$\\gamma$ 应等于 $\\alpha$，只有第一个式子满足。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-30",
+      "subject": "math",
+      "order": 30,
+      "topic": "math.complex.plane",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$|z|=1$ を満たす複素数 $z$ について，$\\dfrac{1}{z}$ と常に等しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$\\overline{z}$ は $z$ と共役な複素数を表す。",
+      "stemZh": "对满足 $|z|=1$ 的复数 $z$，与 $\\dfrac{1}{z}$ 总是相等的是下列 ⓪～③ 中的哪一个？其中 $\\overline{z}$ 表示 $z$ 的共轭复数。",
+      "format": "choice",
+      "options": [
+        "$z$",
+        "$-z$",
+        "$-\\overline{z}$",
+        "$\\overline{z}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　利用 $|z|^2=z\\overline{z}$。\n\n**解答**　$|z|=1$ → $z\\overline z=1$ → $\\dfrac1z=\\overline z$。\n\n**结论**　答案 ③。\n\n**记忆**　“模为 1：倒数 = 共轭”（辐角变成 $-\\theta$）；一般地 $\\dfrac1z=\\dfrac{\\overline z}{|z|^2}$。",
+        "keyPoints": [
+          "$|z|^2=z\\overline z$；$|z|=1$ 时 $\\dfrac1z=\\overline z$"
+        ],
+        "traps": [
+          "把倒数当成相反数 $-z$"
+        ],
+        "terms": [
+          {
+            "ja": "共役な複素数",
+            "kana": "きょうやくなふくそすう",
+            "zh": "共轭复数"
+          },
+          {
+            "ja": "満たす",
+            "kana": "みたす",
+            "zh": "满足"
+          }
+        ],
+        "shortcut": "取 $z=i$：$\\dfrac1i=-i$，排除 $z$、$-\\overline z$；再取 $z=1$：排除 $-z$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-31",
+      "subject": "math",
+      "order": 31,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\log_{2}3\\cdot\\log_{3}8$ の値として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "$\\log_{2}3\\cdot\\log_{3}8$ 的值，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$2$",
+        "$\\dfrac{8}{3}$",
+        "$3$",
+        "$24$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　用换底公式统一底数后约分。\n\n**解答**　$\\log_23\\cdot\\log_38=\\dfrac{\\log3}{\\log2}\\cdot\\dfrac{\\log8}{\\log3}=\\dfrac{\\log8}{\\log2}=\\log_28=3$。\n\n**结论**　答案 ②。\n\n**记忆**　$\\log_ab=\\dfrac{\\log_cb}{\\log_ca}$（“新底放分母”）；链式相消 $\\log_ab\\cdot\\log_bc=\\log_ac$；$\\log_ab=\\dfrac{1}{\\log_ba}$。",
+        "keyPoints": [
+          "底の変換公式：$\\log_ab=\\dfrac{\\log_cb}{\\log_ca}$"
+        ],
+        "traps": [
+          "对数的商不能“约掉 log”：$\\dfrac{\\log8}{\\log3}\\neq\\dfrac83$（误选 $\\dfrac83$ 的原因）",
+          "换底时分子分母放反：$\\log_ab=\\dfrac{\\log b}{\\log a}$，真数在分子、底在分母"
+        ],
+        "terms": [
+          {
+            "ja": "底の変換公式",
+            "kana": "ていのへんかんこうしき",
+            "zh": "换底公式"
+          },
+          {
+            "ja": "底",
+            "kana": "てい",
+            "zh": "（对数的）底数"
+          }
+        ],
+        "shortcut": "链式：$\\log_23\\cdot\\log_38=\\log_28=3$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-32",
+      "subject": "math",
+      "order": 32,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "不等式 $\\log_{\\frac{1}{2}}x>\\log_{\\frac{1}{2}}3$ を満たす $x$ の値の範囲として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "满足不等式 $\\log_{\\frac{1}{2}}x>\\log_{\\frac{1}{2}}3$ 的 $x$ 的取值范围，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$x>3$",
+        "$x<3$",
+        "$0<x<3$",
+        "$x>0$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "**思路**　底 $\\dfrac12<1$ 的对数函数单调递减，比较真数时不等号反向；还要满足真数 $>0$。\n\n**解答**　递减 → $x<3$；真数条件 $x>0$；合起来 $0<x<3$。\n\n**结论**　答案 ②。\n\n**记忆**　“底小于 1，大小翻转；真数永远大于 0”。",
+        "keyPoints": [
+          "$0<a<1$ 时 $\\log_ap>\\log_aq\\iff0<p<q$；$a>1$ 时不等号方向不变"
+        ],
+        "traps": [
+          "不等号没有反向，得 $x>3$",
+          "漏掉真数条件 $x>0$"
+        ],
+        "terms": [
+          {
+            "ja": "真数",
+            "kana": "しんすう",
+            "zh": "真数（对数符号里的数，必须为正）"
+          },
+          {
+            "ja": "値の範囲",
+            "kana": "あたいのはんい",
+            "zh": "取值范围"
+          },
+          {
+            "ja": "不等式",
+            "kana": "ふとうしき",
+            "zh": "不等式（〜を満たす x の範囲＝求解集）"
+          }
+        ],
+        "shortcut": "代 $x=1$：$\\log_{\\frac12}1=0>\\log_{\\frac12}3$（负数），$x=1$ 在范围内，排除 $x>3$；$x<3$ 含负数，违反真数条件；代 $x=4$：$\\log_{\\frac12}4=-2<\\log_{\\frac12}3$，不满足，排除 $x>0$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-33",
+      "subject": "math",
+      "order": 33,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "$\\log_{10}2=0.3010$ とする。$2^{50}$ は何桁の整数か。正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "已知 $\\log_{10}2=0.3010$。$2^{50}$ 是几位整数？正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "15 桁",
+        "16 桁",
+        "17 桁",
+        "50 桁"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　求 $\\log_{10}N$，看它的整数部分。\n\n**解答**　$\\log_{10}2^{50}=50\\times0.3010=15.05$，所以 $10^{15}<2^{50}<10^{16}$，是 16 位数。\n\n**结论**　答案 ①。\n\n**记忆**　“常用对数的整数部分 + 1 = 位数”。",
+        "keyPoints": [
+          "$10^{k-1}\\leqq N<10^k\\iff k-1\\leqq\\log_{10}N<k\\iff N$ 是 $k$ 位数"
+        ],
+        "traps": [
+          "直接把整数部分 15 当成位数"
+        ],
+        "terms": [
+          {
+            "ja": "常用対数",
+            "kana": "じょうようたいすう",
+            "zh": "常用对数（以 10 为底）"
+          },
+          {
+            "ja": "桁",
+            "kana": "けた",
+            "zh": "位数（16 桁＝16 位）"
+          },
+          {
+            "ja": "何桁",
+            "kana": "なんけた",
+            "zh": "几位数（何桁の整数か＝是几位整数）"
+          }
+        ],
+        "shortcut": "$10^1=10$ 是 2 位数 → $10^{15.05}$ 是 16 位数。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-34",
+      "subject": "math",
+      "order": 34,
+      "topic": "math.quad.func",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "放物線 $y=2x^2-8x+5$ の頂点の座標として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "抛物线 $y=2x^2-8x+5$ 的顶点坐标，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$(-2,\\ -3)$",
+        "$(2,\\ 1)$",
+        "$(4,\\ 5)$",
+        "$(2,\\ -3)$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　配方（平方完成）成 $a(x-p)^2+q$，顶点为 $(p,\\ q)$。\n\n**解答**　$y=2(x^2-4x)+5=2(x-2)^2-8+5=2(x-2)^2-3$，顶点 $(2,\\ -3)$。\n\n**结论**　答案 ③。\n\n**记忆**　顶点 $x$ 坐标 $=-\\dfrac{b}{2a}$，再代回求 $y$；提出系数配方时，减掉的是 $a\\times(\\text{一半})^2$。",
+        "keyPoints": [
+          "$y=ax^2+bx+c$ 的顶点 $x=-\\dfrac{b}{2a}$（对称轴）"
+        ],
+        "traps": [
+          "提出系数 2 后只减 4 不减 8，得 $(2,\\ 1)$",
+          "符号弄反，得 $(-2,\\ -3)$"
+        ],
+        "terms": [
+          {
+            "ja": "頂点",
+            "kana": "ちょうてん",
+            "zh": "（抛物线的）顶点，即最低点或最高点"
+          },
+          {
+            "ja": "座標",
+            "kana": "ざひょう",
+            "zh": "坐标 (x, y)（頂点の座標＝顶点坐标）"
+          },
+          {
+            "ja": "平方完成",
+            "kana": "へいほうかんせい",
+            "zh": "配方"
+          }
+        ],
+        "shortcut": "$x=-\\dfrac{-8}{2\\cdot2}=2$，$y=8-16+5=-3$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-35",
+      "subject": "math",
+      "order": 35,
+      "topic": "math.quad.func",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "すべての実数 $x$ に対して $x^2+2kx+k+2>0$ が成り立つような定数 $k$ の値の範囲として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "对所有实数 $x$，$x^2+2kx+k+2>0$ 都成立，常数 $k$ 的取值范围正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$k<-1,\\ 2<k$",
+        "$-1<k<2$",
+        "$-2<k<1$",
+        "$-1\\leqq k\\leqq2$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　$x^2$ 系数为正的二次式恒正 ⇔ 图像与 $x$ 轴无公共点 ⇔ 判别式 $D<0$。\n\n**解答**　$\\dfrac D4=k^2-(k+2)=k^2-k-2=(k-2)(k+1)<0$，得 $-1<k<2$。\n\n**结论**　答案 ①。\n\n**记忆**　“恒 $>0$ 用 $D<0$，恒 $\\geqq0$ 用 $D\\leqq0$”；一次项系数为 $2b'$ 时用 $\\dfrac D4=b'^2-ac$。",
+        "keyPoints": [
+          "$a>0$ 时：$ax^2+bx+c>0$ 对一切实数 $x$ 成立 $\\iff D<0$"
+        ],
+        "traps": [
+          "因式分解符号出错，得 $-2<k<1$",
+          "带上等号写成 $-1\\leqq k\\leqq2$"
+        ],
+        "terms": [
+          {
+            "ja": "判別式",
+            "kana": "はんべつしき",
+            "zh": "判别式 D=b²−4ac（一次项系数为 2b′ 时用 D/4=b′²−ac）"
+          },
+          {
+            "ja": "すべての実数 x に対して",
+            "kana": "すべてのじっすうxにたいして",
+            "zh": "对所有实数 x"
+          },
+          {
+            "ja": "成り立つ",
+            "kana": "なりたつ",
+            "zh": "成立"
+          },
+          {
+            "ja": "定数",
+            "kana": "ていすう",
+            "zh": "常数"
+          }
+        ],
+        "shortcut": "端点检验：$k=-1$ 时式子为 $(x-1)^2$，在 $x=1$ 处为 0，不满足“$>0$”，所以端点不取。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-36",
+      "subject": "math",
+      "order": 36,
+      "topic": "math.algebra.poly",
+      "tags": [
+        "math.quad.func"
+      ],
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "2 次方程式 $2x^2-3x+4=0$ の 2 つの解を $\\alpha,\\ \\beta$ とするとき，$\\alpha^2+\\beta^2$ の値として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "设二次方程 $2x^2-3x+4=0$ 的两个解为 $\\alpha,\\ \\beta$，则 $\\alpha^2+\\beta^2$ 的值正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$-\\dfrac{7}{4}$",
+        "$1$",
+        "$\\dfrac{9}{4}$",
+        "$\\dfrac{25}{4}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　不必求解，用根与系数的关系 + 对称式变形。\n\n**解答**　$\\alpha+\\beta=\\dfrac32$，$\\alpha\\beta=\\dfrac42=2$；$\\alpha^2+\\beta^2=(\\alpha+\\beta)^2-2\\alpha\\beta=\\dfrac94-4=-\\dfrac74$。\n\n**结论**　答案 ⓪。\n\n**记忆**　“和 $=-\\dfrac ba$（变号），积 $=\\dfrac ca$（不变号）”。结果为负并不矛盾：判别式 $9-32<0$，两解是虚数。",
+        "keyPoints": [
+          "$\\alpha+\\beta=-\\dfrac ba,\\ \\alpha\\beta=\\dfrac ca$；$\\alpha^2+\\beta^2=(\\alpha+\\beta)^2-2\\alpha\\beta$"
+        ],
+        "traps": [
+          "忘记 $-2\\alpha\\beta$，得 $\\dfrac94$",
+          "积的符号弄错（$\\alpha\\beta=-2$），得 $\\dfrac{25}{4}$"
+        ],
+        "terms": [
+          {
+            "ja": "解と係数の関係",
+            "kana": "かいとけいすうのかんけい",
+            "zh": "根与系数的关系（韦达定理）"
+          },
+          {
+            "ja": "2次方程式",
+            "kana": "にじほうていしき",
+            "zh": "一元二次方程"
+          },
+          {
+            "ja": "解",
+            "kana": "かい",
+            "zh": "（方程的）解、根"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-37",
+      "subject": "math",
+      "order": 37,
+      "topic": "math.prob.prob",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "事象 $A$ が起こったときに事象 $B$ が起こる条件付き確率 $P_A(B)$ を表す式として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。ただし，$P(A)>0$ とする。",
+      "stemZh": "在事件 $A$ 发生的条件下事件 $B$ 发生的条件概率 $P_A(B)$，正确的式子是下列 ⓪～③ 中的哪一个？其中 $P(A)>0$。",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{P(A\\cap B)}{P(B)}$",
+        "$P(A)P(B)$",
+        "$\\dfrac{P(B)}{P(A)}$",
+        "$\\dfrac{P(A\\cap B)}{P(A)}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　条件概率是在“$A$ 已经发生”的范围里看 $B$：新的全体是 $A$。\n\n**解答**　$P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$；变形得乘法定理 $P(A\\cap B)=P(A)P_A(B)$。\n\n**结论**　答案 ③。\n\n**记忆**　日本记号 $P_A(B)$ = 中国记号 $P(B\\mid A)$：“下标是条件，条件放分母”。",
+        "keyPoints": [
+          "$P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$，乘法定理 $P(A\\cap B)=P(A)P_A(B)$"
+        ],
+        "traps": [
+          "被下标迷惑，分母写成 $P(B)$",
+          "只有 $A,\\ B$ 独立时才有 $P(A\\cap B)=P(A)P(B)$"
+        ],
+        "terms": [
+          {
+            "ja": "条件付き確率",
+            "kana": "じょうけんつきかくりつ",
+            "zh": "条件概率（日本记号 P_A(B)，中国记号 P(B|A)）"
+          },
+          {
+            "ja": "事象",
+            "kana": "じしょう",
+            "zh": "事件"
+          },
+          {
+            "ja": "起こる",
+            "kana": "おこる",
+            "zh": "发生"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-38",
+      "subject": "math",
+      "order": 38,
+      "topic": "math.prob.dist",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "確率変数 $X$ のとる値が $1,\\ 2,\\ 3$ で，それぞれの値をとる確率がすべて $\\dfrac{1}{3}$ であるとき，$X$ の分散 $V(X)$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "随机变量 $X$ 取值为 $1,\\ 2,\\ 3$，取各值的概率都是 $\\dfrac{1}{3}$。$X$ 的方差 $V(X)$ 正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$\\dfrac{2}{3}$",
+        "$\\dfrac{\\sqrt{6}}{3}$",
+        "$2$",
+        "$\\dfrac{14}{3}$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "**思路**　方差 = 平方的期望 − 期望的平方。\n\n**解答**　$E(X)=\\dfrac{1+2+3}{3}=2$，$E(X^2)=\\dfrac{1+4+9}{3}=\\dfrac{14}{3}$，$V(X)=\\dfrac{14}{3}-2^2=\\dfrac23$。\n\n**结论**　答案 ⓪。\n\n**记忆**　$V(X)=E(X^2)-\\{E(X)\\}^2$；标准差 $\\sigma(X)=\\sqrt{V(X)}$（这里 $=\\dfrac{\\sqrt6}{3}$，正是陷阱选项）。",
+        "keyPoints": [
+          "$V(X)=E\\big((X-m)^2\\big)=E(X^2)-\\{E(X)\\}^2$，$\\sigma(X)=\\sqrt{V(X)}$"
+        ],
+        "traps": [
+          "忘记减去 $\\{E(X)\\}^2$，得 $\\dfrac{14}{3}$",
+          "把标准差 $\\dfrac{\\sqrt6}{3}$ 当成方差"
+        ],
+        "terms": [
+          {
+            "ja": "確率変数",
+            "kana": "かくりつへんすう",
+            "zh": "随机变量"
+          },
+          {
+            "ja": "分散",
+            "kana": "ぶんさん",
+            "zh": "方差"
+          },
+          {
+            "ja": "標準偏差",
+            "kana": "ひょうじゅんへんさ",
+            "zh": "标准差"
+          },
+          {
+            "ja": "期待値",
+            "kana": "きたいち",
+            "zh": "期望值"
+          }
+        ],
+        "shortcut": "按定义直接算：$\\dfrac{(1-2)^2+0^2+(3-2)^2}{3}=\\dfrac23$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-39",
+      "subject": "math",
+      "order": 39,
+      "topic": "math.prob.dist",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "確率変数 $X$ の期待値が $E(X)=3$，分散が $V(X)=2$ であるとき，$Y=2X+1$ の期待値 $E(Y)$ と分散 $V(Y)$ の組として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。",
+      "stemZh": "随机变量 $X$ 的期望 $E(X)=3$，方差 $V(X)=2$。$Y=2X+1$ 的期望 $E(Y)$ 与方差 $V(Y)$ 的组合，正确的是下列 ⓪～③ 中的哪一个？",
+      "format": "choice",
+      "options": [
+        "$E(Y)=7,\\ V(Y)=5$",
+        "$E(Y)=7,\\ V(Y)=4$",
+        "$E(Y)=6,\\ V(Y)=8$",
+        "$E(Y)=7,\\ V(Y)=8$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "**思路**　线性变换 $Y=aX+b$：期望跟着变；方差只受 $a$ 影响，并且变成 $a^2$ 倍。\n\n**解答**　$E(Y)=2E(X)+1=7$，$V(Y)=2^2V(X)=8$。\n\n**结论**　答案 ③。\n\n**记忆**　“平移不改变分散程度；伸缩 $a$ 倍，方差 $a^2$ 倍，标准差 $|a|$ 倍”。",
+        "keyPoints": [
+          "$E(aX+b)=aE(X)+b$，$V(aX+b)=a^2V(X)$，$\\sigma(aX+b)=|a|\\sigma(X)$"
+        ],
+        "traps": [
+          "把 $+1$ 也加到方差上，得 $5$",
+          "方差只乘 $a$ 不乘 $a^2$，得 $4$"
+        ],
+        "terms": [
+          {
+            "ja": "期待値",
+            "kana": "きたいち",
+            "zh": "期望值"
+          },
+          {
+            "ja": "分散",
+            "kana": "ぶんさん",
+            "zh": "方差"
+          },
+          {
+            "ja": "組",
+            "kana": "くみ",
+            "zh": "一组（成对的值）"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    },
+    {
+      "id": "recall-math-40",
+      "subject": "math",
+      "order": 40,
+      "topic": "math.prob.dist",
+      "difficulty": 2,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 考点速测"
+      },
+      "stem": "1 個のさいころを 180 回投げるとき，1 の目が出る回数を $X$ とする。$X$ の分散 $V(X)$ として正しいものを，次の ⓪ ～ ③ の中から一つ選びなさい。\n\n注）さいころ：dice",
+      "stemZh": "把 1 个骰子掷 180 次，设掷出 1 点的次数为 $X$。$X$ 的方差 $V(X)$ 正确的是下列 ⓪～③ 中的哪一个？\n\n注）さいころ：骰子（dice）",
+      "format": "choice",
+      "options": [
+        "$5$",
+        "$25$",
+        "$30$",
+        "$150$"
+      ],
+      "optionLabels": [
+        "⓪",
+        "①",
+        "②",
+        "③"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "**思路**　每次出 1 的概率 $p=\\dfrac16$，独立重复 180 次 → $X$ 服从二项分布 $B\\left(180,\\ \\dfrac16\\right)$。\n\n**解答**　$V(X)=np(1-p)=180\\cdot\\dfrac16\\cdot\\dfrac56=25$。（$E(X)=np=30$，$\\sigma(X)=5$）\n\n**结论**　答案 ①。\n\n**记忆**　二项分布 $B(n,\\ p)$：$E=np$，$V=np(1-p)$——“$np$ 再乘 $q$”。",
+        "keyPoints": [
+          "$B(n,\\ p)$：$E(X)=np$，$V(X)=np(1-p)$，$\\sigma(X)=\\sqrt{np(1-p)}$"
+        ],
+        "traps": [
+          "选成期望 $30$ 或标准差 $5$"
+        ],
+        "terms": [
+          {
+            "ja": "二項分布",
+            "kana": "にこうぶんぷ",
+            "zh": "二项分布 B(n, p)：n 次独立重复试验中成功次数的分布"
+          },
+          {
+            "ja": "さいころ",
+            "kana": "さいころ",
+            "zh": "骰子（EJU 试卷写平假名 さいころ）"
+          },
+          {
+            "ja": "目",
+            "kana": "め",
+            "zh": "骰子的点数（1 の目＝1 点）"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立作答一致"
+      }
+    }
+  ]
+}

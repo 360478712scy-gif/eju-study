@@ -78,8 +78,8 @@
         "shortcut": "状态变化先看方向：固→液→气 一律吸热（ΔH>0），反方向一律放热（ΔH<0）。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -153,8 +153,8 @@
         "shortcut": "平均法：每 mol 混合气放热 $844/0.50=1688$ kJ。十字交叉 $(2219-1688):(1688-891)=531:797\\approx2:3$，甲烷占 $2/5=40\\%$。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -220,11 +220,11 @@
             "zh": "盖斯定律：反应焓只与始态、终态有关"
           }
         ],
-        "shortcut": "直接套公式：$[-394+2\\times(-286)]-(-891)=-75$。检验：$\\ce{CH4}$ 的生成焓是绝对值不大的负值；−1857、−966 这类大数，是把燃烧焓直接相加（没有减去 $\\ce{CH4}$ 的燃烧焓）造成的。"
+        "shortcut": "直接套公式：$[-394+2\\times(-286)]-(-891)=-75$。检验：$\\ce{CH4}$ 的生成焓是绝对值不大的负值；−966 是漏掉了 $\\ce{CH4}$ 的燃烧焓，−1857 是把它加上而不是减去。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -259,7 +259,7 @@
       ],
       "answer": 1,
       "explanation": {
-        "zh": "**思路**　单质（$\\ce{Al}$、$\\ce{Fe}$）的生成焓为 0。反应焓 = Σ(生成物的生成焓) − Σ(反应物的生成焓)，且方程式的 ΔH 对应写出的系数（2 mol Al）。\n\n**解答**\n\n1. $\\Delta H=[-1676+2\\times0]-[-824+2\\times0]=-852\\ \\mathrm{kJ}$（每 2 mol Al）\n2. $n(\\ce{Al})=5.4/27=0.20\\ \\mathrm{mol}$\n3. $\\Delta H=-852\\times\\dfrac{0.20}{2}=-85.2\\approx-85\\ \\mathrm{kJ}$\n\n**结论**　答案 ②。（放热，$\\Delta H<0$；铝热反应放出的热足以使生成的铁熔化，用于焊接铁轨。）",
+        "zh": "**思路**　单质（$\\ce{Al}$、$\\ce{Fe}$）的生成焓为 0。反应焓 = Σ(生成物的生成焓) − Σ(反应物的生成焓)，且方程式的 ΔH 对应写出的系数（2 mol Al）。\n\n**解答**\n\n1. $\\Delta H=[-1676+2\\times0]-[-824+2\\times0]=-852\\ \\mathrm{kJ}$（每 2 mol Al）\n2. $n(\\ce{Al})=5.4/27=0.20\\ \\mathrm{mol}$\n3. $\\Delta H=-852\\times\\dfrac{0.20}{2}=-85.2\\approx-85\\ \\mathrm{kJ}$\n\n**结论**　答案 ②。（放热，$\\Delta H<0$；铝热反应（テルミット反応）放出的热足以使生成的铁熔化，用于焊接铁轨。）",
         "keyPoints": [
           "最稳定单质的生成焓为 0",
           "$\\Delta H=\\sum(\\text{生成物的生成焓})-\\sum(\\text{反应物的生成焓})$",
@@ -299,8 +299,8 @@
         "shortcut": "每 mol Al 对应 $-852/2=-426$ kJ，再乘 0.20 mol 得 −85。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -368,8 +368,8 @@
         "shortcut": "数键：左边 1 个 N≡N + 3 个 H–H，右边 6 个 N–H，$(946+1308)-2346=-92$，再除以 2。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -440,8 +440,8 @@
         "shortcut": "画能量阶梯：H₂+½O₂ →(−241)→ H₂O(气) →(−44)→ H₂O(液)，液态更稳定，所以液态水的生成焓比 −241 更负。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -516,8 +516,8 @@
         "shortcut": "先算最大项蒸发 20.5，再加熔化 3.0 和升温约 3.8，≈27；符号必为正，直接排除 ①。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -561,7 +561,7 @@
         "traps": [
           "漏掉石墨的升华焓 717，得 237",
           "生成焓不变号直接用 −75，得 379",
-          "2 mol $\\ce{H2}$ 只算一个 436，得 307；或忘记除以 4，得 1664"
+          "2 mol $\\ce{H2}$ 只算一个 436，得 307；按 4 个 H 算成 4×436，得 634；忘记除以 4，得 1664"
         ],
         "terms": [
           {
@@ -588,8 +588,8 @@
         "shortcut": "直接写 $4E=-(\\text{生成焓})+\\text{升华焓}+2E_{\\ce{H-H}}=75+717+872$；C–H 键能约 410～420 是常识值，可用来检验。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -662,8 +662,8 @@
         "shortcut": "$6.5^2=42.25$，$\\times6.5\\approx275$，$\\times4=1100$，即 $1.1\\times10^{3}\\times10^{-15}$。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -735,8 +735,8 @@
         "shortcut": "把判据改写为 $ab>4K_{\\mathrm{sp}}=7.2\\times10^{-10}$：① $9.0\\times10^{-10}$ ✓，② $4.0$，③ $4.0$，④ $2.0$，⑤ $6.0$（$\\times10^{-10}$）都不够。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -809,8 +809,8 @@
         "shortcut": "$K_{\\mathrm{sp}}\\div[\\ce{Cl-}]$ 一步得 mol：$1.8\\times10^{-8}$；乘约 144 ≈ $2.6\\times10^{-6}$ g。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     },
     {
@@ -891,8 +891,8 @@
         "shortcut": "先定性：AgCl 只需 $10^{-8}$ 级的 Ag⁺，必先沉淀 → 只看 ③～⑥；再一步 $1.8\\times10^{-10}\\div1.05\\times10^{-5}\\approx1.7\\times10^{-5}$。"
       },
       "verified": {
-        "status": "unverified",
-        "method": "原创"
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
       }
     }
   ]

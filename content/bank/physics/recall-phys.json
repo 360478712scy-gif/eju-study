@@ -1,0 +1,2548 @@
+{
+ "title": "原创 物理 · 考点速测：公式・单位・定律（40题，每题约 30 秒）",
+ "items": [
+  {
+   "id": "recall-phys-01",
+   "subject": "physics",
+   "order": 1,
+   "topic": "phys.mech.kinematics",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "直線上を一定の加速度 $a$（$a>0$）で運動する物体の速さが，$v_0$ から $v$ に増加した。この間に物体が進んだ距離はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "沿直线以恒定加速度 $a$（$a>0$）运动的物体，速率由 $v_0$ 增加到 $v$。这段时间内物体走过的距离是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{v^2-v_0^2}{2a}$",
+    "$\\dfrac{v^2-v_0^2}{a}$",
+    "$\\dfrac{v-v_0}{a}$",
+    "$\\dfrac{(v-v_0)^2}{2a}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 题中没有时间 $t$ → 用不含 $t$ 的等加速度公式 $v^2-v_0^2=2ax$。\n**解答** 移项：$x=\\dfrac{v^2-v_0^2}{2a}$。\n**结论** 答案 ①。②漏了分母的 2；③是所用时间 $t=\\dfrac{v-v_0}{a}$；④把「平方差」写成了「差的平方」。\n**记忆** 「没有 $t$，就用 $v^2-v_0^2=2ax$」。",
+    "keyPoints": [
+     "等加速度三公式：$v=v_0+at$，$x=v_0t+\\dfrac12at^2$，$v^2-v_0^2=2ax$"
+    ],
+    "traps": [
+     "$v^2-v_0^2\\neq(v-v_0)^2$",
+     "漏掉分母的 2"
+    ],
+    "terms": [
+     {
+      "ja": "一定の加速度",
+      "kana": "いっていのかそくど",
+      "zh": "恒定加速度，即匀变速直线运动（日本教材称「等加速度運動」）"
+     },
+     {
+      "ja": "速さ",
+      "kana": "はやさ",
+      "zh": "速率，即速度的大小（不含方向）"
+     },
+     {
+      "ja": "進んだ距離",
+      "kana": "すすんだきょり",
+      "zh": "物体走过的路程"
+     }
+    ],
+    "shortcut": "平均速度法：$x=\\dfrac{v_0+v}{2}\\times\\dfrac{v-v_0}{a}=\\dfrac{v^2-v_0^2}{2a}$，忘了公式也能 10 秒推出。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-02",
+   "subject": "physics",
+   "order": 2,
+   "topic": "phys.mech.force",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "水平面と角 $\\theta$ をなす粗い斜面上を，物体が滑り下りている。物体と斜面の間の動摩擦係数を $\\mu'$，重力加速度の大きさを $g$ とする。物体の加速度の大きさはいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "物体沿与水平面成 $\\theta$ 角的粗糙斜面下滑。物体与斜面间的动摩擦因数为 $\\mu'$，重力加速度大小为 $g$。物体加速度的大小是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$g(\\sin\\theta-\\mu'\\cos\\theta)$",
+    "$g(\\sin\\theta+\\mu'\\cos\\theta)$",
+    "$g(\\cos\\theta-\\mu'\\sin\\theta)$",
+    "$g(\\sin\\theta-\\mu')$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 沿斜面列运动方程：重力分力 $mg\\sin\\theta$ 沿斜面向下；动摩擦力 $\\mu'N=\\mu'mg\\cos\\theta$ 与运动方向相反（向上）。\n**解答** $ma=mg\\sin\\theta-\\mu'mg\\cos\\theta$ ⇒ $a=g(\\sin\\theta-\\mu'\\cos\\theta)$。\n**结论** 答案 ①。②是物体沿斜面**上滑**时减速度的大小；④忘了垂直抗力 $N=mg\\cos\\theta$。\n**记忆** 「下滑减、上滑加」，摩擦永远拖后腿。",
+    "keyPoints": [
+     "動摩擦力 $=\\mu'N$，斜面上 $N=mg\\cos\\theta$",
+     "下滑 $g(\\sin\\theta-\\mu'\\cos\\theta)$；上滑 $g(\\sin\\theta+\\mu'\\cos\\theta)$"
+    ],
+    "traps": [
+     "把垂直抗力当成 $mg$",
+     "上滑与下滑时摩擦力方向弄反"
+    ],
+    "terms": [
+     {
+      "ja": "粗い斜面",
+      "kana": "あらいしゃめん",
+      "zh": "粗糙斜面（有摩擦）；「なめらかな」＝光滑"
+     },
+     {
+      "ja": "動摩擦係数",
+      "kana": "どうまさつけいすう",
+      "zh": "动摩擦因数 μ'（静摩擦因数写作 μ）"
+     },
+     {
+      "ja": "滑り下りる",
+      "kana": "すべりおりる",
+      "zh": "沿斜面向下滑动"
+     }
+    ],
+    "shortcut": "极限检验：$\\theta=90^\\circ$ 时应为 $g$，排除③④；下滑时摩擦阻碍运动，$a$ 应小于 $g\\sin\\theta$，排除②。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-03",
+   "subject": "physics",
+   "order": 3,
+   "topic": "phys.mech.force",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "軽くて滑らかに回転する定滑車に軽い糸をかけ，糸の両端に質量 $M$ と $m$（$M>m$）の小物体をつるして静かにはなした。小物体の加速度の大きさはいくらか。ただし，重力加速度の大きさを $g$ とする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "在质量不计、可光滑转动的定滑轮上挂一根轻绳，绳两端分别吊着质量为 $M$ 和 $m$（$M>m$）的小物体，由静止释放。小物体加速度的大小是多少？重力加速度大小为 $g$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{M}{M+m}g$",
+    "$\\dfrac{M-m}{m}g$",
+    "$\\dfrac{m}{M+m}g$",
+    "$\\dfrac{M-m}{M+m}g$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 两物体加速度大小相同、绳张力 $T$ 处处相同，分别列运动方程，相加消去 $T$。\n**解答** $Ma=Mg-T$，$ma=T-mg$，相加：$(M+m)a=(M-m)g$ ⇒ $a=\\dfrac{M-m}{M+m}g$。\n**结论** 答案 ④。①是「$m$ 放在光滑水平台上、$M$ 悬挂」时的答案；②分母只用了一个物体的质量。\n**记忆** 整体法：加速度 = 净驱动力 $(M-m)g$ ÷ 总质量 $(M+m)$。",
+    "keyPoints": [
+     "整体法：$a=\\dfrac{(M-m)g}{M+m}$，张力 $T=\\dfrac{2Mm}{M+m}g$（介于 $mg$ 与 $Mg$ 之间）"
+    ],
+    "traps": [
+     "分母只写一个物体的质量",
+     "以为张力等于 $Mg$ 或 $mg$"
+    ],
+    "terms": [
+     {
+      "ja": "定滑車",
+      "kana": "ていかっしゃ",
+      "zh": "定滑轮（轴固定不动的滑轮）"
+     },
+     {
+      "ja": "静かにはなす",
+      "kana": "しずかにはなす",
+      "zh": "由静止轻轻释放，初速度为 0"
+     },
+     {
+      "ja": "軽い糸",
+      "kana": "かるいいと",
+      "zh": "轻绳，质量不计，张力处处相等"
+     }
+    ],
+    "shortcut": "极限检验：$M=m$ 时应 $a=0$，排除①③；$m\\to0$ 时应 $a\\to g$，排除②（发散），只剩④。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-04",
+   "subject": "physics",
+   "order": 4,
+   "topic": "phys.mech.energy",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "ばね定数 $k$ の軽いばねが，自然の長さから $x$ だけ伸びている。このばねをゆっくり引いて，伸びを $2x$ にした。この間に外力がした仕事はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "劲度系数为 $k$ 的轻弹簧，从原长伸长了 $x$。现缓慢拉动弹簧，使伸长量变为 $2x$。在此过程中外力做的功是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{1}{2}kx^2$",
+    "$kx^2$",
+    "$\\dfrac{3}{2}kx^2$",
+    "$2kx^2$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** 缓慢拉动 → 动能不变，外力做的功全部变为弹性势能的增加；弾性力による位置エネルギー $U=\\dfrac12kx^2$（$x$ 是从原长量起的伸长量）。\n**解答** $W=\\dfrac12k(2x)^2-\\dfrac12kx^2=2kx^2-\\dfrac12kx^2=\\dfrac32kx^2$。\n**结论** 答案 ③。①是误用 $\\dfrac12k(2x-x)^2$；②把力当成恒为 $kx$；④忘了减去原有的 $\\dfrac12kx^2$。\n**记忆** 伸长 $x\\to2x$，能量 $1\\to4$ 份，增加 3 份。",
+    "keyPoints": [
+     "弹性势能 $\\dfrac12kx^2$ 中的 $x$ 是从原长量起的伸长量",
+     "功 = 末能量 − 初能量"
+    ],
+    "traps": [
+     "用伸长量的增量代入：$\\dfrac12k(\\Delta x)^2$ 是错的"
+    ],
+    "terms": [
+     {
+      "ja": "ばね定数",
+      "kana": "ばねていすう",
+      "zh": "劲度系数 k（单位 N/m）"
+     },
+     {
+      "ja": "自然の長さ",
+      "kana": "しぜんのながさ",
+      "zh": "弹簧原长（不受力时的长度）"
+     },
+     {
+      "ja": "伸び",
+      "kana": "のび",
+      "zh": "伸长量"
+     },
+     {
+      "ja": "ゆっくり",
+      "kana": "ゆっくり",
+      "zh": "缓慢地：动能可忽略，外力始终≈弹力"
+     }
+    ],
+    "shortcut": "$F$–$x$ 图像面积：从 $x$ 到 $2x$ 的梯形面积 $\\dfrac{kx+2kx}{2}\\times x=\\dfrac32kx^2$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-05",
+   "subject": "physics",
+   "order": 5,
+   "topic": "phys.mech.momentum",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "高さ $h$ の位置から小球を静かにはなしたところ，小球は水平な床に衝突してはね返った。小球と床との間の反発係数（はね返り係数）を $e$ とすると，はね返った後に小球が達する最高点の高さはいくらか。ただし，空気の抵抗は無視できるものとする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "将小球从高 $h$ 处由静止释放，小球与水平地面碰撞后反弹。设小球与地面间的恢复系数为 $e$，反弹后小球能到达的最高点高度是多少？空气阻力可忽略。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$eh$",
+    "$e^2h$",
+    "$\\sqrt{e}\\,h$",
+    "$\\dfrac{h}{e}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 反発係数（恢复系数）是**速度**之比：$e=\\dfrac{v'}{v}$；高度与速度平方成正比（$v^2=2gh$）。\n**解答** 碰前 $v=\\sqrt{2gh}$，碰后 $v'=ev$，$h'=\\dfrac{v'^2}{2g}=e^2\\cdot\\dfrac{v^2}{2g}=e^2h$。\n**结论** 答案 ②。①把 $e$ 当成高度比；④在 $e<1$ 时大于 $h$，违反能量守恒（$0\\leqq e\\leqq1$）。\n**记忆** 「速度 $e$ 倍，高度 $e^2$ 倍」。",
+    "keyPoints": [
+     "$e=-\\dfrac{v_1'-v_2'}{v_1-v_2}$（相对速度之比）；对静止的床 $e=\\dfrac{v'}{v}$",
+     "每弹一次高度乘 $e^2$，$n$ 次后为 $e^{2n}h$"
+    ],
+    "traps": [
+     "$e$ 是速度比，不是高度比"
+    ],
+    "terms": [
+     {
+      "ja": "反発係数",
+      "kana": "はんぱつけいすう",
+      "zh": "恢复系数 e：碰后与碰前相对速度大小之比（弹性碰撞 e=1，完全非弹性 e=0）"
+     },
+     {
+      "ja": "はね返る",
+      "kana": "はねかえる",
+      "zh": "反弹"
+     },
+     {
+      "ja": "最高点",
+      "kana": "さいこうてん",
+      "zh": "运动轨迹的最高位置，此时竖直速度为 0"
+     }
+    ],
+    "shortcut": "由 $h'$ 反求 $e$：$e=\\sqrt{\\dfrac{h'}{h}}$（常考的逆向问法）。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-06",
+   "subject": "physics",
+   "order": 6,
+   "topic": "phys.mech.momentum",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "なめらかな水平面上で，速さ $v$ で進む質量 $m$ の物体 A が，静止している質量 $M$ の物体 B に衝突し，A と B は一体となって運動した。一体となった後の速さはいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "在光滑水平面上，以速率 $v$ 运动的质量为 $m$ 的物体 A 与静止的质量为 $M$ 的物体 B 相碰，碰后 A 与 B 粘在一起运动。粘在一起后的速率是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{m}{m+M}v$",
+    "$\\dfrac{M}{m+M}v$",
+    "$\\dfrac{m}{M}v$",
+    "$\\sqrt{\\dfrac{m}{m+M}}\\,v$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 光滑水平面上水平方向无外力 → 運動量保存則；「一体となる」= 完全非弹性碰撞（$e=0$），动能**不**守恒。\n**解答** $mv=(m+M)V$ ⇒ $V=\\dfrac{m}{m+M}v$。\n**结论** 答案 ①。④是误用动能守恒 $\\dfrac12mv^2=\\dfrac12(m+M)V^2$ 得到的；②分子放错了质量。\n**记忆** 碰撞先写动量守恒，动能只在「弹性碰撞（$e=1$）」时守恒。",
+    "keyPoints": [
+     "碰撞前后总动量守恒：$mv=(m+M)V$",
+     "一体化时动能损失最大：$\\Delta K=\\dfrac{mM}{2(m+M)}v^2$"
+    ],
+    "traps": [
+     "一体化碰撞误用动能守恒"
+    ],
+    "terms": [
+     {
+      "ja": "一体となる",
+      "kana": "いったいとなる",
+      "zh": "粘在一起，以共同速度运动"
+     },
+     {
+      "ja": "運動量保存則",
+      "kana": "うんどうりょうほぞんそく",
+      "zh": "动量守恒定律"
+     },
+     {
+      "ja": "なめらかな",
+      "kana": "なめらかな",
+      "zh": "光滑的（无摩擦）"
+     }
+    ],
+    "shortcut": "极限：$M\\to0$ 时 $V\\to v$，排除②③；剩下①④中，④来自错误的动能守恒。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-07",
+   "subject": "physics",
+   "order": 7,
+   "topic": "phys.mech.circular",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "長さ $r$ の軽い糸の一端を固定し，他端につけた小球を鉛直面内で円運動させる。小球が円の最高点を通過するとき，糸がたるまないための小球の速さ $v$ の条件として正しいものを，次の①～④の中から一つ選びなさい。ただし，重力加速度の大きさを $g$ とする。",
+   "stemZh": "把长为 $r$ 的轻绳一端固定，另一端系一小球，使小球在竖直平面内做圆周运动。小球通过圆周最高点时，使绳不松弛的速率 $v$ 的条件是哪一个？重力加速度大小为 $g$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$v\\geqq\\sqrt{gr}$",
+    "$v\\geqq\\sqrt{2gr}$",
+    "$v\\geqq\\sqrt{5gr}$",
+    "$v\\geqq2\\sqrt{gr}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 最高点：重力与绳张力 $T$ 都指向圆心，合力提供向心力；绳不松弛 ⇔ $T\\geqq0$。\n**解答** $m\\dfrac{v^2}{r}=mg+T\\geqq mg$ ⇒ $v\\geqq\\sqrt{gr}$。\n**结论** 答案 ①。③是**最低点**所需速率（能量守恒 $u^2=v^2+4gr\\geqq5gr$）；④是轻杆时最低点的条件。\n**记忆** 「顶 $\\sqrt{gr}$，底 $\\sqrt{5gr}$」。",
+    "keyPoints": [
+     "最高点临界：只有重力提供向心力，$mg=m\\dfrac{v^2}{r}$",
+     "对应最低点需要 $u\\geqq\\sqrt{5gr}$"
+    ],
+    "traps": [
+     "把绳的条件写成 $v>0$（那是轻杆的情况）"
+    ],
+    "terms": [
+     {
+      "ja": "鉛直面内",
+      "kana": "えんちょくめんない",
+      "zh": "竖直平面内"
+     },
+     {
+      "ja": "たるむ",
+      "kana": "たるむ",
+      "zh": "绳子松弛（张力变为 0）"
+     },
+     {
+      "ja": "円運動",
+      "kana": "えんうんどう",
+      "zh": "圆周运动"
+     }
+    ],
+    "shortcut": "临界时向心加速度恰为 $g$：$\\dfrac{v^2}{r}=g$，一步写出。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-08",
+   "subject": "physics",
+   "order": 8,
+   "topic": "phys.mech.circular",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "ばね定数 $k$ のばねに質量 $m$ のおもりをつけた水平ばね振り子がある。おもりの質量を $4m$ に変えると，単振動の周期は何倍になるか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "劲度系数为 $k$ 的弹簧连着质量为 $m$ 的重物，构成水平弹簧振子。把重物质量换成 $4m$，简谐运动的周期变为原来的几倍？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{1}{4}$ 倍",
+    "$\\dfrac{1}{2}$ 倍",
+    "$2$ 倍",
+    "$4$ 倍"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** ばね振り子の周期 $T=2\\pi\\sqrt{\\dfrac{m}{k}}$，与振幅无关，$T\\propto\\sqrt m$。\n**解答** $m\\to4m$：$T'=2\\pi\\sqrt{\\dfrac{4m}{k}}=2T$。\n**结论** 答案 ③。④忘了开根号；②是角振动数 $\\omega=\\sqrt{\\dfrac km}$ 的变化（与周期相反）。\n**记忆** 「重了慢、硬了快」：$m$ 大周期长，$k$ 大周期短，都带根号。",
+    "keyPoints": [
+     "$T=2\\pi\\sqrt{\\dfrac mk}$，$\\omega=\\sqrt{\\dfrac km}$",
+     "竖直弹簧振子周期相同（重力只改变平衡位置）"
+    ],
+    "traps": [
+     "混淆 $T$ 与 $\\omega$：$T\\propto\\sqrt m$，$\\omega\\propto\\dfrac{1}{\\sqrt m}$",
+     "忘记开根号"
+    ],
+    "terms": [
+     {
+      "ja": "ばね振り子",
+      "kana": "ばねふりこ",
+      "zh": "弹簧振子"
+     },
+     {
+      "ja": "単振動",
+      "kana": "たんしんどう",
+      "zh": "简谐运动（简谐振动）"
+     },
+     {
+      "ja": "おもり",
+      "kana": "おもり",
+      "zh": "重物、砝码"
+     }
+    ],
+    "shortcut": "与单摆对比：$T=2\\pi\\sqrt{\\dfrac{L}{g}}$ 与质量无关，弹簧振子与 $g$ 无关。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-09",
+   "subject": "physics",
+   "order": 9,
+   "topic": "phys.mech.circular",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "振幅 $A$，周期 $T$ の単振動をしている物体がある。物体の速さの最大値はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "有一物体做振幅为 $A$、周期为 $T$ 的简谐运动。物体速率的最大值是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{4\\pi^2A}{T^2}$",
+    "$\\dfrac{A}{T}$",
+    "$\\dfrac{\\pi A}{T}$",
+    "$\\dfrac{2\\pi A}{T}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 単振動 = 等速円運動的正投影。角振動数 $\\omega=\\dfrac{2\\pi}{T}$，速率最大值等于对应圆周运动的速率 $A\\omega$（在振动中心）。\n**解答** $v_{\\max}=A\\omega=\\dfrac{2\\pi A}{T}$。\n**结论** 答案 ④。①是加速度的最大值 $A\\omega^2$（在两端点）。\n**记忆** 「中心速度最大 $A\\omega$，端点加速度最大 $A\\omega^2$」。",
+    "keyPoints": [
+     "$x=A\\sin\\omega t$：$v_{\\max}=A\\omega$，$a_{\\max}=A\\omega^2$",
+     "$a=-\\omega^2x$"
+    ],
+    "traps": [
+     "把 $A\\omega^2$（最大加速度）当成最大速度"
+    ],
+    "terms": [
+     {
+      "ja": "振幅",
+      "kana": "しんぷく",
+      "zh": "振幅：离开振动中心的最大距离"
+     },
+     {
+      "ja": "角振動数",
+      "kana": "かくしんどうすう",
+      "zh": "角频率 ω = 2π/T"
+     },
+     {
+      "ja": "最大値",
+      "kana": "さいだいち",
+      "zh": "最大值"
+     }
+    ],
+    "shortcut": "量纲：速度 = 长度/时间，①是 长度/时间²，直接排除。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-10",
+   "subject": "physics",
+   "order": 10,
+   "topic": "phys.mech.gravity",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "質量 $M$ の天体の中心から距離 $r$ の位置にある質量 $m$ の物体がもつ，万有引力による位置エネルギーはいくらか。ただし，万有引力定数を $G$ とし，位置エネルギーの基準を無限遠とする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "距质量为 $M$ 的天体中心 $r$ 处、质量为 $m$ 的物体所具有的万有引力势能是多少？万有引力常量为 $G$，以无限远处为势能零点。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{GMm}{r}$",
+    "$-\\dfrac{GMm}{r}$",
+    "$-\\dfrac{GMm}{r^2}$",
+    "$\\dfrac{GMm}{r^2}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 引力是吸引力：把物体从 $r$ 移到无限远，外力要做正功，所以以无限远为 0 时 $r$ 处势能为负。\n**解答** $U=-\\dfrac{GMm}{r}$；$\\dfrac{GMm}{r^2}$ 是引力的大小，不是能量。\n**结论** 答案 ②。应用：脱出速度 $\\dfrac12mv^2-\\dfrac{GMm}{R}=0$ ⇒ $v=\\sqrt{\\dfrac{2GM}{R}}=\\sqrt{2gR}$。\n**记忆** 「力 $r^2$、能 $r$，吸引带负号」（国内高考少考，EJU 常考）。",
+    "keyPoints": [
+     "$U=-\\dfrac{GMm}{r}$（无限远为 0），引力 $F=\\dfrac{GMm}{r^2}$",
+     "飞到无限远的条件：$\\dfrac12mv^2-\\dfrac{GMm}{r}\\geqq0$"
+    ],
+    "traps": [
+     "漏负号",
+     "把力的公式（$r^2$）当成势能"
+    ],
+    "terms": [
+     {
+      "ja": "万有引力",
+      "kana": "ばんゆういんりょく",
+      "zh": "万有引力"
+     },
+     {
+      "ja": "位置エネルギー",
+      "kana": "いちエネルギー",
+      "zh": "势能"
+     },
+     {
+      "ja": "無限遠",
+      "kana": "むげんえん",
+      "zh": "无限远处"
+     },
+     {
+      "ja": "天体",
+      "kana": "てんたい",
+      "zh": "天体（行星、恒星等）"
+     }
+    ],
+    "shortcut": "量纲：$GMm/r^2$ 是力（N），乘一个 $r$ 才是能量（J），排除③④。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-11",
+   "subject": "physics",
+   "order": 11,
+   "topic": "phys.thermo.gas",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "一定量の理想気体の圧力を 2 倍，絶対温度を 3 倍にした。気体の体積はもとの何倍になるか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "使一定量理想气体的压强变为 2 倍、绝对温度变为 3 倍。气体体积变为原来的几倍？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{1}{6}$ 倍",
+    "$\\dfrac{2}{3}$ 倍",
+    "$\\dfrac{3}{2}$ 倍",
+    "$6$ 倍"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** 気体の状態方程式 $pV=nRT$，$n$ 一定 ⇒ $\\dfrac{pV}{T}=$ 一定（ボイル・シャルルの法則）。\n**解答** $V=\\dfrac{nRT}{p}\\propto\\dfrac{T}{p}=\\dfrac{3}{2}$ ⇒ $\\dfrac32$ 倍。\n**结论** 答案 ③。②把 $p$、$T$ 的位置弄反；④把两个倍数直接相乘。\n**记忆** $V\\propto\\dfrac{T}{p}$：温度在分子、压强在分母。",
+    "keyPoints": [
+     "$pV=nRT$，$R=8.31\\,\\mathrm{J/(mol\\cdot K)}$",
+     "温度必须用绝对温度 $T=t+273$"
+    ],
+    "traps": [
+     "用摄氏温度代入比例式"
+    ],
+    "terms": [
+     {
+      "ja": "理想気体",
+      "kana": "りそうきたい",
+      "zh": "理想气体"
+     },
+     {
+      "ja": "絶対温度",
+      "kana": "ぜったいおんど",
+      "zh": "热力学温度（单位 K）"
+     },
+     {
+      "ja": "一定量",
+      "kana": "いっていりょう",
+      "zh": "物质的量不变"
+     },
+     {
+      "ja": "ボイル・シャルルの法則",
+      "kana": "ボイル・シャルルのほうそく",
+      "zh": "玻意耳–查理定律：pV/T 一定"
+     }
+    ],
+    "shortcut": "直接写 $\\dfrac{V'}{V}=\\dfrac{T'/T}{p'/p}=\\dfrac{3}{2}$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-12",
+   "subject": "physics",
+   "order": 12,
+   "topic": "phys.thermo.first",
+   "tags": [
+    "phys.thermo.gas"
+   ],
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "物質量 $n$ の単原子分子理想気体の絶対温度が $T$ であるとき，その内部エネルギーはいくらか。ただし，気体定数を $R$ とする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "物质的量为 $n$ 的单原子分子理想气体，绝对温度为 $T$ 时，其内能是多少？气体常数为 $R$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{3}{2}nRT$",
+    "$\\dfrac{5}{2}nRT$",
+    "$\\dfrac{3}{2}RT$",
+    "$nRT$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 单原子分子只有平动，每个分子平均动能 $\\dfrac32kT$；理想气体的内能 = 全部分子动能之和。\n**解答** $U=N\\cdot\\dfrac32kT=\\dfrac32nRT$（$Nk=nR$）。\n**结论** 答案 ①。②是定压比热 $\\dfrac52R$ 的混淆；③漏了 $n$（那是 1 mol 的内能）；④等于 $pV$。\n**记忆** 「单原子 $\\dfrac32$」：$U=\\dfrac32nRT=\\dfrac32pV$，只由温度决定。",
+    "keyPoints": [
+     "单原子：$U=\\dfrac32nRT$，$\\Delta U=\\dfrac32nR\\Delta T$（任何过程都成立）",
+     "$C_V=\\dfrac32R$，$C_p=\\dfrac52R$"
+    ],
+    "traps": [
+     "把 $\\dfrac52$（定压）与 $\\dfrac32$（内能、定容）混淆"
+    ],
+    "terms": [
+     {
+      "ja": "単原子分子",
+      "kana": "たんげんしぶんし",
+      "zh": "单原子分子（如 He、Ne、Ar）"
+     },
+     {
+      "ja": "内部エネルギー",
+      "kana": "ないぶエネルギー",
+      "zh": "内能"
+     },
+     {
+      "ja": "物質量",
+      "kana": "ぶっしつりょう",
+      "zh": "物质的量（单位 mol）"
+     },
+     {
+      "ja": "気体定数",
+      "kana": "きたいていすう",
+      "zh": "气体常数 R"
+     }
+    ],
+    "shortcut": "已知 $p$、$V$ 时直接 $U=\\dfrac32pV$，不必先求 $T$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-13",
+   "subject": "physics",
+   "order": 13,
+   "topic": "phys.thermo.first",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "気体に加えた熱量を $Q$，気体が外部からされた仕事を $W$ とする。気体の内部エネルギーの変化 $\\Delta U$ を表す式として正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "设加给气体的热量为 $Q$，外界对气体做的功为 $W$。表示气体内能变化 $\\Delta U$ 的式子中，正确的是哪一个？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\Delta U=Q+W$",
+    "$\\Delta U=Q-W$",
+    "$\\Delta U=W-Q$",
+    "$\\Delta U=-Q-W$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 熱力学第1法則：内能的增加 = 吸收的热量 + **外界对气体做的功**（された仕事）。\n**解答** $\\Delta U=Q+W$。若用气体**对外做的功** $W'$（した仕事，$W'=-W$），写成 $Q=\\Delta U+W'$。\n**结论** 答案 ①。②是 $W$ 表示「气体对外做功」时的写法——日本题目会写明「した仕事」还是「された仕事」，必须看清。\n**记忆** 气体「得到」的热和「得到」的功都让内能增加 → 两个加号。",
+    "keyPoints": [
+     "$\\Delta U=Q+W$（$W$：された仕事）；$Q=\\Delta U+W'$（$W'$：した仕事）",
+     "定容 $W=0$；断热 $Q=0$；等温 $\\Delta U=0$"
+    ],
+    "traps": [
+     "「された仕事」与「した仕事」符号相反"
+    ],
+    "terms": [
+     {
+      "ja": "熱量",
+      "kana": "ねつりょう",
+      "zh": "热量"
+     },
+     {
+      "ja": "外部からされた仕事",
+      "kana": "がいぶからされたしごと",
+      "zh": "外界对气体做的功（气体被压缩时为正）"
+     },
+     {
+      "ja": "内部エネルギー",
+      "kana": "ないぶエネルギー",
+      "zh": "内能"
+     }
+    ],
+    "shortcut": "两个极端检验：绝热压缩（$Q=0$，$W>0$）和定容加热（$W=0$，$Q>0$）都应使 $\\Delta U>0$，只有①两次都满足。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-14",
+   "subject": "physics",
+   "order": 14,
+   "topic": "phys.thermo.first",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "物質量 $n$ の単原子分子理想気体を，圧力を一定に保ったまま温度を $\\Delta T$ だけ上昇させた。このとき気体が吸収した熱量はいくらか。ただし，気体定数を $R$ とする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "保持压强不变，使物质的量为 $n$ 的单原子分子理想气体温度升高 $\\Delta T$。此时气体吸收的热量是多少？气体常数为 $R$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$nR\\Delta T$",
+    "$\\dfrac{3}{2}nR\\Delta T$",
+    "$\\dfrac{5}{2}nR\\Delta T$",
+    "$\\dfrac{7}{2}nR\\Delta T$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** 定圧変化：吸收的热一部分增加内能，一部分用于对外做功 $p\\Delta V$。\n**解答** $\\Delta U=\\dfrac32nR\\Delta T$，$W'=p\\Delta V=nR\\Delta T$，$Q=\\Delta U+W'=\\dfrac52nR\\Delta T$。\n**结论** 答案 ③。②是定容（定積）时的热量；①只算了对外做的功；④是双原子分子的定压热量。\n**记忆** 单原子：定容 $\\dfrac32$，定压 $\\dfrac32+1=\\dfrac52$（多出的 1 是做功）。",
+    "keyPoints": [
+     "定压：$Q=nC_p\\Delta T$，单原子 $C_p=\\dfrac52R$",
+     "$C_p-C_V=R$（マイヤーの関係）"
+    ],
+    "traps": [
+     "忘了定压膨胀时气体对外做功 $nR\\Delta T$"
+    ],
+    "terms": [
+     {
+      "ja": "定圧変化",
+      "kana": "ていあつへんか",
+      "zh": "等压过程"
+     },
+     {
+      "ja": "吸収",
+      "kana": "きゅうしゅう",
+      "zh": "吸收"
+     },
+     {
+      "ja": "定圧モル比熱",
+      "kana": "ていあつモルひねつ",
+      "zh": "定压摩尔热容 Cp"
+     }
+    ],
+    "shortcut": "定压下 $p\\Delta V=nR\\Delta T$，所以 $Q=\\dfrac32nR\\Delta T+nR\\Delta T$ 一行出结果。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-15",
+   "subject": "physics",
+   "order": 15,
+   "topic": "phys.wave.basics",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "原点 O の媒質の変位 $y$ が，時刻 $t$ の関数として $y=A\\sin\\dfrac{2\\pi}{T}t$ と表される。この振動が速さ $v$ で $x$ 軸の正の向きに伝わるとき，位置 $x$（$x>0$）の媒質の時刻 $t$ における変位を表す式として正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "原点 O 处介质的位移 $y$ 作为时刻 $t$ 的函数表示为 $y=A\\sin\\dfrac{2\\pi}{T}t$。该振动以速度 $v$ 沿 $x$ 轴正方向传播时，表示位置 $x$（$x>0$）处介质在时刻 $t$ 的位移的式子，正确的是哪一个？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$y=A\\sin\\dfrac{2\\pi}{T}\\left(t+\\dfrac{x}{v}\\right)$",
+    "$y=A\\sin\\dfrac{2\\pi}{T}\\left(t-\\dfrac{x}{v}\\right)$",
+    "$y=A\\sin\\dfrac{2\\pi}{T}\\left(\\dfrac{x}{v}-t\\right)$",
+    "$y=A\\sin\\dfrac{2\\pi}{T}\\left(t-xv\\right)$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 位置 $x$ 的振动比原点**晚** $\\dfrac{x}{v}$ 秒 → 把原点式中的 $t$ 换成 $t-\\dfrac{x}{v}$。\n**解答** $y=A\\sin\\dfrac{2\\pi}{T}\\left(t-\\dfrac{x}{v}\\right)=A\\sin2\\pi\\left(\\dfrac{t}{T}-\\dfrac{x}{\\lambda}\\right)$（$vT=\\lambda$）。\n**结论** 答案 ②。①是向 $-x$ 方向传播的波；③在 $x=0$ 时为 $-A\\sin\\dfrac{2\\pi}{T}t$，与原点振动不符；④量纲错误。\n**记忆** 「迟到就减」：传到 $x$ 要 $\\dfrac xv$ 秒，从 $t$ 中减去。",
+    "keyPoints": [
+     "$+x$ 方向：$y=A\\sin2\\pi\\left(\\dfrac tT-\\dfrac x\\lambda\\right)$；$-x$ 方向：减号改成加号"
+    ],
+    "traps": [
+     "③也向 $+x$ 传播，但与原点的振动反相，不满足题设"
+    ],
+    "terms": [
+     {
+      "ja": "媒質",
+      "kana": "ばいしつ",
+      "zh": "介质：传播波的物质"
+     },
+     {
+      "ja": "変位",
+      "kana": "へんい",
+      "zh": "位移：偏离平衡位置的量"
+     },
+     {
+      "ja": "伝わる",
+      "kana": "つたわる",
+      "zh": "传播"
+     },
+     {
+      "ja": "正の向き",
+      "kana": "せいのむき",
+      "zh": "正方向（負の向き＝负方向）"
+     }
+    ],
+    "shortcut": "代 $x=0$ 检验必须还原成 $A\\sin\\dfrac{2\\pi}{T}t$（排除③），再看方向（排除①），量纲排除④。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-16",
+   "subject": "physics",
+   "order": 16,
+   "topic": "phys.wave.basics",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "振幅が等しく，波長がともに $\\lambda$ の2つの正弦波が，互いに逆向きに進んで重なり合い，定常波（定在波）ができた。隣り合う節と節の間の距離はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "两列振幅相等、波长均为 $\\lambda$ 的正弦波沿相反方向传播并叠加，形成驻波。相邻两个波节之间的距离是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{\\lambda}{4}$",
+    "$\\dfrac{\\lambda}{2}$",
+    "$\\lambda$",
+    "$2\\lambda$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 定常波：節（始终不振动的点）与腹（振幅最大的点）交替等间距排列。\n**解答** 相邻节–节（或腹–腹）间隔 $\\dfrac{\\lambda}{2}$，节–腹间隔 $\\dfrac{\\lambda}{4}$。\n**结论** 答案 ②。①是节与相邻腹之间的距离。\n**记忆** 弦上一个「鼓包」（一段 loop）长 $\\dfrac\\lambda2$。",
+    "keyPoints": [
+     "节–节 = 腹–腹 = $\\dfrac\\lambda2$，节–腹 = $\\dfrac\\lambda4$",
+     "腹的振幅为原来的 $2$ 倍；定常波不传播能量"
+    ],
+    "traps": [
+     "把节–腹距离 $\\dfrac\\lambda4$ 当成节–节距离"
+    ],
+    "terms": [
+     {
+      "ja": "定常波",
+      "kana": "ていじょうは",
+      "zh": "驻波（也叫 定在波 ていざいは）"
+     },
+     {
+      "ja": "節",
+      "kana": "ふし",
+      "zh": "波节：始终不振动的点"
+     },
+     {
+      "ja": "腹",
+      "kana": "はら",
+      "zh": "波腹：振幅最大的点"
+     },
+     {
+      "ja": "重なり合う",
+      "kana": "かさなりあう",
+      "zh": "叠加"
+     }
+    ],
+    "shortcut": "弦的固有振动：两端固定、$n$ 个鼓包 ⇒ $L=n\\cdot\\dfrac{\\lambda}{2}$，同一个间距关系。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-17",
+   "subject": "physics",
+   "order": 17,
+   "topic": "phys.wave.basics",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "媒質の端で波が反射するとき，反射波の位相は入射波に対してどうなるか。固定端と自由端のそれぞれについて，正しい組み合わせを，次の①～④の中から一つ選びなさい。\n\n|  | 固定端 | 自由端 |\n|---|---|---|\n| ① | 変化しない | 変化しない |\n| ② | 変化しない | $\\pi$ ずれる |\n| ③ | $\\pi$ ずれる | 変化しない |\n| ④ | $\\pi$ ずれる | $\\pi$ ずれる |",
+   "stemZh": "波在介质端点反射时，反射波相对入射波的相位如何变化？对固定端和自由端分别而言，正确的组合是哪一个？从下列①～④中选出一个。\n\n|  | 固定端 | 自由端 |\n|---|---|---|\n| ① | 不变 | 不变 |\n| ② | 不变 | 改变 $\\pi$ |\n| ③ | 改变 $\\pi$ | 不变 |\n| ④ | 改变 $\\pi$ | 改变 $\\pi$ |",
+   "format": "choice",
+   "options": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** 固定端：端点位移恒为 0（节），反射波必须与入射波在端点抵消 → 位相反转 $\\pi$（山变谷）。自由端：端点是腹，位相不变（山仍是山）。\n**解答** 固定端 $\\pi$ ずれる，自由端 変化しない。\n**结论** 答案 ③。作图：固定端反射波 = 「上下翻转 + 左右对折」，自由端只「左右对折」。\n**记忆** 「固定 = 节 = 翻转；自由 = 腹 = 不变」。",
+    "keyPoints": [
+     "固定端反射：位相反转 $\\pi$，端点为节",
+     "自由端反射：位相不变，端点为腹"
+    ],
+    "traps": [
+     "光在「折射率小→大」的界面反射相当于固定端（反转），「大→小」不反转——薄膜干涉要用"
+    ],
+    "terms": [
+     {
+      "ja": "固定端",
+      "kana": "こていたん",
+      "zh": "固定端（端点不能动）"
+     },
+     {
+      "ja": "自由端",
+      "kana": "じゆうたん",
+      "zh": "自由端（端点可自由振动）"
+     },
+     {
+      "ja": "位相",
+      "kana": "いそう",
+      "zh": "相位"
+     },
+     {
+      "ja": "入射波",
+      "kana": "にゅうしゃは",
+      "zh": "入射波；反射波＝はんしゃは"
+     }
+    ],
+    "shortcut": "想绳子拴在墙上：脉冲「上去」回来变「下来」→ 固定端翻转。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-18",
+   "subject": "physics",
+   "order": 18,
+   "topic": "phys.wave.sound",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "振動数 $f$ の音を出す音源が，静止している観測者に向かって速さ $u$ で近づいている。音速を $V$（$V>u$）とするとき，観測者が聞く音の振動数はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "发出频率为 $f$ 的声音的声源，以速率 $u$ 向静止的观察者靠近。声速为 $V$（$V>u$），观察者听到的声音频率是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{V+u}{V}f$",
+    "$\\dfrac{V-u}{V}f$",
+    "$\\dfrac{V}{V+u}f$",
+    "$\\dfrac{V}{V-u}f$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 音源移动 → 前方波长被压缩：$\\lambda'=\\dfrac{V-u}{f}$；观测者静止，声速仍为 $V$。\n**解答** $f'=\\dfrac{V}{\\lambda'}=\\dfrac{V}{V-u}f$（比 $f$ 高）。\n**结论** 答案 ④。①是**观测者**以 $u$ 靠近静止音源的结果——也变高，但公式不同；②③都变低，不符合「靠近」。\n**记忆** 通式 $f'=\\dfrac{V-v_o}{V-v_s}f$：「源在分母、人在分子」，正方向取「音源→观测者」。",
+    "keyPoints": [
+     "$f'=\\dfrac{V-v_o}{V-v_s}f$（$v_o$、$v_s$ 以「从音源指向观测者」为正）",
+     "音源动改变波长，观测者动不改变波长"
+    ],
+    "traps": [
+     "音源移动改分母、观测者移动改分子，不能混用"
+    ],
+    "terms": [
+     {
+      "ja": "音源",
+      "kana": "おんげん",
+      "zh": "声源"
+     },
+     {
+      "ja": "観測者",
+      "kana": "かんそくしゃ",
+      "zh": "观察者"
+     },
+     {
+      "ja": "振動数",
+      "kana": "しんどうすう",
+      "zh": "频率"
+     },
+     {
+      "ja": "音速",
+      "kana": "おんそく",
+      "zh": "声速"
+     },
+     {
+      "ja": "ドップラー効果",
+      "kana": "ドップラーこうか",
+      "zh": "多普勒效应"
+     }
+    ],
+    "shortcut": "「靠近变高」先排除②③；再用「音源 → 分母」选④。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-19",
+   "subject": "physics",
+   "order": 19,
+   "topic": "phys.wave.sound",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "長さ $L$ の閉管の管口付近で音を鳴らしたところ，基本振動による共鳴が起こった。音速を $V$ とするとき，基本振動の振動数はいくらか。ただし，開口端補正は無視できるものとする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "在长为 $L$ 的闭管（一端封闭）管口附近发声，发生了基频共鸣。声速为 $V$，基频振动的频率是多少？管口校正可以忽略。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{V}{4L}$",
+    "$\\dfrac{V}{2L}$",
+    "$\\dfrac{V}{L}$",
+    "$\\dfrac{2V}{L}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 閉管：封闭端是节，管口（開口端）是腹。基本振動时管内只有「节→腹」一段 $=\\dfrac{\\lambda}{4}$。\n**解答** $L=\\dfrac{\\lambda}{4}$ ⇒ $\\lambda=4L$，$f=\\dfrac{V}{4L}$。\n**结论** 答案 ①。②是開管（两端开口）或两端固定弦的基本振动。\n**记忆** 闭管装「四分之一个波」，且只有奇数倍：$f_m=\\dfrac{(2m-1)V}{4L}$。",
+    "keyPoints": [
+     "閉管：$f=\\dfrac{(2m-1)V}{4L}$（只有奇数倍振动）",
+     "開管：$f=\\dfrac{nV}{2L}$（所有整数倍）"
+    ],
+    "traps": [
+     "闭管与开管的基本波长混淆（$4L$ 与 $2L$）"
+    ],
+    "terms": [
+     {
+      "ja": "閉管",
+      "kana": "へいかん",
+      "zh": "闭管（一端封闭的管）；開管＝かいかん，两端开口"
+     },
+     {
+      "ja": "開口端補正",
+      "kana": "かいこうたんほせい",
+      "zh": "管口校正：波腹实际略在管口外"
+     },
+     {
+      "ja": "基本振動",
+      "kana": "きほんしんどう",
+      "zh": "基频振动（最低频率的固有振动）"
+     },
+     {
+      "ja": "共鳴",
+      "kana": "きょうめい",
+      "zh": "共鸣"
+     }
+    ],
+    "shortcut": "画图：闭端画节，开口画腹，最少的波 = $\\dfrac14$ 个波长。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-20",
+   "subject": "physics",
+   "order": 20,
+   "topic": "phys.wave.sound",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "振動数 $440\\,\\mathrm{Hz}$ のおんさと振動数 $443\\,\\mathrm{Hz}$ のおんさを同時に鳴らした。1 秒間に聞こえるうなりの回数はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "同时敲响频率为 $440\\,\\mathrm{Hz}$ 和 $443\\,\\mathrm{Hz}$ 的两个音叉。每秒听到的拍的次数是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$1.5$ 回",
+    "$3$ 回",
+    "$6$ 回",
+    "$441.5$ 回"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** うなり（拍）：频率相近的两个声音叠加，音量周期性忽强忽弱。\n**解答** 每秒うなり次数 $=|f_1-f_2|=|443-440|=3$ 回。\n**结论** 答案 ②。④是合成音的音高 $\\dfrac{f_1+f_2}{2}$；①错误地除以了 2。\n**记忆** 拍频 = 频率之差，直接相减，不除 2。",
+    "keyPoints": [
+     "うなりの回数 $=|f_1-f_2|$，うなりの周期 $=\\dfrac{1}{|f_1-f_2|}$"
+    ],
+    "traps": [
+     "拍频不需要除以 2"
+    ],
+    "terms": [
+     {
+      "ja": "おんさ",
+      "kana": "おんさ",
+      "zh": "音叉（汉字写作 音叉）"
+     },
+     {
+      "ja": "うなり",
+      "kana": "うなり",
+      "zh": "拍：声音忽强忽弱的现象"
+     },
+     {
+      "ja": "同時に鳴らす",
+      "kana": "どうじにならす",
+      "zh": "同时使其发声"
+     }
+    ],
+    "shortcut": "逆用：已知一音叉 $f_1$ 和拍数 $n$，另一音叉为 $f_1\\pm n$，再由「贴胶带使频率降低后拍数增减」定号。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-21",
+   "subject": "physics",
+   "order": 21,
+   "topic": "phys.wave.light",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "ヤングの実験で，間隔 $d$ の2つのスリットに波長 $\\lambda$ の単色光を当て，スリットから距離 $L$ 離れたスクリーン上に干渉縞をつくった。隣り合う明線の間隔はいくらか。ただし，$L$ は $d$ に比べて十分に大きいものとする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "在杨氏双缝实验中，用波长为 $\\lambda$ 的单色光照射间距为 $d$ 的两条狭缝，在距狭缝 $L$ 的屏上形成干涉条纹。相邻亮纹的间距是多少？$L$ 远大于 $d$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{d\\lambda}{L}$",
+    "$\\dfrac{Ld}{\\lambda}$",
+    "$\\dfrac{L\\lambda}{2d}$",
+    "$\\dfrac{L\\lambda}{d}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 屏上位置 $x$ 处的経路差 $\\approx\\dfrac{dx}{L}$；経路差 $=m\\lambda$ 为明线。\n**解答** $x_m=\\dfrac{mL\\lambda}{d}$，相邻明线间隔 $\\Delta x=\\dfrac{L\\lambda}{d}$。\n**结论** 答案 ④。③是明线到相邻暗线的距离；①②把 $d$、$L$、$\\lambda$ 的位置弄乱。\n**记忆** 「屏远纹宽、缝宽纹密」：$\\Delta x=\\dfrac{L\\lambda}{d}$。",
+    "keyPoints": [
+     "経路差 $\\dfrac{dx}{L}=m\\lambda$（明），$=\\left(m+\\dfrac12\\right)\\lambda$（暗）",
+     "$\\lambda$ 越长（红光）条纹越宽"
+    ],
+    "traps": [
+     "把 $d$ 与 $L$ 位置颠倒"
+    ],
+    "terms": [
+     {
+      "ja": "スリット",
+      "kana": "スリット",
+      "zh": "狭缝"
+     },
+     {
+      "ja": "単色光",
+      "kana": "たんしょくこう",
+      "zh": "单色光（单一波长的光）"
+     },
+     {
+      "ja": "干渉縞",
+      "kana": "かんしょうじま",
+      "zh": "干涉条纹"
+     },
+     {
+      "ja": "明線",
+      "kana": "めいせん",
+      "zh": "亮纹；暗線＝あんせん，暗纹"
+     },
+     {
+      "ja": "経路差",
+      "kana": "けいろさ",
+      "zh": "路程差（在介质中要乘折射率成光程差）"
+     }
+    ],
+    "shortcut": "趋势检验：$L$ 增大条纹应变宽（排除①），$d$ 增大条纹应变密（排除②），再在③④中记住「相邻明线」没有 2。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-22",
+   "subject": "physics",
+   "order": 22,
+   "topic": "phys.wave.light",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "空気中に置かれた屈折率 $n$（$n>1$），厚さ $d$ の薄膜に，空気中での波長が $\\lambda$ の光を垂直に当てる。薄膜の上面と下面で反射した光が強め合う条件を表す式として正しいものを，次の①～④の中から一つ選びなさい。ただし，$m=0,\\ 1,\\ 2,\\ \\cdots$ とする。",
+   "stemZh": "对放在空气中、折射率为 $n$（$n>1$）、厚度为 $d$ 的薄膜，垂直照射在空气中波长为 $\\lambda$ 的光。表示薄膜上表面与下表面反射光相互加强的条件的式子中，正确的是哪一个？$m=0,\\ 1,\\ 2,\\ \\cdots$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$2d=m\\lambda$",
+    "$2nd=m\\lambda$",
+    "$2d=\\left(m+\\dfrac{1}{2}\\right)\\lambda$",
+    "$2nd=\\left(m+\\dfrac{1}{2}\\right)\\lambda$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** (1) 膜内往返路程 $2d$，膜中波长 $\\dfrac{\\lambda}{n}$ → 光程差 $2nd$；(2) 上表面（空気→膜，折射率小→大）反射位相反转 $\\pi$，下表面（膜→空気）不反转 → 额外差半个波长。\n**解答** 强め合う：$2nd=\\left(m+\\dfrac12\\right)\\lambda$。\n**结论** 答案 ④。②忘了反射时的位相反转（它是这里「弱め合う」的条件）；①③忘了乘 $n$。\n**记忆** 先写光程差 $2nd$，再数反转次数：奇数次 → 明暗条件互换（加 $\\dfrac12$）。",
+    "keyPoints": [
+     "光学距離（光程）$=n\\times$ 几何长度",
+     "反射位相反转只发生在「折射率小→大」的界面"
+    ],
+    "traps": [
+     "忘了乘 $n$",
+     "忘了上表面反射的 $\\pi$ 反转"
+    ],
+    "terms": [
+     {
+      "ja": "薄膜",
+      "kana": "はくまく",
+      "zh": "薄膜（肥皂膜、油膜等）"
+     },
+     {
+      "ja": "屈折率",
+      "kana": "くっせつりつ",
+      "zh": "折射率"
+     },
+     {
+      "ja": "強め合う",
+      "kana": "つよめあう",
+      "zh": "相互加强（变亮）；弱め合う＝相互减弱"
+     },
+     {
+      "ja": "垂直に当てる",
+      "kana": "すいちょくにあてる",
+      "zh": "垂直照射"
+     }
+    ],
+    "shortcut": "若薄膜放在折射率更大的玻璃上（两面都反转），条件变回 $2nd=m\\lambda$——只看反转次数的奇偶。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-23",
+   "subject": "physics",
+   "order": 23,
+   "topic": "phys.wave.light",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "格子定数 $d$ の回折格子に波長 $\\lambda$ の単色光を垂直に当てたところ，入射方向と角 $\\theta$ をなす方向に明線が観測された。明線が生じる条件として正しいものを，次の①～④の中から一つ選びなさい。ただし，$m=0,\\ 1,\\ 2,\\ \\cdots$ とする。",
+   "stemZh": "用波长为 $\\lambda$ 的单色光垂直照射光栅常数为 $d$ 的衍射光栅，在与入射方向成 $\\theta$ 角的方向上观察到亮线。产生亮线的条件中，正确的是哪一个？$m=0,\\ 1,\\ 2,\\ \\cdots$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$d\\sin\\theta=m\\lambda$",
+    "$d\\cos\\theta=m\\lambda$",
+    "$d\\tan\\theta=m\\lambda$",
+    "$d\\sin\\theta=\\left(m+\\dfrac{1}{2}\\right)\\lambda$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 相邻两缝射向 $\\theta$ 方向的光，路程差为 $d\\sin\\theta$。\n**解答** 所有缝的光同相加强：$d\\sin\\theta=m\\lambda$。\n**结论** 答案 ①。④是双缝干涉**暗线**条件的形式，不是明线条件；③的 $\\tan\\theta$ 只在求屏上位置 $x=L\\tan\\theta$ 时出现，条件本身是 $\\sin\\theta$。\n**记忆** 「光栅、双缝都是 $d\\sin\\theta=m\\lambda$」，最高级次 $m\\leqq\\dfrac{d}{\\lambda}$。",
+    "keyPoints": [
+     "$d\\sin\\theta=m\\lambda$",
+     "$\\sin\\theta\\leqq1$ ⇒ 可见的最高次数 $m\\leqq\\dfrac d\\lambda$"
+    ],
+    "traps": [
+     "格子定数 $d$ = 1 ÷ 单位长度刻线数（如 $500$ 本/mm → $d=2.0\\times10^{-6}\\,\\mathrm{m}$），不要直接用条数"
+    ],
+    "terms": [
+     {
+      "ja": "回折格子",
+      "kana": "かいせつこうし",
+      "zh": "衍射光栅"
+     },
+     {
+      "ja": "格子定数",
+      "kana": "こうしていすう",
+      "zh": "光栅常数：相邻两缝的间距"
+     },
+     {
+      "ja": "明線",
+      "kana": "めいせん",
+      "zh": "亮线"
+     },
+     {
+      "ja": "回折",
+      "kana": "かいせつ",
+      "zh": "衍射"
+     }
+    ],
+    "shortcut": "$\\theta=0$ 的正前方（$m=0$）必为明线：代入检验排除②④。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-24",
+   "subject": "physics",
+   "order": 24,
+   "topic": "phys.em.field",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "2つの点電荷の間にはたらく静電気力の大きさが $F$ である。2つの電荷の電気量をそれぞれ 2 倍にし，電荷間の距離も 2 倍にすると，静電気力の大きさはいくらになるか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "两个点电荷之间的静电力大小为 $F$。若两个电荷的电量都变为 2 倍，电荷间距离也变为 2 倍，静电力大小变为多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{F}{4}$",
+    "$\\dfrac{F}{2}$",
+    "$F$",
+    "$2F$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** クーロンの法則 $F=k\\dfrac{q_1q_2}{r^2}$：与电量之积成正比，与距离平方成反比。\n**解答** 分子 $2\\times2=4$ 倍，分母 $2^2=4$ 倍 ⇒ 不变，仍为 $F$。\n**结论** 答案 ③。①只考虑了距离（忘了电量变化）；②只把一个电荷算成 2 倍（$\\dfrac{2}{4}$）；④把距离当成一次方反比（$\\dfrac{4}{2}$）。\n**记忆** 「电量相乘、距离平方」，与万有引力同型。",
+    "keyPoints": [
+     "$F=k\\dfrac{q_1q_2}{r^2}$，$k=9.0\\times10^{9}\\,\\mathrm{N\\cdot m^2/C^2}$"
+    ],
+    "traps": [
+     "两个电荷都加倍 → 力 4 倍，不是 2 倍",
+     "距离是平方反比"
+    ],
+    "terms": [
+     {
+      "ja": "点電荷",
+      "kana": "てんでんか",
+      "zh": "点电荷"
+     },
+     {
+      "ja": "静電気力",
+      "kana": "せいでんきりょく",
+      "zh": "静电力（库仑力）"
+     },
+     {
+      "ja": "電気量",
+      "kana": "でんきりょう",
+      "zh": "电荷量（单位 C）"
+     },
+     {
+      "ja": "クーロンの法則",
+      "kana": "クーロンのほうそく",
+      "zh": "库仑定律"
+     }
+    ],
+    "shortcut": "比例法：$\\dfrac{F'}{F}=\\dfrac{2\\times2}{2^2}=1$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-25",
+   "subject": "physics",
+   "order": 25,
+   "topic": "phys.em.field",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "電気量 $Q$（$Q>0$）の点電荷から距離 $r$ 離れた点における電場の強さ $E$ と電位 $V$ の組み合わせとして正しいものを，次の①～④の中から一つ選びなさい。ただし，クーロンの法則の比例定数を $k$ とし，電位の基準を無限遠とする。\n\n|  | $E$ | $V$ |\n|---|---|---|\n| ① | $\\dfrac{kQ}{r}$ | $\\dfrac{kQ}{r}$ |\n| ② | $\\dfrac{kQ}{r}$ | $\\dfrac{kQ}{r^2}$ |\n| ③ | $\\dfrac{kQ}{r^2}$ | $\\dfrac{kQ}{r}$ |\n| ④ | $\\dfrac{kQ}{r^2}$ | $\\dfrac{kQ}{r^2}$ |",
+   "stemZh": "距电量为 $Q$（$Q>0$）的点电荷 $r$ 处的电场强度 $E$ 与电势 $V$ 的组合，正确的是哪一个？库仑定律的比例常数为 $k$，以无限远处为电势零点。从下列①～④中选出一个。\n\n|  | $E$ | $V$ |\n|---|---|---|\n| ① | $\\dfrac{kQ}{r}$ | $\\dfrac{kQ}{r}$ |\n| ② | $\\dfrac{kQ}{r}$ | $\\dfrac{kQ}{r^2}$ |\n| ③ | $\\dfrac{kQ}{r^2}$ | $\\dfrac{kQ}{r}$ |\n| ④ | $\\dfrac{kQ}{r^2}$ | $\\dfrac{kQ}{r^2}$ |",
+   "format": "choice",
+   "options": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** 電場 = 单位正电荷受的力，与 $r^2$ 成反比；電位 = 单位正电荷的势能，与 $r$ 成反比，是标量。\n**解答** $E=\\dfrac{kQ}{r^2}$，$V=\\dfrac{kQ}{r}$。\n**结论** 答案 ③。与万有引力完全同型：力 $\\propto\\dfrac{1}{r^2}$，势能 $\\propto\\dfrac1r$。\n**记忆** 「场平方、势一次」；量纲 $V=Er$。",
+    "keyPoints": [
+     "$E=\\dfrac{kQ}{r^2}$（矢量），$V=\\dfrac{kQ}{r}$（标量）",
+     "一様な電場：$V=Ed$"
+    ],
+    "traps": [
+     "多个电荷：电场要矢量合成，电位直接带符号代数相加"
+    ],
+    "terms": [
+     {
+      "ja": "電場",
+      "kana": "でんば",
+      "zh": "电场（也写 電界 でんかい）"
+     },
+     {
+      "ja": "電位",
+      "kana": "でんい",
+      "zh": "电势"
+     },
+     {
+      "ja": "無限遠",
+      "kana": "むげんえん",
+      "zh": "无限远处"
+     },
+     {
+      "ja": "基準",
+      "kana": "きじゅん",
+      "zh": "零点（参考点）"
+     }
+    ],
+    "shortcut": "量纲：$V$（伏特）$=E$（V/m）$\\times r$（m），$V$ 比 $E$ 少除一个 $r$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-26",
+   "subject": "physics",
+   "order": 26,
+   "topic": "phys.em.field",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "静止していた質量 $m$，電気量 $-e$ の電子を，電位差 $V$ で加速した。加速後の電子の速さはいくらか。ただし，重力の影響は無視できるものとする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "把原来静止的质量为 $m$、电荷量为 $-e$ 的电子用电势差 $V$ 加速。加速后电子的速率是多少？重力影响可忽略。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\sqrt{\\dfrac{eV}{m}}$",
+    "$\\sqrt{\\dfrac{2eV}{m}}$",
+    "$\\dfrac{2eV}{m}$",
+    "$\\sqrt{\\dfrac{2m}{eV}}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 静电力做的功 $W=qV$ 全部转化为动能（只看始末电位差，与路径无关）。\n**解答** $\\dfrac12mv^2=eV$ ⇒ $v=\\sqrt{\\dfrac{2eV}{m}}$。\n**结论** 答案 ②。①漏了 $\\dfrac12$ 带来的 2；③忘了开方；④上下颠倒。\n**记忆** 与自由落体 $v=\\sqrt{2gh}$ 同型：把 $gh$ 换成 $\\dfrac{eV}{m}$。",
+    "keyPoints": [
+     "电场力做功 $W=qV$",
+     "$1\\,\\mathrm{eV}=1.6\\times10^{-19}\\,\\mathrm{J}$"
+    ],
+    "traps": [
+     "忘记开方或漏掉因子 2"
+    ],
+    "terms": [
+     {
+      "ja": "電位差",
+      "kana": "でんいさ",
+      "zh": "电势差（电压）"
+     },
+     {
+      "ja": "加速する",
+      "kana": "かそくする",
+      "zh": "加速"
+     },
+     {
+      "ja": "電子",
+      "kana": "でんし",
+      "zh": "电子"
+     },
+     {
+      "ja": "電気量",
+      "kana": "でんきりょう",
+      "zh": "电荷量"
+     }
+    ],
+    "shortcut": "量纲：$eV$ 是能量，$\\dfrac{eV}{m}$ 是速度平方，只有①②量纲对，再补上动能的 $\\dfrac12$ → ②。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-27",
+   "subject": "physics",
+   "order": 27,
+   "topic": "phys.em.capacitor",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "極板間が真空で，電気容量が $C$ の平行板コンデンサーがある。極板の間隔を半分にし，さらに極板間を比誘電率 $2$ の誘電体で満たすと，電気容量はいくらになるか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "有一极板间为真空、电容为 $C$ 的平行板电容器。把极板间距减为一半，再在极板间充满相对介电常数为 $2$ 的电介质，电容变为多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{C}{4}$",
+    "$C$",
+    "$2C$",
+    "$4C$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 平行板コンデンサー $C=\\varepsilon\\dfrac{S}{d}=\\varepsilon_r\\varepsilon_0\\dfrac{S}{d}$。\n**解答** $d\\to\\dfrac d2$：×2；比誘電率 $\\varepsilon_r=2$：×2 ⇒ $4C$。\n**结论** 答案 ④。②是把间距的效应弄反（误以为 $C\\propto d$），两个效应正好抵消；③只考虑了其中一个效应；①两个都弄反。\n**记忆** 「面积大、间距小、塞介质 → 电容大」。",
+    "keyPoints": [
+     "$C=\\varepsilon_r\\varepsilon_0\\dfrac Sd$",
+     "$Q=CV$"
+    ],
+    "traps": [
+     "误以为 $C\\propto d$"
+    ],
+    "terms": [
+     {
+      "ja": "電気容量",
+      "kana": "でんきようりょう",
+      "zh": "电容（单位 F）"
+     },
+     {
+      "ja": "極板",
+      "kana": "きょくばん",
+      "zh": "极板"
+     },
+     {
+      "ja": "比誘電率",
+      "kana": "ひゆうでんりつ",
+      "zh": "相对介电常数 εr"
+     },
+     {
+      "ja": "誘電体",
+      "kana": "ゆうでんたい",
+      "zh": "电介质（绝缘体）"
+     }
+    ],
+    "shortcut": "两个倍数直接相乘：$\\varepsilon_r\\times\\dfrac{1}{d'/d}=2\\times2=4$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-28",
+   "subject": "physics",
+   "order": 28,
+   "topic": "phys.em.capacitor",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "電気容量 $C$ のコンデンサーに電気量 $Q$ が蓄えられている。このコンデンサーに蓄えられている静電エネルギーはいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "电容为 $C$ 的电容器储存有电荷量 $Q$。该电容器储存的静电能是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{Q^2}{2C}$",
+    "$\\dfrac{Q^2}{C}$",
+    "$\\dfrac{CQ^2}{2}$",
+    "$\\dfrac{Q}{2C}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 静電エネルギー $U=\\dfrac12QV=\\dfrac12CV^2=\\dfrac{Q^2}{2C}$，用 $V=\\dfrac QC$ 换成 $Q$、$C$。\n**解答** $U=\\dfrac12Q\\cdot\\dfrac QC=\\dfrac{Q^2}{2C}$。\n**结论** 答案 ①。②等于 $QV$，是充电时电池做的功（其中一半变成焦耳热）；③量纲不对；④是 $\\dfrac V2$，不是能量。\n**记忆** $Q$–$V$ 图是过原点的直线，能量 = 三角形面积 $\\dfrac12QV$。",
+    "keyPoints": [
+     "$U=\\dfrac12QV=\\dfrac12CV^2=\\dfrac{Q^2}{2C}$",
+     "断开电池（$Q$ 一定）用 $\\dfrac{Q^2}{2C}$；连着电池（$V$ 一定）用 $\\dfrac12CV^2$"
+    ],
+    "traps": [
+     "电池做功 $QV$ ≠ 储存能量 $\\dfrac12QV$"
+    ],
+    "terms": [
+     {
+      "ja": "静電エネルギー",
+      "kana": "せいでんエネルギー",
+      "zh": "电容器储存的电场能"
+     },
+     {
+      "ja": "蓄える",
+      "kana": "たくわえる",
+      "zh": "储存"
+     },
+     {
+      "ja": "コンデンサー",
+      "kana": "コンデンサー",
+      "zh": "电容器"
+     }
+    ],
+    "shortcut": "代 $Q=CV$ 检验：①变成 $\\dfrac12CV^2$ ✓。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-29",
+   "subject": "physics",
+   "order": 29,
+   "topic": "phys.em.circuit",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "断面が円形の一様な金属線の抵抗が $R$ である。同じ材質で，長さが 2 倍，断面の直径が 2 倍の金属線の抵抗はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "横截面为圆形的均匀金属线电阻为 $R$。用同种材料制成长度为 2 倍、横截面直径为 2 倍的金属线，其电阻是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{R}{4}$",
+    "$\\dfrac{R}{2}$",
+    "$R$",
+    "$2R$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** $R=\\rho\\dfrac{L}{S}$；直径 2 倍 → 断面积 $S\\propto D^2$ 变为 4 倍。\n**解答** $R'=\\rho\\dfrac{2L}{4S}=\\dfrac R2$。\n**结论** 答案 ②。③是把「直径 2 倍」当成「面积 2 倍」；①漏了长度加倍；④只算了长度、忘了断面积变大。\n**记忆** $R\\propto\\dfrac{L}{D^2}$：长度一次方，直径平方。",
+    "keyPoints": [
+     "$R=\\rho\\dfrac LS$，抵抗率 $\\rho$ 由材料和温度决定"
+    ],
+    "traps": [
+     "直径（半径）加倍 → 面积 4 倍"
+    ],
+    "terms": [
+     {
+      "ja": "抵抗率",
+      "kana": "ていこうりつ",
+      "zh": "电阻率 ρ（单位 Ω·m）"
+     },
+     {
+      "ja": "断面",
+      "kana": "だんめん",
+      "zh": "横截面"
+     },
+     {
+      "ja": "直径",
+      "kana": "ちょっけい",
+      "zh": "直径"
+     },
+     {
+      "ja": "材質",
+      "kana": "ざいしつ",
+      "zh": "材料"
+     }
+    ],
+    "shortcut": "$\\dfrac{R'}{R}=\\dfrac{2}{2^2}=\\dfrac12$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-30",
+   "subject": "physics",
+   "order": 30,
+   "topic": "phys.em.circuit",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "起電力 $E$，内部抵抗 $r$ の電池に外部抵抗をつないだところ，回路に電流 $I$ が流れた。このときの電池の端子電圧はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "把电动势为 $E$、内阻为 $r$ 的电池接上外电阻，电路中流过电流 $I$。此时电池的端电压是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$E$",
+    "$E+rI$",
+    "$rI$",
+    "$E-rI$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 电流流过内部抵抗时产生电压降 $rI$，端子电压 = 起电力减去这部分。\n**解答** $V=E-rI$。\n**结论** 答案 ④。①只在 $I=0$（断路）时成立；②是给电池**充电**（电流从正极流入）时的端电压；③是内阻上的电压降。\n**记忆** $V$–$I$ 图：纵截距 $E$，斜率 $-r$。",
+    "keyPoints": [
+     "$V=E-rI$；接外电阻 $R$ 时 $I=\\dfrac{E}{R+r}$",
+     "短路电流 $\\dfrac Er$"
+    ],
+    "traps": [
+     "把电动势直接当成端电压"
+    ],
+    "terms": [
+     {
+      "ja": "起電力",
+      "kana": "きでんりょく",
+      "zh": "电动势"
+     },
+     {
+      "ja": "内部抵抗",
+      "kana": "ないぶていこう",
+      "zh": "内阻"
+     },
+     {
+      "ja": "端子電圧",
+      "kana": "たんしでんあつ",
+      "zh": "端电压（路端电压）"
+     }
+    ],
+    "shortcut": "极限：$I=0$ 时端电压应为 $E$，排除③；放电时端电压小于 $E$，排除②。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-31",
+   "subject": "physics",
+   "order": 31,
+   "topic": "phys.em.circuit",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "キルヒホッフの第2法則の内容として最も適当なものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "关于基尔霍夫第二定律的内容，最合适的是哪一个？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "回路中の任意の分岐点について，流れこむ電流の和は流れ出る電流の和に等しい。",
+    "回路中の任意の閉じた経路について，起電力の和は電圧降下の和に等しい。",
+    "抵抗を流れる電流は，抵抗の両端の電圧に比例する。",
+    "抵抗で単位時間に発生するジュール熱は，電流の2乗と抵抗の積に等しい。"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 第1法則管「电流」（节点，电荷守恒）；第2法則管「电压」（回路，能量守恒）。\n**解答** 第2法則：沿任意闭合回路绕一圈，$\\sum E=\\sum RI$（起电力之和 = 电压降之和）。\n**结论** 答案 ②。①是第1法則；③是オームの法則；④是ジュールの法則。\n**记忆** 「1 点 2 圈」：第 1 法则看一个点，第 2 法则绕一圈。",
+    "keyPoints": [
+     "第1法則：流入 = 流出（分岐点）；第2法則：$\\sum E=\\sum RI$（閉回路）",
+     "绕行方向与电流相反时 $RI$ 取负；逆着电池方向（从正极到负极）时 $E$ 取负"
+    ],
+    "traps": [
+     "混淆第1、第2法则"
+    ],
+    "terms": [
+     {
+      "ja": "分岐点",
+      "kana": "ぶんきてん",
+      "zh": "节点（导线分叉处）"
+     },
+     {
+      "ja": "閉じた経路",
+      "kana": "とじたけいろ",
+      "zh": "闭合回路"
+     },
+     {
+      "ja": "電圧降下",
+      "kana": "でんあつこうか",
+      "zh": "电压降（电流流过电阻造成的电势降低 RI）"
+     },
+     {
+      "ja": "ジュール熱",
+      "kana": "ジュールねつ",
+      "zh": "焦耳热"
+     }
+    ],
+    "shortcut": "关键词定位：「分岐点」→ 第1法則；「閉じた経路」→ 第2法則。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-32",
+   "subject": "physics",
+   "order": 32,
+   "topic": "phys.em.magnetic",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "磁束密度 $B$ の一様な磁場に垂直に，質量 $m$，電気量 $q$（$q>0$）の荷電粒子が速さ $v$ で入射し，等速円運動をした。円運動の半径はいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "质量为 $m$、电荷量为 $q$（$q>0$）的带电粒子以速率 $v$ 垂直射入磁感应强度为 $B$ 的匀强磁场，做匀速圆周运动。圆周运动的半径是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{qB}{mv}$",
+    "$\\dfrac{mv^2}{qB}$",
+    "$\\dfrac{m}{qvB}$",
+    "$\\dfrac{mv}{qB}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** ローレンツ力 $qvB$ 始终垂直于速度，提供向心力，不做功。\n**解答** $m\\dfrac{v^2}{r}=qvB$ ⇒ $r=\\dfrac{mv}{qB}$；周期 $T=\\dfrac{2\\pi r}{v}=\\dfrac{2\\pi m}{qB}$，与速率无关。\n**结论** 答案 ④。②是约分时漏掉了一个 $v$；①是倒数。\n**记忆** 「半径看动量 $\\dfrac{mv}{qB}$，周期与速度无关 $\\dfrac{2\\pi m}{qB}$」。",
+    "keyPoints": [
+     "$r=\\dfrac{mv}{qB}$，$T=\\dfrac{2\\pi m}{qB}$",
+     "洛伦兹力不做功，速率不变"
+    ],
+    "traps": [
+     "约分时漏掉一个 $v$"
+    ],
+    "terms": [
+     {
+      "ja": "磁束密度",
+      "kana": "じそくみつど",
+      "zh": "磁感应强度 B（单位 T）"
+     },
+     {
+      "ja": "ローレンツ力",
+      "kana": "ローレンツりょく",
+      "zh": "洛伦兹力"
+     },
+     {
+      "ja": "荷電粒子",
+      "kana": "かでんりゅうし",
+      "zh": "带电粒子"
+     },
+     {
+      "ja": "入射する",
+      "kana": "にゅうしゃする",
+      "zh": "射入"
+     }
+    ],
+    "shortcut": "趋势：$B$ 越强应转得越紧（$r$ 越小）、$v$ 越大 $r$ 越大，排除①③；再看量纲：$qvB$ 与 $m\\dfrac{v^2}{r}$ 都是力，$r=\\dfrac{mv^2}{qvB}=\\dfrac{mv}{qB}$，②多一个 $v$，量纲是「长度×速度」，排除，只剩④。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-33",
+   "subject": "physics",
+   "order": 33,
+   "topic": "phys.em.magnetic",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "真空中に置かれた十分に長い直線導線に，電流 $I$ が流れている。導線から距離 $r$ 離れた点の磁束密度の大きさはいくらか。ただし，真空の透磁率を $\\mu_0$ とする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "放在真空中的足够长的直导线中流过电流 $I$。距导线 $r$ 处的磁感应强度大小是多少？真空磁导率为 $\\mu_0$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{\\mu_0I}{2r}$",
+    "$\\dfrac{\\mu_0I}{2\\pi r^2}$",
+    "$\\dfrac{2\\pi\\mu_0I}{r}$",
+    "$\\dfrac{\\mu_0I}{2\\pi r}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 直線電流の磁場：磁場の強さ $H=\\dfrac{I}{2\\pi r}$，磁束密度 $B=\\mu_0H$；方向由右ねじの法則决定。\n**解答** $B=\\dfrac{\\mu_0I}{2\\pi r}$。\n**结论** 答案 ④。①是半径 $r$ 的**圆形电流中心**的磁场 $\\dfrac{\\mu_0I}{2r}$；②与 $r^2$ 成反比是点电荷电场的形式。\n**记忆** $2\\pi r$ = 以导线为圆心的圆周长：电流「平摊」在这圈上。",
+    "keyPoints": [
+     "直線 $H=\\dfrac{I}{2\\pi r}$；円形電流の中心 $H=\\dfrac{I}{2r}$；ソレノイド内部 $H=nI$",
+     "$B=\\mu_0H$"
+    ],
+    "traps": [
+     "直线电流与圆形电流公式混淆（有没有 $\\pi$）"
+    ],
+    "terms": [
+     {
+      "ja": "透磁率",
+      "kana": "とうじりつ",
+      "zh": "磁导率 μ"
+     },
+     {
+      "ja": "磁場の強さ",
+      "kana": "じばのつよさ",
+      "zh": "磁场强度 H（单位 A/m），日本教材常用"
+     },
+     {
+      "ja": "右ねじの法則",
+      "kana": "みぎねじのほうそく",
+      "zh": "右手螺旋定则（安培定则）"
+     },
+     {
+      "ja": "導線",
+      "kana": "どうせん",
+      "zh": "导线"
+     }
+    ],
+    "shortcut": "安培环路：$B\\times2\\pi r=\\mu_0I$，一行得出。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-34",
+   "subject": "physics",
+   "order": 34,
+   "topic": "phys.em.induction",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "磁束密度 $B$ の一様な磁場に垂直な平面内で，長さ $L$ の導体棒を，棒に垂直な向きに速さ $v$ で動かした。導体棒の両端の間に生じる誘導起電力の大きさはいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "在与磁感应强度为 $B$ 的匀强磁场垂直的平面内，使长为 $L$ 的导体棒沿垂直于棒的方向以速率 $v$ 运动。导体棒两端之间产生的感应电动势大小是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$\\dfrac{vB}{L}$",
+    "$vBL$",
+    "$\\dfrac{BL}{v}$",
+    "$\\dfrac{1}{2}vBL$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** 每秒导体棒扫过面积 $Lv$，穿过它的磁通变化率 $\\dfrac{\\Delta\\Phi}{\\Delta t}=BLv$；或看成棒内电子受洛伦兹力。\n**解答** $V=vBL$。\n**结论** 答案 ②。④是导体棒绕一端**旋转**时的形式 $\\dfrac12B\\omega L^2$（$v$ 为端点速率）的混淆。\n**记忆** $vBL$ = 每秒扫过的磁通。",
+    "keyPoints": [
+     "$V=vBL$（$v\\perp B$，$L\\perp v$）",
+     "绕一端旋转：$V=\\dfrac12B\\omega L^2$"
+    ],
+    "traps": [
+     "速度不垂直于磁场时只取垂直分量"
+    ],
+    "terms": [
+     {
+      "ja": "導体棒",
+      "kana": "どうたいぼう",
+      "zh": "导体棒"
+     },
+     {
+      "ja": "誘導起電力",
+      "kana": "ゆうどうきでんりょく",
+      "zh": "感应电动势"
+     },
+     {
+      "ja": "一様な磁場",
+      "kana": "いちようなじば",
+      "zh": "匀强磁场"
+     }
+    ],
+    "shortcut": "量纲：$vBL$ 的单位 $\\mathrm{m/s\\cdot T\\cdot m=V}$，其余①③量纲不对。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-35",
+   "subject": "physics",
+   "order": 35,
+   "topic": "phys.em.induction",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "巻数 $100$ のコイルを貫く磁束が，$0.10\\,\\mathrm{s}$ の間に $2.0\\times10^{-2}\\,\\mathrm{Wb}$ から $0$ まで一定の割合で減少した。この間にコイルに生じる誘導起電力の大きさはいくらか。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "穿过匝数为 $100$ 的线圈的磁通量，在 $0.10\\,\\mathrm{s}$ 内从 $2.0\\times10^{-2}\\,\\mathrm{Wb}$ 均匀减小到 $0$。这段时间内线圈中产生的感应电动势大小是多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$0.20\\,\\mathrm{V}$",
+    "$2.0\\,\\mathrm{V}$",
+    "$20\\,\\mathrm{V}$",
+    "$200\\,\\mathrm{V}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** ファラデーの電磁誘導の法則：$V=N\\left|\\dfrac{\\Delta\\Phi}{\\Delta t}\\right|$；方向由レンツの法則决定（阻碍磁通变化）。\n**解答** $V=100\\times\\dfrac{2.0\\times10^{-2}}{0.10}=20\\,\\mathrm{V}$。\n**结论** 答案 ③。①忘了乘巻数 $N$；②忘了除以时间 $\\Delta t$。\n**记忆** $V=N\\dfrac{\\Delta\\Phi}{\\Delta t}$，单位 $\\mathrm{Wb/s=V}$。",
+    "keyPoints": [
+     "$V=N\\dfrac{\\Delta\\Phi}{\\Delta t}$，$\\Phi=BS$（单位 $\\mathrm{Wb=T\\cdot m^2}$）",
+     "レンツの法則：感应电流的磁场阻碍磁通的变化"
+    ],
+    "traps": [
+     "忘记乘巻数 $N$"
+    ],
+    "terms": [
+     {
+      "ja": "巻数",
+      "kana": "まきすう",
+      "zh": "匝数"
+     },
+     {
+      "ja": "磁束",
+      "kana": "じそく",
+      "zh": "磁通量 Φ"
+     },
+     {
+      "ja": "貫く",
+      "kana": "つらぬく",
+      "zh": "穿过"
+     },
+     {
+      "ja": "レンツの法則",
+      "kana": "レンツのほうそく",
+      "zh": "楞次定律"
+     }
+    ],
+    "shortcut": "先算 $\\dfrac{\\Delta\\Phi}{\\Delta t}=0.20\\,\\mathrm{Wb/s}$，再乘 $100$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-36",
+   "subject": "physics",
+   "order": 36,
+   "topic": "phys.em.ac",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "家庭用の交流電圧の実効値は $100\\,\\mathrm{V}$ である。この交流電圧の最大値はおよそいくらか。最も適当なものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "家用交流电压的有效值为 $100\\,\\mathrm{V}$。该交流电压的最大值约为多少？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$71\\,\\mathrm{V}$",
+    "$100\\,\\mathrm{V}$",
+    "$141\\,\\mathrm{V}$",
+    "$200\\,\\mathrm{V}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** 正弦交流：実効値 $V_e=\\dfrac{V_0}{\\sqrt2}$（与产生相同焦耳热的直流电压相等）。\n**解答** $V_0=\\sqrt2V_e\\approx1.41\\times100=141\\,\\mathrm{V}$。\n**结论** 答案 ③。①把关系弄反（$\\dfrac{100}{\\sqrt2}$）；④误乘 2。\n**记忆** 「100 V 有效 ↔ 141 V 峰值」。",
+    "keyPoints": [
+     "$V_e=\\dfrac{V_0}{\\sqrt2}$，$I_e=\\dfrac{I_0}{\\sqrt2}$",
+     "纯电阻的平均电力 $\\overline{P}=V_eI_e=\\dfrac12V_0I_0$"
+    ],
+    "traps": [
+     "有效值比最大值小，不要乘反"
+    ],
+    "terms": [
+     {
+      "ja": "交流",
+      "kana": "こうりゅう",
+      "zh": "交流电"
+     },
+     {
+      "ja": "実効値",
+      "kana": "じっこうち",
+      "zh": "有效值"
+     },
+     {
+      "ja": "最大値",
+      "kana": "さいだいち",
+      "zh": "峰值（最大值）"
+     },
+     {
+      "ja": "家庭用",
+      "kana": "かていよう",
+      "zh": "家用"
+     }
+    ],
+    "shortcut": "有效值一定小于峰值，排除①②；$\\sqrt2\\approx1.41$ 选③。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-37",
+   "subject": "physics",
+   "order": 37,
+   "topic": "phys.em.ac",
+   "difficulty": 2,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "交流電源にコイルだけをつないだ場合と，コンデンサーだけをつないだ場合を考える。交流の周波数を 2 倍にすると，コイルのリアクタンスとコンデンサーのリアクタンスはそれぞれ何倍になるか。正しい組み合わせを，次の①～④の中から一つ選びなさい。\n\n|  | コイル | コンデンサー |\n|---|---|---|\n| ① | $2$ 倍 | $2$ 倍 |\n| ② | $2$ 倍 | $\\dfrac{1}{2}$ 倍 |\n| ③ | $\\dfrac{1}{2}$ 倍 | $2$ 倍 |\n| ④ | $\\dfrac{1}{2}$ 倍 | $\\dfrac{1}{2}$ 倍 |",
+   "stemZh": "考虑交流电源只接线圈和只接电容器两种情况。把交流电的频率变为 2 倍，线圈的电抗和电容器的电抗分别变为几倍？正确的组合是哪一个？从下列①～④中选出一个。\n\n|  | 线圈 | 电容器 |\n|---|---|---|\n| ① | $2$ 倍 | $2$ 倍 |\n| ② | $2$ 倍 | $\\dfrac{1}{2}$ 倍 |\n| ③ | $\\dfrac{1}{2}$ 倍 | $2$ 倍 |\n| ④ | $\\dfrac{1}{2}$ 倍 | $\\dfrac{1}{2}$ 倍 |",
+   "format": "choice",
+   "options": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 1,
+   "explanation": {
+    "zh": "**思路** コイル：$X_L=\\omega L=2\\pi fL$（频率越高越难通过）；コンデンサー：$X_C=\\dfrac{1}{\\omega C}=\\dfrac{1}{2\\pi fC}$（频率越高越容易通过）。\n**解答** $f\\to2f$：$X_L$ 变 2 倍，$X_C$ 变 $\\dfrac12$ 倍。\n**结论** 答案 ②。③把两者的频率依赖弄反；①④把两者当成同样变化。\n**记忆** 「线圈通直阻交，电容通交隔直」：直流 $f=0$ 时 $X_L=0$、$X_C=\\infty$。",
+    "keyPoints": [
+     "$X_L=\\omega L$（电压超前电流 $\\dfrac\\pi2$），$X_C=\\dfrac1{\\omega C}$（电压落后电流 $\\dfrac\\pi2$）",
+     "共振：$\\omega L=\\dfrac1{\\omega C}$ ⇒ $f=\\dfrac{1}{2\\pi\\sqrt{LC}}$"
+    ],
+    "traps": [
+     "把两者的频率依赖弄反"
+    ],
+    "terms": [
+     {
+      "ja": "リアクタンス",
+      "kana": "リアクタンス",
+      "zh": "电抗（交流中线圈/电容的「电阻」，单位 Ω）"
+     },
+     {
+      "ja": "コイル",
+      "kana": "コイル",
+      "zh": "线圈（电感器）"
+     },
+     {
+      "ja": "周波数",
+      "kana": "しゅうはすう",
+      "zh": "频率（交流电习惯用 周波数）"
+     },
+     {
+      "ja": "交流電源",
+      "kana": "こうりゅうでんげん",
+      "zh": "交流电源"
+     }
+    ],
+    "shortcut": "想 $f=0$（直流）：线圈相当于导线、电容器断路 → $X_L\\propto f$，$X_C\\propto\\dfrac1f$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-38",
+   "subject": "physics",
+   "order": 38,
+   "topic": "phys.atom.quantum",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "仕事関数 $W$ の金属に振動数 $\\nu$ の光を当てたところ，光電子が飛び出した。飛び出す光電子の運動エネルギーの最大値はいくらか。ただし，プランク定数を $h$ とする。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "用频率为 $\\nu$ 的光照射逸出功为 $W$ 的金属，有光电子逸出。逸出光电子动能的最大值是多少？普朗克常量为 $h$。从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$h\\nu-W$",
+    "$h\\nu+W$",
+    "$W-h\\nu$",
+    "$\\dfrac{h\\nu}{W}$"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 0,
+   "explanation": {
+    "zh": "**思路** 一个光子把能量 $h\\nu$ 全部交给一个电子，电子逃出金属至少要消耗 $W$（仕事関数）。\n**解答** $K_0=h\\nu-W$（アインシュタインの光電方程式）。\n**结论** 答案 ①。③符号反了（会是负值）；④量纲不对（无单位）。\n**记忆** 限界振動数 $\\nu_0=\\dfrac Wh$：$\\nu<\\nu_0$ 时光再强也不出电子。",
+    "keyPoints": [
+     "$K_0=h\\nu-W$，$\\nu_0=\\dfrac Wh$",
+     "阻止電圧 $V_0$：$eV_0=K_0$"
+    ],
+    "traps": [
+     "$W$ 是逸出功（能量），不是功率"
+    ],
+    "terms": [
+     {
+      "ja": "仕事関数",
+      "kana": "しごとかんすう",
+      "zh": "逸出功（功函数）"
+     },
+     {
+      "ja": "光電子",
+      "kana": "こうでんし",
+      "zh": "光电子"
+     },
+     {
+      "ja": "プランク定数",
+      "kana": "プランクていすう",
+      "zh": "普朗克常量 h"
+     },
+     {
+      "ja": "限界振動数",
+      "kana": "げんかいしんどうすう",
+      "zh": "截止频率"
+     }
+    ],
+    "shortcut": "$K_0$–$\\nu$ 图：斜率 $h$，横截距 $\\nu_0$，纵截距 $-W$。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-39",
+   "subject": "physics",
+   "order": 39,
+   "topic": "phys.atom.quantum",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "金属に光を当てて光電効果を起こさせる。光の振動数を変えずに，光の強さだけを 2 倍にした。単位時間に飛び出す光電子の数と，光電子の運動エネルギーの最大値はどうなるか。正しい組み合わせを，次の①～④の中から一つ選びなさい。\n\n|  | 光電子の数 | 運動エネルギーの最大値 |\n|---|---|---|\n| ① | 変わらない | 2 倍になる |\n| ② | 2 倍になる | 2 倍になる |\n| ③ | 変わらない | 変わらない |\n| ④ | 2 倍になる | 変わらない |",
+   "stemZh": "用光照射金属产生光电效应。保持光的频率不变，只把光强变为 2 倍。单位时间逸出的光电子数和光电子动能的最大值分别如何变化？正确的组合是哪一个？从下列①～④中选出一个。\n\n|  | 光电子数 | 动能最大值 |\n|---|---|---|\n| ① | 不变 | 变为 2 倍 |\n| ② | 变为 2 倍 | 变为 2 倍 |\n| ③ | 不变 | 不变 |\n| ④ | 变为 2 倍 | 不变 |",
+   "format": "choice",
+   "options": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 3,
+   "explanation": {
+    "zh": "**思路** 光の強さ ∝ 单位时间到达的光子数；每个光子的能量 $h\\nu$ 只由振动数决定。\n**解答** 光子数 2 倍 → 光电子数（饱和光电流）2 倍；每个光子能量不变 → $K_0=h\\nu-W$ 不变。\n**结论** 答案 ④。这正是波动说解释不了、光子说能解释的事实。\n**记忆** 「强度管数量，频率管能量」。",
+    "keyPoints": [
+     "强度 → 光电子个数（饱和电流）；振动数 → 光电子能量（阻止电压）"
+    ],
+    "traps": [
+     "以为光越强电子越快"
+    ],
+    "terms": [
+     {
+      "ja": "光電効果",
+      "kana": "こうでんこうか",
+      "zh": "光电效应"
+     },
+     {
+      "ja": "光の強さ",
+      "kana": "ひかりのつよさ",
+      "zh": "光强"
+     },
+     {
+      "ja": "単位時間",
+      "kana": "たんいじかん",
+      "zh": "单位时间（如每秒）"
+     },
+     {
+      "ja": "飛び出す",
+      "kana": "とびだす",
+      "zh": "逸出、飞出"
+     }
+    ],
+    "shortcut": "$K_0=h\\nu-W$ 式中根本没有「强度」，所以动能最大值不变，排除①②。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  },
+  {
+   "id": "recall-phys-40",
+   "subject": "physics",
+   "order": 40,
+   "topic": "phys.atom.nuclear",
+   "difficulty": 1,
+   "targetSec": 30,
+   "source": {
+    "kind": "original",
+    "label": "原创 · 考点速测"
+   },
+   "stem": "ある放射性同位体の半減期は $5.0$ 日である。この放射性同位体の原子核の数が，はじめの $\\dfrac{1}{16}$ になるのは何日後か。正しいものを，次の①～④の中から一つ選びなさい。",
+   "stemZh": "某放射性同位素的半衰期为 $5.0$ 天。这种放射性同位素的原子核数变为最初的 $\\dfrac{1}{16}$ 需要多少天？从下列①～④中选出一个。",
+   "format": "choice",
+   "options": [
+    "$10$ 日後",
+    "$16$ 日後",
+    "$20$ 日後",
+    "$80$ 日後"
+   ],
+   "optionLabels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ],
+   "answer": 2,
+   "explanation": {
+    "zh": "**思路** $N=N_0\\left(\\dfrac12\\right)^{\\frac{t}{T}}$，$T$ 为半減期。\n**解答** $\\dfrac{1}{16}=\\left(\\dfrac12\\right)^4$ ⇒ $\\dfrac tT=4$ ⇒ $t=4\\times5.0=20$ 日。\n**结论** 答案 ③。④是误用线性 $16\\times5.0$；①只经过 2 个半衰期（剩 $\\dfrac14$）。\n**记忆** 数「对折次数」：$1\\to\\dfrac12\\to\\dfrac14\\to\\dfrac18\\to\\dfrac1{16}$，4 次 × 5 日。",
+    "keyPoints": [
+     "$N=N_0\\left(\\dfrac12\\right)^{\\frac tT}$",
+     "α崩壊：质量数 $-4$、原子番号 $-2$；β崩壊：原子番号 $+1$"
+    ],
+    "traps": [
+     "衰变按指数规律减少，不是线性减少"
+    ],
+    "terms": [
+     {
+      "ja": "放射性同位体",
+      "kana": "ほうしゃせいどういたい",
+      "zh": "放射性同位素"
+     },
+     {
+      "ja": "半減期",
+      "kana": "はんげんき",
+      "zh": "半衰期"
+     },
+     {
+      "ja": "原子核",
+      "kana": "げんしかく",
+      "zh": "原子核"
+     },
+     {
+      "ja": "崩壊",
+      "kana": "ほうかい",
+      "zh": "衰变"
+     }
+    ],
+    "shortcut": "$16=2^4$，直接 4 个半衰期。"
+   },
+   "verified": {
+    "status": "verified",
+    "method": "原创 + 独立作答一致"
+   }
+  }
+ ]
+}

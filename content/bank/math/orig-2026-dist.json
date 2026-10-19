@@ -81,8 +81,8 @@
     "shortcut": "(2) 直接想：重掷的期望是 3.5，所以 1～3 重掷、4～6 保留，$E=\\dfrac12\\cdot\\dfrac72+\\dfrac12\\cdot5=\\dfrac{17}{4}$。(3) 同理：继续的价值 4.25，所以 1～4 继续，$E=\\dfrac46\\cdot4.25+\\dfrac16(5+6)=\\dfrac{14}{3}$。"
    },
    "verified": {
-    "status": "unverified",
-    "method": "原创（答案经穷举程序验算）"
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
    }
   },
   {
@@ -159,8 +159,8 @@
     "shortcut": "对称性：把每张卡 $c$ 换成 $7-c$，较大数与较小数互换，所以 $Y$ 与 $7-X$ 同分布，$E(Y)=7-E(X)=\\dfrac73$。一般地，从 $1\\sim n$ 中取 2 张，较大数的期望为 $\\dfrac{2(n+1)}{3}$（$n=6$ 时 $\\dfrac{14}{3}$）。"
    },
    "verified": {
-    "status": "unverified",
-    "method": "原创（答案经穷举程序验算）"
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
    }
   },
   {
@@ -241,8 +241,8 @@
     "shortcut": "$X$ 的分布 $\\dfrac15,\\dfrac35,\\dfrac15$ 关于 2 对称，$E(X)=2$ 立得；$V(X)=(1-2)^2\\cdot\\dfrac15+(3-2)^2\\cdot\\dfrac15=\\dfrac25$，比先求 $E(X^2)$ 更快。"
    },
    "verified": {
-    "status": "unverified",
-    "method": "原创（答案经穷举程序验算）"
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
    }
   },
   {
@@ -321,8 +321,8 @@
     "shortcut": "看到“个数的期望”，第一反应就是拆成示性变量：$E(\\text{空箱数})=3\\left(\\dfrac23\\right)^4=\\dfrac{16}{27}$，一行完成，不必列分布表。"
    },
    "verified": {
-    "status": "unverified",
-    "method": "原创（答案经穷举程序验算）"
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
    }
   },
   {
@@ -404,8 +404,8 @@
     "shortcut": "想象把 4 支签全部依次抽完：总和恒为 10，方差为 0，即 $0=4V(X)+12\\,\\mathrm{Cov}(X,Y)$，得 $\\mathrm{Cov}=-\\dfrac{V(X)}{3}=-\\dfrac{5}{12}$，相关系数 $=-\\dfrac{1}{n-1}=-\\dfrac13$（$n=4$）。"
    },
    "verified": {
-    "status": "unverified",
-    "method": "原创（答案经穷举程序验算）"
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
    }
   },
   {
@@ -439,7 +439,7 @@
     "N": "1"
    },
    "explanation": {
-    "zh": "**思路**　两个骰子独立：$E(XY)=E(X)E(Y)$，$\\mathrm{Cov}(X,Y)=0$，$V(X+Y)=V(X)+V(Y)$。协方差对每个变量都是“线性”的：$\\mathrm{Cov}(X,X+Y)=V(X)+\\mathrm{Cov}(X,Y)$。最后一问考“不相关 ≠ 独立”。(3) 中灰色重印的 $\\dfrac{\\bx{CD}}{\\bx{EF}}$ 就是提示：$\\mathrm{Cov}(X,S)$ 等于 $V(X)$。\n\n**解答**\n\n**(1) A, B, CD, EF**\n\n$E(X)=\\dfrac{21}{6}=\\dfrac72$，A = 7，B = 2。\n$E(X^2)=\\dfrac{1+4+9+16+25+36}{6}=\\dfrac{91}{6}$，\n$$V(X)=\\dfrac{91}{6}-\\dfrac{49}{4}=\\dfrac{182-147}{12}=\\dfrac{35}{12}$$\nCD = 35，EF = 12。\n\n**(2) G, HI, J**\n\n$E(S)=E(X)+E(Y)=7$，G = 7。$X,Y$ 独立，$V(S)=V(X)+V(Y)=\\dfrac{35}{6}$，HI = 35，J = 6。\n\n**(3) CD, EF（重印），K, L**\n\n1. $E(XS)=E(X^2+XY)=E(X^2)+E(X)E(Y)$（独立），所以\n$$\\mathrm{Cov}(X,S)=E(X^2)+E(X)E(Y)-E(X)\\{E(X)+E(Y)\\}=E(X^2)-\\{E(X)\\}^2=V(X)=\\dfrac{35}{12}$$\n与 (1) 的 CD/EF 一致。\n2. 相关系数\n$$\\dfrac{V(X)}{\\sigma(X)\\,\\sigma(S)}=\\dfrac{\\sigma(X)}{\\sigma(S)}=\\sqrt{\\dfrac{V(X)}{V(S)}}=\\sqrt{\\dfrac{35/12}{35/6}}=\\sqrt{\\dfrac12}=\\dfrac{\\sqrt2}{2}$$\nK = 2，L = 2。\n\n**(4) M, N**\n\n1. $ST=(X+Y)(X-Y)=X^2-Y^2$，$E(ST)=E(X^2)-E(Y^2)=0$；$E(T)=E(X)-E(Y)=0$。\n$\\mathrm{Cov}(S,T)=E(ST)-E(S)E(T)=0-7\\cdot0=0$，M = 0。相关系数为 0，排除 ②③。\n2. 但 $S$ 与 $T$ 不独立：$S=2$ 只有 $(X,Y)=(1,1)$ 一种，此时必有 $T=0$。所以 $P(S=2,\\ T=1)=0$，而 $P(S=2)\\,P(T=1)=\\dfrac1{36}\\cdot\\dfrac5{36}\\neq0$。排除 ⓪，N = ①。\n\n**结论**　A = 7，B = 2，CD = 35，EF = 12，G = 7，HI = 35，J = 6，K = 2，L = 2，M = 0，N = 1。",
+    "zh": "**思路**　两个骰子独立：$E(XY)=E(X)E(Y)$，$\\mathrm{Cov}(X,Y)=0$，$V(X+Y)=V(X)+V(Y)$。协方差对每个变量都是“线性”的：$\\mathrm{Cov}(X,X+Y)=V(X)+\\mathrm{Cov}(X,Y)$。最后一问考“不相关 ≠ 独立”。(3) 再次使用 (1) 的同一组格 $\\dfrac{\\bx{CD}}{\\bx{EF}}$，本身就是提示：$\\mathrm{Cov}(X,S)$ 等于 $V(X)$。\n\n**解答**\n\n**(1) A, B, CD, EF**\n\n$E(X)=\\dfrac{21}{6}=\\dfrac72$，A = 7，B = 2。\n$E(X^2)=\\dfrac{1+4+9+16+25+36}{6}=\\dfrac{91}{6}$，\n$$V(X)=\\dfrac{91}{6}-\\dfrac{49}{4}=\\dfrac{182-147}{12}=\\dfrac{35}{12}$$\nCD = 35，EF = 12。\n\n**(2) G, HI, J**\n\n$E(S)=E(X)+E(Y)=7$，G = 7。$X,Y$ 独立，$V(S)=V(X)+V(Y)=\\dfrac{35}{6}$，HI = 35，J = 6。\n\n**(3) CD, EF（与 (1) 同一组格），K, L**\n\n1. $E(XS)=E(X^2+XY)=E(X^2)+E(X)E(Y)$（独立），所以\n$$\\mathrm{Cov}(X,S)=E(X^2)+E(X)E(Y)-E(X)\\{E(X)+E(Y)\\}=E(X^2)-\\{E(X)\\}^2=V(X)=\\dfrac{35}{12}$$\n与 (1) 的 CD/EF 一致。\n2. 相关系数\n$$\\dfrac{V(X)}{\\sigma(X)\\,\\sigma(S)}=\\dfrac{\\sigma(X)}{\\sigma(S)}=\\sqrt{\\dfrac{V(X)}{V(S)}}=\\sqrt{\\dfrac{35/12}{35/6}}=\\sqrt{\\dfrac12}=\\dfrac{\\sqrt2}{2}$$\nK = 2，L = 2。\n\n**(4) M, N**\n\n1. $ST=(X+Y)(X-Y)=X^2-Y^2$，$E(ST)=E(X^2)-E(Y^2)=0$；$E(T)=E(X)-E(Y)=0$。\n$\\mathrm{Cov}(S,T)=E(ST)-E(S)E(T)=0-7\\cdot0=0$，M = 0。相关系数为 0，排除 ②③。\n2. 但 $S$ 与 $T$ 不独立：$S=2$ 只有 $(X,Y)=(1,1)$ 一种，此时必有 $T=0$。所以 $P(S=2,\\ T=1)=0$，而 $P(S=2)\\,P(T=1)=\\dfrac1{36}\\cdot\\dfrac5{36}\\neq0$。排除 ⓪，N = ①。\n\n**结论**　A = 7，B = 2，CD = 35，EF = 12，G = 7，HI = 35，J = 6，K = 2，L = 2，M = 0，N = 1。",
     "keyPoints": [
      "独立 ⇒ $E(XY)=E(X)E(Y)$、$\\mathrm{Cov}(X,Y)=0$、$V(X+Y)=V(X)+V(Y)$",
      "$\\mathrm{Cov}(X,X+Y)=V(X)+\\mathrm{Cov}(X,Y)$（协方差对每个变量是线性的）",
@@ -480,8 +480,8 @@
     "shortcut": "$\\mathrm{Cov}(X+Y,\\,X-Y)=V(X)-V(Y)$：只要 $X$、$Y$ 方差相等，和与差就不相关，$M=0$ 无需计算 $E(ST)$。相关系数也可直接用 $\\sigma(X)/\\sigma(S)=1/\\sqrt2$。"
    },
    "verified": {
-    "status": "unverified",
-    "method": "原创（答案经穷举程序验算）"
+    "status": "verified",
+    "method": "原创 + 独立求解一致"
    }
   }
  ]

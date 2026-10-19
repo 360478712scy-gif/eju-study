@@ -1,0 +1,681 @@
+{
+  "title": "原创 · 微分法 接線・増減と極値・最大最小・実数解の個数・速度（コース2 8题）",
+  "items": [
+    {
+      "id": "orig-math-calc-diff-1",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.calc.diff",
+      "difficulty": 1,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 3次関数の極値・実数解の個数・接線"
+      },
+      "stem": "$a,\\ b,\\ c$ を定数とし，$x$ の 3 次関数\n\n$$f(x)=x^3+ax^2+bx+c$$\n\nを考える。$f(x)$ は $x=-1$ で極大値 $7$ をとり，$x=3$ で極小値をとるとする。\n\n(1)　$a=\\bx{AB}$，$b=\\bx{CD}$，$c=\\bx{E}$ であり，$f(x)$ の極小値は \\bx{FGH} である。\n\n(2)　$k$ を定数とする。$x$ の方程式 $f(x)=k$ が異なる 3 つの実数解をもつような $k$ の値の範囲は\n\n$$\\bx{FGH}<k<\\bx{I}$$\n\nである。さらに，異なる 3 つの実数解のうち 2 つが正，1 つが負となるような $k$ の値の範囲は\n\n$$\\bx{FGH}<k<\\bx{J}$$\n\nである。\n\n(3)　曲線 $y=f(x)$ の接線のうち，傾きが最小となるものの方程式は\n\n$$y=\\bx{KLM}\\,x+\\bx{N}$$\n\nである。",
+      "stemZh": "设 $a,\\ b,\\ c$ 为常数，考虑关于 $x$ 的三次函数\n\n$$f(x)=x^3+ax^2+bx+c$$\n\n已知 $f(x)$ 在 $x=-1$ 处取极大值 $7$，在 $x=3$ 处取极小值。\n\n(1)　$a=\\bx{AB}$，$b=\\bx{CD}$，$c=\\bx{E}$，$f(x)$ 的极小值为 \\bx{FGH}。\n\n(2)　设 $k$ 为常数。使关于 $x$ 的方程 $f(x)=k$ 有 3 个不同实数解的 $k$ 的取值范围是\n\n$$\\bx{FGH}<k<\\bx{I}$$\n\n进一步，使 3 个不同实数解中 2 个为正、1 个为负的 $k$ 的取值范围是\n\n$$\\bx{FGH}<k<\\bx{J}$$\n\n(3)　曲线 $y=f(x)$ 的切线中，斜率最小的那条切线的方程为\n\n$$y=\\bx{KLM}\\,x+\\bx{N}$$",
+      "format": "blanks",
+      "blanks": {
+        "A": "-",
+        "B": "3",
+        "C": "-",
+        "D": "9",
+        "E": "2",
+        "F": "-",
+        "G": "2",
+        "H": "5",
+        "I": "7",
+        "J": "2",
+        "K": "-",
+        "L": "1",
+        "M": "2",
+        "N": "3"
+      },
+      "explanation": {
+        "zh": "**思路**　\"在 $x=-1$ 取极大、在 $x=3$ 取极小\" ⇒ $-1,\\ 3$ 是 $f'(x)=0$ 的两个根，所以 $f'(x)=3(x+1)(x-3)$，比较系数求 $a,\\ b$，再用极大值 $7$ 求 $c$。(2) 方程 $f(x)=k$ 的实数解个数 = 曲线 $y=f(x)$ 与水平直线 $y=k$ 的交点个数；判断正负根还要看 $f(0)$。(3) 切线斜率就是 $f'(x)$，求 $f'(x)$ 的最小值。\n\n**解答**\n\n**(1) AB, CD, E, FGH**\n\n1. $f'(x)=3x^2+2ax+b$。它的两根是 $-1,\\ 3$，且 $x^2$ 的系数为 $3$，所以\n$$f'(x)=3(x+1)(x-3)=3x^2-6x-9$$\n比较系数：$2a=-6$，$b=-9$。所以 $a=-3$（AB = −3：A 填“-”，B 填 3），$b=-9$（CD = −9）。\n2. 极大值：$f(-1)=-1-3+9+c=5+c=7$，得 $c=2$，E = 2。于是 $f(x)=x^3-3x^2-9x+2$。\n3. 极小值：$f(3)=27-27-27+2=-25$，FGH = −25（F 填“-”，G = 2，H = 5）。\n\n增减表（$x^3$ 系数为正，$f'$ 的符号为 $+,-,+$，确认 $x=-1$ 为极大、$x=3$ 为极小）：\n\n| $x$ | $\\cdots$ | $-1$ | $\\cdots$ | $3$ | $\\cdots$ |\n|---|---|---|---|---|---|\n| $f'(x)$ | $+$ | $0$ | $-$ | $0$ | $+$ |\n| $f(x)$ | ↗ | $7$ | ↘ | $-25$ | ↗ |\n\n**(2) FGH, I, J**\n\n1. 直线 $y=k$ 与曲线 $y=f(x)$ 有 3 个交点 ⇔ $k$ 严格介于极小值与极大值之间：$-25<k<7$，I = 7。\n2. 此时 3 个根分别落在 $x<-1$、$-1<x<3$、$x>3$ 三段中。最左边的根 $<-1$ 必为负，最右边的根 $>3$ 必为正，所以\"2 正 1 负\" ⇔ 中间的根为正。\n3. 在 $-1<x<3$ 上 $f(x)$ 单调减少，且 $f(0)=2$。中间根 $x_2>0$ ⇔ $k=f(x_2)<f(0)=2$。\n所以 $-25<k<2$，J = 2。（$k=2$ 时有一根为 $0$，$0$ 既非正也非负，要排除。）\n\n**(3) KLM, N**\n\n1. 切线斜率 $f'(x)=3x^2-6x-9=3(x-1)^2-12$，在 $x=1$ 时取最小值 $-12$。\n2. $f(1)=1-3-9+2=-9$，切线：$y=-12(x-1)-9=-12x+3$。KLM = −12（K 填“-”，L = 1，M = 2），N = 3。\n\n**结论**　AB = −3，CD = −9，E = 2，FGH = −25，I = 7，J = 2，KLM = −12，N = 3。",
+        "keyPoints": [
+          "在 $x=\\alpha,\\ \\beta$ 取极值 ⇒ $f'(x)=3(x-\\alpha)(x-\\beta)$（$x^3$ 系数为 1 时），直接比较系数",
+          "$f(x)=k$ 的实数解个数 = $y=f(x)$ 与 $y=k$ 的交点个数；3 个解 ⇔ 极小值 $<k<$ 极大值",
+          "$x^3$ 系数为正的三次函数，斜率最小的切线就是拐点处的切线"
+        ],
+        "traps": [
+          "极小值是函数值 $f(3)=-25$，不要填成极小点 $x=3$",
+          "“2 正 1 负”要用 $f(0)$ 判断中间根的符号；$k=2$ 时出现根 $0$，必须排除",
+          "负数的负号单独占一格：$-3$、$-9$、$-25$、$-12$"
+        ],
+        "terms": [
+          {
+            "ja": "極大値",
+            "kana": "きょくだいち",
+            "zh": "极大值（局部最大值）"
+          },
+          {
+            "ja": "極小値",
+            "kana": "きょくしょうち",
+            "zh": "极小值（局部最小值）"
+          },
+          {
+            "ja": "実数解",
+            "kana": "じっすうかい",
+            "zh": "实数解、实根"
+          },
+          {
+            "ja": "異なる",
+            "kana": "ことなる",
+            "zh": "互不相同的"
+          },
+          {
+            "ja": "傾き",
+            "kana": "かたむき",
+            "zh": "（直线、切线的）斜率"
+          },
+          {
+            "ja": "接線",
+            "kana": "せっせん",
+            "zh": "切线"
+          }
+        ],
+        "shortcut": "三次函数图像关于拐点中心对称：拐点 $x=\\dfrac{-1+3}{2}=1$，$f(1)=-9$，正好等于极大值与极小值的平均 $\\dfrac{7+(-25)}{2}=-9$，可用来秒检 (1)；斜率最小的切线就是这个拐点 $(1,-9)$ 处的切线。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-2",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.trig.func",
+        "math.curve.conic"
+      ],
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 平面上の運動（速度・加速度）"
+      },
+      "stem": "座標平面上を運動する点 $\\mathrm{P}$ の時刻 $t$ における座標 $(x,\\ y)$ が\n\n$$x=2\\cos t+\\cos 2t,\\qquad y=2\\sin t-\\sin 2t$$\n\nで与えられている。時刻 $t$ における $\\mathrm{P}$ の速度を $\\vec{v}$，加速度を $\\vec{\\alpha}$ とする。\n\n(1)　$|\\vec{v}|^2=\\bx{A}\\left(1-\\cos\\bx{B}\\,t\\right)$ であるから，$\\mathrm{P}$ の速さは\n\n$$|\\vec{v}|=\\bx{C}\\left|\\sin\\dfrac{\\bx{D}}{\\bx{E}}\\,t\\right|$$\n\nである。\n\n(2)　$0<t<\\dfrac{2}{3}\\pi$ において，$\\mathrm{P}$ の速さは $t=\\dfrac{\\pi}{\\bx{F}}$ のとき最大となり，その最大値は \\bx{G} である。また，このときの $\\mathrm{P}$ の座標は $\\left(\\dfrac{\\bx{H}}{\\bx{I}},\\ \\dfrac{\\sqrt{\\bx{J}}}{\\bx{K}}\\right)$ である。\n\n(3)　$t=\\dfrac{\\pi}{\\bx{F}}$ のとき，加速度の大きさは $|\\vec{\\alpha}|=\\bx{L}$ であり，$\\vec{v}$ と $\\vec{\\alpha}$ のなす角は \\bx{M} である。ただし，\\bx{M} には，下の選択肢 ⓪ ～ ④ の中から適するものを選びなさい。\n\n- ⓪ $0$\n- ① $\\dfrac{\\pi}{6}$\n- ② $\\dfrac{\\pi}{4}$\n- ③ $\\dfrac{\\pi}{3}$\n- ④ $\\dfrac{\\pi}{2}$\n\n注）速度：velocity，加速度：acceleration",
+      "stemZh": "在坐标平面上运动的点 $\\mathrm{P}$ 在时刻 $t$ 的坐标 $(x,\\ y)$ 由\n\n$$x=2\\cos t+\\cos 2t,\\qquad y=2\\sin t-\\sin 2t$$\n\n给出。设时刻 $t$ 时 $\\mathrm{P}$ 的速度为 $\\vec{v}$，加速度为 $\\vec{\\alpha}$。\n\n(1)　由于 $|\\vec{v}|^2=\\bx{A}\\left(1-\\cos\\bx{B}\\,t\\right)$，所以 $\\mathrm{P}$ 的速率为\n\n$$|\\vec{v}|=\\bx{C}\\left|\\sin\\dfrac{\\bx{D}}{\\bx{E}}\\,t\\right|$$\n\n(2)　在 $0<t<\\dfrac{2}{3}\\pi$ 内，$\\mathrm{P}$ 的速率在 $t=\\dfrac{\\pi}{\\bx{F}}$ 时最大，最大值为 \\bx{G}。此时 $\\mathrm{P}$ 的坐标为 $\\left(\\dfrac{\\bx{H}}{\\bx{I}},\\ \\dfrac{\\sqrt{\\bx{J}}}{\\bx{K}}\\right)$。\n\n(3)　$t=\\dfrac{\\pi}{\\bx{F}}$ 时，加速度的大小为 $|\\vec{\\alpha}|=\\bx{L}$，$\\vec{v}$ 与 $\\vec{\\alpha}$ 所成的角为 \\bx{M}。其中 \\bx{M} 请从下面的选项 ⓪ ～ ④ 中选出合适的。\n\n- ⓪ $0$\n- ① $\\dfrac{\\pi}{6}$\n- ② $\\dfrac{\\pi}{4}$\n- ③ $\\dfrac{\\pi}{3}$\n- ④ $\\dfrac{\\pi}{2}$\n\n注）速度：速度（velocity），加速度：加速度（acceleration）",
+      "format": "blanks",
+      "blanks": {
+        "A": "8",
+        "B": "3",
+        "C": "4",
+        "D": "3",
+        "E": "2",
+        "F": "3",
+        "G": "4",
+        "H": "1",
+        "I": "2",
+        "J": "3",
+        "K": "2",
+        "L": "2",
+        "M": "4"
+      },
+      "explanation": {
+        "zh": "**思路**　速度 = 位置对时间的导数 $\\vec v=\\left(\\dfrac{dx}{dt},\\ \\dfrac{dy}{dt}\\right)$，加速度再求一次导。速率的平方展开后，用加法定理 $\\cos t\\cos2t-\\sin t\\sin2t=\\cos3t$ 化简；再用半角公式 $1-\\cos\\theta=2\\sin^2\\dfrac{\\theta}{2}$ 开方。\n\n**解答**\n\n**(1) A, B, C, D, E**\n\n1. $\\dfrac{dx}{dt}=-2\\sin t-2\\sin2t$，$\\dfrac{dy}{dt}=2\\cos t-2\\cos2t$（$\\cos2t$ 求导要乘 2）。\n2.\n$$|\\vec v|^2=4\\left\\{(\\sin t+\\sin2t)^2+(\\cos t-\\cos2t)^2\\right\\}=4\\left\\{2-2(\\cos t\\cos2t-\\sin t\\sin2t)\\right\\}=8(1-\\cos3t)$$\nA = 8，B = 3。\n3. $1-\\cos3t=2\\sin^2\\dfrac{3t}{2}$，所以 $|\\vec v|^2=16\\sin^2\\dfrac{3t}{2}$，$|\\vec v|=4\\left|\\sin\\dfrac{3}{2}t\\right|$。C = 4，D = 3，E = 2。\n\n**(2) F, G, H, I, J, K**\n\n1. $0<t<\\dfrac23\\pi$ 时 $0<\\dfrac32t<\\pi$，$\\sin\\dfrac32t>0$，在 $\\dfrac32t=\\dfrac\\pi2$ 即 $t=\\dfrac\\pi3$ 时最大。F = 3，最大值 G = 4。\n2. 位置：$x=2\\cos\\dfrac\\pi3+\\cos\\dfrac{2\\pi}3=1-\\dfrac12=\\dfrac12$，$y=2\\sin\\dfrac\\pi3-\\sin\\dfrac{2\\pi}3=\\sqrt3-\\dfrac{\\sqrt3}2=\\dfrac{\\sqrt3}2$。H = 1，I = 2，J = 3，K = 2。\n\n**(3) L, M**\n\n1. $\\vec\\alpha=\\left(-2\\cos t-4\\cos2t,\\ -2\\sin t+4\\sin2t\\right)$。$t=\\dfrac\\pi3$ 时 $\\vec\\alpha=\\left(-1+2,\\ -\\sqrt3+2\\sqrt3\\right)=\\left(1,\\ \\sqrt3\\right)$，$|\\vec\\alpha|=2$，L = 2。\n2. $t=\\dfrac\\pi3$ 时 $\\vec v=\\left(-\\sqrt3-\\sqrt3,\\ 1+1\\right)=\\left(-2\\sqrt3,\\ 2\\right)$（$|\\vec v|=4$，与 (2) 一致）。\n$\\vec v\\cdot\\vec\\alpha=-2\\sqrt3+2\\sqrt3=0$，两者垂直，夹角 $\\dfrac\\pi2$，M = ④（填 4）。\n本质原因：$\\dfrac{d}{dt}|\\vec v|^2=2\\,\\vec v\\cdot\\vec\\alpha$，速率取最大的时刻这个导数为 0。\n\n**结论**　A = 8，B = 3，C = 4，D = 3，E = 2，F = 3，G = 4，H = 1，I = 2，J = 3，K = 2，L = 2，M = 4（④）。",
+        "keyPoints": [
+          "平面运动：$\\vec v=\\left(\\dfrac{dx}{dt},\\dfrac{dy}{dt}\\right)$，$|\\vec v|=\\sqrt{\\left(\\dfrac{dx}{dt}\\right)^2+\\left(\\dfrac{dy}{dt}\\right)^2}$，$\\vec\\alpha=\\left(\\dfrac{d^2x}{dt^2},\\dfrac{d^2y}{dt^2}\\right)$",
+          "$1-\\cos\\theta=2\\sin^2\\dfrac\\theta2$ 把速率化为单个正弦，开方要带绝对值",
+          "速率取极值的时刻 $\\vec v\\cdot\\vec\\alpha=0$（因为 $\\dfrac{d}{dt}|\\vec v|^2=2\\vec v\\cdot\\vec\\alpha$）"
+        ],
+        "traps": [
+          "$\\cos2t$ 的导数是 $-2\\sin2t$，漏掉链式法则的系数 2 是最常见的错误",
+          "「速さ」是速度的大小（标量），「速度」是向量；题目问的是速さ的最大值",
+          "$\\sqrt{16\\sin^2\\frac{3t}{2}}=4\\left|\\sin\\frac{3t}{2}\\right|$，不能直接去掉绝对值"
+        ],
+        "terms": [
+          {
+            "ja": "速度",
+            "kana": "そくど",
+            "zh": "速度（向量，有方向）"
+          },
+          {
+            "ja": "速さ",
+            "kana": "はやさ",
+            "zh": "速率（速度向量的大小）"
+          },
+          {
+            "ja": "加速度",
+            "kana": "かそくど",
+            "zh": "加速度（速度对时间的导数）"
+          },
+          {
+            "ja": "時刻",
+            "kana": "じこく",
+            "zh": "时刻（某一瞬间）"
+          },
+          {
+            "ja": "なす角",
+            "kana": "なすかく",
+            "zh": "两向量（或两直线）所成的角、夹角"
+          },
+          {
+            "ja": "座標平面",
+            "kana": "ざひょうへいめん",
+            "zh": "坐标平面"
+          }
+        ],
+        "shortcut": "这条轨迹是三尖内摆线（deltoid）：$t=0,\\ \\dfrac{2\\pi}3,\\ \\dfrac{4\\pi}3$ 时速率为 0（尖点），两尖点正中间的 $t=\\dfrac\\pi3$ 速率最大。由对称性先猜出时刻，再代入验证即可；夹角直接用“速率最大 ⇒ $\\vec v\\perp\\vec\\alpha$”选 ④。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-3",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.calc.diff",
+      "difficulty": 2,
+      "targetSec": 1150,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 曲線外の点から引く接線の本数"
+      },
+      "stem": "曲線 $C:\\ y=x^3-3x$ と点 $\\mathrm{T}(2,\\ p)$ を考える。点 $\\mathrm{T}$ から曲線 $C$ に引くことのできる接線の本数を調べよう。\n\n(1)　曲線 $C$ 上の点 $(a,\\ a^3-3a)$ における接線の方程式は\n\n$$y=\\left(\\bx{A}\\,a^2-\\bx{B}\\right)x-\\bx{C}\\,a^{\\bx{D}}$$\n\nである。この接線が点 $\\mathrm{T}$ を通るための条件は\n\n$$p=\\bx{EF}\\,a^3+\\bx{G}\\,a^2-\\bx{H}\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\nである。\n\n(2)　① の右辺を $g(a)$ とおく。$g(a)$ は $a=\\bx{I}$ で極小値 \\bx{JK} をとり，$a=\\bx{L}$ で極大値 \\bx{M} をとる。\n\n3 次関数のグラフでは，接点が異なれば接線も異なる。したがって，点 $\\mathrm{T}$ から曲線 $C$ に引ける接線の本数は，$a$ の方程式 ① の異なる実数解の個数に等しい。よって，接線がちょうど 3 本引けるような $p$ の値の範囲は\n\n$$\\bx{JK}<p<\\bx{M}$$\n\nである。また，$p<\\bx{JK}$ または $\\bx{M}<p$ のとき，接線は \\bx{N} 本引け，$p=\\bx{JK}$ または $p=\\bx{M}$ のとき，接線は \\bx{O} 本引ける。\n\n(3)　$p=\\bx{JK}$ のとき，点 $\\mathrm{T}$ から曲線 $C$ に引いた接線のうち，傾きが正であるものの方程式は\n\n$$y=\\bx{PQ}\\,x-\\bx{RS}$$\n\nである。",
+      "stemZh": "考虑曲线 $C:\\ y=x^3-3x$ 与点 $\\mathrm{T}(2,\\ p)$。来研究从点 $\\mathrm{T}$ 能向曲线 $C$ 作几条切线。\n\n(1)　曲线 $C$ 上点 $(a,\\ a^3-3a)$ 处的切线方程为\n\n$$y=\\left(\\bx{A}\\,a^2-\\bx{B}\\right)x-\\bx{C}\\,a^{\\bx{D}}$$\n\n这条切线经过点 $\\mathrm{T}$ 的条件是\n\n$$p=\\bx{EF}\\,a^3+\\bx{G}\\,a^2-\\bx{H}\\qquad\\cdots\\cdots\\cdots\\quad\\text{①}$$\n\n(2)　把 ① 的右边记为 $g(a)$。$g(a)$ 在 $a=\\bx{I}$ 处取极小值 \\bx{JK}，在 $a=\\bx{L}$ 处取极大值 \\bx{M}。\n\n对三次函数的图像而言，切点不同则切线也不同。因此，从点 $\\mathrm{T}$ 能向曲线 $C$ 作的切线条数，等于关于 $a$ 的方程 ① 的不同实数解的个数。所以，恰好能作 3 条切线的 $p$ 的取值范围是\n\n$$\\bx{JK}<p<\\bx{M}$$\n\n另外，当 $p<\\bx{JK}$ 或 $\\bx{M}<p$ 时，能作 \\bx{N} 条切线；当 $p=\\bx{JK}$ 或 $p=\\bx{M}$ 时，能作 \\bx{O} 条切线。\n\n(3)　$p=\\bx{JK}$ 时，从点 $\\mathrm{T}$ 向曲线 $C$ 所作的切线中，斜率为正的那条的方程为\n\n$$y=\\bx{PQ}\\,x-\\bx{RS}$$",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "3",
+        "C": "2",
+        "D": "3",
+        "E": "-",
+        "F": "2",
+        "G": "6",
+        "H": "6",
+        "I": "0",
+        "J": "-",
+        "K": "6",
+        "L": "2",
+        "M": "2",
+        "N": "1",
+        "O": "2",
+        "P": "2",
+        "Q": "4",
+        "R": "5",
+        "S": "4"
+      },
+      "explanation": {
+        "zh": "**思路**　\"从点 T 引切线\"：T 一般不在曲线上，不能用 $x=2$ 处的导数。要**设切点** $(a,\\ a^3-3a)$，写出切线，再让它经过 T，得到关于 $a$ 的方程 ①。切线条数 = 切点个数 = ① 的实数解个数。把 ① 写成 $p=g(a)$，就变成\"水平直线 $y=p$ 与曲线 $y=g(a)$ 的交点个数\"（分离常数）。\n\n**解答**\n\n**(1) A, B, C, D, EF, G, H**\n\n1. $y'=3x^2-3$，切点 $(a,\\ a^3-3a)$ 处斜率为 $3a^2-3$：\n$$y=(3a^2-3)(x-a)+a^3-3a=(3a^2-3)x-3a^3+3a+a^3-3a=(3a^2-3)x-2a^3$$\nA = 3，B = 3，C = 2，D = 3。\n2. 代入 $\\mathrm T(2,\\ p)$：$p=2(3a^2-3)-2a^3=-2a^3+6a^2-6$。EF = −2（E 填“-”，F = 2），G = 6，H = 6。\n\n**(2) I, JK, L, M, N, O**\n\n1. $g'(a)=-6a^2+12a=-6a(a-2)$。\n\n| $a$ | $\\cdots$ | $0$ | $\\cdots$ | $2$ | $\\cdots$ |\n|---|---|---|---|---|---|\n| $g'(a)$ | $-$ | $0$ | $+$ | $0$ | $-$ |\n| $g(a)$ | ↘ | $-6$ | ↗ | $2$ | ↘ |\n\n$a=0$ 时极小值 $g(0)=-6$：I = 0，JK = −6（J 填“-”，K = 6）。$a=2$ 时极大值 $g(2)=-16+24-6=2$：L = 2，M = 2。\n2. 水平线 $y=p$ 与 $y=g(a)$ 的交点个数（$a\\to-\\infty$ 时 $g\\to+\\infty$，$a\\to+\\infty$ 时 $g\\to-\\infty$）：\n- $-6<p<2$：3 个交点 → 3 条切线；\n- $p<-6$ 或 $p>2$：1 个 → N = 1；\n- $p=-6$ 或 $p=2$：2 个（其中一个是重根，即水平线与 $y=g(a)$ 在极值点相切）→ O = 2。\n\n**(3) PQ, RS**\n\n$p=-6$：$-2a^3+6a^2-6=-6\\Rightarrow -2a^2(a-3)=0\\Rightarrow a=0,\\ 3$。\n- $a=0$：$y=-3x$（斜率为负）；\n- $a=3$：斜率 $3\\cdot9-3=24$，常数项 $-2\\cdot27=-54$，$y=24x-54$。\n\nPQ = 24，RS = 54。验算：$24\\cdot2-54=-6$ ✓。\n\n**结论**　A = 3，B = 3，C = 2，D = 3，EF = −2，G = 6，H = 6，I = 0，JK = −6，L = 2，M = 2，N = 1，O = 2，PQ = 24，RS = 54。",
+        "keyPoints": [
+          "过一点作切线：设切点 $(a,f(a))$，切线 $y=f'(a)(x-a)+f(a)$ 过已知点 ⇒ 关于 $a$ 的方程",
+          "三次曲线上不同切点的切线互不相同，所以切线条数 = 切点方程的不同实数解个数",
+          "把方程写成 $p=g(a)$，用 $y=g(a)$ 的极值判断它与水平线 $y=p$ 的交点数"
+        ],
+        "traps": [
+          "不能用 $x=2$ 处的导数当斜率：T 一般不在曲线上",
+          "$p=-6$ 时 $a=0$ 是二重根，只对应 1 条切线，所以共 2 条而不是 3 条",
+          "整理切线时 $-a(3a^2-3)+a^3-3a=-2a^3$，常数项容易算错"
+        ],
+        "terms": [
+          {
+            "ja": "接線を引く",
+            "kana": "せっせんをひく",
+            "zh": "（从某点）作切线"
+          },
+          {
+            "ja": "接点",
+            "kana": "せってん",
+            "zh": "切点（切线与曲线接触的点）"
+          },
+          {
+            "ja": "本数",
+            "kana": "ほんすう",
+            "zh": "（直线等细长物的）条数"
+          },
+          {
+            "ja": "ちょうど",
+            "kana": "ちょうど",
+            "zh": "恰好、正好"
+          },
+          {
+            "ja": "傾きが正",
+            "kana": "かたむきがせい",
+            "zh": "斜率为正"
+          },
+          {
+            "ja": "実数解の個数",
+            "kana": "じっすうかいのこすう",
+            "zh": "实数解的个数"
+          }
+        ],
+        "shortcut": "几何秒判：$y=x^3-3x$ 的拐点在原点，拐点处切线为 $y=-3x$。在 $x=2$ 这条竖线上，切线 $y=-3x$ 给出 $-6$，曲线给出 $2$；点夹在“曲线与拐点切线之间”时可作 3 条切线，即 $-6<p<2$，端点处各 2 条，其余 1 条——与 (2) 一致。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-4",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.trig.func",
+        "math.geo.measure"
+      ],
+      "difficulty": 2,
+      "targetSec": 690,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 三角関数の最大（円に内接する二等辺三角形）"
+      },
+      "stem": "半径 $1$ の円に内接し，$\\mathrm{AB}=\\mathrm{AC}$ である二等辺三角形 $\\mathrm{ABC}$ を考える。$\\angle\\mathrm{BAC}=\\theta\\ \\ (0<\\theta<\\pi)$ とおき，三角形 $\\mathrm{ABC}$ の面積を $S$，周の長さを $\\ell$ とする。\n\n(1)　正弦定理により $\\mathrm{BC}=\\bx{A}\\sin\\theta$ である。また，頂点 $\\mathrm{A}$ から辺 $\\mathrm{BC}$ に下ろした垂線の長さは $\\bx{B}+\\cos\\theta$ であるから\n\n$$S=\\sin\\theta\\left(\\bx{B}+\\cos\\theta\\right)$$\n\nである。\n\n(2)　$S$ を $\\theta$ で微分すると\n\n$$\\dfrac{dS}{d\\theta}=\\bx{C}\\cos^2\\theta+\\cos\\theta-\\bx{D}=\\left(\\bx{C}\\cos\\theta-\\bx{D}\\right)\\left(\\cos\\theta+\\bx{D}\\right)$$\n\nとなる。よって，$S$ は $\\theta=\\dfrac{\\pi}{\\bx{E}}$ のとき最大となり，最大値は $\\dfrac{\\bx{F}\\sqrt{\\bx{G}}}{\\bx{H}}$ である。このとき，三角形 $\\mathrm{ABC}$ は \\bx{I} である。ただし，\\bx{I} には，下の選択肢 ⓪ ～ ③ の中から適するものを選びなさい。\n\n- ⓪ 直角三角形\n- ① 正三角形\n- ② 鈍角三角形\n- ③ 直角二等辺三角形\n\n(3)　$\\mathrm{AB}=\\bx{J}\\cos\\dfrac{\\theta}{\\bx{K}}$ であるから，$\\ell$ は $\\theta=\\dfrac{\\pi}{\\bx{L}}$ のとき最大となり，最大値は $\\bx{M}\\sqrt{\\bx{N}}$ である。\n\n注）正弦定理：law of sines",
+      "stemZh": "考虑内接于半径为 $1$ 的圆、且 $\\mathrm{AB}=\\mathrm{AC}$ 的等腰三角形 $\\mathrm{ABC}$。设 $\\angle\\mathrm{BAC}=\\theta\\ \\ (0<\\theta<\\pi)$，三角形 $\\mathrm{ABC}$ 的面积为 $S$，周长为 $\\ell$。\n\n(1)　由正弦定理，$\\mathrm{BC}=\\bx{A}\\sin\\theta$。另外，从顶点 $\\mathrm{A}$ 向边 $\\mathrm{BC}$ 所作垂线的长为 $\\bx{B}+\\cos\\theta$，所以\n\n$$S=\\sin\\theta\\left(\\bx{B}+\\cos\\theta\\right)$$\n\n(2)　把 $S$ 对 $\\theta$ 求导，得\n\n$$\\dfrac{dS}{d\\theta}=\\bx{C}\\cos^2\\theta+\\cos\\theta-\\bx{D}=\\left(\\bx{C}\\cos\\theta-\\bx{D}\\right)\\left(\\cos\\theta+\\bx{D}\\right)$$\n\n因此，$S$ 在 $\\theta=\\dfrac{\\pi}{\\bx{E}}$ 时最大，最大值为 $\\dfrac{\\bx{F}\\sqrt{\\bx{G}}}{\\bx{H}}$。此时三角形 $\\mathrm{ABC}$ 是 \\bx{I}。其中 \\bx{I} 请从下面的选项 ⓪ ～ ③ 中选出合适的。\n\n- ⓪ 直角三角形\n- ① 正三角形（等边三角形）\n- ② 钝角三角形\n- ③ 等腰直角三角形\n\n(3)　由于 $\\mathrm{AB}=\\bx{J}\\cos\\dfrac{\\theta}{\\bx{K}}$，所以 $\\ell$ 在 $\\theta=\\dfrac{\\pi}{\\bx{L}}$ 时最大，最大值为 $\\bx{M}\\sqrt{\\bx{N}}$。\n\n注）正弦定理：正弦定理（law of sines）",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "2",
+        "D": "1",
+        "E": "3",
+        "F": "3",
+        "G": "3",
+        "H": "4",
+        "I": "1",
+        "J": "2",
+        "K": "2",
+        "L": "3",
+        "M": "3",
+        "N": "3"
+      },
+      "explanation": {
+        "zh": "**思路**　外接圆半径 $R=1$，用正弦定理 $a=2R\\sin A$ 把边长都写成 θ 的三角函数。等腰三角形顶点 A 到底边的垂线经过圆心 O，所以高 = $\\mathrm{AO}$ + （O 到 BC 的距离）。然后对 θ 求导，用 $\\sin^2\\theta=1-\\cos^2\\theta$ 化成 $\\cos\\theta$ 的二次式再因式分解。\n\n**解答**\n\n**(1) A, B**\n\n1. 正弦定理：$\\dfrac{\\mathrm{BC}}{\\sin\\theta}=2\\cdot1$，$\\mathrm{BC}=2\\sin\\theta$，A = 2。\n2. 设 BC 的中点为 M，则 AM ⊥ BC 且 AM 经过圆心 O。圆心角 $\\angle\\mathrm{BOC}=2\\theta$，所以 $\\angle\\mathrm{BOM}=\\theta$，$\\mathrm{OM}=\\cos\\theta$（θ 为钝角时 $\\cos\\theta<0$，M 落在 O 与 A 之间，式子仍成立）。\n高 $\\mathrm{AM}=1+\\cos\\theta$，B = 1。$S=\\dfrac12\\cdot2\\sin\\theta\\cdot(1+\\cos\\theta)=\\sin\\theta\\,(1+\\cos\\theta)$。\n\n**(2) C, D, E, F, G, H, I**\n\n1. 乘积求导：\n$$\\dfrac{dS}{d\\theta}=\\cos\\theta\\,(1+\\cos\\theta)+\\sin\\theta\\cdot(-\\sin\\theta)=\\cos\\theta+\\cos^2\\theta-(1-\\cos^2\\theta)=2\\cos^2\\theta+\\cos\\theta-1=(2\\cos\\theta-1)(\\cos\\theta+1)$$\nC = 2，D = 1。\n2. $0<\\theta<\\pi$ 时 $\\cos\\theta+1>0$，符号由 $2\\cos\\theta-1$ 决定：$0<\\theta<\\dfrac\\pi3$ 时为正，$\\dfrac\\pi3<\\theta<\\pi$ 时为负。所以 $S$ 在 $\\theta=\\dfrac\\pi3$ 时最大，E = 3。\n3. 最大值 $S=\\dfrac{\\sqrt3}2\\cdot\\left(1+\\dfrac12\\right)=\\dfrac{3\\sqrt3}4$，F = 3，G = 3，H = 4。\n4. 顶角为 $\\dfrac\\pi3$ 的等腰三角形，底角也是 $\\dfrac\\pi3$，是正三角形，I = ①（填 1）。\n\n**(3) J, K, L, M, N**\n\n1. 底角 $\\angle\\mathrm C=\\dfrac{\\pi-\\theta}{2}$，由正弦定理 $\\mathrm{AB}=2\\sin\\angle\\mathrm C=2\\sin\\left(\\dfrac\\pi2-\\dfrac\\theta2\\right)=2\\cos\\dfrac\\theta2$，J = 2，K = 2。\n2. $\\ell=2\\sin\\theta+4\\cos\\dfrac\\theta2$。令 $s=\\sin\\dfrac\\theta2\\ (0<s<1)$，则 $\\cos\\theta=1-2s^2$：\n$$\\dfrac{d\\ell}{d\\theta}=2\\cos\\theta-2\\sin\\dfrac\\theta2=2(1-2s^2)-2s=-2(2s-1)(s+1)$$\n$s<\\dfrac12$ 时为正，$s>\\dfrac12$ 时为负，所以 $\\sin\\dfrac\\theta2=\\dfrac12$，即 $\\theta=\\dfrac\\pi3$ 时 $\\ell$ 最大，L = 3。\n3. $\\ell=2\\cdot\\dfrac{\\sqrt3}2+4\\cdot\\dfrac{\\sqrt3}2=3\\sqrt3$，M = 3，N = 3。\n\n**结论**　A = 2，B = 1，C = 2，D = 1，E = 3，F = 3，G = 3，H = 4，I = 1（①），J = 2，K = 2，L = 3，M = 3，N = 3。",
+        "keyPoints": [
+          "圆内接三角形：正弦定理 $a=2R\\sin A$ 把边长全部化成角的三角函数",
+          "$\\sin\\theta(1+\\cos\\theta)$ 求导后用 $\\sin^2\\theta=1-\\cos^2\\theta$ 化成 $\\cos\\theta$ 的二次式再因式分解",
+          "含 $\\cos\\theta$ 与 $\\sin\\dfrac\\theta2$ 混合时，用 $\\cos\\theta=1-2\\sin^2\\dfrac\\theta2$ 统一变量"
+        ],
+        "traps": [
+          "乘积法则：$(\\sin\\theta)'(1+\\cos\\theta)+\\sin\\theta\\,(1+\\cos\\theta)'$，后一项是 $-\\sin^2\\theta$，不要漏",
+          "θ 是圆周角，对应圆心角是 $2\\theta$；高是 $1+\\cos\\theta$，不是 $1+\\cos2\\theta$",
+          "$\\cos\\theta+1>0$ 恒成立，导数的符号只看 $2\\cos\\theta-1$"
+        ],
+        "terms": [
+          {
+            "ja": "内接する",
+            "kana": "ないせつする",
+            "zh": "内接（多边形各顶点都在圆上）"
+          },
+          {
+            "ja": "二等辺三角形",
+            "kana": "にとうへんさんかっけい",
+            "zh": "等腰三角形"
+          },
+          {
+            "ja": "正弦定理",
+            "kana": "せいげんていり",
+            "zh": "正弦定理（$a=2R\\sin A$）"
+          },
+          {
+            "ja": "垂線を下ろす",
+            "kana": "すいせんをおろす",
+            "zh": "（从一点向直线）作垂线"
+          },
+          {
+            "ja": "周の長さ",
+            "kana": "しゅうのながさ",
+            "zh": "周长"
+          },
+          {
+            "ja": "正三角形",
+            "kana": "せいさんかっけい",
+            "zh": "等边三角形（三边相等）"
+          }
+        ],
+        "shortcut": "对称性先猜：圆内接三角形的面积、周长都在正三角形时最大（$S=\\dfrac{3\\sqrt3}{4}R^2$，周长 $3\\sqrt3R$）。考场上先用这一结论定 E〜N，再用导数符号 $(2\\cos\\theta-1)(\\cos\\theta+1)$ 确认。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-5",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.explog.func",
+        "math.func.limit"
+      ],
+      "difficulty": 3,
+      "targetSec": 1250,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 対数関数の増減と方程式の実数解の個数"
+      },
+      "stem": "$x>0$ で定義された関数\n\n$$f(x)=\\dfrac{(\\log x)^2}{x}$$\n\nについて考える。ただし，$\\log x$ は $x$ の自然対数である。\n\n(1)　$f(x)$ の導関数は\n\n$$f'(x)=\\dfrac{\\log x\\left(\\bx{A}-\\log x\\right)}{x^{\\bx{B}}}$$\n\nである。よって，$f(x)$ は $x=\\bx{C}$ で極小値 \\bx{D} をとり，$x=e^{\\bx{E}}$ で極大値 $\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ をとる。\n\nまた，$\\displaystyle\\lim_{x\\to+0}f(x)=\\bx{H}$，$\\displaystyle\\lim_{x\\to\\infty}f(x)=\\bx{I}$ である。ただし，\\bx{H}，\\bx{I} には，下の選択肢 ⓪ ～ ③ の中から適するものを選びなさい。\n\n- ⓪ $0$\n- ① $1$\n- ② $\\infty$\n- ③ $-\\infty$\n\n(2)　$k$ を定数とする。$x$ の方程式 $(\\log x)^2=kx$ の異なる実数解の個数は\n\n$k<0$ のとき \\bx{J} 個，$k=0$ のとき \\bx{K} 個，\n$0<k<\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ のとき \\bx{L} 個，$k=\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ のとき \\bx{M} 個，\n$k>\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ のとき \\bx{N} 個\n\nである。\n\n(3)　曲線 $y=f(x)$ の接線のうち，原点を通るものは 2 本あり，1 本は $x$ 軸，もう 1 本は直線\n\n$$y=\\dfrac{x}{e^{\\bx{O}}}$$\n\nである。この直線と曲線 $y=f(x)$ の接点は $\\left(e,\\ \\dfrac{\\bx{P}}{e}\\right)$ である。\n\nこのことから，$x$ の方程式 $(\\log x)^2=kx^2$ が異なる 3 つの実数解をもつような $k$ の値の範囲は \\bx{Q} であることがわかる。ただし，\\bx{Q} には，下の選択肢 ⓪ ～ ④ の中から適するものを選びなさい。\n\n- ⓪ $0<k<\\dfrac{1}{e}$\n- ① $0<k<\\dfrac{1}{e^2}$\n- ② $0<k<\\dfrac{4}{e^2}$\n- ③ $\\dfrac{1}{e^2}<k<\\dfrac{4}{e^2}$\n- ④ $k>\\dfrac{4}{e^2}$\n\n注）導関数：derivative，自然対数：natural logarithm",
+      "stemZh": "考虑定义在 $x>0$ 上的函数\n\n$$f(x)=\\dfrac{(\\log x)^2}{x}$$\n\n其中 $\\log x$ 表示 $x$ 的自然对数。\n\n(1)　$f(x)$ 的导函数为\n\n$$f'(x)=\\dfrac{\\log x\\left(\\bx{A}-\\log x\\right)}{x^{\\bx{B}}}$$\n\n因此，$f(x)$ 在 $x=\\bx{C}$ 处取极小值 \\bx{D}，在 $x=e^{\\bx{E}}$ 处取极大值 $\\dfrac{\\bx{F}}{e^{\\bx{G}}}$。\n\n另外，$\\displaystyle\\lim_{x\\to+0}f(x)=\\bx{H}$，$\\displaystyle\\lim_{x\\to\\infty}f(x)=\\bx{I}$。其中 \\bx{H}、\\bx{I} 请从下面的选项 ⓪ ～ ③ 中选出合适的。\n\n- ⓪ $0$\n- ① $1$\n- ② $\\infty$\n- ③ $-\\infty$\n\n(2)　设 $k$ 为常数。关于 $x$ 的方程 $(\\log x)^2=kx$ 的不同实数解的个数为：\n\n$k<0$ 时 \\bx{J} 个，$k=0$ 时 \\bx{K} 个，\n$0<k<\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ 时 \\bx{L} 个，$k=\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ 时 \\bx{M} 个，\n$k>\\dfrac{\\bx{F}}{e^{\\bx{G}}}$ 时 \\bx{N} 个。\n\n(3)　曲线 $y=f(x)$ 的切线中，经过原点的有 2 条，一条是 $x$ 轴，另一条是直线\n\n$$y=\\dfrac{x}{e^{\\bx{O}}}$$\n\n这条直线与曲线 $y=f(x)$ 的切点为 $\\left(e,\\ \\dfrac{\\bx{P}}{e}\\right)$。\n\n由此可知，使关于 $x$ 的方程 $(\\log x)^2=kx^2$ 有 3 个不同实数解的 $k$ 的取值范围是 \\bx{Q}。其中 \\bx{Q} 请从下面的选项 ⓪ ～ ④ 中选出合适的。\n\n- ⓪ $0<k<\\dfrac{1}{e}$\n- ① $0<k<\\dfrac{1}{e^2}$\n- ② $0<k<\\dfrac{4}{e^2}$\n- ③ $\\dfrac{1}{e^2}<k<\\dfrac{4}{e^2}$\n- ④ $k>\\dfrac{4}{e^2}$\n\n注）導関数：导函数（derivative），自然対数：自然对数（natural logarithm）",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "1",
+        "D": "0",
+        "E": "2",
+        "F": "4",
+        "G": "2",
+        "H": "2",
+        "I": "0",
+        "J": "0",
+        "K": "1",
+        "L": "3",
+        "M": "2",
+        "N": "1",
+        "O": "2",
+        "P": "1",
+        "Q": "1"
+      },
+      "explanation": {
+        "zh": "**思路**　(1) 商的求导 + 符号表，关键点是 $\\log x=0$（$x=1$）和 $\\log x=2$（$x=e^2$）；再看两端的极限。(2) $x>0$，两边除以 $x$：$(\\log x)^2=kx\\iff f(x)=k$，看水平线 $y=k$ 与 $y=f(x)$ 的交点。(3) 两边除以 $x$：$(\\log x)^2=kx^2\\iff f(x)=kx$，看过原点的直线 $y=kx$ 与曲线的交点，分界线正是过原点的切线。\n\n**解答**\n\n**(1) A〜G, H, I**\n\n1.\n$$f'(x)=\\dfrac{2\\log x\\cdot\\dfrac1x\\cdot x-(\\log x)^2\\cdot1}{x^2}=\\dfrac{\\log x\\,(2-\\log x)}{x^2}$$\nA = 2，B = 2。\n2. 符号：$0<x<1$ 时 $\\log x<0$、$2-\\log x>0$，$f'<0$；$1<x<e^2$ 时 $f'>0$；$x>e^2$ 时 $f'<0$。\n\n| $x$ | $(0)$ | $\\cdots$ | $1$ | $\\cdots$ | $e^2$ | $\\cdots$ | $(\\infty)$ |\n|---|---|---|---|---|---|---|---|\n| $f'(x)$ | | $-$ | $0$ | $+$ | $0$ | $-$ | |\n| $f(x)$ | $(\\infty)$ | ↘ | $0$ | ↗ | $\\frac{4}{e^2}$ | ↘ | $(0)$ |\n\n极小：$f(1)=0$，C = 1，D = 0。极大：$f(e^2)=\\dfrac{2^2}{e^2}=\\dfrac{4}{e^2}$，E = 2，F = 4，G = 2。\n3. $x\\to+0$：$(\\log x)^2\\to+\\infty$ 且 $\\dfrac1x\\to+\\infty$，所以 $f(x)\\to\\infty$，H = ②（填 2）。\n$x\\to\\infty$：令 $x=e^u$，$f=\\dfrac{u^2}{e^u}\\to0$，I = ⓪（填 0）。\n\n**(2) J, K, L, M, N**\n\n由上表：$f(x)\\geqq0$，在 $(0,1)$ 上从 $\\infty$ 降到 $0$，在 $(1,e^2)$ 上升到 $\\dfrac4{e^2}$，在 $(e^2,\\infty)$ 上降向 $0$（始终 $>0$）。\n- $k<0$：无解，J = 0；\n- $k=0$：只有 $x=1$，K = 1；\n- $0<k<\\dfrac4{e^2}$：$(0,1)$、$(1,e^2)$、$(e^2,\\infty)$ 中各一个，L = 3；\n- $k=\\dfrac4{e^2}$：$x=e^2$（相切）与 $(0,1)$ 中一个，M = 2；\n- $k>\\dfrac4{e^2}$：只有 $(0,1)$ 中一个，N = 1。\n\n**(3) O, P, Q**\n\n1. 点 $(t,\\ f(t))$ 处的切线过原点 ⇔ $0-f(t)=f'(t)(0-t)$ ⇔ $f(t)=t\\,f'(t)$：\n$$\\dfrac{(\\log t)^2}{t}=\\dfrac{\\log t\\,(2-\\log t)}{t}\\iff 2(\\log t)^2-2\\log t=0\\iff \\log t=0,\\ 1$$\n$t=1$：切线 $y=0$（$x$ 轴）。$t=e$：斜率 $f'(e)=\\dfrac{1\\cdot(2-1)}{e^2}=\\dfrac1{e^2}$，切线 $y=\\dfrac1{e^2}(x-e)+\\dfrac1e=\\dfrac{x}{e^2}$，O = 2；切点 $\\left(e,\\ \\dfrac1e\\right)$，P = 1。\n2. $(\\log x)^2=kx^2\\iff f(x)=kx$，即过原点、斜率为 $k$ 的直线与曲线的交点个数：\n- $k<0$ 时 0 个，$k=0$ 时 1 个（$x=1$）；\n- $k>0$：在 $0<x<1$ 上曲线从 $\\infty$ 降到 $0$，直线为正，恰好交 1 次；在 $x>1$ 上，直线斜率小于切线斜率 $\\dfrac1{e^2}$ 时穿过\"驼峰\"交 2 次，等于时相切 1 次，大于时不交。\n\n所以 3 个解 ⇔ $0<k<\\dfrac1{e^2}$，Q = ①（填 1）。\n（验证：方程等价于 $\\left(\\dfrac{\\log x}{x}\\right)^2=k$，而 $\\dfrac{\\log x}{x}$ 在 $x>1$ 上的最大值为 $\\dfrac1e$，平方后为 $\\dfrac1{e^2}$，一致。）\n\n**结论**　A = 2，B = 2，C = 1，D = 0，E = 2，F = 4，G = 2，H = 2（②），I = 0（⓪），J = 0，K = 1，L = 3，M = 2，N = 1，O = 2，P = 1，Q = 1（①）。",
+        "keyPoints": [
+          "$(\\log x)^2=kx$ 型：两边除以 $x$ 分离常数，化为 $f(x)=k$，看 $y=f(x)$ 与水平线的交点",
+          "$(\\log x)^2=kx^2$ 型：化为 $f(x)=kx$，看与过原点直线的交点，分界是过原点的切线",
+          "$x\\to\\infty$ 时 $\\dfrac{(\\log x)^n}{x}\\to0$（幂函数增长快于对数）"
+        ],
+        "traps": [
+          "$k=0$ 时 $x=1$ 是 $(\\log x)^2=0$ 的二重根，但只算 1 个实数解",
+          "$k=\\dfrac{4}{e^2}$ 时别忘了 $(0,1)$ 内还有 1 个解，共 2 个",
+          "$x\\to+0$ 时 $(\\log x)^2\\to+\\infty$（平方后为正），选 ②，不是 ③"
+        ],
+        "terms": [
+          {
+            "ja": "自然対数",
+            "kana": "しぜんたいすう",
+            "zh": "自然对数（以 $e$ 为底的对数）"
+          },
+          {
+            "ja": "導関数",
+            "kana": "どうかんすう",
+            "zh": "导函数 $f'(x)$"
+          },
+          {
+            "ja": "定義された",
+            "kana": "ていぎされた",
+            "zh": "定义在……上的"
+          },
+          {
+            "ja": "原点を通る",
+            "kana": "げんてんをとおる",
+            "zh": "经过原点"
+          },
+          {
+            "ja": "異なる実数解",
+            "kana": "ことなるじっすうかい",
+            "zh": "互不相同的实数解"
+          },
+          {
+            "ja": "接点",
+            "kana": "せってん",
+            "zh": "切点"
+          }
+        ],
+        "shortcut": "令 $u=\\log x$，则 $f=u^2e^{-u}$，正是熟悉的 $u^2e^{-u}$：$u=0$ 极小 0，$u=2$ 极大 $\\dfrac4{e^2}$，(1)(2) 立即读出。(3) 化为 $\\left(\\dfrac{\\log x}{x}\\right)^2=k$，记住 $\\dfrac{\\log x}{x}$ 的最大值 $\\dfrac1e$，平方得界 $\\dfrac1{e^2}$，直接选 ①。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-6",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.trig.func",
+        "math.explog.func",
+        "math.func.limit"
+      ],
+      "difficulty": 2,
+      "targetSec": 1150,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 指数関数と三角関数の積（極値・変曲点・接線）"
+      },
+      "stem": "関数 $f(x)=e^{-x}\\sin x\\ \\ (x\\geqq0)$ について考える。\n\n(1)　$f(x)$ の導関数は\n\n$$f'(x)=\\sqrt{\\bx{A}}\\,e^{-x}\\cos\\left(x+\\dfrac{\\pi}{\\bx{B}}\\right)$$\n\nと表される。よって，$0\\leqq x\\leqq2\\pi$ において，$f(x)$ は $x=\\dfrac{\\pi}{\\bx{B}}$ で最大値 $\\dfrac{\\sqrt{\\bx{C}}}{\\bx{D}}\\,e^{-\\frac{\\pi}{\\bx{B}}}$ をとり，$x=\\dfrac{\\bx{E}}{\\bx{B}}\\pi$ で最小値 $-\\dfrac{\\sqrt{\\bx{C}}}{\\bx{D}}\\,e^{-\\frac{\\bx{E}}{\\bx{B}}\\pi}$ をとる。\n\n(2)　$f''(x)=\\bx{FG}\\,e^{-x}\\cos x$ であるから，$0<x<2\\pi$ において，曲線 $y=f(x)$ の変曲点の $x$ 座標は $\\dfrac{\\pi}{\\bx{H}}$，$\\dfrac{\\bx{I}}{\\bx{H}}\\pi$ である。\n\n曲線 $y=f(x)$ 上の点 $\\left(\\dfrac{\\pi}{\\bx{H}},\\ e^{-\\frac{\\pi}{\\bx{H}}}\\right)$ における接線を $\\ell$ とすると，$\\ell$ と $x$ 軸との交点の $x$ 座標は $\\dfrac{\\pi}{\\bx{H}}+\\bx{J}$ である。また，接線 $\\ell$ について正しく述べたものは \\bx{K} である。ただし，\\bx{K} には，下の選択肢 ⓪ ～ ③ の中から適するものを選びなさい。\n\n- ⓪ $\\ell$ は，曲線 $y=e^{-x}$ にも同じ点で接する。\n- ① $\\ell$ は，曲線 $y=e^{-x}$ と異なる 2 点で交わる。\n- ② $\\ell$ は，曲線 $y=f(x)$ 上で $f(x)$ が最大となる点を通る。\n- ③ $\\ell$ は，$x$ 軸に平行である。\n\n(3)　$x\\geqq0$ において $f(x)$ が極大となる $x$ の値を小さい順に $x_1,\\ x_2,\\ x_3,\\ \\cdots$ とする。このとき\n\n$$f(x_{n+1})=e^{-\\bx{L}\\pi}f(x_n)\\qquad(n=1,\\ 2,\\ 3,\\ \\cdots)$$\n\nであるから\n\n$$\\sum_{n=1}^{\\infty}f(x_n)=\\dfrac{\\sqrt{\\bx{C}}\\,e^{\\frac{\\bx{M}}{\\bx{N}}\\pi}}{\\bx{O}\\left(e^{\\bx{L}\\pi}-1\\right)}$$\n\nである。\n\n注）変曲点：point of inflection",
+      "stemZh": "考虑函数 $f(x)=e^{-x}\\sin x\\ \\ (x\\geqq0)$。\n\n(1)　$f(x)$ 的导函数可表示为\n\n$$f'(x)=\\sqrt{\\bx{A}}\\,e^{-x}\\cos\\left(x+\\dfrac{\\pi}{\\bx{B}}\\right)$$\n\n因此，在 $0\\leqq x\\leqq2\\pi$ 上，$f(x)$ 在 $x=\\dfrac{\\pi}{\\bx{B}}$ 处取最大值 $\\dfrac{\\sqrt{\\bx{C}}}{\\bx{D}}\\,e^{-\\frac{\\pi}{\\bx{B}}}$，在 $x=\\dfrac{\\bx{E}}{\\bx{B}}\\pi$ 处取最小值 $-\\dfrac{\\sqrt{\\bx{C}}}{\\bx{D}}\\,e^{-\\frac{\\bx{E}}{\\bx{B}}\\pi}$。\n\n(2)　由于 $f''(x)=\\bx{FG}\\,e^{-x}\\cos x$，在 $0<x<2\\pi$ 内，曲线 $y=f(x)$ 的拐点的 $x$ 坐标为 $\\dfrac{\\pi}{\\bx{H}}$，$\\dfrac{\\bx{I}}{\\bx{H}}\\pi$。\n\n设曲线 $y=f(x)$ 上点 $\\left(\\dfrac{\\pi}{\\bx{H}},\\ e^{-\\frac{\\pi}{\\bx{H}}}\\right)$ 处的切线为 $\\ell$，则 $\\ell$ 与 $x$ 轴交点的 $x$ 坐标为 $\\dfrac{\\pi}{\\bx{H}}+\\bx{J}$。另外，关于切线 $\\ell$ 叙述正确的是 \\bx{K}。其中 \\bx{K} 请从下面的选项 ⓪ ～ ③ 中选出合适的。\n\n- ⓪ $\\ell$ 在同一点也与曲线 $y=e^{-x}$ 相切。\n- ① $\\ell$ 与曲线 $y=e^{-x}$ 交于不同的 2 点。\n- ② $\\ell$ 经过曲线 $y=f(x)$ 上 $f(x)$ 取最大值的点。\n- ③ $\\ell$ 平行于 $x$ 轴。\n\n(3)　设在 $x\\geqq0$ 上使 $f(x)$ 取极大的 $x$ 值从小到大依次为 $x_1,\\ x_2,\\ x_3,\\ \\cdots$。此时\n\n$$f(x_{n+1})=e^{-\\bx{L}\\pi}f(x_n)\\qquad(n=1,\\ 2,\\ 3,\\ \\cdots)$$\n\n所以\n\n$$\\sum_{n=1}^{\\infty}f(x_n)=\\dfrac{\\sqrt{\\bx{C}}\\,e^{\\frac{\\bx{M}}{\\bx{N}}\\pi}}{\\bx{O}\\left(e^{\\bx{L}\\pi}-1\\right)}$$\n\n注）変曲点：拐点（point of inflection）",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "4",
+        "C": "2",
+        "D": "2",
+        "E": "5",
+        "F": "-",
+        "G": "2",
+        "H": "2",
+        "I": "3",
+        "J": "1",
+        "K": "0",
+        "L": "2",
+        "M": "7",
+        "N": "4",
+        "O": "2"
+      },
+      "explanation": {
+        "zh": "**思路**　积的求导，$(e^{-x})'=-e^{-x}$：$f'(x)=e^{-x}(\\cos x-\\sin x)$。$e^{-x}>0$ 不影响符号，用三角函数的合成 $\\cos x-\\sin x=\\sqrt2\\cos\\left(x+\\dfrac\\pi4\\right)$ 判断正负。极大点每隔 $2\\pi$ 出现一次，极大值成等比数列 → 无穷等比级数求和。\n\n**解答**\n\n**(1) A, B, C, D, E**\n\n1. $f'(x)=-e^{-x}\\sin x+e^{-x}\\cos x=e^{-x}(\\cos x-\\sin x)=\\sqrt2\\,e^{-x}\\cos\\left(x+\\dfrac\\pi4\\right)$，A = 2，B = 4。\n2. $0\\leqq x\\leqq2\\pi$ 时 $\\dfrac\\pi4\\leqq x+\\dfrac\\pi4\\leqq\\dfrac{9\\pi}4$，$\\cos$ 在 $x+\\dfrac\\pi4=\\dfrac\\pi2,\\ \\dfrac{3\\pi}2$ 处变号：\n\n| $x$ | $0$ | $\\cdots$ | $\\frac\\pi4$ | $\\cdots$ | $\\frac{5\\pi}4$ | $\\cdots$ | $2\\pi$ |\n|---|---|---|---|---|---|---|---|\n| $f'(x)$ | | $+$ | $0$ | $-$ | $0$ | $+$ | |\n| $f(x)$ | $0$ | ↗ | 极大 | ↘ | 极小 | ↗ | $0$ |\n\n3. $f\\left(\\dfrac\\pi4\\right)=\\dfrac{\\sqrt2}{2}e^{-\\frac\\pi4}>0=f(0)=f(2\\pi)$，是最大值：C = 2，D = 2。\n$f\\left(\\dfrac{5\\pi}4\\right)=-\\dfrac{\\sqrt2}2e^{-\\frac{5\\pi}4}<0$，是最小值：E = 5。\n\n**(2) FG, H, I, J, K**\n\n1. $f''(x)=-e^{-x}(\\cos x-\\sin x)+e^{-x}(-\\sin x-\\cos x)=-2e^{-x}\\cos x$，FG = −2（F 填“-”，G = 2）。\n2. $\\cos x$ 在 $x=\\dfrac\\pi2,\\ \\dfrac{3\\pi}2$ 处变号（凹凸改变），拐点 $x=\\dfrac\\pi2,\\ \\dfrac{3\\pi}2$：H = 2，I = 3。\n3. $f\\left(\\dfrac\\pi2\\right)=e^{-\\frac\\pi2}$，$f'\\left(\\dfrac\\pi2\\right)=e^{-\\frac\\pi2}(0-1)=-e^{-\\frac\\pi2}$：\n$$\\ell:\\ y=-e^{-\\frac\\pi2}\\left(x-\\dfrac\\pi2\\right)+e^{-\\frac\\pi2}=-e^{-\\frac\\pi2}\\left(x-\\dfrac\\pi2-1\\right)$$\n令 $y=0$：$x=\\dfrac\\pi2+1$，J = 1。\n4. 曲线 $y=e^{-x}$ 在 $x=\\dfrac\\pi2$ 处：函数值 $e^{-\\frac\\pi2}$，斜率 $-e^{-\\frac\\pi2}$，与 $f$ 完全相同，所以 $\\ell$ 也是 $y=e^{-x}$ 在同一点的切线，K = ⓪（填 0）。\n①错：$y=e^{-x}$ 是下凸函数，它的切线只与它接触于一点；②错：最大点在 $x=\\dfrac\\pi4$，而 $\\ell$ 在 $x=\\dfrac\\pi4$ 处的值 $e^{-\\frac\\pi2}\\left(\\dfrac\\pi4+1\\right)\\approx0.37$ 不等于 $f\\left(\\dfrac\\pi4\\right)\\approx0.32$；③错：斜率不为 0。\n\n**(3) L, M, N, O**\n\n1. $f'$ 由正变负的点：$x+\\dfrac\\pi4=\\dfrac\\pi2+2(n-1)\\pi$，即 $x_n=\\dfrac\\pi4+2(n-1)\\pi$。\n2. $f(x_n)=e^{-x_n}\\sin\\dfrac\\pi4=\\dfrac{\\sqrt2}2e^{-\\frac\\pi4}\\cdot e^{-2(n-1)\\pi}$，所以 $f(x_{n+1})=e^{-2\\pi}f(x_n)$，L = 2。\n3. 首项 $\\dfrac{\\sqrt2}2e^{-\\frac\\pi4}$，公比 $e^{-2\\pi}$（$0<e^{-2\\pi}<1$，收敛）：\n$$\\sum_{n=1}^\\infty f(x_n)=\\dfrac{\\frac{\\sqrt2}2e^{-\\frac\\pi4}}{1-e^{-2\\pi}}=\\dfrac{\\sqrt2\\,e^{-\\frac\\pi4}\\cdot e^{2\\pi}}{2\\left(e^{2\\pi}-1\\right)}=\\dfrac{\\sqrt2\\,e^{\\frac74\\pi}}{2\\left(e^{2\\pi}-1\\right)}$$\n（分子分母同乘 $e^{2\\pi}$）M = 7，N = 4，O = 2。\n\n**结论**　A = 2，B = 4，C = 2，D = 2，E = 5，FG = −2，H = 2，I = 3，J = 1，K = 0（⓪），L = 2，M = 7，N = 4，O = 2。",
+        "keyPoints": [
+          "$e^{-x}\\sin x$ 型：$f'=e^{-x}(\\cos x-\\sin x)$，用合成 $\\sqrt2\\cos\\left(x+\\dfrac\\pi4\\right)$ 判断符号，$e^{-x}>0$ 不影响正负",
+          "闭区间上的最大最小 = 比较极值与端点值",
+          "极值点等间隔出现 ⇒ 极值成等比数列，可用无穷等比级数 $\\dfrac{a}{1-r}$ 求和"
+        ],
+        "traps": [
+          "极大点（$x=\\dfrac\\pi4$）与和 $y=e^{-x}$ 相切的点（$x=\\dfrac\\pi2$）不是同一点",
+          "合成：$\\cos x-\\sin x=\\sqrt2\\cos\\left(x+\\dfrac\\pi4\\right)$，不是 $x-\\dfrac\\pi4$",
+          "公比是 $e^{-2\\pi}$（极大点间隔 $2\\pi$），不是 $e^{-\\pi}$；首项是 $f(x_1)$"
+        ],
+        "terms": [
+          {
+            "ja": "変曲点",
+            "kana": "へんきょくてん",
+            "zh": "拐点（曲线凹凸性改变的点）"
+          },
+          {
+            "ja": "極大",
+            "kana": "きょくだい",
+            "zh": "极大（与附近的值相比最大）"
+          },
+          {
+            "ja": "小さい順に",
+            "kana": "ちいさいじゅんに",
+            "zh": "从小到大依次"
+          },
+          {
+            "ja": "交わる",
+            "kana": "まじわる",
+            "zh": "相交（与……交于某点）"
+          },
+          {
+            "ja": "接する",
+            "kana": "せっする",
+            "zh": "相切（在该点函数值与斜率都相同）"
+          },
+          {
+            "ja": "正しく述べたもの",
+            "kana": "ただしくのべたもの",
+            "zh": "叙述正确的那一项"
+          }
+        ],
+        "shortcut": "包络线法：$-e^{-x}\\leqq f(x)\\leqq e^{-x}$，等号在 $\\sin x=\\pm1$ 处成立。夹在两条曲线之间又与其中一条接触的曲线，在接触点必与之相切，所以在 $x=\\dfrac\\pi2$ 处 $y=f(x)$ 与 $y=e^{-x}$ 相切，K 直接选 ⓪。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-7",
+      "subject": "math",
+      "order": 7,
+      "topic": "math.calc.diff",
+      "tags": [
+        "math.explog.func"
+      ],
+      "difficulty": 2,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 2曲線が接する条件と共有点の個数"
+      },
+      "stem": "$a$ を正の定数とし，2 つの曲線\n\n$$C_1:\\ y=\\sqrt{x},\\qquad C_2:\\ y=\\log(ax)$$\n\nを考える。ただし，$\\log$ は自然対数である。\n\n(1)　$C_1$ と $C_2$ が点 $\\mathrm{P}$ で接するときを考える。$\\mathrm{P}$ の $x$ 座標を $t$ とすると，点 $\\mathrm{P}$ で 2 曲線の $y$ 座標と接線の傾きがそれぞれ一致するから\n\n$$\\sqrt{t}=\\log(at),\\qquad \\dfrac{1}{\\bx{A}\\sqrt{t}}=\\dfrac{1}{t}$$\n\nが成り立つ。よって，$t=\\bx{B}$，$a=\\dfrac{e^{\\bx{C}}}{\\bx{D}}$ である。また，点 $\\mathrm{P}$ における共通の接線の方程式は\n\n$$y=\\dfrac{1}{\\bx{E}}\\,x+\\bx{F}$$\n\nである。\n\n(2)　$C_1$ と $C_2$ の共有点の個数を調べよう。共有点の $x$ 座標は，方程式\n\n$$\\sqrt{x}-\\log x=\\log a$$\n\nの実数解である。$h(x)=\\sqrt{x}-\\log x$ とおくと\n\n$$h'(x)=\\dfrac{\\sqrt{x}-\\bx{G}}{\\bx{H}\\,x}$$\n\nであるから，$h(x)$ の最小値は $\\bx{I}-\\bx{J}\\log2$ である。\n\nしたがって，$C_1$ と $C_2$ の共有点の個数は，$0<a<\\dfrac{e^{\\bx{C}}}{\\bx{D}}$ のとき \\bx{K} 個，$a>\\dfrac{e^{\\bx{C}}}{\\bx{D}}$ のとき \\bx{L} 個である。\n\n注）自然対数：natural logarithm",
+      "stemZh": "设 $a$ 为正常数，考虑两条曲线\n\n$$C_1:\\ y=\\sqrt{x},\\qquad C_2:\\ y=\\log(ax)$$\n\n其中 $\\log$ 表示自然对数。\n\n(1)　考虑 $C_1$ 与 $C_2$ 在点 $\\mathrm{P}$ 相切的情形。设 $\\mathrm{P}$ 的 $x$ 坐标为 $t$，则在点 $\\mathrm{P}$ 处两曲线的 $y$ 坐标与切线斜率分别相等，所以\n\n$$\\sqrt{t}=\\log(at),\\qquad \\dfrac{1}{\\bx{A}\\sqrt{t}}=\\dfrac{1}{t}$$\n\n成立。因此 $t=\\bx{B}$，$a=\\dfrac{e^{\\bx{C}}}{\\bx{D}}$。另外，点 $\\mathrm{P}$ 处的公切线方程为\n\n$$y=\\dfrac{1}{\\bx{E}}\\,x+\\bx{F}$$\n\n(2)　来研究 $C_1$ 与 $C_2$ 的公共点个数。公共点的 $x$ 坐标是方程\n\n$$\\sqrt{x}-\\log x=\\log a$$\n\n的实数解。设 $h(x)=\\sqrt{x}-\\log x$，则\n\n$$h'(x)=\\dfrac{\\sqrt{x}-\\bx{G}}{\\bx{H}\\,x}$$\n\n所以 $h(x)$ 的最小值为 $\\bx{I}-\\bx{J}\\log2$。\n\n因此，$C_1$ 与 $C_2$ 的公共点个数：$0<a<\\dfrac{e^{\\bx{C}}}{\\bx{D}}$ 时为 \\bx{K} 个，$a>\\dfrac{e^{\\bx{C}}}{\\bx{D}}$ 时为 \\bx{L} 个。\n\n注）自然対数：自然对数（natural logarithm）",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "4",
+        "C": "2",
+        "D": "4",
+        "E": "4",
+        "F": "1",
+        "G": "2",
+        "H": "2",
+        "I": "2",
+        "J": "2",
+        "K": "0",
+        "L": "2"
+      },
+      "explanation": {
+        "zh": "**思路**　两曲线在 P 相切 ⇔ 在 P 处**函数值相等**且**导数相等**（有公共点并且有公共切线）。共有点个数：$\\log(ax)=\\log a+\\log x$，把参数 $a$ 分离到一边：$\\sqrt x-\\log x=\\log a$，看 $y=h(x)$ 与水平线 $y=\\log a$ 的交点个数。\n\n**解答**\n\n**(1) A, B, C, D, E, F**\n\n1. $(\\sqrt x)'=\\dfrac{1}{2\\sqrt x}$，$\\{\\log(ax)\\}'=\\dfrac{a}{ax}=\\dfrac1x$（与 $a$ 无关），A = 2。\n2. $\\dfrac1{2\\sqrt t}=\\dfrac1t\\Rightarrow\\sqrt t=2\\Rightarrow t=4$，B = 4。\n3. $\\sqrt4=\\log(4a)\\Rightarrow4a=e^2\\Rightarrow a=\\dfrac{e^2}4$，C = 2，D = 4。\n4. $\\mathrm P(4,\\ 2)$，斜率 $\\dfrac1{2\\sqrt4}=\\dfrac14$：$y=\\dfrac14(x-4)+2=\\dfrac14x+1$，E = 4，F = 1。\n\n**(2) G, H, I, J, K, L**\n\n1. $h'(x)=\\dfrac1{2\\sqrt x}-\\dfrac1x=\\dfrac{\\sqrt x-2}{2x}$，G = 2，H = 2。\n2. $0<x<4$ 时 $h'<0$，$x>4$ 时 $h'>0$，最小值 $h(4)=2-\\log4=2-2\\log2$，I = 2，J = 2。\n3. 两端：$x\\to+0$ 时 $-\\log x\\to+\\infty$，$h\\to+\\infty$；$x\\to\\infty$ 时 $\\sqrt x$ 比 $\\log x$ 增长快，$h\\to+\\infty$。\n4. 与水平线 $y=\\log a$ 的交点个数：\n- $\\log a<2-2\\log2$，即 $0<a<\\dfrac{e^2}4$：0 个，K = 0；\n- $a=\\dfrac{e^2}4$：1 个（就是 (1) 的相切）；\n- $a>\\dfrac{e^2}4$：2 个，L = 2。\n\n**结论**　A = 2，B = 4，C = 2，D = 4，E = 4，F = 1，G = 2，H = 2，I = 2，J = 2，K = 0，L = 2。",
+        "keyPoints": [
+          "两曲线 $y=f(x)$、$y=g(x)$ 在 $x=t$ 相切 ⇔ $f(t)=g(t)$ 且 $f'(t)=g'(t)$",
+          "$\\log(ax)=\\log a+\\log x$：参数 $a$ 只是把 $y=\\log x$ 上下平移，可以分离到一边",
+          "公共点个数 = $y=h(x)$ 与水平线的交点个数，要同时看最小值和两端的极限"
+        ],
+        "traps": [
+          "$\\{\\log(ax)\\}'=\\dfrac1x$，不是 $\\dfrac ax$",
+          "$h$ 的最小值 $2-2\\log2$ 对应的是 $\\log a$，换回 $a$ 要取指数：$a=e^{2-2\\log2}=\\dfrac{e^2}{4}$",
+          "$a$ 小时 $C_2$ 在下方，不相交（0 个）；$a$ 大时才有 2 个，别把方向弄反"
+        ],
+        "terms": [
+          {
+            "ja": "共有点",
+            "kana": "きょうゆうてん",
+            "zh": "公共点（交点或切点）"
+          },
+          {
+            "ja": "共通の接線",
+            "kana": "きょうつうのせっせん",
+            "zh": "公切线（两曲线共有的切线）"
+          },
+          {
+            "ja": "接する",
+            "kana": "せっする",
+            "zh": "相切"
+          },
+          {
+            "ja": "正の定数",
+            "kana": "せいのていすう",
+            "zh": "正的常数"
+          },
+          {
+            "ja": "満たす",
+            "kana": "みたす",
+            "zh": "满足（条件、等式）"
+          },
+          {
+            "ja": "実数解",
+            "kana": "じっすうかい",
+            "zh": "（方程的）实数解、实根"
+          }
+        ],
+        "shortcut": "$C_2$ 是 $y=\\log x$ 向上平移 $\\log a$。$a$ 越大 $C_2$ 越高：太低时与 $\\sqrt x$ 没有公共点，抬到恰好相切（$a=\\dfrac{e^2}{4}$）时 1 个，再往上就是 2 个——画个草图就能直接定 K、L。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    },
+    {
+      "id": "orig-math-calc-diff-8",
+      "subject": "math",
+      "order": 8,
+      "topic": "math.calc.diff",
+      "difficulty": 3,
+      "targetSec": 1250,
+      "source": {
+        "kind": "original",
+        "label": "原创 · 微分法 区間における最大・最小（場合分け）"
+      },
+      "stem": "$a$ を正の定数とし，$x$ の関数\n\n$$f(x)=x^3-3a^2x$$\n\nを考える。区間 $0\\leqq x\\leqq2$ における $f(x)$ の最大値を $g(a)$，最小値を $h(a)$ とする。\n\n(1)　$f'(x)=3(x+a)(x-a)$ であるから，$x>0$ の範囲では，$f(x)$ は $x=a$ で \\bx{A} となり，その値は $\\bx{BC}\\,a^{\\bx{D}}$ である。ただし，\\bx{A} および (2) の \\bx{F} には，下の選択肢 ⓪ ～ ③ の中から適するものを選びなさい。\n\n- ⓪ 極大\n- ① 極小\n- ② 増加\n- ③ 減少\n\n(2)　最小値 $h(a)$ は次のようになる。\n\n(i)　$0<a<\\bx{E}$ のとき，$h(a)=\\bx{BC}\\,a^{\\bx{D}}$\n\n(ii)　$a\\geqq\\bx{E}$ のとき，$f(x)$ は $0\\leqq x\\leqq2$ で \\bx{F} するから，$h(a)=\\bx{G}-\\bx{H}\\,a^2$\n\nまた，最大値 $g(a)$ は次のようになる。\n\n(iii)　$0<a\\leqq\\dfrac{\\bx{I}\\sqrt{\\bx{J}}}{\\bx{K}}$ のとき，$g(a)=\\bx{G}-\\bx{H}\\,a^2$\n\n(iv)　$a>\\dfrac{\\bx{I}\\sqrt{\\bx{J}}}{\\bx{K}}$ のとき，$g(a)=\\bx{L}$\n\n(3)　$g(a)-h(a)$ は $a=\\dfrac{\\bx{I}\\sqrt{\\bx{J}}}{\\bx{K}}$ のとき最小となり，その最小値は $\\dfrac{\\bx{MN}\\sqrt{\\bx{O}}}{\\bx{P}}$ である。",
+      "stemZh": "设 $a$ 为正常数，考虑关于 $x$ 的函数\n\n$$f(x)=x^3-3a^2x$$\n\n设 $f(x)$ 在区间 $0\\leqq x\\leqq2$ 上的最大值为 $g(a)$，最小值为 $h(a)$。\n\n(1)　由于 $f'(x)=3(x+a)(x-a)$，在 $x>0$ 的范围内，$f(x)$ 在 $x=a$ 处取 \\bx{A}，其值为 $\\bx{BC}\\,a^{\\bx{D}}$。其中 \\bx{A} 以及 (2) 中的 \\bx{F} 请从下面的选项 ⓪ ～ ③ 中选出合适的。\n\n- ⓪ 极大\n- ① 极小\n- ② 增加（递增）\n- ③ 减少（递减）\n\n(2)　最小值 $h(a)$ 如下：\n\n(i)　当 $0<a<\\bx{E}$ 时，$h(a)=\\bx{BC}\\,a^{\\bx{D}}$\n\n(ii)　当 $a\\geqq\\bx{E}$ 时，$f(x)$ 在 $0\\leqq x\\leqq2$ 上 \\bx{F}，所以 $h(a)=\\bx{G}-\\bx{H}\\,a^2$\n\n另外，最大值 $g(a)$ 如下：\n\n(iii)　当 $0<a\\leqq\\dfrac{\\bx{I}\\sqrt{\\bx{J}}}{\\bx{K}}$ 时，$g(a)=\\bx{G}-\\bx{H}\\,a^2$\n\n(iv)　当 $a>\\dfrac{\\bx{I}\\sqrt{\\bx{J}}}{\\bx{K}}$ 时，$g(a)=\\bx{L}$\n\n(3)　$g(a)-h(a)$ 在 $a=\\dfrac{\\bx{I}\\sqrt{\\bx{J}}}{\\bx{K}}$ 时最小，其最小值为 $\\dfrac{\\bx{MN}\\sqrt{\\bx{O}}}{\\bx{P}}$。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "-",
+        "C": "2",
+        "D": "3",
+        "E": "2",
+        "F": "3",
+        "G": "8",
+        "H": "6",
+        "I": "2",
+        "J": "3",
+        "K": "3",
+        "L": "0",
+        "M": "1",
+        "N": "6",
+        "O": "3",
+        "P": "9"
+      },
+      "explanation": {
+        "zh": "**思路**　$x\\geqq0$ 上 $f$ 先减后增，极小点为 $x=a$。区间 $[0,2]$ 上：**最小值**看极小点 $x=a$ 是否落在区间内（$a<2$ 与 $a\\geqq2$ 分情况）；**最大值**只可能在端点取得，比较 $f(0)=0$ 与 $f(2)=8-6a^2$。(3) 把 $g(a)-h(a)$ 按 $a$ 分三段写出，逐段判断增减。\n\n**解答**\n\n**(1) A, BC, D**\n\n$f'(x)=3x^2-3a^2=3(x+a)(x-a)$。$x>0$ 时，$0<x<a$ 上 $f'<0$，$x>a$ 上 $f'>0$，所以 $x=a$ 处为极小，A = ①（填 1）。\n$f(a)=a^3-3a^3=-2a^3$，BC = −2（B 填“-”，C = 2），D = 3。\n\n**(2) E, F, G, H, I, J, K, L**\n\n1. 最小值：\n- $0<a<2$：极小点 $x=a$ 在区间内，$h(a)=-2a^3$，E = 2。\n- $a\\geqq2$：$[0,2]\\subset[0,a]$，$f$ 在区间上单调减少，F = ③（填 3），$h(a)=f(2)=8-6a^2$，G = 8，H = 6。\n2. 最大值：$f$ 在区间上\"先减后增\"或\"一直减\"，最大值只能是端点值 $f(0)=0$ 与 $f(2)=8-6a^2$ 中较大的一个。\n$8-6a^2\\geqq0\\iff a^2\\leqq\\dfrac43\\iff a\\leqq\\dfrac{2}{\\sqrt3}=\\dfrac{2\\sqrt3}{3}$。\n- $0<a\\leqq\\dfrac{2\\sqrt3}3$：$g(a)=8-6a^2$，I = 2，J = 3，K = 3；\n- $a>\\dfrac{2\\sqrt3}3$：$g(a)=0$，L = 0。\n\n**(3) MN, O, P**\n\n$\\dfrac{2\\sqrt3}{3}\\approx1.15<2$，分三段：\n\n| $a$ 的范围 | $g(a)$ | $h(a)$ | $g(a)-h(a)$ |\n|---|---|---|---|\n| $0<a\\leqq\\frac{2\\sqrt3}{3}$ | $8-6a^2$ | $-2a^3$ | $2a^3-6a^2+8$ |\n| $\\frac{2\\sqrt3}{3}<a<2$ | $0$ | $-2a^3$ | $2a^3$ |\n| $a\\geqq2$ | $0$ | $8-6a^2$ | $6a^2-8$ |\n\n1. 第 1 段：$\\dfrac{d}{da}\\left(2a^3-6a^2+8\\right)=6a(a-2)<0$（$0<a<2$），单调减少。\n2. 第 2、3 段：$2a^3$、$6a^2-8$ 都单调增加（在 $a=2$ 处都等于 $16$，连续衔接）。\n3. 所以最小值在 $a=\\dfrac{2\\sqrt3}{3}$ 处取得：$a^3=\\dfrac{8\\cdot3\\sqrt3}{27}=\\dfrac{8\\sqrt3}{9}$，$g(a)-h(a)=2a^3=\\dfrac{16\\sqrt3}{9}$。MN = 16，O = 3，P = 9。\n\n**结论**　A = 1（①），BC = −2，D = 3，E = 2，F = 3（③），G = 8，H = 6，I = 2，J = 3，K = 3，L = 0，MN = 16，O = 3，P = 9。",
+        "keyPoints": [
+          "区间上的最小值：看极小点是否落在区间内来分类讨论",
+          "函数在区间上“先减后增”时，最大值只能在端点处，比较两端点的函数值",
+          "分段函数求最值：逐段判断增减，并检查分界点处是否连续"
+        ],
+        "traps": [
+          "$a\\geqq2$ 时极小点在区间外，最小值是 $f(2)=8-6a^2$，不是 $-2a^3$",
+          "最大值的分界是 $8-6a^2=0$，即 $a=\\dfrac{2\\sqrt3}{3}$，不是 $a=2$",
+          "$\\dfrac{2}{\\sqrt3}$ 要有理化成 $\\dfrac{2\\sqrt3}{3}$ 才能填格"
+        ],
+        "terms": [
+          {
+            "ja": "区間",
+            "kana": "くかん",
+            "zh": "区间（变量的取值范围）"
+          },
+          {
+            "ja": "増加",
+            "kana": "ぞうか",
+            "zh": "增加（函数递增）"
+          },
+          {
+            "ja": "減少",
+            "kana": "げんしょう",
+            "zh": "减少（函数递减）"
+          },
+          {
+            "ja": "極小",
+            "kana": "きょくしょう",
+            "zh": "极小（与附近的值相比最小）"
+          },
+          {
+            "ja": "選択肢",
+            "kana": "せんたくし",
+            "zh": "可供选择的选项"
+          },
+          {
+            "ja": "場合分け",
+            "kana": "ばあいわけ",
+            "zh": "分类讨论"
+          }
+        ],
+        "shortcut": "第 1 段可因式分解为 $2a^3-6a^2+8=2(a-2)^2(a+1)$：这条三次曲线在 $a=0$ 取极大、在 $a=2$ 取极小，所以在 $0<a<2$ 上递减；再与递增的第 2 段衔接，最小值必在分界点 $a=\\dfrac{2\\sqrt3}3$，直接算 $2a^3=\\dfrac{16\\sqrt3}{9}$。"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "原创 + 独立求解一致"
+      }
+    }
+  ]
+}

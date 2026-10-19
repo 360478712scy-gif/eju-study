@@ -423,3 +423,28 @@ export function vocabQueue(state: AppState, bank: BankIndex, date: string, newLi
 }
 
 export { mockItems };
+
+/**
+ * Math re-test: box groups answered correctly last time, as letter → value, so the player can
+ * pre-fill and lock them and the learner only redoes the groups that were wrong (EJU problems
+ * run in sequence, so only groups before the first wrong one are locked).
+ */
+export function lockedGroups(state: AppState, bank: BankIndex, itemId: string): Record<string, string> {
+  const it = bank.byId.get(itemId);
+  if (!it || it.format !== 'blanks') return {};
+  let last: Attempt | undefined;
+  for (let i = state.attempts.length - 1; i >= 0; i--) {
+    if (state.attempts[i].itemId === itemId) {
+      last = state.attempts[i];
+      break;
+    }
+  }
+  if (!last || !last.response || typeof last.response !== 'object') return {};
+  const g = gradeItem(it, last.response);
+  const out: Record<string, string> = {};
+  for (const grp of g.groups || []) {
+    if (!grp.correct) break;
+    for (const letter of grp.group) out[letter] = it.blanks![letter];
+  }
+  return out;
+}
