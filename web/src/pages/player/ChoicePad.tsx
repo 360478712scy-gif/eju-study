@@ -8,10 +8,13 @@ import { cx } from '../../lib/format.ts';
 type Layout = 'list' | 'grid' | 'labels';
 
 function visibleLength(s: string): number {
-  return s
-    .replace(/\\(mathrm|text|ce|quad|qquad)\b/g, '')
-    .replace(/\\[a-zA-Z]+/g, 'x')
-    .replace(/[$\s{}\\^_]/g, '').length;
+  const tall = /\\(d?frac|sqrt|sum|int)/.test(s) ? 5 : 0;
+  return (
+    s
+      .replace(/\\(mathrm|text|ce|quad|qquad|left|right)\b/g, '')
+      .replace(/\\[a-zA-Z]+/g, 'x')
+      .replace(/[$\s{}\\^_,]/g, '').length + tall
+  );
 }
 
 function layoutFor(item: Item, hideText: boolean): Layout {
@@ -19,6 +22,14 @@ function layoutFor(item: Item, hideText: boolean): Layout {
   if (hideText || opts.every((_, i) => optionIsBareLabel(item, i))) return 'labels';
   if (opts.every((o) => visibleLength(o) <= 9)) return 'grid';
   return 'list';
+}
+
+function columns(item: Item, layout: Layout): number {
+  const n = item.options?.length ?? 4;
+  if (layout === 'list') return 1;
+  if (layout === 'labels') return n <= 4 ? n : 3;
+  const tiny = (item.options || []).every((o) => visibleLength(o) <= 4);
+  return tiny && n > 4 ? 3 : 2;
 }
 
 export function ChoicePad({
@@ -42,7 +53,7 @@ export function ChoicePad({
 }) {
   const opts = item.options || [];
   const layout = layoutFor(item, !!hideText && !reveal);
-  const cols = layout === 'list' ? 1 : layout === 'labels' ? Math.min(opts.length, opts.length <= 4 ? 4 : 3) : opts.length <= 4 ? 2 : 3;
+  const cols = columns(item, layout);
   return (
     <div className={cx('pl-opts', `pl-opts-${layout}`)} style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }} role="radiogroup" data-hotkeys>
       {opts.map((o, i) => {

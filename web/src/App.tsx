@@ -16,6 +16,7 @@ import { StatsPage } from './pages/stats/StatsPage.tsx';
 import { NotesPage } from './pages/notes/NotesPage.tsx';
 import { SettingsPage } from './pages/settings/SettingsPage.tsx';
 import { OnboardingPage } from './pages/onboarding/OnboardingPage.tsx';
+import { TrapsPage } from './pages/traps/TrapsPage.tsx';
 
 function useTheme() {
   const theme = useApp((s) => s.state?.settings.theme);
@@ -53,14 +54,18 @@ export function toggleMusic() {
 
 const SHORTCUTS: [string, string][] = [
   ['⌘1 / ⌘2 / ⌘3 / ⌘4', '今日 / 题库 / 错题本 / 数据'],
-  ['1–9', '选择选项'],
+  ['1–9', '选择选项（词汇：1–4 选择，0 不认识）'],
   ['Enter', '提交 / 下一题'],
-  ['← →', '上一题 / 下一题（已作答后）'],
-  ['F', '标记没把握'],
-  ['E', '展开 / 收起解析'],
-  ['Space', '播放 / 暂停听力'],
+  ['← / →', '上一题 / 下一题'],
+  ['F', '切换把握：确定 / 没把握 / 猜的（模考中为标记）'],
+  ['E', '展开 / 收起解析（词汇：例句）'],
+  ['Space', '播放 / 暂停听力、读音'],
+  ['− 0–9', '数学答题卡填一格'],
+  ['↑ / ↓', '数学答题卡换格'],
+  ['⌫', '删除答题卡上的一格'],
   ['Esc', '关闭弹窗'],
   ['⇧⌘M', '背景音乐开关'],
+  ['⌘+ / ⌘− / ⌘0', '放大 / 缩小 / 实际大小（桌面版）'],
   ['⌘/', '快捷键一览'],
 ];
 
@@ -172,6 +177,9 @@ export function App() {
       break;
     case 'settings':
       page = <SettingsPage />;
+      break;
+    case 'traps':
+      page = <TrapsPage />;
       break;
     default:
       page = <TodayPage />;

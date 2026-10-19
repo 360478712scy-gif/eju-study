@@ -6,7 +6,7 @@ import { navigate, useRoute } from '../../lib/router.ts';
 import { cx, pct } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Button, PageHeader, Ring, Segmented } from '../../components/ui.tsx';
-import { buildQueue, extraQueue, getRun, orderCards, setRun, useRun } from './run.ts';
+import { buildQueue, extraQueue, getRun, isKanaOnly, orderCards, setRun, useRun } from './run.ts';
 import { startRun, VocabSession } from './VocabSession.tsx';
 import { MORE_COUNT, VocabSummary } from './VocabSummary.tsx';
 import { WordList } from './WordList.tsx';
@@ -46,7 +46,7 @@ export function VocabPage() {
   );
 
   const stats = useMemo(() => {
-    const s = { dueRead: 0, dueMeaning: 0, learned: 0, unseen: 0, solidRead: 0, solidMeaning: 0, newToday: 0, todayN: 0, todayOk: 0 };
+    const s = { learned: 0, unseen: 0, solidRead: 0, solidMeaning: 0, newCardsToday: 0, todayN: 0, todayOk: 0 };
     if (!state || !bank) return s;
     for (const v of bank.bundle.vocab) {
       const p = state.vocab[v.id];
@@ -55,41 +55,41 @@ export function VocabPage() {
         continue;
       }
       s.learned++;
-      if (p.read && p.read.due <= today) s.dueRead++;
-      if (p.meaning && p.meaning.due <= today) s.dueMeaning++;
       if (p.read && p.read.box >= 3) s.solidRead++;
       if (p.meaning && p.meaning.box >= 3) s.solidMeaning++;
     }
-    const first = new Map<string, string>();
+    // A "new card" is the first ever attempt at one skill of one word.
+    const before = new Set<string>();
+    const fresh = new Set<string>();
     for (const a of state.vocabAttempts) {
-      const f = first.get(a.vocabId);
-      if (!f || a.date < f) first.set(a.vocabId, a.date);
-      if (a.date === today) {
+      const key = `${a.vocabId}|${a.skill}`;
+      if (a.date < today) before.add(key);
+      else if (a.date === today) {
+        fresh.add(key);
         s.todayN++;
         if (a.correct) s.todayOk++;
       }
     }
-    for (const d of first.values()) if (d === today) s.newToday++;
+    for (const k of fresh) if (!before.has(k)) s.newCardsToday++;
     return s;
   }, [state, bank, today]);
 
-  const newLeft = Math.max(0, Math.min(stats.unseen, target - stats.newToday));
-  const queue = useMemo(() => (state && bank ? buildQueue(state, bank, today, newLeft) : []), [state, bank, today, newLeft]);
-  const freshIds = useMemo(
-    () =>
-      new Set(
-        queue
-          .filter((q) => {
-            const p = state?.vocab[q.id];
-            return !p || (!p.read && !p.meaning);
-          })
-          .map((q) => q.id),
-      ),
-    [queue, state],
-  );
-  const newCards = queue.filter((q) => freshIds.has(q.id)).length;
-  const dueCards = queue.length - newCards;
-  const newWords = freshIds.size;
+  const newLimit = Math.max(0, Math.ceil((target * 2 - stats.newCardsToday) / 2));
+  const queue = useMemo(() => (state && bank ? buildQueue(state, bank, today, newLimit) : []), [state, bank, today, newLimit]);
+  const split = useMemo(() => {
+    const out = { due: 0, fresh: 0, newWords: 0 };
+    const words = new Set<string>();
+    for (const q of queue) {
+      const p = state?.vocab[q.id];
+      if (p?.[q.skill]) out.due++;
+      else {
+        out.fresh++;
+        if (!p || (!p.read && !p.meaning)) words.add(q.id);
+      }
+    }
+    out.newWords = words.size;
+    return out;
+  }, [queue, state]);
   const block = state?.plans[today]?.blocks.find((b) => b.kind === 'vocab');
 
   const start = () => {
@@ -136,6 +136,7 @@ export function VocabPage() {
   }
 
   const total = bank.bundle.vocab.length;
+  const readTotal = bank.bundle.vocab.filter((v) => !isKanaOnly(v.word)).length;
   const minutes = Math.max(1, Math.round((queue.length * SECONDS_PER_CARD) / 60));
   const blockDone = block?.status === 'done';
   const todayAcc = stats.todayN ? stats.todayOk / stats.todayN : null;
@@ -155,15 +156,26 @@ export function VocabPage() {
             <>
               <div className="vc-hero-figures">
                 <div className="vc-fig">
-                  <span className="vc-fig-num num">{dueCards}</span>
+                  <span className="vc-fig-num num">{split.due}</span>
                   <span className="vc-fig-label">张到期复习</span>
                 </div>
-                <span className="vc-fig-plus">+</span>
-                <div className="vc-fig">
-                  <span className="vc-fig-num num">{newWords}</span>
-                  <span className="vc-fig-label">个新词 · 读音和词义各一张</span>
-                </div>
+                {split.fresh > 0 && (
+                  <>
+                    <span className="vc-fig-plus">+</span>
+                    <div className="vc-fig">
+                      <span className="vc-fig-num num">{split.fresh}</span>
+                      <span className="vc-fig-label">张新卡</span>
+                    </div>
+                  </>
+                )}
               </div>
+              {split.fresh > 0 && (
+                <p className="vc-hero-note">
+                  {split.newWords > 0
+                    ? `新卡里有 ${split.newWords} 个没见过的词，读音、词义各一张${split.fresh > split.newWords * 2 ? '；其余是只练过其中一项的词' : ''}。`
+                    : '新卡是之前只练过读音或词义其中一项的词，补上另一项。'}
+                </p>
+              )}
               <div className="vc-hero-actions">
                 <Button variant="primary" size="lg" iconRight="arrowRight" onClick={start}>
                   {blockDone ? '再练一轮' : '开始训练'} · {queue.length} 张
@@ -204,7 +216,9 @@ export function VocabPage() {
               }}
               options={TARGETS.map((t) => ({ value: String(t), label: `${t} 个` }))}
             />
-            <span className="faint text-sm">今天已学新词 {stats.newToday} 个</span>
+            <span className="faint text-sm">
+              今天已开新卡 {stats.newCardsToday} / {target * 2} 张
+            </span>
           </div>
         </div>
 
@@ -214,7 +228,7 @@ export function VocabPage() {
             <span className="vc-ring-unit">/ {total} 已学</span>
           </Ring>
           <div className="vc-side-stats">
-            <SideStat label="读音已稳" value={stats.solidRead} total={total} tone="primary" />
+            <SideStat label="读音已稳" value={stats.solidRead} total={readTotal} tone="primary" />
             <SideStat label="词义已稳" value={stats.solidMeaning} total={total} tone="japanese" />
             <div className="vc-side-today">
               今天已练 <b className="num">{stats.todayN}</b> 次{todayAcc !== null && <> · 正确率 <b className="num">{pct(todayAcc)}</b></>}

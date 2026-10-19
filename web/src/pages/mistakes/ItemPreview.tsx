@@ -37,7 +37,7 @@ export function ItemPreview({ itemId, ids, onSelect }: Props) {
 
 function PreviewTitle({ item }: { item: Item }) {
   return (
-    <span className="ip-title">
+    <span className="mbp-title">
       <SubjectTag subject={item.subject} size="sm" />
       <span>{sourceLabel(item)}</span>
     </span>
@@ -99,38 +99,42 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
   };
 
   return (
-    <div className="ip">
-      <div className="ip-meta">
+    <div className="mbp">
+      <div className="mbp-meta">
         {topic && (
-          <a className="ip-topic" href={href('/notes/' + item.topic)}>
+          <a className="mbp-topic" href={href('/notes/' + item.topic)}>
             <Icon name="notebook" size={13} />
             {topic.name}
           </a>
         )}
-        <span className="ip-meta-item" title="难度">
+        <span className="mbp-meta-item" title="难度">
           难度
-          <span className="ip-diff">
+          <span className="mbp-diff">
             {[1, 2, 3].map((n) => (
               <i key={n} className={cx(n <= item.difficulty && 'on')} />
             ))}
           </span>
         </span>
-        <span className="ip-meta-item">
+        <span className="mbp-meta-item">
           <Icon name="clock" size={13} />
           考场节奏 {fmtClock(item.targetSec)}
         </span>
         {p?.inMistakes && (
-          <span className="ip-meta-item">
+          <span className="mbp-meta-item">
             <BoxDots box={p.box} />
-            {due && <span className={cx('ip-due', `tone-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
+            {due && <span className={cx('mbp-due', `tone-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
           </span>
         )}
-        {p && !p.inMistakes && p.attempts > 0 && p.correct > 0 && <Badge tone="success" icon="check">不在错题本</Badge>}
+        {p && !p.inMistakes && p.attempts > 0 && p.correct > 0 && (
+          <Badge tone="success" icon="check">
+            不在错题本
+          </Badge>
+        )}
       </div>
 
       {item.audio && <AudioBar src={item.audio.src} start={item.audio.start} />}
 
-      <div className="ip-stem">
+      <div className="mbp-stem">
         <QuestionStem item={item} />
       </div>
 
@@ -138,8 +142,8 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
         <>
           <AnswerBlock item={item} last={last} />
           {history.length > 0 && <History list={history} />}
-          <section className="ip-sec">
-            <h4 className="ip-sec-title">
+          <section className="mbp-sec">
+            <h4 className="mbp-sec-title">
               <Icon name="bulb" size={15} />
               解析
             </h4>
@@ -147,7 +151,7 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
           </section>
         </>
       ) : (
-        <div className="ip-hidden">
+        <div className="mbp-hidden">
           <div>
             <b>这题你还没做过</b>
             <span className="muted">先自己做一遍，印象最深。</span>
@@ -165,14 +169,14 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
 
       {p && reveal && <NoteEditor itemId={item.id} initial={p.note || ''} />}
 
-      <footer className="ip-foot">
+      <footer className="mbp-foot">
         <div className="row">
           <IconButton icon="left" label="上一题（←）" disabled={!prevId} onClick={() => prevId && onSelect(prevId)} />
-          <span className="ip-pos num">{idx >= 0 ? `${idx + 1} / ${ids.length}` : ''}</span>
+          <span className="mbp-pos num">{idx >= 0 ? `${idx + 1} / ${ids.length}` : ''}</span>
           <IconButton icon="right" label="下一题（→）" disabled={!nextId} onClick={() => nextId && onSelect(nextId)} />
         </div>
-        <div className="row ip-actions">
-          <Button variant="ghost" icon="star" className={cx('ip-star', p?.starred && 'is-on')} onClick={star}>
+        <div className="row mbp-actions">
+          <Button variant="ghost" icon="star" className={cx('mbp-star', p?.starred && 'is-on')} onClick={star}>
             {p?.starred ? '已收藏' : '收藏'}
           </Button>
           {p?.inMistakes && (
@@ -202,18 +206,18 @@ function AnswerBlock({ item, last }: { item: Item; last?: Attempt }) {
   }
   const slow = last && last.seconds > item.targetSec * 1.2;
   return (
-    <section className="ip-sec">
-      <div className="ip-ans-head">
-        <h4 className="ip-sec-title">
+    <section className="mbp-sec">
+      <div className="mbp-ans-head">
+        <h4 className="mbp-sec-title">
           <Icon name="target" size={15} />
           {last ? '上次作答' : '正确答案'}
         </h4>
         {last && (
-          <div className="ip-ans-facts">
+          <div className="mbp-ans-facts">
             <ResultMark kind={kind} />
-            <span className={cx('ip-res-text', `is-${kind}`)}>{RESULT_TEXT[kind]}</span>
+            <span className={cx('mbp-res-text', `is-${kind}`)}>{RESULT_TEXT[kind]}</span>
             {what && <span className="faint">· {what}</span>}
-            <span className={cx('ip-fact', slow && 'is-slow')} title={`考场节奏 ${fmtClock(item.targetSec)}`}>
+            <span className={cx('mbp-fact', slow && 'is-slow')} title={`考场节奏 ${fmtClock(item.targetSec)}`}>
               <Icon name="clock" size={13} />
               {fmtClock(last.seconds)}
               {slow && <span> · 超时</span>}
@@ -224,13 +228,13 @@ function AnswerBlock({ item, last }: { item: Item; last?: Attempt }) {
         )}
       </div>
       {item.format === 'choice' ? (
-        <div className={cx('ip-opts', compactOptions(item) && 'is-compact')}>
+        <div className={cx('mbp-opts', compactOptions(item) && 'is-compact')}>
           <OptionList item={item} chosen={chosen} />
         </div>
       ) : (
         <BlanksAnswer item={item} given={given} />
       )}
-      {item.format === 'blanks' && given && <p className="ip-hint">红色是你填错的格子，划线是你当时的答案。</p>}
+      {item.format === 'blanks' && given && <p className="mbp-hint">红色是你填错的格子，划线是你当时的答案。</p>}
     </section>
   );
 }
@@ -243,12 +247,12 @@ function compactOptions(item: Item): boolean {
 
 function History({ list }: { list: Attempt[] }) {
   return (
-    <div className="ip-history" aria-label="作答记录">
-      <span className="ip-history-label">作答记录</span>
+    <div className="mbp-history" aria-label="作答记录">
+      <span className="mbp-history-label">作答记录</span>
       {list.map((a) => {
         const k = resultOf(a);
         return (
-          <span key={a.id} className={cx('ip-hchip', `is-${k}`)} title={`${a.date} · ${MODE_LABEL[a.mode]} · ${RESULT_TEXT[k]} · ${fmtClock(a.seconds)}`}>
+          <span key={a.id} className={cx('mbp-hchip', `is-${k}`)} title={`${a.date} · ${MODE_LABEL[a.mode]} · ${RESULT_TEXT[k]} · ${fmtClock(a.seconds)}`}>
             <ResultMark kind={k} size="xs" />
             <span className="num">{fmtMD(a.date)}</span>
             <span className="faint">{MODE_LABEL[a.mode]}</span>
@@ -287,16 +291,16 @@ function NoteEditor({ itemId, initial }: { itemId: string; initial: string }) {
   );
 
   return (
-    <section className="ip-note">
-      <div className="ip-note-head">
-        <span className="ip-sec-title">
+    <section className="mbp-note">
+      <div className="mbp-note-head">
+        <span className="mbp-sec-title">
           <Icon name="pen" size={15} />
           我的笔记
         </span>
-        <span className="ip-note-state faint text-xs">{saved === 'saved' ? '已保存' : saved === 'dirty' ? '输入中…' : '自动保存'}</span>
+        <span className="mbp-note-state faint text-xs">{saved === 'saved' ? '已保存' : saved === 'dirty' ? '输入中…' : '自动保存'}</span>
       </div>
       <textarea
-        className="ip-note-input"
+        className="mbp-note-input"
         value={text}
         rows={2}
         maxLength={2000}
@@ -339,7 +343,7 @@ function AudioBar({ src, start }: { src: string; start?: number }) {
     }
   };
   return (
-    <div className="ip-audio">
+    <div className="mbp-audio">
       <Button variant={playing ? 'soft' : 'secondary'} size="sm" icon={playing ? 'pause' : 'headphones'} onClick={() => void toggle()}>
         {playing ? '暂停' : '播放听力音频'}
       </Button>

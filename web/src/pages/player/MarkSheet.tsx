@@ -1,11 +1,17 @@
 // EJU mark sheet for "blanks" items: one cell per letter, grouped like the boxes in the stem,
 // plus a bubble row (− 0–9) for the active letter that works like the real answer sheet.
-import type { BlankGroupResult } from '@shared/grading.ts';
+import { normalizeMark, type BlankGroupResult } from '@shared/grading.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Kbd } from '../../components/ui.tsx';
 import { cx } from '../../lib/format.ts';
 
 const MARKS = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+/** One mark-sheet character for display (typographic minus). */
+function show(v: string | undefined): string {
+  const c = normalizeMark(v ?? '');
+  return c === '-' ? '−' : c;
+}
 
 export function MarkSheet({
   groups,
@@ -68,7 +74,7 @@ export function MarkSheet({
                     aria-label={`格子 ${l}${values[l] ? `：${values[l]}` : ''}`}
                   >
                     <span className="pl-cell-letter">{l}</span>
-                    <span className="pl-cell-val num">{values[l] === '-' ? '−' : values[l] || ''}</span>
+                    <span className="pl-cell-val num">{show(values[l])}</span>
                   </button>
                 ))}
               </div>
@@ -113,11 +119,12 @@ export function MarkSheet({
           <div className="pl-sheet-hint">
             <Kbd>0–9</Kbd>
             <Kbd>−</Kbd>
-            <span>填入并跳到下一格</span>
+            <span>填写</span>
             <Kbd>⌫</Kbd>
             <span>删除</span>
             <Kbd>↑↓</Kbd>
             <span>换格</span>
+            <span className="pl-sheet-hint-tip">点题中的方框也能跳转</span>
           </div>
         </div>
       )}

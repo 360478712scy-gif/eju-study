@@ -19,11 +19,24 @@ interface Entry {
 const entries = new Map<string, Entry>();
 let statusCache: { at: number; available: boolean } | null = null;
 
-const QUICK: Record<'choice' | 'blanks' | 'ja', string[]> = {
+type Kind = 'choice' | 'blanks' | 'ja' | 'listen';
+const QUICK: Record<Kind, string[]> = {
   choice: ['我的思路哪里错了？', '有没有考场上更快的做法？', '题干里这几个日语词是什么意思？'],
   blanks: ['这一步是怎么想到的？', '我填错的那几格错在哪？', '有没有更快的算法？'],
   ja: ['正确答案在原文哪一句？', '我选的选项为什么不对？', '这段文章的结构怎么快速抓？'],
+  listen: ['答案依据是录音里哪一句？', '我选的选项错在哪？', '这类题听的时候该抓什么？'],
 };
+const PLACEHOLDER: Record<Kind, string> = {
+  choice: '写下你卡住的地方，例如「为什么不能用动能守恒？」',
+  blanks: '写下你卡住的地方，例如「第二问的范围怎么确定？」',
+  ja: '写下你卡住的地方，例如「下线部指的是哪件事？」',
+  listen: '写下你卡住的地方，例如「她最后到底同意了没有？」',
+};
+
+function kindOf(item: Item): Kind {
+  if (item.subject === 'japanese') return item.audio ? 'listen' : 'ja';
+  return item.format === 'blanks' ? 'blanks' : 'choice';
+}
 
 type Phase = 'idle' | 'asking' | 'done' | 'error';
 
@@ -140,7 +153,8 @@ export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item
     }
   };
 
-  const quick = item.subject === 'japanese' ? QUICK.ja : item.format === 'blanks' ? QUICK.blanks : QUICK.choice;
+  const kind = kindOf(item);
+  const quick = QUICK[kind];
   const waited = entry ? Math.max(0, Math.round((now - entry.startedAt) / 1000)) : 0;
 
   return (
@@ -238,7 +252,7 @@ export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item
                   ref={inputRef}
                   rows={1}
                   value={text}
-                  placeholder={phase === 'done' ? '还想追问什么？' : '写下你卡住的地方，例如「为什么不能用动能守恒？」'}
+                  placeholder={phase === 'done' ? '还想追问什么？' : PLACEHOLDER[kind]}
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={onKey}
                 />

@@ -90,11 +90,11 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
         </span>
       </div>
 
-      <div className="pr-matrix" role="grid">
-        <div className="pr-mx-head" role="row">
-          <span role="columnheader">真题卷</span>
+      <div className="pr-matrix">
+        <div className="pr-mx-head">
+          <span>真题卷</span>
           {SECTIONS.map((s) => (
-            <span key={s.key} role="columnheader" className="pr-mx-col">
+            <span key={s.key} className="pr-mx-col">
               <SubjectDot subject={s.subject} />
               {s.short}
             </span>
@@ -104,8 +104,8 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
           const openCell = open?.session === paper.session ? cells.find((c) => c.section.key === open.key) : undefined;
           return (
             <Fragment key={paper.session}>
-              <div className={cx('pr-mx-row', openCell && 'is-open')} role="row">
-                <div className="pr-mx-paper" role="rowheader">
+              <div className={cx('pr-mx-row', openCell && 'is-open')}>
+                <div className="pr-mx-paper">
                   <span className="pr-mx-label">{paper.label}</span>
                   <span className="pr-mx-sub num">
                     {done}/{total} 题
@@ -141,7 +141,7 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
 function PaperCell({ cell: c, active, onClick }: { cell: Cell; active: boolean; onClick: () => void }) {
   if (!c.items.length) {
     return (
-      <div className="pr-cell is-none" role="gridcell" aria-label="本卷没有这一科">
+      <div className="pr-cell is-none" aria-label="本卷没有这一科">
         —
       </div>
     );
@@ -150,9 +150,10 @@ function PaperCell({ cell: c, active, onClick }: { cell: Cell; active: boolean; 
   return (
     <button
       type="button"
-      role="gridcell"
+     
       className={cx('pr-cell', `tone-${c.section.subject}`, active && 'is-active', c.held && 'is-held', frac === 1 && 'is-full')}
       onClick={onClick}
+      aria-label={`${c.section.name} 已做 ${c.done}/${c.items.length}${c.held ? '，留给模考' : ''}`}
       title={c.held ? `留给 ${fmtDateShort(c.held.date)}「${c.held.title}」` : c.mock ? `已用来模考 · 估分 ${c.mock.estimate}` : `${c.section.name} · 已做 ${c.done}/${c.items.length}`}
       aria-expanded={active}
     >
@@ -196,7 +197,7 @@ function SectionPanel({
   const wrong = c.items.filter((it) => isWrong(progress[it.id]));
   const minutes = Math.max(1, Math.round(c.items.reduce((s, it) => s + planSeconds(it), 0) / 60));
   return (
-    <div className={cx('pr-panel', `tone-${c.section.subject}`)} role="row">
+    <div className={cx('pr-panel', `tone-${c.section.subject}`)}>
       <div className="pr-panel-head">
         <div className="pr-panel-title">
           <SubjectTag subject={c.section.subject} size="sm" />

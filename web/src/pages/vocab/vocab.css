@@ -346,3 +346,7 @@
   .vc-stage { gap: 14px; padding-top: 18px; }
   .vc-word { padding: 0; }
 }
+.vc-hero-note { margin-top: -10px; color: var(--text-3); font-size: var(--fs-sm); }
+.vc-search input:focus-visible { box-shadow: none; }
+.vc-input:focus-visible { box-shadow: var(--focus-ring); border-radius: 16px; }
+.vc-na { font-size: var(--fs-xs); color: var(--text-3); }

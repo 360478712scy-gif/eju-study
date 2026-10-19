@@ -8,7 +8,7 @@ import { navigate } from '../../lib/router.ts';
 import { cx, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.ts';
 import { Badge, Button, Empty, Progress, Segmented, useConfirm, type Tone } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { drillTitle, isWeakTopic, pickDrill, reservedFor, type ReservedMap } from './practiceData.ts';
+import { drillTitle, isWeakTopic, pickDrill, reservedFor, type DrillPick, type ReservedMap } from './practiceData.ts';
 import type { SubjectSummary } from './PracticePage.tsx';
 
 const DRILL_SIZE = 10;
@@ -24,6 +24,7 @@ interface TopicRowData {
   stat?: TopicStat;
   weak: boolean;
   priority: number;
+  pick: DrillPick;
 }
 
 type Order = 'units' | 'weak';
@@ -81,16 +82,18 @@ export function TopicView({
           stat,
           weak,
           priority: (t.weight / 5) * (1.15 - mastery) * (weak ? 1.35 : 1) + (done < items.length ? 0.02 : 0),
+          pick: pickDrill(state, items, DRILL_SIZE, reserved, today + t.id),
         };
       });
       rows.sort((a, b) => (a.items.length ? 0 : 1) - (b.items.length ? 0 : 1));
       const total = rows.reduce((s, r) => s + r.items.length, 0);
       const done = rows.reduce((s, r) => s + r.done, 0);
+      // Unit mastery: topic mastery weighted by how often each topic was tried (same scale as the rows).
       const tries = rows.reduce((s, r) => s + (r.stat?.attempts || 0), 0);
-      const right = rows.reduce((s, r) => s + (r.stat?.correct || 0), 0);
-      return { id: u.id, name: u.name, rows, total, done, accuracy: tries ? right / tries : null, weak: isWeakTopic(weakList, u.id) };
+      const weighted = rows.reduce((s, r) => s + (r.stat && r.stat.attempts ? r.stat.mastery * r.stat.attempts : 0), 0);
+      return { id: u.id, name: u.name, rows, total, done, mastery: tries ? weighted / tries : null, weak: isWeakTopic(weakList, u.id) };
     });
-  }, [bank, subject, state.progress, stats, weakList]);
+  }, [bank, subject, state, stats, weakList, reserved, today]);
 
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(units.filter((u) => u.total === 0).map((u) => u.id)));
 
@@ -104,7 +107,7 @@ export function TopicView({
   );
 
   const drill = async (r: TopicRowData) => {
-    const pick = pickDrill(state, r.items, DRILL_SIZE, reserved, today + r.topic.id);
+    const pick = r.pick;
     if (!pick.ids.length) return;
     if (pick.usesReserved) {
       const held = r.items.map((it) => reservedFor(reserved, it)).find(Boolean);
@@ -196,7 +199,11 @@ export function TopicView({
                         <span className="pr-unit-bar">
                           <i style={{ width: `${(u.done / u.total) * 100}%` }} />
                         </span>
-                        {u.accuracy !== null && <span className="num pr-unit-acc">{pct(u.accuracy)}</span>}
+                        {u.mastery !== null && (
+                          <span className="num pr-unit-acc" title="本单元掌握度">
+                            掌握 {pct(u.mastery)}
+                          </span>
+                        )}
                       </>
                     ) : (
                       <span className="faint">暂无题目</span>
@@ -225,7 +232,7 @@ export function TopicView({
 function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRowData; showUnit: boolean; hasNote: boolean; onDrill: () => void; onOpen: () => void }) {
   const empty = r.items.length === 0;
   const tried = !!r.stat && r.stat.attempts > 0;
-  const n = Math.min(DRILL_SIZE, r.items.length);
+  const n = r.pick.ids.length;
   return (
     <div className={cx('pr-topic', empty && 'is-empty')}>
       <div className="pr-topic-main">
@@ -286,10 +293,10 @@ function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRo
         ) : (
           <span className="pr-note-gap" />
         )}
-        {empty ? (
+        {empty || !n ? (
           <span className="pr-empty-tag">暂无题目</span>
         ) : (
-          <Button variant="soft" size="sm" icon="play" onClick={onDrill}>
+          <Button variant="soft" size="sm" icon={r.pick.usesReserved ? 'flag' : 'play'} onClick={onDrill} title={r.pick.usesReserved ? '剩下的题都在模考预留卷里' : '没做过的优先，其次是错题'}>
             练 {n} 题
           </Button>
         )}

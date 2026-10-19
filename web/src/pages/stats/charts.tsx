@@ -116,9 +116,7 @@ export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: num
           return (
             <g key={d.date} className={cx('st-bar-g', hover === i && 'is-hover', hover !== null && hover !== i && 'is-dim')}>
               {h > 0.5 && <path d={roundTop(cx0 - bw / 2, y(d.minutes), bw, h, 4)} className={cx('st-bar', d.isToday && 'is-today')} />}
-              {d.budget !== null && d.budget > 0 && (
-                <line x1={cx0 - bw / 2 - 4} x2={cx0 + bw / 2 + 4} y1={y(d.budget)} y2={y(d.budget)} className="st-budget" />
-              )}
+              {d.budget !== null && d.budget > 0 && <line x1={cx0 - bw / 2 - 4} x2={cx0 + bw / 2 + 4} y1={y(d.budget)} y2={y(d.budget)} className="st-budget" />}
               {(i % every === 0 || d.isToday) && (
                 <text x={cx0} y={height - 8} className={cx('st-axis', d.isToday && 'is-strong')} textAnchor="middle">
                   {d.label}
@@ -170,19 +168,7 @@ export interface LinePoint {
   n: number;
 }
 
-export function MiniLine({
-  points,
-  target,
-  color,
-  height = 128,
-  name,
-}: {
-  points: LinePoint[];
-  target: number;
-  color: string;
-  height?: number;
-  name: string;
-}) {
+export function MiniLine({ points, target, color, height = 128, name }: { points: LinePoint[]; target: number; color: string; height?: number; name: string }) {
   const [ref, width] = useWidth<HTMLDivElement>(220);
   const [hover, setHover] = useState<number | null>(null);
   const m = { l: 32, r: 8, t: 10, b: 20 };
@@ -203,7 +189,11 @@ export function MiniLine({
           content: (
             <>
               <div className="st-tip-title">{hp.label}</div>
-              {hp.value !== null ? <TipRow color={color} value={`${Math.round(hp.value * 100)}%`} label={`${name} · ${hp.n} 题`} /> : <span className="st-tip-dim">这天没做{name}</span>}
+              {hp.value !== null ? (
+                <TipRow color={color} value={`${Math.round(hp.value * 100)}%`} label={`${name} · ${hp.n} 题`} />
+              ) : (
+                <span className="st-tip-dim">这天没做{name}</span>
+              )}
             </>
           ),
         }
@@ -254,6 +244,7 @@ export function MiniLine({
           onPointerLeave={() => setHover(null)}
         />
       </svg>
+      {real.length === 0 && <div className="st-chart-empty">还没有{name}作答</div>}
       <Tip tip={tip} width={width} />
     </div>
   );
@@ -368,6 +359,13 @@ export function ScoreBar({
   const height = big ? 76 : 46;
   const labelY = barY + barH + (big ? 20 : 16);
   const reached = estimate >= target;
+  // Keep the two tick labels apart when baseline and target sit close together.
+  const xb = x(baseline);
+  const xt = x(target);
+  const close = Math.abs(xt - xb) < (big ? 84 : 70);
+  const mid = (xb + xt) / 2;
+  const baseLabel = close ? { x: mid - 4, anchor: 'end' as const } : { x: xb, anchor: anchorFor(xb, width) };
+  const targetLabel = close ? { x: mid + 4, anchor: 'start' as const } : { x: xt, anchor: anchorFor(xt, width) };
   return (
     <div className="st-chart" ref={ref}>
       <svg
@@ -389,10 +387,10 @@ export function ScoreBar({
             预测 {estimate}
           </text>
         )}
-        <text x={x(baseline)} y={labelY} textAnchor={anchorFor(x(baseline), width)} className="st-axis">
+        <text x={baseLabel.x} y={labelY} textAnchor={baseLabel.anchor} className="st-axis">
           起点 {baseline}
         </text>
-        <text x={x(target)} y={labelY} textAnchor={anchorFor(x(target), width)} className="st-axis is-strong">
+        <text x={targetLabel.x} y={labelY} textAnchor={targetLabel.anchor} className="st-axis is-strong">
           目标 {target}
         </text>
         {big && (

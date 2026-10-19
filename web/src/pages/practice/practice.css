@@ -55,7 +55,7 @@
 .pr-unit-meta { margin-left: auto; display: flex; align-items: center; gap: 10px; color: var(--text-3); font-size: var(--fs-xs); }
 .pr-unit-bar { width: 64px; height: 4px; border-radius: 99px; background: var(--bg-sunken); overflow: hidden; }
 .pr-unit-bar i { display: block; height: 100%; background: var(--primary); border-radius: inherit; }
-.pr-unit-acc { min-width: 30px; text-align: right; color: var(--text-2); }
+.pr-unit-acc { min-width: 62px; text-align: right; color: var(--text-2); }
 .pr-unit.is-open .pr-unit-head { border-bottom: 1px solid var(--border); }
 .pr-weak { height: 19px; padding: 0 6px; font-size: 11px; }
 
@@ -256,6 +256,7 @@
 .pr-list-empty { padding: 12px 0; }
 
 @media (max-width: 1120px) {
+  .pr-subject-label, .pr-subject-wrong { display: none; }
   .pr-subject { padding: 12px 12px 16px; gap: 10px; }
   .pr-subject-icon { width: 32px; height: 32px; border-radius: 10px; }
   .pr-subject-bar { left: 12px; right: 12px; bottom: 7px; }

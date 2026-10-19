@@ -34,8 +34,10 @@ export function blockIcon(b: PlanBlock): IconName {
       return 'headphones';
     case 'notes':
       return 'notebook';
+    case 'traps':
+      return 'alert';
     default:
-      return SUBJECT_ICON[b.subject];
+      return b.title.includes('考点速测') ? 'zap' : SUBJECT_ICON[b.subject];
   }
 }
 
@@ -44,6 +46,7 @@ export function blockTone(b: PlanBlock): Tone {
   if (b.subject !== 'mixed') return b.subject;
   if (b.kind === 'review') return 'warning';
   if (b.kind === 'notes') return 'success';
+  if (b.kind === 'traps') return 'warning';
   return 'primary';
 }
 
@@ -51,7 +54,7 @@ export function blockKindLabel(b: PlanBlock): string {
   if (b.reviewOfMock) return '模考订正';
   switch (b.kind) {
     case 'drill':
-      return b.timed ? '限时小测' : '专项练习';
+      return b.title.includes('考点速测') ? '考点速测' : b.timed ? '限时小测' : '专项练习';
     case 'review':
       return '错题重做';
     case 'vocab':
@@ -59,11 +62,13 @@ export function blockKindLabel(b: PlanBlock): string {
     case 'mock':
       return '整卷模考';
     case 'reading':
-      return b.timed ? '限时读解' : '读解';
+      return b.title.includes('文型') ? '文型' : b.timed ? '限时读解' : '读解';
     case 'listening':
       return '听解';
     case 'notes':
       return '考点速记';
+    case 'traps':
+      return '考前一页纸';
   }
 }
 
@@ -71,6 +76,7 @@ export function blockKindLabel(b: PlanBlock): string {
 export function blockCount(state: AppState, bank: BankIndex, b: PlanBlock): number | null {
   if (b.kind === 'vocab') return b.vocabCount ?? null;
   if (b.kind === 'notes') return b.noteTopics?.length ?? null;
+  if (b.kind === 'traps') return null;
   if (b.reviewOfMock) return mockDone(state, b.reviewOfMock.kind, b.reviewOfMock.session) ? blockItems(state, bank, b).length : null;
   return b.itemIds.length;
 }
@@ -119,19 +125,24 @@ function markActive(blockId: string) {
 
 export function notesPath(b: PlanBlock): string {
   const t = b.noteTopics?.[0];
-  return t ? '/notes/' + encodeURIComponent(t) : '/notes';
+  return t ? `/notes/${encodeURIComponent(t)}?block=${encodeURIComponent(b.id)}` : '/notes';
 }
 
 /** Start or resume a block: practice blocks open the player, vocab/notes open their pages. */
 export function runBlock(state: AppState, bank: BankIndex, block: PlanBlock) {
   if (block.kind === 'vocab') {
     markActive(block.id);
-    navigate('/vocab');
+    navigate('/vocab?start=1');
     return;
   }
   if (block.kind === 'notes') {
     markActive(block.id);
     navigate(notesPath(block));
+    return;
+  }
+  if (block.kind === 'traps') {
+    markActive(block.id);
+    navigate('/traps?block=' + encodeURIComponent(block.id));
     return;
   }
   const open = openSessionFor(state, block.id);
@@ -155,8 +166,10 @@ export function runBlock(state: AppState, bank: BankIndex, block: PlanBlock) {
 
 /** Practise a finished block's items again without touching the plan. */
 export function redoBlock(state: AppState, block: PlanBlock) {
-  if (block.kind === 'vocab') return navigate('/vocab');
-  if (block.kind === 'notes') return navigate(notesPath(block));
+  if (block.kind === 'vocab' || block.kind === 'notes' || block.kind === 'traps') {
+    navigate(block.kind === 'vocab' ? '/vocab' : block.kind === 'traps' ? '/traps' : notesPath(block));
+    return;
+  }
   let ids = block.itemIds;
   if (!ids.length) {
     const last = Object.values(state.sessions)

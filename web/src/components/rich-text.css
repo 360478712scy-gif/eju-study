@@ -8,7 +8,7 @@
 .rt > * + * {
   margin-top: 0.75em;
 }
-.rt p {
+.rt :where(p) {
   margin: 0;
 }
 .rt ul,

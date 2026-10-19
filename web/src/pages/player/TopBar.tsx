@@ -10,6 +10,8 @@ export type CellState = 'todo' | 'right' | 'wrong' | 'answered' | 'flag';
 export interface StripCell {
   state: CellState;
   reachable: boolean;
+  /** Exam mode: a response is recorded (a flagged item may still be empty). */
+  answered?: boolean;
 }
 
 const CELL_TITLE: Record<CellState, string> = {

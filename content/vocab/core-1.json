@@ -1,0 +1,1802 @@
+{
+ "title": "core vocabulary 1",
+ "entries": [
+  {
+   "id": "v1",
+   "word": "促す",
+   "reading": "うながす",
+   "meaningZh": "动词（他动）。从旁提醒、劝说或创造条件，让人尽快采取行动，或让某个过程加快进行。常用于“提醒注意”“鼓励参加”“推动生长”等场合。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "政府は企業に対して、省エネルギーへの取り組みを促している。",
+    "zh": "政府正在敦促企业推进节能工作。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/77d12f9b1dfa427fe7920092.m4a",
+    "example": "/assets/pronunciation/56fffd1c51af006d81c7b22d.m4a"
+   }
+  },
+  {
+   "id": "v2",
+   "word": "妨げる",
+   "reading": "さまたげる",
+   "meaningZh": "动词（他动，书面）。在中间造成障碍，使某种活动或进程不能顺利进行。宾语多为睡眠、发展、通行、学习等。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "寝る前にスマートフォンの画面を見ると、睡眠が妨げられることがある。",
+    "zh": "睡前看手机屏幕，有时会影响睡眠。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0eb26235a5c28b7f18ece5bf.m4a",
+    "example": "/assets/pronunciation/3b543a66556835b4629e4558.m4a"
+   }
+  },
+  {
+   "id": "v3",
+   "word": "著しい",
+   "reading": "いちじるしい",
+   "meaningZh": "い形容词（书面）。变化、差别或程度非常大，一眼就能看出来。多修饰增长、变化、差异；变成副词（〜く）意为“明显地”。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "この十年で、都市部の人口は著しく増加した。",
+    "zh": "这十年里，城市地区的人口显著增加。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8413dec041073c169ef8889e.m4a",
+    "example": "/assets/pronunciation/a1ebd01257eb78680a323fb4.m4a"
+   }
+  },
+  {
+   "id": "v4",
+   "word": "見直す",
+   "reading": "みなおす",
+   "meaningZh": "动词（他动）。①重新检查计划、制度、答案等，发现问题后加以修改；②对人或事物重新评价，看法变好（刮目相看）。考试中多为①。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "調査の結果を受けて、市は交通計画を見直すことにした。",
+    "zh": "根据调查结果，市政府决定重新审视并修改交通规划。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/490f19af78b92bbee56e45dc.m4a",
+    "example": "/assets/pronunciation/0ea516e734a4820f31572f64.m4a"
+   }
+  },
+  {
+   "id": "v5",
+   "word": "維持",
+   "reading": "いじ",
+   "meaningZh": "名词・する动词。让已有的状态、水平或功能持续保持下去，不让它下降或中断。常用于健康、秩序、现状、温度等。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "体温を一定に維持するために、体は多くのエネルギーを使っている。",
+    "zh": "为了把体温保持在一定水平，身体消耗着大量能量。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5fbedf1a4aaac36469a9d07b.m4a",
+    "example": "/assets/pronunciation/58834571f001bddb7c1c1956.m4a"
+   }
+  },
+  {
+   "id": "v6",
+   "word": "傾向",
+   "reading": "けいこう",
+   "meaningZh": "名词。事物朝某个方向变化的趋势，或某类人、事物经常表现出的特点。常接「〜にある」「〜がある」「〜が見られる」。",
+   "trapZh": "只作名词，不能像中文那样直接当动词说“倾向于…”；日语要说「〜する傾向がある／にある」。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "若い世代ほど、ニュースをインターネットで読む傾向がある。",
+    "zh": "越是年轻的一代，越倾向于在网上看新闻。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2c7431e9ba2e004cb7abaf01.m4a",
+    "example": "/assets/pronunciation/b92263cf6ebb172cd3cab035.m4a"
+   }
+  },
+  {
+   "id": "v7",
+   "word": "伴う",
+   "reading": "ともなう",
+   "meaningZh": "动词（自他两用）。某件事发生时，另一件事随之出现或一起存在。接在「〜に」后表示“随着…”；接宾语时表示“带有（风险、困难等）”。",
+   "trapZh": "EJU 中几乎都是「〜に伴って」（随着…）和「〜を伴う」（伴有风险、困难等），主语多为事物；不要按中文“陪伴”去理解。“带着某人同行”（「部下を伴う」）是少见的书面用法。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "人口の増加に伴って、水の使用量も増えている。",
+    "zh": "随着人口增加，用水量也在增加。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ac57759e7d9921f0bc5f5871.m4a",
+    "example": "/assets/pronunciation/b6d0faaa0802fb9148979de0.m4a"
+   }
+  },
+  {
+   "id": "v8",
+   "word": "必ずしも",
+   "reading": "かならずしも",
+   "meaningZh": "副词。后面一定接否定（〜とは限らない／〜わけではない／〜ない），表示“未必、并不一定”，用来否定“总是如此”的判断。",
+   "trapZh": "虽然有“必”字，但意思不是“必须、一定”；看到它就去找后面的否定，整句是部分否定。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "データが多いからといって、必ずしも正しい結論が得られるわけではない。",
+    "zh": "并不是说数据多，就一定能得出正确的结论。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d3f0224297ac66109c13e3af.m4a",
+    "example": "/assets/pronunciation/c6b32111e4bd9c28dd1f723b.m4a"
+   }
+  },
+  {
+   "id": "v9",
+   "word": "むしろ",
+   "reading": "むしろ",
+   "meaningZh": "副词。两相比较后，认为后者更合适、更接近事实，“与其说…不如说…、倒不如”。常与「AよりB」「Aというより」呼应；不一定含“事与愿违”的语感。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "この問題は、個人の努力不足というより、むしろ社会の仕組みに原因がある。",
+    "zh": "这个问题与其说是个人努力不够，不如说原因在于社会结构。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5ba9202a0ece94e46ead3daf.m4a",
+    "example": "/assets/pronunciation/93ed83e52a85a0a1f40a899e.m4a"
+   }
+  },
+  {
+   "id": "v10",
+   "word": "一方",
+   "reading": "いっぽう",
+   "meaningZh": "名词・接续词。①引出与前文相对照的另一面情况，“而、与此相对”；②接在动词后再加「だ」，表示某种趋势一直持续，“越来越…”（多为负面）。",
+   "trapZh": "中文“一方”多指“一方当事人”；日语读解中主要是对比用法，「増える一方だ」是“不断增加”。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "都市の人口は増えている。一方、農村では高齢化が進んでいる。",
+    "zh": "城市人口在增加，而农村的老龄化在加剧。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/09db107068a7463d0411fd6c.m4a",
+    "example": "/assets/pronunciation/f98a49100fddb4b18784a43e.m4a"
+   }
+  },
+  {
+   "id": "v11",
+   "word": "踏まえる",
+   "reading": "ふまえる",
+   "meaningZh": "动词（他动）。把已有的事实、结果、经验或前提作为基础和依据，再进行判断、讨论或制定方案。常用て形，意为“在…的基础上、根据…”。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "前回の実験結果を踏まえて、今回は測定の回数を増やした。",
+    "zh": "基于上次的实验结果，这次增加了测量次数。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/fab6f70ea65ca0f3e1b5d020.m4a",
+    "example": "/assets/pronunciation/729820b6469a0e6859aea856.m4a"
+   }
+  },
+  {
+   "id": "v12",
+   "word": "取り組む",
+   "reading": "とりくむ",
+   "meaningZh": "动词（自动）。认真着手处理某项工作、问题或难题，并持续投入精力，“致力于、埋头于”。前接「〜に」；名词形指“举措、所做的努力”。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "地域の住民と協力して、ごみを減らす活動に取り組んでいる。",
+    "zh": "正在与当地居民合作，致力于减少垃圾的活动。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6b5ad2cbeffecab965998bba.m4a",
+    "example": "/assets/pronunciation/f4cf8d7bba10a8ed42d2958f.m4a"
+   }
+  },
+  {
+   "id": "v13",
+   "word": "補う",
+   "reading": "おぎなう",
+   "meaningZh": "动词（他动）。把缺少的部分添上，或用别的东西弥补不足、损失。宾语多为不足、营养、说明、缺点等。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "睡眠不足を補うために、昼休みに短い昼寝をする学生もいる。",
+    "zh": "也有学生为了弥补睡眠不足，在午休时小睡一会儿。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e21f3f418d55c9099cf875c2.m4a",
+    "example": "/assets/pronunciation/a67f8e74321b0efc939e5489.m4a"
+   }
+  },
+  {
+   "id": "v14",
+   "word": "削減",
+   "reading": "さくげん",
+   "meaningZh": "名词・する动词。有计划地把开支、人员、排放量等的数量减下来，多见于经济、政策、环境类文章。",
+   "category": "general",
+   "group": "学术词汇 · 社会与经济",
+   "example": {
+    "ja": "二酸化炭素の排出量を削減するため、再生可能エネルギーの導入が進められている。",
+    "zh": "为了减少二氧化碳排放量，正在推进可再生能源的引进。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/96950fc5bc46f4660c1e8a49.m4a",
+    "example": "/assets/pronunciation/005e22a11caedff1db050c2d.m4a"
+   }
+  },
+  {
+   "id": "v15",
+   "word": "根拠",
+   "reading": "こんきょ",
+   "meaningZh": "名词。支撑某个判断、主张或说法的事实与理由；读解题常问“笔者的主张依托的是什么”。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "筆者は、統計資料を根拠として自分の主張を述べている。",
+    "zh": "笔者以统计资料为依据阐述自己的主张。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/64a6972bc67609093ffc6edf.m4a",
+    "example": "/assets/pronunciation/33c66ba44816ab4c379f3d1d.m4a"
+   }
+  },
+  {
+   "id": "v16",
+   "word": "異なる",
+   "reading": "ことなる",
+   "meaningZh": "动词（自动，书面）。两个或多个事物在某些方面不一样，相当于口语的「違う」，多用于论文、说明文。",
+   "category": "general",
+   "group": "学术词汇 · 比较与比例",
+   "example": {
+    "ja": "同じ物質でも、温度によって水に溶ける量が異なる。",
+    "zh": "即使是同一种物质，溶于水的量也会随温度而不同。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/23eac43ec3b0f868e6667938.m4a",
+    "example": "/assets/pronunciation/8de84f06f58b9f4991d69fc7.m4a"
+   }
+  },
+  {
+   "id": "v17",
+   "word": "占める",
+   "reading": "しめる",
+   "meaningZh": "动词（他动）。①在整体中达到某个份额、比例（如“达到全体的一半”）；②取得并据有某个位置或地位。读图表题时极常见。",
+   "category": "general",
+   "group": "学术词汇 · 比较与比例",
+   "example": {
+    "ja": "この国では、六十五歳以上の人が人口の約三割を占めている。",
+    "zh": "在这个国家，65岁以上的人约占人口的三成。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9fa65c577b8537282b3ec341.m4a",
+    "example": "/assets/pronunciation/c344b799b85694345f552ef7.m4a"
+   }
+  },
+  {
+   "id": "v18",
+   "word": "需要",
+   "reading": "じゅよう",
+   "meaningZh": "名词。经济用语，指人们想买且有能力购买的商品或服务的数量（需求），与市场的供应量相对。",
+   "trapZh": "不是中文动词“需要”（那是「必要だ」「〜が要る」）；日语「需要」只指经济上的“需求”。",
+   "category": "general",
+   "group": "学术词汇 · 社会与经济",
+   "example": {
+    "ja": "夏になると、エアコンの需要が増え、電力の消費量も大きくなる。",
+    "zh": "一到夏天，空调的需求增加，用电量也随之变大。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6638fedc861b440b9b24ede0.m4a",
+    "example": "/assets/pronunciation/e05a2a2e70c50ad86751c104.m4a"
+   }
+  },
+  {
+   "id": "v19",
+   "word": "供給",
+   "reading": "きょうきゅう",
+   "meaningZh": "名词・する动词。把所需的物资、能源或服务送到有需求的一方手中；经济用语中指市场上可提供的商品量（供应）。",
+   "category": "general",
+   "group": "学术词汇 · 社会与经济",
+   "example": {
+    "ja": "需要に対して供給が少ないと、一般に商品の価格は上がる。",
+    "zh": "相对于需求而言供给较少时，商品价格一般会上涨。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5d544dfe3971425ac2298f4d.m4a",
+    "example": "/assets/pronunciation/f2e76e1d7c08b72175d304d4.m4a"
+   }
+  },
+  {
+   "id": "v20",
+   "word": "余裕",
+   "reading": "よゆう",
+   "meaningZh": "名词。满足当前所需之后还剩下的时间、空间、金钱或精力；也指心理上的从容、不慌不忙。",
+   "category": "general",
+   "group": "校园生活 · 手续与安排",
+   "example": {
+    "ja": "試験の日は、時間に余裕を持って会場に着くようにしよう。",
+    "zh": "考试那天，要留出充裕的时间到达考场。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c114e1f5fa8d26854a2ae98f.m4a",
+    "example": "/assets/pronunciation/83fe14362ffea77b4a46c927.m4a"
+   }
+  },
+  {
+   "id": "v21",
+   "word": "延期",
+   "reading": "えんき",
+   "meaningZh": "名词・する动词。把原定的日期或期限往后推迟（并非取消，取消是「中止」）。听解中常与「中止」对比出题。",
+   "category": "general",
+   "group": "校园生活 · 手续与安排",
+   "example": {
+    "ja": "台風の影響で、明日の説明会は来週の金曜日に延期された。",
+    "zh": "受台风影响，明天的说明会推迟到了下周五。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b9afa17761ee8b1f80e0c3ba.m4a",
+    "example": "/assets/pronunciation/895a02b7f0191e25e5e28d6e.m4a"
+   }
+  },
+  {
+   "id": "v22",
+   "word": "変更",
+   "reading": "へんこう",
+   "meaningZh": "名词・する动词。把已经定下的内容、计划、时间或地点改成别的；听解中“改了什么”常是答题关键。",
+   "category": "general",
+   "group": "校园生活 · 手续与安排",
+   "example": {
+    "ja": "教室が変更になったので、学生は掲示板を確認してください。",
+    "zh": "教室有变动，请同学们查看公告栏。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2dc9a8ca6494b863738ad93c.m4a",
+    "example": "/assets/pronunciation/53c9a795984810037a9adccc.m4a"
+   }
+  },
+  {
+   "id": "v23",
+   "word": "提出",
+   "reading": "ていしゅつ",
+   "meaningZh": "名词・する动词。按要求把报告、申请书、作业等正式交给对方（上交、递交）；常与截止日期一起出现。",
+   "trapZh": "中文“提出意见/问题”日语一般说「意見を述べる」「問題を提起する」，不用「提出」；日语「提出」基本是把报告、申请书、法案等正式交上去。",
+   "category": "general",
+   "group": "校园生活 · 手续与安排",
+   "example": {
+    "ja": "奨学金の申請書類は、今月末までに学生課に提出しなければならない。",
+    "zh": "奖学金申请材料必须在本月底前交到学生科。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/824cfc9b33425216d9427095.m4a",
+    "example": "/assets/pronunciation/bff3c4d91f34eab242c421fc.m4a"
+   }
+  },
+  {
+   "id": "v24",
+   "word": "締め切り",
+   "reading": "しめきり",
+   "meaningZh": "名词。报名、交件、受理等的最后期限，过了就不再接受；常说“赶上”或“错过”这个期限。",
+   "category": "general",
+   "group": "校园生活 · 手续与安排",
+   "example": {
+    "ja": "レポートの締め切りは金曜日の午後五時なので、早めに準備を始めた。",
+    "zh": "报告的截止时间是周五下午五点，所以我早早开始了准备。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7bb3c7b6b69430c516dd004c.m4a",
+    "example": "/assets/pronunciation/66a9dafcc709c6a2bdd2f172.m4a"
+   }
+  },
+  {
+   "id": "v25",
+   "word": "ただし",
+   "reading": "ただし",
+   "meaningZh": "接续词。前面先给出总体说法，后面补充条件、例外或限制，“但是（需注意）、不过”。读解中它后面的内容常是选项的关键。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "図書館の本は二週間借りられる。ただし、辞書は館内でしか利用できない。",
+    "zh": "图书馆的书可以借两周。不过，词典只能在馆内使用。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bd442657c2986c5c09f404be.m4a",
+    "example": "/assets/pronunciation/fd3764847e1dbdd361e8769d.m4a"
+   }
+  },
+  {
+   "id": "v26",
+   "word": "結局",
+   "reading": "けっきょく",
+   "meaningZh": "副词・名词。经过一番考虑、变化或努力之后，最后落到的结果，“到头来、最终”；常带有“和预想不太一样”的语感。",
+   "trapZh": "中文“结局”是名词“故事的结尾”；日语「結局」主要作副词，意思是“最终、终究”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "いろいろな方法を試したが、結局、最初の方法が一番効率的だった。",
+    "zh": "试了很多种方法，结果还是最初的方法效率最高。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/eb1dc1a79b72b912a10a3f7e.m4a",
+    "example": "/assets/pronunciation/14900497857b45f14fa762f4.m4a"
+   }
+  },
+  {
+   "id": "v27",
+   "word": "従来",
+   "reading": "じゅうらい",
+   "meaningZh": "名词・副词。从以前一直到现在为止的做法或情况，“以往、迄今”；常加「の」修饰名词，多用于与新方法对比。",
+   "trapZh": "简体写作“从来”，但不是中文“从来（不）”的用法；日语「従来」=以往的、迄今为止的，不接否定表示“从来没有”。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "新しい電池は、従来のものに比べて充電にかかる時間が半分になった。",
+    "zh": "新电池与以往的相比，充电所需时间减少了一半。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/edf23037d98b6f362dde6534.m4a",
+    "example": "/assets/pronunciation/cd4bf10139d0ca277bca4e0a.m4a"
+   }
+  },
+  {
+   "id": "v28",
+   "word": "効率",
+   "reading": "こうりつ",
+   "meaningZh": "名词。投入的时间、劳力或能量与得到的成果之比，越高越好；物理中也指热机把吸收的热转化为功的比例。",
+   "category": "general",
+   "group": "学术词汇 · 动作与变化",
+   "example": {
+    "ja": "この勉強法なら、短い時間で効率よく単語を覚えられる。",
+    "zh": "用这种学习方法，可以在短时间内高效地记住单词。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/37c9ffc9c3770474b196696b.m4a",
+    "example": "/assets/pronunciation/293ce5e818950c22f6df7590.m4a"
+   }
+  },
+  {
+   "id": "v29",
+   "word": "割合",
+   "reading": "わりあい",
+   "meaningZh": "名词。某部分相对于整体的比例，或两个量之间的比率，读图表题极常见；作副词时意为“比较地、相对地”。",
+   "category": "general",
+   "group": "学术词汇 · 比较与比例",
+   "example": {
+    "ja": "グラフを見ると、自転車で通学する学生の割合が年々減っている。",
+    "zh": "从图表上看，骑自行车上学的学生比例逐年减少。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/831c538e99bfa8914f1e226f.m4a",
+    "example": "/assets/pronunciation/30d802a2d07d61cccbc367ae.m4a"
+   }
+  },
+  {
+   "id": "v30",
+   "word": "課題",
+   "reading": "かだい",
+   "meaningZh": "名词。①有待解决或研究的问题（今后的难题）；②老师布置的作业、任务。",
+   "trapZh": "不只是中文“研究课题”；日语中更常指“有待解决的问题”和“布置的作业”。",
+   "category": "general",
+   "group": "学术词汇 · 社会与经济",
+   "example": {
+    "ja": "高齢化が進む中で、医療費の増加は大きな課題となっている。",
+    "zh": "在老龄化不断加剧的情况下，医疗费用的增长成了一大难题。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ee3f026617611f3cc0b8cee3.m4a",
+    "example": "/assets/pronunciation/b879e3ffb0e7dfc34926ebfa.m4a"
+   }
+  },
+  {
+   "id": "vx001",
+   "word": "したがって",
+   "reading": "したがって",
+   "meaningZh": "接续词（书面）。承接前面的理由或前提，引出由此得到的结果或结论，“因此、所以”。",
+   "trapZh": "「〜に従って」（随着；按照）是动词用法，与句首表示“因此”的接续词不同，要看位置区分。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "気温が下がった。したがって、水の蒸発も遅くなった。",
+    "zh": "气温下降了。因此，水的蒸发也变慢了。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b3549bc8921d2d101a6c156e.m4a",
+    "example": "/assets/pronunciation/dd1ccb344034fbcf43429375.m4a"
+   }
+  },
+  {
+   "id": "vx002",
+   "word": "すなわち",
+   "reading": "すなわち",
+   "meaningZh": "接续词（书面）。把前面的内容换一种说法，或指明它具体是什么，“也就是说、即”；后面常是笔者的定义或要点。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "この装置は光を電気に変える。すなわち、光エネルギーを利用する装置である。",
+    "zh": "这种装置把光转变为电，也就是说，它是利用光能的装置。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/34d9aff914939c18ef20f363.m4a",
+    "example": "/assets/pronunciation/b606f8ce5a6593a89db07ff2.m4a"
+   }
+  },
+  {
+   "id": "vx003",
+   "word": "要するに",
+   "reading": "ようするに",
+   "meaningZh": "副词・接续词。把前面较长的说明归结为最主要的一点，“总之、简而言之”；它后面的句子常是段落主旨。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "要するに、費用だけでなく使いやすさも重要なのだ。",
+    "zh": "总之，不光是费用，好不好用也很重要。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/13fc8d68895d590a0d88ef59.m4a",
+    "example": "/assets/pronunciation/9bf72727aa0515f3ab87a5bc.m4a"
+   }
+  },
+  {
+   "id": "vx004",
+   "word": "なぜなら",
+   "reading": "なぜなら",
+   "meaningZh": "接续词。放在理由之前，解释前一句判断成立的原因，“因为”；后面常与「〜からだ」「〜ためである」呼应。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "今は結論を出せない。なぜなら、資料が不足しているからだ。",
+    "zh": "现在还不能下结论，因为资料不足。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ec41166f04f155dad0cf0f97.m4a",
+    "example": "/assets/pronunciation/af51c98e2a91812ea0ba4de6.m4a"
+   }
+  },
+  {
+   "id": "vx005",
+   "word": "もっとも",
+   "reading": "もっとも",
+   "meaningZh": "接续词。先承认前面的说法，再补充一个限制或例外，“不过、话虽如此”。",
+   "trapZh": "同音的「最も」是“最”，「もっともだ」是“合情合理”；放在句首并加逗号时才是“不过”。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "この方法は便利だ。もっとも、すべての場合に使えるわけではない。",
+    "zh": "这个方法很方便。不过，并不是所有情况都能用。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/607f35e5a76d7c98aad9d3d9.m4a",
+    "example": "/assets/pronunciation/bb854bbfc6c9bb2443b6e594.m4a"
+   }
+  },
+  {
+   "id": "vx006",
+   "word": "なお",
+   "reading": "なお",
+   "meaningZh": "接续词。主要内容说完后，再附加补充事项或注意点，“另外、此外”（通知、说明文常见）；作副词时表示“仍然；更加”。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "実験は午後に行います。なお、白衣は各自で用意してください。",
+    "zh": "实验在下午进行。另外，白大褂请各自准备。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8cbfa601728971794b5c6740.m4a",
+    "example": "/assets/pronunciation/7fdbb313702a64f70794ca34.m4a"
+   }
+  },
+  {
+   "id": "vx007",
+   "word": "ちなみに",
+   "reading": "ちなみに",
+   "meaningZh": "接续词。顺着当前话题附带补充一条相关的小信息，“顺便一提”；后面的内容通常不是主旨。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "この大学は海に近い。ちなみに、駅からはバスで10分ほどだ。",
+    "zh": "这所大学离海很近。顺便一提，从车站坐公交车大约10分钟。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1ede03fe25ac8f575a7e6a2e.m4a",
+    "example": "/assets/pronunciation/cda746199254076a81229224.m4a"
+   }
+  },
+  {
+   "id": "vx008",
+   "word": "それにもかかわらず",
+   "reading": "それにもかかわらず",
+   "meaningZh": "接续词。前面的情况本应带来某种结果，实际却出现了相反的结果，“尽管如此、虽然这样却”。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "十分に練習した。それにもかかわらず、本番では失敗した。",
+    "zh": "已经充分练习过了。尽管如此，正式上场时还是失败了。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3c989c8e900a3ebc9cb6cf17.m4a",
+    "example": "/assets/pronunciation/ac99ac50b6f03fbb40c1990b.m4a"
+   }
+  },
+  {
+   "id": "vx009",
+   "word": "それどころか",
+   "reading": "それどころか",
+   "meaningZh": "接续词。否定前面的预期或说法，并指出程度更甚或方向完全相反的情况，“非但没有…反而、岂止如此”。",
+   "category": "reading",
+   "group": "读解 · 接续词",
+   "example": {
+    "ja": "雨はやまなかった。それどころか、風まで強くなった。",
+    "zh": "雨没有停。不仅如此，连风都变大了。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/0a587f4764feab26b85149a6.m4a",
+    "example": "/assets/pronunciation/fc2f812375712b15ca32b206.m4a"
+   }
+  },
+  {
+   "id": "vx010",
+   "word": "かえって",
+   "reading": "かえって",
+   "meaningZh": "副词。实际结果与本来的目的或期待相反，“反而、反倒”，带有“事与愿违”的语感。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "説明を増やしすぎて、かえって分かりにくくなった。",
+    "zh": "说明加得太多，反而更难懂了。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4435cd30fd348857f4f4fc06.m4a",
+    "example": "/assets/pronunciation/f8cf0f2e557ee722f56a1a3e.m4a"
+   }
+  },
+  {
+   "id": "vx011",
+   "word": "たとえ",
+   "reading": "たとえ",
+   "meaningZh": "副词。与「〜ても／〜でも」呼应，表示“即使、纵然”某条件成立，后面的判断也不变。",
+   "trapZh": "写成汉字「例え」时是名词“比喻、例子”，与这里表示“即使”的副词不同。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "たとえ失敗しても、原因を調べることには意味がある。",
+    "zh": "即使失败了，调查原因也是有意义的。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/583d2e01413e7e62a4f3fdec.m4a",
+    "example": "/assets/pronunciation/6ad23b60d0849918cb2cdcca.m4a"
+   }
+  },
+  {
+   "id": "vx012",
+   "word": "仮に",
+   "reading": "かりに",
+   "meaningZh": "副词。暂且把尚未确定的情况当作前提来讨论，“假如、假设”；常与「〜としたら」「〜場合」呼应。也有“暂时、临时”之意。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "仮に参加者が半分になった場合、費用はどうなるだろうか。",
+    "zh": "假如参加人数减半，费用会怎样呢？"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/710d3b97f209382984894b3a.m4a",
+    "example": "/assets/pronunciation/6d989629f5ccb64f5d9cc68e.m4a"
+   }
+  },
+  {
+   "id": "vx013",
+   "word": "いわゆる",
+   "reading": "いわゆる",
+   "meaningZh": "连体词。引出社会上通常使用的名称或说法，“所谓的、通常所说的”；后面直接接名词。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "インターネットを使えない高齢者が不利になる、いわゆる情報格差が問題になっている。",
+    "zh": "无法使用互联网的老年人处于不利地位，即所谓的“信息鸿沟”，已成为一个问题。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9c5c9fcb8bfc0f2826c21b63.m4a",
+    "example": "/assets/pronunciation/ac7b45beb001a5d5bcce87d3.m4a"
+   }
+  },
+  {
+   "id": "vx014",
+   "word": "およそ",
+   "reading": "およそ",
+   "meaningZh": "副词・名词。表示数量是粗略估计，“大约、大概”，与「約」意思相近；与否定呼应时则表示“完全不…、根本不…”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "光は一秒間におよそ三十万キロメートル進む。",
+    "zh": "光一秒钟大约传播30万千米。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d6664afc8e816fab02ce7806.m4a",
+    "example": "/assets/pronunciation/44b1b0a0274139961050083c.m4a"
+   }
+  },
+  {
+   "id": "vx015",
+   "word": "あらかじめ",
+   "reading": "あらかじめ",
+   "meaningZh": "副词。在某件事开始之前先做好准备或处理，“预先、事先”；常与「〜ておく」连用。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "使う器具をあらかじめ机の上に並べておく。",
+    "zh": "事先把要用的器材摆在桌上。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7b66eb91bb942731adf2390a.m4a",
+    "example": "/assets/pronunciation/979e7f7f72d7c98b70911fe9.m4a"
+   }
+  },
+  {
+   "id": "vx016",
+   "word": "あえて",
+   "reading": "あえて",
+   "meaningZh": "副词。明知有困难、风险或可能招致反对，仍特意那样做，“敢于、特意”；也用于“硬要说的话”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "議論を深めるため、あえて反対の立場から考えてみる。",
+    "zh": "为了深化讨论，特意站在反对的立场上思考。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f015f456e6aea55c9e579518.m4a",
+    "example": "/assets/pronunciation/8d5f5ef1897cbb81d7afa864.m4a"
+   }
+  },
+  {
+   "id": "vx017",
+   "word": "たしかに",
+   "reading": "たしかに",
+   "meaningZh": "副词。确认某事属实，“的确、确实”；读解中常先用它让步，再用「しかし」转折，笔者真正的观点在转折之后。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "たしかにこの方法は手間がかかる。しかし、得られる結果の信頼性は高い。",
+    "zh": "这个方法确实费工夫。但是，得到的结果可信度很高。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bb21736a271b1f83dc053135.m4a",
+    "example": "/assets/pronunciation/07701c7924037392df668267.m4a"
+   }
+  },
+  {
+   "id": "vx018",
+   "word": "やがて",
+   "reading": "やがて",
+   "meaningZh": "副词。经过一段（不太短的）时间之后，某种变化自然会到来，“不久、终将”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "海に流れたプラスチックは、やがて細かく砕けて魚の体内に入る。",
+    "zh": "流入大海的塑料终将碎成细小颗粒，进入鱼的体内。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b32e78954f8f0f246e2d6520.m4a",
+    "example": "/assets/pronunciation/b0baaffd9fb252ec75935c98.m4a"
+   }
+  },
+  {
+   "id": "vx019",
+   "word": "ひとまず",
+   "reading": "ひとまず",
+   "meaningZh": "副词。先把眼前这一步处理好，其余的暂时放一放，“姑且、暂且先”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "ひとまずデータを保存し、分析は明日行う。",
+    "zh": "先把数据保存下来，分析明天再做。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/36f5401eb9ba6faa0335acb9.m4a",
+    "example": "/assets/pronunciation/4ca73f246b468117d7a4ac05.m4a"
+   }
+  },
+  {
+   "id": "vx020",
+   "word": "少なくとも",
+   "reading": "すくなくとも",
+   "meaningZh": "副词。指出能够确定的最低数量或最低限度，“起码、最低也要”；也用于退一步只确认最起码的一点。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "この薬は、少なくとも六時間の間隔をあけて飲んでください。",
+    "zh": "这种药请至少间隔六小时服用。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/858a2685a91d72ae937b5dd0.m4a",
+    "example": "/assets/pronunciation/e081091bb9807459e429864e.m4a"
+   }
+  },
+  {
+   "id": "vx021",
+   "word": "いずれ",
+   "reading": "いずれ",
+   "meaningZh": "副词・代词。①“迟早、早晚”，表示将来某时一定会发生；②“哪一个”：加「も」表示“都”，加「か」表示“其中某一个”（题目指示语常见）。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "今は使いにくい技術でも、いずれ広く利用されるかもしれない。",
+    "zh": "即使是现在还不好用的技术，迟早也可能被广泛使用。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/61507ada720116caa7d34f95.m4a",
+    "example": "/assets/pronunciation/5b2bf0927f7f83b75b5d9092.m4a"
+   }
+  },
+  {
+   "id": "vx022",
+   "word": "もっぱら",
+   "reading": "もっぱら",
+   "meaningZh": "副词。行动或用途几乎集中在某一方面，“专门、主要、一味地”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "この施設は、もっぱら留学生の日本語学習に使われている。",
+    "zh": "这个设施主要用于留学生的日语学习。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f4ae0c0a37d7f57a8efc449e.m4a",
+    "example": "/assets/pronunciation/673c8606a2e8dbecd441b101.m4a"
+   }
+  },
+  {
+   "id": "vx023",
+   "word": "わずか",
+   "reading": "わずか",
+   "meaningZh": "な形容词・副词。数量、程度或时间非常少，“仅仅、一点点”；加「に」作副词表示“稍微”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "温度をわずかに変えただけで、結果が変わった。",
+    "zh": "只是稍微改变了温度，结果就变了。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2e8076b859c5366548286bbf.m4a",
+    "example": "/assets/pronunciation/f3a52f92c0ca9b9e132ae197.m4a"
+   }
+  },
+  {
+   "id": "vx024",
+   "word": "おおむね",
+   "reading": "おおむね",
+   "meaningZh": "副词・名词（书面）。就整体而言大致如此，允许有少量例外，“大体上、大致”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "調査の結果は、おおむね予想どおりだった。",
+    "zh": "调查结果大体上和预想的一样。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/48653211e8cd06f1547d4a3c.m4a",
+    "example": "/assets/pronunciation/fb0c15b317e2cedba54960f6.m4a"
+   }
+  },
+  {
+   "id": "vx025",
+   "word": "とりわけ",
+   "reading": "とりわけ",
+   "meaningZh": "副词（书面）。在多个同类中特别突出某一个，“尤其、特别”，近于「特に」。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "多くの地域で人口が減っているが、とりわけ山間部で深刻だ。",
+    "zh": "很多地区人口都在减少，尤其是山区情况严重。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7eb322a200368ced36be1452.m4a",
+    "example": "/assets/pronunciation/bedd2a1fd4058aea83452d32.m4a"
+   }
+  },
+  {
+   "id": "vx026",
+   "word": "あくまで",
+   "reading": "あくまで",
+   "meaningZh": "副词。①强调说法只在限定范围内成立，“终归只是、不过是”；②坚持到底，“始终、彻底”。读解中多为①。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "この数字はあくまで予測であり、確定した値ではない。",
+    "zh": "这个数字终归只是预测，并非确定的值。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c213fa6c1f8513c51deee14a.m4a",
+    "example": "/assets/pronunciation/237e54d71b15a2a3f8b886cb.m4a"
+   }
+  },
+  {
+   "id": "vx027",
+   "word": "そもそも",
+   "reading": "そもそも",
+   "meaningZh": "副词・名词。回到事情的起点或根本，重新追问它原本如何，“说到底、原本”；读解中常引出笔者对前提的质疑。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "そもそも、なぜこの制度が必要になったのだろうか。",
+    "zh": "说到底，为什么需要这个制度呢？"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/5357b7d04887bffb30081081.m4a",
+    "example": "/assets/pronunciation/05413a63f9db41dda7d49108.m4a"
+   }
+  },
+  {
+   "id": "vx028",
+   "word": "まさに",
+   "reading": "まさに",
+   "meaningZh": "副词。强调事物与所说的情况完全相符，“正是、的确”；后接「〜しようとする」时表示“正要…”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "この発見は、まさに研究者が探していた証拠だった。",
+    "zh": "这一发现正是研究人员一直在寻找的证据。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a02acec5fd58f08bc591770f.m4a",
+    "example": "/assets/pronunciation/498e7acbacf864eea862a6d6.m4a"
+   }
+  },
+  {
+   "id": "vx029",
+   "word": "それぞれ",
+   "reading": "それぞれ",
+   "meaningZh": "名词・副词。就多个对象中的每一个分别而言，“各自、分别”。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "二つの方法には、それぞれ長所と短所がある。",
+    "zh": "两种方法各有优点和缺点。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/065c98128f746a490490ceaa.m4a",
+    "example": "/assets/pronunciation/a99ac39da2bcf5d0916d8a0c.m4a"
+   }
+  },
+  {
+   "id": "vx030",
+   "word": "互いに",
+   "reading": "たがいに",
+   "meaningZh": "副词。双方或多方都对对方做同样的动作，“彼此、相互”；物理中常见「互いに逆向き」（方向彼此相反）、「互いに及ぼし合う」（相互施加）。",
+   "category": "reading",
+   "group": "读解 · 副词",
+   "example": {
+    "ja": "二つの物体は、互いに同じ大きさで逆向きの力を及ぼし合う。",
+    "zh": "两个物体相互施加大小相等、方向相反的力。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/edbd2b737c28b96ee61af7a7.m4a",
+    "example": "/assets/pronunciation/6ffc20a2f97b05ce58ed7559.m4a"
+   }
+  },
+  {
+   "id": "vx031",
+   "word": "概念",
+   "reading": "がいねん",
+   "meaningZh": "名词。从一类事物中抽取共同特征而形成的一般性认识和思考框架，如“能量”“文化”这类观念。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "抽象的な概念は、具体的な例と結びつけると理解しやすい。",
+    "zh": "抽象的概念和具体的例子联系起来，就容易理解。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/b19b7d1c2f80530ee4a6c6cb.m4a",
+    "example": "/assets/pronunciation/b97d3526801bce6dbf99576a.m4a"
+   }
+  },
+  {
+   "id": "vx032",
+   "word": "定義",
+   "reading": "ていぎ",
+   "meaningZh": "名词・する动词。明确规定某个词语指什么、适用范围到哪里，即给出严格的“界定”；数学中指对术语含义的严格规定。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "この論文では、若者を十八歳から二十九歳までと定義する。",
+    "zh": "本论文将“年轻人”界定为18岁至29岁。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ed5d005407fdd27e43515f2d.m4a",
+    "example": "/assets/pronunciation/77e0fec872bf5b3c1f017b14.m4a"
+   }
+  },
+  {
+   "id": "vx033",
+   "word": "仮説",
+   "reading": "かせつ",
+   "meaningZh": "名词。为解释某种现象而暂时设想、有待实验或调查验证的说法；研究中先设想它，再设法证实或推翻。",
+   "trapZh": "数学证明中的“假设（条件）”日语说「仮定」，不是「仮説」；「仮説」专指科学研究中有待验证的解释。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "温度が反応速度に影響するという仮説を立てた。",
+    "zh": "提出了“温度会影响反应速率”的假说。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/91ebfcded1463d624be89235.m4a",
+    "example": "/assets/pronunciation/5a62732533eedcef354c06c4.m4a"
+   }
+  },
+  {
+   "id": "vx034",
+   "word": "検証",
+   "reading": "けんしょう",
+   "meaningZh": "名词・する动词。通过实验、调查或核对资料，确认某个假说或说法是否真的成立。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "この仮説が正しいかどうかを、新たな実験で検証する必要がある。",
+    "zh": "有必要通过新的实验来检验这个假说是否正确。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d6147c24350b6d9104f5e1db.m4a",
+    "example": "/assets/pronunciation/45e93c3bdeb344ff2345affe.m4a"
+   }
+  },
+  {
+   "id": "vx035",
+   "word": "推論",
+   "reading": "すいろん",
+   "meaningZh": "名词・する动词。根据已知事实或前提，按逻辑一步步推出新的判断；读解题常问“由文章能推知什么”。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "限られた資料から、当時の生活について推論した。",
+    "zh": "根据有限的资料，推断了当时的生活情况。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7e5c24f925d19693f651a9b0.m4a",
+    "example": "/assets/pronunciation/f4ae2c003e74bc9b6c51edc4.m4a"
+   }
+  },
+  {
+   "id": "vx036",
+   "word": "論証",
+   "reading": "ろんしょう",
+   "meaningZh": "名词・する动词。摆出理由和证据，有条理地说明某个主张为什么成立。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "筆者は具体的な事例を挙げて自分の主張を論証している。",
+    "zh": "笔者举出具体事例来证明自己的主张。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1bce193dd4cc5d9c17341322.m4a",
+    "example": "/assets/pronunciation/487edf04faa25a59b3aeefbf.m4a"
+   }
+  },
+  {
+   "id": "vx037",
+   "word": "前提",
+   "reading": "ぜんてい",
+   "meaningZh": "名词。推理、讨论或计划得以成立所依靠的先决条件，“出发点、预设条件”。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "すべての参加者が同じ説明を受けたことを前提とする。",
+    "zh": "以所有参加者都接受了相同的说明为前提。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8e04f1a0f16e2eb3d3d42a74.m4a",
+    "example": "/assets/pronunciation/3f52e7675da0bfdfc7d428ed.m4a"
+   }
+  },
+  {
+   "id": "vx038",
+   "word": "結論",
+   "reading": "けつろん",
+   "meaningZh": "名词。经过讨论或实验后最终得出的判断；常与“下”“得出”搭配，读解中常放在文章末尾。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "結果だけを見て、急いで結論を出してはいけない。",
+    "zh": "不能只看结果就匆忙下结论。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/8afdb1772ba06c20d89a7783.m4a",
+    "example": "/assets/pronunciation/e2daf5f459684af677df9fe1.m4a"
+   }
+  },
+  {
+   "id": "vx039",
+   "word": "要因",
+   "reading": "よういん",
+   "meaningZh": "名词。造成某个结果的主要原因之一（往往不止一个）。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "少子化には、経済的な不安など複数の要因が関係していると考えられる。",
+    "zh": "一般认为，少子化与经济上的不安等多种因素有关。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d20bfc24c491c184352cf1ca.m4a",
+    "example": "/assets/pronunciation/c8ff1974f946b2e516b554a2.m4a"
+   }
+  },
+  {
+   "id": "vx040",
+   "word": "背景",
+   "reading": "はいけい",
+   "meaningZh": "名词。①事件、现象背后的社会情况、原因和条件；②画面或舞台后方的景物。读解中多为①。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "この制度が生まれた背景には、急速な高齢化という社会の変化がある。",
+    "zh": "这一制度诞生的背后，是社会急速老龄化这一变化。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7bdd9dd08276e7b93dbcb85c.m4a",
+    "example": "/assets/pronunciation/3547a6c8bb806939f6c812a7.m4a"
+   }
+  },
+  {
+   "id": "vx041",
+   "word": "影響",
+   "reading": "えいきょう",
+   "meaningZh": "名词・する动词。一个事物作用于另一个事物，使其发生变化；常说“给予”或“受到”这种作用。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "睡眠不足が学習の成果にどのような影響を与えるかを調べた。",
+    "zh": "调查了睡眠不足会对学习效果产生怎样的影响。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/a52badbf14c8ead23ac35d79.m4a",
+    "example": "/assets/pronunciation/d1c592e35debeeed6c2f5434.m4a"
+   }
+  },
+  {
+   "id": "vx042",
+   "word": "関連",
+   "reading": "かんれん",
+   "meaningZh": "名词・する动词。事物之间存在联系、互相牵连。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "この調査では、運動習慣と成績との関連について分析した。",
+    "zh": "本调查分析了运动习惯与成绩之间的关联。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f36bc758de84b2365609243e.m4a",
+    "example": "/assets/pronunciation/30e73fea6b0bfde612921c25.m4a"
+   }
+  },
+  {
+   "id": "vx043",
+   "word": "矛盾",
+   "reading": "むじゅん",
+   "meaningZh": "名词・する动词。两种说法或事实不能同时成立，前后对不上；读解题常问哪一项与文章内容相冲突。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "筆者の前半の主張と後半の主張は、一見矛盾しているように見える。",
+    "zh": "笔者前半部分与后半部分的主张，乍一看似乎相互冲突。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2a35d8c529e965a722eee0f8.m4a",
+    "example": "/assets/pronunciation/c1166bd2ce6a9fb82127751c.m4a"
+   }
+  },
+  {
+   "id": "vx044",
+   "word": "妥当",
+   "reading": "だとう",
+   "meaningZh": "な形容词・名词。判断、方法或结论合乎道理、恰如其分，站得住脚。",
+   "trapZh": "中文“妥当”多指事情“办得稳妥、安排好了”；日语「妥当」侧重判断或方法“合理、恰当、站得住”。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "この条件での比較が妥当かどうかを検討する。",
+    "zh": "探讨在这种条件下进行比较是否合理。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/6bd49b96e4baab9d81884ad0.m4a",
+    "example": "/assets/pronunciation/04d54502790c48b152bf4ac7.m4a"
+   }
+  },
+  {
+   "id": "vx045",
+   "word": "客観的",
+   "reading": "きゃっかんてき",
+   "altReadings": [
+    "かっかんてき"
+   ],
+   "meaningZh": "な形容词。不掺入个人感情和成见，以事实或数据为依据来看待事物。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "印象ではなく、客観的な資料に基づいて判断する。",
+    "zh": "不凭印象，而是依据客观的资料来判断。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/480900aec0d2960dc2e12b38.m4a",
+    "example": "/assets/pronunciation/40e1df0a3b7abb5fe98574c2.m4a"
+   }
+  },
+  {
+   "id": "vx046",
+   "word": "主観的",
+   "reading": "しゅかんてき",
+   "meaningZh": "な形容词。以个人的感受、立场或看法为依据，因人而异。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "「おいしい」という評価には主観的な面がある。",
+    "zh": "“好吃”这一评价带有个人感受的成分。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/47a7aa7a967ebb0da4669982.m4a",
+    "example": "/assets/pronunciation/1248bd81a260df5c61bcc023.m4a"
+   }
+  },
+  {
+   "id": "vx047",
+   "word": "抽象的",
+   "reading": "ちゅうしょうてき",
+   "meaningZh": "な形容词。脱离个别、实际的事物，只从一般道理上讲，让人难以想象出实际情形。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "説明が抽象的なので、例を一つ示してほしい。",
+    "zh": "说明太抽象了，希望能举一个例子。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e0223c79ef344e7d4e46d2f6.m4a",
+    "example": "/assets/pronunciation/5b5ef073c8c9ca26b13e1de0.m4a"
+   }
+  },
+  {
+   "id": "vx048",
+   "word": "具体的",
+   "reading": "ぐたいてき",
+   "meaningZh": "な形容词。落实到实际的事物、数字或步骤上，清楚可感、容易想象。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "計画を実行するための具体的な手順を示す。",
+    "zh": "列出实施计划的具体步骤。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/3c45990c3b330159cadbdd2a.m4a",
+    "example": "/assets/pronunciation/2d8bcaf3d2cd76b3bd1b1ec7.m4a"
+   }
+  },
+  {
+   "id": "vx049",
+   "word": "普遍的",
+   "reading": "ふへんてき",
+   "meaningZh": "な形容词。不受时间、地点或个体差异限制，广泛适用于所有情况。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "親が子を守ろうとするのは、多くの動物に見られる普遍的な行動である。",
+    "zh": "父母保护子女，是许多动物身上都能见到的普遍行为。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/395b60d126af2bbfda68e77e.m4a",
+    "example": "/assets/pronunciation/72157032b46f1ddf5c46ebca.m4a"
+   }
+  },
+  {
+   "id": "vx050",
+   "word": "相対的",
+   "reading": "そうたいてき",
+   "meaningZh": "な形容词。不是单独决定的，而是要与别的对象对照才能确定；物理中描述“从另一个物体上看到的”速度等。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "豊かさは比較する相手によって変わる相対的な概念でもある。",
+    "zh": "富裕也是一个随比较对象而变化的相对概念。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c14b929eb44c4b8b06a6f8c3.m4a",
+    "example": "/assets/pronunciation/d1f168ebdc03442846d892ec.m4a"
+   }
+  },
+  {
+   "id": "vx051",
+   "word": "本質",
+   "reading": "ほんしつ",
+   "meaningZh": "名词。事物之所以成为该事物的最根本的性质，区别于表面现象。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "表面的な違いよりも、問題の本質を見る必要がある。",
+    "zh": "比起表面上的差异，更需要看清问题的实质。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/d88beabc1bf72f5664eb7ee6.m4a",
+    "example": "/assets/pronunciation/1de593706d0d31162bdc8aec.m4a"
+   }
+  },
+  {
+   "id": "vx052",
+   "word": "観点",
+   "reading": "かんてん",
+   "meaningZh": "名词。观察、评价或讨论事物时所站的角度和立场；常说“从…的角度看”。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "環境保護の観点から見ると、この計画にはいくつかの問題がある。",
+    "zh": "从环境保护的角度来看，这个计划存在一些问题。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f2e6ce9cb342aed733269352.m4a",
+    "example": "/assets/pronunciation/d0221991c6fc7726eacab9a0.m4a"
+   }
+  },
+  {
+   "id": "vx053",
+   "word": "側面",
+   "reading": "そくめん",
+   "meaningZh": "名词。①事物所具有的多个方面中的某一面；②立体图形中底面以外、围在四周的面（圆柱、棱柱的侧面积说「側面積」）。读解中多为①。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "この技術には便利な側面と危険な側面がある。",
+    "zh": "这项技术既有方便的一面，也有危险的一面。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1b10fb85d066156da5183798.m4a",
+    "example": "/assets/pronunciation/334b5d5ecdfe50d682d34ef6.m4a"
+   }
+  },
+  {
+   "id": "vx054",
+   "word": "体系",
+   "reading": "たいけい",
+   "meaningZh": "名词。许多知识、理论或制度按一定原理组织起来、彼此关联的整体；加「的」构成な形容词“系统的”，「体系的に」意为“系统地”。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "断片的な知識を体系的に整理すると、忘れにくくなる。",
+    "zh": "把零碎的知识系统地整理起来，就不容易忘记。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c5f93ee54813f2fb289bbd9e.m4a",
+    "example": "/assets/pronunciation/1201c413c94899de820e2c4e.m4a"
+   }
+  },
+  {
+   "id": "vx055",
+   "word": "解釈",
+   "reading": "かいしゃく",
+   "meaningZh": "名词・する动词。对文章、数据或行为的意思作出理解和说明；同一内容可以有不同的理解。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "同じ文章でも、読み手によって解釈が異なる。",
+    "zh": "即使是同一篇文章，不同的读者也会有不同的理解。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/75ce69dab4873f653564833f.m4a",
+    "example": "/assets/pronunciation/9e7342a5695467b441cbc962.m4a"
+   }
+  },
+  {
+   "id": "vx056",
+   "word": "把握",
+   "reading": "はあく",
+   "meaningZh": "名词・する动词。准确地弄清楚、掌握情况或内容的全貌，宾语多为现状、全貌、要点。",
+   "trapZh": "中文“有把握”是“有信心”，日语没有这个意思（那是「自信がある」）；「把握する」只表示弄清、掌握情况。",
+   "category": "general",
+   "group": "学术词汇 · 视角与性质",
+   "example": {
+    "ja": "問題を解く前に、グラフ全体の傾向を正しく把握しておくことが大切だ。",
+    "zh": "解题之前，先准确掌握图表整体的趋势很重要。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/7961ae734f5b05f7f74353d0.m4a",
+    "example": "/assets/pronunciation/7ced6694a2df6e7f984d4a28.m4a"
+   }
+  },
+  {
+   "id": "vx057",
+   "word": "考察",
+   "reading": "こうさつ",
+   "meaningZh": "名词・する动词。根据资料和结果深入思考，探究原因、意义或相互关系；实验报告中对应“结果讨论”部分。",
+   "trapZh": "中文“考察”多指实地参观调查；日语「考察」是动脑思考分析，不需要去现场。",
+   "category": "general",
+   "group": "学术词汇 · 论证",
+   "example": {
+    "ja": "実験レポートの考察では、予想と結果が異なった理由を説明する。",
+    "zh": "在实验报告的讨论部分，要说明预想与结果不同的原因。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/69fedcf04f7cd5724636f794.m4a",
+    "example": "/assets/pronunciation/a08a43a79ae6570824a260ef.m4a"
+   }
+  },
+  {
+   "id": "vx058",
+   "word": "分析",
+   "reading": "ぶんせき",
+   "meaningZh": "名词・する动词。把对象拆成要素、类别或环节，研究其构成、特点与原因；化学中也指测定物质含有哪些成分。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "アンケートの結果を分析すると、年代によって意見が大きく異なることが分かった。",
+    "zh": "分析问卷结果后发现，意见因年龄段不同而差异很大。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/307dbb209c6a2c21801426dd.m4a",
+    "example": "/assets/pronunciation/b1c2c0018d38c0ac8e6d41f1.m4a"
+   }
+  },
+  {
+   "id": "vx059",
+   "word": "比較",
+   "reading": "ひかく",
+   "meaningZh": "名词・する动词。把两个或多个对象放在一起，找出相同点和不同点；加「的」作副词表示“较为、相对地”。",
+   "category": "general",
+   "group": "学术词汇 · 比较与比例",
+   "example": {
+    "ja": "昨年と比較すると、今年の留学生の数は1.2倍に増えた。",
+    "zh": "和去年相比，今年的留学生人数增加到了1.2倍。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/4bdaa75e2486cab1c772d419.m4a",
+    "example": "/assets/pronunciation/fb162972ed0e86d5576732e9.m4a"
+   }
+  },
+  {
+   "id": "vx060",
+   "word": "分類",
+   "reading": "ぶんるい",
+   "meaningZh": "名词・する动词。按照一定标准，把许多事物划分成若干组别。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "生物は、細胞の構造の違いによっていくつかのグループに分類される。",
+    "zh": "生物根据细胞结构的差异被划分为若干类群。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/c7941b581344345361758b49.m4a",
+    "example": "/assets/pronunciation/b274771fd522734289b76532.m4a"
+   }
+  },
+  {
+   "id": "vx061",
+   "word": "調査",
+   "reading": "ちょうさ",
+   "meaningZh": "名词・する动词。为了弄清事实或情况而系统地收集、整理资料，如问卷、实地走访等。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "大学生千人を対象に、一日の読書時間について調査を行った。",
+    "zh": "以1000名大学生为对象，就每天的读书时间进行了调查。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e28f0badb5da70a12c1e67bf.m4a",
+    "example": "/assets/pronunciation/e6280ae66d9978bfaa53099a.m4a"
+   }
+  },
+  {
+   "id": "vx062",
+   "word": "標本",
+   "reading": "ひょうほん",
+   "meaningZh": "名词。统计中从总体里抽取出来、实际进行调查的那一部分对象（样本）；生物学中则指保存起来供研究的动植物实物。",
+   "trapZh": "统计题里「標本」是“样本”，不是中文的“标本”；「標本調査」=抽样调查，「標本平均」=样本均值。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 统计",
+   "example": {
+    "ja": "全国の高校生から無作為に選んだ五百人を標本として調査した。",
+    "zh": "从全国高中生中随机选出500人作为样本进行了调查。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/9fbcf26ed7181909a5076d8e.m4a",
+    "example": "/assets/pronunciation/9e8ddd0a279c087574fd6a0e.m4a"
+   }
+  },
+  {
+   "id": "vx063",
+   "word": "母集団",
+   "reading": "ぼしゅうだん",
+   "meaningZh": "名词。统计中研究所针对的全部对象（总体）；实际调查的往往只是从中选取的一部分。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 统计",
+   "example": {
+    "ja": "標本の結果から、母集団全体の傾向を推測する。",
+    "zh": "根据样本的结果，推测总体的整体趋势。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1b68a1e2c1aafeffcf07b7b6.m4a",
+    "example": "/assets/pronunciation/867ba0ce96633cddb802a2ea.m4a"
+   }
+  },
+  {
+   "id": "vx064",
+   "word": "抽出",
+   "reading": "ちゅうしゅつ",
+   "meaningZh": "名词・する动词。从整体中按目的选出或取出一部分（从名单中抽样、从数据中提取）；化学中指用溶剂把某种成分分离出来（萃取）。",
+   "trapZh": "「無作為抽出」=随机抽样；化学实验里的「抽出」是“萃取”，不是日常的“抽出来”。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "名簿から百人を無作為に抽出し、アンケートを送った。",
+    "zh": "从名单中随机抽取了100人，寄送了问卷。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/fea1e872a9e656368ad59bf4.m4a",
+    "example": "/assets/pronunciation/6ec225e4cf89e644e43f6808.m4a"
+   }
+  },
+  {
+   "id": "vx065",
+   "word": "測定",
+   "reading": "そくてい",
+   "meaningZh": "名词・する动词。用仪器测出长度、质量、温度、电流等量的数值。",
+   "category": "science",
+   "subject": "physics",
+   "group": "物理用语 · 实验与测量",
+   "example": {
+    "ja": "おもりの数を変えながら、ばねの伸びを測定した。",
+    "zh": "一边改变砝码的数量，一边测量弹簧的伸长量。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/2438467d2d8bdae5a6a8b9e7.m4a",
+    "example": "/assets/pronunciation/77bb6423c3c12c5f564eab16.m4a"
+   }
+  },
+  {
+   "id": "vx066",
+   "word": "観測",
+   "reading": "かんそく",
+   "meaningZh": "名词・する动词。对天体、气象等自然现象进行观察并测量、记录；物理多普勒效应中，后加「者」指听到声音的一方。",
+   "category": "science",
+   "subject": "physics",
+   "group": "物理用语 · 实验与测量",
+   "example": {
+    "ja": "音源が近づくとき、観測者が聞く音は元の音より高くなる。",
+    "zh": "声源靠近时，观察者听到的声音比原来的音调高。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/cd9e3ae131a337632c09b5c7.m4a",
+    "example": "/assets/pronunciation/24c01fe9f8718abe4fdd4d71.m4a"
+   }
+  },
+  {
+   "id": "vx067",
+   "word": "実証",
+   "reading": "じっしょう",
+   "meaningZh": "名词・する动词。用实际的事实、实验或数据来证明某种说法确实成立。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "新しい方法の効果を実証するには、さらに多くのデータが必要だ。",
+    "zh": "要证实新方法的效果，还需要更多的数据。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/20e84f5ef9d5a0c01ef91d51.m4a",
+    "example": "/assets/pronunciation/52d136880fb2c8aec1bb0b9d.m4a"
+   }
+  },
+  {
+   "id": "vx068",
+   "word": "再現性",
+   "reading": "さいげんせい",
+   "meaningZh": "名词。在相同条件下重做实验或调查时，能否再次得到同样结果的性质（可重复性）；这一性质高的结果才可信。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "別の研究室でも実験の再現性が確認された。",
+    "zh": "在别的研究室，也确认了该实验可以重复得到相同结果。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/21dd5e71cb5dd099ec79724a.m4a",
+    "example": "/assets/pronunciation/db11a6672205ff509ac8f994.m4a"
+   }
+  },
+  {
+   "id": "vx069",
+   "word": "誤差",
+   "reading": "ごさ",
+   "meaningZh": "名词。测量值或近似值与真实值之间的差；测量时无法完全避免，可通过多次测量取平均来减小。",
+   "category": "science",
+   "subject": "physics",
+   "group": "物理用语 · 实验与测量",
+   "example": {
+    "ja": "測定には誤差があるので、同じ実験を何回か行って平均をとる。",
+    "zh": "测量存在误差，所以要把同一实验做几次再取平均值。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/07528057bd04a58bf517f25a.m4a",
+    "example": "/assets/pronunciation/20364856ac1c7b4476d09913.m4a"
+   }
+  },
+  {
+   "id": "vx070",
+   "word": "偏り",
+   "reading": "かたより",
+   "meaningZh": "名词。分布或选择不均匀，过多地集中在某一方面；常用于数据、样本、饮食、观点等。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "回答者の年齢に偏りがあるため、全体の意見とは言い切れない。",
+    "zh": "由于回答者的年龄分布不均，不能断言这就是全体的意见。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/bb9da6ef06e3e37eb16255a2.m4a",
+    "example": "/assets/pronunciation/9a35786e47795667c173545e.m4a"
+   }
+  },
+  {
+   "id": "vx071",
+   "word": "平均値",
+   "reading": "へいきんち",
+   "meaningZh": "名词。把所有数据加起来再除以数据个数得到的代表值；容易受极端值影响。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 统计",
+   "example": {
+    "ja": "五回の測定値の平均値を求め、その値を実験結果とする。",
+    "zh": "求出五次测量值的平均值，把它作为实验结果。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/27b33a51cf40d171a3b86841.m4a",
+    "example": "/assets/pronunciation/b74813dae6d6c72538f82dec.m4a"
+   }
+  },
+  {
+   "id": "vx072",
+   "word": "中央値",
+   "reading": "ちゅうおうち",
+   "meaningZh": "名词。把数据从小到大排列后位于正中间的值（中位数）；数据个数为偶数时取中间两个数的平均。不易受极端值影响。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 统计",
+   "example": {
+    "ja": "極端に大きな値があるので、中央値も確認する。",
+    "zh": "由于存在极端大的值，也要确认一下中位数。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/422ce3f3fd583ba7bbe77390.m4a",
+    "example": "/assets/pronunciation/e4c55dc72e4751c425f99159.m4a"
+   }
+  },
+  {
+   "id": "vx073",
+   "word": "分散",
+   "reading": "ぶんさん",
+   "meaningZh": "名词・する动词。统计中指各数据与平均值之差的平方的平均（方差），表示数据的离散程度，其正的平方根是标准差；一般用法是“分开、散开”。",
+   "trapZh": "统计题里「分散」是“方差”，不是中文“分散”的意思；光学中「光の分散」是“色散”。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 统计",
+   "example": {
+    "ja": "平均値が同じでも、分散が大きい集団では値のばらつきが大きい。",
+    "zh": "即使平均值相同，方差大的群体中数值也更分散。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/dd82d9f01e3089b75ae6c9b2.m4a",
+    "example": "/assets/pronunciation/b0b347e76cc50007d7728bc3.m4a"
+   }
+  },
+  {
+   "id": "vx074",
+   "word": "相関",
+   "reading": "そうかん",
+   "meaningZh": "名词。两个变量之间一方变化时另一方也倾向于随之变化的关系，分为正、负两种，强弱用系数表示。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 统计",
+   "example": {
+    "ja": "勉強時間とテストの点数の間には、正の相関が見られた。",
+    "zh": "学习时间与考试分数之间呈现正相关。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/f147892770c374673c9a88a1.m4a",
+    "example": "/assets/pronunciation/909ec909ec6e8c166924e8ff.m4a"
+   }
+  },
+  {
+   "id": "vx075",
+   "word": "因果関係",
+   "reading": "いんがかんけい",
+   "meaningZh": "名词。一件事是另一件事发生的原因，二者是“起因与后果”的关系；读解、听读解常考“两者一起变化≠一方导致另一方”。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "相関があっても、因果関係があるとは限らない。",
+    "zh": "即使存在相关，也未必有因果关系。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/ee5ff38f2757c38fcf144154.m4a",
+    "example": "/assets/pronunciation/529df218f99278c44f99d274.m4a"
+   }
+  },
+  {
+   "id": "vx076",
+   "word": "有意",
+   "reading": "ゆうい",
+   "meaningZh": "名词・な形容词。统计中指差异或关系超出偶然误差的范围，在检验中被判定为显著；它不等于“作用很大”。",
+   "trapZh": "中文“有意”是“故意、有心”；统计中的「有意」是“显著”；“有意义”日语说「有意義」。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "二つの集団の平均値には統計的に有意な差が見られた。",
+    "zh": "两个群体的平均值之间出现了统计学上的显著差异。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e3358608da698af642e7db95.m4a",
+    "example": "/assets/pronunciation/ef3602d0718ffc779706a734.m4a"
+   }
+  },
+  {
+   "id": "vx077",
+   "word": "信頼性",
+   "reading": "しんらいせい",
+   "meaningZh": "名词。资料、数据或结果在多大程度上值得相信、可以依靠。",
+   "category": "general",
+   "group": "学术词汇 · 调查与数据",
+   "example": {
+    "ja": "出典を確認して、情報の信頼性を判断する。",
+    "zh": "确认出处，判断信息是否可靠。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/e3f568c48157113775366b97.m4a",
+    "example": "/assets/pronunciation/5e10ca7d4d2e3bf009a3e81f.m4a"
+   }
+  },
+  {
+   "id": "vx078",
+   "word": "変数",
+   "reading": "へんすう",
+   "meaningZh": "名词。可以取各种不同值的量，通常用 x、t 等字母表示（中文说“变量”）；前加「媒介」即“参数”，前加「独立」即“自变量”。",
+   "trapZh": "中文“变数”常指“不确定因素”，日语「変数」没有这层意思，只是数学、编程中的“变量”。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 式与函数",
+   "example": {
+    "ja": "二つの変数の関係を式で表すと、グラフをかいて調べやすくなる。",
+    "zh": "把两个变量之间的关系用式子表示出来，就便于画图研究。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/59db127884348e24c1bbf779.m4a",
+    "example": "/assets/pronunciation/628aa1a7ce8a38d1ae3ad04f.m4a"
+   }
+  },
+  {
+   "id": "vx079",
+   "word": "定数",
+   "reading": "ていすう",
+   "meaningZh": "名词。在所讨论的条件下取固定值、不随其他量变化的数（常数），如式中的常数项、比例系数、弹簧的劲度系数。",
+   "trapZh": "数学、物理中对应中文“常数”；中文“定数”是“定额、命数”，意思不同。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 式与函数",
+   "example": {
+    "ja": "温度を一定に保ち、この値を定数とみなす。",
+    "zh": "保持温度不变，把这个值视为常数。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/1fbf3691edede2dd8ee9caa8.m4a",
+    "example": "/assets/pronunciation/5a938a1059decac33726b9ba.m4a"
+   }
+  },
+  {
+   "id": "vx080",
+   "word": "範囲",
+   "reading": "はんい",
+   "meaningZh": "名词。事物所涉及或允许的界限、区域；数学中指变量或函数可取值的区间，是 EJU 数学最常见的设问之一。",
+   "category": "math",
+   "subject": "math",
+   "group": "数学用语 · 式与函数",
+   "example": {
+    "ja": "定義域が決まると、関数のとりうる値の範囲も決まる。",
+    "zh": "定义域一旦确定，函数能取到的值的范围也就确定了。"
+   },
+   "audio": {
+    "word": "/assets/pronunciation/92c837a265f10910be56c8fc.m4a",
+    "example": "/assets/pronunciation/d92b12358947cac300a597d4.m4a"
+   }
+  }
+ ]
+}

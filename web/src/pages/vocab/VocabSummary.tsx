@@ -1,5 +1,5 @@
 // End of a run: accuracy per skill, the words to watch, and one-tap "再来 20 个".
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import type { VocabSkill } from '@shared/types.ts';
 import { useApp } from '../../lib/store.ts';
 import { cx, fmtDuration, pct } from '../../lib/format.ts';
@@ -9,12 +9,14 @@ import { buildQueue, extraQueue, orderCards, setRun, SKILL_LABEL, useRun } from 
 import { startRun } from './VocabSession.tsx';
 
 export const MORE_COUNT = 20;
+const WATCH_PREVIEW = 12;
 
 export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {
   const run = useRun();
   const bank = useApp((s) => s.bank);
   const state = useApp((s) => s.state);
   const today = useApp((s) => s.today);
+  const [showAll, setShowAll] = useState(false);
 
   const stats = useMemo(() => {
     const per: Record<VocabSkill, { n: number; ok: number }> = { read: { n: 0, ok: 0 }, meaning: { n: 0, ok: 0 } };
@@ -60,7 +62,7 @@ export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {
           <div className="vc-summary-head">
             <h2>{headline}</h2>
             <p className="muted">
-              {stats.n} 张卡片 · 用时 {fmtDuration(Math.max(60, run.seconds))}
+              {run.title} · {stats.n} 张卡片 · 用时 {fmtDuration(Math.max(60, run.seconds))}
               {stats.fixed > 0 && ` · 重练答对 ${stats.fixed} 个`}
             </p>
             {run.closedBlock && (
@@ -118,7 +120,7 @@ export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {
           </div>
         ) : (
           <div className="vc-watch-list">
-            {stats.watch.map(([id, skills]) => {
+            {(showAll ? stats.watch : stats.watch.slice(0, WATCH_PREVIEW)).map(([id, skills]) => {
               const v = bank.vocabById.get(id);
               if (!v) return null;
               return (
@@ -140,6 +142,13 @@ export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {
                 </button>
               );
             })}
+            {!showAll && stats.watch.length > WATCH_PREVIEW && (
+              <div className="vc-list-more">
+                <Button variant="ghost" size="sm" icon="down" onClick={() => setShowAll(true)}>
+                  显示全部 {stats.watch.length} 个
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </div>

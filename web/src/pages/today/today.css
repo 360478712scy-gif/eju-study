@@ -125,10 +125,24 @@
   color: var(--text); font-size: var(--fs-sm); font-weight: 620; cursor: pointer; text-align: left;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.td-extra-btn:hover { border-color: var(--tone); background: var(--tone-soft); transform: translateY(-1px); }
+.td-extra-btn:hover:not(:disabled) { border-color: var(--tone); background: var(--tone-soft); transform: translateY(-1px); }
+.td-extra-btn:disabled { cursor: not-allowed; opacity: 0.55; background: var(--bg-sunken); }
+.td-extra-name { line-height: 1.2; }
+.td-extra-sub { margin-top: -6px; color: var(--text-3); font-size: var(--fs-xs); font-weight: 560; }
+.td-extra-none { display: flex; gap: 8px; flex-wrap: wrap; }
 .td-extra-icon { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--tone-soft); color: var(--tone-text); }
-.td-extra-btn:hover .td-extra-icon { background: var(--tone); color: #fff; }
+.td-extra-btn:hover:not(:disabled) .td-extra-icon { background: var(--tone); color: #fff; }
+.td-extra-btn:disabled .td-extra-icon { background: var(--bg-hover); color: var(--text-3); }
 .td-extra-plus { position: absolute; right: 10px; top: 12px; color: var(--text-3); }
+
+.td-stale {
+  display: flex; align-items: center; gap: 10px; margin-top: -8px;
+  padding: 8px 8px 8px 16px; border-radius: var(--radius);
+  background: var(--bg-elev); border: 1px dashed var(--border-strong);
+  color: var(--text-2); font-size: var(--fs-sm);
+}
+.td-stale > svg { color: var(--text-3); flex: none; }
+.td-stale-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* Plan list */
 .td-plan-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 12px 22px; border-bottom: 1px solid var(--border); }
@@ -197,7 +211,7 @@
 .td-mini.is-hot svg { color: var(--warning); }
 
 /* Score card */
-.td-score { padding: 18px 20px; }
+.td-score { padding: 18px 20px; display: flex; flex-direction: column; }
 .td-score-total { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .td-score-num { font-size: 34px; font-weight: 760; line-height: 1.05; letter-spacing: -0.03em; }
 .td-score-of { color: var(--text-3); font-size: var(--fs-md); font-weight: 600; margin-right: 6px; }
@@ -245,11 +259,15 @@ a.td-mock:hover { border-color: var(--primary-soft-2); box-shadow: var(--shadow)
 @media (max-width: 1180px) {
   .td-layout { grid-template-columns: minmax(0, 1fr); }
   .td-main, .td-aside { display: contents; }
-  .td-main > .td-hero, .td-main > .td-hero-done { order: 1; }
+  .td-main > .td-hero, .td-main > .td-hero-done, .td-main > .td-stale { order: 1; }
   .td-progress { order: 2; }
   .td-plan { order: 3; }
-  .td-aside-rest { order: 4; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-  .td-aside-rest .td-score { grid-row: span 2; }
+  .td-aside-rest { order: 4; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "score mock" "due due"; gap: 16px; }
+  .td-aside-rest .td-score { grid-area: score; }
+  .td-aside-rest .td-mock { grid-area: mock; }
+  .td-aside-rest .td-due { grid-area: due; flex-direction: row; }
+  .td-due .td-due-row { flex: 1; min-width: 0; }
+  .td-due .td-due-row + .td-due-row { border-top: none; border-left: 1px solid var(--border); border-radius: 0 var(--radius) var(--radius) 0; }
   .td-progress { display: flex; align-items: center; gap: 20px; padding: 14px 20px; }
   .td-pg-stats { flex: 1; margin-top: 0; padding-top: 0; border-top: none; padding-left: 20px; border-left: 1px solid var(--border); }
   .td-extra-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -258,8 +276,9 @@ a.td-mock:hover { border-color: var(--primary-soft-2); box-shadow: var(--shadow)
   .td-phase-desc { display: none; }
 }
 @media (max-width: 860px) {
-  .td-aside-rest { grid-template-columns: minmax(0, 1fr); }
-  .td-aside-rest .td-score { grid-row: auto; }
+  .td-aside-rest { grid-template-columns: minmax(0, 1fr); grid-template-areas: "score" "due" "mock"; }
+  .td-aside-rest .td-due { flex-direction: column; }
+  .td-due .td-due-row + .td-due-row { border-left: none; border-top: 1px solid var(--border); }
   .td-progress { flex-direction: column; align-items: stretch; }
   .td-pg-stats { padding-left: 0; border-left: none; padding-top: 14px; border-top: 1px solid var(--border); }
   .td-extra-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

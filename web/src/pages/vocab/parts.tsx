@@ -1,5 +1,5 @@
 // Small building blocks shared by the vocab views.
-import { Fragment, useSyncExternalStore, type ReactNode } from 'react';
+import { Fragment, useSyncExternalStore } from 'react';
 import type { VocabSkillProgress } from '@shared/types.ts';
 import { VOCAB_MAX_BOX } from '@shared/srs.ts';
 import { useApp } from '../../lib/store.ts';
@@ -17,17 +17,21 @@ export function useSpeaking(src: string | undefined): boolean {
   return useSyncExternalStore(onSpeechChange, () => isPlaying(src));
 }
 
-/** Play a word / example clip at the learner's pronunciation rate. */
-export function speak(src: string | undefined, rate: number) {
+/** Play a word / example clip at the learner's pronunciation rate (a second press stops it). */
+export function speak(src: string | undefined, rate: number, opts: { quiet?: boolean } = {}) {
   if (!src) return;
-  if (isPlaying(src)) {
+  if (isPlaying(src) && !opts.quiet) {
     stopSpeech();
     return;
   }
-  playSpeech(src, { rate }).catch(() => toast('音频没能播放，再点一次试试', 'warning'));
+  playSpeech(src, { rate }).catch((e: unknown) => {
+    // Interrupted by the next clip / next card: not a failure.
+    if (opts.quiet || (e instanceof DOMException && e.name === 'AbortError')) return;
+    toast('音频没能播放，再点一次试试', 'warning');
+  });
 }
 
-export function AudioButton({ src, label, size = 'md', hint }: { src: string | undefined; label?: string; size?: 'sm' | 'md' | 'lg'; hint?: ReactNode }) {
+export function AudioButton({ src, label, size = 'md' }: { src: string | undefined; label?: string; size?: 'sm' | 'md' | 'lg' }) {
   const rate = useApp((s) => s.state?.settings.pronunciationRate ?? 1);
   const playing = useSpeaking(src);
   if (!src) return null;
@@ -41,7 +45,6 @@ export function AudioButton({ src, label, size = 'md', hint }: { src: string | u
     >
       <Icon name={playing ? 'pause' : 'volume'} size={size === 'lg' ? 20 : size === 'sm' ? 14 : 16} />
       {label && <span>{label}</span>}
-      {hint}
     </button>
   );
 }

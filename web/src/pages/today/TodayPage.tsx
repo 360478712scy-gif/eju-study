@@ -11,7 +11,7 @@ import { MOCK_LABEL, sessionLabel, type BankIndex } from '@shared/bank.ts';
 import { PHASE_INFO, POOLS, calendar, daysLeftOn, extraBlock, mockSchedule, phaseFor, type Pool } from '@shared/planner.ts';
 import { estimateAll, streak, totalEstimate, SCALE_MAX } from '@shared/stats.ts';
 import { isDue } from '@shared/srs.ts';
-import { daysBetween, weekdayZh } from '@shared/dates.ts';
+import { daysBetween, studyDate, weekdayZh } from '@shared/dates.ts';
 import { SUBJECT_NAME, cx, fmtDateShort, fmtMinutes, pct } from '../../lib/format.ts';
 import { DurationDialog } from './DurationDialog.tsx';
 import { AfterExam, ExamDay } from './ExamDay.tsx';
@@ -92,13 +92,19 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
   const confirm = useConfirm();
 
   const views = useMemo(() => blocks.map((b) => blockView(state, b)), [blocks, state]);
-  const resume = resumableSession(state);
-  const resumeBlockIdx = resume?.blockId ? blocks.findIndex((b) => b.id === resume.blockId) : -1;
+  // The session left mid-way leads the page when it belongs to today's plan or was started today;
+  // an older one is offered in a slim notice instead of hiding today's plan.
+  const open = resumableSession(state);
+  const openBlockIdx = open?.blockId ? blocks.findIndex((b) => b.id === open.blockId) : -1;
+  const fresh = !!open && (openBlockIdx >= 0 || studyDate(new Date(open.startedAt)) === today);
+  const resume = fresh ? open : undefined;
+  const stale = fresh ? undefined : open;
   const activeIdx = views.indexOf('active');
-  const nextIdx = resumeBlockIdx >= 0 ? resumeBlockIdx : activeIdx >= 0 ? activeIdx : views.indexOf('todo');
+  const nextIdx = openBlockIdx >= 0 && fresh ? openBlockIdx : activeIdx >= 0 ? activeIdx : views.indexOf('todo');
   const doneCount = views.filter((v) => v === 'done').length;
   const countable = views.filter((v) => v !== 'skipped').length;
   const allResolved = blocks.length > 0 && nextIdx < 0 && !resume && !views.includes('locked');
+  const skippedMock = blocks.find((b, i) => b.kind === 'mock' && views[i] === 'skipped');
 
   const hour = new Date().getHours();
   const phase = phaseFor(left);
@@ -117,7 +123,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
     const ok = await confirm.ask(`开始${b.mock ? MOCK_LABEL[b.mock.kind] : ''}模考？`, {
       body: (
         <>
-          {fmtMinutes(b.minutes)}限时，中途不显示对错，交卷后统一判分、估分。
+          限时 {b.minutes} 分钟，中途不显示对错，交卷后统一判分、估分。
           <br />
           找个安静的地方，准备好草稿纸再开始。
         </>
@@ -195,18 +201,20 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
               bank={bank}
               today={today}
               session={resume}
-              block={nextIdx >= 0 ? blocks[nextIdx] : undefined}
-              index={nextIdx}
+              block={resume && openBlockIdx < 0 ? undefined : nextIdx >= 0 ? blocks[nextIdx] : undefined}
+              index={resume && openBlockIdx < 0 ? -1 : nextIdx}
               total={blocks.length}
               onStart={start}
             />
           ) : allResolved ? (
-            <DoneHero state={state} today={today} onExtra={addExtra} />
+            <DoneHero state={state} bank={bank} today={today} onExtra={addExtra} />
           ) : !blocks.length ? (
-            <RestHero onExtra={addExtra} onAdjust={() => setDurationOpen(true)} />
+            <RestHero state={state} bank={bank} today={today} onExtra={addExtra} onAdjust={() => setDurationOpen(true)} />
           ) : (
-            <WaitingHero />
+            <WaitingHero skippedMock={skippedMock} />
           )}
+
+          {stale && <StaleNotice session={stale} />}
 
           {blocks.length > 0 && (
             <section className="card card-flush td-plan">
@@ -284,13 +292,19 @@ function NextHero({
     const remain = open.timeLimitSec ? Math.max(0, open.timeLimitSec - open.elapsedSec) : null;
     reason = (
       <>
-        已做 <b className="num">{answered}</b> / {open.itemIds.length} 题
+        {answered > 0 ? (
+          <>
+            已做 <b className="num">{answered}</b> / {open.itemIds.length} 题
+          </>
+        ) : (
+          <>共 {open.itemIds.length} 题，还没开始作答</>
+        )}
         {remain !== null ? (
           <>
             ，计时还剩 <b className="num">{Math.ceil(remain / 60)}</b> 分钟
           </>
         ) : (
-          <>，用时 {fmtMinutes(open.elapsedSec / 60)}</>
+          open.elapsedSec >= 60 && <>，已用 {fmtMinutes(open.elapsedSec / 60)}</>
         )}
         {block?.reason && <span className="td-hero-reason-tail">{block.reason}</span>}
       </>
@@ -373,28 +387,45 @@ function NextHero({
   );
 }
 
-function ExtraChooser({ onExtra }: { onExtra: (p: Pool) => void }) {
-  const POOL_ICON: Record<Pool, IconName> = { math: 'sigma', physics: 'atom', chemistry: 'flask', 'ja-reading': 'book', 'ja-listening': 'headphones' };
-  const POOL_TONE: Record<Pool, Subject> = { math: 'math', physics: 'physics', chemistry: 'chemistry', 'ja-reading': 'japanese', 'ja-listening': 'japanese' };
+const POOL_ICON: Record<Pool, IconName> = { math: 'sigma', physics: 'atom', chemistry: 'flask', 'ja-reading': 'book', 'ja-listening': 'headphones', 'ja-grammar': 'book', recall: 'zap' };
+const POOL_TONE: Record<Pool, Subject | 'mixed'> = { math: 'math', physics: 'physics', chemistry: 'chemistry', 'ja-reading': 'japanese', 'ja-listening': 'japanese', 'ja-grammar': 'japanese', recall: 'mixed' };
+
+/** "加练" picker. Each pool shows what it would add; pools without fresh items are disabled. */
+function ExtraChooser({ state, bank, today, onExtra, label }: Ctx & { onExtra: (p: Pool) => void; label: string }) {
+  // extraBlock is pure (it only reads the state), so it doubles as a preview.
+  const options = useMemo(() => POOLS.map((p) => ({ ...p, preview: extraBlock(state, bank, today, p.id) })), [state, bank, today]);
+  const any = options.some((o) => o.preview);
   return (
     <div className="td-extra">
-      <div className="td-extra-label">选一个方向加练 30 分钟</div>
-      <div className="td-extra-grid">
-        {POOLS.map((p) => (
-          <button key={p.id} type="button" className={cx('td-extra-btn', `tone-${POOL_TONE[p.id]}`)} onClick={() => onExtra(p.id)}>
-            <span className="td-extra-icon">
-              <Icon name={POOL_ICON[p.id]} size={18} />
-            </span>
-            <span>{p.name}</span>
-            <Icon name="plus" size={15} className="td-extra-plus" />
-          </button>
-        ))}
-      </div>
+      <div className="td-extra-label">{any ? label : '题库里能加练的新题这几天都做过了，可以去错题本或题库自由练习'}</div>
+      {any ? (
+        <div className="td-extra-grid">
+          {options.map((o) => (
+            <button key={o.id} type="button" className={cx('td-extra-btn', `tone-${POOL_TONE[o.id]}`)} onClick={() => onExtra(o.id)} disabled={!o.preview}>
+              <span className="td-extra-icon">
+                <Icon name={POOL_ICON[o.id]} size={18} />
+              </span>
+              <span className="td-extra-name">{o.name}</span>
+              <span className="td-extra-sub">{o.preview ? `${o.preview.itemIds.length} 题 · ${o.preview.minutes} 分钟` : '暂无新题'}</span>
+              {o.preview && <Icon name="plus" size={15} className="td-extra-plus" />}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="td-extra-none">
+          <Button variant="secondary" icon="alert" onClick={() => navigate('/mistakes')}>
+            去错题本
+          </Button>
+          <Button variant="ghost" icon="book" onClick={() => navigate('/practice')}>
+            题库自由练习
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
 
-function DoneHero({ state, today, onExtra }: { state: AppState; today: string; onExtra: (p: Pool) => void }) {
+function DoneHero({ state, bank, today, onExtra }: Ctx & { onExtra: (p: Pool) => void }) {
   const day = state.days[today];
   const answered = day?.answered ?? 0;
   return (
@@ -417,12 +448,12 @@ function DoneHero({ state, today, onExtra }: { state: AppState; today: string; o
           </p>
         </div>
       </div>
-      <ExtraChooser onExtra={onExtra} />
+      <ExtraChooser state={state} bank={bank} today={today} onExtra={onExtra} label="还有精力？选一个方向加练一块" />
     </section>
   );
 }
 
-function RestHero({ onExtra, onAdjust }: { onExtra: (p: Pool) => void; onAdjust: () => void }) {
+function RestHero({ state, bank, today, onExtra, onAdjust }: Ctx & { onExtra: (p: Pool) => void; onAdjust: () => void }) {
   return (
     <section className="td-hero td-hero-done tone-primary">
       <div className="td-done-top">
@@ -431,18 +462,18 @@ function RestHero({ onExtra, onAdjust }: { onExtra: (p: Pool) => void; onAdjust:
         </div>
         <div>
           <h2 className="td-hero-title">今天是休息日</h2>
-          <p className="td-hero-reason">好好休息，状态比时长更重要。想学一点的话，可以加练一块，或把今天改回学习日。</p>
+          <p className="td-hero-reason">好好休息，状态比时长更重要。</p>
         </div>
         <Button variant="secondary" icon="clock" onClick={onAdjust} className="td-rest-btn">
           改成学习日
         </Button>
       </div>
-      <ExtraChooser onExtra={onExtra} />
+      <ExtraChooser state={state} bank={bank} today={today} onExtra={onExtra} label="想学一点的话，选一个方向加练一块" />
     </section>
   );
 }
 
-function WaitingHero() {
+function WaitingHero({ skippedMock }: { skippedMock?: PlanBlock }) {
   return (
     <section className="td-hero td-hero-done tone-warning">
       <div className="td-done-top">
@@ -450,11 +481,35 @@ function WaitingHero() {
           <Icon name="target" size={24} />
         </div>
         <div>
-          <h2 className="td-hero-title">先完成今天的模考</h2>
+          <h2 className="td-hero-title">{skippedMock ? '模考跳过了，订正暂时锁定' : '先完成今天的模考'}</h2>
           <p className="td-hero-reason">剩下的订正块会在模考交卷后解锁。</p>
         </div>
+        {skippedMock && (
+          <Button variant="secondary" icon="undo" onClick={() => restoreBlock(skippedMock.id)} className="td-rest-btn">
+            恢复模考
+          </Button>
+        )}
       </div>
     </section>
+  );
+}
+
+function StaleNotice({ session }: { session: PracticeSession }) {
+  const answered = sessionAnswered(session);
+  return (
+    <div className="td-stale">
+      <Icon name="clock" size={16} />
+      <span className="td-stale-text">
+        上次的「{session.title}」还没做完
+        <span className="faint">
+          {' '}
+          · 已做 {answered}/{session.itemIds.length}
+        </span>
+      </span>
+      <Button size="sm" variant="ghost" iconRight="right" onClick={() => navigate('/session/' + session.id)}>
+        继续
+      </Button>
+    </div>
   );
 }
 

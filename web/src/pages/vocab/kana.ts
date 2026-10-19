@@ -44,8 +44,12 @@ export function hasRomaji(s: string): boolean {
   return /[a-z]/i.test(s);
 }
 
-/** IME-style conversion of a complete romaji string. Non-latin characters pass through. */
-export function romajiToKana(input: string): string {
+/**
+ * IME-style conversion of a complete romaji string. Non-latin characters pass through.
+ * "nn" before a vowel is ambiguous (konnichi → こんにち, kinnitsu → きんいつ in a strict IME);
+ * `strictNN` always reads "nn" as ん.
+ */
+export function romajiToKana(input: string, strictNN = false): string {
   const s = input.toLowerCase().normalize('NFKC');
   let out = '';
   let i = 0;
@@ -71,7 +75,7 @@ export function romajiToKana(input: string): string {
         // "nna" → んな, "nn" at a syllable end → ん
         const after = s[i + 2] ?? '';
         out += 'ん';
-        i += VOWELS.includes(after) || after === 'y' ? 1 : 2;
+        i += !strictNN && after && (VOWELS.includes(after) || after === 'y') ? 1 : 2;
         continue;
       }
       if (!next || (!VOWELS.includes(next) && next !== 'y')) {
@@ -104,10 +108,17 @@ export function romajiToKana(input: string): string {
   return out;
 }
 
-/** What the learner's answer means as kana (romaji converted, spaces dropped). */
+/** What the learner's answer means as kana (romaji converted). */
 export function answerKana(raw: string): string {
   const t = raw.trim();
   return hasRomaji(t) ? romajiToKana(t) : t;
+}
+
+/** Every reasonable kana reading of the answer (romaji "nn" can mean ん or ん+な行). */
+export function answerCandidates(raw: string): string[] {
+  const t = raw.trim();
+  if (!hasRomaji(t)) return [t];
+  return [...new Set([romajiToKana(t), romajiToKana(t, true)])];
 }
 
 const DAKUTEN = /[゙゚]/g;

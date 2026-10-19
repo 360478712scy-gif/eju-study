@@ -14,10 +14,10 @@ import type {
   VocabSkill,
 } from './types.ts';
 import type { BankIndex } from './bank.ts';
-import { mockItems, mockTimeLimit } from './bank.ts';
+import { mockItems } from './bank.ts';
 import { gradeItem, type GradeResult } from './grading.ts';
 import { updateItemProgress, updateVocabSkill } from './srs.ts';
-import { buildDayPlan, PLANNER_VERSION } from './planner.ts';
+import { buildDayPlan, PLANNER_VERSION, vocabSkills, mockLimitFor } from './planner.ts';
 import { mockEstimate } from './stats.ts';
 
 export function uid(prefix = ''): string {
@@ -41,16 +41,14 @@ export function ensurePlan(state: AppState, bank: BankIndex, date: string) {
   return state.plans[date];
 }
 
-/** Rebuild today's plan keeping finished/started blocks. */
+/** Rebuild today's plan keeping finished/started blocks; only the remaining time is re-planned. */
 export function regeneratePlan(state: AppState, bank: BankIndex, date: string) {
   const old = state.plans[date];
   const keep = (old?.blocks || []).filter((b) => b.status !== 'todo');
-  const fresh = buildDayPlan(state, bank, date);
-  const keptIds = new Set(keep.flatMap((b) => b.itemIds));
-  const extra = fresh.blocks.filter((b) => !b.itemIds.some((id) => keptIds.has(id)) && !(b.mock && keep.some((k) => k.mock?.kind === b.mock?.kind && k.mock?.session === b.mock?.session)));
-  fresh.blocks = [...keep, ...extra];
+  const fresh = buildDayPlan(state, bank, date, { keep });
+  fresh.blocks = [...keep, ...fresh.blocks];
   fresh.blocks.forEach((b, i) => {
-    if (b.status === 'todo') b.id = `${date}:r${i + 1}`;
+    if (b.status === 'todo') b.id = `${date}:r${Date.now().toString(36)}${i}`;
   });
   state.plans[date] = fresh;
   return fresh;
@@ -114,7 +112,7 @@ export function blockItems(state: AppState, bank: BankIndex, block: PlanBlock): 
       .map((id) => bank.byId.get(id))
       .filter(Boolean) as Item[];
   }
-  if (block.mock) return mockItems(bank, block.mock.kind, block.mock.session);
+  if (block.mock && !block.itemIds.length) return mockItems(bank, block.mock.kind, block.mock.session);
   return block.itemIds.map((id) => bank.byId.get(id)).filter(Boolean) as Item[];
 }
 
@@ -133,7 +131,7 @@ export function startBlock(state: AppState, bank: BankIndex, block: PlanBlock, n
       blockId: block.id,
       mock: block.mock,
       exam: timed,
-      timeLimitSec: isMock ? mockTimeLimit(block.mock!.kind, items) : timed ? items.reduce((s, it) => s + it.targetSec, 0) : undefined,
+      timeLimitSec: isMock ? mockLimitFor(block.mock!.kind, items) : timed ? items.reduce((s, it) => s + it.targetSec, 0) : undefined,
     },
     now,
   );
@@ -214,7 +212,7 @@ function recordAttempt(
     gaveUp: gaveUp || undefined,
   };
   state.attempts.push(a);
-  state.progress[it.id] = updateItemProgress(state.progress[it.id], a);
+  state.progress[it.id] = updateItemProgress(state.progress[it.id], a, it.targetSec);
   const day = ensureDay(state, date);
   day.answered += 1;
   day.correct += g.correct ? 1 : 0;
@@ -270,10 +268,12 @@ export function finishSession(state: AppState, bank: BankIndex, sessionId: strin
   const res = summarize(state, s);
   if (s.kind === 'mock' && s.mock) {
     const items = s.itemIds.map((id) => bank.byId.get(id)).filter(Boolean) as Item[];
-    const weight = (it: Item) => (it.format === 'blanks' ? Math.max(1, Object.keys(it.blanks || {}).length / 3) : 1);
+    // Math 大問 Ⅲ/Ⅳ are a bigger share of the paper than a Ⅰ/Ⅱ 問: weight by target time.
+    const weight = (it: Item) => (it.subject === 'math' ? it.targetSec / 660 : 1);
     let wSum = 0;
     let wGot = 0;
     const bySubject: MockResult['bySubject'] = {};
+    const wsum: Partial<Record<Subject, number>> = {};
     for (const it of items) {
       const sc = s.answers[it.id]?.score ?? 0;
       wSum += weight(it);
@@ -281,11 +281,12 @@ export function finishSession(state: AppState, bank: BankIndex, sessionId: strin
       const b = (bySubject[it.subject] ||= { correct: 0, total: 0, raw: 0, estimate: 0 });
       b.total += 1;
       b.correct += s.answers[it.id]?.correct ? 1 : 0;
-      b.raw += sc;
+      b.raw += weight(it) * sc;
+      wsum[it.subject] = (wsum[it.subject] ?? 0) + weight(it);
     }
     for (const [subj, b] of Object.entries(bySubject) as [Subject, NonNullable<MockResult['bySubject']>[Subject]][]) {
       if (!b) continue;
-      b.raw = b.total ? b.raw / b.total : 0;
+      b.raw = wsum[subj] ? b.raw / wsum[subj]! : 0;
       b.estimate = Math.round(b.raw * (subj === 'math' ? 200 : subj === 'japanese' ? 200 : 100));
     }
     const raw = wSum ? wGot / wSum : 0;
@@ -391,23 +392,34 @@ export function dismissMistake(state: AppState, itemId: string) {
   }
 }
 
+/** Today's word cards: due reviews first (oldest, failed first), then new words by value. */
 export function vocabQueue(state: AppState, bank: BankIndex, date: string, newLimit: number): { id: string; skill: VocabSkill }[] {
   const due: { id: string; skill: VocabSkill; key: string }[] = [];
-  const fresh: { id: string; skill: VocabSkill }[] = [];
-  for (const v of bank.bundle.vocab) {
+  const fresh: { id: string; skill: VocabSkill; rank: number }[] = [];
+  // False friends and kana-only connectors first; then everyday/campus words; then terms.
+  const value = (v: (typeof bank.bundle.vocab)[number]) =>
+    (v.trapZh ? 0 : 4) + (/^[\u3040-\u30ffー・ ]+$/.test(v.word) ? 0 : 1) + (v.category === 'general' || v.category === 'reading' ? 0 : 2);
+  let newWords = 0;
+  const candidates = [...bank.bundle.vocab].sort((a, b) => value(a) - value(b));
+  for (const v of candidates) {
+    const skills = vocabSkills(v);
     const p = state.vocab[v.id];
-    if (!p || (!p.read && !p.meaning)) {
-      if (fresh.length < newLimit * 2) fresh.push({ id: v.id, skill: 'read' }, { id: v.id, skill: 'meaning' });
+    if (!p || skills.every((k) => !p[k])) {
+      if (newWords < newLimit) {
+        newWords++;
+        for (const k of skills) fresh.push({ id: v.id, skill: k, rank: newWords });
+      }
       continue;
     }
-    for (const skill of ['read', 'meaning'] as VocabSkill[]) {
+    for (const skill of skills) {
       const sp = p[skill];
-      if (!sp) fresh.length < newLimit * 2 && fresh.push({ id: v.id, skill });
+      if (!sp) fresh.push({ id: v.id, skill, rank: 0 });
       else if (sp.due <= date) due.push({ id: v.id, skill, key: sp.due + (sp.lastCorrect ? '1' : '0') });
     }
   }
   due.sort((a, b) => a.key.localeCompare(b.key));
-  return [...due.slice(0, 80).map(({ id, skill }) => ({ id, skill })), ...fresh.slice(0, newLimit * 2)];
+  fresh.sort((a, b) => a.rank - b.rank);
+  return [...due.slice(0, 80).map(({ id, skill }) => ({ id, skill })), ...fresh.map(({ id, skill }) => ({ id, skill }))];
 }
 
 export { mockItems };

@@ -1,17 +1,21 @@
 // Spaced review tuned for a short sprint (≈19 days).
-// Mistake book: wrong / guessed items come back after 1, 2, then 4 days; three
-// spaced correct re-tests graduate them. Vocabulary uses a Leitner ladder per skill.
-import type { Attempt, Confidence, ItemProgress, VocabSkill, VocabSkillProgress } from './types.ts';
+// Mistake book: wrong / given-up / guessed items come back after 2 days, then 4; two spaced
+// confident correct re-tests clear them (a next-day re-test mostly measures memory of the answer).
+// "Unsure but correct" enters one step later. Slow-but-correct answers are flagged for timed re-practice.
+// Vocabulary uses a Leitner ladder per skill.
+import type { Attempt, ItemProgress, VocabSkill, VocabSkillProgress } from './types.ts';
 import { addDays } from './dates.ts';
 
-export const MISTAKE_INTERVALS = [1, 2, 4];
+export const MISTAKE_INTERVALS = [2, 4];
 export const MISTAKE_GRADUATE_BOX = MISTAKE_INTERVALS.length;
+export const SLOW_FACTOR = 1.8;
 export const VOCAB_INTERVALS = [1, 1, 2, 4, 7, 12];
 export const VOCAB_MAX_BOX = VOCAB_INTERVALS.length - 1;
 
 export function updateItemProgress(
   prev: ItemProgress | undefined,
-  attempt: Pick<Attempt, 'correct' | 'score' | 'at' | 'date' | 'confidence' | 'gaveUp'>,
+  attempt: Pick<Attempt, 'correct' | 'score' | 'at' | 'date'> & Partial<Pick<Attempt, 'confidence' | 'gaveUp' | 'seconds'>>,
+  targetSec?: number,
 ): ItemProgress {
   const p: ItemProgress = prev
     ? { ...prev }
@@ -21,9 +25,10 @@ export function updateItemProgress(
   p.lastAt = attempt.at;
   p.lastCorrect = attempt.correct;
   p.lastScore = attempt.score;
+  if (attempt.correct && targetSec && attempt.seconds) p.slow = attempt.seconds > SLOW_FACTOR * targetSec;
 
-  const shaky: Confidence | undefined = attempt.confidence;
-  const failed = !attempt.correct || attempt.gaveUp || shaky === 'guess';
+  const conf = attempt.confidence;
+  const failed = !attempt.correct || attempt.gaveUp || conf === 'guess';
   if (failed) {
     p.inMistakes = true;
     p.box = 0;
@@ -31,22 +36,26 @@ export function updateItemProgress(
     return p;
   }
   if (!p.inMistakes) {
-    if (shaky === 'unsure') {
+    if (conf === 'unsure') {
       p.inMistakes = true;
       p.box = 1;
       p.due = addDays(attempt.date, MISTAKE_INTERVALS[1]);
     }
     return p;
   }
-  // Correct re-test of a mistake: advance only when it was actually due (no same-day cramming credit).
-  if (!p.due || attempt.date >= p.due) {
-    p.box += 1;
-    if (p.box >= MISTAKE_GRADUATE_BOX) {
-      p.inMistakes = false;
-      p.due = undefined;
-    } else {
-      p.due = addDays(attempt.date, MISTAKE_INTERVALS[p.box]);
-    }
+  // Correct re-test of a mistake: it only counts when it was due and answered with confidence.
+  const due = !p.due || attempt.date >= p.due;
+  if (!due) return p;
+  if (conf === 'unsure') {
+    p.due = addDays(attempt.date, MISTAKE_INTERVALS[0]);
+    return p;
+  }
+  p.box += 1;
+  if (p.box >= MISTAKE_GRADUATE_BOX) {
+    p.inMistakes = false;
+    p.due = undefined;
+  } else {
+    p.due = addDays(attempt.date, MISTAKE_INTERVALS[p.box]);
   }
   return p;
 }

@@ -1,0 +1,11 @@
+.tp-groups { display: flex; flex-direction: column; gap: 22px; }
+.tp-group-title { display: flex; align-items: center; gap: 10px; font-size: var(--fs-md); margin-bottom: 10px; }
+.tp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 10px; }
+.tp-entry { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.tp-entry-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.tp-topic { font-weight: 650; }
+.tp-line { font-size: var(--fs-sm); line-height: 1.7; padding-left: 14px; position: relative; }
+.tp-line::before { content: ''; position: absolute; left: 2px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; }
+.tp-trap::before { background: var(--warning); }
+.tp-point::before { background: var(--primary); }
+.tp-point { color: var(--text-2); }

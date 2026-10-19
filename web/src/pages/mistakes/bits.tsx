@@ -9,7 +9,7 @@ import './bits.css';
 export function BoxDots({ box }: { box: number }) {
   const n = Math.max(0, Math.min(MISTAKE_GRADUATE_BOX, box));
   return (
-    <span className="mk-dots" title={`间隔答对 ${n}/${MISTAKE_GRADUATE_BOX} 次`} aria-label={`间隔答对 ${n}/${MISTAKE_GRADUATE_BOX} 次`}>
+    <span className="mb-dots" title={`间隔答对 ${n}/${MISTAKE_GRADUATE_BOX} 次`} aria-label={`间隔答对 ${n}/${MISTAKE_GRADUATE_BOX} 次`}>
       {Array.from({ length: MISTAKE_GRADUATE_BOX }, (_, i) => (
         <i key={i} className={cx(i < n && 'on')} />
       ))}
@@ -28,7 +28,7 @@ const RESULT_ICON: Record<ResultKind, 'check' | 'x' | 'help' | 'minus'> = {
 
 export function ResultMark({ kind, size = 'md' }: { kind: ResultKind; size?: 'xs' | 'md' }) {
   return (
-    <span className={cx('mk-res', `is-${kind}`, size === 'xs' && 'mk-res-xs')} title={`上次${RESULT_TEXT[kind]}`}>
+    <span className={cx('mb-res', `is-${kind}`, size === 'xs' && 'mb-res-xs')} title={`上次${RESULT_TEXT[kind]}`}>
       <Icon name={RESULT_ICON[kind]} size={size === 'xs' ? 11 : 14} />
     </span>
   );

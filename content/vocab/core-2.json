@@ -1,0 +1,1864 @@
+{
+ "title": "core vocabulary 2",
+ "entries": [
+  {
+   "id": "vx081",
+   "word": "分布",
+   "reading": "ぶんぷ",
+   "meaningZh": "名词·する动词：人、物或数据在空间或数值范围里散开的情况，即哪里多、哪里少。读地图、统计图时常见；数学中也指随机变量各取值的概率情况。",
+   "category": "general",
+   "example": {
+    "ja": "このグラフは、年齢別に見た留学生の分布を表している。",
+    "zh": "这张图表示按年龄划分的留学生分布情况。"
+   },
+   "group": "数据描述 · 分布与比例",
+   "audio": {
+    "word": "/assets/pronunciation/ae854310f2978e61b292ee25.m4a",
+    "example": "/assets/pronunciation/b6626afdc32d9bb3462bb68e.m4a"
+   }
+  },
+  {
+   "id": "vx082",
+   "word": "頻度",
+   "reading": "ひんど",
+   "meaningZh": "名词：一定时间内某件事发生或被做的次数多少，即“有多经常”。日语用「高い／低い」来形容。",
+   "trapZh": "不是物理或统计的“频率”：波的频率日语叫「振動数」或「周波数」；统计中的“频数”叫「度数」，“频率（相对频数）”叫「相対度数」。",
+   "category": "general",
+   "example": {
+    "ja": "アンケートで、一週間に図書館を利用する頻度を尋ねた。",
+    "zh": "问卷中询问了一周使用图书馆的次数（频率）。"
+   },
+   "group": "数据描述 · 分布与比例",
+   "audio": {
+    "word": "/assets/pronunciation/8c2f61ca890ea1cf1abfdd8d.m4a",
+    "example": "/assets/pronunciation/f604cd0a323ba0d0096ee94b.m4a"
+   }
+  },
+  {
+   "id": "vx083",
+   "word": "累積",
+   "reading": "るいせき",
+   "meaningZh": "名词·する动词：一次次叠加上去、越积越多，如赤字、疲劳的累积。统计中「累積度数」指从第一组起依次相加得到的频数合计（累积频数）。",
+   "trapZh": "表示“合计数”时日语多用「累計（るいけい）」：「累計で十万人」；「累積」偏重“越积越多”，如「累積赤字」「疲労が累積する」「累積度数」。",
+   "category": "general",
+   "example": {
+    "ja": "毎年の赤字が累積して、市の借金は大きく膨らんだ。",
+    "zh": "每年的赤字不断累积，市里的债务大幅膨胀。"
+   },
+   "group": "数据描述 · 分布与比例",
+   "audio": {
+    "word": "/assets/pronunciation/cfbbada4bba2ff11ecc3ab0a.m4a",
+    "example": "/assets/pronunciation/e48c4bbe8aaea7fd2098e90a.m4a"
+   }
+  },
+  {
+   "id": "vx084",
+   "word": "比率",
+   "reading": "ひりつ",
+   "meaningZh": "名词：某个量相对于另一个量或整体所占的比例，常用百分数或分数表示。读图表题常问“占整体的多少”。",
+   "category": "general",
+   "example": {
+    "ja": "回答者全体に占める「賛成」の比率は、前回の調査より下がった。",
+    "zh": "“赞成”在全体回答者中所占的比例比上次调查下降了。"
+   },
+   "group": "数据描述 · 分布与比例",
+   "audio": {
+    "word": "/assets/pronunciation/a2188a5a2c04f3acf5102444.m4a",
+    "example": "/assets/pronunciation/98cd2290939a1c9fc3bbf09f.m4a"
+   }
+  },
+  {
+   "id": "vx085",
+   "word": "推移",
+   "reading": "すいい",
+   "meaningZh": "名词·する动词：随着时间推进，数值或状况一步步变化的过程。图表说明的固定用词，相当于“……的变化情况、走势”。",
+   "category": "general",
+   "example": {
+    "ja": "図1は、過去二十年間の米の消費量の推移を示している。",
+    "zh": "图1表示过去二十年大米消费量的变化情况。"
+   },
+   "group": "数据描述 · 增减趋势",
+   "audio": {
+    "word": "/assets/pronunciation/91a81eecbb781628fa854bc7.m4a",
+    "example": "/assets/pronunciation/cbef9e4baee8383a4621cf7f.m4a"
+   }
+  },
+  {
+   "id": "vx086",
+   "word": "増加",
+   "reading": "ぞうか",
+   "meaningZh": "名词·する动词（自动词）：数量、人数或数值变多。近义词「増える」，反义词「減少」。",
+   "category": "general",
+   "example": {
+    "ja": "高齢者の人口は、この三十年で約二倍に増加した。",
+    "zh": "老年人口在这三十年里增加到了大约两倍。"
+   },
+   "group": "数据描述 · 增减趋势",
+   "audio": {
+    "word": "/assets/pronunciation/65a62ba2d706c11be2736b7d.m4a",
+    "example": "/assets/pronunciation/98f4edb42256d30b87254595.m4a"
+   }
+  },
+  {
+   "id": "vx087",
+   "word": "減少",
+   "reading": "げんしょう",
+   "meaningZh": "名词·する动词（自动词）：数量、人数或数值变少。近义词「減る」，反义词「増加」。读图题要分清「30％減少した」（减少了30％）和「30％に減少した」（减少到30％）。",
+   "trapZh": "与「現象（げんしょう，现象）」同音，听力中靠语境区分。",
+   "category": "general",
+   "example": {
+    "ja": "農業に従事する人の数は、年々減少し続けている。",
+    "zh": "从事农业的人数逐年持续减少。"
+   },
+   "group": "数据描述 · 增减趋势",
+   "audio": {
+    "word": "/assets/pronunciation/49e0d552538d573c16b97893.m4a",
+    "example": "/assets/pronunciation/8ede7bd13108e81cbfec7e8f.m4a"
+   }
+  },
+  {
+   "id": "vx088",
+   "word": "変動",
+   "reading": "へんどう",
+   "meaningZh": "名词·する动词：价格、数值、气候等忽高忽低地起伏变化，强调上下波动而不是单向变化。常用于物价、汇率、气候。",
+   "category": "general",
+   "example": {
+    "ja": "野菜の価格は、天候によって大きく変動することがある。",
+    "zh": "蔬菜价格有时会因天气而大幅波动。"
+   },
+   "group": "数据描述 · 增减趋势",
+   "audio": {
+    "word": "/assets/pronunciation/746a6e0fb0071ef1d80d0371.m4a",
+    "example": "/assets/pronunciation/54bb2f1d790f8b5d64f5da32.m4a"
+   }
+  },
+  {
+   "id": "vx089",
+   "word": "横ばい",
+   "reading": "よこばい",
+   "meaningZh": "名词：图表中曲线几乎水平，即数值基本持平、没有明显的上升或下降。常说「ほぼ～」「～が続く」。",
+   "trapZh": "本义是“横着爬（像螃蟹）”，统计里专指“持平”，不要理解成“横向移动”或“下降”。",
+   "category": "general",
+   "example": {
+    "ja": "売り上げは三年間ほぼ横ばいで、大きな変化は見られない。",
+    "zh": "销售额三年间基本持平，看不出大的变化。"
+   },
+   "group": "数据描述 · 增减趋势",
+   "audio": {
+    "word": "/assets/pronunciation/0c9031bfb804730b231659c5.m4a",
+    "example": "/assets/pronunciation/b83cb429295543ff973aa849.m4a"
+   }
+  },
+  {
+   "id": "vx090",
+   "word": "急激",
+   "reading": "きゅうげき",
+   "meaningZh": "な形容词：变化来得突然又剧烈，短时间内幅度很大。常以「～に増える／下がる」「～な変化」的形式出现。",
+   "category": "general",
+   "example": {
+    "ja": "雨が降り始めると、川の水位が急激に上昇した。",
+    "zh": "开始下雨后，河水水位急剧上升。"
+   },
+   "group": "数据描述 · 增减趋势",
+   "audio": {
+    "word": "/assets/pronunciation/aef9c5a9d9292a7c9543ef27.m4a",
+    "example": "/assets/pronunciation/2d2d7c5ff42afaa8b30ff4e6.m4a"
+   }
+  },
+  {
+   "id": "vx091",
+   "word": "溶液",
+   "reading": "ようえき",
+   "meaningZh": "名词：溶质均匀分散在溶剂中形成的均一液体混合物，如食盐水。化学计算中常与浓度、体积一起出现。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "0.10 mol/Lの塩化ナトリウム水溶液を100 mLつくる。",
+    "zh": "配制100 mL浓度为0.10 mol/L的氯化钠水溶液。"
+   },
+   "group": "化学用语 · 溶液",
+   "audio": {
+    "word": "/assets/pronunciation/b75be5e56fa22e2d3344f3d3.m4a",
+    "example": "/assets/pronunciation/927dd66dc0f4fff0f7090f38.m4a"
+   }
+  },
+  {
+   "id": "vx092",
+   "word": "溶媒",
+   "reading": "ようばい",
+   "meaningZh": "名词：溶液中负责把别的物质溶解进去的那一方，如食盐水中的水。",
+   "trapZh": "中文叫“溶剂”。日本化学教材统一用「溶媒」；「溶剤（ようざい）」多指涂料等工业用溶剂。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "ヨウ素は水にはほとんど溶けないが、ヘキサンを溶媒にするとよく溶ける。",
+    "zh": "碘几乎不溶于水，但以己烷为溶剂时溶解得很好。"
+   },
+   "group": "化学用语 · 溶液",
+   "audio": {
+    "word": "/assets/pronunciation/4d340a0bff24378c0c487c2d.m4a",
+    "example": "/assets/pronunciation/3b79e5f9969d5efdab8b8044.m4a"
+   }
+  },
+  {
+   "id": "vx093",
+   "word": "溶質",
+   "reading": "ようしつ",
+   "meaningZh": "名词：溶液中被溶解的那一方物质，如食盐水中的食盐。浓度计算中“溶了多少”指的就是它。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "質量パーセント濃度は、溶質の質量を溶液全体の質量で割り、100倍して求める。",
+    "zh": "质量百分比浓度＝溶质质量÷溶液总质量×100。"
+   },
+   "group": "化学用语 · 溶液",
+   "audio": {
+    "word": "/assets/pronunciation/69dff0ec9da2c4486249c405.m4a",
+    "example": "/assets/pronunciation/168c7ea973679d28a271a95b.m4a"
+   }
+  },
+  {
+   "id": "vx094",
+   "word": "濃度",
+   "reading": "のうど",
+   "meaningZh": "名词：溶液或混合气体中某一成分所占的多少（浓淡程度）。化学中按“每升溶液含溶质多少 mol”（mol/L）或“溶质占质量的百分之几”来表示。",
+   "trapZh": "术语对应：「モル濃度」=物质的量浓度（mol/L），「質量パーセント濃度」=质量分数（%）。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "水を加えて体積を2倍にすると、溶液のモル濃度は半分になる。",
+    "zh": "加水使体积变为2倍，溶液的物质的量浓度变为一半。"
+   },
+   "group": "化学用语 · 溶液",
+   "audio": {
+    "word": "/assets/pronunciation/b565bcae6bc137409ba036bc.m4a",
+    "example": "/assets/pronunciation/ccafc415a4388ea047d9c01a.m4a"
+   }
+  },
+  {
+   "id": "vx095",
+   "word": "希釈",
+   "reading": "きしゃく",
+   "meaningZh": "名词·する动词：加入溶剂（通常是水）使溶液变稀、浓度降低；溶质的物质的量保持不变。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "1.0 mol/Lの塩酸を水で10倍に希釈すると、0.10 mol/Lになる。",
+    "zh": "把1.0 mol/L的盐酸用水稀释10倍，就变成0.10 mol/L。"
+   },
+   "group": "化学用语 · 溶液",
+   "audio": {
+    "word": "/assets/pronunciation/f3bcef0a4612937f7a5bda5f.m4a",
+    "example": "/assets/pronunciation/be8a5b768679435842752347.m4a"
+   }
+  },
+  {
+   "id": "vx096",
+   "word": "攪拌",
+   "reading": "かくはん",
+   "meaningZh": "名词·する动词：用玻璃棒等搅动液体，使其混合均匀或加快溶解、反应。本来读「こうはん」，现在通读「かくはん」；书面也写作「撹拌」或「かくはん」。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "固体が完全に溶けるまで、ガラス棒で静かに攪拌する。",
+    "zh": "用玻璃棒轻轻搅拌，直到固体完全溶解。"
+   },
+   "altReadings": [
+    "こうはん"
+   ],
+   "group": "化学用语 · 溶液",
+   "audio": {
+    "word": "/assets/pronunciation/7778557ab5189f220f4739b9.m4a",
+    "example": "/assets/pronunciation/987fcc223a87536c175b3906.m4a"
+   }
+  },
+  {
+   "id": "vx097",
+   "word": "沈殿",
+   "reading": "ちんでん",
+   "meaningZh": "名词·する动词：溶液中通过反应生成的难溶性固体，或该固体析出、下沉的现象。题目常问它的颜色和成分。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "硝酸銀水溶液に塩化ナトリウム水溶液を加えると、白色の沈殿が生じる。",
+    "zh": "向硝酸银溶液中加入氯化钠溶液，会生成白色沉淀（AgCl）。"
+   },
+   "group": "化学用语 · 分离操作",
+   "audio": {
+    "word": "/assets/pronunciation/de009cc4ea20ac41857bf2cb.m4a",
+    "example": "/assets/pronunciation/ffcb1166466cff1d6e07dd45.m4a"
+   }
+  },
+  {
+   "id": "vx098",
+   "word": "濾過",
+   "reading": "ろか",
+   "meaningZh": "名词·する动词：让液体通过滤纸等，把其中不溶的固体截留下来，从而分离固体和液体。日语也常写作「ろ過」。",
+   "trapZh": "中文说“过滤”，字序相反。滤纸日语叫「ろ紙」，滤液叫「ろ液」。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "生じた沈殿を濾過で取り除き、ろ液を別の試験管に移した。",
+    "zh": "用过滤除去生成的沉淀，把滤液移到另一支试管里。"
+   },
+   "group": "化学用语 · 分离操作",
+   "audio": {
+    "word": "/assets/pronunciation/27642aa3d0761ada026393ac.m4a",
+    "example": "/assets/pronunciation/3ca72b33287a06a954bcef07.m4a"
+   }
+  },
+  {
+   "id": "vx099",
+   "word": "蒸留",
+   "reading": "じょうりゅう",
+   "meaningZh": "名词·する动词：加热液体使其汽化，再把蒸气冷却成液体收集，利用沸点不同来分离或提纯。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "海水を蒸留すると、塩を含まない純粋な水が得られる。",
+    "zh": "蒸馏海水可以得到不含盐的纯水。"
+   },
+   "group": "化学用语 · 分离操作",
+   "audio": {
+    "word": "/assets/pronunciation/c51450a62cc578c3bdf69abc.m4a",
+    "example": "/assets/pronunciation/8baf148a7df13269facf9961.m4a"
+   }
+  },
+  {
+   "id": "vx100",
+   "word": "蒸発",
+   "reading": "じょうはつ",
+   "meaningZh": "名词·する动词：液体变成气体（中文“汽化”）。狭义指只在液面发生、低于沸点也会进行的汽化，与液体内部也冒泡的沸腾相区别。",
+   "trapZh": "日语状态变化名称中，液体→气体统称「蒸発」，中文“汽化热”日语叫「蒸発熱」。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "密閉容器内では、やがて蒸発と凝縮の速さが等しくなり、気液平衡に達する。",
+    "zh": "在密闭容器内，蒸发与液化的速率最终相等，达到气液平衡。"
+   },
+   "group": "理科用语 · 状态变化",
+   "audio": {
+    "word": "/assets/pronunciation/96018aac894ba487d0dce090.m4a",
+    "example": "/assets/pronunciation/69e63991c9830845f3ba7be9.m4a"
+   }
+  },
+  {
+   "id": "vx101",
+   "word": "凝縮",
+   "reading": "ぎょうしゅく",
+   "meaningZh": "名词·する动词：气体冷却后变成液体的状态变化，如水蒸气遇冷变成水滴。",
+   "trapZh": "中文物理叫“液化”或“凝结”，不是“浓缩”；日语比喻用法「思いが凝縮される」才是“浓缩”之意。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "冷たいコップの表面では、空気中の水蒸気が凝縮して水滴になる。",
+    "zh": "冰凉的杯子表面，空气中的水蒸气液化成水滴。"
+   },
+   "group": "理科用语 · 状态变化",
+   "audio": {
+    "word": "/assets/pronunciation/cba8f0e04570ddf88f2cb28a.m4a",
+    "example": "/assets/pronunciation/8a961b44617b17b862c3dbbb.m4a"
+   }
+  },
+  {
+   "id": "vx102",
+   "word": "融解",
+   "reading": "ゆうかい",
+   "meaningZh": "名词·する动词：固体受热变成液体，即熔化。纯物质熔化时温度停在熔点不变，所吸收的热叫熔化热。",
+   "trapZh": "与「溶解（ようかい）」不同：溶解是物质溶进溶剂（糖溶于水），融解是固体变液体。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "0 ℃の氷がすべて融解するまで、温度は0 ℃のまま変わらない。",
+    "zh": "在0 ℃的冰全部熔化之前，温度一直保持0 ℃不变。"
+   },
+   "group": "理科用语 · 状态变化",
+   "audio": {
+    "word": "/assets/pronunciation/f888a136b0e48820bb3c49fd.m4a",
+    "example": "/assets/pronunciation/eb4eb80e3db4e631bf64bb85.m4a"
+   }
+  },
+  {
+   "id": "vx103",
+   "word": "凝固",
+   "reading": "ぎょうこ",
+   "meaningZh": "名词·する动词：液体放出热量变成固体，与熔化相反；纯物质在此过程中温度保持不变。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "水が凝固して氷になると、体積は約1.1倍に増える。",
+    "zh": "水凝固成冰时，体积增大到约1.1倍。"
+   },
+   "group": "理科用语 · 状态变化",
+   "audio": {
+    "word": "/assets/pronunciation/bf69bb472c89493e95397ea0.m4a",
+    "example": "/assets/pronunciation/5246ca87a4c8b07a430b657e.m4a"
+   }
+  },
+  {
+   "id": "vx104",
+   "word": "昇華",
+   "reading": "しょうか",
+   "meaningZh": "名词·する动词：固体不经过液态，直接变成气体，如干冰、碘、萘。",
+   "trapZh": "气体直接变成固体，旧教材也叫「昇華」，新教材多称「凝華（ぎょうか）」，读题时注意方向。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "ヨウ素を穏やかに加熱すると、昇華して紫色の気体になる。",
+    "zh": "缓慢加热碘，它会升华成紫色的气体。"
+   },
+   "group": "理科用语 · 状态变化",
+   "audio": {
+    "word": "/assets/pronunciation/e43e1337fc5e2e5b7d57b012.m4a",
+    "example": "/assets/pronunciation/10817711b68b8a70078066fe.m4a"
+   }
+  },
+  {
+   "id": "vx105",
+   "word": "吸収",
+   "reading": "きゅうしゅう",
+   "meaningZh": "名词·する动词：把热、光、气体、液体等从外部纳入内部。热学中“气体从外界得到热量”对应 Q＞0。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "気体が外部から熱を吸収し、同時に外部に対して仕事をした。",
+    "zh": "气体从外界吸收热量，同时对外界做了功。"
+   },
+   "group": "理科用语 · 热的出入",
+   "audio": {
+    "word": "/assets/pronunciation/156fd4696a26ec6228dfb68b.m4a",
+    "example": "/assets/pronunciation/5263bc1df6d6be6e60733c35.m4a"
+   }
+  },
+  {
+   "id": "vx106",
+   "word": "放出",
+   "reading": "ほうしゅつ",
+   "meaningZh": "名词·する动词：向外释放热、光、气体、粒子等。放热反应即反应时向周围释放热量；EJU 从2026年起改用焓变表示，放热即 ΔH＜0。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "メタンの燃焼では熱が放出されるため、反応エンタルピーは負になる。",
+    "zh": "甲烷燃烧放出热量，因此反应焓变为负。"
+   },
+   "group": "理科用语 · 热的出入",
+   "audio": {
+    "word": "/assets/pronunciation/f80b559a00377ba46c2ab349.m4a",
+    "example": "/assets/pronunciation/ab99a12aeda725eb60704cf6.m4a"
+   }
+  },
+  {
+   "id": "vx107",
+   "word": "加熱",
+   "reading": "かねつ",
+   "meaningZh": "名词·する动词：对物体供给热量，使温度上升，或促使其分解、反应。反义词「冷却」。",
+   "trapZh": "与「過熱（かねつ，过热）」同音，听力中靠语境区分。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "質量200 gの水を加熱して、温度を20 ℃から50 ℃に上げた。",
+    "zh": "加热质量200 g的水，使温度从20 ℃升到50 ℃。"
+   },
+   "group": "理科用语 · 热的出入",
+   "audio": {
+    "word": "/assets/pronunciation/84705c8fa56aaeb12d1ac52a.m4a",
+    "example": "/assets/pronunciation/38922725dc1b02c2d070fdc1.m4a"
+   }
+  },
+  {
+   "id": "vx108",
+   "word": "冷却",
+   "reading": "れいきゃく",
+   "meaningZh": "名词·する动词：使物体温度下降、变凉。化学中常用于降温析出晶体（再结晶）或使气体液化。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "高温の飽和水溶液を冷却すると、溶けきれなくなった固体が析出する。",
+    "zh": "冷却高温的饱和水溶液，溶不下的固体就会析出。"
+   },
+   "group": "理科用语 · 热的出入",
+   "audio": {
+    "word": "/assets/pronunciation/7c199c84693c4c4a2c64729d.m4a",
+    "example": "/assets/pronunciation/f65e2811cdb181de2fa96085.m4a"
+   }
+  },
+  {
+   "id": "vx109",
+   "word": "沸騰",
+   "reading": "ふっとう",
+   "meaningZh": "名词·する动词：液体内部也大量产生气泡、剧烈汽化的现象，发生在液体的蒸气压等于外界压强时。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "液体は、その蒸気圧が外圧と等しくなる温度で沸騰する。",
+    "zh": "液体在其蒸气压等于外界压强的温度下沸腾。"
+   },
+   "group": "理科用语 · 状态变化",
+   "audio": {
+    "word": "/assets/pronunciation/9a59a617bc25fda251147700.m4a",
+    "example": "/assets/pronunciation/af36613fca54d5b5e740e825.m4a"
+   }
+  },
+  {
+   "id": "vx110",
+   "word": "密閉",
+   "reading": "みっぺい",
+   "meaningZh": "名词·する动词：把容器口封严，使内外的气体或物质无法交换。题目说「密閉容器」，就意味着内部物质不进不出：不发生反应时，气体的物质的量保持不变。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "密閉した容器内で温度を上げると、気体の圧力は大きくなる。",
+    "zh": "在密闭容器内升高温度，气体的压强会变大。"
+   },
+   "group": "实验用语 · 操作与条件",
+   "audio": {
+    "word": "/assets/pronunciation/ea002239cb37080dd888fcb0.m4a",
+    "example": "/assets/pronunciation/3c5cf37c65295a6478d25d51.m4a"
+   }
+  },
+  {
+   "id": "vx111",
+   "word": "接触",
+   "reading": "せっしょく",
+   "meaningZh": "名词·する动词：两个物体碰着、挨在一起；也指人与人之间的往来、交流。力学中只有彼此挨着的面之间才会有支持力和摩擦力。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "物体が床と接触している間は、床から垂直抗力を受ける。",
+    "zh": "物体与地面接触期间，会受到地面的支持力。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/7a6bb16dda87a7d9784d63be.m4a",
+    "example": "/assets/pronunciation/2a5073731b927ba67f4d0641.m4a"
+   }
+  },
+  {
+   "id": "vx112",
+   "word": "摩擦",
+   "reading": "まさつ",
+   "meaningZh": "名词·する动词：接触面之间阻碍相对滑动或滑动趋势的作用；也比喻国家、人际间的矛盾冲突。",
+   "trapZh": "术语对应：「静止摩擦力」=静摩擦力，「動摩擦係数」=动摩擦因数（日语用“係数”）。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "あらい面の上で物体を滑らせると、運動と逆向きに動摩擦力がはたらく。",
+    "zh": "在粗糙面上让物体滑动时，会受到与运动方向相反的滑动摩擦力。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/337e241dd11617132746a100.m4a",
+    "example": "/assets/pronunciation/856bd95909bf0e5f93d79f13.m4a"
+   }
+  },
+  {
+   "id": "vx113",
+   "word": "抵抗",
+   "reading": "ていこう",
+   "meaningZh": "名词（“反抗”义也作する动词）：电学中指阻碍电流的程度（阻值，单位Ω），也指电阻器本身；一般语境指“反抗、抵触”。",
+   "trapZh": "物理题中的「抵抗」=电阻：「抵抗率」=电阻率，「空気抵抗」=空气阻力，「内部抵抗」=内阻。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "10 Ωの抵抗に2.0 Vの電圧を加えると、0.20 Aの電流が流れる。",
+    "zh": "给10 Ω的电阻加2.0 V电压，会流过0.20 A的电流。"
+   },
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/674f7500408423760cccc7c3.m4a",
+    "example": "/assets/pronunciation/3d744a6daf6ca397082cd819.m4a"
+   }
+  },
+  {
+   "id": "vx114",
+   "word": "電圧",
+   "reading": "でんあつ",
+   "meaningZh": "名词：电路中两点之间的电势差，是推动电流流动的作用，单位V（伏特）。",
+   "trapZh": "术语对应：「電位」=电势，「電位差」=电势差（即电压），「起電力」=电动势。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "直列につないだ二つの抵抗にかかる電圧の和は、電源の電圧に等しい。",
+    "zh": "串联的两个电阻上的电压之和等于电源电压。"
+   },
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/533adc9f1c1dc930c9928f93.m4a",
+    "example": "/assets/pronunciation/f0934ac2f3c6c7beebaf3d88.m4a"
+   }
+  },
+  {
+   "id": "vx115",
+   "word": "電流",
+   "reading": "でんりゅう",
+   "meaningZh": "名词：电荷沿一定方向的移动；大小用每秒通过导线截面的电荷量表示，单位A（安培），规定方向与电子运动方向相反。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "導線の断面を1秒間に2.0 Cの電荷が通過するとき、電流は2.0 Aである。",
+    "zh": "1秒内有2.0 C的电荷通过导线截面时，电流为2.0 A。"
+   },
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/4bae0e83a04bb359e09c8817.m4a",
+    "example": "/assets/pronunciation/5193d414ff658746205d2ca2.m4a"
+   }
+  },
+  {
+   "id": "vx116",
+   "word": "磁場",
+   "reading": "じば",
+   "meaningZh": "名词：磁铁或电流周围能对磁极、运动电荷施加力的空间，同义词「磁界」。",
+   "trapZh": "日本高中物理分「磁場の強さ」H（单位A/m）和「磁束密度」B（单位T），B=μH；中文高中的“磁感应强度”对应「磁束密度」B。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "一様な磁場に垂直に入射した電子は、ローレンツ力を受けて等速円運動をする。",
+    "zh": "垂直射入匀强磁场的电子，受洛伦兹力作用做匀速圆周运动。"
+   },
+   "altReadings": [
+    "じじょう"
+   ],
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/e698f39497dacf291cae07f8.m4a",
+    "example": "/assets/pronunciation/56ec8f88a7a4781672dea4ec.m4a"
+   }
+  },
+  {
+   "id": "vx117",
+   "word": "波長",
+   "reading": "はちょう",
+   "meaningZh": "名词：波在一个周期内传播的距离，即相邻两个波峰（或波谷）之间的距离，符号λ；满足 v＝fλ。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "振動数500 Hz、速さ340 m/sの音の波長は0.68 mである。",
+    "zh": "频率500 Hz、速度340 m/s的声音，波长为0.68 m。"
+   },
+   "group": "物理用语 · 波动",
+   "audio": {
+    "word": "/assets/pronunciation/2cf1854595e388a539701a2f.m4a",
+    "example": "/assets/pronunciation/787abc8453f783f07f718b4c.m4a"
+   }
+  },
+  {
+   "id": "vx118",
+   "word": "振幅",
+   "reading": "しんぷく",
+   "meaningZh": "名词：振动或波中偏离平衡位置的最大距离，符号A；它越大，振动越剧烈（声音越响）。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "ばねにつけた小球が、振幅0.10 mの単振動をしている。",
+    "zh": "系在弹簧上的小球正以0.10 m的振幅做简谐运动。"
+   },
+   "group": "物理用语 · 波动",
+   "audio": {
+    "word": "/assets/pronunciation/d9a6a8d318a917db42032df5.m4a",
+    "example": "/assets/pronunciation/39dc17a8f23080c0aede5da2.m4a"
+   }
+  },
+  {
+   "id": "vx119",
+   "word": "屈折",
+   "reading": "くっせつ",
+   "meaningZh": "名词·する动词：波从一种介质斜着进入另一种介质时，因传播速度改变而前进方向发生偏折的现象。",
+   "trapZh": "中文物理叫“折射”。「屈折率」=折射率，「屈折角」=折射角。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "光が空気中から水中へ斜めに進むとき、屈折角は入射角より小さくなる。",
+    "zh": "光从空气斜射入水中时，折射角小于入射角。"
+   },
+   "group": "物理用语 · 波动",
+   "audio": {
+    "word": "/assets/pronunciation/5a9c015392b2614cbd30a19c.m4a",
+    "example": "/assets/pronunciation/35edc8571ece8e0df9bdca29.m4a"
+   }
+  },
+  {
+   "id": "vx120",
+   "word": "反射",
+   "reading": "はんしゃ",
+   "meaningZh": "名词·する动词：光、声等波碰到分界面后折回原介质的现象，返回的角度与入射角相等；生物学中也指不经大脑思考、由刺激直接引起的反应（如膝跳）。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "固定端で反射した波は、山が谷になって戻ってくる。",
+    "zh": "在固定端反射的波，波峰会变成波谷返回。"
+   },
+   "group": "物理用语 · 波动",
+   "audio": {
+    "word": "/assets/pronunciation/621279eecf367072079e01bc.m4a",
+    "example": "/assets/pronunciation/771b10023619b612970817b6.m4a"
+   }
+  },
+  {
+   "id": "vx121",
+   "word": "容器",
+   "reading": "ようき",
+   "meaningZh": "名词：用来装东西的器皿，如瓶、罐、箱。理科题中多指装气体或液体的密封罐、带活塞的筒。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "体積10 Lの容器に、窒素と酸素を物質量の比1:1で入れた。",
+    "zh": "在体积10 L的容器中，按物质的量之比1:1装入氮气和氧气。"
+   },
+   "group": "实验用语 · 器材与样品",
+   "audio": {
+    "word": "/assets/pronunciation/cbfff7697b9eb69dbdb20981.m4a",
+    "example": "/assets/pronunciation/bc1974d6d9f58033aa4609d1.m4a"
+   }
+  },
+  {
+   "id": "vx122",
+   "word": "器具",
+   "reading": "きぐ",
+   "meaningZh": "名词：做实验或作业时使用的小型工具和器皿，如烧杯、移液管、滴定管；规模比「装置」小。",
+   "trapZh": "与「危惧（きぐ，担忧）」同音，如「絶滅危惧種」=濒危物种，听力中靠语境区分。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "中和滴定では、ホールピペットやビュレットなどの器具を使う。",
+    "zh": "中和滴定要用到移液管、滴定管等器具。"
+   },
+   "group": "实验用语 · 器材与样品",
+   "audio": {
+    "word": "/assets/pronunciation/921b3b82b0dc1ec53823bcde.m4a",
+    "example": "/assets/pronunciation/3f93e76337a6aa8648ce1494.m4a"
+   }
+  },
+  {
+   "id": "vx123",
+   "word": "試料",
+   "reading": "しりょう",
+   "meaningZh": "名词：为了实验、分析或检验而取来的物质样本，即样品、试样。",
+   "trapZh": "与「資料（しりょう，资料）」同音不同义，听力中要靠语境区分。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "試料0.50 gを完全燃焼させ、生じた二酸化炭素の質量を測定した。",
+    "zh": "使0.50 g样品完全燃烧，测定了生成的二氧化碳的质量。"
+   },
+   "group": "实验用语 · 器材与样品",
+   "audio": {
+    "word": "/assets/pronunciation/863ded65dd0567a4476afe51.m4a",
+    "example": "/assets/pronunciation/b318666200ea78629e9ac1ae.m4a"
+   }
+  },
+  {
+   "id": "vx124",
+   "word": "試薬",
+   "reading": "しやく",
+   "meaningZh": "名词：为检验、分析或进行反应而使用的化学药品（化学试剂）。",
+   "trapZh": "酸碱指示剂（酚酞、甲基橙等）在题目中专称「指示薬（しじやく）」；「試薬」是泛指的化学试剂。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "硝酸銀水溶液は、塩化物イオンを検出する試薬として用いられる。",
+    "zh": "硝酸银溶液被用作检验氯离子的试剂。"
+   },
+   "group": "实验用语 · 器材与样品",
+   "audio": {
+    "word": "/assets/pronunciation/aa0ad902af36d43de7c7955f.m4a",
+    "example": "/assets/pronunciation/b060a00f102e51de4e9d98ea.m4a"
+   }
+  },
+  {
+   "id": "vx125",
+   "word": "操作",
+   "reading": "そうさ",
+   "meaningZh": "名词·する动词：按规定的方法动手处理、使用器材，如实验中的加热、过滤、滴定等步骤；日常也指操纵机器。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "次の①～④の操作のうち、最も適当なものを一つ選びなさい。",
+    "zh": "从下列①～④的操作中选出最恰当的一项。"
+   },
+   "group": "实验用语 · 操作与条件",
+   "audio": {
+    "word": "/assets/pronunciation/b59511b972e9f46c1b69ae5f.m4a",
+    "example": "/assets/pronunciation/8baedb430b2b5cbd2e0faf0a.m4a"
+   }
+  },
+  {
+   "id": "vx126",
+   "word": "手順",
+   "reading": "てじゅん",
+   "meaningZh": "名词：做一件事时的先后顺序和步骤。",
+   "category": "general",
+   "example": {
+    "ja": "実験の手順を確認してから、決められた順番で試薬を加える。",
+    "zh": "确认实验步骤后，按规定的顺序加入试剂。"
+   },
+   "group": "实验用语 · 操作与条件",
+   "audio": {
+    "word": "/assets/pronunciation/a50cb3a15579e84dd6107353.m4a",
+    "example": "/assets/pronunciation/15af3cd750bcc4c50471f60c.m4a"
+   }
+  },
+  {
+   "id": "vx127",
+   "word": "装置",
+   "reading": "そうち",
+   "meaningZh": "名词：为实现某种功能而把部件组合起来的设备整体，比「器具」大而复杂。题干常见「図のような～」。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "図のような装置を用いて、気体の体積と温度の関係を調べた。",
+    "zh": "使用如图所示的装置，研究了气体体积与温度的关系。"
+   },
+   "group": "实验用语 · 器材与样品",
+   "audio": {
+    "word": "/assets/pronunciation/d81611013f140525804d3a8c.m4a",
+    "example": "/assets/pronunciation/75a53a38e0d6919e89a5dabd.m4a"
+   }
+  },
+  {
+   "id": "vx128",
+   "word": "試行",
+   "reading": "しこう",
+   "meaningZh": "名词·する动词：数学概率中指一次可重复、结果由偶然决定的“试验”，如掷一次骰子；一般语境指试着做一下。",
+   "trapZh": "中文“试行”是“试着推行（政策）”；日语数学的「試行」=概率中的“试验”，「反復試行」=独立重复试验。",
+   "category": "math",
+   "subject": "math",
+   "example": {
+    "ja": "さいころを1回投げる試行を3回繰り返すとき、1の目がちょうど2回出る確率を求める。",
+    "zh": "将掷一次骰子的试验重复3次，求1点恰好出现2次的概率。"
+   },
+   "group": "数学用语 · 概率",
+   "audio": {
+    "word": "/assets/pronunciation/292b16d5a1036c61e6d659c7.m4a",
+    "example": "/assets/pronunciation/3d78758193c0ba65018fd3c2.m4a"
+   }
+  },
+  {
+   "id": "vx129",
+   "word": "誤作動",
+   "reading": "ごさどう",
+   "meaningZh": "名词·する动词：机器、传感器等因故障或干扰而做出不该有的动作（误动作、失灵）。",
+   "category": "general",
+   "example": {
+    "ja": "強い電磁波の影響で、医療機器が誤作動を起こすおそれがある。",
+    "zh": "受强电磁波影响，医疗设备有可能发生误动作。"
+   },
+   "group": "通用词汇 · 设备与管理",
+   "audio": {
+    "word": "/assets/pronunciation/e55913003f82cce362147e30.m4a",
+    "example": "/assets/pronunciation/af39e7c2b135bb1865728366.m4a"
+   }
+  },
+  {
+   "id": "vx130",
+   "word": "点検",
+   "reading": "てんけん",
+   "meaningZh": "名词·する动词：逐项检查设备、设施等有没有异常，多指例行的安全检查。",
+   "category": "general",
+   "example": {
+    "ja": "事故を防ぐため、エレベーターは定期的に点検されている。",
+    "zh": "为了防止事故，电梯会定期接受检查。"
+   },
+   "group": "通用词汇 · 设备与管理",
+   "audio": {
+    "word": "/assets/pronunciation/1d4006f700980b04b85bdb68.m4a",
+    "example": "/assets/pronunciation/30bfb48b88c72bbc90ae3ae4.m4a"
+   }
+  },
+  {
+   "id": "vx131",
+   "word": "調整",
+   "reading": "ちょうせい",
+   "meaningZh": "名词·する动词：把位置、数值或意见、日程等调到合适、协调的状态。",
+   "trapZh": "除“调数值”外，还常用于协调时间和意见：「日程を調整する」=协调日程，「調整がつく」=协调好了。",
+   "category": "general",
+   "example": {
+    "ja": "全員が参加できるように、会議の日程を調整した。",
+    "zh": "为了让所有人都能参加，协调了会议日程。"
+   },
+   "group": "通用词汇 · 设备与管理",
+   "audio": {
+    "word": "/assets/pronunciation/c949efd042e4775a474b0027.m4a",
+    "example": "/assets/pronunciation/e318f52ce2ffdeee6e3fd331.m4a"
+   }
+  },
+  {
+   "id": "vx132",
+   "word": "制御",
+   "reading": "せいぎょ",
+   "meaningZh": "名词·する动词：让机器、装置或系统按要求运行，对其加以控制和调节（中文说“控制”）。",
+   "category": "general",
+   "example": {
+    "ja": "室内の温度は、センサーとコンピューターで自動的に制御されている。",
+    "zh": "室内温度由传感器和计算机自动控制。"
+   },
+   "group": "通用词汇 · 设备与管理",
+   "audio": {
+    "word": "/assets/pronunciation/8266d53384013bb3550069c3.m4a",
+    "example": "/assets/pronunciation/9568e149ea7ac8c986301a58.m4a"
+   }
+  },
+  {
+   "id": "vx133",
+   "word": "記録",
+   "reading": "きろく",
+   "meaningZh": "名词·する动词：把结果、经过写下来或保存下来；体育中也指最好成绩。",
+   "category": "general",
+   "example": {
+    "ja": "おもりの数を変えるたびに、ばねの伸びを表に記録した。",
+    "zh": "每次改变砝码的数量，都把弹簧的伸长量记在表里。"
+   },
+   "group": "实验用语 · 操作与条件",
+   "audio": {
+    "word": "/assets/pronunciation/8a5d3e84bab414c3adc2341b.m4a",
+    "example": "/assets/pronunciation/15e134d10f71b9491bfab3ba.m4a"
+   }
+  },
+  {
+   "id": "vx134",
+   "word": "目盛り",
+   "reading": "めもり",
+   "meaningZh": "名词：尺子、量筒、温度计等测量器具上标示数值的刻度线。读数时一般估读到最小刻度的十分之一。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "メスシリンダーの目盛りは、液面の最も低い部分に目の高さを合わせて読む。",
+    "zh": "读量筒刻度时，视线要与液面最低处保持水平。"
+   },
+   "group": "实验用语 · 器材与样品",
+   "audio": {
+    "word": "/assets/pronunciation/2ec12c55576b207e1aa62dc9.m4a",
+    "example": "/assets/pronunciation/7292994eeb2b196a7ad34140.m4a"
+   }
+  },
+  {
+   "id": "vx135",
+   "word": "荷重",
+   "reading": "かじゅう",
+   "meaningZh": "名词：施加在物体或结构上的外力、负荷，如桥梁、弹簧所承受的重量（载荷）。",
+   "trapZh": "与「加重（かじゅう）」同音：「加重平均」=加权平均。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "ばねにかける荷重を2倍にすると、ばねの伸びも2倍になる。",
+    "zh": "把加在弹簧上的载荷变为2倍，弹簧的伸长量也变为2倍。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/c23b152476600667826053d3.m4a",
+    "example": "/assets/pronunciation/b09c4d05f01be7fb815040d0.m4a"
+   }
+  },
+  {
+   "id": "vx136",
+   "word": "張力",
+   "reading": "ちょうりょく",
+   "meaningZh": "名词：绳、线被拉紧时，沿绳方向拉物体的力，中文题目通常叫“绳的拉力”，符号T。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "天井からつるしたおもりが静止しているとき、糸の張力の大きさはおもりにはたらく重力の大きさと等しい。",
+    "zh": "从天花板悬挂的重物静止时，线的拉力大小等于重物所受重力的大小。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/67eac25d445051611c16660b.m4a",
+    "example": "/assets/pronunciation/18fb3b57dfbb89ce4c0f03a3.m4a"
+   }
+  },
+  {
+   "id": "vx137",
+   "word": "密度",
+   "reading": "みつど",
+   "meaningZh": "名词：单位体积所含的质量（质量÷体积，单位g/cm³或kg/m³）；也指人口等在单位面积内的疏密程度。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "質量が54 gで体積が20 cm³の金属の密度は、2.7 g/cm³である。",
+    "zh": "质量54 g、体积20 cm³的金属，密度为2.7 g/cm³。"
+   },
+   "group": "物理用语 · 基本物理量",
+   "audio": {
+    "word": "/assets/pronunciation/8750dea79f86d90fcec6c548.m4a",
+    "example": "/assets/pronunciation/d9f64766bdd6a68b50b7212a.m4a"
+   }
+  },
+  {
+   "id": "vx138",
+   "word": "質量",
+   "reading": "しつりょう",
+   "meaningZh": "名词：物体所含物质的多少，也是表示惯性大小的物理量，单位kg；与所在位置无关，而重量（重力）随地点而变。",
+   "trapZh": "日语「質量」只指物理的“质量(mass)”；中文“产品质量好”的“质量(quality)”日语说「品質」。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "月面上でも物体の質量は地球上と変わらないが、重さは約6分の1になる。",
+    "zh": "在月球上，物体的质量与在地球上相同，但重量约为六分之一。"
+   },
+   "group": "物理用语 · 基本物理量",
+   "audio": {
+    "word": "/assets/pronunciation/dc813ba46304aead3c7757a2.m4a",
+    "example": "/assets/pronunciation/be8bd7761e3babd94850642c.m4a"
+   }
+  },
+  {
+   "id": "vx139",
+   "word": "体積",
+   "reading": "たいせき",
+   "meaningZh": "名词：物体或气体所占空间的大小，单位m³、L、cm³等。气体问题中常与压强、温度一起变化。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "温度を一定に保ったまま圧力を2倍にすると、気体の体積は半分になる。",
+    "zh": "保持温度不变把压强变为2倍，气体的体积变为一半。"
+   },
+   "group": "物理用语 · 基本物理量",
+   "audio": {
+    "word": "/assets/pronunciation/7105d69942d48a93325d9bcd.m4a",
+    "example": "/assets/pronunciation/8dd649d7b0d5a154a9607579.m4a"
+   }
+  },
+  {
+   "id": "vx140",
+   "word": "圧力",
+   "reading": "あつりょく",
+   "meaningZh": "名词：物理中指垂直作用在单位面积上的力（力÷面积，单位Pa）；日常也指精神上、社会上的压迫感。",
+   "trapZh": "物理的「圧力」=中文“压强”（Pa），不是中文“压力”（N）。中文的“压力”在日语题中多说「面を垂直に押す力」。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "同じ重さの物体でも、床に接する面積が小さいほど、床が受ける圧力は大きい。",
+    "zh": "即使物体重量相同，与地面接触的面积越小，地面受到的压强越大。"
+   },
+   "group": "物理用语 · 基本物理量",
+   "audio": {
+    "word": "/assets/pronunciation/b80bdba9edb135b0e4e59ec4.m4a",
+    "example": "/assets/pronunciation/ff64ec4985520c3ea44ab752.m4a"
+   }
+  },
+  {
+   "id": "vx141",
+   "word": "浮力",
+   "reading": "ふりょく",
+   "meaningZh": "名词：液体或气体对浸在其中的物体施加的竖直向上的合力，大小等于被排开流体所受的重力（ρVg，阿基米德原理）。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "体積100 cm³の物体を水中に完全に沈めると、浮力の大きさは約0.98 Nになる。",
+    "zh": "将体积100 cm³的物体完全浸没在水中，所受浮力约为0.98 N。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/688ebcf7bb464b6061033f40.m4a",
+    "example": "/assets/pronunciation/6a72dbd7661aa69be0203949.m4a"
+   }
+  },
+  {
+   "id": "vx142",
+   "word": "慣性",
+   "reading": "かんせい",
+   "meaningZh": "名词：物体不受外力时保持静止或匀速直线运动状态的性质（牛顿第一定律）；质量越大越难改变运动状态。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "電車が急に止まると、乗客は慣性によって進行方向に倒れそうになる。",
+    "zh": "电车突然停下时，乘客由于惯性会向前进方向倾倒。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/848e4d0b210d77e186d40564.m4a",
+    "example": "/assets/pronunciation/f39c1f6c2f6b4a3420452173.m4a"
+   }
+  },
+  {
+   "id": "vx143",
+   "word": "運動量",
+   "reading": "うんどうりょう",
+   "meaningZh": "名词：物理中质量与速度的乘积 mv，是有方向的矢量；不受外力时系统的总和守恒。",
+   "trapZh": "物理的「運動量」=“动量”(mv)，日常日语里它也可指“运动量、锻炼量”，看语境。另：「力積」=冲量。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "外力がはたらかなければ、衝突の前後で二物体の運動量の和は変わらない。",
+    "zh": "如果没有外力作用，碰撞前后两物体的动量之和不变。"
+   },
+   "group": "物理用语 · 力学",
+   "audio": {
+    "word": "/assets/pronunciation/5e391a68973ee944e26871bd.m4a",
+    "example": "/assets/pronunciation/c111eed3af9afbe6bbf9c305.m4a"
+   }
+  },
+  {
+   "id": "vx144",
+   "word": "熱量",
+   "reading": "ねつりょう",
+   "meaningZh": "名词：因温度差而从一个物体转移到另一个物体的能量的多少，单位J。常用 Q＝mcΔT 计算（c 为比热）。",
+   "trapZh": "术语对应：「比熱」=比热容（J/(g·K)），「熱容量」=热容（J/K）。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "比熱4.2 J/(g·K)の水100 gを10 K温めるには、4200 Jの熱量が必要だ。",
+    "zh": "把比热为4.2 J/(g·K)的100 g水升温10 K，需要4200 J的热量。"
+   },
+   "group": "理科用语 · 热的出入",
+   "audio": {
+    "word": "/assets/pronunciation/bb6616133ad04a51255fccd5.m4a",
+    "example": "/assets/pronunciation/670bbf5bdf9bca9258671f26.m4a"
+   }
+  },
+  {
+   "id": "vx145",
+   "word": "断熱",
+   "reading": "だんねつ",
+   "meaningZh": "名词·する动词：隔断热的进出，使物体与外界之间没有热量交换。热力学中指气体与外界无热交换（Q＝0）的过程。",
+   "trapZh": "中文物理叫“绝热”：「断熱変化」=绝热过程，「断熱圧縮」=绝热压缩（温度升高）。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "気体を断熱圧縮すると、内部エネルギーが増加して温度が上がる。",
+    "zh": "对气体进行绝热压缩，内能增加，温度升高。"
+   },
+   "group": "理科用语 · 热的出入",
+   "audio": {
+    "word": "/assets/pronunciation/c698ce16068f04fe0ff24b4b.m4a",
+    "example": "/assets/pronunciation/9da29c5e412c48cc3465e29e.m4a"
+   }
+  },
+  {
+   "id": "vx146",
+   "word": "絶縁",
+   "reading": "ぜつえん",
+   "meaningZh": "名词·する动词：用橡胶、塑料等不导电的材料把导体隔开，使电流或电荷不能流过；日常还可指“断绝关系”。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "電荷が逃げないように、金属球を絶縁された台の上に置く。",
+    "zh": "为防止电荷流失，把金属球放在绝缘的台子上。"
+   },
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/7882709101bcff8ced017f03.m4a",
+    "example": "/assets/pronunciation/6269b1ffb7ff0ac3b1e2c9ec.m4a"
+   }
+  },
+  {
+   "id": "vx147",
+   "word": "導体",
+   "reading": "どうたい",
+   "meaningZh": "名词：电（或热）容易通过的物质，如金属。静电平衡时其内部电场为零，整个物体电势相等。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "帯電体を近づけると、静電誘導によって導体の表面に電荷が現れる。",
+    "zh": "带电体靠近时，由于静电感应，导体表面会出现电荷。"
+   },
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/ce6470712bae91a336f201f0.m4a",
+    "example": "/assets/pronunciation/a8592e70eb3ed290b4d2b1b2.m4a"
+   }
+  },
+  {
+   "id": "vx148",
+   "word": "半導体",
+   "reading": "はんどうたい",
+   "meaningZh": "名词：导电能力介于金属等良导体与绝缘体之间、会随温度或杂质大幅改变的物质，如硅；用于二极管、晶体管。",
+   "category": "science",
+   "subject": "physics",
+   "example": {
+    "ja": "ダイオードはp型とn型の半導体を接合したもので、電流を一方向にだけ流す。",
+    "zh": "二极管由p型和n型半导体结合而成，只让电流单向通过。"
+   },
+   "group": "物理用语 · 电磁",
+   "audio": {
+    "word": "/assets/pronunciation/db333e25835b45902e6df3ba.m4a",
+    "example": "/assets/pronunciation/790583e76d0bd75c71fa875e.m4a"
+   }
+  },
+  {
+   "id": "vx149",
+   "word": "電極",
+   "reading": "でんきょく",
+   "meaningZh": "名词：插入电解液或接在器件上、让电流流入或流出的导体部分。电解中分「陽極／陰極」（阳极/阴极），电池中分「正極／負極」。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "白金電極を用いて硫酸銅(Ⅱ)水溶液を電気分解すると、陰極に銅が析出する。",
+    "zh": "用铂电极电解硫酸铜溶液，阴极上会析出铜。"
+   },
+   "group": "化学用语 · 反应与电解",
+   "audio": {
+    "word": "/assets/pronunciation/35f6f4e06610bd2dec458db6.m4a",
+    "example": "/assets/pronunciation/bda52b3291f356c2f9f53e0f.m4a"
+   }
+  },
+  {
+   "id": "vx150",
+   "word": "触媒",
+   "reading": "しょくばい",
+   "meaningZh": "名词：能改变（通常是加快）反应速率、本身在反应前后不被消耗的物质；它降低活化能，但不改变反应焓变和平衡位置。",
+   "trapZh": "中文教材叫“催化剂”；“触媒”二字在中文里只见于“光触媒”等少数说法，日语题中看到要立刻对应“催化剂”。",
+   "category": "science",
+   "subject": "chemistry",
+   "example": {
+    "ja": "触媒を加えると活性化エネルギーが小さくなり、反応速度が大きくなる。",
+    "zh": "加入催化剂后活化能降低，反应速率增大。"
+   },
+   "group": "化学用语 · 反应与电解",
+   "audio": {
+    "word": "/assets/pronunciation/d63ccb3f499c4e4036425392.m4a",
+    "example": "/assets/pronunciation/6b2a9e5817408e72b71ad163.m4a"
+   }
+  },
+  {
+   "id": "vx151",
+   "word": "少子化",
+   "reading": "しょうしか",
+   "meaningZh": "名词：出生人数持续减少、儿童在总人口中所占比例下降的社会现象（低生育率问题），日本读解、听力的高频话题。",
+   "category": "reading",
+   "example": {
+    "ja": "少子化が進んだ結果、児童数が減り、閉校する小学校が増えている。",
+    "zh": "由于少子化（出生人数减少）不断加剧，儿童人数减少，停办的小学越来越多。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/c861692e8f5c7e594173b9f0.m4a",
+    "example": "/assets/pronunciation/9e5f56944c6d7aa927975b9b.m4a"
+   }
+  },
+  {
+   "id": "vx152",
+   "word": "高齢化",
+   "reading": "こうれいか",
+   "meaningZh": "名词：老年人（一般指65岁以上）在总人口中所占比例不断升高的现象，即人口老龄化。",
+   "category": "reading",
+   "example": {
+    "ja": "高齢化に伴い、医療や介護にかかる費用が増え続けている。",
+    "zh": "随着人口老龄化，医疗和护理费用持续增加。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/8750f22fae5596fd4211aa68.m4a",
+    "example": "/assets/pronunciation/41da3ff474d98bd53c1edd86.m4a"
+   }
+  },
+  {
+   "id": "vx153",
+   "word": "世帯",
+   "reading": "せたい",
+   "meaningZh": "名词：住在一起、共同维持生计的生活单位，即“户”；统计中按户计算，如单身户、育儿家庭。",
+   "trapZh": "与「世代（せだい，一代人）」读音只差一个浊点，听力中要分清。「世帯数」=户数。",
+   "category": "reading",
+   "example": {
+    "ja": "一人暮らしの世帯が増え、一世帯あたりの人数は減少している。",
+    "zh": "独居户增多，平均每户人数在减少。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/4ccd9a31fc2172c5a4f9e8b6.m4a",
+    "example": "/assets/pronunciation/a4c5e0f07bb15a17f69687ed.m4a"
+   }
+  },
+  {
+   "id": "vx154",
+   "word": "人口密度",
+   "reading": "じんこうみつど",
+   "meaningZh": "名词：单位面积（通常1 km²）内居住的人数，用人口÷面积求得，用来比较地区的拥挤程度。",
+   "category": "reading",
+   "example": {
+    "ja": "この市は面積が狭いため、人口密度が全国平均よりかなり高い。",
+    "zh": "这个市因为面积小，人口密度比全国平均水平高得多。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/eabc01e25e969b55707a0fe4.m4a",
+    "example": "/assets/pronunciation/215c64650ebb773bacde763f.m4a"
+   }
+  },
+  {
+   "id": "vx155",
+   "word": "過疎",
+   "reading": "かそ",
+   "meaningZh": "名词：因人口大量外流，某地区人口过少，以致交通、医疗、教育等生活功能难以维持的状态，多指山区和农村。",
+   "category": "reading",
+   "example": {
+    "ja": "過疎化が進む村では、バスの路線が次々に廃止されている。",
+    "zh": "在人口日益稀少的村子里，公交线路接连被取消。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/d329d5e5466e493c22e5c185.m4a",
+    "example": "/assets/pronunciation/b4404a7d2d7c7676233ddebc.m4a"
+   }
+  },
+  {
+   "id": "vx156",
+   "word": "過密",
+   "reading": "かみつ",
+   "meaningZh": "名词·な形容词：人口、建筑或日程等过度集中、过于拥挤，与人口稀少相对；「～スケジュール」=日程排得太满。",
+   "category": "reading",
+   "example": {
+    "ja": "都市部の過密を解消するため、企業の地方移転が進められている。",
+    "zh": "为了缓解城市地区的过度拥挤，正在推进企业向地方迁移。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/4384a93ebe5bcc340e1e0ca6.m4a",
+    "example": "/assets/pronunciation/aa1b6a5667ef949b142c94fc.m4a"
+   }
+  },
+  {
+   "id": "vx157",
+   "word": "都市化",
+   "reading": "としか",
+   "meaningZh": "名词：人口和产业向城市聚集，周边农村逐渐变成城市形态的过程（城镇化）。",
+   "category": "reading",
+   "example": {
+    "ja": "都市化が進むにつれて、郊外の農地が住宅地に変わっていった。",
+    "zh": "随着城镇化的推进，郊区农田逐渐变成了住宅区。"
+   },
+   "group": "社会话题 · 人口",
+   "audio": {
+    "word": "/assets/pronunciation/0fe46e1fe08d1132804524d8.m4a",
+    "example": "/assets/pronunciation/3133b2803dffd73753cf8c9b.m4a"
+   }
+  },
+  {
+   "id": "vx158",
+   "word": "格差",
+   "reading": "かくさ",
+   "meaningZh": "名词：群体或地区之间在收入、教育、机会等方面存在的差距，多带“不平等”的负面意味。",
+   "category": "reading",
+   "example": {
+    "ja": "所得の格差が、子どもの教育の機会にも影響を与えている。",
+    "zh": "收入差距也影响到孩子的受教育机会。"
+   },
+   "group": "社会话题 · 福利与差距",
+   "audio": {
+    "word": "/assets/pronunciation/face2b517c00c4331c72e7eb.m4a",
+    "example": "/assets/pronunciation/6c6ae17b190fd9a78b0c4c26.m4a"
+   }
+  },
+  {
+   "id": "vx159",
+   "word": "貧困",
+   "reading": "ひんこん",
+   "meaningZh": "名词·な形容词：收入或资源不足、难以维持基本生活的状态（贫穷）；也比喻内容贫乏，如「発想の～」。",
+   "category": "reading",
+   "example": {
+    "ja": "貧困家庭の子どもを対象に、無料の学習支援が行われている。",
+    "zh": "面向贫困家庭的孩子开展免费的学习辅导。"
+   },
+   "group": "社会话题 · 福利与差距",
+   "audio": {
+    "word": "/assets/pronunciation/1d56b2b92644d45e3ba3ac88.m4a",
+    "example": "/assets/pronunciation/8dc56853b6370e61c8ad3c27.m4a"
+   }
+  },
+  {
+   "id": "vx160",
+   "word": "福祉",
+   "reading": "ふくし",
+   "meaningZh": "名词：国家、地方或社会提供的、提高人们生活保障与幸福的服务和制度（社会福利），如养老、残障、育儿支援。",
+   "category": "reading",
+   "example": {
+    "ja": "高齢者福祉の充実には、介護に携わる人材の確保が欠かせない。",
+    "zh": "要完善老年人福利，必须确保从事护理的人才。"
+   },
+   "group": "社会话题 · 福利与差距",
+   "audio": {
+    "word": "/assets/pronunciation/4a909531f6e264910da2d414.m4a",
+    "example": "/assets/pronunciation/c4294af8d64b579f3d800035.m4a"
+   }
+  },
+  {
+   "id": "vx161",
+   "word": "負担",
+   "reading": "ふたん",
+   "meaningZh": "名词·する动词：承担费用、责任或工作；也指由此带来的沉重感和压力。常说某项费用“由谁来出”。",
+   "category": "reading",
+   "example": {
+    "ja": "授業料の一部を国が負担することで、家庭の経済的な負担が軽くなる。",
+    "zh": "由国家承担部分学费，家庭的经济负担就减轻了。"
+   },
+   "group": "社会话题 · 福利与差距",
+   "audio": {
+    "word": "/assets/pronunciation/7ce18f44790cf3237795ed7f.m4a",
+    "example": "/assets/pronunciation/cbe983e8bfc19124d05d0305.m4a"
+   }
+  },
+  {
+   "id": "vx162",
+   "word": "保障",
+   "reading": "ほしょう",
+   "meaningZh": "名词·する动词：通过法律或制度确保权利、生活、安全不受侵害，如养老金、医疗等社会安全网。",
+   "trapZh": "同音词要分清：「保障」=确保权利与安全，「保証（ほしょう）」=担保、保修，「補償（ほしょう）」=赔偿损失。",
+   "category": "reading",
+   "example": {
+    "ja": "憲法は、すべての国民に教育を受ける権利を保障している。",
+    "zh": "宪法保障所有国民受教育的权利。"
+   },
+   "group": "社会话题 · 福利与差距",
+   "audio": {
+    "word": "/assets/pronunciation/43965f7fcc920544a1142eef.m4a",
+    "example": "/assets/pronunciation/79b804f15c6e0edecf1cd86c.m4a"
+   }
+  },
+  {
+   "id": "vx163",
+   "word": "制度",
+   "reading": "せいど",
+   "meaningZh": "名词：社会或组织中经确定、大家共同遵守的规则体系和运作机制，如奖学金、养老金、选举的规定办法。",
+   "trapZh": "与「精度（せいど，精确度）」同音，理科题中「測定の精度」=测量精度。",
+   "category": "reading",
+   "example": {
+    "ja": "留学生を対象とした奨学金制度について、大学の窓口で説明を受けた。",
+    "zh": "在大学窗口听取了面向留学生的奖学金制度的说明。"
+   },
+   "group": "社会话题 · 制度与政策",
+   "audio": {
+    "word": "/assets/pronunciation/6ab5b5033f0e7cc25ee4c0d6.m4a",
+    "example": "/assets/pronunciation/8303814d97d0e70b7341566c.m4a"
+   }
+  },
+  {
+   "id": "vx164",
+   "word": "政策",
+   "reading": "せいさく",
+   "meaningZh": "名词：政府或政党为实现某个公共目标而制定的方针和具体措施。",
+   "category": "reading",
+   "example": {
+    "ja": "政府は少子化対策として、子育て世帯を支援する政策を打ち出した。",
+    "zh": "政府推出了支持育儿家庭的政策，作为应对少子化的对策。"
+   },
+   "group": "社会话题 · 制度与政策",
+   "audio": {
+    "word": "/assets/pronunciation/3812ed047f7edb866249d5ed.m4a",
+    "example": "/assets/pronunciation/b382cd7de5af740ad96224fc.m4a"
+   }
+  },
+  {
+   "id": "vx165",
+   "word": "規制",
+   "reading": "きせい",
+   "meaningZh": "名词·する动词：依据法律或规则限制某种行为、活动（管制、限制），常见于交通、环境、经济领域。",
+   "trapZh": "与「帰省（きせい，回老家）」同音，听力对话中很常见，靠语境区分。",
+   "category": "reading",
+   "example": {
+    "ja": "排気ガスの規制が強化され、自動車メーカーは技術開発を急いだ。",
+    "zh": "尾气管制加强后，汽车厂商加紧了技术开发。"
+   },
+   "group": "社会话题 · 制度与政策",
+   "audio": {
+    "word": "/assets/pronunciation/afcb67a53b3033f08c12785d.m4a",
+    "example": "/assets/pronunciation/48bfccc4594efdf0950606ef.m4a"
+   }
+  },
+  {
+   "id": "vx166",
+   "word": "緩和",
+   "reading": "かんわ",
+   "meaningZh": "名词·する动词：使严格、紧张或拥挤的程度减轻、放宽：放宽限制、减轻疼痛、疏解拥堵等。",
+   "trapZh": "「規制緩和」=放宽管制（中文不说“缓和规制”）；「混雑を緩和する」=缓解拥挤。",
+   "category": "reading",
+   "example": {
+    "ja": "通勤時の混雑を緩和するため、時差出勤を導入する企業が増えた。",
+    "zh": "为了缓解通勤时的拥挤，实行错峰上班的企业增多了。"
+   },
+   "group": "社会话题 · 制度与政策",
+   "audio": {
+    "word": "/assets/pronunciation/d905f1a18a6338d29a663379.m4a",
+    "example": "/assets/pronunciation/ebe7463fad77282dc54024a1.m4a"
+   }
+  },
+  {
+   "id": "vx167",
+   "word": "雇用",
+   "reading": "こよう",
+   "meaningZh": "名词·する动词：企业等出钱雇人工作；也泛指就业岗位和就业状况。",
+   "trapZh": "「雇用を生む／守る」中的「雇用」多译为“就业（岗位）”，不只是“雇佣”这个动作。",
+   "category": "reading",
+   "example": {
+    "ja": "新しい工場の建設によって、地域に多くの雇用が生まれた。",
+    "zh": "新工厂的建设为当地创造了许多就业岗位。"
+   },
+   "group": "经济话题 · 劳动与收入",
+   "audio": {
+    "word": "/assets/pronunciation/5a08eefe9462f16aa04c4665.m4a",
+    "example": "/assets/pronunciation/d06bb460e33fe077de7d2c29.m4a"
+   }
+  },
+  {
+   "id": "vx168",
+   "word": "失業",
+   "reading": "しつぎょう",
+   "meaningZh": "名词·する动词：有工作能力和意愿却找不到工作，或失去了工作的状态。",
+   "category": "reading",
+   "example": {
+    "ja": "景気が悪化すると企業が採用を減らし、失業率が上昇しやすい。",
+    "zh": "经济恶化时企业减少招聘，失业率容易上升。"
+   },
+   "group": "经济话题 · 劳动与收入",
+   "audio": {
+    "word": "/assets/pronunciation/98b10009a8fa334d34947d81.m4a",
+    "example": "/assets/pronunciation/8610b34662548ae0e3e55317.m4a"
+   }
+  },
+  {
+   "id": "vx169",
+   "word": "労働",
+   "reading": "ろうどう",
+   "meaningZh": "名词·する动词：为生产产品或提供服务而付出体力、脑力的工作活动；读解中常与工作时间、人手不足一起出现。",
+   "category": "reading",
+   "example": {
+    "ja": "人手不足を補うため、外国人労働者の受け入れが拡大している。",
+    "zh": "为了弥补人手不足，接收外国劳动者的规模在扩大。"
+   },
+   "group": "经济话题 · 劳动与收入",
+   "audio": {
+    "word": "/assets/pronunciation/03a56bedd04804d5caa07de6.m4a",
+    "example": "/assets/pronunciation/a9141b0d4c07cd4ea49481c1.m4a"
+   }
+  },
+  {
+   "id": "vx170",
+   "word": "賃金",
+   "reading": "ちんぎん",
+   "meaningZh": "名词：劳动者因工作而从雇主处得到的报酬，即工资、薪水。",
+   "trapZh": "「賃」在日语中表示“报酬、费用”（家賃=房租，運賃=运费），「賃金」是工资，不是租金。",
+   "category": "reading",
+   "example": {
+    "ja": "物価が上がっても賃金が上がらなければ、生活は苦しくなる。",
+    "zh": "物价上涨而工资不涨的话，生活就会变得艰难。"
+   },
+   "group": "经济话题 · 劳动与收入",
+   "audio": {
+    "word": "/assets/pronunciation/1a31465d5dde0a1a1b43f53b.m4a",
+    "example": "/assets/pronunciation/de3d3556fa3da94862a6b67a.m4a"
+   }
+  },
+  {
+   "id": "vx171",
+   "word": "所得",
+   "reading": "しょとく",
+   "meaningZh": "名词：个人或家庭在一定期间内获得的收入（工资、经营收益等），常用于税收和统计语境。",
+   "category": "reading",
+   "example": {
+    "ja": "所得が高い人ほど、税の負担が大きくなる仕組みになっている。",
+    "zh": "这套制度设计成收入越高的人税负越重。"
+   },
+   "group": "经济话题 · 劳动与收入",
+   "audio": {
+    "word": "/assets/pronunciation/53811d74da1b31ec81ce2b06.m4a",
+    "example": "/assets/pronunciation/d7d4ad3da7862da9d3b94363.m4a"
+   }
+  },
+  {
+   "id": "vx172",
+   "word": "消費",
+   "reading": "しょうひ",
+   "meaningZh": "名词·する动词：为满足生活需要而购买、使用商品和服务；也指耗用能源、时间等。",
+   "category": "reading",
+   "example": {
+    "ja": "消費税が引き上げられた直後は、家庭の消費が一時的に落ち込んだ。",
+    "zh": "消费税上调后不久，家庭消费一度下滑。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/d16a53f2dd68b80ce9ccbfca.m4a",
+    "example": "/assets/pronunciation/a1b5f035d0fc89bca10b0694.m4a"
+   }
+  },
+  {
+   "id": "vx173",
+   "word": "投資",
+   "reading": "とうし",
+   "meaningZh": "名词·する动词：为了将来获得收益或成果，预先投入资金、时间、人力等，如设备投入、对教育的投入。",
+   "category": "reading",
+   "example": {
+    "ja": "人材育成への投資は、すぐには成果が見えにくいが重要である。",
+    "zh": "对人才培养的投资虽然难以立刻见效，但很重要。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/f8a1c67c165d648a30362eab.m4a",
+    "example": "/assets/pronunciation/760ddf382aab3e345eb7e305.m4a"
+   }
+  },
+  {
+   "id": "vx174",
+   "word": "景気",
+   "reading": "けいき",
+   "meaningZh": "名词：社会整体经济活动（买卖、生产、就业）的活跃程度。好时说「～がいい／回復する」，差时说「～が悪化する」。",
+   "category": "reading",
+   "example": {
+    "ja": "景気が回復するにつれて、企業の求人数も増加してきた。",
+    "zh": "随着经济回暖，企业的招聘人数也增加了。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/eec7ad54b407dcd785dd228c.m4a",
+    "example": "/assets/pronunciation/68c7e249bb353fb4a444ea2e.m4a"
+   }
+  },
+  {
+   "id": "vx175",
+   "word": "財政",
+   "reading": "ざいせい",
+   "meaningZh": "名词：国家或地方政府筹集资金（税收、发债）并支出的经济活动，以及其收支状况。",
+   "category": "reading",
+   "example": {
+    "ja": "税収が伸びない中、多くの自治体が厳しい財政状況に置かれている。",
+    "zh": "在税收不见增长的情况下，许多地方政府财政状况严峻。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/91c26905f3ab60fe98239a8f.m4a",
+    "example": "/assets/pronunciation/3533645a95786b11686de299.m4a"
+   }
+  },
+  {
+   "id": "vx176",
+   "word": "税収",
+   "reading": "ぜいしゅう",
+   "meaningZh": "名词：国家或地方政府通过征税获得的收入总额。",
+   "category": "reading",
+   "example": {
+    "ja": "働く世代の人口が減ると、所得税による税収も減少する。",
+    "zh": "劳动年龄人口减少，来自所得税的税收也会减少。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/78ea43127a4f9352f9731135.m4a",
+    "example": "/assets/pronunciation/2ed310bbb16b77eb03de0403.m4a"
+   }
+  },
+  {
+   "id": "vx177",
+   "word": "予算",
+   "reading": "よさん",
+   "meaningZh": "名词：事先计划好的收入与支出，或可用于某事的预定金额；也指个人“打算花多少钱”。",
+   "category": "reading",
+   "example": {
+    "ja": "限られた予算の中で、どの事業を優先するかを議論する。",
+    "zh": "在有限的预算内，讨论优先实施哪些项目。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/06e7b2b364476038e24fceda.m4a",
+    "example": "/assets/pronunciation/a119fd83d820003987af1d3e.m4a"
+   }
+  },
+  {
+   "id": "vx178",
+   "word": "補助金",
+   "reading": "ほじょきん",
+   "meaningZh": "名词：政府等为支持某项活动或减轻费用负担而发放的资金（补贴），一般无需偿还。",
+   "category": "reading",
+   "example": {
+    "ja": "省エネ家電の購入に対して、自治体から補助金が支給される。",
+    "zh": "购买节能家电可以从地方政府领取补贴。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/18592dfce5a5af2b54915a96.m4a",
+    "example": "/assets/pronunciation/8df6c2dcf87920ed02f8c7d1.m4a"
+   }
+  },
+  {
+   "id": "vx179",
+   "word": "競争",
+   "reading": "きょうそう",
+   "meaningZh": "名词·する动词：为争取同一目标（胜负、顾客、名额等）而彼此较量。",
+   "trapZh": "与「競走（きょうそう，赛跑）」同音。",
+   "category": "reading",
+   "example": {
+    "ja": "企業間の競争が激しくなった結果、商品の価格が下がった。",
+    "zh": "企业之间竞争加剧，结果商品价格下降了。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/5aaaaa3703fac029550604a3.m4a",
+    "example": "/assets/pronunciation/64a81e6cdca7429627acfd38.m4a"
+   }
+  },
+  {
+   "id": "vx180",
+   "word": "独占",
+   "reading": "どくせん",
+   "meaningZh": "名词·する动词：一个人或一家企业独自把持、控制某物；经济学中指一家企业控制整个市场（垄断）。",
+   "category": "reading",
+   "example": {
+    "ja": "一社が市場を独占すると、価格が高いまま維持されるおそれがある。",
+    "zh": "一家公司垄断市场时，价格可能会一直居高不下。"
+   },
+   "group": "经济话题 · 市场与财政",
+   "audio": {
+    "word": "/assets/pronunciation/6d2eab9c5d4b659dd5d7ab7c.m4a",
+    "example": "/assets/pronunciation/d1a87ca484c9db33a5f2c87c.m4a"
+   }
+  },
+  {
+   "id": "vx181",
+   "word": "資源",
+   "reading": "しげん",
+   "meaningZh": "名词：可供人类开发利用的自然物质和能源（石油、水、矿产等），也泛指人力、信息等可利用的要素。",
+   "category": "reading",
+   "example": {
+    "ja": "日本はエネルギー資源の多くを海外からの輸入に頼っている。",
+    "zh": "日本的能源资源大多依赖从海外进口。"
+   },
+   "group": "环境话题 · 资源与循环",
+   "audio": {
+    "word": "/assets/pronunciation/45b5d3d4b5b84c289bb636fe.m4a",
+    "example": "/assets/pronunciation/5b806b50b5ffa63aadb0c30d.m4a"
+   }
+  },
+  {
+   "id": "vx182",
+   "word": "再生",
+   "reading": "さいせい",
+   "meaningZh": "名词·する动词：①把废旧物重新加工利用；②使失去的功能或活力恢复，如组织修复、地区振兴；③播放录音、视频。",
+   "trapZh": "日语中「再生」还有“播放”的意思：「動画を再生する」=播放视频；「再生可能エネルギー」=可再生能源。",
+   "category": "reading",
+   "example": {
+    "ja": "回収されたペットボトルは、再生されて衣類の原料などになる。",
+    "zh": "回收的塑料瓶经过再加工，成为衣物等的原料。"
+   },
+   "group": "环境话题 · 资源与循环",
+   "audio": {
+    "word": "/assets/pronunciation/941f48b12b2237fb79f17d0b.m4a",
+    "example": "/assets/pronunciation/a48ea4b8b234173007b18a0b.m4a"
+   }
+  },
+  {
+   "id": "vx183",
+   "word": "循環",
+   "reading": "じゅんかん",
+   "meaningZh": "名词·する动词：周而复始地流动、运转，回到起点后再次重复，如水在自然界、血液在体内的流动。",
+   "category": "reading",
+   "example": {
+    "ja": "使ったものを捨てずに再び資源として使う、循環型の社会が求められている。",
+    "zh": "人们需要一个不扔掉用过的东西、而是将其再次作为资源利用的循环型社会。"
+   },
+   "group": "环境话题 · 资源与循环",
+   "audio": {
+    "word": "/assets/pronunciation/b969db8546c5ce00a3a5a1e1.m4a",
+    "example": "/assets/pronunciation/164e26a4dee644ed139317ac.m4a"
+   }
+  },
+  {
+   "id": "vx184",
+   "word": "持続可能",
+   "reading": "じぞくかのう",
+   "meaningZh": "な形容词：既满足当前需要、又不损害后代需要，能长期维持下去的；环境与发展话题（SDGs）的核心词。",
+   "category": "reading",
+   "example": {
+    "ja": "持続可能な社会を実現するには、一人一人の行動を見直す必要がある。",
+    "zh": "要实现可持续的社会，需要每个人重新审视自己的行为。"
+   },
+   "group": "环境话题 · 资源与循环",
+   "audio": {
+    "word": "/assets/pronunciation/542fb107c631fac9cccbd13e.m4a",
+    "example": "/assets/pronunciation/6f7c9f760834bd76ce68a205.m4a"
+   }
+  },
+  {
+   "id": "vx185",
+   "word": "枯渇",
+   "reading": "こかつ",
+   "meaningZh": "名词·する动词：水源、资源、资金等逐渐用尽、干涸，无法再继续供给；也比喻灵感、创意耗尽。",
+   "category": "reading",
+   "example": {
+    "ja": "石油などの化石燃料は、いずれ枯渇するおそれがあると言われている。",
+    "zh": "据说石油等化石燃料终有一天可能会枯竭。"
+   },
+   "group": "环境话题 · 资源与循环",
+   "audio": {
+    "word": "/assets/pronunciation/ae4bac95e2f935186ec2d4c6.m4a",
+    "example": "/assets/pronunciation/743eec99a36c4daf1c8100f0.m4a"
+   }
+  },
+  {
+   "id": "vx186",
+   "word": "排出",
+   "reading": "はいしゅつ",
+   "meaningZh": "名词·する动词：把气体、液体、废弃物等从内部排到外部（排放），环境话题中常指二氧化碳的排放量。",
+   "trapZh": "与「輩出（はいしゅつ，人才辈出）」同音：「多くの研究者を輩出した大学」。",
+   "category": "reading",
+   "example": {
+    "ja": "二酸化炭素の排出量を減らすため、再生可能エネルギーの利用が進められている。",
+    "zh": "为了减少二氧化碳排放量，正在推进可再生能源的利用。"
+   },
+   "group": "环境话题 · 污染与生态",
+   "audio": {
+    "word": "/assets/pronunciation/153a66c0d3006c43fcbed5c6.m4a",
+    "example": "/assets/pronunciation/c95827f1c32ba01b0eeacc12.m4a"
+   }
+  },
+  {
+   "id": "vx187",
+   "word": "汚染",
+   "reading": "おせん",
+   "meaningZh": "名词·する动词：有害物质混入空气、水、土壤或食物，使其变脏并危害生物和健康。",
+   "category": "reading",
+   "example": {
+    "ja": "工場排水による川の汚染が、周辺の生き物に深刻な影響を与えた。",
+    "zh": "工厂排水造成的河流污染，给周边生物带来了严重影响。"
+   },
+   "group": "环境话题 · 污染与生态",
+   "audio": {
+    "word": "/assets/pronunciation/578dc02885ae33192420c482.m4a",
+    "example": "/assets/pronunciation/3f79e962137e9544377dea3e.m4a"
+   }
+  },
+  {
+   "id": "vx188",
+   "word": "浄化",
+   "reading": "じょうか",
+   "meaningZh": "名词·する动词：除去污物或有害物质，使水、空气等变干净；也比喻使社会风气、心灵变得纯洁。",
+   "category": "reading",
+   "example": {
+    "ja": "下水処理場では、微生物の働きを利用して汚れた水を浄化している。",
+    "zh": "污水处理厂利用微生物的作用来净化污水。"
+   },
+   "group": "环境话题 · 污染与生态",
+   "audio": {
+    "word": "/assets/pronunciation/beae6289f4eb8c78588d4d95.m4a",
+    "example": "/assets/pronunciation/24212e59ed7dc43bb3a7d1ed.m4a"
+   }
+  },
+  {
+   "id": "vx189",
+   "word": "生態系",
+   "reading": "せいたいけい",
+   "meaningZh": "名词：某一区域内所有生物与其周围环境（水、土壤、气候等）相互作用而形成的整体。",
+   "category": "reading",
+   "example": {
+    "ja": "外来種が持ち込まれると、その地域の生態系のバランスが崩れることがある。",
+    "zh": "外来物种被带入后，当地生态系统的平衡有时会被打破。"
+   },
+   "group": "环境话题 · 污染与生态",
+   "audio": {
+    "word": "/assets/pronunciation/f2fb9e20e4f1550b3528376e.m4a",
+    "example": "/assets/pronunciation/5a0c4e83a5766aada67ec973.m4a"
+   }
+  },
+  {
+   "id": "vx190",
+   "word": "生物多様性",
+   "reading": "せいぶつたようせい",
+   "meaningZh": "名词：地球上生命形态丰富多样的状态，包括物种的多样、同一物种内基因的差异以及生态系统的多样。",
+   "category": "reading",
+   "example": {
+    "ja": "生物多様性を守るには、生き物がすむ森林や湿地を保全することが重要だ。",
+    "zh": "要保护生物多样性，保护生物栖息的森林和湿地很重要。"
+   },
+   "group": "环境话题 · 污染与生态",
+   "audio": {
+    "word": "/assets/pronunciation/689b06459be44b1a7636c203.m4a",
+    "example": "/assets/pronunciation/db49ea222e56344d4371acf5.m4a"
+   }
+  }
+ ]
+}

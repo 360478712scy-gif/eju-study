@@ -174,38 +174,47 @@ export function Stat({ label, value, sub, tone, icon }: { label: ReactNode; valu
   );
 }
 
-let modalDepth = 0;
+// Open modals, top-most last. Only the top-most one reacts to Escape.
+const modalStack: symbol[] = [];
 
 export function Modal({ open, onClose, title, children, footer, width = 560, closeOnBackdrop = true }: { open: boolean; onClose: () => void; title?: ReactNode; children: ReactNode; footer?: ReactNode; width?: number; closeOnBackdrop?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const last = useRef<Element | null>(null);
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
   useEffect(() => {
     if (!open) return;
-    modalDepth++;
+    const id = Symbol('modal');
+    modalStack.push(id);
     last.current = document.activeElement;
-    const t = setTimeout(() => ref.current?.querySelector<HTMLElement>('[autofocus], button, input, textarea, select')?.focus(), 30);
+    const t = setTimeout(() => {
+      const el = ref.current;
+      if (!el || el.contains(document.activeElement)) return;
+      el.querySelector<HTMLElement>('[autofocus], input, textarea, select, .modal-body button, button')?.focus();
+    }, 30);
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !e.isComposing) {
-        e.stopPropagation();
-        onClose();
-      }
+      if (e.key !== 'Escape' || e.isComposing || modalStack[modalStack.length - 1] !== id) return;
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      closeRef.current();
     };
     window.addEventListener('keydown', onKey, true);
     return () => {
-      modalDepth--;
+      const i = modalStack.indexOf(id);
+      if (i >= 0) modalStack.splice(i, 1);
       clearTimeout(t);
       window.removeEventListener('keydown', onKey, true);
       (last.current as HTMLElement | null)?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
   if (!open) return null;
   return createPortal(
-    <div className="modal-backdrop" onMouseDown={(e) => closeOnBackdrop && e.target === e.currentTarget && onClose()}>
+    <div className="modal-backdrop" onMouseDown={(e) => closeOnBackdrop && e.target === e.currentTarget && closeRef.current()}>
       <div className="modal" style={{ width }} ref={ref} role="dialog" aria-modal="true">
         {title && (
           <header className="modal-head">
             <h3>{title}</h3>
-            <IconButton icon="x" label="关闭" size="sm" onClick={onClose} />
+            <IconButton icon="x" label="关闭" size="sm" onClick={() => closeRef.current()} />
           </header>
         )}
         <div className="modal-body">{children}</div>
@@ -216,7 +225,7 @@ export function Modal({ open, onClose, title, children, footer, width = 560, clo
   );
 }
 
-export const isModalOpen = () => modalDepth > 0;
+export const isModalOpen = () => modalStack.length > 0;
 
 // ─── Toasts ───
 interface ToastItem {

@@ -1,0 +1,1815 @@
+{
+ "title": "core vocabulary 3",
+ "entries": [
+  {
+   "id": "vx191",
+   "word": "絶滅",
+   "reading": "ぜつめつ",
+   "meaningZh": "名词/サ变动词：某个物种的个体全部死去，从地球上彻底消失；也可比喻语言、传统等完全失传。",
+   "trapZh": "中文说「灭绝」，日语字序相反写作「絶滅」；「絶滅危惧種」＝濒危物种。",
+   "category": "general",
+   "example": {
+    "ja": "この鳥は絶滅の危険にさらされている。",
+    "zh": "这种鸟正面临灭绝的危险。"
+   },
+   "group": "社会话题 · 环境",
+   "audio": {
+    "word": "/assets/pronunciation/b0c91ebbd29849b9a5cc0c26.m4a",
+    "example": "/assets/pronunciation/f0f61fe4a3498a822c26f577.m4a"
+   }
+  },
+  {
+   "id": "vx192",
+   "word": "保全",
+   "reading": "ほぜん",
+   "meaningZh": "名词/サ变动词：持续维护、照管，使自然环境、设施、数据等保持在良好而不受损的状态。",
+   "trapZh": "中文「保全」多指\"保住、使免受损失\"（保全性命）；日语「環境保全」相当于中文的\"环境保护\"，强调长期维护。",
+   "category": "general",
+   "example": {
+    "ja": "湿地の保全と観光を両立させる。",
+    "zh": "兼顾湿地保护与旅游观光。"
+   },
+   "group": "社会话题 · 环境",
+   "audio": {
+    "word": "/assets/pronunciation/6dd3cc3f75b78ba2410245f5.m4a",
+    "example": "/assets/pronunciation/a9f67a74fc7faf7d5136b5f8.m4a"
+   }
+  },
+  {
+   "id": "vx193",
+   "word": "開発",
+   "reading": "かいはつ",
+   "meaningZh": "名词/サ变动词：①开辟、建设土地或资源（城市、地区的建设）；②研制新产品、新技术（研发）。",
+   "trapZh": "英语 development 在日语里分成两个词：「開発」＝人为地开发、研制（土地の開発、新薬の開発）；「発展」＝事物自身向前发展（経済の発展）。注意「開発途上国」＝发展中国家（也说「発展途上国」）。",
+   "category": "general",
+   "example": {
+    "ja": "駅の周辺で大規模な開発が進んでいる。",
+    "zh": "车站周边正在推进大规模开发。"
+   },
+   "group": "社会话题 · 环境",
+   "audio": {
+    "word": "/assets/pronunciation/adab6b8941d0da49525f4939.m4a",
+    "example": "/assets/pronunciation/7f6938a761356fa29603162b.m4a"
+   }
+  },
+  {
+   "id": "vx194",
+   "word": "開拓",
+   "reading": "かいたく",
+   "meaningZh": "名词/サ变动词：开垦荒地使其可以利用；引申为开辟新的市场、领域或道路。",
+   "category": "general",
+   "example": {
+    "ja": "企業が海外の市場を開拓する。",
+    "zh": "企业开拓海外市场。"
+   },
+   "group": "社会话题 · 环境",
+   "audio": {
+    "word": "/assets/pronunciation/b2165ad059b8b4ff267a06c1.m4a",
+    "example": "/assets/pronunciation/10b32383a98cd5d86546172c.m4a"
+   }
+  },
+  {
+   "id": "vx195",
+   "word": "森林",
+   "reading": "しんりん",
+   "meaningZh": "名词：大片树木茂密生长、面积广阔的地带；常出现在生态、气候与环境话题中。",
+   "category": "general",
+   "example": {
+    "ja": "森林は多くの生物のすみかとなる。",
+    "zh": "森林是许多生物的栖息地。"
+   },
+   "group": "社会话题 · 环境",
+   "audio": {
+    "word": "/assets/pronunciation/620cd74ed29b0f1a99f05b82.m4a",
+    "example": "/assets/pronunciation/df816872c62d4cbce13d647a.m4a"
+   }
+  },
+  {
+   "id": "vx196",
+   "word": "土壌",
+   "reading": "どじょう",
+   "meaningZh": "名词：地表松软、能让植物扎根生长的那层土；也比喻孕育某种文化或思想的环境、基础。",
+   "category": "general",
+   "example": {
+    "ja": "土壌に含まれる水分を測る。",
+    "zh": "测量土壤中所含的水分。"
+   },
+   "group": "社会话题 · 环境",
+   "audio": {
+    "word": "/assets/pronunciation/f883cd8090ee5f8f42cfd33c.m4a",
+    "example": "/assets/pronunciation/0a3c265bd2d09c8583811538.m4a"
+   }
+  },
+  {
+   "id": "vx197",
+   "word": "干ばつ",
+   "reading": "かんばつ",
+   "meaningZh": "名词：长期不下雨或降雨极少，导致河流干涸、农作物因缺水受害的灾害。",
+   "trapZh": "原写法是「旱魃」，「干」在这里代替\"旱\"字，读かん。",
+   "category": "general",
+   "example": {
+    "ja": "干ばつのため、農作物が十分に育たなかった。",
+    "zh": "由于旱灾，农作物没能充分生长。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/1f422022382fafd3ba7e4dfc.m4a",
+    "example": "/assets/pronunciation/79dc5bb847b1253aaed9bea8.m4a"
+   }
+  },
+  {
+   "id": "vx198",
+   "word": "洪水",
+   "reading": "こうずい",
+   "meaningZh": "名词：暴雨或融雪使河水猛涨、漫出河道，淹没周围地区的灾害。",
+   "trapZh": "读音注意：水在这里读ずい（こうずい），不读すい；对比「香水」こうすい。",
+   "category": "general",
+   "example": {
+    "ja": "大雨による洪水に備えて避難場所を確認する。",
+    "zh": "为防备大雨引发的洪水，事先确认避难场所。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/91b0c06f5f136f6bf2e6c5e8.m4a",
+    "example": "/assets/pronunciation/76ae569c885a0364b1c0e085.m4a"
+   }
+  },
+  {
+   "id": "vx199",
+   "word": "地震",
+   "reading": "じしん",
+   "meaningZh": "名词：地下岩层突然断裂、错动，引起地面摇晃的自然现象；常与震度、海啸、防灾话题一起出现。",
+   "category": "general",
+   "example": {
+    "ja": "地震が起きたら、まず身の安全を確保する。",
+    "zh": "发生地震时，首先要确保自身安全。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/0e6ba83109cd964f31c3496d.m4a",
+    "example": "/assets/pronunciation/62128cbe99cc6ff84d2add1d.m4a"
+   }
+  },
+  {
+   "id": "vx200",
+   "word": "避難",
+   "reading": "ひなん",
+   "meaningZh": "名词/サ变动词：为躲开灾害等危险，离开原地转移到安全的地方（疏散、撤离）。",
+   "trapZh": "同音词「非難」（ひなん）＝责备、谴责，听力中靠上下文区分；「避難所」＝避难场所，「避難訓練」＝疏散演练。",
+   "category": "general",
+   "example": {
+    "ja": "川の近くの住民に避難を呼びかけた。",
+    "zh": "呼吁河流附近的居民避难。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/6834011d1ab88a53d079d018.m4a",
+    "example": "/assets/pronunciation/9d6690661654dbde416cb8e4.m4a"
+   }
+  },
+  {
+   "id": "vx201",
+   "word": "防災",
+   "reading": "ぼうさい",
+   "meaningZh": "名词：事先采取措施防止灾害发生，并在灾害来临时尽量减少伤亡和损失；常构成训练、准备、意识等说法。",
+   "category": "general",
+   "example": {
+    "ja": "地域で防災訓練を行う。",
+    "zh": "在社区举行防灾演练。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/48f02c0b3aff13d459b64dc7.m4a",
+    "example": "/assets/pronunciation/81ce51e4e12ea7dc542f3ac0.m4a"
+   }
+  },
+  {
+   "id": "vx202",
+   "word": "復旧",
+   "reading": "ふっきゅう",
+   "meaningZh": "名词/サ变动词：因灾害、事故而中断或损坏的交通、电力、设施等恢复到原来的正常状态。",
+   "trapZh": "读音是促音ふっきゅう。中文「复旧」多指恢复旧制度、旧习（偏贬义）；日语「復旧」是中性的\"恢复正常（通车、通电）\"。与「復興」不同：復旧＝恢复原状，復興＝整个地区重新振兴。",
+   "category": "general",
+   "example": {
+    "ja": "台風で止まった電車が復旧した。",
+    "zh": "因台风停运的电车恢复运行了。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/f6abcf96c1a3492e1cb0d46a.m4a",
+    "example": "/assets/pronunciation/dd0b75bdf07bd86846b6653e.m4a"
+   }
+  },
+  {
+   "id": "vx203",
+   "word": "復興",
+   "reading": "ふっこう",
+   "meaningZh": "名词/サ变动词：遭受灾害、战争破坏的地区或产业重新建设，恢复繁荣与活力；范围比单纯恢复原状更大、时间更长。",
+   "trapZh": "中文「复兴」多用于\"民族复兴、文艺复兴\"等宏大语境；日语新闻中「復興」最常指\"灾后重建\"（被災地の復興）。",
+   "category": "general",
+   "example": {
+    "ja": "被災地の復興には長い時間がかかる。",
+    "zh": "灾区的重建需要很长时间。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/7634c1d3ce7e278fc505b3e8.m4a",
+    "example": "/assets/pronunciation/628b5b99a0f6c8d22e9c2dcc.m4a"
+   }
+  },
+  {
+   "id": "vx204",
+   "word": "備蓄",
+   "reading": "びちく",
+   "meaningZh": "名词/サ变动词：为应对灾害或紧急情况，预先储存粮食、饮用水、燃料等物资。",
+   "category": "general",
+   "example": {
+    "ja": "災害に備えて飲料水を備蓄する。",
+    "zh": "为防备灾害而储备饮用水。"
+   },
+   "group": "社会话题 · 防灾",
+   "audio": {
+    "word": "/assets/pronunciation/06f6cdc391f473fe463e6c6a.m4a",
+    "example": "/assets/pronunciation/4086068f897703fb905b6fe3.m4a"
+   }
+  },
+  {
+   "id": "vx205",
+   "word": "廃棄",
+   "reading": "はいき",
+   "meaningZh": "名词/サ变动词：把不再需要或无法使用的东西扔掉、作报废处理；对象多为机器、文件、食品等。",
+   "category": "general",
+   "example": {
+    "ja": "使えなくなった機械を廃棄する。",
+    "zh": "把不能再用的机器报废处理。"
+   },
+   "group": "社会话题 · 资源与垃圾",
+   "audio": {
+    "word": "/assets/pronunciation/a8afbdc23cd8ab69ab323bee.m4a",
+    "example": "/assets/pronunciation/88cd876e25b9357907061ed2.m4a"
+   }
+  },
+  {
+   "id": "vx206",
+   "word": "回収",
+   "reading": "かいしゅう",
+   "meaningZh": "名词/サ变动词：把发出去、散落在外或已售出的东西收回来，如收试卷、收旧电池、召回问题商品。",
+   "trapZh": "中文「回收」常让人联想到\"循环利用\"；日语「回収」重点在\"收回\"（答案用紙を回収＝收卷，製品の回収＝召回），再加工利用另说「リサイクル」。",
+   "category": "general",
+   "example": {
+    "ja": "市が古い電池を回収している。",
+    "zh": "市政府正在回收旧电池。"
+   },
+   "group": "社会话题 · 资源与垃圾",
+   "audio": {
+    "word": "/assets/pronunciation/ad8a0d3397514c39bb01c2fc.m4a",
+    "example": "/assets/pronunciation/a0ab560b2246cc365e0103d0.m4a"
+   }
+  },
+  {
+   "id": "vx207",
+   "word": "分別",
+   "reading": "ぶんべつ",
+   "meaningZh": "名词/サ变动词：按种类区分开来分别处理，最常见于垃圾分类（可燃、不可燃、资源垃圾等）。",
+   "trapZh": "中文「分别」是\"离别、区别\"或\"各自\"；日语读ぶんべつ时是\"分类\"。同字的ふんべつ则是\"判断力、懂事\"（分別がある），读音和意思都不同。",
+   "category": "general",
+   "example": {
+    "ja": "ごみを種類ごとに分別する。",
+    "zh": "把垃圾按种类分类。"
+   },
+   "group": "社会话题 · 资源与垃圾",
+   "audio": {
+    "word": "/assets/pronunciation/886b651583d8b18f96b3095e.m4a",
+    "example": "/assets/pronunciation/e8224872dd1c6e89d58b3d95.m4a"
+   }
+  },
+  {
+   "id": "vx208",
+   "word": "再利用",
+   "reading": "さいりよう",
+   "meaningZh": "名词/サ变动词：把用过的东西不经加工或稍加处理后重新拿来使用，如重复使用瓶子、纸袋。",
+   "category": "general",
+   "example": {
+    "ja": "洗った瓶を再利用する。",
+    "zh": "把洗干净的瓶子重复使用。"
+   },
+   "group": "社会话题 · 资源与垃圾",
+   "audio": {
+    "word": "/assets/pronunciation/03947d771b1bf43cbefaa57d.m4a",
+    "example": "/assets/pronunciation/db10c2b6fead255086c78643.m4a"
+   }
+  },
+  {
+   "id": "vx209",
+   "word": "節約",
+   "reading": "せつやく",
+   "meaningZh": "名词/サ变动词：控制用量、省去不必要的消耗，以少花钱、少用资源；对象多为电、水、时间、费用。",
+   "category": "general",
+   "example": {
+    "ja": "必要のない照明を消して電気を節約する。",
+    "zh": "关掉不需要的照明来节省用电。"
+   },
+   "group": "社会话题 · 资源与垃圾",
+   "audio": {
+    "word": "/assets/pronunciation/f9997cedf69816a3afc27611.m4a",
+    "example": "/assets/pronunciation/f43e19f6284c3b2bac66a093.m4a"
+   }
+  },
+  {
+   "id": "vx210",
+   "word": "浪費",
+   "reading": "ろうひ",
+   "meaningZh": "名词/サ变动词：把金钱、时间、资源白白用掉，没有得到相应的价值；与\"省着用\"意思相反。",
+   "category": "general",
+   "example": {
+    "ja": "水の浪費を減らすため、蛇口をこまめに閉める。",
+    "zh": "为了减少水的浪费，要勤关水龙头。"
+   },
+   "group": "社会话题 · 资源与垃圾",
+   "audio": {
+    "word": "/assets/pronunciation/c7e50ff82f5d2275d5555176.m4a",
+    "example": "/assets/pronunciation/9d62e6e4a9305b890cb8e358.m4a"
+   }
+  },
+  {
+   "id": "vx211",
+   "word": "履修",
+   "reading": "りしゅう",
+   "meaningZh": "名词/サ变动词：在大学按规定登记并修读某门课程、取得学分的过程；开学初的选课登记也用这个词。",
+   "category": "general",
+   "example": {
+    "ja": "卒業までに必要な科目を履修する。",
+    "zh": "修读毕业所需的科目。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/14d80a9303ff46c9e1f4a4b2.m4a",
+    "example": "/assets/pronunciation/6b135470c98bc21b48b9df0d.m4a"
+   }
+  },
+  {
+   "id": "vx212",
+   "word": "単位",
+   "reading": "たんい",
+   "meaningZh": "名词：①计量的标准量（米、千克等）；②大学课程的学分，修完并合格即可取得。",
+   "trapZh": "日语「単位」在大学语境里是\"学分\"（単位を取る＝拿到学分）；中文的\"工作单位\"日语说「勤務先」「職場」。",
+   "category": "general",
+   "example": {
+    "ja": "この授業に合格すると二単位を取得できる。",
+    "zh": "这门课及格就能拿到两个学分。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/c4a0050dde62fd0db0285789.m4a",
+    "example": "/assets/pronunciation/d50f8ad231e8d87462639019.m4a"
+   }
+  },
+  {
+   "id": "vx213",
+   "word": "講義",
+   "reading": "こうぎ",
+   "meaningZh": "名词/サ变动词：大学里由教师面向众多学生讲授的课程（大课）；也指讲课这一行为。",
+   "trapZh": "中文「讲义」是讲课用的资料；日语「講義」是\"课、讲课\"本身。讲课资料日语说「レジュメ」「配布資料」「プリント」。",
+   "category": "general",
+   "example": {
+    "ja": "午前中に経済学の講義を受ける。",
+    "zh": "上午上经济学的课。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/c976e59dc177054d4e6e180b.m4a",
+    "example": "/assets/pronunciation/622b7a2fb21d87c10f3ce157.m4a"
+   }
+  },
+  {
+   "id": "vx214",
+   "word": "演習",
+   "reading": "えんしゅう",
+   "meaningZh": "名词/サ变动词：大学中以学生讨论、发表、练习为主的小班课（研讨课，常称ゼミ）；也指课后练习、习题。",
+   "trapZh": "中文「演习」多指军事演习；日语大学里的「演習」是\"研讨课、练习课\"，「演習問題」＝练习题。",
+   "category": "general",
+   "example": {
+    "ja": "演習では少人数で論文を読み、意見を交わす。",
+    "zh": "研讨课上以小班形式阅读论文、交流意见。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/0b931e653553b7e74b6c8906.m4a",
+    "example": "/assets/pronunciation/f52526b6562ea2e9d9989197.m4a"
+   }
+  },
+  {
+   "id": "vx215",
+   "word": "実習",
+   "reading": "じっしゅう",
+   "meaningZh": "名词/サ变动词：在实验室、医院、学校等现场，通过实际动手操作来学习专业技能（课程中的实践训练）。",
+   "trapZh": "中文「实习」常指去公司实习工作；日语「実習」是课程的一部分（教育実習、病院実習），企业实习一般说「インターンシップ」。",
+   "category": "general",
+   "example": {
+    "ja": "病院で実習を行い、現場の仕事を学ぶ。",
+    "zh": "在医院实习，学习一线的工作。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/cf454581a96acdf2bed27907.m4a",
+    "example": "/assets/pronunciation/90b1116335e457e66d0bcacb.m4a"
+   }
+  },
+  {
+   "id": "vx216",
+   "word": "出席",
+   "reading": "しゅっせき",
+   "meaningZh": "名词/サ变动词：到场参加上课、会议、典礼等；大学里常指上课到勤，出勤情况会计入成绩。",
+   "trapZh": "中文「出席」较正式（出席会议）；日语日常上课就说「出席」，「出席を取る」＝老师点名。",
+   "category": "general",
+   "example": {
+    "ja": "初回の授業には必ず出席してください。",
+    "zh": "第一次课请务必出席。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/99d1ae435733abcdee4ae53d.m4a",
+    "example": "/assets/pronunciation/f7f7258c264e068ed1b4e609.m4a"
+   }
+  },
+  {
+   "id": "vx217",
+   "word": "欠席",
+   "reading": "けっせき",
+   "meaningZh": "名词/サ变动词：本应参加的课程、会议等没有到场；与\"到场参加\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "病気で授業を欠席した。",
+    "zh": "因为生病没去上课。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/dba79cd394fc3b25ea841e88.m4a",
+    "example": "/assets/pronunciation/e7aab10428a6776395ca091f.m4a"
+   }
+  },
+  {
+   "id": "vx218",
+   "word": "遅刻",
+   "reading": "ちこく",
+   "meaningZh": "名词/サ变动词：没赶上规定的开始时间而晚到，即中文的\"迟到\"；常用于上课、上班、约会。",
+   "category": "general",
+   "example": {
+    "ja": "電車が遅れて、講義に遅刻した。",
+    "zh": "电车晚点，上课迟到了。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/e0c923a4b99d07d70025d715.m4a",
+    "example": "/assets/pronunciation/f19014e13c40731791b400b9.m4a"
+   }
+  },
+  {
+   "id": "vx219",
+   "word": "休講",
+   "reading": "きゅうこう",
+   "meaningZh": "名词/サ变动词：大学原定的某次课因教师有事等原因取消、停上；通常会在布告栏或网上通知。",
+   "category": "general",
+   "example": {
+    "ja": "担当教員の都合で、明日の授業は休講です。",
+    "zh": "因任课教师有事，明天的课停课。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/f577d03d33f93baee331e6b7.m4a",
+    "example": "/assets/pronunciation/e5c61b6d7d1c011a7ef5c81b.m4a"
+   }
+  },
+  {
+   "id": "vx220",
+   "word": "補講",
+   "reading": "ほこう",
+   "meaningZh": "名词：为弥补停课等原因而少上的课时，另外安排的补课。",
+   "category": "general",
+   "example": {
+    "ja": "休講になった授業の補講を土曜日に行う。",
+    "zh": "停课的那次课将在星期六补上。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/9541a7a8bb2f4fe133267348.m4a",
+    "example": "/assets/pronunciation/9af7261b615811769ee09455.m4a"
+   }
+  },
+  {
+   "id": "vx221",
+   "word": "履歴",
+   "reading": "りれき",
+   "meaningZh": "名词：过去的经历或操作留下的记录，如学习工作经历、浏览记录、通话记录等。",
+   "trapZh": "中文「履历」多指个人简历；日语「履歴」更常指各种\"记录\"（閲覧履歴＝浏览记录），简历要说「履歴書」。",
+   "category": "general",
+   "example": {
+    "ja": "申請書に学習の履歴を記入する。",
+    "zh": "在申请书上填写学习经历。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/8a6dc076514f28c09f12fb0d.m4a",
+    "example": "/assets/pronunciation/a660d31771457186ff04fa4a.m4a"
+   }
+  },
+  {
+   "id": "vx222",
+   "word": "専攻",
+   "reading": "せんこう",
+   "meaningZh": "名词/サ变动词：在大学、研究生院作为主修方向深入学习、研究的学科（主修专业）。",
+   "category": "general",
+   "example": {
+    "ja": "大学では環境工学を専攻している。",
+    "zh": "我在大学主修环境工程。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/8fba8775741bcf061f8bdb95.m4a",
+    "example": "/assets/pronunciation/ea29be0e294e188d45fdeeec.m4a"
+   }
+  },
+  {
+   "id": "vx223",
+   "word": "教養",
+   "reading": "きょうよう",
+   "meaningZh": "名词：通过广泛学习获得的知识与文化素养；大学一、二年级的通识课程也用这个词称呼。",
+   "trapZh": "中文「教养」多指家教、礼貌（有教养）；日语「教養」是\"学识、文化素养\"，「教養科目」＝通识课。",
+   "category": "general",
+   "example": {
+    "ja": "専門以外の分野を学び、教養を深める。",
+    "zh": "学习专业以外的领域，加深文化素养。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/dcf0054e4d86f067f51d4afb.m4a",
+    "example": "/assets/pronunciation/355265673acb1c217bf04f21.m4a"
+   }
+  },
+  {
+   "id": "vx224",
+   "word": "専門",
+   "reading": "せんもん",
+   "meaningZh": "名词：一个人深入研究或从事的特定学科、领域（专业、专长）；构成\"专家、专业书、专科学校\"等词。",
+   "trapZh": "中文「专门」多作副词\"特地、专为\"；日语「専門」是名词\"专业领域\"（専門家＝专家）。\"特地\"日语说「わざわざ」。",
+   "category": "general",
+   "example": {
+    "ja": "この先生の専門は日本近代史である。",
+    "zh": "这位老师的专业是日本近代史。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/a355a11e87b1ba46daf5592a.m4a",
+    "example": "/assets/pronunciation/61ec52057f5fff202fc8e7d1.m4a"
+   }
+  },
+  {
+   "id": "vx225",
+   "word": "必修",
+   "reading": "ひっしゅう",
+   "meaningZh": "名词：按规定必须修读、不能自由选择的课程；与选修课相对。",
+   "category": "general",
+   "example": {
+    "ja": "この科目は一年生の必修科目である。",
+    "zh": "这门课是一年级的必修课。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/08bfaf2cb85ade1a7839eb8a.m4a",
+    "example": "/assets/pronunciation/c401c40b0a4f4b1fe32140b7.m4a"
+   }
+  },
+  {
+   "id": "vx226",
+   "word": "選択",
+   "reading": "せんたく",
+   "meaningZh": "名词/サ变动词：从多个选项中挑出合适的一个或几个；大学的选修课也用它构成。",
+   "trapZh": "同音词「洗濯」（せんたく）＝洗衣服，听力中注意区分；选修课说「選択科目」。",
+   "category": "general",
+   "example": {
+    "ja": "興味に合わせて授業を選択する。",
+    "zh": "根据兴趣选择课程。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/c7842174fbc8296fb8eaa8c2.m4a",
+    "example": "/assets/pronunciation/b4cd90cbf080ad84f70d05d0.m4a"
+   }
+  },
+  {
+   "id": "vx227",
+   "word": "受講",
+   "reading": "じゅこう",
+   "meaningZh": "名词/サ变动词：报名参加并听某门课程、讲座或培训，侧重\"作为学员去上课\"。",
+   "category": "general",
+   "example": {
+    "ja": "この授業を受講するには、事前の登録が必要だ。",
+    "zh": "要修这门课，需要事先登记。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/ea86c94cc878bc00c96b4b53.m4a",
+    "example": "/assets/pronunciation/c9f858ae573ed86aeb92a185.m4a"
+   }
+  },
+  {
+   "id": "vx228",
+   "word": "聴講",
+   "reading": "ちょうこう",
+   "meaningZh": "名词/サ变动词：去课堂或讲座听课；在大学里常指不为拿学分的旁听，旁听生也由此得名。",
+   "category": "general",
+   "example": {
+    "ja": "他学部の学生も、この公開講座を聴講できる。",
+    "zh": "其他学院的学生也可以旁听这门公开讲座。"
+   },
+   "group": "校园生活 · 课程与学分",
+   "audio": {
+    "word": "/assets/pronunciation/4adb32f870279f2cbf657e6e.m4a",
+    "example": "/assets/pronunciation/f21eb3d30517e30d3e164a85.m4a"
+   }
+  },
+  {
+   "id": "vx229",
+   "word": "配布",
+   "reading": "はいふ",
+   "meaningZh": "名词/サ变动词：把资料、传单、物品等分发给许多人，每人一份。",
+   "category": "general",
+   "example": {
+    "ja": "授業の初めに資料を配布します。",
+    "zh": "上课开始时分发资料。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/39e641977a40b6ce34f4c25c.m4a",
+    "example": "/assets/pronunciation/e3be4dc6e437d48287a6b897.m4a"
+   }
+  },
+  {
+   "id": "vx230",
+   "word": "掲示",
+   "reading": "けいじ",
+   "meaningZh": "名词/サ变动词：把通知、告示贴在公告栏等处让大家看到；校园里贴通知的布告栏也由此得名。",
+   "trapZh": "中文「揭示」是\"揭露、阐明\"（揭示规律）；日语「掲示」只是\"张贴公告\"，「掲示板」＝布告栏、网络论坛。",
+   "category": "general",
+   "example": {
+    "ja": "試験の日程は掲示板に掲示される。",
+    "zh": "考试日程会张贴在布告栏上。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/5b6263f8636b5f67be6a8405.m4a",
+    "example": "/assets/pronunciation/306751d798e1bbe2a2f89d08.m4a"
+   }
+  },
+  {
+   "id": "vx231",
+   "word": "申請",
+   "reading": "しんせい",
+   "meaningZh": "名词/サ变动词：按规定手续向政府、学校等机构正式提出请求，要求批准或发放（签证、奖学金、许可等）。",
+   "category": "general",
+   "example": {
+    "ja": "奨学金を申請する。",
+    "zh": "申请奖学金。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/80ee9051a8df035661de3ddf.m4a",
+    "example": "/assets/pronunciation/d26818b816f8ea7a21661c26.m4a"
+   }
+  },
+  {
+   "id": "vx232",
+   "word": "手続き",
+   "reading": "てつづき",
+   "meaningZh": "名词：办理某件事时必须按规定完成的步骤与程序，如提交材料、填表、缴费。",
+   "category": "general",
+   "example": {
+    "ja": "入学の手続きを期限までに済ませる。",
+    "zh": "在截止日期前办完入学手续。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/bf0daa7d2733ff1c6c510d5f.m4a",
+    "example": "/assets/pronunciation/15be0c0e3102249014ddc1d5.m4a"
+   }
+  },
+  {
+   "id": "vx233",
+   "word": "受付",
+   "reading": "うけつけ",
+   "meaningZh": "名词：①接收报名、申请、来客并加以办理（受理）；②机构入口处的接待处、前台。",
+   "trapZh": "名词写作「受付」（受付時間、受付で聞く），动词写作「受け付ける」（申し込みを受け付ける＝接受报名）。",
+   "category": "general",
+   "example": {
+    "ja": "参加申し込みの受付は来週始まる。",
+    "zh": "报名受理下周开始。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/febc21750ee17b2722557bdd.m4a",
+    "example": "/assets/pronunciation/a0fbdc59155f993fa5df5609.m4a"
+   }
+  },
+  {
+   "id": "vx234",
+   "word": "承認",
+   "reading": "しょうにん",
+   "meaningZh": "名词/サ变动词：上级、机关或会议对计划、申请等正式表示同意，予以批准。",
+   "trapZh": "中文「承认」是\"承认错误、承认事实\"；日语「承認」是\"批准、认可\"。表示\"承认（错误）\"日语用「認める」。",
+   "category": "general",
+   "example": {
+    "ja": "計画は委員会の承認を得た。",
+    "zh": "计划获得了委员会的批准。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/b2db49d49bf9a1d3d4ab77f3.m4a",
+    "example": "/assets/pronunciation/fc1af2cb4a7068e0e5dea228.m4a"
+   }
+  },
+  {
+   "id": "vx235",
+   "word": "許可",
+   "reading": "きょか",
+   "meaningZh": "名词/サ变动词：有权限的人或机构允许某人做原本需要批准的事（使用设施、入境、外出等）。",
+   "category": "general",
+   "example": {
+    "ja": "教室を使うには、事務室の許可が必要だ。",
+    "zh": "使用教室需要事务室的许可。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/d12f6090fe725ab4df1c28f6.m4a",
+    "example": "/assets/pronunciation/69b07e468621fa4c141ce7d8.m4a"
+   }
+  },
+  {
+   "id": "vx236",
+   "word": "推薦",
+   "reading": "すいせん",
+   "meaningZh": "名词/サ变动词：认为某人或某物合适而向他人举荐、介绍；也用于升学时学校出具的举荐信、举荐入学。",
+   "category": "general",
+   "example": {
+    "ja": "先生が私を交換留学生の候補に推薦した。",
+    "zh": "老师推荐我作为交换留学生的候选人。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/5500c88c50d3cad017f2d89f.m4a",
+    "example": "/assets/pronunciation/b2ef1f312365cb976360e235.m4a"
+   }
+  },
+  {
+   "id": "vx237",
+   "word": "資格",
+   "reading": "しかく",
+   "meaningZh": "名词：参加、担任某事所需满足的条件与身份（报名条件等）；也指通过考试取得的职业证书。",
+   "category": "general",
+   "example": {
+    "ja": "募集要項で応募資格を確認する。",
+    "zh": "在招生简章中确认报名资格。"
+   },
+   "group": "校园生活 · 手续与通知",
+   "audio": {
+    "word": "/assets/pronunciation/08f8a184540c94cbe7fd2df7.m4a",
+    "example": "/assets/pronunciation/75d8bac7eaa8c7b7fe283805.m4a"
+   }
+  },
+  {
+   "id": "vx238",
+   "word": "評価",
+   "reading": "ひょうか",
+   "meaningZh": "名词/サ变动词：判断事物的价值、水平或成绩并给出结论；大学的成绩评定也用这个词。",
+   "trapZh": "「評価する」单用时常含\"肯定、给予好评\"之意（努力を評価する＝肯定其努力；高く評価される＝受到高度认可），不像中文\"评价\"那样中性。",
+   "category": "general",
+   "example": {
+    "ja": "試験だけでなく、発表も評価の対象になる。",
+    "zh": "不仅是考试，课堂发表也是评分的对象。"
+   },
+   "group": "校园生活 · 评分与反馈",
+   "audio": {
+    "word": "/assets/pronunciation/2eb57672de22e5adab0360eb.m4a",
+    "example": "/assets/pronunciation/fcd50dd0743f086032560cbc.m4a"
+   }
+  },
+  {
+   "id": "vx239",
+   "word": "採点",
+   "reading": "さいてん",
+   "meaningZh": "名词/サ变动词：按照标准答案或评分标准，给答卷、作业打分。",
+   "category": "general",
+   "example": {
+    "ja": "答案を採点して、点数を返す。",
+    "zh": "批改答卷，把分数发还给学生。"
+   },
+   "group": "校园生活 · 评分与反馈",
+   "audio": {
+    "word": "/assets/pronunciation/c66e7853a2c7985604a89189.m4a",
+    "example": "/assets/pronunciation/d1e0134f4b2f740eca8eb25f.m4a"
+   }
+  },
+  {
+   "id": "vx240",
+   "word": "添削",
+   "reading": "てんさく",
+   "meaningZh": "名词/サ变动词：在别人的作文、答案上直接增删修改字句并指出问题，常见于作文指导、志愿书修改。",
+   "category": "general",
+   "example": {
+    "ja": "先生に作文を添削してもらった。",
+    "zh": "请老师帮我批改了作文。"
+   },
+   "group": "校园生活 · 评分与反馈",
+   "audio": {
+    "word": "/assets/pronunciation/3482c4e8a7b31199b8fa09a8.m4a",
+    "example": "/assets/pronunciation/b7de7c06824318a9e6b885b9.m4a"
+   }
+  },
+  {
+   "id": "vx241",
+   "word": "実施",
+   "reading": "じっし",
+   "meaningZh": "名词/サ变动词：把已经定好的计划、调查、考试、政策等实际执行、举行。",
+   "category": "general",
+   "example": {
+    "ja": "来月、新しい調査を実施する。",
+    "zh": "下个月将开展新的调查。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/40c73668e7d1ac0313b55b5f.m4a",
+    "example": "/assets/pronunciation/08f06f28ed69bc6c73e4477c.m4a"
+   }
+  },
+  {
+   "id": "vx242",
+   "word": "実現",
+   "reading": "じつげん",
+   "meaningZh": "名词/サ变动词：把愿望、计划、理想变为事实；对象多为梦想、目标、制度等。",
+   "trapZh": "读音注意：じつげん（不促音化），对比「実施」じっし、「実習」じっしゅう。",
+   "category": "general",
+   "example": {
+    "ja": "だれもが利用できる交通サービスを実現したい。",
+    "zh": "希望实现人人都能利用的交通服务。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/83b2578fbadb8a967ffb67be.m4a",
+    "example": "/assets/pronunciation/0c57b8305f12ca63bc21965b.m4a"
+   }
+  },
+  {
+   "id": "vx243",
+   "word": "達成",
+   "reading": "たっせい",
+   "meaningZh": "名词/サ变动词：完成预先定下的目标、任务或数值；也构成表示\"成就感\"的词。",
+   "category": "general",
+   "example": {
+    "ja": "予定していた目標を達成した。",
+    "zh": "完成了预定的目标。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/57217ef77a95081fe9cd00ed.m4a",
+    "example": "/assets/pronunciation/17b57781b2d3d3108eca0bbe.m4a"
+   }
+  },
+  {
+   "id": "vx244",
+   "word": "適応",
+   "reading": "てきおう",
+   "meaningZh": "名词/サ变动词：改变自己的行为或性质，使之与环境、条件相符；生物学中指生物形成与环境相符的特征。",
+   "trapZh": "形近易混：「適応」（てきおう）＝适应环境、条件；「適用」（てきよう）＝把规则、法律套用到某对象上。",
+   "category": "general",
+   "example": {
+    "ja": "新しい生活環境に適応するには時間がかかる。",
+    "zh": "适应新的生活环境需要时间。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/81d67086521ffe2f8e6ef5a2.m4a",
+    "example": "/assets/pronunciation/8c2257dcdb66399f9fdcf404.m4a"
+   }
+  },
+  {
+   "id": "vx245",
+   "word": "対応",
+   "reading": "たいおう",
+   "meaningZh": "名词/サ变动词：针对对方的要求或变化的情况作出相应处理（应对、处理、接待）；也表示两者相互对照。",
+   "trapZh": "中文「对应」主要是\"相互对照\"；日语「対応」最常用的是\"应对、处理\"（客の対応＝接待客人，対応が早い＝处理得快）。",
+   "category": "general",
+   "example": {
+    "ja": "利用者の要望に対応する。",
+    "zh": "回应使用者的要求。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/179d5756c6c478843ccf1501.m4a",
+    "example": "/assets/pronunciation/ae342091d2ff54760a990861.m4a"
+   }
+  },
+  {
+   "id": "vx246",
+   "word": "対処",
+   "reading": "たいしょ",
+   "meaningZh": "名词/サ变动词：针对已经出现的问题、困难或事态，想办法采取措施加以处理。",
+   "category": "general",
+   "example": {
+    "ja": "問題が起きたときに、どう対処するかを決めておく。",
+    "zh": "事先决定好出现问题时如何处理。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/32398178df8cff206c31c97e.m4a",
+    "example": "/assets/pronunciation/fa35a663fdd88bc02fbce81d.m4a"
+   }
+  },
+  {
+   "id": "vx247",
+   "word": "改善",
+   "reading": "かいぜん",
+   "meaningZh": "名词/サ变动词：把不好的状况、问题点修正得更好；对象多为环境、关系、待遇等\"状况\"。",
+   "category": "general",
+   "example": {
+    "ja": "作業環境を改善して、事故を減らす。",
+    "zh": "改善作业环境，减少事故。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/24662b6505d531d41dbb0a49.m4a",
+    "example": "/assets/pronunciation/9bebfb33b3d25e78c39c8878.m4a"
+   }
+  },
+  {
+   "id": "vx248",
+   "word": "改良",
+   "reading": "かいりょう",
+   "meaningZh": "名词/サ变动词：对物品、品种、方法本身的结构或性能加以改进，使其更好用；对象多为\"东西\"。",
+   "category": "general",
+   "example": {
+    "ja": "使いやすくするために、道具の形を改良した。",
+    "zh": "为了更好用，改进了工具的形状。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/c5d99d2a6e7f6129d20de01d.m4a",
+    "example": "/assets/pronunciation/d037f582474c769eeeff2156.m4a"
+   }
+  },
+  {
+   "id": "vx249",
+   "word": "工夫",
+   "reading": "くふう",
+   "meaningZh": "名词/サ变动词：为把事情做得更好而动脑筋、想办法、下巧思；也指想出来的巧妙办法。",
+   "trapZh": "中文「工夫」是\"时间、功夫\"；日语「工夫」读くふう，是\"想办法、花心思\"。\"花时间\"日语说「時間がかかる」。",
+   "category": "general",
+   "example": {
+    "ja": "図を使うなど、伝え方を工夫する。",
+    "zh": "用图表等方式，在表达方法上下功夫。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/d83bb0275e11974d9b687527.m4a",
+    "example": "/assets/pronunciation/647f44092def2ec64288d34f.m4a"
+   }
+  },
+  {
+   "id": "vx250",
+   "word": "導入",
+   "reading": "どうにゅう",
+   "meaningZh": "名词/サ变动词：引进并开始使用新的制度、技术、设备；也指课程或文章开头引出话题的部分。",
+   "trapZh": "中文「导入」多指导入数据或课堂导入；日语「導入」最常用于\"引进、采用新制度/设备\"（システムを導入する）。",
+   "category": "general",
+   "example": {
+    "ja": "図書館に新しい予約システムを導入する。",
+    "zh": "在图书馆引进新的预约系统。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/8b86ea45d7399390670e15ff.m4a",
+    "example": "/assets/pronunciation/49bed30f0bc25c2b94bbc12a.m4a"
+   }
+  },
+  {
+   "id": "vx251",
+   "word": "廃止",
+   "reading": "はいし",
+   "meaningZh": "名词/サ变动词：把一直实行的制度、法律、线路等正式取消，不再实行。",
+   "category": "general",
+   "example": {
+    "ja": "利用者の少ない制度を廃止する。",
+    "zh": "废除使用者少的制度。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/6dc132015d862d61612a4d5d.m4a",
+    "example": "/assets/pronunciation/2ff75f11957877b990778c5a.m4a"
+   }
+  },
+  {
+   "id": "vx252",
+   "word": "採用",
+   "reading": "さいよう",
+   "meaningZh": "名词/サ变动词：①选定并采纳意见、方案；②公司、机构录用员工（招聘录用）。",
+   "trapZh": "日语「採用」还表示\"录用（人员）\"，如「新卒採用」＝应届生招聘；中文\"采用\"一般不用于人。",
+   "category": "general",
+   "example": {
+    "ja": "話し合いの結果、最初の案を採用した。",
+    "zh": "讨论的结果是采纳了最初的方案。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/543f8a898b4aeba29a5d5a37.m4a",
+    "example": "/assets/pronunciation/1442aaff4e43a53a4f685676.m4a"
+   }
+  },
+  {
+   "id": "vx253",
+   "word": "棄却",
+   "reading": "ききゃく",
+   "meaningZh": "名词/サ变动词：判断某主张、申请或假设不成立而不予采纳；统计学中指否定原假设，法律上指驳回。",
+   "category": "general",
+   "example": {
+    "ja": "実験結果に基づいて、最初の仮説を棄却した。",
+    "zh": "根据实验结果，否定了最初的假设。"
+   },
+   "group": "学术词汇 · 实施与改进",
+   "audio": {
+    "word": "/assets/pronunciation/d4f4b363d9a23067c2038a97.m4a",
+    "example": "/assets/pronunciation/694f6e585fbd705e11d39ea8.m4a"
+   }
+  },
+  {
+   "id": "vx254",
+   "word": "拡大",
+   "reading": "かくだい",
+   "meaningZh": "名词/サ变动词：使规模、范围、图像等变大、扩展；与\"缩小\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "支援の対象を全国に拡大する。",
+    "zh": "将支援对象扩大到全国。"
+   },
+   "group": "学术词汇 · 变化与影响",
+   "audio": {
+    "word": "/assets/pronunciation/3763f9f0efd2865887cb7501.m4a",
+    "example": "/assets/pronunciation/6b27807089f652c5d000b023.m4a"
+   }
+  },
+  {
+   "id": "vx255",
+   "word": "縮小",
+   "reading": "しゅくしょう",
+   "meaningZh": "名词/サ变动词：使规模、范围、差距等变小、收缩；与\"扩大\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "利用者の減少に合わせて事業を縮小する。",
+    "zh": "随着使用者减少而缩减业务。"
+   },
+   "group": "学术词汇 · 变化与影响",
+   "audio": {
+    "word": "/assets/pronunciation/b70d0feee6f19f27c468aaec.m4a",
+    "example": "/assets/pronunciation/6534f723cdb0166922f57079.m4a"
+   }
+  },
+  {
+   "id": "vx256",
+   "word": "普及",
+   "reading": "ふきゅう",
+   "meaningZh": "名词/サ变动词：新事物、技术、知识等在社会上广泛传开，被一般大众拥有或使用。",
+   "category": "general",
+   "example": {
+    "ja": "携帯電話が短期間で普及した。",
+    "zh": "手机在短时间内普及了。"
+   },
+   "group": "学术词汇 · 变化与影响",
+   "audio": {
+    "word": "/assets/pronunciation/99ad767348abeee84282fe39.m4a",
+    "example": "/assets/pronunciation/29460c70dc67db1a8a8dccfe.m4a"
+   }
+  },
+  {
+   "id": "vx257",
+   "word": "浸透",
+   "reading": "しんとう",
+   "meaningZh": "名词/サ变动词：液体渗入物体内部；比喻思想、习惯等逐渐深入人心、被广泛接受。",
+   "category": "general",
+   "example": {
+    "ja": "新しい考え方が社会に浸透するまでには時間がかかる。",
+    "zh": "新的观念要渗透到整个社会需要时间。"
+   },
+   "group": "学术词汇 · 变化与影响",
+   "audio": {
+    "word": "/assets/pronunciation/c5b33dd377f1ee42a5c38d4a.m4a",
+    "example": "/assets/pronunciation/385f63b4ec1de3ce30795e28.m4a"
+   }
+  },
+  {
+   "id": "vx258",
+   "word": "依存",
+   "reading": "いぞん",
+   "meaningZh": "名词/サ变动词：依赖别的事物才能存在或维持；常含\"过度依赖\"之意，如依赖手机、依赖能源进口。",
+   "trapZh": "中文「依存」较书面，多指\"相互依存\"；日语很常用且常带负面色彩，「依存症」＝成瘾症。",
+   "category": "general",
+   "example": {
+    "ja": "一つの情報源だけに依存しないようにする。",
+    "zh": "不要只依赖单一的信息来源。"
+   },
+   "altReadings": [
+    "いそん"
+   ],
+   "group": "学术词汇 · 变化与影响",
+   "audio": {
+    "word": "/assets/pronunciation/4021d51f144d26b1a8e73b8c.m4a",
+    "example": "/assets/pronunciation/c0607a51fb2e4e496fc1e367.m4a"
+   }
+  },
+  {
+   "id": "vx259",
+   "word": "貢献",
+   "reading": "こうけん",
+   "meaningZh": "名词/サ变动词：为社会、团体或他人的发展出力，带来有益的作用。",
+   "category": "general",
+   "example": {
+    "ja": "研究の成果を通じて社会に貢献する。",
+    "zh": "通过研究成果为社会做贡献。"
+   },
+   "group": "学术词汇 · 变化与影响",
+   "audio": {
+    "word": "/assets/pronunciation/f30b59124096b2442e2b950a.m4a",
+    "example": "/assets/pronunciation/94195d102e3a7dba5eba3461.m4a"
+   }
+  },
+  {
+   "id": "vx260",
+   "word": "協調",
+   "reading": "きょうちょう",
+   "meaningZh": "名词/サ变动词：立场、利益不同的各方相互让步配合，和谐地共同行动；也指善于与人合作的性格。",
+   "trapZh": "中文「协调」常指\"调整使之配合\"（协调工作）或\"搭配和谐\"（颜色协调）；日语「協調」是\"互相合作配合\"，\"协调安排\"日语说「調整」。另：同音「強調」（きょうちょう）＝强调，听力中注意区分。",
+   "category": "general",
+   "example": {
+    "ja": "立場の異なる人々が協調して課題に取り組む。",
+    "zh": "立场不同的人们齐心协力应对课题。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/111523912b11be7634b21b42.m4a",
+    "example": "/assets/pronunciation/7d3b9de9a868cb679c999d3f.m4a"
+   }
+  },
+  {
+   "id": "vx261",
+   "word": "共有",
+   "reading": "きょうゆう",
+   "meaningZh": "名词/サ变动词：多人共同拥有同一物品，或把信息、经验、文件分享给大家一起使用。",
+   "trapZh": "中文「共有」常作\"总共有\"（共有十人）；日语「共有」是\"共享\"（情報を共有する＝共享信息）。",
+   "category": "general",
+   "example": {
+    "ja": "調査の結果をチーム全体で共有する。",
+    "zh": "在整个团队中共享调查结果。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/440774bf6910542e961400f3.m4a",
+    "example": "/assets/pronunciation/250679a0a5581f6764bdb4a8.m4a"
+   }
+  },
+  {
+   "id": "vx262",
+   "word": "伝達",
+   "reading": "でんたつ",
+   "meaningZh": "名词/サ变动词：把信息、命令、意思从一方准确传给另一方；也用于神经信号、能量的传递。",
+   "category": "general",
+   "example": {
+    "ja": "必要な情報を正確に伝達する。",
+    "zh": "准确传达必要的信息。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/dbe42f09a0996fb2e7af0a65.m4a",
+    "example": "/assets/pronunciation/33c727a43c8f69022e7032e7.m4a"
+   }
+  },
+  {
+   "id": "vx263",
+   "word": "提案",
+   "reading": "ていあん",
+   "meaningZh": "名词/サ变动词：在会议、讨论等场合提出想法或方案，供大家考虑或采纳。",
+   "category": "general",
+   "example": {
+    "ja": "会議で新しい方法を提案した。",
+    "zh": "在会议上提出了新的方法。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/c23e4f5b25b5e325c22a39ec.m4a",
+    "example": "/assets/pronunciation/7b63cc45338507c25079a375.m4a"
+   }
+  },
+  {
+   "id": "vx264",
+   "word": "指摘",
+   "reading": "してき",
+   "meaningZh": "名词/サ变动词：明确指出问题、错误或值得注意之处；语气中性，常用于老师、专家、论文。",
+   "trapZh": "中文「指摘」是\"挑毛病、批评\"（贬义）；日语「指摘」是中性的\"指出\"，论文中「～と指摘されている」＝\"有人指出……\"。",
+   "category": "general",
+   "example": {
+    "ja": "先生が説明の矛盾を指摘した。",
+    "zh": "老师指出了说明中的矛盾。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/6ae7ddda2e24e5c199daa05f.m4a",
+    "example": "/assets/pronunciation/7cbdc4ee0ed2eead452e3db8.m4a"
+   }
+  },
+  {
+   "id": "vx265",
+   "word": "承知",
+   "reading": "しょうち",
+   "meaningZh": "名词/サ变动词：知道、了解某种情况；也表示接受对方的请求，敬语中用来回答\"明白了、照办\"。",
+   "category": "general",
+   "example": {
+    "ja": "その計画に危険があることは承知している。",
+    "zh": "我知道那个计划存在危险。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/33553923a3af133a38d0184c.m4a",
+    "example": "/assets/pronunciation/1fac79e03e32f23122e49c01.m4a"
+   }
+  },
+  {
+   "id": "vx266",
+   "word": "納得",
+   "reading": "なっとく",
+   "meaningZh": "名词/サ变动词：理解对方的说明或理由，认为确实如此而在心里接受、信服。",
+   "trapZh": "读音注意：「納」在这里读なっ（なっとく），不读のう；对比「納税」のうぜい、「納豆」なっとう。",
+   "category": "general",
+   "example": {
+    "ja": "詳しい説明を聞いて、ようやく納得した。",
+    "zh": "听了详细的说明后，终于想通了。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/10ec5ff00318db22ad2586c9.m4a",
+    "example": "/assets/pronunciation/cb4bfa76c0f79d90c3f7c0f1.m4a"
+   }
+  },
+  {
+   "id": "vx267",
+   "word": "反省",
+   "reading": "はんせい",
+   "meaningZh": "名词/サ变动词：回头检讨自己的言行，找出错误与不足以便改正；日常道歉时也常用。",
+   "category": "general",
+   "example": {
+    "ja": "失敗を反省して、次の準備に生かす。",
+    "zh": "反思失败，并运用到下一次的准备中。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/20a0504bf496a6464d54d35d.m4a",
+    "example": "/assets/pronunciation/042e376d26aa08a241e302bd.m4a"
+   }
+  },
+  {
+   "id": "vx268",
+   "word": "振り返る",
+   "reading": "ふりかえる",
+   "meaningZh": "动词：①回头看身后；②回顾过去的经历、事情，重新审视并加以总结。",
+   "category": "general",
+   "example": {
+    "ja": "一週間の学習を振り返る。",
+    "zh": "回顾一周的学习。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/cb3fd9d46ebbbb1a171adf7d.m4a",
+    "example": "/assets/pronunciation/9d492daf701d8f20ae7aece1.m4a"
+   }
+  },
+  {
+   "id": "vx269",
+   "word": "見積もる",
+   "reading": "みつもる",
+   "meaningZh": "动词：事先大致计算费用、时间、数量等（估算、估价）；名词形可指报价单。",
+   "category": "general",
+   "example": {
+    "ja": "工事に必要な費用を見積もる。",
+    "zh": "估算工程所需的费用。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/8c23352f75ad9c4bd7e33d60.m4a",
+    "example": "/assets/pronunciation/4bba50aeefdd569029cf2183.m4a"
+   }
+  },
+  {
+   "id": "vx270",
+   "word": "見込む",
+   "reading": "みこむ",
+   "meaningZh": "动词：根据现状预先估计将来的情况（预计、预估）；也有看好、信任某人能力的意思。",
+   "category": "general",
+   "example": {
+    "ja": "来年の利用者数を今年より多く見込む。",
+    "zh": "预计明年的使用者人数比今年多。"
+   },
+   "group": "学术词汇 · 沟通与判断",
+   "audio": {
+    "word": "/assets/pronunciation/fb12760cbd363306fa0df945.m4a",
+    "example": "/assets/pronunciation/a33463b3c695449c1fc4a3c6.m4a"
+   }
+  },
+  {
+   "id": "vx271",
+   "word": "迅速",
+   "reading": "じんそく",
+   "meaningZh": "形容动词：行动、处理非常快而及时，不拖延；多用于应对、处理、决定等。",
+   "category": "general",
+   "example": {
+    "ja": "事故のあと、迅速な対応が求められた。",
+    "zh": "事故发生后，需要迅速应对。"
+   },
+   "group": "学术形容 · 准确与恰当",
+   "audio": {
+    "word": "/assets/pronunciation/c533ba379f682b08e68f6e90.m4a",
+    "example": "/assets/pronunciation/6c73daf50af3b46b7d6f1d10.m4a"
+   }
+  },
+  {
+   "id": "vx272",
+   "word": "適切",
+   "reading": "てきせつ",
+   "meaningZh": "形容动词：与具体情况、目的正好相符，做法恰当、妥当；常修饰方法、判断、处理。",
+   "category": "general",
+   "example": {
+    "ja": "目的に合った適切な方法を選ぶ。",
+    "zh": "选择符合目的的恰当方法。"
+   },
+   "group": "学术形容 · 准确与恰当",
+   "audio": {
+    "word": "/assets/pronunciation/ee640842905b834ee0f32d0c.m4a",
+    "example": "/assets/pronunciation/ec2393e12fe6021c767f991d.m4a"
+   }
+  },
+  {
+   "id": "vx273",
+   "word": "的確",
+   "reading": "てきかく",
+   "meaningZh": "形容动词：抓住要点而没有偏差，判断、表达、指示准确到位、切中要害。",
+   "trapZh": "中文「的确」是副词\"确实\"；日语「的確」是形容动词\"准确、切中要害\"（的確な判断）。\"确实\"日语说「確かに」。",
+   "category": "general",
+   "example": {
+    "ja": "問題点を的確に指摘する。",
+    "zh": "准确地指出问题所在。"
+   },
+   "altReadings": [
+    "てっかく"
+   ],
+   "group": "学术形容 · 准确与恰当",
+   "audio": {
+    "word": "/assets/pronunciation/0be0860b61af8df0c71124cf.m4a",
+    "example": "/assets/pronunciation/25ae31c03448560aff587731.m4a"
+   }
+  },
+  {
+   "id": "vx274",
+   "word": "正確",
+   "reading": "せいかく",
+   "meaningZh": "形容动词：数值、时间、内容等与事实完全一致，没有错误和偏差。",
+   "trapZh": "同音词「性格」（せいかく）＝性格、脾气，听力中靠上下文区分。",
+   "category": "general",
+   "example": {
+    "ja": "日時を正確に記入する。",
+    "zh": "准确填写日期和时间。"
+   },
+   "group": "学术形容 · 准确与恰当",
+   "audio": {
+    "word": "/assets/pronunciation/a6377b7cd78ecd3a736feadb.m4a",
+    "example": "/assets/pronunciation/ca410f1ac5b71696f1c4426b.m4a"
+   }
+  },
+  {
+   "id": "vx275",
+   "word": "精密",
+   "reading": "せいみつ",
+   "meaningZh": "形容动词：极其细致、精度很高，连微小部分也不出差错；多用于测量、机械、检查等。",
+   "category": "general",
+   "example": {
+    "ja": "微小な変化を調べるには、精密な測定が必要だ。",
+    "zh": "要调查微小的变化，需要精密的测量。"
+   },
+   "group": "学术形容 · 准确与恰当",
+   "audio": {
+    "word": "/assets/pronunciation/f48646405b8ef2740fb7cd5e.m4a",
+    "example": "/assets/pronunciation/f8a62e3e9b63de6031afedce.m4a"
+   }
+  },
+  {
+   "id": "vx276",
+   "word": "複雑",
+   "reading": "ふくざつ",
+   "meaningZh": "形容动词：由多种因素、部分交错组成，关系纷繁，难以简单理解；与\"简单\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "原因が複雑で、一つだけには決められない。",
+    "zh": "原因很复杂，不能只归结为一个。"
+   },
+   "group": "学术形容 · 繁简与清晰",
+   "audio": {
+    "word": "/assets/pronunciation/6e02569c59063f12dbdffe49.m4a",
+    "example": "/assets/pronunciation/f9c0d528c912807fb24bfa72.m4a"
+   }
+  },
+  {
+   "id": "vx277",
+   "word": "単純",
+   "reading": "たんじゅん",
+   "meaningZh": "形容动词：结构、关系、想法不复杂，只有一种或很少的要素；有时也指想法过于简单。",
+   "trapZh": "中文「单纯」常夸人\"纯真\"；日语「単純」主要指\"简单\"（単純な計算），说人「単純」是\"头脑简单\"，略带贬义。夸人纯真用「純粋」「素直」。",
+   "category": "general",
+   "example": {
+    "ja": "最初は単純なモデルで考える。",
+    "zh": "一开始先用简单的模型来思考。"
+   },
+   "group": "学术形容 · 繁简与清晰",
+   "audio": {
+    "word": "/assets/pronunciation/d0bf80e642a31cbd1c986b5f.m4a",
+    "example": "/assets/pronunciation/b27ff95bcec51dfe242409c1.m4a"
+   }
+  },
+  {
+   "id": "vx278",
+   "word": "曖昧",
+   "reading": "あいまい",
+   "meaningZh": "形容动词：意思、态度、界限不清楚，可以有多种理解，含糊不明。",
+   "category": "general",
+   "example": {
+    "ja": "条件が曖昧なまま実験を始めてはいけない。",
+    "zh": "不能在条件含糊不清的情况下开始实验。"
+   },
+   "group": "学术形容 · 繁简与清晰",
+   "audio": {
+    "word": "/assets/pronunciation/650e675d38fcf5de46a3f444.m4a",
+    "example": "/assets/pronunciation/efc1eb2caae51769e8698878.m4a"
+   }
+  },
+  {
+   "id": "vx279",
+   "word": "明確",
+   "reading": "めいかく",
+   "meaningZh": "形容动词：内容、界限、目的等清楚明白，没有含糊之处。",
+   "category": "general",
+   "example": {
+    "ja": "調査の目的を明確にする。",
+    "zh": "明确调查的目的。"
+   },
+   "group": "学术形容 · 繁简与清晰",
+   "audio": {
+    "word": "/assets/pronunciation/853fb9872344921973ccc9d5.m4a",
+    "example": "/assets/pronunciation/66a20d4f6debd88ed8486068.m4a"
+   }
+  },
+  {
+   "id": "vx280",
+   "word": "深刻",
+   "reading": "しんこく",
+   "meaningZh": "形容动词：问题、事态严重，影响大而不能忽视；也形容表情、烦恼沉重。",
+   "trapZh": "中文「深刻」多指\"印象深刻、道理深刻\"（褒义）；日语「深刻」是\"严重\"（深刻な問題＝严重问题）。\"印象深刻\"日语说「印象に残る」。",
+   "category": "general",
+   "example": {
+    "ja": "人手不足が深刻な問題になっている。",
+    "zh": "人手不足正在成为严重的问题。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/484893d17d40fdcc54ddae43.m4a",
+    "example": "/assets/pronunciation/92a7871fb01a1cb5066d2ab9.m4a"
+   }
+  },
+  {
+   "id": "vx281",
+   "word": "重大",
+   "reading": "じゅうだい",
+   "meaningZh": "形容动词：影响、意义或责任非常大，关系到全局，不能轻视。",
+   "category": "general",
+   "example": {
+    "ja": "安全に関わる重大な欠陥が見つかった。",
+    "zh": "发现了关系到安全的重大缺陷。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/19b1230ccbcabb411e41c720.m4a",
+    "example": "/assets/pronunciation/cbd6fa7756b21c2ca1bde9bc.m4a"
+   }
+  },
+  {
+   "id": "vx282",
+   "word": "貴重",
+   "reading": "きちょう",
+   "meaningZh": "形容动词：难得、稀少而非常有价值，值得珍惜；用于资料、经验、时间等。",
+   "category": "general",
+   "example": {
+    "ja": "これは当時の生活を知るための貴重な資料だ。",
+    "zh": "这是了解当时生活的珍贵资料。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/fe18c6aa7c785535d330c21b.m4a",
+    "example": "/assets/pronunciation/dd35e195b3e11b107ff9def7.m4a"
+   }
+  },
+  {
+   "id": "vx283",
+   "word": "豊富",
+   "reading": "ほうふ",
+   "meaningZh": "形容动词：数量多、种类齐全，充足有余；用于资源、经验、知识等。",
+   "trapZh": "同音词「抱負」（ほうふ）＝抱负、志向（面试、作文常见），注意区分。",
+   "category": "general",
+   "example": {
+    "ja": "この地域は水資源が豊富である。",
+    "zh": "这个地区水资源丰富。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/a688a2b2e7848e79a7c0eec2.m4a",
+    "example": "/assets/pronunciation/7ac5e04cad09c5776df0765b.m4a"
+   }
+  },
+  {
+   "id": "vx284",
+   "word": "乏しい",
+   "reading": "とぼしい",
+   "meaningZh": "形容词：数量或内容不足、缺乏；常接在资源、经验、证据等之后表示\"缺少……\"。",
+   "category": "general",
+   "example": {
+    "ja": "資料が乏しいため、詳しいことは分からない。",
+    "zh": "由于资料匮乏，详细情况不清楚。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/c38a27a8a8c60cac506c03cd.m4a",
+    "example": "/assets/pronunciation/919c50555e25065c1eb416b3.m4a"
+   }
+  },
+  {
+   "id": "vx285",
+   "word": "緩やか",
+   "reading": "ゆるやか",
+   "meaningZh": "形容动词：①坡度、弯度小而平缓；②变化、速度慢慢进行，不剧烈。",
+   "category": "general",
+   "example": {
+    "ja": "人口は緩やかに減少している。",
+    "zh": "人口在缓慢减少。"
+   },
+   "group": "学术形容 · 时间与频率",
+   "audio": {
+    "word": "/assets/pronunciation/0fb2fa65430e7ef2b7086531.m4a",
+    "example": "/assets/pronunciation/1dc304ae2074bcc3dbb22934.m4a"
+   }
+  },
+  {
+   "id": "vx286",
+   "word": "頻繁",
+   "reading": "ひんぱん",
+   "meaningZh": "形容动词：同类事情在短时间内一次又一次地发生，次数很多。",
+   "trapZh": "读音注意：繁在这里读ぱん（ひんぱん），不读ひんはん。",
+   "category": "general",
+   "example": {
+    "ja": "この地域では小さな地震が頻繁に起きる。",
+    "zh": "这个地区经常发生小地震。"
+   },
+   "group": "学术形容 · 时间与频率",
+   "audio": {
+    "word": "/assets/pronunciation/44db1dae26380dee27175914.m4a",
+    "example": "/assets/pronunciation/0cadc006504f7cb75f80e688.m4a"
+   }
+  },
+  {
+   "id": "vx287",
+   "word": "稀",
+   "reading": "まれ",
+   "meaningZh": "形容动词：发生的次数极少，平常很难遇到；常说\"……的情况很少见\"。",
+   "trapZh": "「稀」不在常用汉字表内，正式文章（包括 EJU）里通常写作平假名「まれ」，也写作「希」；「まれに」＝偶尔、极少数情况下。",
+   "category": "general",
+   "example": {
+    "ja": "この条件で大きな誤差が出ることは稀だ。",
+    "zh": "在这个条件下出现大误差的情况很少见。"
+   },
+   "group": "学术形容 · 时间与频率",
+   "audio": {
+    "word": "/assets/pronunciation/48e05987f833a40dee82fc6e.m4a",
+    "example": "/assets/pronunciation/89c454b260ae39c63405900f.m4a"
+   }
+  },
+  {
+   "id": "vx288",
+   "word": "偶然",
+   "reading": "ぐうぜん",
+   "meaningZh": "名词/形容动词/副词：没有预料或安排而碰巧发生；与\"按规律必定如此\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "調査中に偶然、新しい資料を見つけた。",
+    "zh": "调查中偶然发现了新的资料。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/551836f7de4caae42547fa59.m4a",
+    "example": "/assets/pronunciation/91431ec8bc5701583b046d02.m4a"
+   }
+  },
+  {
+   "id": "vx289",
+   "word": "必然",
+   "reading": "ひつぜん",
+   "meaningZh": "名词/形容动词：根据条件或规律，必定会这样，不可能是别的结果；与\"碰巧\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "この結果は、設定した条件から導かれる必然の結果である。",
+    "zh": "这个结果是由所设定的条件推导出的必然结果。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/332d008a9c4fde97e4c2c13b.m4a",
+    "example": "/assets/pronunciation/3ca9c44b2cd2555ac1cc05eb.m4a"
+   }
+  },
+  {
+   "id": "vx290",
+   "word": "均等",
+   "reading": "きんとう",
+   "meaningZh": "名词/形容动词：分给各方的份额、机会、负担完全相同，没有多少之分；侧重\"分配平均\"。",
+   "category": "general",
+   "example": {
+    "ja": "作業時間を四人に均等に割り当てる。",
+    "zh": "把作业时间平均分配给四个人。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/ee07ed15297a79f96734031f.m4a",
+    "example": "/assets/pronunciation/f18c365857d4a1c92d9e077f.m4a"
+   }
+  },
+  {
+   "id": "vx291",
+   "word": "均一",
+   "reading": "きんいつ",
+   "meaningZh": "名词/形容动词：物质各部分的成分、浓度、品质或价格都一样，没有差别；侧重\"整体一致\"。",
+   "trapZh": "读音注意：一在这里读いつ（きんいつ），不读いち；同类：統一とういつ、同一どういつ、唯一ゆいいつ。",
+   "category": "general",
+   "example": {
+    "ja": "よく混ぜて、溶液の濃度を均一にする。",
+    "zh": "充分搅拌，使溶液浓度均匀。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/74ce2115e8cdadebc872d6f5.m4a",
+    "example": "/assets/pronunciation/5ab3c6dfd1206b2fb412bab7.m4a"
+   }
+  },
+  {
+   "id": "vx292",
+   "word": "一定",
+   "reading": "いってい",
+   "meaningZh": "名词/形容动词/サ变动词：保持同一个数值或状态而不变化（恒定、固定）；也指\"某种程度的\"。",
+   "trapZh": "中文「一定」多作副词\"必定\"；日语「一定」主要是\"恒定、固定\"（温度を一定に保つ＝保持温度恒定）。\"必定\"日语说「必ず」「きっと」。",
+   "category": "general",
+   "example": {
+    "ja": "実験中は温度を一定に保つ。",
+    "zh": "实验中保持温度恒定。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/cb1558a2cd75569faaf11a5a.m4a",
+    "example": "/assets/pronunciation/f30cf3bb4ed252ac2c148e07.m4a"
+   }
+  },
+  {
+   "id": "vx293",
+   "word": "不規則",
+   "reading": "ふきそく",
+   "meaningZh": "名词/形容动词：没有固定的规律或顺序，变化、间隔时大时小。",
+   "category": "general",
+   "example": {
+    "ja": "この信号は不規則に変化する。",
+    "zh": "这个信号不规则地变化。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/f26309bba96954980c219604.m4a",
+    "example": "/assets/pronunciation/53bc4223fabe49a1250ab032.m4a"
+   }
+  },
+  {
+   "id": "vx294",
+   "word": "連続",
+   "reading": "れんぞく",
+   "meaningZh": "名词/サ变动词：同样的事情一个接一个、中间不间断地持续下去。",
+   "category": "general",
+   "example": {
+    "ja": "三時間連続で測定を行った。",
+    "zh": "连续三个小时进行了测量。"
+   },
+   "group": "学术形容 · 时间与频率",
+   "audio": {
+    "word": "/assets/pronunciation/2436bd09db13daf0eb2fc1b1.m4a",
+    "example": "/assets/pronunciation/6ccc7fae111710a4d442e8cc.m4a"
+   }
+  },
+  {
+   "id": "vx295",
+   "word": "断続的",
+   "reading": "だんぞくてき",
+   "meaningZh": "形容动词：时断时续，停一阵又开始，反复多次地发生。",
+   "category": "general",
+   "example": {
+    "ja": "雨が断続的に降っている。",
+    "zh": "雨断断续续地下着。"
+   },
+   "group": "学术形容 · 时间与频率",
+   "audio": {
+    "word": "/assets/pronunciation/bb034e2a1ec1f39bd0936c8d.m4a",
+    "example": "/assets/pronunciation/ab995fcc813970df28329d52.m4a"
+   }
+  },
+  {
+   "id": "vx296",
+   "word": "独自",
+   "reading": "どくじ",
+   "meaningZh": "名词/形容动词：不同于别人、只属于自己的特色或做法（独有的、独特的）；多作定语。",
+   "trapZh": "中文「独自」是\"单独、一个人\"（独自一人）；日语「独自」是\"独有、独特\"（独自の文化）。\"一个人\"日语说「一人で」。",
+   "category": "general",
+   "example": {
+    "ja": "この地域は独自の文化を発展させてきた。",
+    "zh": "这个地区发展出了独特的文化。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/42de9e13cedcb44bf7944273.m4a",
+    "example": "/assets/pronunciation/f0727532e211a03d30a652a1.m4a"
+   }
+  },
+  {
+   "id": "vx297",
+   "word": "共通",
+   "reading": "きょうつう",
+   "meaningZh": "名词/形容动词/サ变动词：两个或多个事物都具有同样的特点、性质；也构成\"通用语\"\"共同点\"等说法。",
+   "category": "general",
+   "example": {
+    "ja": "二つの事例には共通する特徴がある。",
+    "zh": "两个事例有共同的特征。"
+   },
+   "group": "学术形容 · 规律与异同",
+   "audio": {
+    "word": "/assets/pronunciation/a35602be41a9a614b893a904.m4a",
+    "example": "/assets/pronunciation/d349398de95762a3e42eb3d2.m4a"
+   }
+  },
+  {
+   "id": "vx298",
+   "word": "有益",
+   "reading": "ゆうえき",
+   "meaningZh": "形容动词：对人或事情有好处、有帮助、有用处；与\"有害\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "経験者の意見は、計画を立てるうえで有益だ。",
+    "zh": "有经验者的意见在制定计划时很有帮助。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/c1c23a3898d8f00608a90068.m4a",
+    "example": "/assets/pronunciation/ce05352457a5651ca44fdb10.m4a"
+   }
+  },
+  {
+   "id": "vx299",
+   "word": "不可欠",
+   "reading": "ふかけつ",
+   "meaningZh": "形容动词：必不可少，缺了就无法成立或维持；常说\"对……来说必不可少\"。",
+   "category": "general",
+   "example": {
+    "ja": "安全な水は生活に不可欠である。",
+    "zh": "安全的水是生活中必不可少的。"
+   },
+   "group": "学术形容 · 程度与价值",
+   "audio": {
+    "word": "/assets/pronunciation/cdb60a927a34b4a2381cadaf.m4a",
+    "example": "/assets/pronunciation/0108b048629a91d4cbb03c89.m4a"
+   }
+  },
+  {
+   "id": "vx300",
+   "word": "長期的",
+   "reading": "ちょうきてき",
+   "meaningZh": "形容动词：着眼于很长一段时间的，从长远角度来看；与\"短期的\"相对。",
+   "category": "general",
+   "example": {
+    "ja": "目先の利益だけでなく、長期的な影響も考える。",
+    "zh": "不只考虑眼前利益，也要考虑长远的影响。"
+   },
+   "group": "学术形容 · 时间与频率",
+   "audio": {
+    "word": "/assets/pronunciation/ccae9bce50823b5c89f8d90c.m4a",
+    "example": "/assets/pronunciation/c6d8d339b403e1c01ddc95d1.m4a"
+   }
+  }
+ ]
+}

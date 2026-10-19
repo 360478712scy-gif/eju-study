@@ -1,5 +1,5 @@
 // 题库练习: browse the whole bank by topic, by paper, or as a searchable list.
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { SUBJECTS, type Subject } from '@shared/types.ts';
 import { topicStats } from '@shared/stats.ts';
 import { useReady } from '../../lib/store.ts';
@@ -56,6 +56,7 @@ export function PracticePage(_props: {}) {
   const subject: Subject = SUBJECTS.find((s) => s === route.query.get('s')) || memo.s || 'math';
   const topic = route.query.get('topic');
   const [preview, setPreview] = useState<string | null>(null);
+  const closePreview = useCallback(() => setPreview(null), []);
 
   const go = (patch: { view?: View; s?: Subject; topic?: string | null }) => {
     const v = patch.view ?? view;
@@ -131,7 +132,8 @@ export function PracticePage(_props: {}) {
                 <span className="pr-subject-text">
                   <span className="pr-subject-name">{SUBJECT_NAME[s]}</span>
                   <span className="pr-subject-meta num">
-                    已做 {sum.done}/{sum.total}
+                    <span className="pr-subject-label">已做 </span>
+                    {sum.done}/{sum.total}
                     {sum.wrong > 0 && <span className="pr-subject-wrong"> · 错 {sum.wrong}</span>}
                   </span>
                 </span>
@@ -158,7 +160,7 @@ export function PracticePage(_props: {}) {
       {view === 'papers' && <PaperView reserved={reserved} onPreview={setPreview} />}
       {view === 'items' && <ItemsView subject={subject} topic={topic} reserved={reserved} onTopic={(t) => go({ topic: t })} onSubject={(s) => go({ s })} onPreview={setPreview} />}
 
-      <ItemPreview itemId={preview} onClose={() => setPreview(null)} />
+      <ItemPreview itemId={preview} onClose={closePreview} />
     </div>
   );
 }

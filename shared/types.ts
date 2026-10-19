@@ -229,6 +229,8 @@ export interface ItemProgress {
   /** Date the item is next due for re-test (mistake book). */
   due?: string;
   inMistakes: boolean;
+  /** Last correct answer took > 1.8 × targetSec: re-practice under time pressure. */
+  slow?: boolean;
   starred?: boolean;
   note?: string;
 }
@@ -260,7 +262,7 @@ export interface VocabAttempt {
   legacy?: boolean;
 }
 
-export type BlockKind = 'drill' | 'review' | 'vocab' | 'mock' | 'reading' | 'listening' | 'notes';
+export type BlockKind = 'drill' | 'review' | 'vocab' | 'mock' | 'reading' | 'listening' | 'notes' | 'traps';
 export type MockKind = 'math' | 'science' | 'ja-reading' | 'ja-listening';
 
 export interface PlanBlock {

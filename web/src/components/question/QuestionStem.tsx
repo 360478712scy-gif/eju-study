@@ -3,6 +3,7 @@
 // live — both the boxes KaTeX draws inside formulas and the ones in plain text.
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react';
 import type { Item } from '@shared/types.ts';
+import { normalizeMark } from '@shared/grading.ts';
 import { RichText, type BoxRenderer } from '../RichText.tsx';
 import { Figures } from './Figures.tsx';
 import { Icon } from '../Icon.tsx';
@@ -25,9 +26,9 @@ const MarksContext = createContext<StemMarks | null>(null);
 type BoxState = 'idle' | 'filled' | 'active' | 'right' | 'wrong';
 
 function boxState(m: StemMarks, label: string): { state: BoxState; text: string | null } {
-  const chars = [...label].map((l) => m.values[l] || '');
+  const chars = [...label].map((l) => normalizeMark(m.values[l] || ''));
   const any = chars.some(Boolean);
-  const text = any ? [...label].map((l, i) => chars[i] || l).join('') : null;
+  const text = any ? [...label].map((l, i) => (chars[i] === '-' ? '−' : chars[i] || l)).join('') : null;
   if (m.results && label in m.results) return { state: m.results[label] ? 'right' : 'wrong', text };
   if (m.active === label) return { state: 'active', text };
   return { state: any ? 'filled' : 'idle', text };
@@ -62,6 +63,15 @@ function decorateKatexBoxes(root: HTMLElement, marks: StemMarks | undefined) {
     if (text) pad.dataset.val = text;
     else delete pad.dataset.val;
     if (frame) frame.dataset.qbx = state;
+  });
+}
+
+/** Mark source citations and footnotes in Japanese passages so they can be styled quietly. */
+function decoratePassage(root: HTMLElement) {
+  root.querySelectorAll<HTMLElement>('.q-stem-text > p').forEach((p) => {
+    const t = (p.textContent || '').trim();
+    p.classList.toggle('q-cite', /^（[\s\S]*[『「][\s\S]*）$/.test(t) && t.length < 160);
+    p.classList.toggle('q-note', /^＊/.test(t));
   });
 }
 
@@ -111,7 +121,9 @@ export function QuestionStem({
 
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
-    if (ref.current) decorateKatexBoxes(ref.current, marks);
+    if (!ref.current) return;
+    decorateKatexBoxes(ref.current, marks);
+    if (item.subject === 'japanese') decoratePassage(ref.current);
   });
 
   // Follow the box being filled when it changes (not on first render, so reading starts at the top).

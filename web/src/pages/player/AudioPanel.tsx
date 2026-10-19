@@ -1,6 +1,6 @@
 // Listening player on top of lib/audio.ts: play/pause, progress, speed.
 // Exam sessions play each clip once, at normal speed, without seeking.
-import { useEffect, useRef, useState, type MouseEvent, type RefObject } from 'react';
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from 'react';
 import type { AudioRef } from '@shared/types.ts';
 import { onSpeechChange, playSpeech, speechElement, stopSpeech } from '../../lib/audio.ts';
 import { Icon } from '../../components/Icon.tsx';
@@ -16,8 +16,18 @@ export function AudioPanel({
   played,
   onPlayed,
   toggleRef,
+  hero,
+  title,
+  caption,
+  idleText,
 }: {
   audio: AudioRef;
+  /** Big centered layout for pure listening items (the clip is the whole question). */
+  hero?: boolean;
+  title?: ReactNode;
+  caption?: ReactNode;
+  /** Status line before playback starts. */
+  idleText?: string;
   exam: boolean;
   /** Exam: this clip has already been played through. */
   played: boolean;
@@ -147,20 +157,71 @@ export function AudioPanel({
   };
 
   const frac = duration ? Math.min(1, pos / duration) : 0;
-  const status = playing ? '正在播放' : ended ? (exam ? '已播放完毕' : '播放结束') : pos > 0 ? '已暂停' : exam ? '准备好后开始播放' : '听完再作答';
+  const status = playing ? '正在播放' : ended ? (exam ? '已播放完毕' : '播放结束') : pos > 0 ? '已暂停' : (idleText ?? (exam ? '准备好后开始播放' : '听完再作答'));
+
+  const button = (
+    <button
+      type="button"
+      className="pl-audio-btn"
+      onClick={toggle}
+      disabled={(locked && !playing) || (exam && playing)}
+      aria-label={playing ? '暂停' : '播放'}
+      data-hotkeys
+    >
+      {loading ? <span className="spinner" style={{ width: 20, height: 20 }} /> : <Icon name={playing ? (exam ? 'volume' : 'pause') : ended && !exam ? 'refresh' : 'play'} size={hero ? 28 : 22} />}
+    </button>
+  );
+  const bar = (
+    <div className={cx('pl-audio-bar', !exam && 'is-seekable')} onClick={seek} role="slider" aria-label="播放进度" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(frac * 100)}>
+      <div className="pl-audio-fill" style={{ width: `${frac * 100}%` }} />
+    </div>
+  );
+  const controls = exam ? (
+    <span className="pl-audio-note">
+      <Icon name="info" size={13} />
+      考试模式：只播放一遍，不能暂停和倍速
+    </span>
+  ) : (
+    <>
+      <Segmented size="sm" value={rate} onChange={changeRate} options={RATES.map((r) => ({ value: r, label: `${r}×` }))} />
+      <span className="pl-audio-note">
+        <Kbd>Space</Kbd> 播放 / 暂停
+      </span>
+    </>
+  );
+
+  if (hero) {
+    return (
+      <div className={cx('pl-audio pl-audio-hero', playing && 'is-playing', locked && 'is-locked')}>
+        {title && <div className="pl-audio-eyebrow">{title}</div>}
+        <div className="pl-audio-stage">
+          <span className="pl-wave" aria-hidden>
+            {Array.from({ length: 5 }, (_, i) => (
+              <i key={i} />
+            ))}
+          </span>
+          {button}
+          <span className="pl-wave" aria-hidden>
+            {Array.from({ length: 5 }, (_, i) => (
+              <i key={i} />
+            ))}
+          </span>
+        </div>
+        <div className="pl-audio-status">{status}</div>
+        <div className="pl-audio-track">
+          <span className="num">{fmtClock(pos)}</span>
+          {bar}
+          <span className="num">{duration ? fmtClock(duration) : '–:––'}</span>
+        </div>
+        <div className="pl-audio-foot">{controls}</div>
+        {caption && <div className="pl-audio-caption">{caption}</div>}
+      </div>
+    );
+  }
 
   return (
     <div className={cx('pl-audio', playing && 'is-playing', locked && 'is-locked')}>
-      <button
-        type="button"
-        className="pl-audio-btn"
-        onClick={toggle}
-        disabled={(locked && !playing) || (exam && playing)}
-        aria-label={playing ? '暂停' : '播放'}
-        data-hotkeys
-      >
-        {loading ? <span className="spinner" style={{ width: 20, height: 20 }} /> : <Icon name={playing ? (exam ? 'volume' : 'pause') : ended && !exam ? 'refresh' : 'play'} size={22} />}
-      </button>
+      {button}
       <div className="pl-audio-main">
         <div className="pl-audio-top">
           <span className="pl-audio-status">
@@ -171,24 +232,8 @@ export function AudioPanel({
             {fmtClock(pos)} / {duration ? fmtClock(duration) : '–:––'}
           </span>
         </div>
-        <div className={cx('pl-audio-bar', !exam && 'is-seekable')} onClick={seek} role="slider" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(frac * 100)}>
-          <div className="pl-audio-fill" style={{ width: `${frac * 100}%` }} />
-        </div>
-        <div className="pl-audio-foot">
-          {exam ? (
-            <span className="pl-audio-note">
-              <Icon name="info" size={13} />
-              考试模式：只播放一遍，不能暂停和倍速
-            </span>
-          ) : (
-            <>
-              <Segmented size="sm" value={rate} onChange={changeRate} options={RATES.map((r) => ({ value: r, label: `${r}×` }))} />
-              <span className="pl-audio-note">
-                <Kbd>Space</Kbd> 播放 / 暂停
-              </span>
-            </>
-          )}
-        </div>
+        {bar}
+        <div className="pl-audio-foot">{controls}</div>
       </div>
     </div>
   );

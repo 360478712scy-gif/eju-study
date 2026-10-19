@@ -15,7 +15,7 @@ export interface RunCard {
 
 export interface RunAnswer {
   correct: boolean;
-  /** Kana typed (read) or chosen meaning text (meaning). */
+  /** Kana answer (read) or the vocab id whose meaning was picked (meaning); '' = gave up. */
   response: string;
   /** Raw input as typed, for showing back. */
   typed?: string;
@@ -59,10 +59,6 @@ export function getRun(): VocabRun | null {
 export function setRun(next: VocabRun | null) {
   run = next;
   for (const l of listeners) l();
-}
-
-export function patchRun(fn: (r: VocabRun) => VocabRun) {
-  if (run) setRun(fn(run));
 }
 
 export function useRun(): VocabRun | null {
@@ -121,6 +117,7 @@ export function extraQueue(state: AppState, bank: BankIndex, count: number): { i
     const p = state.vocab[v.id];
     if (!p) continue;
     for (const skill of ['read', 'meaning'] as const) {
+      if (skill === 'read' && isKanaOnly(v.word)) continue;
       const sp = p[skill];
       if (sp) out.push({ id: v.id, skill, box: sp.box, ok: sp.lastCorrect ? 1 : 0, due: sp.due });
     }
@@ -129,10 +126,22 @@ export function extraQueue(state: AppState, bank: BankIndex, count: number): { i
   return out.slice(0, count).map(({ id, skill }) => ({ id, skill }));
 }
 
+/**
+ * Today's queue (due first, then new cards) from shared vocabQueue, minus the "看字写读音"
+ * card of words written only in kana (むしろ, いわゆる …), which have nothing to read.
+ * Those would otherwise take new-card slots every day, so the request is padded by their number.
+ */
 export function buildQueue(state: AppState, bank: BankIndex, date: string, newLimit: number, max?: number) {
-  let q = vocabQueue(state, bank, date, newLimit);
-  if (max !== undefined) q = q.slice(0, max);
-  return q;
+  const skip = (q: { id: string; skill: VocabSkill }) => q.skill === 'read' && isKanaOnly(bank.vocabById.get(q.id)?.word ?? '');
+  const pad = bank.bundle.vocab.filter((v) => isKanaOnly(v.word)).length;
+  const due: { id: string; skill: VocabSkill }[] = [];
+  const fresh: { id: string; skill: VocabSkill }[] = [];
+  for (const q of vocabQueue(state, bank, date, newLimit + Math.ceil(pad / 2))) {
+    if (skip(q)) continue;
+    (state.vocab[q.id]?.[q.skill] ? due : fresh).push(q);
+  }
+  const q = [...due, ...fresh.slice(0, newLimit * 2)];
+  return max !== undefined ? q.slice(0, max) : q;
 }
 
 export function newRun(cards: RunCard[], date: string, title: string): VocabRun {
@@ -227,6 +236,11 @@ export const CATEGORY_LABEL: Record<VocabEntry['category'], string> = {
 /** Theme group from the content build (e.g. "调查与数据"), when present. */
 export function vocabGroup(v: VocabEntry): string | undefined {
   return 'group' in v && typeof v.group === 'string' ? v.group : undefined;
+}
+
+/** No kanji to read (e.g. いわゆる, それどころか). */
+export function isKanaOnly(word: string): boolean {
+  return !/[\u3400-\u9fff\u3005\uf900-\ufaff]/.test(word);
 }
 
 export const SKILL_LABEL: Record<VocabSkill, string> = {

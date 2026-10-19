@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { bank } from './fixtures.ts';
 import { createInitialState, migrateV1 } from '../shared/migrate.ts';
-import { buildDayPlan, budgetFor, mockSchedule, phaseFor, daysLeftOn, reservedSessions } from '../shared/planner.ts';
+import { buildDayPlan, budgetFor, mockSchedule, phaseFor, daysLeftOn, reservedSessions, mockItemsPadded } from '../shared/planner.ts';
+import { estimateAll } from '../shared/stats.ts';
 import { startBlock, submitAnswer, finishSession, ensurePlan, recordVocab, vocabQueue, regeneratePlan } from '../shared/actions.ts';
 import { gradeItem, normalizeKana, readingMatches } from '../shared/grading.ts';
 import { updateItemProgress } from '../shared/srs.ts';
@@ -96,20 +97,41 @@ test('grading: choice, blanks groups, normalization', () => {
   assert.ok(readingMatches(' あつりょく ', 'あつりょく'));
 });
 
-test('mistake book: wrong → due tomorrow, three spaced correct re-tests graduate', () => {
+test('mistake book: wrong → due in 2 days, two spaced confident re-tests graduate', () => {
   let p = updateItemProgress(undefined, { correct: false, score: 0, at: 'x', date: '2026-10-20' });
   assert.equal(p.inMistakes, true);
-  assert.equal(p.due, '2026-10-21');
-  p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-20' });
-  assert.equal(p.box, 0, 'same-day retry does not advance');
+  assert.equal(p.due, '2026-10-22');
   p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-21' });
+  assert.equal(p.box, 0, 'early retry does not advance');
+  p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-22', confidence: 'unsure' });
+  assert.equal(p.box, 0, 'an unsure re-test does not advance');
+  assert.equal(p.due, '2026-10-24');
+  p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-24' });
   assert.equal(p.box, 1);
-  assert.equal(p.due, '2026-10-23');
-  p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-23' });
-  p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-27' });
+  assert.equal(p.due, '2026-10-28');
+  p = updateItemProgress(p, { correct: true, score: 1, at: 'x', date: '2026-10-28' });
   assert.equal(p.inMistakes, false);
   const guess = updateItemProgress(undefined, { correct: true, score: 1, at: 'x', date: '2026-10-20', confidence: 'guess' });
   assert.equal(guess.inMistakes, true);
+  const slow = updateItemProgress(undefined, { correct: true, score: 1, at: 'x', date: '2026-10-20', seconds: 300 }, 110);
+  assert.equal(slow.slow, true);
+  assert.equal(slow.inMistakes, false);
+});
+
+test('score estimate ignores repeats, reviews and recall checks', () => {
+  const s = fresh();
+  const base = estimateAll(s).physics.estimate;
+  for (let i = 0; i < 30; i++) {
+    s.attempts.push({ id: 'r' + i, itemId: '2019_1-phy-01', subject: 'physics', topic: 'phys.mech.force', at: 'x', date: '2026-10-21', mode: 'review', correct: true, score: 1, response: 0, seconds: 60, firstTry: false });
+    s.attempts.push({ id: 'c' + i, itemId: 'recall-phys-0' + i, subject: 'physics', topic: 'phys.mech.force', at: 'x', date: '2026-10-21', mode: 'block', correct: true, score: 1, response: 0, seconds: 20, firstTry: true });
+  }
+  assert.equal(estimateAll(s).physics.estimate, base);
+});
+
+test('japanese mock sections are padded to exam length with originals', () => {
+  const s = fresh();
+  const items = mockItemsPadded(s, bank, 'ja-reading', '2017_2');
+  assert.ok(items.length >= 10);
 });
 
 test('block flow: practice answers grade immediately; mock grades at the end', () => {
@@ -198,4 +220,27 @@ test('v1 migration keeps the learner record', () => {
   assert.ok(s.journal.some((j) => j.text.includes('听声')));
   assert.equal(s.settings.musicEnabled, false);
   assert.ok(s.legacy);
+});
+
+test('regenerate plans only the remaining time and never duplicates vocab', () => {
+  const s = fresh();
+  const date = '2026-10-21';
+  const plan = ensurePlan(s, bank, date);
+  const vocab = plan.blocks.find((b) => b.kind === 'vocab')!;
+  vocab.status = 'done';
+  const drill = plan.blocks.find((b) => b.kind === 'drill')!;
+  drill.status = 'done';
+  const next = regeneratePlan(s, bank, date);
+  assert.equal(next.blocks.filter((b) => b.kind === 'vocab').length, 1);
+  const total = next.blocks.reduce((n, b) => n + b.minutes, 0);
+  assert.ok(total <= 360 * 1.12, `regenerated total ${total}`);
+  const ids = next.blocks.flatMap((b) => b.itemIds);
+  assert.equal(new Set(ids).size, ids.length);
+});
+
+test('kana-only words skip the reading skill', () => {
+  const s = fresh();
+  const b2 = { ...bank, bundle: { ...bank.bundle, vocab: [{ id: 'k1', word: 'むしろ', reading: 'むしろ', meaningZh: '与其说…不如说', category: 'reading' as const }] } };
+  const q = vocabQueue(s, b2, '2026-10-20', 10);
+  assert.deepEqual(q.map((x) => x.skill), ['meaning']);
 });

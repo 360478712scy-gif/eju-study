@@ -9,7 +9,7 @@ import { stopSpeech } from '../../lib/audio.ts';
 import { cx } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Button, IconButton, Kbd, Progress, isModalOpen } from '../../components/ui.tsx';
-import { answerKana, hasRomaji, nearMissHint } from './kana.ts';
+import { answerCandidates, answerKana, hasRomaji, nearMissHint } from './kana.ts';
 import { getRun, meaningChoice, newRun, setRun, SKILL_LABEL, useRun, withRetry, type RunAnswer, type RunCard } from './run.ts';
 import { AudioButton, Highlighted, speak } from './parts.tsx';
 
@@ -32,8 +32,7 @@ function writeAutoplay(on: boolean) {
 }
 
 export function startRun(cards: RunCard[], date: string, title: string) {
-  if (!cards.length) return;
-  setRun(newRun(cards, date, title));
+  if (cards.length) setRun(newRun(cards, date, title));
 }
 
 /** Close the run: credit the last bit of time and tick off today's vocab block when the queue was finished. */
@@ -122,7 +121,7 @@ export function VocabSession() {
       seconds: r.seconds + credit,
       tickAt: now,
     });
-    if (autoplay && v.audio?.word) speak(v.audio.word, rate);
+    if (autoplay && v.audio?.word) speak(v.audio.word, rate, { quiet: true });
     requestAnimationFrame(() => stageRef.current?.focus({ preventScroll: true }));
   };
 
@@ -136,7 +135,7 @@ export function VocabSession() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.isComposing || e.metaKey || e.ctrlKey || e.altKey || isModalOpen() || isTyping(e.target)) return;
+      if (e.isComposing || e.repeat || e.metaKey || e.ctrlKey || e.altKey || isModalOpen() || isTyping(e.target)) return;
       const r = getRun();
       if (!r || r.finished || !v) return;
       if (r.current) {
@@ -275,8 +274,9 @@ function ReadInput({ v, answered, onAnswer }: { v: VocabEntry; answered: RunAnsw
       inputRef.current?.focus();
       return;
     }
-    const k = answerKana(raw);
-    onAnswer({ correct: readingMatches(k, v.reading, v.altReadings), response: k, typed: raw });
+    const options = answerCandidates(raw);
+    const hit = options.find((k) => readingMatches(k, v.reading, v.altReadings));
+    onAnswer({ correct: !!hit, response: hit ?? options[0], typed: raw });
   };
 
   const onKeyDown = (e: ReactKeyboardEvent<HTMLInputElement>) => {
@@ -424,7 +424,7 @@ function Reveal({ v, card, a }: { v: VocabEntry; card: RunCard; a: RunAnswer }) 
           )}
           <AudioButton src={v.audio?.word} size="sm" />
         </div>
-        <p className="vc-meaning">{v.meaningZh}</p>
+        {card.skill === 'read' && <p className="vc-meaning">{v.meaningZh}</p>}
         {v.trapZh && (
           <div className="vc-trap">
             <Icon name="alert" size={15} />

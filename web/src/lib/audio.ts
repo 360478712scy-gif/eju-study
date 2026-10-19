@@ -42,7 +42,10 @@ export async function playSpeech(src: string, opts: { rate?: number; start?: num
   const a = new Audio(src);
   a.preservesPitch = true;
   a.playbackRate = opts.rate ?? 1;
-  if (opts.start) a.currentTime = opts.start;
+  if (opts.start) {
+    const start = opts.start;
+    a.addEventListener('loadedmetadata', () => (a.currentTime = start), { once: true });
+  }
   speech = a;
   a.addEventListener('play', () => {
     duck(true);

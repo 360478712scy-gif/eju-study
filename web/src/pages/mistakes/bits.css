@@ -1,20 +1,50 @@
 /* Shared marks: Leitner dots and last-result icons (mistakes, notes, previews). */
-.mk-dots { display: inline-flex; align-items: center; gap: 4px; }
-.mk-dots i {
-  width: 8px; height: 8px; border-radius: 50%;
+.mb-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.mb-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background: var(--bg-sunken);
   box-shadow: inset 0 0 0 1.5px var(--border-strong);
 }
-.mk-dots i.on { background: var(--success); box-shadow: none; }
-
-.mk-res {
-  display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--bg-sunken); color: var(--text-3);
+.mb-dots i.on {
+  background: var(--success);
+  box-shadow: none;
 }
-.mk-res-xs { width: 18px; height: 18px; }
-.mk-res.is-right { background: var(--success-soft); color: var(--success-text); }
-.mk-res.is-wrong { background: var(--danger-soft); color: var(--danger-text); }
-.mk-res.is-partial,
-.mk-res.is-guess { background: var(--warning-soft); color: var(--warning-text); }
-.mk-res.is-gaveup { background: var(--bg-sunken); color: var(--text-3); }
+
+.mb-res {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-sunken);
+  color: var(--text-3);
+}
+.mb-res-xs {
+  width: 18px;
+  height: 18px;
+}
+.mb-res.is-right {
+  background: var(--success-soft);
+  color: var(--success-text);
+}
+.mb-res.is-wrong {
+  background: var(--danger-soft);
+  color: var(--danger-text);
+}
+.mb-res.is-partial,
+.mb-res.is-guess {
+  background: var(--warning-soft);
+  color: var(--warning-text);
+}
+.mb-res.is-gaveup {
+  background: var(--bg-sunken);
+  color: var(--text-3);
+}

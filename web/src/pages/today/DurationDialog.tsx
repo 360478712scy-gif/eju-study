@@ -45,15 +45,15 @@ export function DurationDialog({ open, date, onClose, allowRest = false }: { ope
       if (date === t) regenerateDay(d, bank, t);
     });
     onClose();
-    const label = value === 0 ? '休息日' : fmtMinutes(value ?? profile.dailyMinutes);
-    toast(isToday ? `今天改为 ${label}，计划已更新` : `${fmtDateShort(date)} 改为 ${label}`, 'success');
+    const label = value === 0 ? '休息日' : ` ${fmtMinutes(value ?? profile.dailyMinutes)}`;
+    toast(isToday ? `今天改为${label}，计划已更新` : `${fmtDateShort(date)} 改为${label}`, 'success');
   };
 
   return (
     <Modal
       open={open}
       onClose={onClose}
-      width={460}
+      width={500}
       title={isToday ? '调整今天的学习时长' : `${fmtDateShort(date)} ${weekdayZh(date)} 的学习时长`}
       footer={
         <>
@@ -65,7 +65,7 @@ export function DurationDialog({ open, date, onClose, allowRest = false }: { ope
           <Button variant="ghost" onClick={onClose}>
             取消
           </Button>
-          <Button variant="primary" onClick={() => save(minutes)} disabled={minutes === current && typeof override === 'number'}>
+          <Button variant="primary" onClick={() => save(minutes)} disabled={minutes === current}>
             {isToday ? '保存并更新计划' : '保存'}
           </Button>
         </>
@@ -74,13 +74,28 @@ export function DurationDialog({ open, date, onClose, allowRest = false }: { ope
       <div className="du">
         <div className="du-grid">
           {allowRest && (
-            <button type="button" className={cx('du-opt', minutes === 0 && 'is-on')} onClick={() => setMinutes(0)}>
+            <button
+              type="button"
+              className={cx('du-opt', minutes === 0 && 'is-on')}
+              onClick={() => {
+                setMinutes(0);
+                setCustom('');
+              }}
+            >
               <Icon name="coffee" size={16} />
               <span>休息</span>
             </button>
           )}
           {PRESETS.map((h) => (
-            <button key={h} type="button" className={cx('du-opt', minutes === h * 60 && 'is-on')} onClick={() => setMinutes(h * 60)}>
+            <button
+              key={h}
+              type="button"
+              className={cx('du-opt', minutes === h * 60 && 'is-on')}
+              onClick={() => {
+                setMinutes(h * 60);
+                setCustom('');
+              }}
+            >
               <span className="num du-h">{h}</span>
               <span>小时</span>
             </button>
