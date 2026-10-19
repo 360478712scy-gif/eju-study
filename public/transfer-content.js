@@ -1,0 +1,58 @@
+// Independently authored transfer exercises; source papers remain unchanged.
+export const TRANSFER_QUESTIONS=[];
+export const SKILLS={};
+function v(parent,skill,subject,topic,prompt,options,answer,explanation){SKILLS[parent]=skill;TRANSFER_QUESTIONS.push({id:parent+'-v1',skill,subject,topic,prompt,options,answer,explanation,minutes:3,source:'原创迁移练习 · 改变条件或设问，非官方真题',variantOf:parent});}
+v('m01','trig-add','math','trig','利用 75°=45°+30°，求 cos75°。',['(√6+√2)/4','(√6−√2)/4','(√2−√6)/4','√3/2'],1,'这次求余弦，cos(a+b)=cos a cos b−sin a sin b。代入得(√6−√2)/4；注意减号。');
+v('m02','trig-double','math','trig','sin x=3/5，求 cos2x。',['7/25','18/25','−7/25','24/25'],0,'cos2x=1−2sin²x=1−18/25=7/25。不需要先求出x。');
+v('m03','trig-range','math','trig','0≤x<2π，cos x=−1/2 的解为？',['π/3、5π/3','2π/3','2π/3、4π/3','π/6、5π/6'],2,'余弦为横坐标，负值位于第二、第三象限。参考角π/3，得2π/3和4π/3。');
+v('m04','trig-combine','math','trig','设 f(x)=5sin x−12cos x，x∈R。其最小值为？',['−17','−12','−13','−5'],2,'合成振幅√(25+144)=13，实数域上的最小值为−13。');
+v('m05','trig-double','math','trig','∫₀^(π/2) cos²x dx 等于？',['π/2','π/4','1','0'],1,'降幂 cos²x=(1+cos2x)/2，积分得[x/2+sin2x/4]₀^(π/2)=π/4。');
+v('m06','trig-add','math','trig','tan15° 的值为？',['2+√3','√3−2','2−√3','1/√3'],2,'用tan(45°−30°)=(1−1/√3)/(1+1/√3)，化简得2−√3。和差角的分母符号相反。');
+v('m07','integral-power','math','integral','∫₁² 3x² dx 等于？',['8','7','3','9'],1,'原函数仍为x³，定积分需上限减下限：8−1=7。');
+v('m08','integral-log','math','integral','x<2 时，∫ 1/(x−2) dx 为？',['ln(x−2)+C','−ln(2−x)+C','ln(2−x)+C','1/(x−2)²+C'],2,'通式ln|x−2|+C。x<2时绝对值为2−x。求导−1/(2−x)=1/(x−2)。');
+v('m09','integral-sub','math','integral','∫₀¹ 2x e^(x²+1) dx 等于？',['e²−e','e−1','2e²','e²−1'],0,'令u=x²+1，du=2x dx，上下限改成1到2，结果e²−e。');
+v('m10','integral-parts','math','integral','∫₀¹ x eˣ dx 等于？',['e','e−1','1','2'],2,'原函数(x−1)eˣ，上限为0，下限为−1，差为1。');
+v('m11','integral-area','math','integral','y=2x 与 y=x² 围成的面积为？',['2/3','4/3','8/3','4'],1,'交点0和2。区间内2x在上，∫₀²(2x−x²)dx=4−8/3=4/3。');
+v('m12','integral-trig','math','integral','∫₀^(π/2) sin(2x) dx 等于？',['0','1/2','1','2'],2,'原函数−cos2x/2，代入得1/2−(−1/2)=1。');
+v('m13','integral-symmetry','math','integral','∫₋₂² (x³+1) dx 等于？',['0','2','4','8'],2,'奇函数x³的积分为0，但常数1不是奇函数；其积分是区间长度4。');
+v('m14','integral-log','math','integral','∫₀¹ 2/(1+2x) dx 等于？',['ln2','ln3','2ln3','ln3/2'],1,'分子是分母的导数。原函数ln(1+2x)，代入得ln3。');
+v('m15','integral-volume','math','integral','y=2x 在0≤x≤1下方区域绕x轴一周，体积为？',['2π/3','4π/3','π/3','4π'],1,'半径2x要整体平方：V=π∫₀¹4x²dx=4π/3。');
+v('m16','integral-trig','math','integral','∫ sin(4x) dx 等于？',['cos4x/4+C','−4cos4x+C','−cos4x/4+C','4cos4x+C'],2,'sin积分带负号，同时除以内部导数4。对−cos4x/4求导可核验。');
+v('m21','trig-combine','math','trig','f(x)=sin x+cos x，0≤x≤π。其最小值为？',['−√2','−1','0','1'],1,'合成√2sin(x+π/4)，角度区间[π/4,5π/4]。最小值在x=π处取得−1。');
+v('m22','integral-absolute','math','integral','∫₀² |x−1| dx 等于？',['0','1/2','1','2'],2,'在x=1分段。两块底和高都为1的三角形，面积各1/2，合计1。');
+v('p01','wave-speed','physics','wave','波速6 m/s，频率15 Hz。相邻两个波峰的距离为？',['90 m','2.5 m','0.4 m','0.1 m'],2,'相邻波峰间距是波长λ=v/f=6/15=0.4m。这次由v与f反求λ。');
+v('p02','wave-direction','physics','wave','波形 y=f(x+vt)，v>0。在波形向右下降的位置，质点此刻怎样运动？',['向上','向下','沿x正方向','一定静止'],1,'此波向左传播，∂y/∂t=v f′。该处空间斜率负，竖直速度也负，向下。传播方向改变，规则也要随之改变。');
+v('p03','wave-standing','physics','wave','驻波中某个波节到最近波腹距离0.15 m，波长为？',['0.15 m','0.30 m','0.60 m','1.20 m'],2,'相邻波节与波腹相距λ/4，故λ=4×0.15=0.60m。');
+v('p04','wave-string','physics','wave','同一根两端固定的弦，长度、线密度不变，张力变为原来的4倍，基频变为？',['1/2倍','2倍','4倍','不变'],1,'弦波速v=√(F/μ)，基频f=v/(2L)。张力4倍使波速和基频都变2倍。');
+v('p05','wave-refraction','physics','wave','波进入另一介质后波速变为原来的3/4，波源不变。新波长是原来的？',['4/3','1','3/4','9/16'],2,'跨介质频率不变，由λ=v/f，波长与波速同比例变化。');
+v('p06','wave-interference','physics','wave','同相相干波源到P点路程差为3λ/2，P点发生？',['相长干涉','相消干涉','频率加倍','波速减半'],1,'半波长的奇数倍对应奇数π相位差，因此相消；若振幅不等，合振幅不一定为零。');
+v('p07','wave-pipe','physics','wave','忽略末端修正，同长空气柱从一端封闭改为两端开口，其基频变为？',['原来的1/2','不变','原来的2倍','原来的4倍'],2,'一端封闭基频v/(4L)，两端开口基频v/(2L)，所以加倍。');
+v('p08','wave-doppler','physics','wave','声源远离静止观察者，声源速度小于声速，听到的频率如何变化？',['升高','降低','不变','变成0'],1,'远离使到达观察者的波峰间距增大，因此接收到的频率降低。');
+v('p09','electric-superposition','physics','electric','等量异号点电荷+Q、−Q的中点（无穷远电势为0），场强与电势为？',['场强为0，电势为0','场强非0，电势为0','场强为0，电势非0','两者都非0'],1,'中点两电势代数和为0；两场强都从+Q指向−Q，因此同向相加。');
+v('p10','capacitor-condition','physics','electric','电容器断开电源且无漏电，板间距减半。其储存能量变为？',['2倍','不变','1/2','1/4'],2,'断开后Q不变，间距减半使C加倍，能量U=Q²/(2C)减半。');
+v('p11','capacitor-condition','physics','electric','电容器保持连接理想恒压电源，将板间距减半。电荷量变为？',['1/2','不变','2倍','4倍'],2,'电压固定，C=εS/d加倍，Q=CV也加倍。先判断保持不变的是V。');
+v('p12','capacitor-combination','physics','electric','2 μF与3 μF电容器串联，总电容是？',['5 μF','6 μF','1.2 μF','0.2 μF'],2,'串联1/C=1/2+1/3，故C=6/5=1.2 μF，比任一分电容小。');
+v('p13','resistor-combination','physics','electric','6 Ω与3 Ω电阻并联接6 V电源，总电流为？',['1 A','2 A','3 A','9 A'],2,'各支路电压都是6V，电流分别1A和2A，总电流3A。');
+v('p14','magnetic-orbit','physics','magnetic','带电粒子垂直入匀强磁场，速度不变、磁感应强度加倍，轨道半径变为？',['1/2','2倍','4倍','不变'],0,'r=mv/(|q|B)，r与B成反比。');
+v('p15','magnetic-lenz','physics','magnetic','垂直纸面向里的磁场正在减弱，从正面看闭合圆环中感应电流方向？',['顺时针','逆时针','无电流','无法判断'],0,'应阻碍向里磁通量减小，感应磁场仍向里，右手定则给出顺时针。');
+v('p16','magnetic-flux','physics','magnetic','50匝线圈每匝磁通量在0.1s内均匀增加0.004Wb，电动势大小？',['0.2 V','2 V','20 V','0.02 V'],1,'|ε|=NΔΦ/Δt=50×0.004/0.1=2V。问大小时取绝对值。');
+v('p17','magnetic-rod','physics','magnetic','导体棒速度、长度与磁场互相垂直。磁场加倍、速度减半，其他不变，动生电动势？',['加倍','减半','不变','4倍'],2,'ε=Blv。B的2倍与v的1/2倍抵消，乘积不变。');
+v('c01','organic-name-alcohol','chemistry','organic','CH₃OH 的日文名称为？',['エタノール','メタノール','アセトン','酢酸'],1,'只有一个碳的醇是甲醇，メタノール。乙醇有两个碳。');
+v('c02','organic-name-carbonyl','chemistry','organic','CH₃CHO 的官能团与日文名称组合正确的是？',['酮基・アセトン','醛基・アセトアルデヒド','羧基・酢酸','羟基・エタノール'],1,'末端−CHO是醛基，CH₃CHO为乙醛，アセトアルデヒド。');
+v('c03','organic-name-carbonyl','chemistry','organic','「アセトン」的结构是哪一个？',['CH₃CHO','CH₃CH₂OH','CH₃COCH₃','CH₃COOH'],2,'アセトン为丙酮，羰基两边分别连甲基，CH₃COCH₃。');
+v('c04','organic-ester','chemistry','organic','酢酸メチル水解得到的有机物是？',['酢酸和メタノール','酢酸和エタノール','甲酸和エタノール','アセトン和水'],0,'酢酸メチル是CH₃COOCH₃，水解生成乙酸CH₃COOH和甲醇CH₃OH。');
+v('c05','organic-aldehyde-test','chemistry','organic','下列物质中，通常能发生银镜反应的是？',['エタノール','アセトン','アセトアルデヒド','ベンゼン'],2,'乙醛含−CHO醛基，可以发生银镜反应。其余三个不是醛。');
+v('c06','organic-oxidation','chemistry','organic','CH₃CHO继续氧化得到的有机物，其日文名称为？',['エタノール','酢酸','アセトン','メタン'],1,'醛基进一步氧化为羧基：CH₃CHO→CH₃COOH，乙酸的日文为酢酸。');
+v('c07','purify-solid','chemistry','purify','要回收NaCl与沙混合物中的沙，溶解后应采取哪一步？',['蒸发滤液','过滤并洗涤、干燥滤渣','只蒸馏溶液','对固体分液'],1,'目标由NaCl改成沙，要保留不溶性滤渣；洗涤去除附着盐溶液，再干燥。');
+v('c08','purify-selectivity','chemistry','purify','CO₂含少量HCl，某同学用NaOH溶液洗气。此方案的主要问题是？',['不能吸收HCl','也会消耗目标CO₂','NaOH不溶于水','会生成氨气'],1,'NaOH能同时和HCl、CO₂反应。除杂方案必须避免大量损失目标物。');
+v('c09','purify-liquid','chemistry','purify','水和乙醇相互混溶，要利用沸点差异提高乙醇含量，应优先选择？',['分液','过滤','蒸馏','磁分离'],2,'互溶液体不能直接分液，利用挥发性差异蒸馏；普通蒸馏不能直接得到无水乙醇。');
+v('c10','purify-solid','chemistry','purify','将泥水过滤后，烧杯中收集的主要是什么？',['泥沙滤渣','滤液','蒸馏水','盐晶体'],1,'不溶固体留在滤纸上为滤渣，通过滤纸的液体为滤液，不等于已去掉全部溶解物的蒸馏水。');
+v('c11','purify-gas','chemistry','purify','CO₂先经饱和NaHCO₃溶液除HCl后仍带水蒸气，接下来要得到干燥气体可用？',['浓硫酸干燥','NaOH溶液干燥','石灰水干燥','加湿空气'],0,'先除杂再干燥。浓硫酸可吸收水分且通常不消耗CO₂，NaOH与石灰水会消耗目标气体。');
+v('c12','purify-ammonia','chemistry','purify','某同学用浓硫酸干燥NH₃，主要错误是？',['硫酸没有吸水性','NH₃会被酸吸收并反应','NH₃是酸性气体','一定产生O₂'],1,'浓硫酸有吸水性，但它与碱性NH₃发生反应，消耗目标气体。');
+export const OFFICIAL_SKILLS={};
+function group(skill,ids){for(const id of ids.split(' '))OFFICIAL_SKILLS[id]=skill;}
+group('wave-direction','o-2021_1-p10 o-2020_2-p10');group('wave-string','o-2021_1-p11 o-2020_2-p11');group('wave-optics','o-2021_1-p12 o-2020_2-p12');group('electric-superposition','o-2021_1-p13 o-2020_2-p14');group('capacitor-condition','o-2021_1-p14 o-2020_2-p15');group('resistor-combination','o-2021_1-p15 o-2020_2-p16');group('magnetic-rod','o-2021_1-p17');group('magnetic-lenz','o-2021_1-p18 o-2020_2-p18');group('magnetic-orbit','o-2020_2-p17');
+group('impulse','o-2021_1-p2 o-2020_2-p3');group('collision','o-2021_1-p4 o-2020_2-p4');group('heat-balance','o-2021_1-p7 o-2020_2-p7');group('thermo-pv','o-2021_1-p9 o-2020_2-p9');group('stoichiometry','o-2021_1-c4 o-2020_2-c4');group('chem-bond','o-2021_1-c2 o-2020_2-c2');group('chem-equilibrium','o-2021_1-c10 o-2020_2-c7');group('organic-isomer','o-2021_1-c16 o-2020_2-c16');group('organic-polymer','o-2021_1-c20 o-2020_2-c19');group('math-quadratic','o-2021_1-mI-1 o-2020_2-mI-1');group('math-probability','o-2021_1-mI-2 o-2020_2-mI-2');group('math-complex-angle','o-2021_1-mII-2 o-2020_2-mII-2');group('math-area-chain','o-2021_1-mIV o-2020_2-mIV');
+// Language skills are grouped by comprehension operation; texts/audio remain distinct.
+group('listen-action','o-2018_1-l13 o-2018_1-l20 o-2018_1-l23 o-2018_1-l25');group('listen-main','o-2018_1-l15 o-2018_1-l16 o-2018_1-l18 o-2018_1-l19');group('listen-reason','o-2018_1-l14 o-2018_1-l17 o-2018_1-l22 o-2018_1-l26');group('listen-decision','o-2018_1-l21 o-2018_1-l24 o-2018_1-l27');
+Object.assign(SKILLS,{l1:'listen-action',l2:'listen-action',l3:'listen-action',l4:'listen-decision',l5:'listen-main',l6:'listen-decision',l7:'listen-action',l8:'listen-main',r1:'read-main',r2:'read-main','o-2018_1-r10':'read-main'});

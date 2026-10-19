@@ -1,0 +1,75 @@
+{
+  "version": {
+    "app": "eju-study",
+    "version": "1.4.0",
+    "plannerVersion": 4
+  },
+  "at": "2026-10-06T10:10:39.558772",
+  "backup": "~/Projects/eju-study/desktop/backups/state-before-1.4.0-20261006-101039.json",
+  "backupSha256": "befb768b6d28acd84ab9d3466737e8ac807de3df29f16ee7537e66fb10ea4d65",
+  "oldRevision": 49,
+  "newRevision": 50,
+  "preservedOldAttempts": 40,
+  "preservedTodayPlan": true,
+  "oldFieldsUnchanged": true,
+  "newVocabAttempts": 0,
+  "observationId": "day1-vocab-audio-only-2026-10-06",
+  "nextPlan": {
+    "budget": 240,
+    "allocations": {
+      "japanese": 80,
+      "math": 60,
+      "physics": 55,
+      "chemistry": 40
+    },
+    "vocabMinutes": 15,
+    "blocks": [
+      {
+        "id": "reading",
+        "count": 24,
+        "minutes": 6
+      },
+      {
+        "id": "meaning",
+        "count": 12,
+        "minutes": 3
+      },
+      {
+        "id": "cloze",
+        "count": 4,
+        "minutes": 2
+      },
+      {
+        "id": "repair",
+        "count": 8,
+        "minutes": 4
+      }
+    ]
+  },
+  "selfReportRecoveryFix": {
+    "backup": "~/Projects/eju-study/desktop/backups/state-before-report-recovery-20261006-101212.json",
+    "dataUnchanged": true,
+    "at": "2026-10-06T10:12:12.445463"
+  },
+  "validation": {
+    "unit": {
+      "passed": 165,
+      "log": "tests/test-1.4.txt"
+    },
+    "browser": {
+      "passed": 10,
+      "result": "tests/acceptance-1.4/browser-results.json"
+    },
+    "native": {
+      "passed": 5,
+      "trustedEnterEvents": 8,
+      "result": "tests/acceptance-1.4/native-results.json"
+    },
+    "liveCLI": {
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "high",
+      "status": "completed",
+      "result": "tests/live-vocab-report-result.json"
+    }
+  }
+}

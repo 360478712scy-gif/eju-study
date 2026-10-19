@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "passed": [
+    "a knowledge-card note survives closing, reopening and resubmitting the recall step",
+    "an unsent attempt survives exercise close/resume without being marked as assisted",
+    "both searches retain the composing input, finish conversion, and leave native commands responsive",
+    "a delayed hint is cached for its original question and never appears in another question panel"
+  ],
+  "errors": [],
+  "noLiveCLI": true,
+  "state": "/var/folders/9n/l6dd509170sgb4f32v9t6l980000gn/T/eju-desktop-drafts-q6G0rf/state"
+}

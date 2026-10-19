@@ -1,0 +1,2916 @@
+[
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第4页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 4,
+    "id": "o-2021_1-p1",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏1 · 接触物体受力",
+    "prompt": "只完成本页物理题（解答栏 1）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-4.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏1"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第5页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 5,
+    "id": "o-2021_1-p2",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏2 · 变力冲量",
+    "prompt": "只完成本页物理题（解答栏 2）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-5.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏2"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第6页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 6,
+    "id": "o-2021_1-p3",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏3 · 斜面与滑轮",
+    "prompt": "只完成本页物理题（解答栏 3）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-6.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏3"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第7页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 7,
+    "id": "o-2021_1-p4",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏4 · 碰撞与动量",
+    "prompt": "只完成本页物理题（解答栏 4）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-7.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏4"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第8页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 8,
+    "id": "o-2021_1-p5",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏5 · 弹簧能量",
+    "prompt": "只完成本页物理题（解答栏 5）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-8.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 3,
+    "explanation": "官方答案：选项 6。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏5"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第9页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 9,
+    "id": "o-2021_1-p6",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏6 · 水平圆周运动",
+    "prompt": "只完成本页物理题（解答栏 6）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-9.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏6"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第10页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 10,
+    "id": "o-2021_1-p7",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏7 · 冰水热量",
+    "prompt": "只完成本页物理题（解答栏 7）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-10.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏7"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第11页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 11,
+    "id": "o-2021_1-p8",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏8 · 等压变化做功",
+    "prompt": "只完成本页物理题（解答栏 8）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-11.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 0,
+    "minutes": 3,
+    "explanation": "官方答案：选项 1。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏8"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第12页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 12,
+    "id": "o-2021_1-p9",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏9 · p-V图与吸热",
+    "prompt": "只完成本页物理题（解答栏 9）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-12.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 0,
+    "minutes": 3,
+    "explanation": "官方答案：选项 1。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏9"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第13页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 13,
+    "id": "o-2021_1-p10",
+    "subject": "physics",
+    "topic": "wave",
+    "title": "2021-1 物理 · 解答栏10 · 波形与相位",
+    "prompt": "只完成本页物理题（解答栏 10）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-13.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先看横轴：空间图读波长，时间图读周期。再判断传播方向和目标点达到波峰所需的相位变化。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏10"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第14页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 14,
+    "id": "o-2021_1-p11",
+    "subject": "physics",
+    "topic": "wave",
+    "title": "2021-1 物理 · 解答栏11 · 弦的频率与张力",
+    "prompt": "只完成本页物理题（解答栏 11）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-14.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 3,
+    "explanation": "官方答案：选项 6。\n解题切入提示（非官方详解）：固定弦基频 f=v/(2L)，弦波速 v=√(F/μ)。分别列出变化前后频率，再利用相等条件。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏11"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第15页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 15,
+    "id": "o-2021_1-p12",
+    "subject": "physics",
+    "topic": "wave",
+    "title": "2021-1 物理 · 解答栏12 · 平行界面折射",
+    "prompt": "只完成本页物理题（解答栏 12）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-15.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：平行界面连续应用 n₁sinθ₁=n₂sinθ₂；有时中间介质可以消去。不要把角度相对平面来量。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏12"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第16页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 16,
+    "id": "o-2021_1-p13",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2021-1 物理 · 解答栏13 · 点电荷场强叠加",
+    "prompt": "只完成本页物理题（解答栏 13）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-16.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 3,
+    "explanation": "官方答案：选项 6。\n解题切入提示（非官方详解）：先画受力或场强矢量图，再利用对称性；距离平方和方向都要保留。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏13"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第17页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 17,
+    "id": "o-2021_1-p14",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2021-1 物理 · 解答栏14 · 电容连接后的能量",
+    "prompt": "只完成本页物理题（解答栏 14）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-17.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先辨认是否接电源。电荷总量、电势或能量并不总是同时守恒；电路中电阻可耗散能量。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏14"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第18页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 18,
+    "id": "o-2021_1-p15",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2021-1 物理 · 解答栏15 · 电路功率比",
+    "prompt": "只完成本页物理题（解答栏 15）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-18.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 4,
+    "minutes": 3,
+    "explanation": "官方答案：选项 5。\n解题切入提示（非官方详解）：识别串并联和各节点电势；理想电源固定的是端电压，不能随意假设各支路电流相同。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏15"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第19页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 19,
+    "id": "o-2021_1-p16",
+    "subject": "physics",
+    "topic": "magnetic",
+    "title": "2021-1 物理 · 解答栏16 · 长直导线磁场",
+    "prompt": "只完成本页物理题（解答栏 16）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-19.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：长直导线磁场 B∝I/r；叠加前用右手定则标出方向。电路题则先化简等效电阻。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏16"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第20页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 20,
+    "id": "o-2021_1-p17",
+    "subject": "physics",
+    "topic": "magnetic",
+    "title": "2021-1 物理 · 解答栏17 · 磁场中的导体棒",
+    "prompt": "只完成本页物理题（解答栏 17）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-20.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：分别考虑磁力与运动/平衡条件。带电粒子用 r=mv/(|q|B)，导体棒用 F=BIl，再检查几何。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏17"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第21页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 21,
+    "id": "o-2021_1-p18",
+    "subject": "physics",
+    "topic": "magnetic",
+    "title": "2021-1 物理 · 解答栏18 · 移动线圈感应电流",
+    "prompt": "只完成本页物理题（解答栏 18）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-21.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：法拉第定律决定大小，楞次定律决定方向。分清磁通量增加、减小，以及题目指定的观察方向。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏18"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第22页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 22,
+    "id": "o-2021_1-p19",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2021-1 物理 · 解答栏19 · 核反应守恒",
+    "prompt": "只完成本页物理题（解答栏 19）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2021_1-science-22.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：核反应守恒质量数和电荷数；物质波题用 λ=h/p 与 K=p²/(2m)。",
+    "answerSource": "2021_1-answers / 第1页 / 物理解答栏19"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第4页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 4,
+    "id": "o-2020_2-p1",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏1 · 斜面摩擦",
+    "prompt": "只完成本页物理题（解答栏 1）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-4.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏1"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第5页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 5,
+    "id": "o-2020_2-p2",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏2 · 平抛运动",
+    "prompt": "只完成本页物理题（解答栏 2）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-5.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏2"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第6页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 6,
+    "id": "o-2020_2-p3",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏3 · 冲量图像",
+    "prompt": "只完成本页物理题（解答栏 3）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-6.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 4,
+    "minutes": 3,
+    "explanation": "官方答案：选项 5。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏3"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第7页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 7,
+    "id": "o-2020_2-p4",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏4 · 碰撞与摩擦功",
+    "prompt": "只完成本页物理题（解答栏 4）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-7.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏4"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第8页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 8,
+    "id": "o-2020_2-p5",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏5 · 摆与圆周运动",
+    "prompt": "只完成本页物理题（解答栏 5）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-8.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏5"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第9页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 9,
+    "id": "o-2020_2-p6",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏6 · 卫星运动",
+    "prompt": "只完成本页物理题（解答栏 6）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-9.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏6"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第10页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 10,
+    "id": "o-2020_2-p7",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏7 · 热量守恒",
+    "prompt": "只完成本页物理题（解答栏 7）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-10.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏7"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第11页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 11,
+    "id": "o-2020_2-p8",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏8 · 气体热平衡",
+    "prompt": "只完成本页物理题（解答栏 8）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-11.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7"
+    ],
+    "answer": 5,
+    "minutes": 3,
+    "explanation": "官方答案：选项 6。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏8"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第12页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 12,
+    "id": "o-2020_2-p9",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏9 · p-V图热力学",
+    "prompt": "只完成本页物理题（解答栏 9）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-12.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先圈出研究对象、已知条件和所求量，独立画图列式。按原题选项排除量纲或极限不成立的表达式。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏9"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第13页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 13,
+    "id": "o-2020_2-p10",
+    "subject": "physics",
+    "topic": "wave",
+    "title": "2020-2 物理 · 解答栏10 · 空间图与时间图",
+    "prompt": "只完成本页物理题（解答栏 10）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-13.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 2,
+    "minutes": 3,
+    "explanation": "官方答案：选项 3。\n解题切入提示（非官方详解）：先看横轴：空间图读波长，时间图读周期。再判断传播方向和目标点达到波峰所需的相位变化。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏10"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第14页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 14,
+    "id": "o-2020_2-p11",
+    "subject": "physics",
+    "topic": "wave",
+    "title": "2020-2 物理 · 解答栏11 · 弦振动与张力",
+    "prompt": "只完成本页物理题（解答栏 11）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-14.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7"
+    ],
+    "answer": 4,
+    "minutes": 3,
+    "explanation": "官方答案：选项 5。\n解题切入提示（非官方详解）：固定弦基频 f=v/(2L)，弦波速 v=√(F/μ)。分别列出变化前后频率，再利用相等条件。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏11"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第15页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 15,
+    "id": "o-2020_2-p12",
+    "subject": "physics",
+    "topic": "wave",
+    "title": "2020-2 物理 · 解答栏12 · 折射与全反射",
+    "prompt": "只完成本页物理题（解答栏 12）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-15.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7"
+    ],
+    "answer": 4,
+    "minutes": 3,
+    "explanation": "官方答案：选项 5。\n解题切入提示（非官方详解）：平行界面连续应用 n₁sinθ₁=n₂sinθ₂；有时中间介质可以消去。不要把角度相对平面来量。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏12"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第16页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 16,
+    "id": "o-2020_2-p13",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2020-2 物理 · 解答栏13 · 带电小球平衡",
+    "prompt": "只完成本页物理题（解答栏 13）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-16.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7"
+    ],
+    "answer": 5,
+    "minutes": 3,
+    "explanation": "官方答案：选项 6。\n解题切入提示（非官方详解）：先画受力或场强矢量图，再利用对称性；距离平方和方向都要保留。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏13"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第17页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 17,
+    "id": "o-2020_2-p14",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2020-2 物理 · 解答栏14 · 电势叠加",
+    "prompt": "只完成本页物理题（解答栏 14）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-17.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：先辨认是否接电源。电荷总量、电势或能量并不总是同时守恒；电路中电阻可耗散能量。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏14"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第18页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 18,
+    "id": "o-2020_2-p15",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2020-2 物理 · 解答栏15 · 电容电路电势",
+    "prompt": "只完成本页物理题（解答栏 15）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-18.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 1,
+    "minutes": 3,
+    "explanation": "官方答案：选项 2。\n解题切入提示（非官方详解）：识别串并联和各节点电势；理想电源固定的是端电压，不能随意假设各支路电流相同。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏15"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第19页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 19,
+    "id": "o-2020_2-p16",
+    "subject": "physics",
+    "topic": "electric",
+    "title": "2020-2 物理 · 解答栏16 · 电阻电路",
+    "prompt": "只完成本页物理题（解答栏 16）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-19.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：长直导线磁场 B∝I/r；叠加前用右手定则标出方向。电路题则先化简等效电阻。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏16"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第20页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 20,
+    "id": "o-2020_2-p17",
+    "subject": "physics",
+    "topic": "magnetic",
+    "title": "2020-2 物理 · 解答栏17 · 带电粒子轨迹",
+    "prompt": "只完成本页物理题（解答栏 17）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-20.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 3,
+    "explanation": "官方答案：选项 4。\n解题切入提示（非官方详解）：分别考虑磁力与运动/平衡条件。带电粒子用 r=mv/(|q|B)，导体棒用 F=BIl，再检查几何。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏17"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第21页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 21,
+    "id": "o-2020_2-p18",
+    "subject": "physics",
+    "topic": "magnetic",
+    "title": "2020-2 物理 · 解答栏18 · 变化磁场与感应",
+    "prompt": "只完成本页物理题（解答栏 18）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-21.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 0,
+    "minutes": 3,
+    "explanation": "官方答案：选项 1。\n解题切入提示（非官方详解）：法拉第定律决定大小，楞次定律决定方向。分清磁通量增加、减小，以及题目指定的观察方向。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏18"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第22页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 22,
+    "id": "o-2020_2-p19",
+    "subject": "physics",
+    "topic": "mixed",
+    "title": "2020-2 物理 · 解答栏19 · 德布罗意波长",
+    "prompt": "只完成本页物理题（解答栏 19）。先独立演算，再选原题中的选项编号。",
+    "images": [
+      "/assets/pages/2020_2-science-22.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 0,
+    "minutes": 3,
+    "explanation": "官方答案：选项 1。\n解题切入提示（非官方详解）：核反应守恒质量数和电荷数；物质波题用 λ=h/p 与 K=p²/(2m)。",
+    "answerSource": "2020_2-answers / 第1页 / 物理解答栏19"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第26页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 26,
+    "id": "o-2021_1-c1",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问1 · 物质的构成粒子",
+    "prompt": "只做原页中的「问1」（解答栏 1），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-26.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问1"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第26页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 26,
+    "id": "o-2021_1-c2",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问2 · 电子与键合",
+    "prompt": "只做原页中的「问2」（解答栏 2），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-26.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问2"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第27页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 27,
+    "id": "o-2021_1-c3",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问3 · 分子平面结构",
+    "prompt": "只做原页中的「问3」（解答栏 3），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-27.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问3"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第27页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 27,
+    "id": "o-2021_1-c4",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问4 · 物质的量计算",
+    "prompt": "只做原页中的「问4」（解答栏 4），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-27.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 2,
+    "explanation": "官方答案：选项 6。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问4"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 28,
+    "id": "o-2021_1-c5",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问5 · 反应量与图像",
+    "prompt": "只做原页中的「问5」（解答栏 5），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-28.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问5"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第29页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 29,
+    "id": "o-2021_1-c6",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问6 · 气体与饱和蒸气",
+    "prompt": "只做原页中的「问6」（解答栏 6），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-29.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 0,
+    "minutes": 2,
+    "explanation": "官方答案：选项 1。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问6"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第30页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 30,
+    "id": "o-2021_1-c7",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问7 · 盐与水溶液酸碱",
+    "prompt": "只做原页中的「问7」（解答栏 7），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-30.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问7"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第31页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 31,
+    "id": "o-2021_1-c8",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问8 · 氧化还原滴定",
+    "prompt": "只做原页中的「问8」（解答栏 8），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-31.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问8"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第32页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 32,
+    "id": "o-2021_1-c9",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问9 · 电解计算",
+    "prompt": "只做原页中的「问9」（解答栏 9），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-32.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问9"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第33页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 33,
+    "id": "o-2021_1-c10",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问10 · 化学平衡",
+    "prompt": "只做原页中的「问10」（解答栏 10），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-33.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问10"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第33页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 33,
+    "id": "o-2021_1-c11",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问11 · 反应条件",
+    "prompt": "只做原页中的「问11」（解答栏 11），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-33.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 0,
+    "minutes": 2,
+    "explanation": "官方答案：选项 1。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问11"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第34页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 34,
+    "id": "o-2021_1-c12",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问12 · 无机反应判断",
+    "prompt": "只做原页中的「问12」（解答栏 12），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-34.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问12"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第34页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 34,
+    "id": "o-2021_1-c13",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问13 · 元素及化合物",
+    "prompt": "只做原页中的「问13」（解答栏 13），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-34.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问13"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第35页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 35,
+    "id": "o-2021_1-c14",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问14 · 二氧化硫性质",
+    "prompt": "只做原页中的「问14」（解答栏 14），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-35.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 0,
+    "minutes": 2,
+    "explanation": "官方答案：选项 1。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问14"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第35页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 35,
+    "id": "o-2021_1-c15",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2021-1 化学 · 问15 · 无机化合物性质",
+    "prompt": "只做原页中的「问15」（解答栏 15），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-35.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问15"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第36页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 36,
+    "id": "o-2021_1-c16",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2021-1 化学 · 问16 · 异构体与不对称碳",
+    "prompt": "只做原页中的「问16」（解答栏 16），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-36.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问16"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第37页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 37,
+    "id": "o-2021_1-c17",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2021-1 化学 · 问17 · 乙烯的反应",
+    "prompt": "只做原页中的「问17」（解答栏 17），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-37.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问17"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第38页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 38,
+    "id": "o-2021_1-c18",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2021-1 化学 · 问18 · 有机反应产物",
+    "prompt": "只做原页中的「问18」（解答栏 18），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-38.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问18"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第39页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 39,
+    "id": "o-2021_1-c19",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2021-1 化学 · 问19 · 不饱和烃加氢",
+    "prompt": "只做原页中的「问19」（解答栏 19），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-39.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问19"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第39页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-science.pdf",
+    "page": 39,
+    "id": "o-2021_1-c20",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2021-1 化学 · 问20 · 高分子分类",
+    "prompt": "只做原页中的「问20」（解答栏 20），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2021_1-science-39.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2021_1-answers / 第1页 / 化学问20"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第26页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 26,
+    "id": "o-2020_2-c1",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问1 · 电子配置",
+    "prompt": "只做原页中的「问1」（解答栏 1），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-26.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 0,
+    "minutes": 2,
+    "explanation": "官方答案：选项 1。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问1"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第26页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 26,
+    "id": "o-2020_2-c2",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问2 · 物质与化学键",
+    "prompt": "只做原页中的「问2」（解答栏 2），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-26.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 2,
+    "explanation": "官方答案：选项 6。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问2"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第27页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 27,
+    "id": "o-2020_2-c3",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问3 · 碳酸盐分解",
+    "prompt": "只做原页中的「问3」（解答栏 3），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-27.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问3"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第27页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 27,
+    "id": "o-2020_2-c4",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问4 · 化学计量",
+    "prompt": "只做原页中的「问4」（解答栏 4），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-27.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问4"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 28,
+    "id": "o-2020_2-c5",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问5 · 晶格与密度",
+    "prompt": "只做原页中的「问5」（解答栏 5），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-28.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问5"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第29页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 29,
+    "id": "o-2020_2-c6",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问6 · 燃烧与反应热",
+    "prompt": "只做原页中的「问6」（解答栏 6），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-29.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问6"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第30页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 30,
+    "id": "o-2020_2-c7",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问7 · 平衡条件",
+    "prompt": "只做原页中的「问7」（解答栏 7），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-30.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问7"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第31页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 31,
+    "id": "o-2020_2-c8",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问8 · 酸碱与离子浓度",
+    "prompt": "只做原页中的「问8」（解答栏 8），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-31.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 5,
+    "minutes": 2,
+    "explanation": "官方答案：选项 6。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问8"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第32页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 32,
+    "id": "o-2020_2-c9",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问9 · 氧化剂判断",
+    "prompt": "只做原页中的「问9」（解答栏 9），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-32.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 4,
+    "minutes": 2,
+    "explanation": "官方答案：选项 5。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问9"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第32页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 32,
+    "id": "o-2020_2-c10",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问10 · 氧化还原与电化学",
+    "prompt": "只做原页中的「问10」（解答栏 10），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-32.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6",
+      "原题选项 7",
+      "原题选项 8"
+    ],
+    "answer": 7,
+    "minutes": 2,
+    "explanation": "官方答案：选项 8。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问10"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第33页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 33,
+    "id": "o-2020_2-c11",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问11 · 第2族元素",
+    "prompt": "只做原页中的「问11」（解答栏 11），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-33.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问11"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第33页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 33,
+    "id": "o-2020_2-c12",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问12 · 元素与化合物",
+    "prompt": "只做原页中的「问12」（解答栏 12），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-33.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 2,
+    "explanation": "官方答案：选项 6。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问12"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第34页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 34,
+    "id": "o-2020_2-c13",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问13 · 气体的还原性",
+    "prompt": "只做原页中的「问13」（解答栏 13），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-34.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 2,
+    "minutes": 2,
+    "explanation": "官方答案：选项 3。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问13"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第34页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 34,
+    "id": "o-2020_2-c14",
+    "subject": "chemistry",
+    "topic": "mixed",
+    "title": "2020-2 化学 · 问14 · 无机性质",
+    "prompt": "只做原页中的「问14」（解答栏 14），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-34.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 0,
+    "minutes": 2,
+    "explanation": "官方答案：选项 1。\n适应题型提示（非完整详解）：先辨认题目要求选正确还是错误，圈出物质的量、浓度和反应条件，再逐项排除。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问14"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第35页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 35,
+    "id": "o-2020_2-c15",
+    "subject": "chemistry",
+    "topic": "purify",
+    "title": "2020-2 化学 · 问15 · 银与铅离子的区分",
+    "prompt": "只做原页中的「问15」（解答栏 15），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-35.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：追踪每一步后物质在哪一层/哪一相。酸使胺成盐进入水层；碱使羧酸成盐进入水层，中性物质留在有机层。离子鉴别要逐项核对现象。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问15"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第35页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 35,
+    "id": "o-2020_2-c16",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2020-2 化学 · 问16 · 多官能团与异构体",
+    "prompt": "只做原页中的「问16」（解答栏 16），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-35.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问16"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第36页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 36,
+    "id": "o-2020_2-c17",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2020-2 化学 · 问17 · 有机物制备",
+    "prompt": "只做原页中的「问17」（解答栏 17），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-36.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 1,
+    "minutes": 2,
+    "explanation": "官方答案：选项 2。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问17"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第37页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 37,
+    "id": "o-2020_2-c18",
+    "subject": "chemistry",
+    "topic": "purify",
+    "title": "2020-2 化学 · 问18 · 有机混合物分离",
+    "prompt": "只做原页中的「问18」（解答栏 18），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-37.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5",
+      "原题选项 6"
+    ],
+    "answer": 5,
+    "minutes": 2,
+    "explanation": "官方答案：选项 6。\n适应题型提示（非完整详解）：追踪每一步后物质在哪一层/哪一相。酸使胺成盐进入水层；碱使羧酸成盐进入水层，中性物质留在有机层。离子鉴别要逐项核对现象。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问18"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第38页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 38,
+    "id": "o-2020_2-c19",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2020-2 化学 · 问19 · 高分子的组成",
+    "prompt": "只做原页中的「问19」（解答栏 19），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-38.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问19"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第39页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-science.pdf",
+    "page": 39,
+    "id": "o-2020_2-c20",
+    "subject": "chemistry",
+    "topic": "organic",
+    "title": "2020-2 化学 · 问20 · 蛋白质结构",
+    "prompt": "只做原页中的「问20」（解答栏 20），同页其他题另行安排。按原题选项编号作答。",
+    "images": [
+      "/assets/pages/2020_2-science-39.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4",
+      "原题选项 5"
+    ],
+    "answer": 3,
+    "minutes": 2,
+    "explanation": "官方答案：选项 4。\n适应题型提示（非完整详解）：先把日文名称对应到结构和官能团，再逐项验证反应产物、反应条件及元素组成。不要只凭名称熟悉感选择。",
+    "answerSource": "2020_2-answers / 第1页 / 化学问20"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第18页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-math.pdf",
+    "page": 18,
+    "id": "o-2021_1-mI-1",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2021-1 数学 Course 2 · I-1 · 二次函数与条件转写",
+    "prompt": "完成 Course 2 的 I-1 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2021_1-math-18.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2021_1-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第20页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-math.pdf",
+    "page": 20,
+    "id": "o-2021_1-mI-2",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2021-1 数学 Course 2 · I-2 · 概率／计数的引导链",
+    "prompt": "完成 Course 2 的 I-2 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2021_1-math-20.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2021_1-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第22页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-math.pdf",
+    "page": 22,
+    "id": "o-2021_1-mII-1",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2021-1 数学 Course 2 · II-1 · 空间向量",
+    "prompt": "完成 Course 2 的 II-1 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2021_1-math-22.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2021_1-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第24页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-math.pdf",
+    "page": 24,
+    "id": "o-2021_1-mII-2",
+    "subject": "math",
+    "topic": "trig",
+    "topics": [
+      "trig"
+    ],
+    "title": "2021-1 数学 Course 2 · II-2 · 复数极形式与角度",
+    "prompt": "完成 Course 2 的 II-2 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2021_1-math-24.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2021_1-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第26页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-math.pdf",
+    "page": 26,
+    "id": "o-2021_1-mIII",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2021-1 数学 Course 2 · III · 换元与最值",
+    "prompt": "完成 Course 2 的 III 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2021_1-math-26.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2021_1-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2021年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2021_1.html",
+    "pdf": "/assets/papers/2021_1-math.pdf",
+    "page": 28,
+    "id": "o-2021_1-mIV",
+    "subject": "math",
+    "topic": "integral",
+    "topics": [
+      "integral",
+      "trig"
+    ],
+    "title": "2021-1 数学 Course 2 · IV · 三角函数与面积",
+    "prompt": "完成 Course 2 的 IV 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2021_1-math-28.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。 三角平方先降幂；面积先确定交点与上下关系。2020题先把三倍角展开以判断正负，再积分。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2021_1-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第18页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-math.pdf",
+    "page": 18,
+    "id": "o-2020_2-mI-1",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2020-2 数学 Course 2 · I-1 · 二次函数与条件转写",
+    "prompt": "完成 Course 2 的 I-1 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2020_2-math-18.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2020_2-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第20页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-math.pdf",
+    "page": 20,
+    "id": "o-2020_2-mI-2",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2020-2 数学 Course 2 · I-2 · 概率／计数的引导链",
+    "prompt": "完成 Course 2 的 I-2 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2020_2-math-20.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2020_2-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第22页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-math.pdf",
+    "page": 22,
+    "id": "o-2020_2-mII-1",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2020-2 数学 Course 2 · II-1 · 数列与部分和",
+    "prompt": "完成 Course 2 的 II-1 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2020_2-math-22.png",
+      "/assets/pages/2020_2-math-23.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2020_2-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第24页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-math.pdf",
+    "page": 24,
+    "id": "o-2020_2-mII-2",
+    "subject": "math",
+    "topic": "trig",
+    "topics": [
+      "trig"
+    ],
+    "title": "2020-2 数学 Course 2 · II-2 · 复数极形式与角度",
+    "prompt": "完成 Course 2 的 II-2 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2020_2-math-24.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2020_2-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第26页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-math.pdf",
+    "page": 26,
+    "id": "o-2020_2-mIII",
+    "subject": "math",
+    "topic": "mixed",
+    "topics": [
+      "mixed"
+    ],
+    "title": "2020-2 数学 Course 2 · III · 切线与曲线",
+    "prompt": "完成 Course 2 的 III 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2020_2-math-26.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2020_2-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2020年第2回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2020_2.html",
+    "pdf": "/assets/papers/2020_2-math.pdf",
+    "page": 28,
+    "id": "o-2020_2-mIV",
+    "subject": "math",
+    "topic": "integral",
+    "topics": [
+      "integral",
+      "trig"
+    ],
+    "title": "2020-2 数学 Course 2 · IV · 三角函数与面积",
+    "prompt": "完成 Course 2 的 IV 题组。按原题 A、B…填空顺序记录答案；不要重新设计一套与引导无关的解法。",
+    "images": [
+      "/assets/pages/2020_2-math-28.png",
+      "/assets/pages/2020_2-math-29.png"
+    ],
+    "selfGrade": true,
+    "minutes": 12,
+    "explanation": "训练提示：先用30秒扫一遍空格，标记每一组空格需要的中间量。严格利用题目提供的变量和已有结论，最后核对符号、分母和字母栏位。 三角平方先降幂；面积先确定交点与上下关系。2020题先把三倍角展开以判断正负，再积分。\n下面是官方答案表，请只核对右侧 Course 2 中本题对应行。",
+    "answerImages": [
+      "/assets/pages/2020_2-answers-2.png"
+    ]
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l13",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 13番 · 研究テーマの相談",
+    "prompt": "听解第 13 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 0,
+    "audio": "/assets/listening/official-13.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 1。复盘时只看脚本的第 13 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-1.png",
+      "/assets/pages/2018_1-script-11-2.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解13番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l14",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 14番 · 看板の調査",
+    "prompt": "听解第 14 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 2,
+    "audio": "/assets/listening/official-14.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 3。复盘时只看脚本的第 14 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-2.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解14番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l15",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 15番 · 寄付と社会",
+    "prompt": "听解第 15 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 0,
+    "audio": "/assets/listening/official-15.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 1。复盘时只看脚本的第 15 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-2.png",
+      "/assets/pages/2018_1-script-11-3.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解15番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l16",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 16番 · 宇宙開発の意義",
+    "prompt": "听解第 16 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 1,
+    "audio": "/assets/listening/official-16.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。复盘时只看脚本的第 16 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-3.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解16番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l17",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 17番 · ニワトリの家畜化",
+    "prompt": "听解第 17 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 1,
+    "audio": "/assets/listening/official-17.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。复盘时只看脚本的第 17 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-3.png",
+      "/assets/pages/2018_1-script-11-4.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解17番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l18",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 18番 · 消費者と広告",
+    "prompt": "听解第 18 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 3,
+    "audio": "/assets/listening/official-18.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。复盘时只看脚本的第 18 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-4.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解18番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l19",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 19番 · 美術作品の解釈",
+    "prompt": "听解第 19 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 3,
+    "audio": "/assets/listening/official-19.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。复盘时只看脚本的第 19 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-5.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解19番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l20",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 20番 · 実験レポート",
+    "prompt": "听解第 20 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 0,
+    "audio": "/assets/listening/official-20.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 1。复盘时只看脚本的第 20 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-5.png",
+      "/assets/pages/2018_1-script-11-6.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解20番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l21",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 21番 · 図書館サービス",
+    "prompt": "听解第 21 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 1,
+    "audio": "/assets/listening/official-21.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。复盘时只看脚本的第 21 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-6.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解21番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l22",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 22番 · 地域と山の利用",
+    "prompt": "听解第 22 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 1,
+    "audio": "/assets/listening/official-22.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。复盘时只看脚本的第 22 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-6.png",
+      "/assets/pages/2018_1-script-11-7.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解22番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l23",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 23番 · 発表の準備",
+    "prompt": "听解第 23 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 3,
+    "audio": "/assets/listening/official-23.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。复盘时只看脚本的第 23 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-7.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解23番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l24",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 24番 · 会社選び",
+    "prompt": "听解第 24 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 3,
+    "audio": "/assets/listening/official-24.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。复盘时只看脚本的第 24 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-7.png",
+      "/assets/pages/2018_1-script-11-8.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解24番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l25",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 25番 · 論文の書き方",
+    "prompt": "听解第 25 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 1,
+    "audio": "/assets/listening/official-25.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。复盘时只看脚本的第 25 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-8.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解25番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l26",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 26番 · 美しさの評価",
+    "prompt": "听解第 26 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 3,
+    "audio": "/assets/listening/official-26.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。复盘时只看脚本的第 26 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-8.png",
+      "/assets/pages/2018_1-script-11-9.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解26番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第28页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 28,
+    "id": "o-2018_1-l27",
+    "subject": "japanese",
+    "topic": "listening",
+    "title": "2018-1 日语听解 · 27番 · 工場の改善",
+    "prompt": "听解第 27 题。题目与选项均在音频中，首听先不看原文。",
+    "options": [
+      "音频中的选项 1",
+      "音频中的选项 2",
+      "音频中的选项 3",
+      "音频中的选项 4"
+    ],
+    "answer": 2,
+    "audio": "/assets/listening/official-27.wav",
+    "minutes": 4,
+    "explanation": "官方答案：选项 3。复盘时只看脚本的第 27 题，圈出最终结论、转折与条件；再遮住文本复听。",
+    "transcriptImages": [
+      "/assets/pages/2018_1-script-11-9.png"
+    ],
+    "answerSource": "2018_1-answers / 第1页 / 聴解27番"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第10页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 10,
+    "id": "o-2018_1-r2",
+    "subject": "japanese",
+    "topic": "reading",
+    "title": "2018-1 日语读解 · 解答栏2 · 告示与目的",
+    "prompt": "只完成解答栏 2 对应的读解问题。依据原文选择，不用常识补充作者未说的结论。",
+    "images": [
+      "/assets/pages/2018_1-japanese-10.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 1,
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。请在原文中标出支持这个选项的句子，再给其他选项分别找出范围扩大、因果颠倒或无依据之处。",
+    "answerSource": "2018_1-answers / 第1页 / 読解解答栏2"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第12页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 12,
+    "id": "o-2018_1-r5",
+    "subject": "japanese",
+    "topic": "reading",
+    "title": "2018-1 日语读解 · 解答栏5 · 指示词与顺序",
+    "prompt": "只完成解答栏 5 对应的读解问题。依据原文选择，不用常识补充作者未说的结论。",
+    "images": [
+      "/assets/pages/2018_1-japanese-12.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 3,
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。请在原文中标出支持这个选项的句子，再给其他选项分别找出范围扩大、因果颠倒或无依据之处。",
+    "answerSource": "2018_1-answers / 第1页 / 読解解答栏5"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第14页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 14,
+    "id": "o-2018_1-r10",
+    "subject": "japanese",
+    "topic": "reading",
+    "title": "2018-1 日语读解 · 解答栏10 · 文章主旨",
+    "prompt": "只完成解答栏 10 对应的读解问题。依据原文选择，不用常识补充作者未说的结论。",
+    "images": [
+      "/assets/pages/2018_1-japanese-14.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 3,
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。请在原文中标出支持这个选项的句子，再给其他选项分别找出范围扩大、因果颠倒或无依据之处。",
+    "answerSource": "2018_1-answers / 第1页 / 読解解答栏10"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第16页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 16,
+    "id": "o-2018_1-r11",
+    "subject": "japanese",
+    "topic": "reading",
+    "title": "2018-1 日语读解 · 解答栏11 · 段落理由",
+    "prompt": "只完成解答栏 11 对应的读解问题。依据原文选择，不用常识补充作者未说的结论。",
+    "images": [
+      "/assets/pages/2018_1-japanese-16.png",
+      "/assets/pages/2018_1-japanese-17.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 1,
+    "minutes": 4,
+    "explanation": "官方答案：选项 2。请在原文中标出支持这个选项的句子，再给其他选项分别找出范围扩大、因果颠倒或无依据之处。",
+    "answerSource": "2018_1-answers / 第1页 / 読解解答栏11"
+  },
+  {
+    "official": true,
+    "source": "JASSO 2018年第1回 · PDF第16页",
+    "sourceUrl": "https://www.jasso.go.jp/ryugaku/eju/examinee/pastpaper_sample/pastpaper_2018_1.html",
+    "pdf": "/assets/papers/2018_1-japanese.pdf",
+    "page": 16,
+    "id": "o-2018_1-r12",
+    "subject": "japanese",
+    "topic": "reading",
+    "title": "2018-1 日语读解 · 解答栏12 · 具体例的含义",
+    "prompt": "只完成解答栏 12 对应的读解问题。依据原文选择，不用常识补充作者未说的结论。",
+    "images": [
+      "/assets/pages/2018_1-japanese-16.png",
+      "/assets/pages/2018_1-japanese-17.png"
+    ],
+    "options": [
+      "原题选项 1",
+      "原题选项 2",
+      "原题选项 3",
+      "原题选项 4"
+    ],
+    "answer": 3,
+    "minutes": 4,
+    "explanation": "官方答案：选项 4。请在原文中标出支持这个选项的句子，再给其他选项分别找出范围扩大、因果颠倒或无依据之处。",
+    "answerSource": "2018_1-answers / 第1页 / 読解解答栏12"
+  }
+]

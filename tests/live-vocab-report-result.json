@@ -1,0 +1,52 @@
+{
+  "id": "62a673f3-acbe-407e-98b3-9f78e6999ce0",
+  "type": "vocabReport",
+  "status": "completed",
+  "reportKey": "vocab-981d76ea29e952312963d2c03339da1ec5043e93c4a652acbce057e8efe9de2f",
+  "attemptIds": [
+    "live-vx185",
+    "live-vx290",
+    "live-vx291"
+  ],
+  "taskId": null,
+  "blockId": null,
+  "date": "2026-10-06",
+  "mode": "reading",
+  "stats": {
+    "attempts": 3,
+    "words": 3,
+    "correct": 2,
+    "independent": 3,
+    "independentCorrect": 2,
+    "helped": 0,
+    "skipped": 0,
+    "seconds": 37,
+    "medianSeconds": 11,
+    "independentMedianSeconds": 11
+  },
+  "createdAt": "2026-10-06T02:07:07.589Z",
+  "startedAt": "2026-10-06T02:07:07.590Z",
+  "finishedAt": "2026-10-06T02:07:32.760Z",
+  "result": {
+    "summary": "本块为看字写读音，共3词，后端判定独立答对2词，无辅助、无跳过。「均一」「枯渇」读音正确；「均等」输入「ひんどう」，标准读音为「きんとう」。总耗时37秒，中位数11秒；样本少，秒数也可能受输入操作影响，不能据此判断熟练度或速度瓶颈。三词均为当天首次作答，没有同日重复证据。你自述「均等读音记错」与本次结果一致；旧版听音背景属于自报信息，不能替代看字提取验证。本块未测释义辨析和语境应用。",
+    "strengths": [
+      "「均一→きんいつ」「枯渇→こかつ」本次均独立答对，提供了这两词看字提取读音的正向证据。",
+      "三题均完成且未使用辅助，可用于观察本次独立作答表现。"
+    ],
+    "weaknesses": [
+      "「均等」本次读音提取出错；需进一步验证正确读音能否在延迟后独立回忆。",
+      "本块仅有3题且无同日复测，尚不能判断正确答案的稳定性，也不能区分遗忘、混淆或偶发输入错误。",
+      "释义辨析与语境应用尚无作答证据；读音结果不能推断这两个维度或EJU听力、读解表现。"
+    ],
+    "nextSteps": [
+      "核对「均等→きんとう」后，间隔10—20分钟，将三词打乱，仅看汉字写读音，不播放词音；记录是否独立答对。",
+      "另做释义辨析：区分「均等」的份额、机会或负担相同与「均一」的内部成分、浓度或品质一致，单独记录结果。",
+      "另做语境填词：分别用分配机会、溶液浓度、资源耗尽的短句检验三词，并写一句选择理由。",
+      "下一次继续记录耗时；若有输入法或界面操作延迟，单独注明，积累更多同类题后再评估速度。"
+    ]
+  },
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "high",
+  "testContext": "Isolated synthetic reading answers; one genuine Codex CLI report; production unchanged",
+  "isolatedData": "/var/folders/9n/l6dd509170sgb4f32v9t6l980000gn/T/eju-live-vocab-s3gQFu"
+}

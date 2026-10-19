@@ -1,0 +1,140 @@
+{
+  "ok": true,
+  "passed": [
+    "installed WKWebView fills the native window; real Return submits Japanese reading and advances once, with audio/answer available only after grading",
+    "Japanese auto-next is opt-in, submits the selected answer and advances in actual WKWebView",
+    "math uses real native Return for one next-question step; multiline Return remains a newline and Japanese auto-submit does not leak across subjects",
+    "physics uses real native Return for one next-question step; multiline Return remains a newline and Japanese auto-submit does not leak across subjects",
+    "chemistry uses real native Return for one next-question step; multiline Return remains a newline and Japanese auto-submit does not leak across subjects"
+  ],
+  "errors": [],
+  "aiRequests": [],
+  "noLiveCLI": true,
+  "realNativeReturn": true,
+  "imeScope": "WK DOM composition guard plus real NSEvent text entry; OS IME candidate selection was not automated",
+  "nativeStatus": {
+    "autoplayRequiresGesture": false,
+    "backForwardGestures": false,
+    "blockedCount": 0,
+    "commandCount": 0,
+    "key": true,
+    "loading": false,
+    "persistent": false,
+    "savePanel": false,
+    "title": "澄学 EJU",
+    "url": "http://127.0.0.1:18776/",
+    "visible": true,
+    "windowCount": 1,
+    "windowNumber": 25525
+  },
+  "readingBounds": {
+    "buttons": [
+      {
+        "bottom": 819.890625,
+        "id": "vocab-back",
+        "left": 160,
+        "right": 195.84375,
+        "top": 795.09375
+      },
+      {
+        "bottom": 831.5,
+        "id": "vocab-forgot",
+        "left": 870,
+        "right": 990,
+        "top": 783.5
+      },
+      {
+        "bottom": 831.5,
+        "id": "vocab-submit",
+        "left": 1000,
+        "right": 1120,
+        "top": 783.5
+      }
+    ],
+    "footer": {
+      "bottom": 850,
+      "left": 0,
+      "right": 1280,
+      "top": 764
+    },
+    "modal": {
+      "height": 850,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "viewport": {
+      "height": 850,
+      "width": 1280
+    }
+  },
+  "keyEvents": [
+    {
+      "composing": true,
+      "key": "Enter",
+      "target": "vocab-response",
+      "trusted": false
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "vocab-response",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "vocab-next",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "question-note",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "qnext",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "question-note",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "qnext",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "question-note",
+      "trusted": true
+    },
+    {
+      "composing": false,
+      "key": "Enter",
+      "target": "qnext",
+      "trusted": true
+    }
+  ],
+  "events": [
+    {
+      "event": "boot",
+      "pid": 58889,
+      "url": "http://127.0.0.1:18776"
+    },
+    {
+      "event": "ready",
+      "url": "http://127.0.0.1:18776/"
+    }
+  ],
+  "data": "/var/folders/9n/l6dd509170sgb4f32v9t6l980000gn/T/eju-japanese-native-ivDonD/data",
+  "at": "2026-10-06T02:09:07.876Z"
+}

@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "at": "2026-10-05T18:22:37.803Z",
+  "context": "installed native macOS app; real AppKit event routing and WKWebView, isolated server/data; save sheet uses public endSheet API to invoke the real save completion (remote OS button is not physically clicked)",
+  "passed": [
+    "real AppKit/WKWebView window renders with automatic BGM and isolated storage",
+    "native menu shortcuts navigate and preserve drafts; eleven web navigation/print/zoom keys are blocked",
+    "native focus shortcut starts and pauses the actual timer without losing the report",
+    "system copy, paste, undo, custom right-click menu and native shortcut help work",
+    "offline vocabulary, example and terminology AAC audio play in WebKit and duck BGM correctly",
+    "official listening plays and source images zoom inside the native window without replacing the exercise",
+    "backup opens a real macOS save sheet, writes parseable JSON through its completion and cancels without navigation",
+    "CmdW stops audio; reopening reuses the window; rapid reopen is safe and manual pause is respected",
+    "native acceptance completes without JavaScript exceptions or rejected promises"
+  ],
+  "status": {
+    "autoplayRequiresGesture": false,
+    "backForwardGestures": false,
+    "blockedCount": 11,
+    "commandCount": 15,
+    "key": true,
+    "loading": false,
+    "persistent": false,
+    "savePanel": false,
+    "title": "澄学 EJU",
+    "url": "http://127.0.0.1:18773/",
+    "visible": true,
+    "windowCount": 1,
+    "windowNumber": 25043
+  },
+  "artifacts": "/var/folders/9n/l6dd509170sgb4f32v9t6l980000gn/T/eju-native-GoUR1f",
+  "events": [
+    {
+      "event": "boot",
+      "pid": 76177,
+      "url": "http://127.0.0.1:18773"
+    },
+    {
+      "event": "ready",
+      "url": "http://127.0.0.1:18773/"
+    }
+  ]
+}

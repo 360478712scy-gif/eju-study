@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "passed": [
+    "planned cards require original recall and term input before displaying the real lesson and worked example",
+    "a wrong application answer is recorded honestly with a full knowledge snapshot and next-day review",
+    "refresh restores the notebook and personal edits do not change the original lesson or recall evidence",
+    "Japanese-term search combines correctly with subject and date filters",
+    "same-day successful relearning updates one notebook entry without extending the review interval",
+    "downloaded JSON includes the complete lesson, term/example snapshot and both attempts",
+    "knowledge, notebook, and all three study stages fit a 390px viewport",
+    "restart retains the complete notebook and no JavaScript errors or live AI calls occur"
+  ],
+  "errors": [],
+  "data": "/var/folders/9n/l6dd509170sgb4f32v9t6l980000gn/T/eju-learning-browser-pVDGwz/state",
+  "at": "2026-10-05T18:08:26.560Z"
+}

@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "passed": [
+    "native command protocol validates page names, routes app controls and ignores repeated commands",
+    "Cmd navigation and controls work while held keys and Japanese IME composition cannot trigger actions",
+    "unsaved text survives keyboard/native navigation; editing shortcuts remain native and browser chrome shortcuts are blocked",
+    "right-click menu stays inside the viewport and supports wrapping arrow keys, Home, End and isolated Escape",
+    "selected text copies, input and contenteditable paste preserve undo, and editing respects read-only controls",
+    "a delayed clipboard read never overwrites text edited while permission was pending",
+    "shortcut help preserves the active form; Escape closes one layer and native secure/select controls remain intact",
+    "file and URL drops cannot navigate the window, while text editing and 390px menu/help layouts remain usable",
+    "destroy removes handlers cleanly and all browser checks finish without JavaScript errors"
+  ],
+  "errors": []
+}

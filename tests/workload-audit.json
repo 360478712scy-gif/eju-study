@@ -1,0 +1,5026 @@
+{
+  "generatedAt": "2026-10-06T02:52:41.866Z",
+  "scenario": "All assigned answers at baseline independent pace; every prior day retained. Forecast, not user study evidence.",
+  "groups": {
+    "physics": {
+      "bank": 190,
+      "attempts": 413,
+      "distinctUsed": 190
+    },
+    "chemistry": {
+      "bank": 200,
+      "attempts": 349,
+      "distinctUsed": 200
+    },
+    "math": {
+      "bank": 60,
+      "attempts": 147,
+      "distinctUsed": 60
+    },
+    "listening": {
+      "bank": 91,
+      "attempts": 365,
+      "distinctUsed": 91
+    },
+    "reading": {
+      "bank": 46,
+      "attempts": 155,
+      "distinctUsed": 46
+    },
+    "originalShort": {
+      "bank": 115,
+      "attempts": 24,
+      "distinctUsed": 24
+    },
+    "vocabulary": {
+      "bank": 330,
+      "attempts": 793,
+      "distinctUsed": 271
+    }
+  },
+  "rows": [
+    {
+      "date": "2026-10-06",
+      "budget": 240,
+      "estimatedMinutes": 240.5,
+      "tasks": [
+        {
+          "taskId": "2026-10-06-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 25,
+          "spacedCount": 0,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-06-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31.6,
+          "outputMinutes": 14.7,
+          "supportedMinutes": 46.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 14,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 14,
+          "spacedCount": 0,
+          "questionCount": 14
+        },
+        {
+          "taskId": "2026-10-06-math",
+          "title": "数学 · 三角函数与混合练习",
+          "budget": 60,
+          "questionMinutes": 41,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 59.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 4
+          },
+          "newCount": 8,
+          "spacedCount": 0,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-06-physics",
+          "title": "物理 · 波与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.8,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-06-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-06-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 13.4,
+          "outputMinutes": 7,
+          "supportedMinutes": 20.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 8,
+            "short": 0
+          },
+          "newCount": 8,
+          "spacedCount": 0,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-06-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-07",
+      "budget": 240,
+      "estimatedMinutes": 239.5,
+      "tasks": [
+        {
+          "taskId": "2026-10-07-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-07-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31.1,
+          "outputMinutes": 14.9,
+          "supportedMinutes": 46,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-07-math",
+          "title": "数学 · 三角函数与混合练习",
+          "budget": 60,
+          "questionMinutes": 41,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 59.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 4
+          },
+          "newCount": 8,
+          "spacedCount": 0,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-07-physics",
+          "title": "物理 · 波与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-07-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-07-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 12.6,
+          "outputMinutes": 7,
+          "supportedMinutes": 19.6,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 6,
+          "spacedCount": 0,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-07-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-08",
+      "budget": 240,
+      "estimatedMinutes": 237.2,
+      "tasks": [
+        {
+          "taskId": "2026-10-08-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-08-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 19.8,
+          "outputMinutes": 14.5,
+          "supportedMinutes": 34.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 8,
+          "spacedCount": 0,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-08-math",
+          "title": "数学 · 三角函数与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 0,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-10-08-physics",
+          "title": "物理 · 波与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-08-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-08-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-08-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-09",
+      "budget": 240,
+      "estimatedMinutes": 237.2,
+      "tasks": [
+        {
+          "taskId": "2026-10-09-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-09-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 28.8,
+          "outputMinutes": 15.5,
+          "supportedMinutes": 44.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 12,
+          "spacedCount": 0,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-10-09-math",
+          "title": "数学 · 三角函数与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 0,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-10-09-physics",
+          "title": "物理 · 波与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-09-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-09-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 13,
+          "outputMinutes": 7,
+          "supportedMinutes": 20,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 7,
+          "spacedCount": 0,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-09-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-10",
+      "budget": 240,
+      "estimatedMinutes": 239.2,
+      "tasks": [
+        {
+          "taskId": "2026-10-10-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-10-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 29.4,
+          "outputMinutes": 16.4,
+          "supportedMinutes": 45.8,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 12,
+          "spacedCount": 0,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-10-10-math",
+          "title": "数学 · 三角函数与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 0,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-10-10-physics",
+          "title": "物理 · 波与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-10-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-10-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 13.5,
+          "outputMinutes": 7,
+          "supportedMinutes": 20.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 7,
+          "spacedCount": 0,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-10-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-11",
+      "budget": 240,
+      "estimatedMinutes": 239.7,
+      "tasks": [
+        {
+          "taskId": "2026-10-11-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-11-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 21.6,
+          "outputMinutes": 14.7,
+          "supportedMinutes": 36.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 9,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 9,
+          "spacedCount": 0,
+          "questionCount": 9
+        },
+        {
+          "taskId": "2026-10-11-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 0,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-10-11-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-11-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-11-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-11-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-12",
+      "budget": 240,
+      "estimatedMinutes": 239,
+      "tasks": [
+        {
+          "taskId": "2026-10-12-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-12-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 30.8,
+          "outputMinutes": 15.5,
+          "supportedMinutes": 46.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-12-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 0,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-10-12-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-12-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-12-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 12.3,
+          "outputMinutes": 7,
+          "supportedMinutes": 19.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 6,
+          "spacedCount": 0,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-12-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-13",
+      "budget": 240,
+      "estimatedMinutes": 238.1,
+      "tasks": [
+        {
+          "taskId": "2026-10-13-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-13-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 30.2,
+          "outputMinutes": 14.8,
+          "supportedMinutes": 45,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 10,
+          "spacedCount": 3,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-13-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 0,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-10-13-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-13-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-13-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 12.7,
+          "outputMinutes": 7,
+          "supportedMinutes": 19.7,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 6,
+          "spacedCount": 0,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-13-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-14",
+      "budget": 240,
+      "estimatedMinutes": 237,
+      "tasks": [
+        {
+          "taskId": "2026-10-14-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-14-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 28.6,
+          "outputMinutes": 15.5,
+          "supportedMinutes": 44.1,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 12,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-10-14-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 39,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 57.5,
+          "coverage": {
+            "math-group": 4,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 4
+          },
+          "newCount": 8,
+          "spacedCount": 0,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-14-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-14-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-14-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 13.5,
+          "outputMinutes": 7,
+          "supportedMinutes": 20.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 6,
+          "spacedCount": 1,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-14-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-15",
+      "budget": 240,
+      "estimatedMinutes": 237.9,
+      "tasks": [
+        {
+          "taskId": "2026-10-15-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-15-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 19,
+          "outputMinutes": 15.5,
+          "supportedMinutes": 34.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-15-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 5,
+          "spacedCount": 0,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-15-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-15-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-15-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-15-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-16",
+      "budget": 240,
+      "estimatedMinutes": 240.9,
+      "tasks": [
+        {
+          "taskId": "2026-10-16-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-16-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31.5,
+          "outputMinutes": 15,
+          "supportedMinutes": 46.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-16-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 5,
+          "spacedCount": 0,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-16-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-16-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-16-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-16-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-17",
+      "budget": 240,
+      "estimatedMinutes": 240.8,
+      "tasks": [
+        {
+          "taskId": "2026-10-17-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-17-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31,
+          "outputMinutes": 15.4,
+          "supportedMinutes": 46.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-17-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 5,
+          "spacedCount": 0,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-17-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-17-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-17-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 6,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-17-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-18",
+      "budget": 240,
+      "estimatedMinutes": 238.5,
+      "tasks": [
+        {
+          "taskId": "2026-10-18-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-18-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 19.1,
+          "outputMinutes": 16,
+          "supportedMinutes": 35.1,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-18-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 5,
+          "spacedCount": 0,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-18-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-18-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-18-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-18-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-19",
+      "budget": 240,
+      "estimatedMinutes": 238,
+      "tasks": [
+        {
+          "taskId": "2026-10-19-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-19-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 30.2,
+          "outputMinutes": 14.4,
+          "supportedMinutes": 44.6,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-19-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 4,
+          "spacedCount": 1,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-19-physics",
+          "title": "物理 · 电场与电路与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 17,
+          "supportedMinutes": 54.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 13,
+          "spacedCount": 0,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-19-chemistry",
+          "title": "化学 · 有机名称与反应与混合练习",
+          "budget": 40,
+          "questionMinutes": 27,
+          "outputMinutes": 13,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-19-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 13,
+          "outputMinutes": 7,
+          "supportedMinutes": 20,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 6,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-19-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-20",
+      "budget": 240,
+      "estimatedMinutes": 239.2,
+      "tasks": [
+        {
+          "taskId": "2026-10-20-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-20-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31.4,
+          "outputMinutes": 13.3,
+          "supportedMinutes": 44.7,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 14,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 14,
+          "questionCount": 14
+        },
+        {
+          "taskId": "2026-10-20-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-20-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 8,
+          "spacedCount": 5,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-20-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-20-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-20-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-21",
+      "budget": 240,
+      "estimatedMinutes": 239.4,
+      "tasks": [
+        {
+          "taskId": "2026-10-21-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-21-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 30.1,
+          "outputMinutes": 14.8,
+          "supportedMinutes": 44.9,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-21-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-21-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-21-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-21-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-21-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-22",
+      "budget": 240,
+      "estimatedMinutes": 238,
+      "tasks": [
+        {
+          "taskId": "2026-10-22-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-22-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 19.5,
+          "outputMinutes": 15,
+          "supportedMinutes": 34.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-22-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-22-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-22-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-22-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-22-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-23",
+      "budget": 240,
+      "estimatedMinutes": 241.7,
+      "tasks": [
+        {
+          "taskId": "2026-10-23-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-23-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 32.6,
+          "outputMinutes": 14.6,
+          "supportedMinutes": 47.2,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 14,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 14,
+          "questionCount": 14
+        },
+        {
+          "taskId": "2026-10-23-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-23-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-23-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 11,
+          "spacedCount": 0,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-23-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 6,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-23-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-24",
+      "budget": 240,
+      "estimatedMinutes": 240.2,
+      "tasks": [
+        {
+          "taskId": "2026-10-24-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-24-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31.7,
+          "outputMinutes": 14,
+          "supportedMinutes": 45.7,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-24-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-24-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-24-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 2,
+          "spacedCount": 9,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-24-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-24-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-25",
+      "budget": 240,
+      "estimatedMinutes": 239.1,
+      "tasks": [
+        {
+          "taskId": "2026-10-25-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-25-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 19.3,
+          "outputMinutes": 16.3,
+          "supportedMinutes": 35.6,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-25-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-25-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-25-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-25-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-25-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-26",
+      "budget": 240,
+      "estimatedMinutes": 238.9,
+      "tasks": [
+        {
+          "taskId": "2026-10-26-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-26-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 28.4,
+          "outputMinutes": 16,
+          "supportedMinutes": 44.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 12,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-10-26-math",
+          "title": "数学 · 积分与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-26-physics",
+          "title": "物理 · 磁场与电磁感应与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.5,
+          "outputMinutes": 17.5,
+          "supportedMinutes": 55,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-26-chemistry",
+          "title": "化学 · 除杂与分离与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-26-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-26-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-27",
+      "budget": 240,
+      "estimatedMinutes": 239.3,
+      "tasks": [
+        {
+          "taskId": "2026-10-27-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-27-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 30.1,
+          "outputMinutes": 15.3,
+          "supportedMinutes": 45.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-27-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-27-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-27-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-27-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 6,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-27-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-28",
+      "budget": 240,
+      "estimatedMinutes": 238.5,
+      "tasks": [
+        {
+          "taskId": "2026-10-28-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-28-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31.6,
+          "outputMinutes": 14,
+          "supportedMinutes": 45.6,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 14,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 14,
+          "questionCount": 14
+        },
+        {
+          "taskId": "2026-10-28-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-28-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-28-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-28-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 13,
+          "outputMinutes": 7,
+          "supportedMinutes": 20,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 6,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-10-28-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-29",
+      "budget": 240,
+      "estimatedMinutes": 236.2,
+      "tasks": [
+        {
+          "taskId": "2026-10-29-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-29-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 18.5,
+          "outputMinutes": 14.8,
+          "supportedMinutes": 33.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-10-29-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-29-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-29-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-29-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-10-29-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-30",
+      "budget": 240,
+      "estimatedMinutes": 240.3,
+      "tasks": [
+        {
+          "taskId": "2026-10-30-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-30-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 31,
+          "outputMinutes": 15.4,
+          "supportedMinutes": 46.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-30-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-30-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-30-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-30-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-30-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-10-31",
+      "budget": 240,
+      "estimatedMinutes": 237.1,
+      "tasks": [
+        {
+          "taskId": "2026-10-31-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-10-31-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 28.3,
+          "outputMinutes": 14.9,
+          "supportedMinutes": 43.2,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 12,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-10-31-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-10-31-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-10-31-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-10-31-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-10-31-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-01",
+      "budget": 240,
+      "estimatedMinutes": 238.4,
+      "tasks": [
+        {
+          "taskId": "2026-11-01-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-11-01-listening",
+          "title": "听力 · 官方录音",
+          "budget": 35,
+          "questionMinutes": 19.7,
+          "outputMinutes": 15.8,
+          "supportedMinutes": 35.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-11-01-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-01-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-11-01-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-11-01-reading",
+          "title": "记述 · 限时表达",
+          "budget": 30,
+          "questionMinutes": 0,
+          "outputMinutes": 30,
+          "supportedMinutes": 30,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        },
+        {
+          "taskId": "2026-11-01-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-02",
+      "budget": 240,
+      "estimatedMinutes": 238.4,
+      "tasks": [
+        {
+          "taskId": "2026-11-02-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-11-02-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 28.8,
+          "outputMinutes": 15.7,
+          "supportedMinutes": 44.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 12,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-11-02-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-02-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-11-02-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-11-02-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 6,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 6,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-11-02-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-03",
+      "budget": 240,
+      "estimatedMinutes": 238.2,
+      "tasks": [
+        {
+          "taskId": "2026-11-03-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-11-03-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 28.3,
+          "outputMinutes": 16,
+          "supportedMinutes": 44.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 12,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 12,
+          "questionCount": 12
+        },
+        {
+          "taskId": "2026-11-03-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-03-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-11-03-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-11-03-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-11-03-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-04",
+      "budget": 240,
+      "estimatedMinutes": 239.3,
+      "tasks": [
+        {
+          "taskId": "2026-11-04-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 15,
+          "questionMinutes": 15,
+          "outputMinutes": 0,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 25,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 25,
+            "responses": 48,
+            "modes": {
+              "reading": 32,
+              "meaning": 12,
+              "cloze": 4
+            },
+            "repair": 8
+          },
+          "newCount": 8,
+          "spacedCount": 17,
+          "questionCount": 25
+        },
+        {
+          "taskId": "2026-11-04-listening",
+          "title": "听力 · 官方录音",
+          "budget": 45,
+          "questionMinutes": 30,
+          "outputMinutes": 15.4,
+          "supportedMinutes": 45.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 13,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-11-04-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 60,
+          "questionMinutes": 40,
+          "outputMinutes": 18.5,
+          "supportedMinutes": 58.5,
+          "coverage": {
+            "math-group": 5,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-04-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 55,
+          "questionMinutes": 37.9,
+          "outputMinutes": 16.5,
+          "supportedMinutes": 54.4,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 13,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 13,
+          "questionCount": 13
+        },
+        {
+          "taskId": "2026-11-04-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 40,
+          "questionMinutes": 26.5,
+          "outputMinutes": 13.5,
+          "supportedMinutes": 40,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 11,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 11,
+          "questionCount": 11
+        },
+        {
+          "taskId": "2026-11-04-reading",
+          "title": "读解 · 原文证据",
+          "budget": 20,
+          "questionMinutes": 14,
+          "outputMinutes": 7,
+          "supportedMinutes": 21,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 7,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-11-04-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-05",
+      "budget": 177,
+      "estimatedMinutes": 175.9,
+      "tasks": [
+        {
+          "taskId": "2026-11-05-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 11,
+          "questionMinutes": 11.3,
+          "outputMinutes": 0,
+          "supportedMinutes": 11.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 19,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 19,
+            "responses": 36,
+            "modes": {
+              "reading": 24,
+              "meaning": 9,
+              "cloze": 3
+            },
+            "repair": 6
+          },
+          "newCount": 6,
+          "spacedCount": 13,
+          "questionCount": 19
+        },
+        {
+          "taskId": "2026-11-05-listening",
+          "title": "听力 · 官方录音",
+          "budget": 34,
+          "questionMinutes": 17.8,
+          "outputMinutes": 15.3,
+          "supportedMinutes": 33.1,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 8,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-11-05-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 42,
+          "questionMinutes": 27,
+          "outputMinutes": 14.5,
+          "supportedMinutes": 41.5,
+          "coverage": {
+            "math-group": 3,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 4
+          },
+          "newCount": 4,
+          "spacedCount": 3,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-11-05-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 41,
+          "questionMinutes": 27.6,
+          "outputMinutes": 13.4,
+          "supportedMinutes": 41,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 10,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 10,
+          "questionCount": 10
+        },
+        {
+          "taskId": "2026-11-05-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 29,
+          "questionMinutes": 20.7,
+          "outputMinutes": 8.3,
+          "supportedMinutes": 29,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 8,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-11-05-reading",
+          "title": "读解 · 原文证据",
+          "budget": 15,
+          "questionMinutes": 8,
+          "outputMinutes": 7,
+          "supportedMinutes": 15,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 4,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 4,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-11-05-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-06",
+      "budget": 146,
+      "estimatedMinutes": 145.1,
+      "tasks": [
+        {
+          "taskId": "2026-11-06-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 9,
+          "questionMinutes": 8.8,
+          "outputMinutes": 0,
+          "supportedMinutes": 8.8,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 15,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 15,
+            "responses": 28,
+            "modes": {
+              "reading": 19,
+              "meaning": 7,
+              "cloze": 2
+            },
+            "repair": 5
+          },
+          "newCount": 5,
+          "spacedCount": 10,
+          "questionCount": 15
+        },
+        {
+          "taskId": "2026-11-06-listening",
+          "title": "听力 · 官方录音",
+          "budget": 27,
+          "questionMinutes": 11.6,
+          "outputMinutes": 14.7,
+          "supportedMinutes": 26.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 5,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-06-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 34,
+          "questionMinutes": 19,
+          "outputMinutes": 14.5,
+          "supportedMinutes": 33.5,
+          "coverage": {
+            "math-group": 2,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 4
+          },
+          "newCount": 4,
+          "spacedCount": 2,
+          "questionCount": 6
+        },
+        {
+          "taskId": "2026-11-06-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 34,
+          "questionMinutes": 22.1,
+          "outputMinutes": 11.9,
+          "supportedMinutes": 34,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 8,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 8,
+          "questionCount": 8
+        },
+        {
+          "taskId": "2026-11-06-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 25,
+          "questionMinutes": 17.5,
+          "outputMinutes": 7.5,
+          "supportedMinutes": 25,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 7,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 7,
+          "questionCount": 7
+        },
+        {
+          "taskId": "2026-11-06-reading",
+          "title": "读解 · 原文证据",
+          "budget": 12,
+          "questionMinutes": 8,
+          "outputMinutes": 4.5,
+          "supportedMinutes": 12.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 3,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 3,
+          "questionCount": 3
+        },
+        {
+          "taskId": "2026-11-06-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "date": "2026-11-07",
+      "budget": 87,
+      "estimatedMinutes": 86.8,
+      "tasks": [
+        {
+          "taskId": "2026-11-07-vocab",
+          "title": "词汇 · 读音、词义与语境",
+          "budget": 5,
+          "questionMinutes": 5,
+          "outputMinutes": 0,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 9,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "vocabulary": {
+            "distinctWords": 9,
+            "responses": 16,
+            "modes": {
+              "reading": 11,
+              "meaning": 4,
+              "cloze": 1
+            },
+            "repair": 3
+          },
+          "newCount": 3,
+          "spacedCount": 6,
+          "questionCount": 9
+        },
+        {
+          "taskId": "2026-11-07-listening",
+          "title": "听力 · 官方录音",
+          "budget": 17,
+          "questionMinutes": 9,
+          "outputMinutes": 8.3,
+          "supportedMinutes": 17.3,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 4,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 4,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-11-07-math",
+          "title": "数学 · 综合保温与混合练习",
+          "budget": 19,
+          "questionMinutes": 11,
+          "outputMinutes": 8,
+          "supportedMinutes": 19,
+          "coverage": {
+            "math-group": 1,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 4
+          },
+          "newCount": 4,
+          "spacedCount": 1,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-07-physics",
+          "title": "物理 · 综合保温与混合练习",
+          "budget": 20,
+          "questionMinutes": 13.6,
+          "outputMinutes": 6.4,
+          "supportedMinutes": 20,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 5,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 5,
+          "questionCount": 5
+        },
+        {
+          "taskId": "2026-11-07-chemistry",
+          "title": "化学 · 综合保温与混合练习",
+          "budget": 14,
+          "questionMinutes": 8.7,
+          "outputMinutes": 5.3,
+          "supportedMinutes": 14,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 4,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 4,
+          "questionCount": 4
+        },
+        {
+          "taskId": "2026-11-07-reading",
+          "title": "读解 · 原文证据",
+          "budget": 7,
+          "questionMinutes": 5,
+          "outputMinutes": 1.5,
+          "supportedMinutes": 6.5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 2,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 2,
+          "questionCount": 2
+        },
+        {
+          "taskId": "2026-11-07-report",
+          "title": "每日复盘",
+          "budget": 5,
+          "questionMinutes": 0,
+          "outputMinutes": 5,
+          "supportedMinutes": 5,
+          "coverage": {
+            "math-group": 0,
+            "official-science": 0,
+            "vocab": 0,
+            "listening": 0,
+            "reading": 0,
+            "short": 0
+          },
+          "newCount": 0,
+          "spacedCount": 0,
+          "questionCount": 0
+        }
+      ],
+      "issues": []
+    }
+  ]
+}

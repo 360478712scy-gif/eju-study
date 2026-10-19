@@ -1,0 +1,109 @@
+{
+  "ok": true,
+  "passed": [
+    "reading is full screen, hides audio/answers/AI help, and preserves a draft through refresh and IME Enter",
+    "native hide pauses the automatic clock; Chinese spelling is graded wrong and audio appears only after submission",
+    "Enter advances exactly one question, and explicit cannot-recall remains a saved wrong response",
+    "an unfinished AI report stays pending, and the user report is saved separately from the controlled AI response",
+    "one click starts the meaning block; only opting into Japanese auto-next submits and advances a selection",
+    "continue automatically saves an unsubmitted self report; failed persistence stays in place with the draft intact and retry saves before navigation",
+    "cloze and repair continue in order, fit the mobile footer, and keep each mode separate without same-day mastery inflation",
+    "each response automatically becomes a notebook record and real grading/self reports survive server restart",
+    "a completed block restores its persisted self report by the same attempt IDs after restart",
+    "math physics and chemistry share full-screen Enter navigation while textareas keep newline behavior and no Japanese auto-submit toggle"
+  ],
+  "errors": [],
+  "noLiveCLI": true,
+  "aiRequests": [
+    {
+      "type": "vocabReport",
+      "attemptIds": [
+        "ui-reading-vx140",
+        "ui-reading-vx290",
+        "ui-reading-vx064"
+      ],
+      "taskId": "2026-10-06-vocab",
+      "blockId": "reading"
+    },
+    {
+      "type": "vocabReport",
+      "attemptIds": [
+        "ui-meaning-vx140",
+        "ui-meaning-vx290"
+      ],
+      "taskId": "2026-10-06-vocab",
+      "blockId": "meaning"
+    },
+    {
+      "type": "vocabReport",
+      "attemptIds": [
+        "ui-cloze-vx140",
+        "ui-cloze-vx290"
+      ],
+      "taskId": "2026-10-06-vocab",
+      "blockId": "cloze"
+    },
+    {
+      "type": "vocabReport",
+      "attemptIds": [
+        "ui-repair-vx140",
+        "ui-repair-vx290"
+      ],
+      "taskId": "2026-10-06-vocab",
+      "blockId": "repair"
+    },
+    {
+      "type": "vocabReport",
+      "attemptIds": [
+        "ui-meaning-vx140",
+        "ui-meaning-vx290"
+      ],
+      "taskId": "2026-10-06-vocab",
+      "blockId": "meaning"
+    }
+  ],
+  "aiPolls": [
+    "fixture-reading",
+    "fixture-meaning",
+    "fixture-cloze",
+    "fixture-repair"
+  ],
+  "selfReportRequests": [
+    {
+      "type": "vocabSelfReport",
+      "attemptIds": [
+        "ui-reading-vx140",
+        "ui-reading-vx290",
+        "ui-reading-vx064"
+      ],
+      "text": "我能听懂词义，但看到汉字时还不能稳定想起读音。\n"
+    },
+    {
+      "type": "vocabSelfReport",
+      "attemptIds": [
+        "ui-meaning-vx140",
+        "ui-meaning-vx290"
+      ],
+      "text": "这组能区分词义，但还需要用新语境检查是否真的理解。"
+    },
+    {
+      "type": "vocabSelfReport",
+      "attemptIds": [
+        "ui-meaning-vx140",
+        "ui-meaning-vx290"
+      ],
+      "text": "这组能区分词义，但还需要用新语境检查是否真的理解。"
+    },
+    {
+      "type": "vocabSelfReport",
+      "attemptIds": [
+        "ui-repair-vx140",
+        "ui-repair-vx290"
+      ],
+      "text": "订正后能写出读音，下一次要先独立回忆再核对。"
+    }
+  ],
+  "state": "/var/folders/9n/l6dd509170sgb4f32v9t6l980000gn/T/eju-japanese-v2-dsxfxN/state",
+  "fixture": "actual content; shortened 3/2/2/2 vocabulary blocks and pending AI job records",
+  "at": "2026-10-06T02:12:19.276Z"
+}

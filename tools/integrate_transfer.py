@@ -1,0 +1,35 @@
+from pathlib import Path
+p=Path('engine.mjs');s=p.read_text();s="import {reviewQueue} from './public/transfer.js';\n"+s
+s=s.replace("q.topics?.includes(topic)||topic==='mixed'","q.topics?.includes(topic)")
+s=s.replace("const ma=s.mastery[a.id],mb=s.mastery[b.id];",'')
+s=s.replace("return m?.due<=date&&m?.wrong?0:!m?(q.official?1:2):3;","return m?.due<=date&&q.topic==='vocab'?0:!m?(q.official?1:2):3;")
+s=s.replace("const vocab=Math.max(5,Math.round(jm/4)),listen=Math.max(10,Math.round(jm/2))", "const vocab=Math.max(1,Math.round(jm/4)),listen=Math.max(1,Math.round(jm/2))")
+s=s.replace("return {date,stage:stage(date),budget,allocations,tasks,reason};",'''const reviews=reviewQueue(s,bank,date).filter(r=>r.questionId);for(const task of tasks){task.reviewLinks={};const related=reviews.filter(r=>bank.find(q=>q.id===r.questionId)?.subject===task.subject&&(task.subject!=='japanese'||bank.find(q=>q.id===r.questionId)?.topic===task.topic)).slice(0,Math.min(2,task.questionIds.length));for(const [i,r] of related.entries()){task.questionIds=task.questionIds.filter(id=>id!==r.questionId);task.questionIds.splice(Math.min(i,task.questionIds.length),0,r.questionId);task.questionIds=task.questionIds.slice(0,budget<=150?2:task.subject==='japanese'?(task.topic==='vocab'?6:2):3);task.reviewLinks[r.questionId]=r.originalId;}}
+if(adj?.speedMode){const task=tasks.find(t=>t.subject==='math');task.questionIds=task.questionIds.slice(0,2);task.method='本次减少新题：先按空格编号做一轮，约90秒无进展先标记；回收后计时复走卡住的一段。总时长不增加。';}
+return {date,stage:stage(date),budget,allocations,tasks,reason};''')
+s=s.replace("correct:aa.filter(a=>a.correct).length,accuracy:aa.length?Math.round(100*aa.filter(a=>a.correct).length/aa.length):null", "correct:aa.filter(a=>a.correct&&!a.hinted).length,assisted:aa.filter(a=>a.hinted).length,accuracy:aa.length?Math.round(100*aa.filter(a=>a.correct&&!a.hinted).length/aa.length):null")
+s=s.replace("const slow=timed.filter(a=>a.correct&&a.overtime);if(timed.length>=4&&slow.length/timed.length>=0.35)","const slow=timed.filter(a=>a.correct&&!a.hinted&&a.overtime);const speedMode=timed.length>=4&&slow.length/timed.length>=0.35;if(speedMode)")
+s=s.replace("date,allocations:base,focus,reason:","date,allocations:base,focus,speedMode,reason:")
+s=s.replace("近期首答正确率", "近期独立首答成功率")
+s=s.replace("s.mastery[q.id]={streak,wrong:","s.mastery[q.id]={...prior,streak,wrong:")
+s=s.replace("reflection:''});award", "reflection:'',reviewOf:a.reviewOf||null});if(a.reviewOf&&a.reviewOf!==q.id){const original=byId(a.reviewOf),m=s.mastery[a.reviewOf];assert(original&&m&&original.skill&&original.skill===q.skill&&original.subject===q.subject,'迁移题与原题考点不匹配');const successes=correct&&independent?(m.transferStreak||0)+1:0;m.transferStreak=successes;m.due=addDays(date,successes?([3,7,14][Math.min(successes-1,2)]):1);m.lastTransfer={questionId:q.id,date,correct,independent};}award")
+s=s.replace("item.reflection=a.text;", "item.reflection=a.text;award(s,'reflection-'+item.questionId,2);")
+s=s.replace("最近7天首答情况（按同题同日首次作答，非EJU尺度分）", "最近7天独立首答成功率（分母含提示作答，提示后做对不算独立正确；非EJU尺度分）")
+s=s.replace("ss[k].accuracy+'%'", "ss[k].accuracy+'%；其中提示作答'+ss[k].assisted+'次'")
+s=s.replace("\\n\\n主观汇报：", "\\n\\n迁移验证：${todayAnswers.filter(a=>a.reviewOf).map(a=>a.reviewOf+' → '+a.questionId+'：'+(a.correct&&!a.hinted?'独立完成':'仍需练习')).join('；')||'暂无'}\\n\\n主观汇报：")
+p.write_text(s)
+p=Path('server.mjs');s=p.read_text();s="import {enrichBank,reviewQueue} from './public/transfer.js';\n"+s;s=s.replace('const bank=[...official,...QUESTIONS];','const bank=enrichBank([...official,...QUESTIONS]);');s=s.replace('stats:stats(state,bank,d)','stats:stats(state,bank,d),reviewQueue:reviewQueue(state,bank,d)');p.write_text(s)
+p=Path('public/content.js');s=p.read_text().replace('次日重做','次日迁移').replace('第二天换成无提示作答。','第二天换一道同考点、不同条件的题，独立作答。').replace('错题在第 1、3、7 天重新出现','薄弱考点用新题验证，词汇仍间隔回忆').replace('错题次日再做，答对后隔3天、7天复习；错了回到次日。','错题次日优先换一道同考点、不同条件的题；做对后隔3天、7天再验证。没有未做过的同类题时会标记待补题，不把原题包装成新题。');p.write_text(s)
+p=Path('tests/engine.test.mjs');s=p.read_text();s="import {enrichBank,reviewQueue} from '../public/transfer.js';\n"+s;s=s.replace('bank=[...official,...QUESTIONS]','bank=enrichBank([...official,...QUESTIONS])');p.write_text(s)
+p=Path('public/app.js');s=p.read_text();a=s.index('function dueQuestions()');b=s.index('function landscape()',a);s=s[:a]+"function dueQuestions(){return (state.reviewQueue||[]).filter(r=>r.questionId).map(r=>qby(r.questionId)).filter(Boolean);}\n"+s[b:]
+a=s.index('function reviewView()');b=s.index('function guidesView()',a)
+s=s[:a]+'''function reviewView(){const wrong=bank.filter(q=>state.mastery[q.id]?.wrong||state.attempts.some(a=>a.questionId===q.id&&a.hinted)),queue=state.reviewQueue||[],due=queue.filter(r=>r.questionId);return header('换一道题，看看真的会了吗。','同考点 · 不同条件 · 无提示验证',`<button id="review-start" class="btn" ${due.length?'':'disabled'}>开始迁移复习 · ${due.length}</button>`)+`<div class="card"><h2>到期考点</h2>${queue.length?queue.map(r=>{const original=qby(r.originalId),next=qby(r.questionId);return `<div class="list-item"><h3>${esc(original.title||original.prompt)}</h3><p>${next?`${r.kind==='recall'?'词汇回忆':'新题验证'}：${esc(next.title||next.prompt)}`:'当前没有未做过的同考点题，已标记待补题。可在日报中请求教练补充。'}</p>${next?`<button class="btn soft small" data-transfer="${next.id}" data-original="${original.id}" style="margin-top:10px">${r.kind==='recall'?'回忆词汇':'做这道新题'}</button>`:''}</div>`;}).join(''):'<div class="empty">今天没有到期考点。看过提示或做错的题，会在次日安排迁移验证。</div>'}</div><details class="card" style="margin-top:20px" open><summary>薄弱点记录 · ${wrong.length}</summary>${wrong.map(q=>`<div class="list-item">${questionRow(q)}<p>下次验证 ${state.mastery[q.id].due} · 独立迁移 ${state.mastery[q.id].transferStreak||0} 次</p></div>`).join('')||'<p class="small muted">完成练习后自动记录。</p>'}</details>`;}
+''' +s[b:]
+s=s.replace("function bind(){", "function bind(){for(const b of $$('[data-transfer]'))b.onclick=()=>startSession([b.dataset.transfer],null,{[b.dataset.transfer]:b.dataset.original});")
+s=s.replace("startSession(dueQuestions().slice(0,10).map(q=>q.id))", "startSession(dueQuestions().slice(0,10).map(q=>q.id),null,Object.fromEntries((state.reviewQueue||[]).filter(r=>r.questionId).map(r=>[r.questionId,r.originalId])))")
+s=s.replace('startSession(t.questionIds,t.id);','startSession(t.questionIds,t.id,t.reviewLinks||{});')
+s=s.replace('function startSession(ids,taskId=null)', 'function startSession(ids,taskId=null,reviewLinks={})').replace('session={ids,index:0,taskId,responses:', 'session={ids,index:0,taskId,reviewLinks,responses:')
+s=s.replace("questionId:q.id,answer:selection", "questionId:q.id,reviewOf:session.reviewLinks?.[q.id]||null,answer:selection")
+s=s.replace('<div class="question-layout"><div><p class="question-title">', '<div class="question-layout"><div>${session.reviewLinks?.[q.id]?`<div class="transfer-note">本题用于验证：${esc(qby(session.reviewLinks[q.id])?.title||qby(session.reviewLinks[q.id])?.prompt)}。请独立作答。</div>`:\'\'}<p class="question-title">')
+s=s.replace('明天再无提示重做，暂不计为独立掌握。','明天优先换同考点新题，暂不计为独立掌握。').replace('已收进错题本，明天再回忆一次。','已记录薄弱点，明天优先用不同题目验证。')
+p.write_text(s)
