@@ -292,15 +292,15 @@ function TopicView({ topic }: { topic: string }) {
   const drillCount = pick.ids.length;
   const startDrill = async () => {
     if (!drillCount) return;
+    const picked = pick.ids.map((id) => bank.byId.get(id)).filter((it): it is Item => !!it);
     if (pick.usesReserved) {
-      const held = items.map((it) => reservedFor(reserved, it)).find(Boolean);
+      const held = picked.map((it) => reservedFor(reserved, it)).find(Boolean);
       const ok = await confirm.ask('剩下的题都在模考预留卷里', {
         body: held ? `${fmtDateShort(held.date)}「${held.title}」会用到这些题。现在练了，到时模考分数会偏高。` : '现在练了，之后的模考分数会偏高。',
         ok: '仍然练习',
       });
       if (!ok) return;
     }
-    const picked = pick.ids.map((id) => bank.byId.get(id)).filter((it): it is Item => !!it);
     launch({ kind: 'drill', title: drillTitle(bank, topic, picked.length), items: picked });
   };
   const drillHint = pick.usesReserved ? '剩下的题都在模考预留卷里' : '没做过的优先，其次是错题';

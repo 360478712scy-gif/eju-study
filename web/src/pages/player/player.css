@@ -42,8 +42,13 @@
 .pl-seg:hover:not(.is-locked) span { transform: scaleY(1.5); }
 .pl-seg.is-right span { background: var(--success); }
 .pl-seg.is-wrong span { background: var(--danger); }
+.pl-seg { position: relative; }
 .pl-seg.is-answered span { background: var(--primary); opacity: 0.6; }
-.pl-seg.is-flag span { background: var(--warning); }
+/* Marked 没把握 / 猜的: a separate dot above the bar, so an empty marked item still reads as empty. */
+.pl-seg.has-flag::after {
+  content: ''; position: absolute; top: 1px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px;
+  border-radius: 50%; background: var(--warning); pointer-events: none;
+}
 .pl-seg.is-current span { height: 10px; opacity: 1; box-shadow: 0 0 0 2px var(--bg-elev), 0 0 0 3.5px var(--primary); }
 .pl-seg.is-todo.is-current span { background: var(--primary-soft-2); }
 .pl-seg.is-locked { cursor: default; }
@@ -225,9 +230,14 @@
 .pl-opt-mark { flex: none; }
 .pl-opt.is-right .pl-opt-mark { color: var(--success); }
 .pl-opt.is-wrong .pl-opt-mark { color: var(--danger); }
-.pl-opts-grid .pl-opt { min-height: 56px; padding-right: 26px; }
-.pl-opts-grid .pl-opt-mark { position: absolute; top: 7px; right: 7px; }
-.pl-opts-grid .pl-opt-text { overflow-x: auto; overflow-y: hidden; }
+/* Short options in columns: one line each (the column count is measured, see ChoicePad). */
+.pl-opts-grid, .pl-opts-labels { gap: 8px; }
+.pl-opts-grid .pl-opt { min-height: 56px; gap: 10px; padding: 10px 11px; }
+.pl-opts-grid .pl-opt-mark { position: absolute; top: 5px; right: 5px; width: 15px; height: 15px; }
+.pl-opts-grid .pl-opt-text { white-space: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.pl-opts-grid .pl-opt-text::-webkit-scrollbar { display: none; }
+.pl-opts-grid.is-cols-1 .pl-opt { padding-right: 30px; }
+.pl-opts-grid.is-cols-1 .pl-opt-mark { top: 50%; right: 12px; width: 18px; height: 18px; transform: translateY(-50%); }
 .pl-opts-labels .pl-opt { justify-content: center; min-height: 68px; padding: 10px; }
 .pl-opts-labels .pl-opt-badge { width: 42px; height: 42px; font-size: 19px; border-width: 2px; }
 .pl-opts-labels .pl-opt-mark { position: absolute; top: 8px; right: 8px; }
@@ -279,6 +289,11 @@
 .pl-grow { flex: 1; }
 .pl-side-foot .btn .kbd { background: transparent; border-color: currentColor; color: inherit; opacity: 0.6; height: 20px; min-width: 20px; font-size: 10.5px; margin-left: 4px; }
 .pl-side-foot .btn-ghost { padding: 0 10px; }
+/* Half-filled mark sheet: the fill count replaces the Enter hint (Enter jumps to an empty cell first). */
+.pl-submit-fill {
+  margin-left: 6px; padding: 1px 8px; border-radius: var(--radius-pill); background: color-mix(in srgb, currentColor 20%, transparent);
+  font-size: 12px; font-weight: 650; line-height: 18px; white-space: nowrap;
+}
 .pl-next { position: relative; overflow: hidden; }
 .pl-next.is-auto::after {
   content: ''; position: absolute; left: 0; bottom: 0; height: 3px; background: var(--text-inverse); opacity: 0.55;
@@ -307,6 +322,8 @@
 .pl-res-meta { display: flex; flex-wrap: wrap; gap: 2px 10px; margin-top: 6px; font-size: var(--fs-xs); color: var(--text-2); }
 .pl-res-time { display: inline-flex; align-items: center; gap: 4px; }
 .pl-res-time.is-over { color: var(--warning-text); font-weight: 600; }
+.pl-res-note { color: var(--text-3); }
+.pl-res-note.is-warn { color: var(--warning-text); font-weight: 600; }
 .pl-res-review { display: flex; align-items: center; gap: 5px; margin-top: 4px; font-size: var(--fs-xs); color: var(--text-2); font-weight: 560; }
 .pl-res-review svg { flex: none; }
 .pl-res-review.is-good { color: var(--success-text); }
@@ -448,6 +465,16 @@
 .pl-audio-stem { font-size: calc(17px * var(--reading-scale)); line-height: 1.9; }
 .pl-audio-tip { color: var(--text-3); font-size: var(--fs-sm); }
 
+/* ───────── 专注模式 (⇧⌘F): only the question, the answer and the countdown stay ───────── */
+.pl.is-zen .pl-top-center { visibility: hidden; }
+.pl.is-zen .pl-timer, .pl.is-zen .pl-keys, .pl.is-zen .pl-ihead-meta, .pl.is-zen .pl-coach { display: none; }
+.pl-zen-pill {
+  display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border); background: var(--bg-sunken); color: var(--text-2); font-size: var(--fs-xs); font-weight: 600;
+  cursor: pointer; white-space: nowrap; transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.pl-zen-pill:hover { color: var(--text); background: var(--bg-hover); }
+
 /* ───────── Misc ───────── */
 .pl-idle {
   position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 50;
@@ -461,9 +488,9 @@
 .pl-xs-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--fs-sm); color: var(--text-2); margin-bottom: 14px; }
 .pl-xs-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .pl-xs-dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
-.pl-xs-dot.is-answered { background: var(--primary); }
-.pl-xs-dot.is-flag { background: var(--warning); }
-.pl-xs-dot.is-todo { border: 1.5px solid var(--border-strong); }
+.pl-xs-dot.is-answered { background: var(--primary-soft); box-shadow: inset 0 0 0 1.5px var(--primary); }
+.pl-xs-dot.is-todo { box-shadow: inset 0 0 0 1.5px var(--border-strong); }
+.pl-xs-legend-flag { color: var(--warning); }
 .pl-xs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 7px; }
 .pl-xs-cell {
   position: relative; height: 42px; border-radius: 10px; border: 1.5px solid var(--border-strong); background: var(--bg-elev);
@@ -471,9 +498,16 @@
 }
 .pl-xs-cell:hover { border-color: var(--primary); }
 .pl-xs-cell.is-answered { background: var(--primary-soft); border-color: var(--primary); color: var(--primary-text); }
-.pl-xs-cell.is-flag { background: var(--warning-soft); border-color: var(--warning); color: var(--warning-text); }
 .pl-xs-cell.is-current { box-shadow: 0 0 0 3px var(--primary-soft-2); }
-.pl-xs-flag { position: absolute; top: 3px; right: 3px; }
+.pl-xs-flag { position: absolute; top: 3px; right: 3px; color: var(--warning); }
+
+/* 交卷 confirm: warning line under the body */
+.pl-confirm-body { display: flex; flex-direction: column; gap: 10px; }
+.pl-confirm-warn {
+  display: flex; align-items: flex-start; gap: 7px; padding: 9px 11px; border-radius: 10px;
+  background: var(--warning-soft); color: var(--warning-text); font-size: var(--fs-sm); font-weight: 560; line-height: 1.55;
+}
+.pl-confirm-warn svg { flex: none; margin-top: 2px; }
 
 /* ───────── Finish ───────── */
 .pl-fin { min-height: 100vh; background: var(--bg); }
@@ -567,15 +601,20 @@
   .pl-top-name { max-width: 220px; }
 }
 @media (max-width: 1040px) {
-  .pl { --pl-side-w: 336px; }
+  .pl { --pl-side-w: 344px; }
   .pl-top { gap: 12px; }
   .pl-top-right { gap: 8px; }
   .pl-timer-label { display: none; }
   .pl-top-name { max-width: 170px; }
   .pl-main { padding: 18px 20px 72px; }
   .pl-paper { padding: 22px 22px 20px; }
-  .pl-side-scroll { padding: 18px 18px 14px; gap: 14px; }
-  .pl-side-foot { padding: 12px 18px 14px; gap: 10px; }
+  /* Small window: give the answers the room (tighter chrome, slightly smaller option type). */
+  .pl-side-scroll { padding: 16px 16px 12px; gap: 14px; }
+  .pl-side-foot { padding: 12px 16px 14px; gap: 10px; }
+  .pl-ask { padding: 12px 14px; }
+  .pl-opts:not(.pl-opts-labels) .pl-opt { gap: 10px; padding: 10px 12px; font-size: calc(15px * var(--reading-scale)); }
+  .pl-opts:not(.pl-opts-labels) .pl-opt-badge { width: 28px; height: 28px; font-size: 13px; }
+  .pl-opts-grid.is-cols-1 .pl-opt { padding-right: 30px; }
   .pl-cell { width: 33px; height: 42px; }
   .pl-bubble { height: 36px; font-size: 13px; }
   .pl-fin-hero { gap: 26px; padding: 26px 28px; }

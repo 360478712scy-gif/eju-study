@@ -113,11 +113,16 @@
 .q-blank-ro s { color: var(--text-3); font-weight: 500; }
 
 /* ── Explanation ── */
-.q-ex { display: flex; flex-direction: column; gap: 18px; }
+.q-ex { display: flex; flex-direction: column; gap: 18px; container-type: inline-size; }
 .q-ex-main { font-size: calc(15.5px * var(--reading-scale)); line-height: 1.9; }
 .q-ex-main strong { font-weight: 680; }
 .q-ex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-.q-ex-box { background: var(--tone-soft); border-radius: var(--radius); padding: 12px 14px; font-size: var(--fs-sm); line-height: 1.75; }
+/* Formulas need the width: below ~760px the 考点 / 易错 / 考场速解 boxes stack instead of squeezing. */
+@container (max-width: 759px) {
+  .q-ex-grid { grid-template-columns: minmax(0, 1fr); }
+}
+.q-ex-box { min-width: 0; background: var(--tone-soft); border-radius: var(--radius); padding: 12px 14px; font-size: var(--fs-sm); line-height: 1.75; }
+.q-ex-box .katex-display { overflow-x: auto; overflow-y: hidden; }
 .q-ex-box ul { margin: 0; padding-left: 1.1em; }
 .q-ex-box li + li { margin-top: 4px; }
 .q-ex-box .q-ex-box-text { font-size: var(--fs-sm); line-height: 1.75; }

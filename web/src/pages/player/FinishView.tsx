@@ -1,7 +1,7 @@
 // Summary after a session: accuracy, time, mock estimate, wrong items (reviewable in place) and the next step.
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Item, PracticeSession, SessionAnswer, Subject } from '@shared/types.ts';
-import { startSession } from '@shared/actions.ts';
+import { blockItems, startBlock, startSession } from '@shared/actions.ts';
 import { gradeItem } from '@shared/grading.ts';
 import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
 import { update, useApp } from '../../lib/store.ts';
@@ -10,6 +10,7 @@ import { Button, IconButton, Ring, SubjectTag } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
 import { SUBJECT_NAME, cx, fmtClock } from '../../lib/format.ts';
+import { correctionIds, resultRows } from '../mock/mockData.ts';
 import { ReviewStage } from './ReviewStage.tsx';
 
 function verdict(a: SessionAnswer | undefined): 'right' | 'wrong' | 'gave' | 'blank' | 'todo' {
@@ -45,6 +46,9 @@ function headline(acc: number, wrong: number, done: number): string {
 export function FinishView({ session, items }: { session: PracticeSession; items: Item[] }) {
   const mocks = useApp((s) => s.state!.mocks);
   const topics = useApp((s) => s.bank!.topics);
+  const state = useApp((s) => s.state!);
+  const bank = useApp((s) => s.bank!);
+  const today = useApp((s) => s.today);
   const [review, setReview] = useState<{ list: Item[]; start: number } | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const savedScroll = useRef(0);
@@ -62,6 +66,17 @@ export function FinishView({ session, items }: { session: PracticeSession; items
     [mocks, session],
   );
 
+  // Mock correction: today's planned correction block for this paper if there is one, else the
+  // same set the mock result page offers (wrong, blank, partial and unsure answers).
+  const correction = useMemo(() => {
+    if (!mock) return null;
+    const block = state.plans[today]?.blocks.find((b) => b.status === 'todo' && b.reviewOfMock?.kind === mock.kind && b.reviewOfMock.session === mock.session);
+    const ids = block ? blockItems(state, bank, block).map((it) => it.id) : correctionIds(resultRows(state, bank, mock));
+    // Correction is the obvious next step when it is also the next thing on today's plan.
+    const first = !!block && state.plans[today]?.blocks.find((b) => b.status === 'todo')?.id === block.id;
+    return { blockId: block?.id, ids, first };
+  }, [mock, state, bank, today]);
+
   const total = items.length;
   const correct = items.filter((it) => session.answers[it.id]?.correct).length;
   const todo = items.filter((it) => verdict(session.answers[it.id]) === 'todo');
@@ -77,8 +92,12 @@ export function FinishView({ session, items }: { session: PracticeSession; items
     const a = session.answers[it.id];
     return s + (a?.score ?? (a?.correct ? 1 : 0));
   }, 0);
-  // Blanks items earn partial credit per box group, so their sets show a score rate.
-  const acc = done ? (hasBlanks ? scoreSum / done : correct / done) : 0;
+  // Blanks items earn partial credit per box group, so their sets show a score rate;
+  // a mock shows its own (time-weighted) raw score, the number its prediction is built on.
+  const acc = mock ? mock.raw : done ? (hasBlanks ? scoreSum / done : correct / done) : 0;
+  /** Timed set (not a mock): questions left empty stay fresh and are not in the mistake book. */
+  const freshBlanks = session.exam && session.kind !== 'mock' ? wrong.filter((it) => verdict(session.answers[it.id]) === 'blank').length : 0;
+  const booked = wrong.length - freshBlanks;
   const used = session.elapsedSec;
   const planned = session.timeLimitSec ?? items.reduce((s, it) => s + it.targetSec, 0);
   const worked = doneItems.filter((it) => {
@@ -94,6 +113,24 @@ export function FinishView({ session, items }: { session: PracticeSession; items
     const s = update((d) =>
       startSession(d, { kind: 'review', title: `错题重做 · ${wrong.length} 题`, subject: session.subject, itemIds: wrong.map((it) => it.id) }),
     );
+    navigate('/session/' + s.id);
+  };
+
+  const correct_ = () => {
+    if (!mock || !correction?.ids.length) return;
+    const s = update((d, bk, day) => {
+      const b = correction.blockId ? d.plans[day]?.blocks.find((x) => x.id === correction.blockId && x.status === 'todo') : undefined;
+      const fromPlan = b ? startBlock(d, bk, b) : null;
+      return (
+        fromPlan ??
+        startSession(d, {
+          kind: 'review',
+          title: `模考订正 · ${sessionLabel(mock.session)} ${MOCK_LABEL[mock.kind]}`,
+          subject: session.subject,
+          itemIds: correction.ids,
+        })
+      );
+    });
     navigate('/session/' + s.id);
   };
 
@@ -132,7 +169,7 @@ export function FinishView({ session, items }: { session: PracticeSession; items
               {Math.round(acc * 100)}
               <small>%</small>
             </span>
-            <span className="pl-fin-pct-label">{hasBlanks ? '得分率' : '正确率'}</span>
+            <span className="pl-fin-pct-label">{mock || hasBlanks ? '得分率' : '正确率'}</span>
           </Ring>
           <div className="pl-fin-hero-main">
             <div className="pl-fin-eyebrow">
@@ -143,10 +180,15 @@ export function FinishView({ session, items }: { session: PracticeSession; items
             <p className="pl-fin-sub">
               {done === 0
                 ? '这组没有作答记录，回到今日页挑下一项任务吧。'
-                : wrong.length > 0
-                  ? `错的 ${wrong.length} 题已经进了错题本，2 天后再练。`
-                  : '这一组的题都拿下了，继续保持这个节奏。'}
-              {todo.length > 0 && ` 还有 ${todo.length} 题没做，不算错。`}
+                : mock && correction?.ids.length
+                  ? `没拿到分和没把握的 ${correction.ids.length} 题趁热订正，错题已经进了错题本。`
+                  : booked > 0
+                    ? `错的 ${booked} 题已经进了错题本，2 天后再练。`
+                    : wrong.length === 0
+                      ? '这一组的题都拿下了，继续保持这个节奏。'
+                      : ''}
+              {freshBlanks > 0 && `没来得及做的 ${freshBlanks} 题不进错题本，之后还会出现。`}
+              {todo.length > 0 && `还有 ${todo.length} 题没做，不算错。`}
             </p>
             <div className="pl-fin-stats">
               <div className="pl-fin-stat">
@@ -168,14 +210,32 @@ export function FinishView({ session, items }: { session: PracticeSession; items
               </div>
             </div>
             <div className="pl-fin-cta">
-              <Button variant="primary" size="lg" iconRight="arrowRight" onClick={() => navigate('/')}>
-                下一项任务
-              </Button>
-              {wrong.length > 0 && (
-                <Button variant="secondary" size="lg" icon="refresh" onClick={redo}>
-                  重做错题 · {wrong.length}
+              {mock && correction?.first && correction.ids.length > 0 ? (
+                <>
+                  <Button variant="primary" size="lg" icon="refresh" onClick={correct_}>
+                    订正错题 · {correction.ids.length}
+                  </Button>
+                  <Button variant="secondary" size="lg" iconRight="arrowRight" onClick={() => navigate('/')}>
+                    回到今日
+                  </Button>
+                </>
+              ) : (
+                <Button variant="primary" size="lg" iconRight="arrowRight" onClick={() => navigate('/')}>
+                  下一项任务
                 </Button>
               )}
+              {mock
+                ? !correction?.first &&
+                  !!correction?.ids.length && (
+                    <Button variant="secondary" size="lg" icon="refresh" onClick={correct_}>
+                      订正错题 · {correction.ids.length}
+                    </Button>
+                  )
+                : wrong.length > 0 && (
+                    <Button variant="secondary" size="lg" icon="refresh" onClick={redo}>
+                      重做错题 · {wrong.length}
+                    </Button>
+                  )}
             </div>
           </div>
         </section>

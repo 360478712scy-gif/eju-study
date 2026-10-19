@@ -14,7 +14,7 @@ import { optionBadge, optionLabel } from '../../components/question/OptionList.t
 import { splitReadingStem } from '../../components/question/QuestionStem.tsx';
 import { cx, fmtClock } from '../../lib/format.ts';
 import { useClock, type StudyClock } from './clock.ts';
-import type { StripCell } from './TopBar.tsx';
+import { cellTitle, type StripCell } from './TopBar.tsx';
 
 // ─── Stem layout ───
 
@@ -255,9 +255,13 @@ export function ResultBanner({
     if (!correct) sub = '答题卡上标出了每组的正确答案';
   }
 
+  // Speed is praise only when the answer is right; a wrong answer just shows the numbers,
+  // and a very fast wrong one hints at a misread. Looking at the explanation is not timed play.
   const secs = answer.seconds;
   const diff = secs - item.targetSec;
-  const timeNote = Math.abs(diff) < 5 ? '正好在目标内' : diff < 0 ? `比目标快 ${fmtClock(-diff)}` : `超出目标 ${fmtClock(diff)}`;
+  let timeNote: { text: string; warn?: boolean } | null = null;
+  if (correct) timeNote = { text: Math.abs(diff) < 5 ? '正好在目标内' : diff < 0 ? `比目标快 ${fmtClock(-diff)}` : `超出目标 ${fmtClock(diff)}`, warn: diff > 15 };
+  else if (!gaveUp && !blank && secs < item.targetSec * 0.25) timeNote = { text: '太快了，可能没读完题', warn: true };
   const conf = answer.confidence && answer.confidence !== 'sure' ? (answer.confidence === 'guess' ? '猜的' : '没把握') : null;
   const review = reviewNote(correct, answer, today, progress, before);
 
@@ -273,11 +277,11 @@ export function ResultBanner({
         </div>
         {sub && <div className="pl-res-sub">{sub}</div>}
         <div className="pl-res-meta">
-          <span className={cx('pl-res-time', diff > 15 && 'is-over')}>
+          <span className={cx('pl-res-time', correct && diff > 15 && 'is-over')}>
             <Icon name="clock" size={12} />
             用时 <span className="num">{fmtClock(secs)}</span> · 目标 <span className="num">{fmtClock(item.targetSec)}</span>
           </span>
-          <span className="faint">{timeNote}</span>
+          {timeNote && <span className={timeNote.warn ? 'pl-res-note is-warn' : 'pl-res-note'}>{timeNote.text}</span>}
         </div>
         {review && (
           <div className={cx('pl-res-review', review.good && 'is-good')}>
@@ -288,6 +292,19 @@ export function ResultBanner({
       </div>
     </div>
   );
+}
+
+/**
+ * After grading, scroll the side panel (only it) so the right option / the mark sheet is visible
+ * above the result banner — on small windows the banner leaves little room.
+ */
+export function revealAnswer(box: HTMLElement | null) {
+  const el = box?.querySelector('.pl-opt.is-right, .pl-sheet-groups');
+  if (!box || !el) return;
+  const b = box.getBoundingClientRect();
+  const r = el.getBoundingClientRect();
+  if (r.bottom > b.bottom - 6) box.scrollTop += Math.min(r.bottom - b.bottom + 12, r.top - b.top - 8);
+  else if (r.top < b.top) box.scrollTop -= b.top - r.top + 8;
 }
 
 // ─── Explanation card ───
@@ -341,8 +358,8 @@ export function ExamSheet({
   onJump: (i: number) => void;
   onSubmit: () => void;
 }) {
-  const answered = cells.filter((c) => c.answered).length;
-  const flagged = cells.filter((c) => c.state === 'flag').length;
+  const answered = cells.filter((c) => c.state === 'answered').length;
+  const flagged = cells.filter((c) => c.flag).length;
   return (
     <Modal
       open={open}
@@ -365,25 +382,28 @@ export function ExamSheet({
           <i className="pl-xs-dot is-answered" /> 已作答 <b className="num">{answered}</b>
         </span>
         <span>
-          <i className="pl-xs-dot is-flag" /> 没把握 <b className="num">{flagged}</b>
-        </span>
-        <span>
           <i className="pl-xs-dot is-todo" /> 未作答 <b className="num">{cells.length - answered}</b>
         </span>
+        {flagged > 0 && (
+          <span title="标了「没把握」或「猜的」，交卷前可以回去再看">
+            <Icon name="flag" size={12} className="pl-xs-legend-flag" /> 已标记 <b className="num">{flagged}</b>
+          </span>
+        )}
       </div>
       <div className="pl-xs-grid">
         {cells.map((c, i) => (
           <button
             key={i}
             type="button"
-            className={cx('pl-xs-cell', `is-${c.state}`, i === current && 'is-current')}
+            className={cx('pl-xs-cell', `is-${c.state}`, c.flag && 'has-flag', i === current && 'is-current')}
+            title={`第 ${i + 1} 题 · ${cellTitle(c)}`}
             onClick={() => {
               onJump(i);
               onClose();
             }}
           >
             <span className="num">{i + 1}</span>
-            {c.state === 'flag' && <Icon name="flag" size={10} className="pl-xs-flag" />}
+            {c.flag && <Icon name="flag" size={11} className="pl-xs-flag" />}
           </button>
         ))}
       </div>

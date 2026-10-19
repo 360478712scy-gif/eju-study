@@ -222,7 +222,7 @@ export function TopicView({
       </div>
       <p className="pr-foot-note">
         <Icon name="info" size={13} />
-        「练 10 题」先出没做过的题，再出错题和最久没碰的题；留给模考的卷子会自动避开。点考点名查看全部题目。
+        「练 10 题」先出没做过的题，再出错题和最久没碰的题；留给模考的题会自动避开。点考点名查看全部题目。
       </p>
       {confirm.node}
     </div>

@@ -87,7 +87,6 @@
   display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px;
   padding: 10px 18px 11px 44px; color: var(--text-3); font-size: var(--fs-xs); line-height: 1.6;
 }
-.pr-unit-rows > .pr-topic + .pr-none { border-top: 1px solid var(--border); }
 .pr-none.is-unit { padding: 11px 18px 11px 41px; }
 .pr-none.is-unit .pr-weak { align-self: center; }
 .pr-none-unit { color: var(--text-2); font-weight: 600; font-size: var(--fs-sm); }

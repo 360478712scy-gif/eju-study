@@ -65,6 +65,8 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
   const prevId = idx > 0 ? ids[idx - 1] : null;
   const nextId = idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : null;
   const due = p?.inMistakes ? dueInfo(p.due, today) : null;
+  // Paper held for an upcoming mock (mistake re-tests keep their own schedule, so no flag for them).
+  const held = useMemo(() => (p?.inMistakes ? undefined : reservedFor(reservedMap(state, bank), item)), [p?.inMistakes, state, bank, item]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -85,7 +87,6 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
 
   const redo = async () => {
     // Mistake re-tests follow their own schedule; a plain redo of a paper held for a mock gets a warning first.
-    const held = p?.inMistakes ? undefined : reservedFor(reservedMap(state, bank), item);
     if (held) {
       const ok = await confirm.ask('这道题在模考预留卷里', {
         body: `${fmtDateShort(held.date)}「${held.title}」会用到这套卷。现在做了，到时模考分数会偏高。`,
@@ -144,6 +145,11 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
             <BoxDots box={p.box} />
             {due && <span className={cx('mbp-due', `tone-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
           </span>
+        )}
+        {held && (
+          <Badge tone="warning" icon="flag">
+            {fmtDateShort(held.date)}模考要用
+          </Badge>
         )}
         {p && !p.inMistakes && p.slow && p.lastCorrect ? (
           <Badge tone="warning" icon="clock">

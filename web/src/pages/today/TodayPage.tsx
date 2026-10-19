@@ -7,11 +7,12 @@ import { href, navigate } from '../../lib/router.ts';
 import { Badge, Button, IconButton, Progress, Ring, SubjectDot, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon, SUBJECT_ICON, type IconName } from '../../components/Icon.tsx';
 import type { AppState, DayPlan, PlanBlock, PracticeSession, Subject } from '@shared/types.ts';
+import { markBlock } from '@shared/actions.ts';
 import { MOCK_LABEL, sessionLabel, type BankIndex } from '@shared/bank.ts';
 import { PHASE_INFO, POOLS, calendar, daysLeftOn, extraBlock, freshRemaining, mockSchedule, phaseFor, type Pool, vocabDueCount } from '@shared/planner.ts';
 import { estimateAll, streak, totalEstimate, SCALE_MAX } from '@shared/stats.ts';
 import { isDue } from '@shared/srs.ts';
-import { addDays, daysBetween, studyDate, weekdayZh } from '@shared/dates.ts';
+import { daysBetween, studyDate, weekdayZh } from '@shared/dates.ts';
 import { SUBJECT_NAME, cx, fmtDateShort, fmtMinutes, pct } from '../../lib/format.ts';
 import { DurationDialog } from './DurationDialog.tsx';
 import { AfterExam, ExamDay } from './ExamDay.tsx';
@@ -20,10 +21,13 @@ import {
   blockCount,
   blockIcon,
   blockKindLabel,
+  blockReason,
+  blockTitle,
   blockTone,
   blockView,
   countLabel,
   finishBlockManually,
+  fmtLimit,
   openSessionFor,
   redoBlock,
   regenerateDay,
@@ -32,6 +36,7 @@ import {
   runBlock,
   sessionAnswered,
   skipBlock,
+  timedLimitSec,
   type BlockView,
 } from './blocks.ts';
 import './today.css';
@@ -105,6 +110,9 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
   const countable = views.filter((v) => v !== 'skipped').length;
   const allResolved = blocks.length > 0 && nextIdx < 0 && !resume && !views.includes('locked');
   const skippedMock = blocks.find((b, i) => b.kind === 'mock' && views[i] === 'skipped');
+  const skippedIds = blocks.filter((_, i) => views[i] === 'skipped').map((b) => b.id);
+  // Everything skipped and nothing done is not a finished day.
+  const allSkipped = allResolved && doneCount === 0;
 
   const hour = new Date().getHours();
   const phase = phaseFor(left);
@@ -114,6 +122,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
 
   let headline: string;
   if (!blocks.length) headline = '今天是休息日';
+  else if (allSkipped) headline = hour < 4 ? '今天先到这里，去睡吧' : '今天还一块都没做';
   else if (hour < 4) headline = allResolved ? '今天的计划完成了，去睡吧' : '做完这一块就休息吧';
   else if (allResolved) headline = '今天的计划完成了';
   else if (doneCount === 0) headline = '从第一块开始吧';
@@ -173,25 +182,18 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
             {greeting(hour)}，{headline}
           </h1>
           <div className="td-phase">
-            <span className={cx('td-phase-pill', `tone-${PHASE_TONE[phase]}`)}>
+            <a className={cx('td-phase-pill', `tone-${PHASE_TONE[phase]}`)} href={href('/plan')} title="查看冲刺日历">
               {PHASE_INFO[phase].name}
               {phaseIdx >= 0 && (
                 <span className="td-phase-day">
                   第 {phaseIdx + 1} / {phaseDays.length} 天
                 </span>
               )}
-            </span>
+              <Icon name="right" size={13} className="td-phase-go" />
+            </a>
             <span className="td-phase-desc">{PHASE_INFO[phase].desc}</span>
           </div>
         </div>
-        <a className="td-count" href={href('/plan')} title="查看冲刺计划">
-          <span className="td-count-label">距考试</span>
-          <span className="td-count-row">
-            <span className="td-count-num num">{left}</span>
-            <span className="td-count-unit">天</span>
-          </span>
-          <span className="td-count-date">{fmtDateShort(state.profile.examDate)} EJU</span>
-        </a>
       </header>
 
       <div className="td-layout">
@@ -207,8 +209,10 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
               total={blocks.length}
               onStart={start}
             />
+          ) : allSkipped ? (
+            <SkippedHero state={state} bank={bank} today={today} skipped={skippedIds} onExtra={addExtra} />
           ) : allResolved ? (
-            <DoneHero state={state} bank={bank} today={today} onExtra={addExtra} />
+            <DoneHero state={state} bank={bank} today={today} skipped={skippedIds} onExtra={addExtra} />
           ) : !blocks.length ? (
             <RestHero state={state} bank={bank} today={today} onExtra={addExtra} onAdjust={() => setDurationOpen(true)} />
           ) : (
@@ -223,7 +227,14 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
                 <div>
                   <h2 className="td-h2">今日计划</h2>
                   <p className="td-plan-sub">
-                    {countable} 块 · 约 {fmtMinutes(plannedMinutes)} · 已完成 {doneCount}
+                    {countable === 0 ? (
+                      <>{blocks.length} 块都已跳过</>
+                    ) : (
+                      <>
+                        {countable} 块 · 约 {fmtMinutes(plannedMinutes)} · 已完成 {doneCount}
+                        {skippedIds.length > 0 && <> · 跳过 {skippedIds.length}</>}
+                      </>
+                    )}
                   </p>
                 </div>
                 <div className="td-plan-actions">
@@ -237,7 +248,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
               </header>
               <ol className="td-rows">
                 {blocks.map((b, i) => (
-                  <BlockRow key={b.id} state={state} bank={bank} block={b} view={views[i]} isNext={i === nextIdx} onStart={start} />
+                  <BlockRow key={b.id} state={state} bank={bank} today={today} block={b} view={views[i]} isNext={i === nextIdx} onStart={start} />
                 ))}
               </ol>
               {supply && (
@@ -251,7 +262,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
         </div>
 
         <aside className="td-aside">
-          <ProgressCard state={state} today={today} plan={plan} done={doneCount} total={countable} onAdjust={() => setDurationOpen(true)} />
+          <ProgressCard state={state} today={today} plan={plan} done={doneCount} total={countable || blocks.length} onAdjust={() => setDurationOpen(true)} />
           <div className={cx('td-aside-rest', bedtimeFor(left) !== null && 'has-sleep')}>
             <SleepCard state={state} bank={bank} today={today} left={left} />
             <ScoreCard state={state} />
@@ -272,6 +283,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
 function NextHero({
   state,
   bank,
+  today,
   session,
   block,
   index,
@@ -284,11 +296,12 @@ function NextHero({
   const open = session ?? (block && view === 'active' ? openSessionFor(state, block.id) : undefined);
   const isMock = block?.kind === 'mock' || session?.kind === 'mock';
   const manual = block && view === 'active' && !open && (block.kind === 'vocab' || block.kind === 'notes' || block.kind === 'traps');
-  const count = block ? blockCount(state, bank, block) : null;
+  const count = block ? blockCount(state, bank, block, today) : null;
+  const limit = block ? timedLimitSec(bank, block) : null;
 
-  const title = block?.title ?? session?.title ?? '';
+  const title = block ? blockTitle(state, bank, block, today) : (session?.title ?? '');
   let eyebrow = '下一步';
-  let reason: ReactNode = block?.reason;
+  let reason: ReactNode = block ? blockReason(state, bank, block, today) : undefined;
   let primary = isMock ? '开始模考' : '开始';
   let progress: number | null = null;
 
@@ -314,7 +327,7 @@ function NextHero({
         ) : (
           open.elapsedSec >= 60 && <>，已用 {fmtMinutes(open.elapsedSec / 60)}</>
         )}
-        {block?.reason && <span className="td-hero-reason-tail">{block.reason}</span>}
+        {block?.reason && <span className="td-hero-reason-tail">{blockReason(state, bank, block, today)}</span>}
       </>
     );
   } else if (manual) {
@@ -322,7 +335,7 @@ function NextHero({
     primary = block.kind === 'vocab' ? '继续背词' : block.kind === 'traps' ? '继续看' : '继续看笔记';
     reason =
       block.kind === 'vocab'
-        ? '背完今天的复习和新词后，回来点「已完成」进入下一块。'
+        ? '这一轮做完会自动打勾；想先停在这里，点「已完成」进入下一块。'
         : block.kind === 'traps'
           ? '把这一页易错点过一遍，看完点「已完成」。'
           : '看完公式和易错点后，回来点「已完成」进入下一块。';
@@ -369,7 +382,8 @@ function NextHero({
           )}
           {block && (
             <span>
-              <Icon name="clock" size={15} />约 {fmtMinutes(block.minutes)}
+              <Icon name="clock" size={15} />
+              {limit ? <TimedMinutes limit={limit} minutes={block.minutes} /> : <>约 {fmtMinutes(block.minutes)}</>}
             </span>
           )}
           {block && count !== null && (
@@ -378,10 +392,16 @@ function NextHero({
               {countLabel(block, count)}
             </span>
           )}
-          {(block?.timed || isMock) && (
+          {isMock && (
             <span>
               <Icon name="flag" size={15} />
-              {isMock ? '整卷限时 · 交卷后估分' : '限时 · 做完统一看解析'}
+              整卷限时 · 交卷后估分
+            </span>
+          )}
+          {block?.timed && !isMock && !limit && (
+            <span>
+              <Icon name="flag" size={15} />
+              限时 · 做完统一看解析
             </span>
           )}
         </div>
@@ -451,7 +471,12 @@ function ExtraChooser({ state, bank, today, onExtra, label }: Ctx & { onExtra: (
   );
 }
 
-function DoneHero({ state, bank, today, onExtra }: Ctx & { onExtra: (p: Pool) => void }) {
+function restoreAll(ids: string[]) {
+  update((d) => ids.forEach((id) => markBlock(d, id, 'todo')));
+  toast(ids.length > 1 ? `已恢复 ${ids.length} 块` : '已恢复', 'success');
+}
+
+function DoneHero({ state, bank, today, skipped, onExtra }: Ctx & { skipped: string[]; onExtra: (p: Pool) => void }) {
   const day = state.days[today];
   const answered = day?.answered ?? 0;
   return (
@@ -461,7 +486,10 @@ function DoneHero({ state, bank, today, onExtra }: Ctx & { onExtra: (p: Pool) =>
           <Icon name="award" size={26} />
         </div>
         <div>
-          <h2 className="td-hero-title">今天的计划全部完成</h2>
+          <h2 className="td-hero-title">
+            今天的计划全部完成
+            {skipped.length > 0 && <span className="td-hero-title-note">（跳过 {skipped.length} 块）</span>}
+          </h2>
           <p className="td-hero-reason">
             学习 {fmtMinutes((day?.seconds ?? 0) / 60)}
             {answered > 0 && (
@@ -473,8 +501,38 @@ function DoneHero({ state, bank, today, onExtra }: Ctx & { onExtra: (p: Pool) =>
             。明天的计划会根据今天的表现自动调整。
           </p>
         </div>
+        {skipped.length > 0 && (
+          <Button variant="secondary" icon="undo" onClick={() => restoreAll(skipped)} className="td-rest-btn">
+            恢复跳过的块
+          </Button>
+        )}
       </div>
       <ExtraChooser state={state} bank={bank} today={today} onExtra={onExtra} label="还有精力？选一个方向加练一块" />
+    </section>
+  );
+}
+
+/** Every block skipped and none done: say so plainly, and offer the way back. */
+function SkippedHero({ state, bank, today, skipped, onExtra }: Ctx & { skipped: string[]; onExtra: (p: Pool) => void }) {
+  const studied = (state.days[today]?.seconds ?? 0) / 60;
+  return (
+    <section className="td-hero td-hero-done tone-neutral td-hero-skipped">
+      <div className="td-done-top">
+        <div className="td-done-badge">
+          <Icon name="skip" size={24} />
+        </div>
+        <div>
+          <h2 className="td-hero-title">今天的任务都跳过了</h2>
+          <p className="td-hero-reason">
+            {studied >= 1 ? `今天学了 ${fmtMinutes(studied)}，计划里的 ${skipped.length} 块都没做。` : `计划里的 ${skipped.length} 块都没做。`}
+            状态不好就早点休息；想学一点的话，恢复几块，或者选一个方向加练。
+          </p>
+        </div>
+        <Button variant="primary" icon="undo" onClick={() => restoreAll(skipped)} className="td-rest-btn">
+          全部恢复
+        </Button>
+      </div>
+      <ExtraChooser state={state} bank={bank} today={today} onExtra={onExtra} label="或者只加练一块" />
     </section>
   );
 }
@@ -541,9 +599,52 @@ function StaleNotice({ session }: { session: PracticeSession }) {
 
 // ─────────────────────────── Block list ───────────────────────────
 
-function BlockRow({ state, bank, block, view, isNext, onStart }: { state: AppState; bank: BankIndex; block: PlanBlock; view: BlockView; isNext: boolean; onStart: (b: PlanBlock) => void }) {
+/** "限时 11 分钟 · 含订正约 14 分钟": the clock of a timed set vs. the time the block takes with its correction. */
+function TimedMinutes({ limit, minutes }: { limit: number; minutes: number }) {
+  const clock = fmtLimit(limit);
+  const total = fmtMinutes(minutes);
+  return (
+    <>
+      限时 {clock}
+      {minutes - limit / 60 >= 1 ? <> · 含订正约 {total}</> : clock !== total && <> · 约 {total}</>}
+    </>
+  );
+}
+
+/** Correct out of the set; green only from 60 %. */
+function ResultScore({ correct, answered }: { correct: number; answered: number }) {
+  const good = answered > 0 && correct / answered >= 0.6;
+  return (
+    <span className={cx('td-row-score', good && 'is-good')} title={`答对 ${correct} / ${answered}`}>
+      <b className="num">
+        {correct}/{answered}
+      </b>
+    </span>
+  );
+}
+
+function BlockRow({
+  state,
+  bank,
+  today,
+  block,
+  view,
+  isNext,
+  onStart,
+}: {
+  state: AppState;
+  bank: BankIndex;
+  today: string;
+  block: PlanBlock;
+  view: BlockView;
+  isNext: boolean;
+  onStart: (b: PlanBlock) => void;
+}) {
   const tone = blockTone(block);
-  const n = blockCount(state, bank, block);
+  const n = blockCount(state, bank, block, today);
+  const limit = timedLimitSec(bank, block);
+  const title = blockTitle(state, bank, block, today);
+  const reason = blockReason(state, bank, block, today);
   const open = view === 'active' ? openSessionFor(state, block.id) : undefined;
   const isMock = block.kind === 'mock';
   const mockResult = isMock && block.mock ? [...state.mocks].reverse().find((m) => m.kind === block.mock?.kind && m.session === block.mock?.session) : undefined;
@@ -583,16 +684,13 @@ function BlockRow({ state, bank, block, view, isNext, onStart }: { state: AppSta
       side = (
         <>
           <span className="td-row-result">
-            <Icon name="checkCircle" size={15} />
             {mockResult ? (
               <>
                 估分 <b className="num">{mockResult.estimate}</b>
               </>
             ) : r && r.answered > 0 ? (
               <>
-                <b className="num">
-                  {r.correct}/{r.answered}
-                </b>
+                <ResultScore correct={r.correct} answered={r.answered} />
                 <span className="td-row-dot">·</span>
                 {Math.max(1, Math.round(r.seconds / 60))} 分钟
               </>
@@ -641,14 +739,14 @@ function BlockRow({ state, bank, block, view, isNext, onStart }: { state: AppSta
       <div className="td-row-body">
         <div className="td-row-meta">
           <span className="td-row-kind">{blockKindLabel(block)}</span>
-          <span>{fmtMinutes(block.minutes)}</span>
+          <span>{limit ? <TimedMinutes limit={limit} minutes={block.minutes} /> : fmtMinutes(block.minutes)}</span>
           {n !== null && <span>{countLabel(block, n)}</span>}
           {isMock && <Badge tone="primary">真题整卷</Badge>}
           {block.extra && <Badge tone="success">加练</Badge>}
         </div>
-        <div className="td-row-title">{block.title}</div>
-        <div className="td-row-reason" title={block.reason}>
-          {block.reason}
+        <div className="td-row-title">{title}</div>
+        <div className="td-row-reason" title={reason}>
+          {reason}
         </div>
       </div>
       <div className="td-row-side">{side}</div>
@@ -871,8 +969,10 @@ function DueRow({ icon, tone, label, value, unit, empty, action, to }: { icon: I
 
 function MockCard({ state, bank, today }: Ctx) {
   const schedule = useMemo(() => mockSchedule(state, bank), [state, bank]);
-  // Same rule as the planner: a mock missed yesterday moves to today.
-  const next = schedule.find((m) => m.date >= addDays(today, -1) && m.parts.some((p) => !p.done));
+  // The mock in today's plan first (the planner moves the oldest missed one to a free day), else the next one ahead.
+  const planned = state.plans[today]?.blocks.filter((b) => b.kind === 'mock' && b.mock && b.status !== 'done') ?? [];
+  const inPlan = schedule.find((m) => m.parts.some((p) => !p.done && planned.some((b) => b.mock!.kind === p.kind && b.mock!.session === p.session)));
+  const next = inPlan ?? schedule.find((m) => m.date >= today && m.parts.some((p) => !p.done));
   const done = state.mocks.length;
   if (!next) {
     const missed = schedule.some((m) => m.parts.some((p) => !p.done));
@@ -890,7 +990,7 @@ function MockCard({ state, bank, today }: Ctx) {
       </section>
     );
   }
-  const n = daysBetween(today, next.date);
+  const n = inPlan ? Math.min(0, daysBetween(today, next.date)) : daysBetween(today, next.date);
   return (
     <a className="card td-mock" href={href('/mock')}>
       <div className="td-card-head">

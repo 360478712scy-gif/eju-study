@@ -1,5 +1,5 @@
 // 词汇: today's spaced-repetition run (reading and meaning tracked separately) and the word list.
-import { useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { vocabSkills } from '@shared/planner.ts';
 import { useApp } from '../../lib/store.ts';
 import { navigate, useRoute } from '../../lib/router.ts';
@@ -110,8 +110,14 @@ export function VocabPage() {
   const due = day?.due ?? 0;
   const notes = [
     due > split.review ? `一轮最多复习 ${split.review} 张，先练最该复习的；剩下 ${due - split.review} 张这轮练完接着来。` : '',
-    split.fill > 0 ? `另有 ${split.fill} 张补另一项：这些词只练过读音或词义中的一项，这次补上没练过的那一项。` : '',
+    split.fill > 0 ? '补另一项：这些词只练过读音或词义中的一项，这次补上没练过的那一项。' : '',
   ].filter(Boolean);
+  // 待复习 is the whole pile (vocabDueCount, the number Today and Stats show); the button is this round.
+  const figures = [
+    { n: due, label: '张卡待复习', show: due > 0 || (!split.fill && !split.newWords) },
+    { n: split.fill, label: '张补另一项', show: split.fill > 0 },
+    { n: split.newWords, label: '个新词', show: split.newWords > 0 },
+  ].filter((f) => f.show);
   const choose = (value: string) => {
     const n = value === 'auto' ? null : Number(value);
     setOverride(n);
@@ -132,21 +138,15 @@ export function VocabPage() {
           {queue.length > 0 ? (
             <>
               <div className="vc-hero-figures">
-                {(due > 0 || split.newWords === 0) && (
-                  <div className="vc-fig">
-                    <span className="vc-fig-num num">{due}</span>
-                    <span className="vc-fig-label">张卡待复习</span>
-                  </div>
-                )}
-                {split.newWords > 0 && (
-                  <>
-                    {due > 0 && <span className="vc-fig-plus">+</span>}
+                {figures.map((f, i) => (
+                  <Fragment key={f.label}>
+                    {i > 0 && <span className="vc-fig-plus">+</span>}
                     <div className="vc-fig">
-                      <span className="vc-fig-num num">{split.newWords}</span>
-                      <span className="vc-fig-label">个新词</span>
+                      <span className="vc-fig-num num">{f.n}</span>
+                      <span className="vc-fig-label">{f.label}</span>
                     </div>
-                  </>
-                )}
+                  </Fragment>
+                ))}
               </div>
               {notes.length > 0 && (
                 <div className="vc-hero-notes">

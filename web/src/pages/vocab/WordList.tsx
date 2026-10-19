@@ -25,6 +25,11 @@ function statusOf(v: VocabEntry, p: VocabProgress | undefined, today: string): S
   return s;
 }
 
+/** Due cards of a word (读音 and 词义 count separately), the same rule as the engine's vocabDueCount. */
+function dueCardsOf(v: VocabEntry, p: VocabProgress | undefined, today: string): number {
+  return vocabSkills(v).filter((k) => !!p?.[k] && p[k]!.due <= today).length;
+}
+
 export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
   const bank = useApp((s) => s.bank);
   const progress = useApp((s) => s.state?.vocab);
@@ -63,11 +68,13 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
     return words.filter((v) => (topic === 'all' || topic === `c:${v.category}` || topic === `g:${vocabGroup(v)}`) && matches(v));
   }, [words, topic, query]);
 
+  // Words per tab; 待复习 counts cards, like the hero above, Today and Stats.
   const counts = useMemo(() => {
     const c: Record<Status, number> = { all: 0, due: 0, weak: 0, new: 0, solid: 0 };
-    for (const v of scoped) for (const k of statuses.get(v.id) ?? []) c[k]++;
+    for (const v of scoped) for (const k of statuses.get(v.id) ?? []) if (k !== 'due') c[k]++;
+    for (const v of scoped) c.due += dueCardsOf(v, progress?.[v.id], today);
     return c;
-  }, [scoped, statuses]);
+  }, [scoped, statuses, progress, today]);
 
   const rows = useMemo(() => scoped.filter((v) => statuses.get(v.id)?.has(status)), [scoped, statuses, status]);
 
@@ -133,13 +140,14 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
           }}
           options={[
             { value: 'all', label: `全部 ${counts.all}` },
-            { value: 'due', label: `待复习 ${counts.due}` },
+            { value: 'due', label: `待复习 ${counts.due} 张卡` },
             { value: 'weak', label: `易错 ${counts.weak}` },
             { value: 'new', label: `未学 ${counts.new}` },
             { value: 'solid', label: `已稳 ${counts.solid}` },
           ]}
         />
         <span className="vc-list-legend faint">
+          {status === 'due' && rows.length > 0 && <span className="vc-list-unit">{rows.length} 个词 · 读音和词义各算一张卡</span>}
           <span className="vc-legend-dot is-grow" />
           在学
           <span className="vc-legend-dot is-solid" />
@@ -194,7 +202,7 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
           {rows.length > limit && (
             <div className="vc-list-more">
               <Button variant="ghost" size="sm" icon="down" onClick={() => setLimit(limit + PAGE * 2)}>
-                再显示 {Math.min(PAGE * 2, rows.length - limit)} 个（共 {rows.length}）
+                再显示 {Math.min(PAGE * 2, rows.length - limit)} 个（共 {rows.length} 个词）
               </Button>
             </div>
           )}

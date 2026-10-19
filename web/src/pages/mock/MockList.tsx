@@ -1,9 +1,8 @@
 // #/mock — next scheduled mock, results history with trends, and every paper that can be mocked.
 import { useMemo, type ReactNode } from 'react';
-import type { MockKind, MockResult } from '@shared/types.ts';
+import type { MockKind, MockResult, PracticeSession } from '@shared/types.ts';
 import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
-import { mockItemsPadded, mockLimitFor } from '@shared/planner.ts';
-import { mockSchedule, type ScheduledMock } from '@shared/planner.ts';
+import { mockSchedule, PHASE_INFO, type ScheduledMock } from '@shared/planner.ts';
 import { startBlock, startSession } from '@shared/actions.ts';
 import { daysBetween, weekdayZh } from '@shared/dates.ts';
 import { useReady, update } from '../../lib/store.ts';
@@ -11,8 +10,11 @@ import { navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct } from '../../lib/format.ts';
 import { Badge, Button, Card, Empty, PageHeader, Section, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { KIND_INFO, KIND_ORDER, kindTarget, MOCK_MAX } from './mockData.ts';
+import { KIND_INFO, KIND_ORDER, kindTarget, MOCK_MAX, openMocks, paperFacts, paperMeta, paperMinutes } from './mockData.ts';
 import { TrendChart } from './charts.tsx';
+
+/** Exam day itself, or after it: no more "do it soon" nudges. */
+type ExamPhase = 'before' | 'day' | 'over';
 
 function whenLabel(date: string, today: string): string {
   const d = daysBetween(today, date);
@@ -26,7 +28,11 @@ export function MockList() {
   const { state, bank, today } = useReady();
   const confirm = useConfirm();
   const schedule = useMemo(() => mockSchedule(state, bank), [state, bank]);
-  const next = schedule.find((m) => m.parts.some((p) => !p.done));
+  const toExam = daysBetween(today, state.profile.examDate);
+  const phase: ExamPhase = toExam > 0 ? 'before' : toExam === 0 ? 'day' : 'over';
+  const next = phase === 'before' ? schedule.find((m) => m.parts.some((p) => !p.done)) : undefined;
+  /** Unfinished attempts by `${kind}:${session}`: a paper with one offers 继续作答, never a second start. */
+  const openByPaper = useMemo(() => openMocks(state), [state]);
 
   /** `${kind}:${session}` → scheduled slot (first one that uses the paper). */
   const slotOf = useMemo(() => {
@@ -44,9 +50,15 @@ export function MockList() {
   const latest = (kind: MockKind, session: string) => results.find((r) => r.kind === kind && r.session === session);
 
   const start = async (kind: MockKind, session: string) => {
-    const items = mockItemsPadded(state, bank, kind, session);
+    const open = openByPaper.get(`${kind}:${session}`);
+    if (open) {
+      navigate('/session/' + open.id);
+      return;
+    }
+    const facts = paperFacts(state, bank, kind, session);
+    const { items } = facts;
     if (!items.length) return;
-    const limit = mockLimitFor(kind, items);
+    const limit = facts.limitSec;
     const seen = items.filter((it) => (state.progress[it.id]?.attempts ?? 0) > 0).length;
     const slot = slotOf.get(`${kind}:${session}`);
     const early = slot && slot.date > today;
@@ -59,6 +71,16 @@ export function MockList() {
               {items.length} 题，限时 <b className="num">{fmtClock(limit)}</b>，到时自动交卷
             </span>
           </li>
+          {(facts.original > 0 || facts.short) && (
+            <li className={cx(facts.short && 'is-warn')}>
+              <Icon name="info" size={14} />
+              <span>
+                {facts.short
+                  ? `原卷公开 ${facts.official} 题，加 ${facts.original} 道没做过的原创题也不足整卷 ${facts.full} 题，估分仅供参考`
+                  : `原卷公开 ${facts.official} 题，补 ${facts.original} 道没做过的原创题凑足整卷`}
+              </span>
+            </li>
+          )}
           <li>
             <Icon name="eyeOff" size={14} />
             <span>中途不显示对错和解析，交卷后统一批改、估分</span>
@@ -130,13 +152,36 @@ export function MockList() {
         </div>
       )}
 
-      <NextMock next={next} schedule={schedule} today={today} onStart={(k, s) => void start(k, s)} />
+      <NextMock next={next} schedule={schedule} today={today} phase={phase} openByPaper={openByPaper} onStart={(k, s) => void start(k, s)} />
 
       <Section title="模考记录" desc="估分按得分率折算到 200 分制，看趋势比看单次更有意义。">
-        {results.length ? <History results={results} /> : <Empty icon="target" title="还没有模考记录" desc={next ? `第一场安排在 ${fmtDateShort(next.date)}。想先熟悉节奏，可以从下面挑一套没有计划的卷子。` : '从下面挑一套卷子开始第一场模考。'} />}
+        {results.length ? (
+          <History results={results} />
+        ) : (
+          <Empty
+            icon="target"
+            title="还没有模考记录"
+            desc={
+              phase !== 'before'
+                ? '这次冲刺没有留下模考记录。'
+                : next
+                  ? `第一场安排在 ${fmtDateShort(next.date)}。想先熟悉节奏，可以从下面挑一套没有计划的卷子。`
+                  : '从下面挑一套卷子开始第一场模考。'
+            }
+          />
+        )}
       </Section>
 
-      <Section title="全部真题卷" desc="带「计划」的卷子已排进冲刺日程，建议按日期做；其余可以随时加练。">
+      <Section
+        title="全部真题卷"
+        desc={
+          phase === 'day'
+            ? '今天专心考试，这些卷子考完再看。'
+            : phase === 'over'
+              ? '考完想复盘或保持手感，可以挑一套整卷限时做。'
+              : '带「计划」的卷子已排进冲刺日程，建议按日期做；其余可以随时加练。'
+        }
+      >
         <div className="mk-kinds">
           {KIND_ORDER.map((kind) => {
             const papers = bank.bundle.papers.filter((p) => p.mocks.includes(kind));
@@ -155,10 +200,11 @@ export function MockList() {
                 </header>
                 <div className="mk-papers">
                   {papers.map((p) => {
-                    const items = mockItemsPadded(state, bank, kind, p.session);
                     const done = latest(kind, p.session);
-                    const slot = slotOf.get(`${kind}:${p.session}`);
-                    const seen = items.filter((it) => (state.progress[it.id]?.attempts ?? 0) > 0).length;
+                    const open = openByPaper.get(`${kind}:${p.session}`);
+                    const facts = paperFacts(state, bank, kind, p.session, { open, result: done });
+                    const slot = phase === 'before' ? slotOf.get(`${kind}:${p.session}`) : undefined;
+                    const seen = facts.items.filter((it) => (state.progress[it.id]?.attempts ?? 0) > 0).length;
                     return (
                       <div key={p.session} className="mk-paper">
                         <div className="mk-paper-main">
@@ -168,6 +214,10 @@ export function MockList() {
                               <Badge tone="success" icon="check">
                                 已完成 · {done.estimate}
                               </Badge>
+                            ) : open ? (
+                              <Badge tone="warning" icon="clock">
+                                未交卷
+                              </Badge>
                             ) : slot ? (
                               <Badge tone="primary" icon="calendar">
                                 计划 {fmtDateShort(slot.date)}
@@ -175,11 +225,19 @@ export function MockList() {
                             ) : null}
                           </div>
                           <div className="mk-paper-meta num">
-                            {items.length} 题 · {Math.round(mockLimitFor(kind, items) / 60)} 分钟
-                            {!done && seen > 0 && <span className="mk-seen"> · 已练过 {seen} 题</span>}
+                            {paperMeta(facts)}
+                            {open ? (
+                              <span className="mk-seen"> · 已用 {fmtClock(open.elapsedSec)}</span>
+                            ) : (
+                              !done && seen > 0 && <span className="mk-seen"> · 已练过 {seen} 题</span>
+                            )}
                           </div>
                         </div>
-                        {done ? (
+                        {open ? (
+                          <Button variant="primary" size="sm" iconRight="arrowRight" onClick={() => navigate('/session/' + open.id)}>
+                            继续作答
+                          </Button>
+                        ) : done ? (
                           <Button variant="ghost" size="sm" iconRight="right" onClick={() => navigate('/mock/' + done.id)}>
                             复盘
                           </Button>
@@ -202,14 +260,55 @@ export function MockList() {
   );
 }
 
-function NextMock({ next, schedule, today, onStart }: { next?: ScheduledMock; schedule: ScheduledMock[]; today: string; onStart: (kind: MockKind, session: string) => void }) {
+function NextMock({
+  next,
+  schedule,
+  today,
+  phase,
+  openByPaper,
+  onStart,
+}: {
+  next?: ScheduledMock;
+  schedule: ScheduledMock[];
+  today: string;
+  phase: ExamPhase;
+  openByPaper: Map<string, PracticeSession>;
+  onStart: (kind: MockKind, session: string) => void;
+}) {
   const { state, bank } = useReady();
   const isToday = !!next && next.date <= today;
+  const examDate = state.profile.examDate;
+  // "日语 9:30–12:00 · 理科 13:30–15:00 · 数学 15:40–17:10。带好…" → timetable rows + what to bring.
+  const [times = '', ...bring] = PHASE_INFO.exam.desc.split('。').filter(Boolean);
   return (
     <section className="mk-hero">
-      <div className="mk-hero-top">
+      <div className={cx('mk-hero-top', phase === 'over' && 'is-single')}>
         <div className="mk-hero-main">
-          {next ? (
+          {phase === 'day' ? (
+            <>
+              <div className="mk-eyebrow">
+                <Icon name="flag" size={14} />
+                考试日 · {fmtDateShort(examDate)} {weekdayZh(examDate)}
+              </div>
+              <h2 className="mk-hero-title">今天就是 EJU</h2>
+              <p className="mk-calm">不用再做模考了。按平时模考的节奏来：先易后难，每题都要填。</p>
+              {bring.length > 0 && (
+                <p className="mk-calm-sub">
+                  <Icon name="checkCircle" size={14} />
+                  {bring.join('。')}
+                </p>
+              )}
+            </>
+          ) : phase === 'over' ? (
+            <>
+              <div className="mk-eyebrow">
+                <Icon name="award" size={14} />
+                {fmtDateShort(examDate)} EJU 已结束
+              </div>
+              <h2 className="mk-hero-title">考完了，辛苦了</h2>
+              <p className="mk-calm">{state.mocks.length ? `这次冲刺一共做了 ${state.mocks.length} 场模考，记录都留在下面，想复盘随时点开。` : '真题卷都还在，想复盘或保持手感随时可以回来。'}</p>
+            </>
+          ) : next ? (
             <>
               <div className="mk-eyebrow">
                 <Icon name="calendar" size={14} />
@@ -219,7 +318,9 @@ function NextMock({ next, schedule, today, onStart }: { next?: ScheduledMock; sc
               <h2 className="mk-hero-title">{next.title}</h2>
               <div className="mk-parts">
                 {next.parts.map((p) => {
-                  const items = mockItemsPadded(state, bank, p.kind, p.session);
+                  const open = openByPaper.get(`${p.kind}:${p.session}`);
+                  const result = p.done ? [...state.mocks].reverse().find((m) => m.kind === p.kind && m.session === p.session) : undefined;
+                  const facts = paperFacts(state, bank, p.kind, p.session, { open, result });
                   const info = KIND_INFO[p.kind];
                   return (
                     <div key={p.kind} className={cx('mk-part', `tone-${info.tone}`, p.done && 'is-done')}>
@@ -229,11 +330,15 @@ function NextMock({ next, schedule, today, onStart }: { next?: ScheduledMock; sc
                       <span className="mk-part-text">
                         <b>{info.short}</b>
                         <span className="faint num">
-                          {sessionLabel(p.session)} · {Math.round(mockLimitFor(p.kind, items) / 60)} 分钟
+                          {sessionLabel(p.session)} · {paperMinutes(facts)} 分钟
                         </span>
                       </span>
                       {p.done ? (
                         <span className="mk-part-done">已完成</span>
+                      ) : open ? (
+                        <Button variant="primary" size="sm" onClick={() => navigate('/session/' + open.id)}>
+                          继续作答
+                        </Button>
                       ) : (
                         <Button variant={isToday ? 'primary' : 'ghost'} size="sm" onClick={() => onStart(p.kind, p.session)}>
                           {isToday ? '开始' : '提前做'}
@@ -255,11 +360,20 @@ function NextMock({ next, schedule, today, onStart }: { next?: ScheduledMock; sc
             </>
           )}
         </div>
-        <ul className="mk-rules">
-          <Rule icon="clock" title="限时" text="按考试时长倒计时，到点自动交卷" />
-          <Rule icon="eyeOff" title="中途不看解析" text="和考场一样，做完整卷再批改" />
-          <Rule icon="chart" title="交卷后估分" text="估分、逐题对错、考点与用时分析" />
-        </ul>
+        {phase === 'day' ? (
+          <ul className="mk-rules">
+            {times.split(' · ').map((t) => {
+              const [name, ...rest] = t.trim().split(' ');
+              return <Rule key={t} icon="clock" title={name} text={<span className="num">{rest.join(' ')}</span>} />;
+            })}
+          </ul>
+        ) : phase === 'before' ? (
+          <ul className="mk-rules">
+            <Rule icon="clock" title="限时" text="按考试时长倒计时，到点自动交卷" />
+            <Rule icon="eyeOff" title="中途不看解析" text="和考场一样，做完整卷再批改" />
+            <Rule icon="chart" title="交卷后估分" text="估分、逐题对错、考点与用时分析" />
+          </ul>
+        ) : null}
       </div>
       {schedule.length > 0 && (
         <ol className="mk-timeline">

@@ -5,7 +5,7 @@ import type { BankIndex } from '@shared/bank.ts';
 import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
 import { estimateAll, paceStats, SCALE_MAX, streak, topicStats, totalEstimate, type PaceStat, type SubjectEstimate, type TopicStat } from '@shared/stats.ts';
 import { addDays, dateRange, daysBetween, parseDate, weekdayZh } from '@shared/dates.ts';
-import { budgetFor, shortTopic } from '@shared/planner.ts';
+import { budgetFor, shortTopic, vocabDueCount, vocabSkills } from '@shared/planner.ts';
 import { useReady } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.ts';
@@ -114,7 +114,8 @@ function ScoreHero({
   const above = Math.round(Math.sqrt(EST_ORDER.reduce((s, k) => s + (est[k].high - est[k].estimate) ** 2, 0)));
   const gap = target - total;
   const delta = total - baseline;
-  const left = Math.max(1, daysBetween(today, p.examDate));
+  const daysLeft = daysBetween(today, p.examDate);
+  const left = Math.max(1, daysLeft);
   const perDay = gap > 0 ? gap / left : 0;
   const totals: TrendPoint[] = trend.map((t) => ({ label: t.label, value: totalEstimate(t.est) }));
   const samples = EST_ORDER.reduce((s, k) => s + est[k].samples, 0);
@@ -142,14 +143,25 @@ function ScoreHero({
           </span>
         </div>
         <p className="st-hero-say">
-          {gap > 0 ? (
+          {daysLeft < 0 ? (
+            <>
+              考试已经结束。冲刺期间预测从 {baseline} 到了 <b>{total}</b>
+              {delta !== 0 && <>（{delta > 0 ? '+' : ''}{delta}）</>}，一共做了 <b>{firstTries(state)}</b> 道题。辛苦了，等成绩出来再对照看看。
+            </>
+          ) : daysLeft === 0 ? (
+            <>今天考试。预测 {total} 分只是练习时的参考，进考场照平时的节奏做，先把会做的题做对。</>
+          ) : daysLeft === 1 ? (
+            <>
+              {gap > 0 ? <>离 {target} 还差 {gap} 分。</> : <>已经够到 {target} 了。</>}明天就考了，今天只做轻量复习、早点睡，把会做的题做对就是在涨分。
+            </>
+          ) : gap > 0 ? (
             <>
               离 {target} 还差 <b>{gap}</b> 分。还有 {left} 天，平均每天涨 <b>{perDay.toFixed(1)}</b> 分就够。
             </>
           ) : (
             <>已经够到 {target} 了。接下来稳住正确率和节奏，别在简单题上丢分。</>
           )}
-          {sci && sci.done < sci.total && (
+          {daysLeft > 1 && sci && sci.done < sci.total && (
             <>
               理科按现在的速度，80 分钟约能做完 <b>{sci.done}</b>/{sci.total} 题，先把速度提上来。
             </>
@@ -178,6 +190,11 @@ function ScoreHero({
       </div>
     </section>
   );
+}
+
+/** Questions answered for the first time (what the estimates are built on). */
+function firstTries(state: AppState): number {
+  return state.attempts.filter((a) => a.firstTry).length;
 }
 
 function SubjectCard({ e, pace, trend }: { e: SubjectEstimate; pace: PaceStat; trend: TrendPoint[] }) {
@@ -639,15 +656,19 @@ function Vocab({ state, bank, today }: { state: AppState; bank: BankIndex; today
   const v = useMemo(() => {
     let learned = 0;
     let seen = 0;
-    let due = 0;
-    for (const [id, vp] of Object.entries(state.vocab)) {
-      if (!bank.vocabById.has(id)) continue;
-      const skills = [vp.read, vp.meaning].filter((x) => x !== undefined);
+    // Only the skills each word trains (as on the vocab page), so 学过 matches its 已学.
+    for (const w of bank.bundle.vocab) {
+      const vp = state.vocab[w.id];
+      if (!vp) continue;
+      const skills = vocabSkills(w)
+        .map((k) => vp[k])
+        .filter((x) => x !== undefined);
       if (!skills.length) continue;
       seen += 1;
       if (skills.some((x) => x.box >= 2)) learned += 1;
-      if (skills.some((x) => x.due <= today)) due += 1;
     }
+    // Cards, the same number as Today, the vocab page and the day plan (读音 and 词义 count separately).
+    const due = vocabDueCount(state, bank, today);
     const acc = { read: { n: 0, c: 0 }, meaning: { n: 0, c: 0 } };
     const weekFrom = addDays(today, -6);
     let week = 0;
@@ -667,7 +688,7 @@ function Vocab({ state, bank, today }: { state: AppState; bank: BankIndex; today
       className="st-card"
       actions={
         <Button size="sm" variant="soft" iconRight="arrowRight" onClick={() => navigate('/vocab')}>
-          {v.due ? `复习 ${v.due} 个` : '去背词'}
+          {v.due ? `复习 ${v.due} 张卡` : '去背词'}
         </Button>
       }
     >
@@ -679,7 +700,7 @@ function Vocab({ state, bank, today }: { state: AppState; bank: BankIndex; today
         <div className="st-vocab-side">
           <div className="st-vocab-kpis">
             <Kpi label="学过" value={`${v.seen}`} sub={`共 ${v.total}`} />
-            <Kpi label="今天到期" value={`${v.due}`} sub="读音或词义" />
+            <Kpi label="待复习" value={`${v.due}`} sub="张卡" />
             <Kpi label="近 7 天" value={`${v.week}`} sub="次作答" />
           </div>
           {(['read', 'meaning'] as const).map((k) => {

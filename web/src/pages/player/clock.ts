@@ -1,6 +1,10 @@
 // Foreground study clock for the player. Time only runs while the window is visible
 // (and, outside exams, while the learner shows signs of life). Seconds pile up here
 // and are drained into the store in whole seconds by the player.
+//
+// Outside exams, time since the last sign of life is held back ("tail") until the learner
+// moves again or acts; when the idle pause kicks in, that tail — the idle minutes — is
+// dropped instead of being counted as study.
 import { useSyncExternalStore } from 'react';
 import { speechElement } from '../../lib/audio.ts';
 
@@ -17,6 +21,9 @@ export class StudyClock {
   private lastActivity = Date.now();
   private study = 0;
   private item = 0;
+  /** Not yet confirmed by activity (only when idle detection is on). */
+  private studyTail = 0;
+  private itemTail = 0;
   private counting = false;
   private ver = 0;
   private listeners = new Set<() => void>();
@@ -38,8 +45,22 @@ export class StudyClock {
     const dt = Math.min(MAX_STEP, Math.max(0, (now - this.last) / 1000));
     this.last = now;
     if (!this.running) return;
-    this.study += dt;
-    if (this.counting) this.item += dt;
+    if (this.idleEnabled) {
+      this.studyTail += dt;
+      if (this.counting) this.itemTail += dt;
+    } else {
+      this.study += dt;
+      if (this.counting) this.item += dt;
+    }
+  }
+
+  /** The time since the last sign of life was real study: count it. */
+  commit() {
+    this.advance();
+    this.study += this.studyTail;
+    this.item += this.itemTail;
+    this.studyTail = 0;
+    this.itemTail = 0;
   }
 
   private notify() {
@@ -50,13 +71,23 @@ export class StudyClock {
   tick() {
     this.advance();
     const sp = speechElement();
-    if (sp && !sp.paused) this.lastActivity = Date.now();
-    if (this.idleEnabled && !this.idle && Date.now() - this.lastActivity > IDLE_MS) this.idle = true;
+    if (sp && !sp.paused) {
+      // Listening counts as activity.
+      this.lastActivity = Date.now();
+      this.commit();
+    }
+    if (this.idleEnabled && !this.idle && Date.now() - this.lastActivity > IDLE_MS) {
+      // Nobody has been here since the last activity: those minutes were not study.
+      this.idle = true;
+      this.studyTail = 0;
+      this.itemTail = 0;
+    }
     this.notify();
   }
 
   setVisible(v: boolean) {
-    this.advance();
+    // Switching away is a sign of life too: what ran up to now counts.
+    this.commit();
     this.visible = v;
     if (v) this.lastActivity = Date.now();
     this.notify();
@@ -64,8 +95,8 @@ export class StudyClock {
 
   activity() {
     this.lastActivity = Date.now();
+    this.commit();
     if (this.idle) {
-      this.advance();
       this.idle = false;
       this.notify();
     }
@@ -75,6 +106,7 @@ export class StudyClock {
   setItem(counting: boolean) {
     this.advance();
     this.item = 0;
+    this.itemTail = 0;
     this.counting = counting;
     this.notify();
   }
@@ -85,7 +117,7 @@ export class StudyClock {
   }
 
   stop() {
-    this.advance();
+    this.commit();
     this.stopped = true;
     this.notify();
   }
@@ -106,11 +138,12 @@ export class StudyClock {
     return w;
   }
 
+  /** Study time not yet written to the store, including the unconfirmed tail (for display). */
   pendingStudy() {
-    return this.study;
+    return this.study + this.studyTail;
   }
   pendingItem() {
-    return this.item;
+    return this.item + this.itemTail;
   }
 
   subscribe = (l: () => void) => {

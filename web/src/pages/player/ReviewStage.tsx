@@ -1,5 +1,5 @@
 // Read-only look at a finished item from the summary: question, your answer, result, explanation, AI.
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Item, PracticeSession } from '@shared/types.ts';
 import { blankGroups, gradeItem } from '@shared/grading.ts';
 import { useApp } from '../../lib/store.ts';
@@ -15,7 +15,7 @@ import { MarkSheet } from './MarkSheet.tsx';
 import { AudioPanel } from './AudioPanel.tsx';
 import { CoachCard } from './CoachCard.tsx';
 import { NoteBox } from './NoteBox.tsx';
-import { ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, stemLayout } from './parts.tsx';
+import { ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, revealAnswer, stemLayout } from './parts.tsx';
 
 export function ReviewStage({ session, list, start, onClose }: { session: PracticeSession; list: Item[]; start: number; onClose: () => void }) {
   const settings = useApp((s) => s.state!.settings);
@@ -33,9 +33,15 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
   const audioToggle = useRef<(() => void) | null>(null);
   const coachFocus = useRef<(() => void) | null>(null);
   const mainRef = useRef<HTMLElement>(null);
+  const sideRef = useRef<HTMLDivElement>(null);
   const values = ans?.response && typeof ans.response === 'object' ? ans.response : {};
   const heroAudio = item.section === 'listening' && !!item.audio && !item.figures?.length;
   const answerView = ans ?? { response: null, seconds: 0, submitted: true, gaveUp: true };
+
+  useLayoutEffect(() => {
+    if (sideRef.current) sideRef.current.scrollTop = 0;
+    revealAnswer(sideRef.current);
+  }, [item.id]);
 
   const go = (d: number) => {
     const n = pos + d;
@@ -81,13 +87,13 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
         </div>
         <div className="pl-top-center" />
         <div className="pl-top-right">
-          <Button size="sm" variant="ghost" icon="left" onClick={() => go(-1)} disabled={pos === 0}>
+          <Button size="sm" variant="ghost" icon="left" onClick={() => go(-1)} onMouseDown={(e) => e.preventDefault()} disabled={pos === 0}>
             上一题
           </Button>
           <span className="pl-count">
             <b className="num">{pos + 1}</b> / <span className="num">{list.length}</span>
           </span>
-          <Button size="sm" variant="ghost" iconRight="right" onClick={() => go(1)} disabled={pos === list.length - 1}>
+          <Button size="sm" variant="ghost" iconRight="right" onClick={() => go(1)} onMouseDown={(e) => e.preventDefault()} disabled={pos === list.length - 1}>
             下一题
           </Button>
         </div>
@@ -126,7 +132,7 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
           </div>
         </main>
         <aside className="pl-side">
-          <div className="pl-side-scroll">
+          <div className="pl-side-scroll" ref={sideRef}>
             {split ? (
               <div className="pl-ask">
                 <span className="pl-ask-label">

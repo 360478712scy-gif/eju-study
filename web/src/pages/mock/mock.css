@@ -27,6 +27,9 @@
 }
 .mk-hero > * { position: relative; }
 .mk-hero-top { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 28px; }
+.mk-hero-top.is-single { grid-template-columns: minmax(0, 1fr); }
+.mk-calm { color: var(--text-2); line-height: 1.7; max-width: 560px; }
+.mk-calm-sub { display: flex; align-items: center; gap: 7px; margin-top: 12px; color: var(--text-3); font-size: var(--fs-sm); }
 .mk-when { margin-left: 4px; padding: 1px 9px; border-radius: var(--radius-pill); background: var(--primary-soft-2); color: var(--primary-text); font-size: var(--fs-xs); }
 .mk-when.is-today { background: var(--primary); color: var(--on-primary); }
 .mk-hero-title { font-size: var(--fs-xl); font-weight: 720; letter-spacing: -0.01em; margin: 6px 0 14px; }

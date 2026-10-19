@@ -1,6 +1,7 @@
 // Helpers for the mock pages: targets, finding a result's session, per-item rows.
 import type { AppState, Confidence, Item, MockKind, MockResult, PracticeSession, Profile, Subject } from '@shared/types.ts';
-import type { BankIndex } from '@shared/bank.ts';
+import { mockItems, type BankIndex } from '@shared/bank.ts';
+import { JA_FULL, mockItemsPadded, mockLimitFor } from '@shared/planner.ts';
 import type { IconName } from '../../components/Icon.tsx';
 
 export const KIND_ORDER: MockKind[] = ['math', 'science', 'ja-reading', 'ja-listening'];
@@ -31,6 +32,72 @@ export function kindTarget(p: Profile, kind: MockKind): number {
 export function findMockSession(state: AppState, r: MockResult): PracticeSession | undefined {
   const all = Object.values(state.sessions).filter((s) => s.kind === 'mock' && s.mock?.kind === r.kind && s.mock.session === r.session);
   return all.find((s) => s.finishedAt === r.finishedAt) ?? all.find((s) => s.startedAt === r.startedAt) ?? (all.length === 1 ? all[0] : undefined);
+}
+
+/** Unfinished mock sessions by `${kind}:${session}` (the active one wins, then the newest). */
+export function openMocks(state: AppState): Map<string, PracticeSession> {
+  const m = new Map<string, PracticeSession>();
+  for (const s of Object.values(state.sessions)) {
+    if (!s.mock || s.finishedAt) continue;
+    const key = `${s.mock.kind}:${s.mock.session}`;
+    const cur = m.get(key);
+    if (!cur || (cur.id !== state.activeSessionId && (s.id === state.activeSessionId || s.startedAt > cur.startedAt))) m.set(key, s);
+  }
+  return m;
+}
+
+export interface PaperFacts {
+  /** The items a new attempt would use (empty for a recorded or open attempt). */
+  items: Item[];
+  count: number;
+  limitSec: number;
+  /** Questions from the real paper vs original items padding a Japanese section. */
+  official: number;
+  original: number;
+  /** Exam length of a Japanese section (0 for math / science). */
+  full: number;
+  /** Padding could not bring a Japanese section to exam length. */
+  short: boolean;
+}
+
+/**
+ * Count and time limit of one paper's mock: an open attempt and a recorded result keep what they
+ * actually used; a new attempt is padded and timed the way it would start now.
+ */
+export function paperFacts(state: AppState, bank: BankIndex, kind: MockKind, session: string, from: { open?: PracticeSession; result?: MockResult } = {}): PaperFacts {
+  const base = new Set(mockItems(bank, kind, session).map((it) => it.id));
+  const split = (ids: string[]) => {
+    const official = ids.filter((id) => base.has(id)).length;
+    return { official, original: ids.length - official };
+  };
+  const full = kind === 'ja-reading' || kind === 'ja-listening' ? JA_FULL[kind] : 0;
+  const recorded = from.open ?? (from.result ? findMockSession(state, from.result) : undefined);
+  const ids = from.open?.itemIds ?? from.result?.itemIds;
+  if (ids) {
+    const used = ids.map((id) => bank.byId.get(id)).filter(Boolean) as Item[];
+    return {
+      items: [],
+      count: from.open ? ids.length : from.result!.total,
+      limitSec: recorded?.timeLimitSec ?? mockLimitFor(kind, used),
+      ...split(ids),
+      full,
+      short: false,
+    };
+  }
+  const items = mockItemsPadded(state, bank, kind, session);
+  return { items, count: items.length, limitSec: mockLimitFor(kind, items), ...split(items.map((it) => it.id)), full, short: items.length < full };
+}
+
+export function paperMinutes(f: PaperFacts): number {
+  return Math.max(1, Math.round(f.limitSec / 60));
+}
+
+/** "6 题 · 80 分钟", "原卷 10 题 + 原创 15 题 · 40 分钟", "原卷 12 题 + 原创 5 题（不足整卷）· 27 分钟". */
+export function paperMeta(f: PaperFacts): string {
+  const min = `${paperMinutes(f)} 分钟`;
+  if (!f.original && !f.short) return `${f.count} 题 · ${min}`;
+  const what = f.original ? `原卷 ${f.official} 题 + 原创 ${f.original} 题` : `原卷 ${f.official} 题`;
+  return f.short ? `${what}（不足整卷）· ${min}` : `${what} · ${min}`;
 }
 
 export type RowStatus = 'right' | 'partial' | 'wrong' | 'blank';

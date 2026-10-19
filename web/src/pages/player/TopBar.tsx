@@ -6,21 +6,29 @@ import { IconButton, SubjectTag } from '../../components/ui.tsx';
 import { cx, fmtClock } from '../../lib/format.ts';
 import { useClock, type StudyClock } from './clock.ts';
 
-export type CellState = 'todo' | 'right' | 'wrong' | 'answered' | 'flag';
+export type CellState = 'todo' | 'right' | 'wrong' | 'answered';
 export interface StripCell {
   state: CellState;
   reachable: boolean;
-  /** Exam mode: a response is recorded (a flagged item may still be empty). */
-  answered?: boolean;
+  /** Exam mode: marked 没把握 / 猜的. Drawn as its own marker — the item may still be empty. */
+  flag?: 'unsure' | 'guess';
 }
 
 const CELL_TITLE: Record<CellState, string> = {
-  todo: '未做',
+  todo: '未作答',
   right: '答对',
   wrong: '答错',
   answered: '已作答',
-  flag: '已作答 · 没把握',
 };
+
+export function cellTitle(c: StripCell): string {
+  if (!c.flag) return CELL_TITLE[c.state];
+  if (c.state === 'todo') return '未作答 · 已标记';
+  return `${CELL_TITLE[c.state]} · ${c.flag === 'guess' ? '猜的' : '没把握'}`;
+}
+
+/** Top-bar controls should not keep focus after a click (Enter would press them again). */
+const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
 
 export function ProgressStrip({ cells, current, onJump }: { cells: StripCell[]; current: number; onJump: (i: number) => void }) {
   return (
@@ -29,9 +37,10 @@ export function ProgressStrip({ cells, current, onJump }: { cells: StripCell[]; 
         <button
           key={i}
           type="button"
-          className={cx('pl-seg', `is-${c.state}`, i === current && 'is-current', !c.reachable && 'is-locked')}
+          className={cx('pl-seg', `is-${c.state}`, c.flag && 'has-flag', i === current && 'is-current', !c.reachable && 'is-locked')}
           onClick={() => c.reachable && onJump(i)}
-          title={`第 ${i + 1} 题 · ${i === current ? '当前' : CELL_TITLE[c.state]}`}
+          onMouseDown={keepFocus}
+          title={`第 ${i + 1} 题 · ${i === current ? `当前 · ${cellTitle(c)}` : cellTitle(c)}`}
           tabIndex={-1}
         >
           <span />

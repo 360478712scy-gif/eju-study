@@ -98,6 +98,8 @@ export interface VocabDay {
   finalDays: boolean;
   /** New words already started today. */
   started: number;
+  /** New cards (new words and 补另一项) first practised today. */
+  newCards: number;
   /** New words still to start today. */
   left: number;
   /** This round, in the engine's order. */
@@ -122,7 +124,8 @@ export function vocabDay(state: AppState, bank: BankIndex, date: string, overrid
   const engine = vocabToday(start.view, bank, date);
   const planned = engine.newWords;
   const limit = override ?? planned;
-  const left = Math.max(0, limit - start.started);
+  // The allowance is limit words or 2 × limit new cards (补另一项 cards included), as in vocabQueue.
+  const left = Math.max(0, Math.min(limit - start.started, Math.floor((2 * limit - start.newCards) / 2)));
   const phase = phaseFor(daysLeftOn(state, date));
   const queue = vocabQueue(state, bank, date, left);
   return {
@@ -133,6 +136,7 @@ export function vocabDay(state: AppState, bank: BankIndex, date: string, overrid
     manual: override !== null,
     finalDays: phase === 'final' || phase === 'exam',
     started: start.started,
+    newCards: start.newCards,
     left,
     queue,
     split: splitQueue(state, bank, queue),
@@ -168,16 +172,18 @@ export function cardMinutes(cards: number): number {
  * clears reviews and stays put once today's words are learned: cards first met today are
  * taken out, cards answered again today count as having been on today's pile.
  */
-function dayStart(state: AppState, bank: BankIndex, date: string): { view: AppState; started: number } {
+function dayStart(state: AppState, bank: BankIndex, date: string): { view: AppState; started: number; newCards: number } {
   const todayCount = new Map<string, number>();
   for (const a of state.vocabAttempts) {
     if (a.date !== date) continue;
     const key = `${a.vocabId}|${a.skill}`;
     todayCount.set(key, (todayCount.get(key) || 0) + 1);
   }
-  if (!todayCount.size) return { view: state, started: 0 };
+  if (!todayCount.size) return { view: state, started: 0, newCards: 0 };
   const vocab: AppState['vocab'] = { ...state.vocab };
   const touched = new Set<string>();
+  // Cards first met today: new words and 补另一项 alike.
+  let newCards = 0;
   for (const [key, n] of todayCount) {
     const cut = key.lastIndexOf('|');
     const id = key.slice(0, cut);
@@ -185,7 +191,10 @@ function dayStart(state: AppState, bank: BankIndex, date: string): { view: AppSt
     const sp = state.vocab[id]?.[skill];
     if (!sp) continue;
     const before = { ...vocab[id] };
-    if (sp.seen <= n) delete before[skill];
+    if (sp.seen <= n) {
+      delete before[skill];
+      newCards++;
+    }
     else if (sp.due > date) before[skill] = { ...sp, due: date };
     vocab[id] = before;
     touched.add(id);
@@ -197,20 +206,20 @@ function dayStart(state: AppState, bank: BankIndex, date: string): { view: AppSt
     const skills = vocabSkills(v);
     if (skills.every((k) => !vocab[id]?.[k]) && skills.some((k) => state.vocab[id]?.[k])) started++;
   }
-  return { view: { ...state, vocab }, started };
+  return { view: { ...state, vocab }, started, newCards };
 }
 
 /** How many new words, and why, in a few words. */
 export function newWordsNote(day: VocabDay): string {
-  const started = day.started ? ` · 今天已学 ${day.started} 个` : '';
-  // 补另一项 cards share the new-word allowance (two cards per word), ahead of brand-new words.
-  const shared = day.split.fill ? '，补另一项的卡也占这个名额' : '';
-  if (day.manual) return `你设了每天 ${day.limit} 个（自动是 ${day.planned} 个）${shared}${started}`;
+  // The allowance in cards: two per new word, one per 补另一项 card, as vocabQueue counts it.
+  const cards = (n: number) => `新卡最多 ${n * 2} 张${day.split.fill ? '（含补另一项）' : ''}`;
+  const used = day.newCards ? ` · 今天已练 ${day.newCards} 张` : '';
+  if (day.manual) return `你设了每天 ${day.limit} 个新词（自动是 ${day.planned} 个），${cards(day.limit)}${used}`;
   if (day.planned === 0) {
     if (day.finalDays) return '考前最后几天只复习，不加新词';
     return `今天开始时待复习 ${day.dueStart} 张卡，先只复习；降到约 120 张以下才加新词`;
   }
-  return `按待复习量自动定：今天 ${day.planned} 个${shared}${started}`;
+  return `按待复习量自动定：今天 ${day.planned} 个新词，${cards(day.planned)}${used}`;
 }
 
 const GAP = 6;

@@ -123,6 +123,7 @@
 .vc-select-icon { position: absolute; right: 11px; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
 .vc-list-filters { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 18px 14px; }
 .vc-list-legend { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-xs); }
+.vc-list-unit { margin-right: 8px; padding-right: 10px; border-right: 1px solid var(--border); }
 .vc-legend-dot { width: 10px; height: 6px; border-radius: 3px; margin-left: 6px; }
 .vc-legend-dot.is-grow { background: var(--primary); }
 .vc-legend-dot.is-solid { background: var(--success); }
