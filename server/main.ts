@@ -259,6 +259,7 @@ server.listen(PORT, HOST, () => {
 });
 
 function shutdown() {
+  coach.stop();
   store.flush();
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(0), 1500).unref();

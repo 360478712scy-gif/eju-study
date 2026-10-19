@@ -9,3 +9,7 @@
 .tp-trap::before { background: var(--warning); }
 .tp-point::before { background: var(--primary); }
 .tp-point { color: var(--text-2); }
+.tp-legend { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.tp-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-left: 4px; }
+.tp-dot-trap { background: var(--warning); }
+.tp-dot-point { background: var(--primary); }

@@ -2,16 +2,16 @@
 // a hero card with the next step, today's progress, the plan, and a side panel
 // with the predicted score, due reviews and the next mock.
 import { useMemo, useState, type ReactNode } from 'react';
-import { useReady, update } from '../../lib/store.ts';
+import { useApp, useReady, update } from '../../lib/store.ts';
 import { href, navigate } from '../../lib/router.ts';
 import { Badge, Button, IconButton, Progress, Ring, SubjectDot, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon, SUBJECT_ICON, type IconName } from '../../components/Icon.tsx';
 import type { AppState, DayPlan, PlanBlock, PracticeSession, Subject } from '@shared/types.ts';
 import { MOCK_LABEL, sessionLabel, type BankIndex } from '@shared/bank.ts';
-import { PHASE_INFO, POOLS, calendar, daysLeftOn, extraBlock, mockSchedule, phaseFor, type Pool } from '@shared/planner.ts';
+import { PHASE_INFO, POOLS, calendar, daysLeftOn, extraBlock, freshRemaining, mockSchedule, phaseFor, type Pool, vocabDueCount } from '@shared/planner.ts';
 import { estimateAll, streak, totalEstimate, SCALE_MAX } from '@shared/stats.ts';
 import { isDue } from '@shared/srs.ts';
-import { daysBetween, studyDate, weekdayZh } from '@shared/dates.ts';
+import { addDays, daysBetween, studyDate, weekdayZh } from '@shared/dates.ts';
 import { SUBJECT_NAME, cx, fmtDateShort, fmtMinutes, pct } from '../../lib/format.ts';
 import { DurationDialog } from './DurationDialog.tsx';
 import { AfterExam, ExamDay } from './ExamDay.tsx';
@@ -158,6 +158,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
   };
 
   const plannedMinutes = blocks.filter((_, i) => views[i] !== 'skipped').reduce((s, b) => s + b.minutes, 0);
+  const supply = useMemo(() => supplyNote(freshRemaining(state, bank)), [state, bank]);
 
   return (
     <div className="page td">
@@ -239,13 +240,20 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
                   <BlockRow key={b.id} state={state} bank={bank} block={b} view={views[i]} isNext={i === nextIdx} onStart={start} />
                 ))}
               </ol>
+              {supply && (
+                <p className="td-supply">
+                  <Icon name="info" size={14} />
+                  <span>{supply}</span>
+                </p>
+              )}
             </section>
           )}
         </div>
 
         <aside className="td-aside">
           <ProgressCard state={state} today={today} plan={plan} done={doneCount} total={countable} onAdjust={() => setDurationOpen(true)} />
-          <div className="td-aside-rest">
+          <div className={cx('td-aside-rest', bedtimeFor(left) !== null && 'has-sleep')}>
+            <SleepCard state={state} bank={bank} today={today} left={left} />
             <ScoreCard state={state} />
             <DueCard state={state} today={today} bank={bank} />
             <MockCard state={state} bank={bank} today={today} />
@@ -275,7 +283,7 @@ function NextHero({
   const view = block ? blockView(state, block) : 'active';
   const open = session ?? (block && view === 'active' ? openSessionFor(state, block.id) : undefined);
   const isMock = block?.kind === 'mock' || session?.kind === 'mock';
-  const manual = block && view === 'active' && !open && (block.kind === 'vocab' || block.kind === 'notes');
+  const manual = block && view === 'active' && !open && (block.kind === 'vocab' || block.kind === 'notes' || block.kind === 'traps');
   const count = block ? blockCount(state, bank, block) : null;
 
   const title = block?.title ?? session?.title ?? '';
@@ -311,8 +319,13 @@ function NextHero({
     );
   } else if (manual) {
     eyebrow = '进行中';
-    primary = block.kind === 'vocab' ? '继续背词' : '继续看笔记';
-    reason = block.kind === 'vocab' ? '背完今天的复习和新词后，回来点「已完成」进入下一块。' : '看完公式和易错点后，回来点「已完成」进入下一块。';
+    primary = block.kind === 'vocab' ? '继续背词' : block.kind === 'traps' ? '继续看' : '继续看笔记';
+    reason =
+      block.kind === 'vocab'
+        ? '背完今天的复习和新词后，回来点「已完成」进入下一块。'
+        : block.kind === 'traps'
+          ? '把这一页易错点过一遍，看完点「已完成」。'
+          : '看完公式和易错点后，回来点「已完成」进入下一块。';
   }
 
   const go = () => {
@@ -389,6 +402,19 @@ function NextHero({
 
 const POOL_ICON: Record<Pool, IconName> = { math: 'sigma', physics: 'atom', chemistry: 'flask', 'ja-reading': 'book', 'ja-listening': 'headphones', 'ja-grammar': 'book', recall: 'zap' };
 const POOL_TONE: Record<Pool, Subject | 'mixed'> = { math: 'math', physics: 'physics', chemistry: 'chemistry', 'ja-reading': 'japanese', 'ja-listening': 'japanese', 'ja-grammar': 'japanese', recall: 'mixed' };
+
+const MAIN_POOLS: Pool[] = ['math', 'physics', 'chemistry', 'ja-reading', 'ja-listening'];
+const LOW_SUPPLY = 10;
+
+/** "物理新题还剩 6 道，之后以错题和限时回炉为主" when a main pool is nearly out of never-seen items. */
+function supplyNote(fresh: Record<string, number>): string | null {
+  const parts = MAIN_POOLS.filter((p) => (fresh[p] ?? 0) < LOW_SUPPLY).map((p) => {
+    const name = POOLS.find((x) => x.id === p)?.name ?? p;
+    const n = fresh[p] ?? 0;
+    return n > 0 ? `${name}新题还剩 ${n} 道` : `${name}新题已经做完`;
+  });
+  return parts.length ? `${parts.join('，')}，之后以错题和限时回炉为主` : null;
+}
 
 /** "加练" picker. Each pool shows what it would add; pools without fresh items are disabled. */
 function ExtraChooser({ state, bank, today, onExtra, label }: Ctx & { onExtra: (p: Pool) => void; label: string }) {
@@ -581,7 +607,7 @@ function BlockRow({ state, bank, block, view, isNext, onStart }: { state: AppSta
           ) : (
             block.kind !== 'mock' && (
               <Button size="sm" variant="ghost" onClick={() => redoBlock(state, block)}>
-                {block.kind === 'vocab' ? '再背' : block.kind === 'notes' ? '再看' : '再练'}
+                {block.kind === 'vocab' ? '再背' : block.kind === 'notes' || block.kind === 'traps' ? '再看' : '再练'}
               </Button>
             )
           )}
@@ -665,6 +691,84 @@ function ProgressCard({ state, today, plan, done, total, onAdjust }: { state: Ap
   );
 }
 
+// From D-10 the target finishing time moves 20 minutes earlier each night, 01:30 → 23:00 (D-3),
+// so the body clock is awake for 日本語 at 9:30 on exam day. Times are minutes from midnight
+// (negative = the evening before midnight).
+const SHIFT_FROM = 10;
+const SHIFT_START = 90;
+const SHIFT_STEP = 20;
+const SHIFT_END = -60;
+
+function bedtimeFor(left: number): number | null {
+  if (left > SHIFT_FROM || left < 1) return null;
+  if (left <= 3) return SHIFT_END;
+  return Math.max(SHIFT_END, SHIFT_START - SHIFT_STEP * (SHIFT_FROM - left));
+}
+
+function clockText(m: number): string {
+  const t = ((m % 1440) + 1440) % 1440;
+  return `${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
+}
+
+/** Minutes since the study day began (04:00), so 01:30 counts as later than 23:00. */
+function dayMinute(m: number): number {
+  return (((m - 240) % 1440) + 1440) % 1440;
+}
+
+/** "2026-11-04" → "11/4". */
+function md(date: string): string {
+  const [, m, d] = date.split('-').map(Number);
+  return `${m}/${d}`;
+}
+
+function SleepCard({ state, bank, left }: Ctx & { left: number }) {
+  const sim = useMemo(
+    () => mockSchedule(state, bank).find((m) => m.daysLeft === left - 1 && m.parts.length >= 4 && m.parts.some((p) => !p.done)),
+    [state, bank, left],
+  );
+  const target = bedtimeFor(left);
+  if (target === null) return null;
+  const exam = state.profile.examDate;
+  const prev = bedtimeFor(left + 1);
+  const trend =
+    prev === null
+      ? `每晚提前 ${SHIFT_STEP} 分钟`
+      : prev > target
+        ? `比昨晚早 ${prev - target} 分钟`
+        : left === 1
+          ? '明早就考试，早点睡'
+          : '保持到考前一晚';
+  const now = new Date();
+  const toGo = dayMinute(target) - dayMinute(now.getHours() * 60 + now.getMinutes());
+  return (
+    <section className="card td-sleep">
+      <div className="td-sleep-top">
+        <span className="td-sleep-icon">
+          <Icon name="moon" size={17} />
+        </span>
+        <div className="td-sleep-main">
+          <div className="td-sleep-label">
+            <span className="td-label">作息 · 今晚收工</span>
+            {toGo <= 0 ? <span className="td-sleep-chip is-late">已到点</span> : toGo <= 60 && <span className="td-sleep-chip">还有 {toGo} 分钟</span>}
+          </div>
+          <div className="td-sleep-time">
+            <span className="num">{clockText(target)}</span>
+            <span>前</span>
+            <span className="td-sleep-trend">{trend}</span>
+          </div>
+        </div>
+      </div>
+      <p className="td-sleep-note">{md(exam)} 日语 9:30 开考，占总分一半，生物钟要跟着往前挪。</p>
+      {sim && (
+        <p className="td-sleep-alert">
+          <Icon name="sun" size={15} />
+          {md(sim.date)} 全真模拟请早上 9:30 开始
+        </p>
+      )}
+    </section>
+  );
+}
+
 function MiniStat({ icon, value, label, hot }: { icon: IconName; value: ReactNode; label: string; hot?: boolean }) {
   return (
     <div className={cx('td-mini', hot && 'is-hot')}>
@@ -676,7 +780,8 @@ function MiniStat({ icon, value, label, hot }: { icon: IconName; value: ReactNod
 }
 
 function ScoreCard({ state }: { state: AppState }) {
-  const est = useMemo(() => estimateAll(state), [state]);
+  const bank = useApp((s) => s.bank)!;
+  const est = useMemo(() => estimateAll(state, bank), [state, bank]);
   const total = totalEstimate(est);
   const target = state.profile.targetTotal;
   const base = SCORE_ORDER.reduce((s, k) => s + state.profile.baseline[k], 0);
@@ -730,18 +835,12 @@ function ScoreCard({ state }: { state: AppState }) {
 
 function DueCard({ state, bank, today }: Ctx) {
   const mistakes = useMemo(() => Object.values(state.progress).filter((p) => isDue(p, today)).length, [state.progress, today]);
-  const vocab = useMemo(() => {
-    let n = 0;
-    for (const v of bank.bundle.vocab) {
-      const p = state.vocab[v.id];
-      if ((p?.read && p.read.due <= today) || (p?.meaning && p.meaning.due <= today)) n++;
-    }
-    return n;
-  }, [state.vocab, bank, today]);
+  // Same count as the vocab block and the vocab page: cards the engine schedules today.
+  const vocab = useMemo(() => vocabDueCount(state, bank, today), [state, bank, today]);
   return (
     <section className="card td-due">
       <DueRow icon="alert" tone="warning" label="到期错题" value={mistakes} unit="题" empty="没有到期的错题" action="去重做" to="/mistakes" />
-      <DueRow icon="kana" tone="japanese" label="待复习词汇" value={vocab} unit="个" empty="词汇都复习完了" action="去背" to="/vocab" />
+      <DueRow icon="kana" tone="japanese" label="待复习词卡" value={vocab} unit="张" empty="词汇都复习完了" action="去背" to="/vocab?start=1" />
     </section>
   );
 }
@@ -771,15 +870,23 @@ function DueRow({ icon, tone, label, value, unit, empty, action, to }: { icon: I
 }
 
 function MockCard({ state, bank, today }: Ctx) {
-  const next = useMemo(() => mockSchedule(state, bank).find((m) => m.date >= today && m.parts.some((p) => !p.done)), [state, bank, today]);
+  const schedule = useMemo(() => mockSchedule(state, bank), [state, bank]);
+  // Same rule as the planner: a mock missed yesterday moves to today.
+  const next = schedule.find((m) => m.date >= addDays(today, -1) && m.parts.some((p) => !p.done));
   const done = state.mocks.length;
   if (!next) {
+    const missed = schedule.some((m) => m.parts.some((p) => !p.done));
+    const doneText = done ? `已完成 ${done} 次模考` : '';
+    let text: string;
+    if (!missed) text = done ? `${doneText}，计划内的模考都做完了。` : '计划内暂时没有模考。';
+    else if (daysBetween(today, state.profile.examDate) <= 3) text = `${doneText ? doneText + '。' : ''}考前几天不再做整卷，留着状态进考场。`;
+    else text = `${doneText ? doneText + '。' : ''}计划里没做的卷子可以在模考页挑时间补做。`;
     return (
       <section className="card td-mock">
         <div className="td-card-head">
           <h3 className="td-h3">模考</h3>
         </div>
-        <p className="td-mock-empty">{done ? `已完成 ${done} 次模考，计划内的模考都做完了。` : '计划内暂时没有模考。'}</p>
+        <p className="td-mock-empty">{text}</p>
       </section>
     );
   }
@@ -788,7 +895,7 @@ function MockCard({ state, bank, today }: Ctx) {
     <a className="card td-mock" href={href('/mock')}>
       <div className="td-card-head">
         <h3 className="td-h3">下次模考</h3>
-        <span className={cx('td-mock-when', n <= 1 && 'is-soon')}>{n === 0 ? '今天' : n === 1 ? '明天' : `${n} 天后`}</span>
+        <span className={cx('td-mock-when', n <= 1 && 'is-soon')}>{n < 0 ? '今天补做' : n === 0 ? '今天' : n === 1 ? '明天' : `${n} 天后`}</span>
       </div>
       <div className="td-mock-title">{next.title}</div>
       <div className="td-mock-date">

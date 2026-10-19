@@ -2,12 +2,12 @@
 // (editable for today and future days), scheduled mocks and, for past days, what was done.
 // Below: score targets per subject and a short explainer of how the plan adapts.
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import { useReady, update } from '../../lib/store.ts';
+import { useReady, update, useApp } from '../../lib/store.ts';
 import { Badge, Button, Empty, Modal, PageHeader, SubjectTag, toast } from '../../components/ui.tsx';
 import { navigate } from '../../lib/router.ts';
 import { Icon, type IconName } from '../../components/Icon.tsx';
 import type { AppState, Phase, Subject } from '@shared/types.ts';
-import { PHASE_INFO, calendar, daysLeftOn, type DaySkeleton } from '@shared/planner.ts';
+import { PHASE_INFO, calendar, daysLeftOn, mockSchedule, type DaySkeleton, type ScheduledMock } from '@shared/planner.ts';
 import { estimateAll, SCALE_MAX } from '@shared/stats.ts';
 import { weekdayZh } from '@shared/dates.ts';
 import { cx, fmtDateShort, pct } from '../../lib/format.ts';
@@ -55,6 +55,13 @@ export function PlanPage() {
     }
     return out;
   }, [days]);
+  // A mock missed yesterday is moved into today's plan by the planner: show it on today's cell.
+  const carried = useMemo(() => {
+    const blocks = state.plans[today]?.blocks ?? [];
+    return mockSchedule(state, bank).find(
+      (m) => m.date < today && blocks.some((b) => b.kind === 'mock' && m.parts.some((p) => p.kind === b.mock?.kind && p.session === b.mock?.session)),
+    );
+  }, [state, bank, today]);
   const [editing, setEditing] = useState<string | null>(null);
   const [defaultOpen, setDefaultOpen] = useState(false);
 
@@ -98,7 +105,7 @@ export function PlanPage() {
 
       <div className="plan-phases">
         {groups.map((g) => (
-          <PhaseBand key={g.phase} group={g} state={state} today={today} onEdit={setEditing} />
+          <PhaseBand key={g.phase} group={g} state={state} today={today} carried={carried} onEdit={setEditing} />
         ))}
       </div>
 
@@ -189,7 +196,7 @@ function OvStat({ icon, value, label }: { icon: IconName; value: ReactNode; labe
 
 // ─────────────────────────── Phase bands ───────────────────────────
 
-function PhaseBand({ group, state, today, onEdit }: { group: PhaseGroup; state: AppState; today: string; onEdit: (date: string) => void }) {
+function PhaseBand({ group, state, today, carried, onEdit }: { group: PhaseGroup; state: AppState; today: string; carried?: ScheduledMock; onEdit: (date: string) => void }) {
   const info = PHASE_INFO[group.phase];
   const first = group.days[0];
   const last = group.days[group.days.length - 1];
@@ -217,14 +224,14 @@ function PhaseBand({ group, state, today, onEdit }: { group: PhaseGroup; state: 
       </header>
       <div className={cx('plan-days', group.phase === 'exam' && 'is-exam')}>
         {group.days.map((d) => (
-          <DayCell key={d.date} day={d} state={state} today={today} onEdit={onEdit} />
+          <DayCell key={d.date} day={d} state={state} today={today} carried={d.date === today ? carried : undefined} onEdit={onEdit} />
         ))}
       </div>
     </section>
   );
 }
 
-function DayCell({ day, state, today, onEdit }: { day: DaySkeleton; state: AppState; today: string; onEdit: (date: string) => void }) {
+function DayCell({ day, state, today, carried, onEdit }: { day: DaySkeleton; state: AppState; today: string; carried?: ScheduledMock; onEdit: (date: string) => void }) {
   const isToday = day.date === today;
   const past = day.date < today;
   const exam = day.phase === 'exam';
@@ -236,7 +243,9 @@ function DayCell({ day, state, today, onEdit }: { day: DaySkeleton; state: AppSt
   const planned = plan ? plan.blocks.filter((b) => b.status !== 'skipped') : [];
   const doneBlocks = planned.filter((b) => b.status === 'done').length;
   const answered = log?.answered ?? 0;
-  const mocksDone = day.mocks ? day.mocks.parts.every((p) => p.done) : false;
+  const slot = day.mocks ?? carried ?? null;
+  const mocksDone = slot ? slot.parts.every((p) => p.done) : false;
+  const missed = past && !!day.mocks && !mocksDone;
 
   const top = (
     <span className="plan-day-top">
@@ -315,14 +324,17 @@ function DayCell({ day, state, today, onEdit }: { day: DaySkeleton; state: AppSt
     );
   }
 
-  const mocks = day.mocks && (
-    <span className={cx('plan-mock', mocksDone && 'is-done')} title={day.mocks.title}>
+  const mocks = slot && (
+    <span className={cx('plan-mock', mocksDone && 'is-done', missed && 'is-missed')} title={missed ? `${slot.title}（没做）` : slot.title}>
       <Icon name={mocksDone ? 'checkCircle' : 'target'} size={13} />
-      <span>{shortMockTitle(day.mocks.title)}</span>
+      <span>
+        {slot === carried && !mocksDone ? '补做' : ''}
+        {shortMockTitle(slot.title)}
+      </span>
     </span>
   );
 
-  const cls = cx('plan-day', isToday && 'is-today', past && 'is-past', exam && 'is-exam', editable && 'is-editable', day.mocks && 'has-mock');
+  const cls = cx('plan-day', isToday && 'is-today', past && 'is-past', exam && 'is-exam', editable && 'is-editable', slot && 'has-mock');
   if (!editable) {
     return (
       <div className={cls}>
@@ -344,7 +356,8 @@ function DayCell({ day, state, today, onEdit }: { day: DaySkeleton; state: AppSt
 // ─────────────────────────── Targets & strategy ───────────────────────────
 
 function TargetsCard({ state }: { state: AppState }) {
-  const est = useMemo(() => estimateAll(state), [state]);
+  const bank = useApp((s) => s.bank)!;
+  const est = useMemo(() => estimateAll(state, bank), [state, bank]);
   const { baseline, targets } = state.profile;
   const sum = (m: Record<Subject, number>) => SUBJECT_ORDER.reduce((s, k) => s + m[k], 0);
   const totalBase = sum(baseline);
@@ -399,9 +412,13 @@ function TargetsCard({ state }: { state: AppState }) {
 
 const STRATEGY: { icon: IconName; title: string; text: string }[] = [
   { icon: 'layers', title: '先补知识，再练速度', text: '前期按「薄弱度 × 考频」轮换专题，把遗忘的知识先捡回来；之后整卷限时模考，练节奏和时间分配。' },
+  { icon: 'clock', title: '理科每天都限时', text: '从第一天起，每天都有物理、化学的限时小测（每题约 2 分钟），速度是天天练出来的。' },
+  { icon: 'sparkles', title: '新题按天分配', text: '没做过的题按剩余天数分到每一天，不会前几天就用光；模考要用的真题提前留好，不会在练习里做掉。' },
+  { icon: 'refresh', title: '错题 2 天、4 天后回来', text: '做错或没把握的题隔 2 天、再隔 4 天重做，两次有把握地答对才移出错题本；做对但太慢的题也会回来再练。' },
+  { icon: 'list', title: '错题混进当天练习', text: '到期的错题先单独重做一块，其余混进当天的专项练习和新题一起做，不会越堆越多。' },
   { icon: 'trending', title: '每天自动调整', text: '计划按你最新的正确率、用时和离目标的差距生成，差距越大的科目分到的时间越多。' },
-  { icon: 'refresh', title: '错题自动回炉', text: '做错或没把握的题会在 1、2、4 天后回来，连续三次隔天答对才移出错题本。' },
   { icon: 'flag', title: '按考试日的顺序', text: '模考按 日语 → 理科 → 数学 的顺序安排；考前最后几天减量，把状态留给考场。' },
+  { icon: 'file', title: '考前一页纸', text: '最后两天把你做错过的题里的易错点汇成一页，按科目排好，考前只看这一页。' },
 ];
 
 function StrategyCard() {

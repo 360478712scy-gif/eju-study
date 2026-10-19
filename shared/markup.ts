@@ -71,7 +71,7 @@ function tokenize(src: string): Tok[] {
     if (c === '\\' && src.startsWith('\\bx{', i)) {
       const end = src.indexOf('}', i);
       const label = src.slice(i + 4, end);
-      if (end > 0 && /^[A-Z]+$/.test(label)) {
+      if (end > 0 && /^[A-Z0-9]+$/.test(label)) {
         flush();
         out.push({ k: 'box', v: label });
         i = end + 1;

@@ -22,8 +22,11 @@ let snap: AppSnapshot = { ready: false, error: null, state: null, bank: null, to
 const listeners = new Set<() => void>();
 let baseRevision = 0;
 let saveTimer: ReturnType<typeof setTimeout> | null = null;
-let saving = false;
+let inFlight: Promise<void> | null = null;
 let dirty = false;
+type Mutation = (draft: AppState, bank: BankIndex, today: string) => unknown;
+/** Mutations applied since the last acknowledged save, replayed on the server copy after a conflict. */
+let pending: Mutation[] = [];
 
 function emit(next: Partial<AppSnapshot>) {
   snap = { ...snap, ...next };
@@ -59,10 +62,14 @@ export async function boot() {
     baseRevision = state.revision;
     const today = studyDate();
     const draft = structuredClone(state);
-    const hadPlan = !!draft.plans[today];
+    const before = draft.plans[today]?.generatedAt;
     ensurePlan(draft, bank, today);
     emit({ ready: true, state: draft, bank, today, error: null });
-    if (!hadPlan || draft.plans[today] !== state.plans[today]) scheduleSave(0);
+    // Only write when a plan was actually created; merely opening the app must not bump the revision.
+    if (draft.plans[today]?.generatedAt !== before) {
+      pending.push((d, b, t) => ensurePlan(d, b, t));
+      scheduleSave(0);
+    }
   } catch (e) {
     emit({ error: e instanceof Error ? e.message : String(e) });
   }
@@ -73,6 +80,7 @@ export function update<R>(fn: (draft: AppState, bank: BankIndex, today: string) 
   if (!snap.state || !snap.bank) throw new Error('state not ready');
   const draft = structuredClone(snap.state);
   const result = fn(draft, snap.bank, snap.today);
+  pending.push(fn);
   emit({ state: draft });
   scheduleSave(opts.saveNow ? 0 : 500);
   return result;
@@ -84,39 +92,67 @@ function scheduleSave(delay: number) {
   saveTimer = setTimeout(() => void flush(), delay);
 }
 
+/** Save now; resolves once everything changed so far is on disk (or the save failed). */
 export async function flush(keepalive = false): Promise<void> {
   if (saveTimer) {
     clearTimeout(saveTimer);
     saveTimer = null;
   }
-  if (!dirty || !snap.state) return;
-  if (saving) {
-    scheduleSave(300);
+  if (inFlight) {
+    await inFlight;
+    if (dirty) return flush(keepalive);
     return;
   }
-  saving = true;
+  if (!dirty || !snap.state) return;
+  inFlight = doSave(keepalive);
+  try {
+    await inFlight;
+  } finally {
+    inFlight = null;
+  }
+  if (dirty && snap.save !== 'error') return flush(keepalive);
+}
+
+async function doSave(keepalive: boolean): Promise<void> {
+  if (!snap.state) return;
   dirty = false;
+  const sent = pending.length;
   const body = JSON.stringify({ baseRevision, state: snap.state });
   emit({ save: 'saving' });
   try {
     const res = await fetch('/api/state', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body, keepalive: keepalive && body.length < 60000 });
     if (res.status === 409) {
-      const { state } = (await res.json()) as { state: AppState };
-      baseRevision = state.revision;
-      emit({ state, save: 'conflict' });
+      // Another window saved first: replay this window's changes on top of the newer record.
+      const { state: server } = (await res.json()) as { state: AppState };
+      baseRevision = server.revision;
+      const bank = snap.bank;
+      let merged = structuredClone(server);
+      if (bank) {
+        for (const fn of pending) {
+          try {
+            fn(merged, bank, snap.today);
+          } catch {
+            /* a change that no longer applies is dropped */
+          }
+        }
+        ensurePlan(merged, bank, snap.today);
+      } else {
+        merged = server;
+      }
+      emit({ state: merged, save: 'conflict' });
+      dirty = pending.length > 0;
+      if (dirty) scheduleSave(200);
       return;
     }
     if (!res.ok) throw new Error(String(res.status));
     const { revision } = (await res.json()) as { revision: number };
     baseRevision = revision;
-    if (snap.state) snap.state.revision = revision;
-    emit({ save: dirty ? 'saving' : 'saved' });
+    pending = pending.slice(sent);
+    if (snap.state) emit({ state: { ...snap.state, revision }, save: dirty ? 'saving' : 'saved' });
   } catch {
     dirty = true;
     emit({ save: 'error' });
     scheduleSave(3000);
-  } finally {
-    saving = false;
   }
 }
 

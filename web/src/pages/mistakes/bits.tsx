@@ -5,7 +5,7 @@ import { cx } from '../../lib/format.ts';
 import { RESULT_TEXT, type ResultKind } from './helpers.ts';
 import './bits.css';
 
-/** Leitner progress of a mistake: filled dots = spaced correct re-tests (3 graduates). */
+/** Leitner progress of a mistake: filled dots = spaced confident correct re-tests (2 clears it). */
 export function BoxDots({ box }: { box: number }) {
   const n = Math.max(0, Math.min(MISTAKE_GRADUATE_BOX, box));
   return (

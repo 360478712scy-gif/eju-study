@@ -60,6 +60,7 @@ interface Helpers {
 function findCli(): string | null {
   for (const p of CLI_CANDIDATES) {
     try {
+      if (!fs.statSync(p).isFile()) continue;
       fs.accessSync(p, fs.constants.X_OK);
       return p;
     } catch {
@@ -139,17 +140,44 @@ export function createCoach(opts: { root: string; dataDir: string }) {
     ];
     const env = { ...process.env };
     for (const k of Object.keys(env)) if (k.startsWith('CODEX_THREAD') || k.startsWith('CODEX_TURN')) delete env[k];
-    const child = spawn(cli, args, { cwd: work, env, stdio: ['pipe', 'pipe', 'pipe'] });
+    let child: ChildProcess;
+    let finished = false;
+    const fail = (message: string) => {
+      if (finished) return;
+      finished = true;
+      if (job.status === 'running' || job.status === 'queued') {
+        job.status = 'failed';
+        job.error = message;
+      }
+      job.finishedAt = new Date().toISOString();
+      fs.rmSync(work, { recursive: true, force: true });
+      running = null;
+    };
+    try {
+      child = spawn(cli, args, { cwd: work, env, stdio: ['pipe', 'pipe', 'pipe'] });
+    } catch {
+      fail('AI 暂时无法启动，可以先看题目自带的解析。');
+      return;
+    }
     running = { job, child, work };
     job.status = 'running';
     let stderr = '';
-    child.stderr.on('data', (d: Buffer) => {
+    child.stderr?.on('data', (d: Buffer) => {
       stderr = (stderr + d.toString()).slice(-8000);
     });
-    child.stdout.on('data', () => {});
-    const timer = setTimeout(() => child.kill('SIGTERM'), TIMEOUT_MS);
+    child.stdout?.on('data', () => {});
+    child.stdin?.on('error', () => {});
+    const timer = setTimeout(() => {
+      child.kill('SIGTERM');
+      setTimeout(() => child.kill('SIGKILL'), 5000).unref();
+    }, TIMEOUT_MS);
+    child.on('error', () => {
+      clearTimeout(timer);
+      fail('AI 暂时无法启动，可以先看题目自带的解析。');
+    });
     child.on('close', (code) => {
       clearTimeout(timer);
+      if (finished) return;
       if (job.status === 'running') {
         try {
           if (code !== 0) throw new Error(stderr);
@@ -157,7 +185,7 @@ export function createCoach(opts: { root: string; dataDir: string }) {
           if (typeof parsed.answer !== 'string' || !Array.isArray(parsed.steps)) throw new Error('格式异常');
           job.result = {
             answer: String(parsed.answer).slice(0, 4000),
-            steps: parsed.steps.slice(0, 10).map((s: unknown) => String(s).slice(0, 1200)),
+            steps: parsed.steps.slice(0, 10).map((x: unknown) => String(x).slice(0, 1200)),
             keyPoint: String(parsed.keyPoint || '').slice(0, 600),
             pitfall: String(parsed.pitfall || '').slice(0, 600),
           };
@@ -172,11 +200,16 @@ export function createCoach(opts: { root: string; dataDir: string }) {
               : 'AI 暂时没有回应，可以先看题目自带的解析。';
         }
       }
+      finished = true;
       job.finishedAt = new Date().toISOString();
       fs.rmSync(work, { recursive: true, force: true });
       running = null;
     });
-    child.stdin.end(`${SYSTEM}\n\n${describeItem(item, response)}\n\n学生的问题：${job.question || '请讲清楚这道题的思路。'}\n`);
+    child.stdin?.end(`${SYSTEM}\n\n${describeItem(item, response)}\n\n学生的问题：${job.question || '请讲清楚这道题的思路。'}\n`);
+  }
+
+  function stop() {
+    if (running) running.child.kill('SIGTERM');
   }
 
   async function handle(req: http.IncomingMessage, res: http.ServerResponse, url: URL, h: Helpers) {
@@ -222,5 +255,5 @@ export function createCoach(opts: { root: string; dataDir: string }) {
     return h.sendJson(res, 404, { error: 'unknown coach endpoint' });
   }
 
-  return { handle };
+  return { handle, stop };
 }

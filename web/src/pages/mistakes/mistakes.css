@@ -507,3 +507,62 @@
     order: 3;
   }
 }
+
+/* ── 做对但太慢 ── */
+.mb-ratio {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: var(--radius-pill);
+  background: var(--warning-soft);
+  color: var(--warning-text);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.mb-slow-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+}
+.mb-slow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--warning-soft);
+  color: var(--warning-text);
+}
+.mb-slow-note p {
+  flex: 1;
+  min-width: 0;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.mb-slow-note p b {
+  color: var(--text);
+  font-family: var(--font-num);
+}
+.mb-slow-note .btn {
+  flex: none;
+}
+@media (max-width: 1100px) {
+  .mb-slow-note {
+    flex-wrap: wrap;
+  }
+  .mb-slow-note p {
+    flex-basis: calc(100% - 60px);
+  }
+  .mb-slow-note .btn {
+    margin-left: 50px;
+  }
+}

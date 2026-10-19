@@ -15,7 +15,7 @@
   --border-strong: #cdd5e1;
   --text: #121826;
   --text-2: #4a5466;
-  --text-3: #7d879a;
+  --text-3: #626b7f;
   --text-inverse: #ffffff;
 
   --primary: #3d5afe;
@@ -27,24 +27,30 @@
 
   --success: #129a52;
   --success-soft: #e7f6ee;
-  --success-text: #0d7a40;
+  --success-text: #0b6e3a;
   --danger: #e5484d;
   --danger-soft: #fdeded;
   --danger-text: #c42b31;
   --warning: #d97706;
   --warning-soft: #fef4e4;
-  --warning-text: #a65a00;
+  --warning-text: #965200;
 
   --math: #2f7cf6;
   --math-soft: #e8f1ff;
+  --math-text: #1f5fd1;
   --physics: #8b5cf6;
   --physics-soft: #f1ebff;
+  --physics-text: #6d3fd6;
   --chemistry: #0ea371;
   --chemistry-soft: #e3f7ef;
+  --chemistry-text: #0a7a55;
   --japanese: #ec4866;
   --japanese-soft: #fdebef;
+  --japanese-text: #c42a4a;
   --mixed: #64748b;
   --mixed-soft: #eef1f5;
+  --mixed-text: #4d586a;
+  --on-primary: #ffffff;
 
   --radius-xs: 6px;
   --radius-sm: 8px;
@@ -87,7 +93,7 @@
     --border-strong: #343d4d;
     --text: #e7ebf3;
     --text-2: #a5aebd;
-    --text-3: #6f7a8c;
+    --text-3: #8691a3;
     --primary: #6f87ff;
     --primary-hover: #8399ff;
     --primary-soft: #1b2340;
@@ -113,6 +119,12 @@
     --japanese-soft: #33161e;
     --mixed: #94a3b8;
     --mixed-soft: #1b212b;
+    --math-text: #7fb0ff;
+    --physics-text: #b9a0ff;
+    --chemistry-text: #5fdcab;
+    --japanese-text: #ff8ba1;
+    --mixed-text: #aab6c8;
+    --on-primary: #0b0f1a;
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
     --shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
@@ -131,7 +143,7 @@
   --border-strong: #343d4d;
   --text: #e7ebf3;
   --text-2: #a5aebd;
-  --text-3: #6f7a8c;
+  --text-3: #8691a3;
   --primary: #6f87ff;
   --primary-hover: #8399ff;
   --primary-soft: #1b2340;
@@ -157,6 +169,12 @@
   --japanese-soft: #33161e;
   --mixed: #94a3b8;
   --mixed-soft: #1b212b;
+  --math-text: #7fb0ff;
+  --physics-text: #b9a0ff;
+  --chemistry-text: #5fdcab;
+  --japanese-text: #ff8ba1;
+  --mixed-text: #aab6c8;
+  --on-primary: #0b0f1a;
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
   --shadow: 0 6px 16px rgba(0, 0, 0, 0.45);

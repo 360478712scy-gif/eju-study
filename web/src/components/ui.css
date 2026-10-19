@@ -4,11 +4,11 @@
 .tone-success { --tone: var(--success); --tone-soft: var(--success-soft); --tone-text: var(--success-text); }
 .tone-danger { --tone: var(--danger); --tone-soft: var(--danger-soft); --tone-text: var(--danger-text); }
 .tone-warning { --tone: var(--warning); --tone-soft: var(--warning-soft); --tone-text: var(--warning-text); }
-.tone-math { --tone: var(--math); --tone-soft: var(--math-soft); --tone-text: var(--math); }
-.tone-physics { --tone: var(--physics); --tone-soft: var(--physics-soft); --tone-text: var(--physics); }
-.tone-chemistry { --tone: var(--chemistry); --tone-soft: var(--chemistry-soft); --tone-text: var(--chemistry); }
-.tone-japanese { --tone: var(--japanese); --tone-soft: var(--japanese-soft); --tone-text: var(--japanese); }
-.tone-mixed { --tone: var(--mixed); --tone-soft: var(--mixed-soft); --tone-text: var(--mixed); }
+.tone-math { --tone: var(--math); --tone-soft: var(--math-soft); --tone-text: var(--math-text); }
+.tone-physics { --tone: var(--physics); --tone-soft: var(--physics-soft); --tone-text: var(--physics-text); }
+.tone-chemistry { --tone: var(--chemistry); --tone-soft: var(--chemistry-soft); --tone-text: var(--chemistry-text); }
+.tone-japanese { --tone: var(--japanese); --tone-soft: var(--japanese-soft); --tone-text: var(--japanese-text); }
+.tone-mixed { --tone: var(--mixed); --tone-soft: var(--mixed-soft); --tone-text: var(--mixed-text); }
 
 /* ── Buttons ── */
 .btn {
@@ -30,7 +30,7 @@
 .btn-md { height: 36px; padding: 0 15px; font-size: var(--fs-base); }
 .btn-lg { height: 44px; padding: 0 20px; font-size: var(--fs-md); border-radius: var(--radius); }
 .btn-block { width: 100%; }
-.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 1px 2px rgba(61, 90, 254, 0.3); }
+.btn-primary { background: var(--primary); color: var(--on-primary); box-shadow: 0 1px 2px rgba(61, 90, 254, 0.3); }
 .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
 .btn-secondary { background: var(--bg-elev); border-color: var(--border-strong); color: var(--text); box-shadow: var(--shadow-xs); }
 .btn-secondary:hover:not(:disabled) { background: var(--bg-hover); }

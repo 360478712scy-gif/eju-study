@@ -30,6 +30,8 @@
 .q-live-box.is-active { color: var(--primary-text); background: var(--primary-soft); box-shadow: 0 0 0 2px var(--primary); border-color: var(--primary); }
 .q-live-box.is-right { color: var(--success-text); border-color: var(--success); background: var(--success-soft); }
 .q-live-box.is-wrong { color: var(--danger-text); border-color: var(--danger); background: var(--danger-soft); }
+.q-live-box.is-locked { color: var(--success-text); border-style: dashed; border-color: var(--success); background: var(--success-soft); }
+.q-stem.is-clickable .q-live-box.is-locked, .q-stem.is-clickable .katex [data-qbx='locked'], .q-stem.is-clickable .katex [data-qbx='locked'] [data-bx] { cursor: default; }
 
 .q-stem .katex .boxpad[data-bx] { position: relative; }
 .q-stem .katex .boxpad[data-val] .textsf { color: transparent !important; }
@@ -44,6 +46,16 @@
 .q-stem .katex [data-qbx='right'] .boxpad::after { color: var(--success-text); }
 .q-stem .katex [data-qbx='wrong'] .fbox { border-color: var(--danger); }
 .q-stem .katex [data-qbx='wrong'] .boxpad::after { color: var(--danger-text); }
+.q-stem .katex [data-qbx='locked'] .fbox { border-color: var(--success); border-style: dashed; }
+.q-stem .katex [data-qbx='locked'] .boxpad::after { color: var(--success-text); }
+
+/* ── Question line under a short split stem (grammar) ── */
+.q-prompt {
+  display: flex; align-items: flex-start; gap: 8px; padding-top: 12px; border-top: 1px dashed var(--border);
+  color: var(--text-2);
+}
+.q-prompt-icon { flex: none; margin-top: 0.42em; color: var(--primary-text); }
+.q-prompt-text { font-size: calc(15px * var(--reading-scale)); line-height: 1.75; }
 
 /* ── Figures ── */
 .q-figures { display: flex; flex-wrap: wrap; gap: 14px; }

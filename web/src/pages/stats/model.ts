@@ -23,3 +23,32 @@ export function masteryBand(t: TopicStat | undefined, target: number): Band {
   if (t.mastery >= target - 0.15) return 'near';
   return 'weak';
 }
+
+// ── Science paper finish (physics + chemistry share one 80-minute paper) ──
+
+/** Questions per subject on the EJU science paper. */
+export const SCIENCE_ITEMS = { physics: 19, chemistry: 20 } as const;
+export type ScienceSubject = keyof typeof SCIENCE_ITEMS;
+export const SCIENCE_TOTAL = SCIENCE_ITEMS.physics + SCIENCE_ITEMS.chemistry;
+/** First-try timed answers a subject needs before its pace (and finish share) is trusted. */
+export const PACE_MIN_SAMPLES = 10;
+
+export interface Finish {
+  done: number;
+  total: number;
+}
+
+/** Questions finished in 80 minutes at the current pace (null until the pace is known). */
+export function finishOf(subject: ScienceSubject, completion: number | undefined): Finish | null {
+  if (completion === undefined) return null;
+  const total = SCIENCE_ITEMS[subject];
+  return { done: Math.max(0, Math.min(total, Math.floor(completion * total + 1e-6))), total };
+}
+
+export type FinishTone = 'success' | 'warning' | 'danger';
+
+export function finishVerdict(f: Finish): { text: string; tone: FinishTone } {
+  if (f.done >= f.total) return { text: '做得完', tone: 'success' };
+  if (f.done >= f.total * 0.9) return { text: '有点赶', tone: 'warning' };
+  return { text: '做不完', tone: 'danger' };
+}

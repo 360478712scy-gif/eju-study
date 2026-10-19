@@ -5,7 +5,7 @@ import { useApp } from '../../lib/store.ts';
 import { cx, fmtDuration, pct } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Button, Ring } from '../../components/ui.tsx';
-import { buildQueue, extraQueue, orderCards, setRun, SKILL_LABEL, useRun } from './run.ts';
+import { extraQueue, readNewWords, setRun, SKILL_LABEL, spaceCards, useRun, vocabDay } from './run.ts';
 import { startRun } from './VocabSession.tsx';
 
 export const MORE_COUNT = 20;
@@ -39,13 +39,15 @@ export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {
     return { per, watch: [...watch.entries()], fixed, n, ok, acc: n ? ok / n : 0 };
   }, [run]);
 
+  // What is left of today's round (reviews over one round's cap, words not finished) comes
+  // first, in full; when nothing is left, 20 of the weakest learned cards.
+  const left = useMemo(() => (state && bank ? vocabDay(state, bank, today, readNewWords()).queue : []), [state, bank, today]);
+
   if (!run || !bank || !state) return null;
 
-  // Next 20 cards: anything still due, then new words, then the weakest learned ones.
   const again = () => {
-    let q = buildQueue(state, bank, today, MORE_COUNT / 2, MORE_COUNT);
-    if (!q.length) q = extraQueue(state, bank, MORE_COUNT);
-    if (q.length) startRun(orderCards(q), today, '加练');
+    const q = left.length ? left : extraQueue(state, bank, MORE_COUNT);
+    if (q.length) startRun(spaceCards(q), today, left.length ? '今日词汇' : '加练');
   };
 
   const headline = !run.completed ? '这一轮先到这里' : stats.acc >= 0.9 ? '漂亮，这一轮很稳' : stats.acc >= 0.7 ? '这一轮完成了' : '完成了，错的明天还会再见';
@@ -99,8 +101,8 @@ export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {
         </div>
 
         <div className="vc-summary-actions">
-          <Button variant="primary" size="lg" icon="refresh" onClick={again}>
-            再来 {MORE_COUNT} 个
+          <Button variant="primary" size="lg" {...(left.length ? { iconRight: 'arrowRight' as const } : { icon: 'refresh' as const })} onClick={again}>
+            {left.length ? `接着练 · 还有 ${left.length} 张` : `再来 ${MORE_COUNT} 张`}
           </Button>
           <Button variant="secondary" size="lg" onClick={() => setRun(null)}>
             返回词汇

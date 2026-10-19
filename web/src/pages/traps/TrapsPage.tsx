@@ -28,7 +28,8 @@ export function TrapsPage() {
 
   const groups = useMemo(() => {
     const misses = new Map<string, number>();
-    for (const a of state.attempts) if (!a.correct) misses.set(a.itemId, (misses.get(a.itemId) ?? 0) + 1);
+    // Questions left blank when a mock ran out of time were never attempted: they are not traps.
+    for (const a of state.attempts) if (!a.correct && !(a.mode === 'mock' && a.response === null)) misses.set(a.itemId, (misses.get(a.itemId) ?? 0) + 1);
     const entries: Entry[] = [];
     for (const [id, n] of misses) {
       const item = bank.byId.get(id);
@@ -79,7 +80,7 @@ export function TrapsPage() {
                     <div className="tp-entry-head">
                       <span className="tp-topic">{shortTopic(bank, e.item.topic)}</span>
                       <span className="faint text-xs">
-                        {e.item.source.label} · 错 {e.misses} 次
+                        {e.item.source.label} · 没答对 {e.misses} 次
                       </span>
                     </div>
                     {e.lines.map((t, i) => (
@@ -97,7 +98,11 @@ export function TrapsPage() {
               </ol>
             </section>
           ))}
-          <p className="faint text-sm">按做错次数和考点频率排序，最多 {LIMIT} 条。{SUBJECT_NAME.japanese}题的易错点多是读题和听力陷阱。</p>
+          <div className="tp-legend faint text-sm">
+            <span className="tp-dot tp-dot-trap" />易错点
+            <span className="tp-dot tp-dot-point" />考点
+            <span>· 按没答对的次数和考点频率排序，最多 {LIMIT} 条。{SUBJECT_NAME.japanese}的易错点多是读题和听力陷阱。</span>
+          </div>
         </div>
       )}
     </div>

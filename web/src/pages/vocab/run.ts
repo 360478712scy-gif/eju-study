@@ -5,6 +5,7 @@ import { useSyncExternalStore } from 'react';
 import type { AppState, VocabEntry, VocabSkill } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { vocabQueue } from '@shared/actions.ts';
+import { daysLeftOn, phaseFor, vocabDueCount, vocabNewLimit, vocabSkills } from '@shared/planner.ts';
 
 export interface RunCard {
   vocabId: string;
@@ -73,51 +74,130 @@ export function useRun(): VocabRun | null {
 
 // ─── Queue ───
 
-const CHUNK = 6;
+/**
+ * Today's words come straight from the shared engine, so this page and the day plan agree:
+ * the new-word limit is vocabNewLimit (none in the final days, fewer when reviews pile up),
+ * the cards are vocabQueue, and each word trains the skills vocabSkills gives it.
+ */
+export interface VocabDay {
+  /** Cards due now — the whole pile, not only what fits in one round. */
+  due: number;
+  /** Engine limit on new words for today (as the day began). */
+  planned: number;
+  /** New words allowed today: the engine's, or the learner's own choice on this device. */
+  limit: number;
+  /** The learner picked the number on this device. */
+  manual: boolean;
+  /** No new words because the exam is days away (vs. because of the review pile). */
+  finalDays: boolean;
+  /** New words already started today. */
+  started: number;
+  /** New words still to start today. */
+  left: number;
+  /** This round, in the engine's order. */
+  queue: { id: string; skill: VocabSkill }[];
+}
+
+export function vocabDay(state: AppState, bank: BankIndex, date: string, override: number | null): VocabDay {
+  const start = dayStart(state, bank, date);
+  const planned = vocabNewLimit(start.view, bank, date);
+  const limit = override ?? planned;
+  const left = Math.max(0, limit - start.started);
+  const phase = phaseFor(daysLeftOn(state, date));
+  return {
+    due: vocabDueCount(state, bank, date),
+    planned,
+    limit,
+    manual: override !== null,
+    finalDays: phase === 'final' || phase === 'exam',
+    started: start.started,
+    left,
+    queue: vocabQueue(state, bank, date, left),
+  };
+}
 
 /**
- * Interleave readings and meanings: a block of "看字写读音" cards, then the "选意思"
- * cards of words revealed at least CHUNK cards earlier, so the meaning test is a
- * real recall rather than an echo of the answer just shown.
+ * Vocab records as the study day began, so the new-word limit does not grow as the learner
+ * clears reviews and stays put once today's words are learned: cards first met today are
+ * taken out, cards answered again today count as having been on today's pile.
  */
-export function orderCards(queue: { id: string; skill: VocabSkill }[]): RunCard[] {
-  const reads = queue.filter((q) => q.skill === 'read');
-  const pending = queue.filter((q) => q.skill === 'meaning');
-  const readIds = new Set(reads.map((q) => q.id));
-  const placedAt = new Map<string, number>();
+function dayStart(state: AppState, bank: BankIndex, date: string): { view: AppState; started: number } {
+  const todayCount = new Map<string, number>();
+  for (const a of state.vocabAttempts) {
+    if (a.date !== date) continue;
+    const key = `${a.vocabId}|${a.skill}`;
+    todayCount.set(key, (todayCount.get(key) || 0) + 1);
+  }
+  if (!todayCount.size) return { view: state, started: 0 };
+  const vocab: AppState['vocab'] = { ...state.vocab };
+  const touched = new Set<string>();
+  for (const [key, n] of todayCount) {
+    const cut = key.lastIndexOf('|');
+    const id = key.slice(0, cut);
+    const skill = key.slice(cut + 1) as VocabSkill;
+    const sp = state.vocab[id]?.[skill];
+    if (!sp) continue;
+    const before = { ...vocab[id] };
+    if (sp.seen <= n) delete before[skill];
+    else if (sp.due > date) before[skill] = { ...sp, due: date };
+    vocab[id] = before;
+    touched.add(id);
+  }
+  let started = 0;
+  for (const id of touched) {
+    const v = bank.vocabById.get(id);
+    if (!v) continue;
+    const skills = vocabSkills(v);
+    if (skills.every((k) => !vocab[id]?.[k]) && skills.some((k) => state.vocab[id]?.[k])) started++;
+  }
+  return { view: { ...state, vocab }, started };
+}
+
+/** How many new words, and why, in a few words. */
+export function newWordsNote(day: VocabDay): string {
+  if (day.manual) return `你设了每天 ${day.limit} 个（自动是 ${day.planned} 个）· 今天已学 ${day.started} 个`;
+  if (day.planned === 0) return day.finalDays ? '考前最后几天只复习，不加新词' : '待复习的卡较多，今天先不加新词';
+  return `按待复习量自动定 · 今天 ${day.planned} 个，已学 ${day.started} 个`;
+}
+
+const GAP = 6;
+
+/**
+ * Keep the engine's order, but put at least GAP cards between the two cards of one word:
+ * the reading card shows the meaning, so the meaning test right after would only be an echo.
+ */
+export function spaceCards(queue: { id: string; skill: VocabSkill }[]): RunCard[] {
   const out: RunCard[] = [];
-  let r = 0;
-  while (r < reads.length || pending.length) {
-    for (let k = 0; k < CHUNK && r < reads.length; k++, r++) {
-      placedAt.set(reads[r].id, out.length);
-      out.push({ vocabId: reads[r].id, skill: 'read' });
-    }
-    let placed = 0;
-    for (let i = 0; i < pending.length && placed < CHUNK; ) {
-      const m = pending[i];
-      const at = placedAt.get(m.id);
-      if (!readIds.has(m.id) || (at !== undefined && out.length - at >= CHUNK)) {
-        out.push({ vocabId: m.id, skill: 'meaning' });
-        pending.splice(i, 1);
-        placed++;
+  const firstAt = new Map<string, number>();
+  const waiting: { id: string; skill: VocabSkill }[] = [];
+  const release = () => {
+    for (let i = 0; i < waiting.length; ) {
+      const w = waiting[i];
+      if (out.length - firstAt.get(w.id)! >= GAP) {
+        out.push({ vocabId: w.id, skill: w.skill });
+        waiting.splice(i, 1);
       } else i++;
     }
-    if (r >= reads.length && placed === 0 && pending.length) {
-      out.push(...pending.map((m) => ({ vocabId: m.id, skill: 'meaning' as const })));
-      pending.length = 0;
-    }
+  };
+  for (const q of queue) {
+    release();
+    const at = firstAt.get(q.id);
+    if (at === undefined) firstAt.set(q.id, out.length);
+    if (at !== undefined && out.length - at < GAP) waiting.push(q);
+    else out.push({ vocabId: q.id, skill: q.skill });
   }
+  release();
+  out.push(...waiting.map((q) => ({ vocabId: q.id, skill: q.skill })));
   return out;
 }
 
-/** Cards a learner can practise beyond today's queue: weakest skills first. */
+/** Cards to practise once today's queue is empty: weakest skills first. */
 export function extraQueue(state: AppState, bank: BankIndex, count: number): { id: string; skill: VocabSkill }[] {
   const out: { id: string; skill: VocabSkill; box: number; ok: number; due: string }[] = [];
   for (const v of bank.bundle.vocab) {
     const p = state.vocab[v.id];
     if (!p) continue;
-    for (const skill of ['read', 'meaning'] as const) {
-      if (skill === 'read' && isKanaOnly(v.word)) continue;
+    for (const skill of vocabSkills(v)) {
       const sp = p[skill];
       if (sp) out.push({ id: v.id, skill, box: sp.box, ok: sp.lastCorrect ? 1 : 0, due: sp.due });
     }
@@ -126,22 +206,26 @@ export function extraQueue(state: AppState, bank: BankIndex, count: number): { i
   return out.slice(0, count).map(({ id, skill }) => ({ id, skill }));
 }
 
-/**
- * Today's queue (due first, then new cards) from shared vocabQueue, minus the "看字写读音"
- * card of words written only in kana (むしろ, いわゆる …), which have nothing to read.
- * Those would otherwise take new-card slots every day, so the request is padded by their number.
- */
-export function buildQueue(state: AppState, bank: BankIndex, date: string, newLimit: number, max?: number) {
-  const skip = (q: { id: string; skill: VocabSkill }) => q.skill === 'read' && isKanaOnly(bank.vocabById.get(q.id)?.word ?? '');
-  const pad = bank.bundle.vocab.filter((v) => isKanaOnly(v.word)).length;
-  const due: { id: string; skill: VocabSkill }[] = [];
-  const fresh: { id: string; skill: VocabSkill }[] = [];
-  for (const q of vocabQueue(state, bank, date, newLimit + Math.ceil(pad / 2))) {
-    if (skip(q)) continue;
-    (state.vocab[q.id]?.[q.skill] ? due : fresh).push(q);
+// The learner's own new-word number on this device; absent = follow the engine.
+const NEW_WORDS_KEY = 'eju-vocab-new-words';
+export const NEW_WORD_CHOICES = [10, 20, 30, 40] as const;
+
+export function readNewWords(): number | null {
+  try {
+    const n = Number(localStorage.getItem(NEW_WORDS_KEY));
+    return NEW_WORD_CHOICES.some((c) => c === n) ? n : null;
+  } catch {
+    return null;
   }
-  const q = [...due, ...fresh.slice(0, newLimit * 2)];
-  return max !== undefined ? q.slice(0, max) : q;
+}
+
+export function writeNewWords(n: number | null) {
+  try {
+    if (n === null) localStorage.removeItem(NEW_WORDS_KEY);
+    else localStorage.setItem(NEW_WORDS_KEY, String(n));
+  } catch {
+    /* ignore */
+  }
 }
 
 export function newRun(cards: RunCard[], date: string, title: string): VocabRun {
@@ -238,9 +322,10 @@ export function vocabGroup(v: VocabEntry): string | undefined {
   return 'group' in v && typeof v.group === 'string' ? v.group : undefined;
 }
 
-/** No kanji to read (e.g. いわゆる, それどころか). */
-export function isKanaOnly(word: string): boolean {
-  return !/[\u3400-\u9fff\u3005\uf900-\ufaff]/.test(word);
+/** Why a word has no "看字写读音" card, or null when it has one (skills come from the engine). */
+export function noReadReason(v: VocabEntry): string | null {
+  if (vocabSkills(v).includes('read')) return null;
+  return /^[\u3040-\u30ffー・ ]+$/.test(v.word) ? '只用假名书写，不用单独练读音' : '理科术语只考词义，读音不单独练';
 }
 
 export const SKILL_LABEL: Record<VocabSkill, string> = {

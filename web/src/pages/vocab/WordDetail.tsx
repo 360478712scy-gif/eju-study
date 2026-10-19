@@ -8,7 +8,7 @@ import { cx, fmtDateShort } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Modal } from '../../components/ui.tsx';
 import { AudioButton, Highlighted, Meter } from './parts.tsx';
-import { CATEGORY_LABEL, isKanaOnly, SKILL_LABEL, vocabGroup } from './run.ts';
+import { CATEGORY_LABEL, noReadReason, SKILL_LABEL, vocabGroup } from './run.ts';
 
 function dueText(due: string, today: string): string {
   const d = daysBetween(today, due);
@@ -87,11 +87,12 @@ export function WordDetail({ vocabId, onClose }: { vocabId: string | null; onClo
           <div className="vc-detail-skills">
             {(['read', 'meaning'] as VocabSkill[]).map((skill) => {
               const sp = p?.[skill];
-              if (skill === 'read' && isKanaOnly(v.word)) {
+              const noRead = skill === 'read' ? noReadReason(v) : null;
+              if (noRead) {
                 return (
                   <div key={skill} className="vc-detail-skill">
                     <span className="vc-detail-skill-name">看字写读音</span>
-                    <div className="vc-detail-skill-sub">只用假名书写，不用单独练读音。</div>
+                    <div className="vc-detail-skill-sub">{noRead}。</div>
                   </div>
                 );
               }

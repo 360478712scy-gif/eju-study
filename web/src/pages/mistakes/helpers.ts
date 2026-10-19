@@ -55,7 +55,7 @@ export function resultOf(a: Attempt | undefined): ResultKind {
 export const RESULT_TEXT: Record<ResultKind, string> = {
   right: '答对',
   wrong: '答错',
-  guess: '蒙对',
+  guess: '猜对',
   gaveup: '没作答',
   partial: '部分对',
   none: '未做',

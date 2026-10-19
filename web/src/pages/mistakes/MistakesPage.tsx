@@ -1,7 +1,7 @@
-// 错题本: due re-tests first, then every mistake grouped by subject → topic, plus starred items.
+// 错题本: due re-tests first, then every mistake grouped by subject → topic, plus slow-but-correct and starred items.
 import { useMemo, useState } from 'react';
 import type { Attempt, Item, ItemProgress, Subject } from '@shared/types.ts';
-import { isDue, MISTAKE_GRADUATE_BOX } from '@shared/srs.ts';
+import { isDue, MISTAKE_GRADUATE_BOX, SLOW_FACTOR } from '@shared/srs.ts';
 import { planSeconds } from '@shared/planner.ts';
 import { useReady } from '../../lib/store.ts';
 import { href, navigate } from '../../lib/router.ts';
@@ -14,16 +14,18 @@ import { BoxDots, ResultMark } from './bits.tsx';
 import { SUBJECT_ORDER, dueInfo, launch, resultOf, sourceLabel, stemSnippet, RESULT_TEXT } from './helpers.ts';
 import './mistakes.css';
 
-type Tab = 'mistakes' | 'starred';
+type Tab = 'mistakes' | 'slow' | 'starred';
 type SubjectFilter = 'all' | Subject;
 type DueFilter = 'all' | 'due' | 'later';
-type SortKey = 'due' | 'recent' | 'often';
+type SortKey = 'due' | 'recent' | 'often' | 'slowest';
 
 interface Row {
   item: Item;
   p: ItemProgress;
   last?: Attempt;
   due: boolean;
+  /** Last time ÷ exam pace. */
+  ratio: number;
 }
 
 interface TopicGroup {
@@ -41,16 +43,18 @@ interface SubjectGroup {
   due: number;
 }
 
-const SORTS: { value: SortKey; label: string }[] = [
-  { value: 'due', label: '到期优先' },
-  { value: 'recent', label: '最近做过' },
-  { value: 'often', label: '错得最多' },
+const SORTS: { value: SortKey; label: string; tabs: Tab[] }[] = [
+  { value: 'slowest', label: '最慢优先', tabs: ['slow'] },
+  { value: 'due', label: '到期优先', tabs: ['mistakes', 'starred'] },
+  { value: 'recent', label: '最近做过', tabs: ['mistakes', 'slow', 'starred'] },
+  { value: 'often', label: '错得最多', tabs: ['mistakes', 'starred'] },
 ];
 
 function compareRows(sort: SortKey) {
   return (a: Row, b: Row) => {
     if (sort === 'due') return (a.p.due || '9999').localeCompare(b.p.due || '9999') || a.p.box - b.p.box || a.item.id.localeCompare(b.item.id);
     if (sort === 'recent') return b.p.lastAt.localeCompare(a.p.lastAt) || a.item.id.localeCompare(b.item.id);
+    if (sort === 'slowest') return b.ratio - a.ratio || a.item.id.localeCompare(b.item.id);
     return b.p.attempts - b.p.correct - (a.p.attempts - a.p.correct) || a.p.box - b.p.box || a.item.id.localeCompare(b.item.id);
   };
 }
@@ -72,19 +76,25 @@ export function MistakesPage() {
 
   const all = useMemo(() => {
     const mistakes: Row[] = [];
+    const slow: Row[] = [];
     const starred: Row[] = [];
+    let graduated = 0;
     for (const [id, p] of Object.entries(state.progress)) {
       const item = bank.byId.get(id);
       if (!item) continue;
-      const row: Row = { item, p, last: lastById.get(id), due: isDue(p, today) };
+      const last = lastById.get(id);
+      const row: Row = { item, p, last, due: isDue(p, today), ratio: last && item.targetSec ? last.seconds / item.targetSec : 0 };
       if (p.inMistakes) mistakes.push(row);
+      else if (p.box >= MISTAKE_GRADUATE_BOX) graduated += 1;
+      if (p.slow && p.lastCorrect) slow.push(row);
       if (p.starred) starred.push(row);
     }
-    return { mistakes, starred };
+    return { mistakes, slow, starred, graduated };
   }, [state.progress, bank, lastById, today]);
 
   const dueRows = useMemo(() => all.mistakes.filter((r) => r.due).sort(compareRows('due')), [all.mistakes]);
-  const source = tab === 'mistakes' ? all.mistakes : all.starred;
+  const source = tab === 'mistakes' ? all.mistakes : tab === 'slow' ? all.slow : all.starred;
+  const sortKey: SortKey = SORTS.find((x) => x.value === sort)?.tabs.includes(tab) ? sort : tab === 'slow' ? 'slowest' : 'due';
 
   const subjectCounts = useMemo(() => {
     const c: Record<SubjectFilter, number> = { all: source.length, math: 0, physics: 0, chemistry: 0, japanese: 0 };
@@ -93,12 +103,12 @@ export function MistakesPage() {
   }, [source]);
 
   const filtered = useMemo(
-    () => source.filter((r) => (subject === 'all' || r.item.subject === subject) && (tab === 'starred' || dueFilter === 'all' || (dueFilter === 'due' ? r.due : !r.due))),
+    () => source.filter((r) => (subject === 'all' || r.item.subject === subject) && (tab !== 'mistakes' || dueFilter === 'all' || (dueFilter === 'due' ? r.due : !r.due))),
     [source, subject, dueFilter, tab],
   );
 
   const groups = useMemo<SubjectGroup[]>(() => {
-    const cmp = compareRows(sort);
+    const cmp = compareRows(sortKey);
     const bySubject = new Map<Subject, Map<string, Row[]>>();
     for (const r of filtered) {
       const s = bySubject.get(r.item.subject) || new Map<string, Row[]>();
@@ -116,15 +126,15 @@ export function MistakesPage() {
       topics.sort((a, b) => cmp(a.rows[0], b.rows[0]) || b.rows.length - a.rows.length);
       return { subject: s, topics, count: topics.reduce((n, t) => n + t.rows.length, 0), due: topics.reduce((n, t) => n + t.due, 0) };
     });
-  }, [filtered, sort, bank]);
+  }, [filtered, sortKey, bank]);
 
   const orderedIds = useMemo(() => groups.flatMap((g) => g.topics.flatMap((t) => t.rows.map((r) => r.item.id))), [groups]);
 
   return (
     <div className="page mb-page">
-      <PageHeader title="错题本" desc="做错、蒙对或没把握的题会自动收进来。隔天答对才算，间隔答对 3 次自动移出。" />
+      <PageHeader title="错题本" desc="做错或猜的题 2 天后再练，再隔 4 天；间隔答对 2 次（选“确定”）就移出错题本。" />
 
-      <DueHero dueRows={dueRows} total={all.mistakes} today={today} onTimed={() => setTimedOpen(true)} />
+      <DueHero dueRows={dueRows} total={all.mistakes} graduated={all.graduated} today={today} onTimed={() => setTimedOpen(true)} />
 
       <div className="mb-toolbar">
         <Segmented<Tab>
@@ -142,6 +152,15 @@ export function MistakesPage() {
                 </span>
               ),
               icon: 'alert',
+            },
+            {
+              value: 'slow',
+              label: (
+                <span className="mb-tab">
+                  做对但太慢<b className="num">{all.slow.length}</b>
+                </span>
+              ),
+              icon: 'clock',
             },
             {
               value: 'starred',
@@ -187,8 +206,8 @@ export function MistakesPage() {
             )}
             <label className="mb-sort">
               <Icon name="list" size={14} />
-              <select value={sort} onChange={(e) => setSort(SORTS.find((x) => x.value === e.target.value)?.value ?? 'due')} aria-label="排序">
-                {SORTS.map((s) => (
+              <select value={sortKey} onChange={(e) => setSort(SORTS.find((x) => x.value === e.target.value)?.value ?? 'due')} aria-label="排序">
+                {SORTS.filter((s) => s.tabs.includes(tab)).map((s) => (
                   <option key={s.value} value={s.value}>
                     {s.label}
                   </option>
@@ -202,7 +221,17 @@ export function MistakesPage() {
 
       {groups.length === 0 ? (
         <div className="card mb-empty-card">
-          {tab === 'starred' ? (
+          {tab === 'slow' ? (
+            all.slow.length === 0 ? (
+              <Empty
+                icon="clock"
+                title="没有做对但太慢的题"
+                desc={`做对了、但用时超过考场节奏 ${SLOW_FACTOR} 倍的题会出现在这里。冲刺计划会隔两天再把它们排进练习，帮你把速度提上来。`}
+              />
+            ) : (
+              <Empty icon="search" title="这个科目没有太慢的题" action={<Button onClick={() => setSubject('all')}>看全部科目</Button>} />
+            )
+          ) : tab === 'starred' ? (
             all.starred.length === 0 ? (
               <Empty icon="star" title="还没有收藏的题" desc="遇到经典题、想考前再看一眼的题，在题目或解析里点「收藏」，它就会出现在这里。" />
             ) : (
@@ -212,7 +241,7 @@ export function MistakesPage() {
             <Empty
               icon="checkCircle"
               title="错题本是空的"
-              desc="去做题吧。做错、蒙对或标了「没把握」的题会自动收进来，并按 1、2、4 天的间隔安排重做。"
+              desc="去做题吧。做错或标了「猜的」的题会自动收进来，2 天后再练，再隔 4 天；标了「没把握」的题 4 天后再练一次。"
               action={
                 <Button variant="primary" icon="arrowRight" onClick={() => navigate('/practice')}>
                   去题库练习
@@ -238,6 +267,7 @@ export function MistakesPage() {
         </div>
       ) : (
         <div className="mb-groups">
+          {tab === 'slow' && <SlowNote rows={filtered} />}
           {groups.map((g) => (
             <section key={g.subject} className={cx('mb-subject', `tone-${g.subject}`)}>
               <header className="mb-subject-head">
@@ -262,11 +292,12 @@ export function MistakesPage() {
   );
 }
 
-function DueHero({ dueRows, total, today, onTimed }: { dueRows: Row[]; total: Row[]; today: string; onTimed: () => void }) {
+function DueHero({ dueRows, total, graduated, today, onTimed }: { dueRows: Row[]; total: Row[]; graduated: number; today: string; onTimed: () => void }) {
   const n = dueRows.length;
   const minutes = Math.round(dueRows.reduce((s, r) => s + planSeconds(r.item, 'review'), 0) / 60);
   const bySubject = SUBJECT_ORDER.map((s) => ({ s, n: dueRows.filter((r) => r.item.subject === s).length })).filter((x) => x.n > 0);
-  const boxes = [0, 1, 2].map((b) => total.filter((r) => Math.min(MISTAKE_GRADUATE_BOX - 1, r.p.box) === b).length);
+  // In the book: new (box 0) and correct once (box 1); out: cleared by two spaced confident answers.
+  const boxes = [0, 1].map((b) => total.filter((r) => Math.min(MISTAKE_GRADUATE_BOX - 1, r.p.box) === b).length).concat(graduated);
   const nextDue = useMemo(() => {
     const later = total
       .filter((r) => !r.due && r.p.due)
@@ -303,25 +334,25 @@ function DueHero({ dueRows, total, today, onTimed }: { dueRows: Row[]; total: Ro
                 下一批：{nextDue.info.text} {nextDue.count} 题。想多练可以限时重练全部错题。
               </>
             ) : (
-              <>做错的题会在第 1、2、4 天回来找你。</>
+              <>做错的题 2 天后回来找你，答对后再隔 4 天来一次。</>
             )}
           </div>
         </div>
       </div>
 
-      {total.length > 0 && (
+      {total.length + graduated > 0 && (
         <div className="mb-ladder" aria-label="错题进度">
           <div className="mb-ladder-head">
             <span>错题进度</span>
-            <span className="faint">共 {total.length} 题</span>
+            <span className="faint">还剩 {total.length} 题</span>
           </div>
           <div className="mb-ladder-bar">
             {boxes.map((c, i) =>
-              c > 0 ? <span key={i} className={`mb-ladder-seg b${i}`} style={{ flexGrow: c }} title={`${['新错题', '答对 1 次', '答对 2 次'][i]}：${c} 题`} /> : null,
+              c > 0 ? <span key={i} className={`mb-ladder-seg b${i}`} style={{ flexGrow: c }} title={`${['新错题', '间隔答对 1 次', '已移出（间隔答对 2 次）'][i]}：${c} 题`} /> : null,
             )}
           </div>
           <div className="mb-ladder-legend">
-            {['新错题', '对 1 次', '对 2 次'].map((l, i) => (
+            {['新错题', '对 1 次', '已移出'].map((l, i) => (
               <span key={l}>
                 <i className={`b${i}`} />
                 {l} <b className="num">{boxes[i]}</b>
@@ -374,7 +405,7 @@ function MistakeRow({ row, today, tab, onOpen }: { row: Row; today: string; tab:
   const { item, p, last } = row;
   const kind = resultOf(last);
   const due = p.inMistakes ? dueInfo(p.due, today) : null;
-  const slow = last ? last.seconds > item.targetSec * 1.2 : false;
+  const slow = row.ratio > 1.2;
   return (
     <button type="button" className={cx('mb-row', row.due && 'is-due')} onClick={() => onOpen(item.id)}>
       <ResultMark kind={kind} />
@@ -397,10 +428,39 @@ function MistakeRow({ row, today, tab, onOpen }: { row: Row; today: string; tab:
           {last ? fmtClock(last.seconds) : '—'}
         </span>
       </span>
-      <span className="mb-row-box">{p.inMistakes ? <BoxDots box={p.box} /> : <span className="faint text-xs">已移出</span>}</span>
+      <span className="mb-row-box">
+        {tab === 'slow' ? (
+          <span className="mb-ratio num" title={`上次用时是考场节奏的 ${row.ratio.toFixed(1)} 倍`}>
+            {row.ratio.toFixed(1)}×
+          </span>
+        ) : p.inMistakes ? (
+          <BoxDots box={p.box} />
+        ) : (
+          <span className="faint text-xs">已移出</span>
+        )}
+      </span>
       <span className="mb-row-due">{due ? <span className={cx('mb-due', `tone-${due.tone}`)}>{due.text}</span> : <span className="faint text-xs">—</span>}</span>
       <Icon name="right" size={16} className="mb-row-go" />
     </button>
+  );
+}
+
+/** Slow-but-correct items: why they are here and a timed redo of the slowest ones. */
+function SlowNote({ rows }: { rows: Row[] }) {
+  const picked = useMemo(() => [...rows].sort((a, b) => b.ratio - a.ratio).slice(0, 20), [rows]);
+  const minutes = Math.max(1, Math.round(picked.reduce((s, r) => s + r.item.targetSec, 0) / 60));
+  return (
+    <div className="mb-slow-note">
+      <span className="mb-slow-icon">
+        <Icon name="clock" size={18} />
+      </span>
+      <p>
+        这些题做对了，但用时超过考场节奏的 <b>{SLOW_FACTOR}</b> 倍，考场上会拖时间。冲刺计划会隔两天再排它们；想现在练，就按考场节奏限时重做。
+      </p>
+      <Button variant="soft" icon="play" onClick={() => launch({ kind: 'review', title: '慢题限时重做', items: picked.map((r) => r.item), exam: true })}>
+        限时重做 {picked.length} 题 · {minutes} 分钟
+      </Button>
+    </div>
   );
 }
 
@@ -476,7 +536,7 @@ function TimedModal({ open, onClose, rows }: { open: boolean; onClose: () => voi
             <small>分钟限时</small>
           </div>
         </div>
-        <p className="faint text-sm">没到期的题这次答对不推进进度，答错会重新从第 1 天开始。</p>
+        <p className="faint text-sm">没到期的题这次答对不算进度；答错会重新等 2 天再练。</p>
       </div>
     </Modal>
   );

@@ -125,10 +125,19 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
             {due && <span className={cx('mbp-due', `tone-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
           </span>
         )}
-        {p && !p.inMistakes && p.attempts > 0 && p.correct > 0 && (
-          <Badge tone="success" icon="check">
-            不在错题本
+        {p && !p.inMistakes && p.slow && p.lastCorrect ? (
+          <Badge tone="warning" icon="clock">
+            做对但太慢
           </Badge>
+        ) : (
+          p &&
+          !p.inMistakes &&
+          p.attempts > 0 &&
+          p.correct > 0 && (
+            <Badge tone="success" icon="check">
+              不在错题本
+            </Badge>
+          )
         )}
       </div>
 
@@ -223,7 +232,7 @@ function AnswerBlock({ item, last }: { item: Item; last?: Attempt }) {
               {slow && <span> · 超时</span>}
             </span>
             {last.confidence === 'unsure' && <Badge tone="warning">没把握</Badge>}
-            {last.confidence === 'guess' && <Badge tone="warning">蒙的</Badge>}
+            {last.confidence === 'guess' && <Badge tone="warning">猜的</Badge>}
           </div>
         )}
       </div>

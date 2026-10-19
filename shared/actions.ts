@@ -15,9 +15,9 @@ import type {
 } from './types.ts';
 import type { BankIndex } from './bank.ts';
 import { mockItems } from './bank.ts';
-import { gradeItem, type GradeResult } from './grading.ts';
+import { gradeItem, isAnswered, type GradeResult } from './grading.ts';
 import { updateItemProgress, updateVocabSkill } from './srs.ts';
-import { buildDayPlan, PLANNER_VERSION, vocabSkills, mockLimitFor } from './planner.ts';
+import { buildDayPlan, PLANNER_VERSION, mockLimitFor } from './planner.ts';
 import { mockEstimate } from './stats.ts';
 
 export function uid(prefix = ''): string {
@@ -107,7 +107,7 @@ export function blockItems(state: AppState, bank: BankIndex, block: PlanBlock): 
     return res.itemIds
       .filter((id) => {
         const a = [...state.attempts].reverse().find((x) => x.itemId === id && x.mode === 'mock');
-        return !a || !a.correct || a.confidence === 'guess';
+        return !a || !a.correct || (!!a.confidence && a.confidence !== 'sure');
       })
       .map((id) => bank.byId.get(id))
       .filter(Boolean) as Item[];
@@ -260,9 +260,16 @@ export function finishSession(state: AppState, bank: BankIndex, sessionId: strin
       const it = bank.byId.get(id);
       const ans = s.answers[id];
       if (!it) continue;
-      const response = ans?.response ?? null;
-      const g = recordAttempt(state, it, s, response, ans?.seconds ?? 0, ans?.confidence, response === null ? true : ans?.gaveUp, date, now);
-      s.answers[id] = { response, seconds: ans?.seconds ?? 0, submitted: true, correct: g.correct, score: g.score, confidence: ans?.confidence, gaveUp: response === null };
+      const answered = !!ans && isAnswered(it, ans.response) && !ans.gaveUp;
+      const response = answered ? ans!.response : null;
+      if (!answered && s.kind !== 'mock') {
+        // Left blank in a timed set (time ran out or skipped): it stays a fresh question, it is not
+        // evidence about ability and it does not go to the mistake book.
+        s.answers[id] = { response: null, seconds: ans?.seconds ?? 0, submitted: true, correct: false, score: 0, gaveUp: true };
+        continue;
+      }
+      const g = recordAttempt(state, it, s, response, ans?.seconds ?? 0, ans?.confidence, !answered, date, now);
+      s.answers[id] = { response, seconds: ans?.seconds ?? 0, submitted: true, correct: g.correct, score: g.score, confidence: ans?.confidence, gaveUp: !answered };
     }
   }
   const res = summarize(state, s);
@@ -308,6 +315,13 @@ export function finishSession(state: AppState, bank: BankIndex, sessionId: strin
     };
     state.mocks.push(mock);
     res.mock = mock;
+    // Another unfinished attempt at the same paper would only produce a second, non-first-try result.
+    for (const other of Object.values(state.sessions)) {
+      if (other.id !== s.id && !other.finishedAt && other.mock?.kind === s.mock.kind && other.mock.session === s.mock.session) {
+        other.finishedAt = s.finishedAt;
+        if (state.activeSessionId === other.id) state.activeSessionId = undefined;
+      }
+    }
   }
   if (s.blockId) {
     const b = findBlock(state, s.blockId);
@@ -321,7 +335,7 @@ export function finishSession(state: AppState, bank: BankIndex, sessionId: strin
   return res;
 }
 
-function summarize(state: AppState, s: PracticeSession): FinishResult {
+function summarize(_state: AppState, s: PracticeSession): FinishResult {
   let answered = 0;
   let correct = 0;
   for (const id of s.itemIds) {
@@ -329,7 +343,8 @@ function summarize(state: AppState, s: PracticeSession): FinishResult {
     if (a?.submitted && !a.gaveUp) answered++;
     if (a?.correct) correct++;
   }
-  return { answered, correct };
+  // In a timed set every question counts (blanks are wrong), so report against the whole set.
+  return { answered: s.exam ? s.itemIds.length : answered, correct };
 }
 
 export function abandonSession(state: AppState, sessionId: string) {
@@ -392,37 +407,8 @@ export function dismissMistake(state: AppState, itemId: string) {
   }
 }
 
-/** Today's word cards: due reviews first (oldest, failed first), then new words by value. */
-export function vocabQueue(state: AppState, bank: BankIndex, date: string, newLimit: number): { id: string; skill: VocabSkill }[] {
-  const due: { id: string; skill: VocabSkill; key: string }[] = [];
-  const fresh: { id: string; skill: VocabSkill; rank: number }[] = [];
-  // False friends and kana-only connectors first; then everyday/campus words; then terms.
-  const value = (v: (typeof bank.bundle.vocab)[number]) =>
-    (v.trapZh ? 0 : 4) + (/^[\u3040-\u30ffー・ ]+$/.test(v.word) ? 0 : 1) + (v.category === 'general' || v.category === 'reading' ? 0 : 2);
-  let newWords = 0;
-  const candidates = [...bank.bundle.vocab].sort((a, b) => value(a) - value(b));
-  for (const v of candidates) {
-    const skills = vocabSkills(v);
-    const p = state.vocab[v.id];
-    if (!p || skills.every((k) => !p[k])) {
-      if (newWords < newLimit) {
-        newWords++;
-        for (const k of skills) fresh.push({ id: v.id, skill: k, rank: newWords });
-      }
-      continue;
-    }
-    for (const skill of skills) {
-      const sp = p[skill];
-      if (!sp) fresh.push({ id: v.id, skill, rank: 0 });
-      else if (sp.due <= date) due.push({ id: v.id, skill, key: sp.due + (sp.lastCorrect ? '1' : '0') });
-    }
-  }
-  due.sort((a, b) => a.key.localeCompare(b.key));
-  fresh.sort((a, b) => a.rank - b.rank);
-  return [...due.slice(0, 80).map(({ id, skill }) => ({ id, skill })), ...fresh.map(({ id, skill }) => ({ id, skill }))];
-}
-
 export { mockItems };
+export { vocabQueue } from './planner.ts';
 
 /**
  * Math re-test: box groups answered correctly last time, as letter → value, so the player can

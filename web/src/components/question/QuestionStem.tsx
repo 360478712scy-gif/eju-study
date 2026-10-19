@@ -17,19 +17,22 @@ export interface StemMarks {
   active?: string | null;
   /** After grading: correctness per box group. */
   results?: Record<string, boolean>;
+  /** Re-test: box groups kept from the last (correct) attempt; shown filled and not clickable. */
+  locked?: Record<string, boolean>;
   /** Clicking a box in the stem selects that group. */
   onBoxClick?: (group: string) => void;
 }
 
 const MarksContext = createContext<StemMarks | null>(null);
 
-type BoxState = 'idle' | 'filled' | 'active' | 'right' | 'wrong';
+type BoxState = 'idle' | 'filled' | 'active' | 'right' | 'wrong' | 'locked';
 
 function boxState(m: StemMarks, label: string): { state: BoxState; text: string | null } {
   const chars = [...label].map((l) => normalizeMark(m.values[l] || ''));
   const any = chars.some(Boolean);
   const text = any ? [...label].map((l, i) => (chars[i] === '-' ? '−' : chars[i] || l)).join('') : null;
   if (m.results && label in m.results) return { state: m.results[label] ? 'right' : 'wrong', text };
+  if (m.locked?.[label]) return { state: 'locked', text };
   if (m.active === label) return { state: 'active', text };
   return { state: any ? 'filled' : 'idle', text };
 }
@@ -40,7 +43,7 @@ function LiveBox({ label }: { label: string }) {
   if (!m) return <span className="rt-box">{label}</span>;
   const { state, text } = boxState(m, label);
   return (
-    <span className={cx('rt-box q-live-box', `is-${state}`)} data-bx={label} title={`答案框 ${label}`}>
+    <span className={cx('rt-box q-live-box', `is-${state}`)} data-bx={label} title={state === 'locked' ? `答案框 ${label} · 上次已答对，已锁定` : `答案框 ${label}`}>
       {text ?? label}
     </span>
   );
@@ -92,6 +95,7 @@ export function QuestionStem({
   hideFigures,
   marks,
   text,
+  prompt,
   gloss: glossProp,
   onGlossChange,
 }: {
@@ -103,6 +107,8 @@ export function QuestionStem({
   marks?: StemMarks;
   /** Override the rendered stem (e.g. the passage only). */
   text?: string;
+  /** The question sentence, shown as a quiet line under the text (short items whose stem was split). */
+  prompt?: string;
   /** Controlled gloss visibility (falls back to internal state seeded by showGloss). */
   gloss?: boolean;
   onGlossChange?: (open: boolean) => void;
@@ -139,13 +145,19 @@ export function QuestionStem({
   const onClick = (e: MouseEvent<HTMLDivElement>) => {
     if (!marks?.onBoxClick) return;
     const el = (e.target as HTMLElement).closest<HTMLElement>('[data-bx]');
-    if (el?.dataset.bx) marks.onBoxClick(el.dataset.bx);
+    if (el?.dataset.bx && !marks.locked?.[el.dataset.bx]) marks.onBoxClick(el.dataset.bx);
   };
 
   return (
     <MarksContext.Provider value={marks ?? null}>
       <div className={cx('q-stem', marks && 'has-marks', marks?.onBoxClick && 'is-clickable')} ref={ref} onClick={onClick}>
         <RichText text={text ?? item.stem} lang="ja" box={boxRenderer} className="q-stem-text" />
+        {prompt && (
+          <div className="q-prompt">
+            <Icon name="help" size={14} className="q-prompt-icon" />
+            <RichText text={prompt} lang="ja" className="q-prompt-text" />
+          </div>
+        )}
         {!hideFigures && item.figures && item.figures.length > 0 && <Figures figures={item.figures} />}
         {item.stemZh && (
           <div className="q-gloss">

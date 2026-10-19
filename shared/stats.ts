@@ -81,7 +81,10 @@ export function estimateSubject(state: AppState, subject: Subject, bank?: BankIn
       parts: { reading: Math.round(r.p * 200), listening: Math.round(l.p * 200) },
     };
   }
-  const e = estimateFrom(all, p0, bank);
+  // Science estimates already discount unfinished questions through the pace factor, so mock
+  // questions left blank at time-up are not counted a second time as wrong.
+  const paced = subject === 'physics' || subject === 'chemistry';
+  const e = estimateFrom(paced ? all.filter((a) => !(a.mode === 'mock' && a.gaveUp)) : all, p0, bank);
   let p = e.p;
   let completion: number | undefined;
   if ((subject === 'physics' || subject === 'chemistry') && bank) {

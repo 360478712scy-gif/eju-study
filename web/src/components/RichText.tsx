@@ -16,7 +16,10 @@ console.warn = (...a: unknown[]) => {
   warn(...a);
 };
 
-function tex(src: string, display: boolean): string {
+function tex(input: string, display: boolean, compact = false): string {
+  // In Chinese explanations/notes, display-size fractions inside running text collide with the next
+  // line, so they are rendered text-size. Japanese stems keep the exam's large fractions and boxes.
+  const src = compact && !display ? input.replace(/\\dfrac/g, '\\frac') : input;
   const key = (display ? 'D' : 'I') + src;
   const hit = cache.get(key);
   if (hit) return hit;
@@ -35,7 +38,7 @@ export interface BoxRenderer {
   (label: string): ReactNode;
 }
 
-function renderInlines(xs: Inline[], key: string, box?: BoxRenderer): ReactNode[] {
+function renderInlines(xs: Inline[], key: string, box?: BoxRenderer, compact = false): ReactNode[] {
   return xs.map((x, i) => {
     const k = `${key}.${i}`;
     switch (x.type) {
@@ -44,26 +47,26 @@ function renderInlines(xs: Inline[], key: string, box?: BoxRenderer): ReactNode[
       case 'br':
         return <br key={k} />;
       case 'strong':
-        return <strong key={k}>{renderInlines(x.children, k, box)}</strong>;
+        return <strong key={k}>{renderInlines(x.children, k, box, compact)}</strong>;
       case 'u':
         return (
           <u key={k} className="rt-u">
-            {renderInlines(x.children, k, box)}
+            {renderInlines(x.children, k, box, compact)}
           </u>
         );
       case 'box':
         return box ? <span key={k}>{box(x.label)}</span> : <span key={k} className="rt-box">{x.label}</span>;
       case 'math':
-        return <span key={k} className={x.display ? 'rt-math-display' : 'rt-math'} dangerouslySetInnerHTML={{ __html: tex(x.tex, x.display) }} />;
+        return <span key={k} className={x.display ? 'rt-math-display' : 'rt-math'} dangerouslySetInnerHTML={{ __html: tex(x.tex, x.display, compact) }} />;
     }
   });
 }
 
-function renderBlock(b: Block, i: number, box?: BoxRenderer): ReactNode {
+function renderBlock(b: Block, i: number, box?: BoxRenderer, compact = false): ReactNode {
   const k = String(i);
   switch (b.type) {
     case 'p':
-      return <p key={k}>{renderInlines(b.children, k, box)}</p>;
+      return <p key={k}>{renderInlines(b.children, k, box, compact)}</p>;
     case 'math':
       return <div key={k} className="rt-math-display" dangerouslySetInnerHTML={{ __html: tex(b.tex, true) }} />;
     case 'list': {
@@ -71,7 +74,7 @@ function renderBlock(b: Block, i: number, box?: BoxRenderer): ReactNode {
       return (
         <Tag key={k}>
           {b.items.map((it, j) => (
-            <li key={j}>{renderInlines(it, `${k}.${j}`, box)}</li>
+            <li key={j}>{renderInlines(it, `${k}.${j}`, box, compact)}</li>
           ))}
         </Tag>
       );
@@ -83,7 +86,7 @@ function renderBlock(b: Block, i: number, box?: BoxRenderer): ReactNode {
             <thead>
               <tr>
                 {b.header.map((c, j) => (
-                  <th key={j}>{renderInlines(c, `${k}.h${j}`, box)}</th>
+                  <th key={j}>{renderInlines(c, `${k}.h${j}`, box, compact)}</th>
                 ))}
               </tr>
             </thead>
@@ -91,7 +94,7 @@ function renderBlock(b: Block, i: number, box?: BoxRenderer): ReactNode {
               {b.rows.map((r, j) => (
                 <tr key={j}>
                   {r.map((c, m) => (
-                    <td key={m}>{renderInlines(c, `${k}.${j}.${m}`, box)}</td>
+                    <td key={m}>{renderInlines(c, `${k}.${j}.${m}`, box, compact)}</td>
                   ))}
                 </tr>
               ))}
@@ -113,9 +116,10 @@ interface Props {
 
 export const RichText = memo(function RichText({ text, lang, className, inline, box }: Props) {
   const nodes = useMemo(() => {
-    if (inline) return renderInlines(parseInline(text || ''), 'i', box);
-    return parseBlocks(text || '').map((b, i) => renderBlock(b, i, box));
-  }, [text, inline, box]);
+    const compact = lang === 'zh';
+    if (inline) return renderInlines(parseInline(text || ''), 'i', box, compact);
+    return parseBlocks(text || '').map((b, i) => renderBlock(b, i, box, compact));
+  }, [text, inline, box, lang]);
   if (inline) {
     return (
       <span className={cx('rt rt-inline', className)} lang={lang === 'ja' ? 'ja' : lang === 'zh' ? 'zh-CN' : undefined}>

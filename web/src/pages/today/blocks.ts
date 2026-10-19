@@ -29,13 +29,13 @@ export function blockIcon(b: PlanBlock): IconName {
     case 'mock':
       return 'target';
     case 'reading':
-      return 'book';
+      return b.title.includes('文型') ? 'languages' : 'book';
     case 'listening':
       return 'headphones';
     case 'notes':
       return 'notebook';
     case 'traps':
-      return 'alert';
+      return 'file';
     default:
       return b.title.includes('考点速测') ? 'zap' : SUBJECT_ICON[b.subject];
   }
@@ -201,7 +201,7 @@ export function finishBlockManually(blockId: string) {
 
 /**
  * Rebuild a day's plan keeping finished/started blocks, without duplicating the
- * kinds that carry no item ids (vocab, notes, mock corrections) when one is already kept.
+ * kinds that carry no item ids (vocab, notes, trap sheet, mock corrections) when one is already kept.
  */
 export function regenerateDay(d: AppState, bank: BankIndex, date: string) {
   const plan = regeneratePlan(d, bank, date);
@@ -212,6 +212,7 @@ export function regenerateDay(d: AppState, bank: BankIndex, date: string) {
       (k) =>
         (b.kind === 'vocab' && k.kind === 'vocab') ||
         (b.kind === 'notes' && k.kind === 'notes') ||
+        (b.kind === 'traps' && k.kind === 'traps') ||
         (!!b.reviewOfMock && k.reviewOfMock?.kind === b.reviewOfMock.kind && k.reviewOfMock.session === b.reviewOfMock.session),
     );
   plan.blocks = plan.blocks.filter((b) => !dup(b));

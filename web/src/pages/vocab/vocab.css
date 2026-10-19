@@ -23,7 +23,7 @@
 .vc-audio-sm.is-round { width: 28px; padding: 0; }
 .vc-audio-lg { height: 40px; padding: 0 16px; }
 .vc-audio-lg.is-round { width: 40px; padding: 0; }
-.vc-audio.is-playing { background: var(--primary); border-color: var(--primary); color: #fff; }
+.vc-audio.is-playing { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 
 .vc-meter { display: inline-flex; align-items: center; gap: 7px; }
 .vc-meter-label { font-size: var(--fs-xs); color: var(--text-3); font-weight: 600; }
@@ -49,6 +49,7 @@
 .vc-example-zh { color: var(--text-2); font-size: var(--fs-sm); }
 
 /* ── Overview ── */
+.vc-page .page-desc { max-width: 760px; }
 .vc-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 290px;
@@ -346,7 +347,7 @@
   .vc-stage { gap: 14px; padding-top: 18px; }
   .vc-word { padding: 0; }
 }
-.vc-hero-note { margin-top: -10px; color: var(--text-3); font-size: var(--fs-sm); }
+.vc-hero-notes { margin-top: -10px; display: flex; flex-direction: column; gap: 2px; color: var(--text-3); font-size: var(--fs-sm); line-height: 1.6; }
 .vc-search input:focus-visible { box-shadow: none; }
 .vc-input:focus-visible { box-shadow: var(--focus-ring); border-radius: 16px; }
 .vc-na { font-size: var(--fs-xs); color: var(--text-3); }

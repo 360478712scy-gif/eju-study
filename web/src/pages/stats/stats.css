@@ -360,7 +360,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-top: 16px;
-  align-items: start;
+  align-items: stretch;
 }
 .st-page > .card {
   margin-top: 16px;
@@ -868,4 +868,155 @@
   color: var(--text-3);
   font-size: var(--fs-xs);
   pointer-events: none;
+}
+
+/* ── Subject card extra line (halves / accuracy / finish share) ── */
+.st-subj-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+.st-halves {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.st-half {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.st-extra-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  white-space: nowrap;
+}
+.st-extra-line b {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+.st-verdict {
+  font-weight: 650;
+}
+.st-verdict.is-success {
+  color: var(--success-text);
+}
+.st-verdict.is-warning {
+  color: var(--warning-text);
+}
+.st-verdict.is-danger {
+  color: var(--danger-text);
+}
+.st-meter {
+  position: relative;
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-sunken);
+}
+.st-meter > i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+  background: var(--tone, var(--primary));
+}
+.st-meter > em {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: var(--text-2);
+}
+
+/* ── Science paper finish (card under 词汇) ── */
+.st-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.st-finish {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.st-finish-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.st-finish-num {
+  font-size: var(--fs-md);
+  font-weight: 620;
+  color: var(--text);
+}
+.st-finish-num b {
+  font-size: 26px;
+  font-weight: 740;
+  letter-spacing: -0.02em;
+  margin-left: 2px;
+}
+.st-finish-of {
+  color: var(--text-3);
+  font-weight: 600;
+}
+.st-finish-cells {
+  display: flex;
+  gap: 8px;
+}
+.st-cells {
+  display: flex;
+  flex-basis: 0;
+  gap: 2px;
+  min-width: 0;
+}
+.st-cells i {
+  flex: 1;
+  height: 14px;
+  border-radius: 3px;
+}
+.st-cells i.is-on {
+  background: var(--tone);
+}
+.st-cells i.is-off {
+  box-shadow: inset 0 0 0 1.5px var(--tone);
+  opacity: 0.45;
+}
+.st-cells i.is-unknown {
+  background: var(--border);
+}
+.st-finish-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+.st-finish-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.st-finish-legend b {
+  color: var(--text);
+  font-weight: 700;
+}
+.st-finish-say {
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
 }

@@ -226,6 +226,8 @@ export function Modal({ open, onClose, title, children, footer, width = 560, clo
 }
 
 export const isModalOpen = () => modalStack.length > 0;
+/** Number of open modals (a page-level key handler for a modal should act only when its depth is the top). */
+export const modalDepth = () => modalStack.length;
 
 // ─── Toasts ───
 interface ToastItem {
@@ -239,7 +241,8 @@ let toastSeq = 0;
 
 export function toast(text: ReactNode, tone: ToastItem['tone'] = 'neutral', ms = 2600) {
   const id = ++toastSeq;
-  toasts = [...toasts, { id, text, tone }];
+  // Same message again: replace it instead of stacking; never show more than three.
+  toasts = [...toasts.filter((t) => !(typeof text === 'string' && t.text === text)), { id, text, tone }].slice(-3);
   toastListeners.forEach((l) => l());
   setTimeout(() => {
     toasts = toasts.filter((t) => t.id !== id);
@@ -272,9 +275,12 @@ export function Toaster() {
 
 /** Confirm dialog (window.confirm does not work in the native shell). */
 export function useConfirm() {
-  const [state, setState] = useState<{ title: string; body?: ReactNode; ok: string; danger?: boolean; resolve: (v: boolean) => void } | null>(null);
-  const ask = (title: string, opts: { body?: ReactNode; ok?: string; danger?: boolean } = {}) =>
-    new Promise<boolean>((resolve) => setState({ title, body: opts.body, ok: opts.ok || '确定', danger: opts.danger, resolve }));
+  const [state, setState] = useState<{ title: string; body?: ReactNode; ok: string; cancel: string; danger?: boolean; focusCancel?: boolean; resolve: (v: boolean) => void } | null>(null);
+  /** focus: 'cancel' for irreversible actions, so an extra Enter cannot confirm by accident. */
+  const ask = (title: string, opts: { body?: ReactNode; ok?: string; cancel?: string; danger?: boolean; focus?: 'ok' | 'cancel' } = {}) =>
+    new Promise<boolean>((resolve) =>
+      setState({ title, body: opts.body, ok: opts.ok || '确定', cancel: opts.cancel || '取消', danger: opts.danger, focusCancel: opts.focus === 'cancel' || !!opts.danger, resolve }),
+    );
   const close = (v: boolean) => {
     state?.resolve(v);
     setState(null);
@@ -287,10 +293,10 @@ export function useConfirm() {
       width={420}
       footer={
         <>
-          <Button variant="ghost" onClick={() => close(false)}>
-            取消
+          <Button variant="ghost" onClick={() => close(false)} autoFocus={!!state?.focusCancel}>
+            {state?.cancel}
           </Button>
-          <Button variant={state?.danger ? 'danger' : 'primary'} onClick={() => close(true)} autoFocus>
+          <Button variant={state?.danger ? 'danger' : 'primary'} onClick={() => close(true)} autoFocus={!state?.focusCancel}>
             {state?.ok}
           </Button>
         </>

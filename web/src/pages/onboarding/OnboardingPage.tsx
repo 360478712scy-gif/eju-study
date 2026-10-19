@@ -108,7 +108,7 @@ export function OnboardingPage() {
           <ul className="ob-points">
             <Point icon="calendar" title={`${left} 天，三个阶段`} text="专项突破 → 套题实战 → 考前调整。每天打开就知道先做什么。" />
             <Point icon="checkCircle" title="每题自动判分 + 详细解析" text="不用再对答案表，做完立刻知道对错和原因。" />
-            <Point icon="refresh" title="错题自动回炉" text="做错和没把握的题会在 1、2、4 天后回来，直到真正掌握。" />
+            <Point icon="refresh" title="错题自动回炉" text="做错和没把握的题隔 2 天、再隔 4 天回来，两次有把握地答对才移出。" />
           </ul>
 
           {(history > 0 || vocabHistory > 0) && (

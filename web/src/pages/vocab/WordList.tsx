@@ -7,7 +7,8 @@ import { Icon } from '../../components/Icon.tsx';
 import { Button, Empty, Segmented } from '../../components/ui.tsx';
 import { Meter } from './parts.tsx';
 import { hasRomaji, romajiToKana } from './kana.ts';
-import { CATEGORY_LABEL, isKanaOnly, vocabGroup } from './run.ts';
+import { vocabSkills } from '@shared/planner.ts';
+import { CATEGORY_LABEL, noReadReason, vocabGroup } from './run.ts';
 
 type Status = 'all' | 'due' | 'weak' | 'new' | 'solid';
 
@@ -15,12 +16,12 @@ const PAGE = 60;
 
 function statusOf(v: VocabEntry, p: VocabProgress | undefined, today: string): Set<Status> {
   const s = new Set<Status>(['all']);
-  const kana = isKanaOnly(v.word);
-  const skills = [kana ? undefined : p?.read, p?.meaning].filter((x) => !!x);
-  if (!skills.length) s.add('new');
-  if (skills.some((x) => x!.due <= today)) s.add('due');
-  if (skills.some((x) => !x!.lastCorrect)) s.add('weak');
-  if (p?.meaning && p.meaning.box >= 3 && (kana || (p.read && p.read.box >= 3))) s.add('solid');
+  const skills = vocabSkills(v).map((k) => p?.[k]);
+  const seen = skills.filter((x) => !!x);
+  if (!seen.length) s.add('new');
+  if (seen.some((x) => x!.due <= today)) s.add('due');
+  if (seen.some((x) => !x!.lastCorrect)) s.add('weak');
+  if (skills.every((x) => x && x.box >= 3)) s.add('solid');
   return s;
 }
 
@@ -165,6 +166,7 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
           </div>
           {rows.slice(0, limit).map((v) => {
             const p = progress?.[v.id];
+            const noRead = noReadReason(v);
             return (
               <button key={v.id} type="button" role="listitem" className="vc-row" onClick={() => onOpen(v.id)}>
                 <span className="vc-row-word" lang="ja">
@@ -175,9 +177,9 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
                 </span>
                 <span className="vc-row-meaning vc-col-meaning">{v.meaningZh}</span>
                 <span className="vc-col-skill">
-                  {isKanaOnly(v.word) ? (
-                    <span className="vc-na" title="只用假名书写，不用练读音">
-                      不用练
+                  {noRead ? (
+                    <span className="vc-na" title={noRead}>
+                      只考词义
                     </span>
                   ) : (
                     <Meter p={p?.read} label="读音" />

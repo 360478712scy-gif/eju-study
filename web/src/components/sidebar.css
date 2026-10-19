@@ -36,7 +36,7 @@
   background: var(--bg-sunken); color: var(--text-2);
   font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
 }
-.sb-item.is-active .sb-badge { background: var(--primary); color: #fff; }
+.sb-item.is-active .sb-badge { background: var(--primary); color: var(--on-primary); }
 .sb-foot { border-top: 1px solid var(--border); padding: 12px 6px 0; display: flex; flex-direction: column; gap: 10px; }
 .sb-save { display: flex; align-items: center; gap: 7px; color: var(--text-3); font-size: 12px; padding: 0 6px; }
 .sb-save-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); }

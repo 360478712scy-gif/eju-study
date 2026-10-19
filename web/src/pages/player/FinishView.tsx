@@ -144,7 +144,7 @@ export function FinishView({ session, items }: { session: PracticeSession; items
               {done === 0
                 ? '这组没有作答记录，回到今日页挑下一项任务吧。'
                 : wrong.length > 0
-                  ? `错的 ${wrong.length} 题已经进了错题本，明后天会再出现。`
+                  ? `错的 ${wrong.length} 题已经进了错题本，2 天后再练。`
                   : '这一组的题都拿下了，继续保持这个节奏。'}
               {todo.length > 0 && ` 还有 ${todo.length} 题没做，不算错。`}
             </p>

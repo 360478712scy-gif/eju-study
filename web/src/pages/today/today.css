@@ -190,9 +190,42 @@
 
 .td-row.is-mock { margin: 6px 10px; padding-left: 12px; padding-right: 10px; border-radius: var(--radius); border: 1px solid var(--primary-soft-2); background: linear-gradient(90deg, var(--primary-soft) 0%, var(--bg-elev) 80%); }
 .td-row.is-mock::after, .td-row.is-mock + .td-row::after { display: none; }
-.td-row.is-mock .td-row-icon { background: var(--primary); color: #fff; }
+.td-row.is-mock .td-row-icon { background: var(--primary); color: var(--on-primary); }
 .td-row.is-mock.is-done .td-row-icon { background: var(--success); }
 .td-row.is-mock.is-next::before { display: none; }
+
+/* Supply note under the plan list */
+.td-supply {
+  display: flex; align-items: flex-start; gap: 8px; margin: 0;
+  padding: 10px 22px 12px; border-top: 1px solid var(--border);
+  color: var(--text-2); font-size: var(--fs-sm); line-height: 1.5;
+}
+.td-supply svg { flex: none; margin-top: 3px; color: var(--text-3); }
+
+/* Sleep-shift card (from D-10) */
+.td-sleep { padding: 14px 18px 14px; }
+.td-sleep-top { display: flex; align-items: center; gap: 12px; }
+.td-sleep-icon {
+  flex: none; width: 36px; height: 36px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-sunken); color: var(--text-2);
+}
+.td-sleep-main { flex: 1; min-width: 0; }
+.td-sleep-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 20px; }
+.td-sleep-time { display: flex; align-items: baseline; gap: 4px; min-width: 0; color: var(--text-2); font-size: var(--fs-sm); font-weight: 600; }
+.td-sleep-time .num { color: var(--text); font-size: var(--fs-xl); font-weight: 720; line-height: 1.15; letter-spacing: -0.01em; }
+.td-sleep-trend { margin-left: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-3); font-size: var(--fs-xs); font-weight: 560; }
+.td-sleep-chip {
+  flex: none; padding: 1px 8px; border-radius: var(--radius-pill);
+  background: var(--primary-soft); color: var(--primary-text); font-size: var(--fs-xs); font-weight: 650; white-space: nowrap;
+}
+.td-sleep-chip.is-late { background: var(--warning-soft); color: var(--warning-text); }
+.td-sleep-note { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--border); color: var(--text-2); font-size: var(--fs-sm); line-height: 1.55; }
+.td-sleep-alert {
+  display: flex; align-items: center; gap: 7px; margin: 8px 0 0; padding: 7px 10px; border-radius: var(--radius-sm);
+  background: var(--warning-soft); color: var(--warning-text); font-size: var(--fs-sm); font-weight: 650;
+}
+.td-sleep-alert svg { flex: none; }
 
 /* Progress card */
 .td-progress { padding: 18px 20px; }
@@ -263,6 +296,8 @@ a.td-mock:hover { border-color: var(--primary-soft-2); box-shadow: var(--shadow)
   .td-progress { order: 2; }
   .td-plan { order: 3; }
   .td-aside-rest { order: 4; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "score mock" "due due"; gap: 16px; }
+  .td-aside-rest.has-sleep { grid-template-areas: "sleep sleep" "score mock" "due due"; }
+  .td-aside-rest .td-sleep { grid-area: sleep; }
   .td-aside-rest .td-score { grid-area: score; }
   .td-aside-rest .td-mock { grid-area: mock; }
   .td-aside-rest .td-due { grid-area: due; flex-direction: row; }
@@ -277,6 +312,7 @@ a.td-mock:hover { border-color: var(--primary-soft-2); box-shadow: var(--shadow)
 }
 @media (max-width: 860px) {
   .td-aside-rest { grid-template-columns: minmax(0, 1fr); grid-template-areas: "score" "due" "mock"; }
+  .td-aside-rest.has-sleep { grid-template-areas: "sleep" "score" "due" "mock"; }
   .td-aside-rest .td-due { flex-direction: column; }
   .td-due .td-due-row + .td-due-row { border-left: none; border-top: 1px solid var(--border); }
   .td-progress { flex-direction: column; align-items: stretch; }

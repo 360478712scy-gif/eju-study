@@ -2,9 +2,9 @@
 // Practice sessions grade each answer immediately; exam sessions (mocks, timed sets)
 // keep everything silent until 交卷.
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import type { AppState, Confidence, Item, PracticeSession, SessionAnswer } from '@shared/types.ts';
+import type { AppState, Confidence, Item, ItemProgress, PracticeSession, SessionAnswer } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
-import { abandonSession, addStudyTime, finishSession, saveDraft, setConfidence, submitAnswer } from '@shared/actions.ts';
+import { abandonSession, addStudyTime, finishSession, lockedGroups, saveDraft, setConfidence, submitAnswer } from '@shared/actions.ts';
 import { blankGroups, gradeItem, isAnswered } from '@shared/grading.ts';
 import { flush, getSnapshot, update, useApp } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
@@ -13,7 +13,7 @@ import { stopSpeech } from '../../lib/audio.ts';
 import { Button, Kbd, isModalOpen, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
-import { QuestionStem, splitReadingStem, type StemMarks } from '../../components/question/QuestionStem.tsx';
+import { QuestionStem, type StemMarks } from '../../components/question/QuestionStem.tsx';
 import { cx } from '../../lib/format.ts';
 import { StudyClock } from './clock.ts';
 import { isFocusedControl, isTextField, markKey } from './hotkeys.ts';
@@ -23,7 +23,7 @@ import { MarkSheet } from './MarkSheet.tsx';
 import { AudioPanel } from './AudioPanel.tsx';
 import { CoachCard } from './CoachCard.tsx';
 import { NoteBox } from './NoteBox.tsx';
-import { ConfidencePicker, ExamSheet, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, nextConfidence } from './parts.tsx';
+import { ConfidencePicker, ExamSheet, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, SlowNudge, nextConfidence, stemLayout } from './parts.tsx';
 
 type Resp = SessionAnswer['response'];
 type Mutate = (d: AppState, bank: BankIndex, today: string) => void;
@@ -36,6 +36,35 @@ const FLUSH_EVERY = 10;
 
 function marksOf(r: Resp): Record<string, string> {
   return r && typeof r === 'object' ? r : {};
+}
+
+type Locks = Record<string, Record<string, string>>;
+
+/**
+ * Math re-test (review sessions, incl. a mock's correction): box groups that were right last time
+ * stay filled and locked, so only the rest is redone. A last attempt that was given up, or one
+ * where everything was already right (a guess), is redone in full.
+ */
+function initialLocks(session: PracticeSession, items: Item[]): Locks {
+  if (session.kind !== 'review') return {};
+  const { state, bank } = getSnapshot();
+  if (!state || !bank) return {};
+  const out: Locks = {};
+  for (const it of items) {
+    if (it.format !== 'blanks' || (!session.exam && session.answers[it.id]?.submitted)) continue;
+    let gaveUp = false;
+    for (let i = state.attempts.length - 1; i >= 0; i--) {
+      if (state.attempts[i].itemId === it.id) {
+        gaveUp = !!state.attempts[i].gaveUp;
+        break;
+      }
+    }
+    if (gaveUp) continue;
+    const l = lockedGroups(state, bank, it.id);
+    const n = Object.keys(l).length;
+    if (n > 0 && n < blankGroups(it).join('').length) out[it.id] = l;
+  }
+  return out;
 }
 
 function explanationDefault(a: SessionAnswer | undefined): boolean {
@@ -52,6 +81,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const { ask, node: confirmNode } = useConfirm();
 
   const [clock] = useState(() => new StudyClock(!exam));
+  const [locks] = useState<Locks>(() => initialLocks(session, items));
   const [index, setIndex] = useState(() => Math.max(0, Math.min(N - 1, session.index || 0)));
   const item = items[index];
   const ans: SessionAnswer | undefined = session.answers[item.id];
@@ -62,6 +92,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const [drafts, setDraftsState] = useState<Record<string, Resp>>(() => {
     const o: Record<string, Resp> = {};
     for (const [id, a] of Object.entries(session.answers)) if (exam || !a.submitted) o[id] = a.response;
+    for (const [id, l] of Object.entries(locks)) o[id] = { ...marksOf(o[id] ?? null), ...l };
     return o;
   });
   const [confs, setConfsState] = useState<Record<string, Confidence>>(() => {
@@ -75,6 +106,8 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const draftTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const finishing = useRef(false);
+  /** Progress just before each answer was graded (to tell when an item left the mistake book). */
+  const before = useRef<Record<string, ItemProgress | null>>({});
   const curId = useRef(item.id);
   curId.current = item.id;
 
@@ -84,6 +117,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const [exOpen, setExOpen] = useState<Record<string, boolean>>({});
   const [autoNext, setAutoNext] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [skipped, setSkipped] = useState<Record<string, true>>({});
   const [gloss, setGloss] = useState(settings.showZhGloss);
   const played = useRef(new Set<string>());
   const [, bumpPlayed] = useState(0);
@@ -92,6 +126,29 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const mainRef = useRef<HTMLElement>(null);
 
   // ── Derived ──
+  /** Something of the learner's own is filled in (locked cells don't count). */
+  const done = (it: Item, r: Resp): boolean => {
+    const l = locks[it.id];
+    if (!l) return isAnswered(it, r);
+    const v = marksOf(r);
+    return Object.keys(it.blanks ?? {}).some((k) => !(k in l) && (v[k] || '').trim() !== '');
+  };
+  /** Fully answered: a choice is picked, or every open mark-sheet cell is filled. */
+  const complete = (it: Item, r: Resp): boolean => {
+    if (it.format === 'choice') return typeof r === 'number';
+    const v = marksOf(r);
+    return Object.keys(it.blanks ?? {}).every((k) => (v[k] || '').trim() !== '');
+  };
+  /** Exam: index of the next question (after the current one, wrapping) that still needs answers. */
+  const nextOpen = (): number | null => {
+    for (let k = 1; k < N; k++) {
+      const j = (index + k) % N;
+      const it = items[j];
+      if (!complete(it, draftsRef.current[it.id] ?? session.answers[it.id]?.response ?? null)) return j;
+    }
+    return null;
+  };
+
   const frontier = useMemo(() => {
     if (exam) return N - 1;
     const i = items.findIndex((it) => !session.answers[it.id]?.submitted);
@@ -107,8 +164,8 @@ export function Player({ session, items }: { session: PracticeSession; items: It
           const r = drafts[it.id] ?? a?.response ?? null;
           const c = confs[it.id];
           const shaky = !!c && c !== 'sure';
-          const done = isAnswered(it, r);
-          return { state: shaky ? 'flag' : done ? 'answered' : 'todo', reachable: true, answered: done };
+          const has = done(it, r);
+          return { state: shaky ? 'flag' : has ? 'answered' : 'todo', reachable: true, answered: has };
         }
         if (a?.submitted) return { state: a.correct ? 'right' : 'wrong', reachable: true };
         return { state: 'todo', reachable: i <= frontier };
@@ -116,9 +173,14 @@ export function Player({ session, items }: { session: PracticeSession; items: It
     [items, session.answers, drafts, confs, exam, frontier],
   );
 
-  const split = useMemo(() => splitReadingStem(item), [item]);
+  const layout = useMemo(() => stemLayout(item), [item]);
+  const split = layout.split;
   const groups = useMemo(() => (item.format === 'blanks' ? blankGroups(item) : []), [item]);
   const letters = useMemo(() => groups.flatMap((g) => [...g]), [groups]);
+  const lock = locks[item.id];
+  /** Letters the learner fills (everything except the locked ones). */
+  const openLetters = useMemo(() => (lock ? letters.filter((l) => !(l in lock)) : letters), [letters, lock]);
+  const lockedNames = useMemo(() => (lock ? Object.fromEntries(groups.filter((g) => [...g].every((l) => l in lock)).map((g) => [g, true])) : undefined), [groups, lock]);
   const grade = useMemo(() => (graded ? gradeItem(item, ans!.response) : null), [graded, item, ans]);
   const groupPos = useMemo(() => {
     if (!item.group) return undefined;
@@ -129,7 +191,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   // Mark-sheet cursor, keyed by item so it resets without an effect.
   const [cursor, setCursor] = useState<{ id: string; letter: string | null }>({ id: '', letter: null });
   const values = marksOf(response);
-  const activeLetter = cursor.id === item.id ? cursor.letter : canEdit ? (letters.find((l) => !values[l]) ?? letters[0] ?? null) : null;
+  const activeLetter = cursor.id === item.id ? cursor.letter : canEdit ? (openLetters.find((l) => !values[l]) ?? openLetters[0] ?? null) : null;
   const activeGroup = activeLetter ? (groups.find((g) => g.includes(activeLetter)) ?? null) : null;
 
   // ── Persistence ──
@@ -159,7 +221,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
           const r = draftsRef.current[id] ?? a?.response ?? null;
           const sec = id === id0 ? secs : 0;
           const it = bank.byId.get(id);
-          if (s.exam && it && isAnswered(it, r)) submitAnswer(d, bank, { sessionId: sid, itemId: id, response: r, seconds: sec, confidence: confsRef.current[id], date: day });
+          if (s.exam && it && done(it, r)) submitAnswer(d, bank, { sessionId: sid, itemId: id, response: r, seconds: sec, confidence: confsRef.current[id], date: day });
           else saveDraft(d, sid, id, r, sec);
         }
         opts.mutate?.(d, bank, day);
@@ -169,6 +231,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   };
 
   const setDraft = (id: string, r: Resp, commitNow = false) => {
+    if (locks[id]) r = { ...marksOf(r), ...locks[id] };
     draftsRef.current = { ...draftsRef.current, [id]: r };
     setDraftsState(draftsRef.current);
     dirty.current.add(id);
@@ -219,7 +282,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
 
   const confirmSubmitExam = async () => {
     setSheetOpen(false);
-    const left = items.filter((it) => !isAnswered(it, draftsRef.current[it.id] ?? session.answers[it.id]?.response ?? null)).length;
+    const left = items.filter((it) => !done(it, draftsRef.current[it.id] ?? session.answers[it.id]?.response ?? null)).length;
     const ok = await ask('现在交卷？', {
       body: left ? `还有 ${left} 题没作答，交卷后按答错计算。` : '全部作答完毕，交卷后立刻看到成绩和每题解析。',
       ok: '交卷',
@@ -250,7 +313,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const submit = (opts: { gaveUp?: boolean; resp?: Resp } = {}) => {
     if (exam || graded || finishing.current) return;
     const r = opts.resp !== undefined ? opts.resp : (draftsRef.current[item.id] ?? null);
-    if (!opts.gaveUp && !isAnswered(item, r)) return;
+    if (!opts.gaveUp && !done(item, r)) return;
     if (draftTimer.current) clearTimeout(draftTimer.current);
     draftTimer.current = null;
     dirty.current.delete(item.id);
@@ -258,6 +321,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
     const secs = clock.takeItem();
     clock.setCounting(false);
     const conf = confsRef.current[item.id] ?? 'sure';
+    before.current[item.id] = getSnapshot().state?.progress[item.id] ?? null;
     const g = update(
       (d, bank, day) => {
         for (const id of dirty.current) {
@@ -303,22 +367,27 @@ export function Player({ session, items }: { session: PracticeSession; items: It
     setDraft(item.id, i, exam);
   };
 
+  /** The cell being filled: the active letter if it is open, else the first open one. */
+  const curLetter = (): string | null => (activeLetter && openLetters.includes(activeLetter) ? activeLetter : (openLetters[0] ?? null));
+
   const mark = (ch: string) => {
-    if (!canEdit || item.format !== 'blanks' || !letters.length) return;
-    const L = activeLetter ?? letters[0];
+    if (!canEdit || item.format !== 'blanks') return;
+    const L = curLetter();
+    if (!L) return;
     setDraft(item.id, { ...marksOf(draftsRef.current[item.id] ?? null), [L]: ch });
-    const i = letters.indexOf(L);
-    setCursor({ id: item.id, letter: letters[Math.min(i + 1, letters.length - 1)] });
+    const i = openLetters.indexOf(L);
+    setCursor({ id: item.id, letter: openLetters[Math.min(i + 1, openLetters.length - 1)] });
   };
 
   const erase = () => {
-    if (!canEdit || item.format !== 'blanks' || !letters.length) return;
-    const L = activeLetter ?? letters[0];
+    if (!canEdit || item.format !== 'blanks') return;
+    const L = curLetter();
+    if (!L) return;
     const cur = { ...marksOf(draftsRef.current[item.id] ?? null) };
     let target = L;
     if (!cur[L]) {
-      const i = letters.indexOf(L);
-      if (i > 0) target = letters[i - 1];
+      const i = openLetters.indexOf(L);
+      if (i > 0) target = openLetters[i - 1];
     }
     delete cur[target];
     setDraft(item.id, cur);
@@ -326,15 +395,24 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   };
 
   const moveCursor = (delta: number) => {
-    if (!letters.length) return;
-    const i = activeLetter ? letters.indexOf(activeLetter) : -1;
-    setCursor({ id: item.id, letter: letters[Math.max(0, Math.min(letters.length - 1, i + delta))] });
+    if (!openLetters.length) return;
+    const i = activeLetter ? openLetters.indexOf(activeLetter) : -1;
+    setCursor({ id: item.id, letter: openLetters[Math.max(0, Math.min(openLetters.length - 1, i + delta))] });
   };
 
   const focusGroup = (g: string) => {
     if (!canEdit) return;
-    const first = [...g].find((l) => !values[l]) ?? g[0];
-    setCursor({ id: item.id, letter: first });
+    const open = [...g].filter((l) => openLetters.includes(l));
+    if (!open.length) return;
+    setCursor({ id: item.id, letter: open.find((l) => !values[l]) ?? open[0] });
+  };
+
+  /** Exam: leave a slow question for later — go to the next one still unanswered. */
+  const skipAhead = () => {
+    const j = nextOpen();
+    if (j === null) return;
+    setSkipped((m) => ({ ...m, [item.id]: true }));
+    goTo(j);
   };
 
   /** Bring a freshly opened explanation into view without hiding the whole question. */
@@ -511,13 +589,15 @@ export function Player({ session, items }: { session: PracticeSession; items: It
           values,
           active: canEdit ? activeGroup : null,
           results: grade?.groups ? Object.fromEntries(grade.groups.map((g) => [g.group, g.correct])) : undefined,
+          locked: lockedNames,
           onBoxClick: canEdit ? focusGroup : undefined,
         }
       : undefined;
 
   const listeningHidden = item.section === 'listening' && !graded;
   const heroAudio = item.section === 'listening' && !!item.audio && !item.figures?.length;
-  const answered = isAnswered(item, response);
+  const answered = done(item, response);
+  const nudge = exam && canEdit && !complete(item, response) && !skipped[item.id] && item.section !== 'listening' && item.section !== 'listening-reading' && nextOpen() !== null;
   const exOpenNow = exOpen[item.id] ?? explanationDefault(ans);
   const answeredCount = cells.filter((c) => c.answered).length;
   const isLast = index === N - 1;
@@ -558,7 +638,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       />
       <div className="pl-body">
         <main className="pl-main" ref={mainRef}>
-          <div className="pl-col" key={item.id}>
+          <div className={cx('pl-col', layout.short && 'is-short')} key={item.id}>
             <ItemHeader item={item} groupPos={groupPos} />
             {item.audio && (
               <AudioPanel
@@ -580,9 +660,16 @@ export function Player({ session, items }: { session: PracticeSession; items: It
               />
             )}
             {!heroAudio && (
-              <article className={cx('pl-paper', item.subject === 'japanese' && 'is-ja', split && 'is-passage')}>
+              <article className={cx('pl-paper', item.subject === 'japanese' && 'is-ja', split && 'is-passage', layout.short && 'is-short')}>
                 {split && <div className="pl-paper-label">本文</div>}
-                <QuestionStem item={item} text={split?.passage} marks={marks} gloss={gloss} onGlossChange={setGloss} />
+                <QuestionStem
+                  item={item}
+                  text={split?.passage ?? layout.inline?.passage}
+                  prompt={layout.inline?.question}
+                  marks={marks}
+                  gloss={gloss}
+                  onGlossChange={setGloss}
+                />
               </article>
             )}
             {graded && <ExplanationCard item={item} open={exOpenNow} onToggle={() => setExOpen((m) => ({ ...m, [item.id]: !exOpenNow }))} />}
@@ -627,6 +714,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
                 onMark={canEdit ? mark : undefined}
                 onErase={erase}
                 results={grade?.groups}
+                locked={lock}
               />
             )}
 
@@ -665,9 +753,12 @@ export function Player({ session, items }: { session: PracticeSession; items: It
           </div>
 
           <div className="pl-side-foot">
-            {graded && grade && ans && <ResultBanner item={item} answer={ans} grade={grade} today={today} progress={progressMap[item.id]} />}
+            {graded && grade && ans && (
+              <ResultBanner item={item} answer={ans} grade={grade} today={today} progress={progressMap[item.id]} before={item.id in before.current ? before.current[item.id] : undefined} />
+            )}
             {exam ? (
               <>
+                {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
                 <div className="pl-foot-row">
                   <Button variant="secondary" icon="left" onClick={() => goTo(index - 1)} disabled={index === 0}>
                     上一题

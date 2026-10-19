@@ -70,10 +70,24 @@ test('mock day has science+math mocks and correction blocks', () => {
   assert.ok(plan.blocks.some((b) => b.reviewOfMock?.kind === 'science'));
 });
 
-test('a missed mock carries over one day', () => {
-  const plan = buildDayPlan(fresh(), bank, '2026-10-29');
-  const kinds = plan.blocks.filter((b) => b.kind === 'mock').map((b) => b.mock!.kind);
-  assert.ok(kinds.includes('science') && kinds.includes('math'), 'yesterday\'s science/math mock first');
+test('a missed mock is re-planned on the next day without its own mock', () => {
+  const kinds = (d: string) => buildDayPlan(fresh(), bank, d).blocks.filter((x) => x.kind === 'mock').map((x) => x.mock!.kind).sort();
+  assert.deepEqual(kinds('2026-10-29'), ['ja-listening', 'ja-reading'], 'today keeps its own Japanese mock');
+  assert.deepEqual(kinds('2026-10-30'), ['math', 'science'], 'the missed science/math mock comes back on a free day');
+});
+
+test('regenerating a mock day keeps the other mock and the corrections', () => {
+  const s = fresh();
+  const date = '2026-10-28';
+  const plan = ensurePlan(s, bank, date);
+  const sci = plan.blocks.find((x) => x.mock?.kind === 'science')!;
+  const ss = startBlock(s, bank, sci)!;
+  finishSession(s, bank, ss.id, date);
+  s.profile.dayMinutes[date] = 300;
+  const next = regeneratePlan(s, bank, date);
+  assert.ok(next.blocks.some((x) => x.mock?.kind === 'math' && x.status === 'todo'), 'math mock still planned');
+  assert.ok(next.blocks.some((x) => x.reviewOfMock?.kind === 'science'), 'science correction still planned');
+  assert.equal(next.blocks.filter((x) => x.mock?.kind === 'science').length, 1);
 });
 
 test('final full simulation on 11-04 and an empty exam day', () => {

@@ -7,14 +7,15 @@ import { cx } from '../../lib/format.ts';
 
 type Layout = 'list' | 'grid' | 'labels';
 
+/** Rough rendered width in "narrow characters": CJK / full-width characters count double. */
 function visibleLength(s: string): number {
   const tall = /\\(d?frac|sqrt|sum|int)/.test(s) ? 5 : 0;
-  return (
-    s
-      .replace(/\\(mathrm|text|ce|quad|qquad|left|right)\b/g, '')
-      .replace(/\\[a-zA-Z]+/g, 'x')
-      .replace(/[$\s{}\\^_,]/g, '').length + tall
-  );
+  const t = s
+    .replace(/\\(mathrm|text|ce|quad|qquad|left|right)\b/g, '')
+    .replace(/\\[a-zA-Z]+/g, 'x')
+    .replace(/[$\s{}\\^_,]/g, '');
+  const wide = (t.match(/[\u3000-\u9fff\uf900-\ufaff\uff01-\uff60]/g) || []).length;
+  return t.length + wide + tall;
 }
 
 function layoutFor(item: Item, hideText: boolean): Layout {

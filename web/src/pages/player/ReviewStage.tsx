@@ -7,7 +7,7 @@ import { stopSpeech } from '../../lib/audio.ts';
 import { Button, IconButton, Kbd, SubjectTag, isModalOpen } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
-import { QuestionStem, splitReadingStem } from '../../components/question/QuestionStem.tsx';
+import { QuestionStem } from '../../components/question/QuestionStem.tsx';
 import { cx } from '../../lib/format.ts';
 import { isFocusedControl, isTextField } from './hotkeys.ts';
 import { ChoicePad } from './ChoicePad.tsx';
@@ -15,7 +15,7 @@ import { MarkSheet } from './MarkSheet.tsx';
 import { AudioPanel } from './AudioPanel.tsx';
 import { CoachCard } from './CoachCard.tsx';
 import { NoteBox } from './NoteBox.tsx';
-import { ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner } from './parts.tsx';
+import { ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, stemLayout } from './parts.tsx';
 
 export function ReviewStage({ session, list, start, onClose }: { session: PracticeSession; list: Item[]; start: number; onClose: () => void }) {
   const settings = useApp((s) => s.state!.settings);
@@ -27,7 +27,8 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
   const item = list[pos];
   const ans = session.answers[item.id];
   const grade = useMemo(() => gradeItem(item, ans?.response ?? null), [item, ans]);
-  const split = useMemo(() => splitReadingStem(item), [item]);
+  const layout = useMemo(() => stemLayout(item), [item]);
+  const split = layout.split;
   const groups = useMemo(() => (item.format === 'blanks' ? blankGroups(item) : []), [item]);
   const audioToggle = useRef<(() => void) | null>(null);
   const coachFocus = useRef<(() => void) | null>(null);
@@ -93,7 +94,7 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
       </header>
       <div className="pl-body">
         <main className="pl-main" ref={mainRef}>
-          <div className="pl-col" key={item.id}>
+          <div className={cx('pl-col', layout.short && 'is-short')} key={item.id}>
             <ItemHeader item={item} />
             {item.audio && (
               <AudioPanel
@@ -109,11 +110,12 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
                 idleText="可以再听一遍，对照解析里的原文"
               />
             )}
-            {!heroAudio && <article className={cx('pl-paper', item.subject === 'japanese' && 'is-ja', split && 'is-passage')}>
+            {!heroAudio && <article className={cx('pl-paper', item.subject === 'japanese' && 'is-ja', split && 'is-passage', layout.short && 'is-short')}>
               {split && <div className="pl-paper-label">本文</div>}
               <QuestionStem
                 item={item}
-                text={split?.passage}
+                text={split?.passage ?? layout.inline?.passage}
+                prompt={layout.inline?.question}
                 gloss={gloss}
                 onGlossChange={setGloss}
                 marks={item.format === 'blanks' ? { values, results: Object.fromEntries((grade.groups || []).map((g) => [g.group, g.correct])) } : undefined}

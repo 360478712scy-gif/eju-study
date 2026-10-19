@@ -88,6 +88,7 @@ button.plan-day:hover .plan-day-edit, button.plan-day:focus-visible .plan-day-ed
 }
 .plan-mock svg { margin-top: 1px; flex: none; }
 .plan-mock.is-done { background: var(--success-soft); color: var(--success-text); }
+.plan-mock.is-missed { background: var(--bg-sunken); color: var(--text-3); }
 .plan-day.is-past { background: color-mix(in srgb, var(--bg-sunken) 45%, var(--bg-elev)); }
 .plan-day.is-past .plan-day-date { color: var(--text-2); }
 .plan-day.is-today { border-color: var(--tone); box-shadow: 0 0 0 1px var(--tone), var(--shadow-sm); background: color-mix(in srgb, var(--tone-soft) 40%, var(--bg-elev)); }
@@ -106,7 +107,7 @@ button.plan-day:hover .plan-day-edit, button.plan-day:focus-visible .plan-day-ed
 .plan-exam li .num { color: var(--text); font-weight: 700; font-size: var(--fs-base); }
 
 /* Bottom panels */
-.plan-bottom { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; margin-top: 20px; align-items: start; }
+.plan-bottom { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 20px; align-items: start; }
 .plan-tg-table { display: flex; flex-direction: column; }
 .plan-tg-row { display: grid; grid-template-columns: 76px 44px 44px 44px minmax(0, 1fr); align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--border); }
 .plan-tg-headrow { border-top: none; padding-top: 0; color: var(--text-3); font-size: var(--fs-xs); font-weight: 600; }
@@ -123,7 +124,7 @@ button.plan-day:hover .plan-day-edit, button.plan-day:focus-visible .plan-day-ed
 .plan-tg-row.is-total .plan-tg-num { font-size: var(--fs-md); }
 .plan-tg-note { margin-top: 10px; color: var(--text-3); font-size: var(--fs-xs); }
 
-.plan-st-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.plan-st-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 24px; }
 .plan-st-list li { display: flex; gap: 12px; align-items: flex-start; }
 .plan-st-icon { flex: none; width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--primary-soft); color: var(--primary-text); }
 .plan-st-title { font-weight: 650; font-size: var(--fs-base); }
@@ -146,7 +147,7 @@ button.plan-day:hover .plan-day-edit, button.plan-day:focus-visible .plan-day-ed
 .plan-def-note svg { color: var(--text-3); margin-top: 3px; }
 
 @media (max-width: 1100px) {
-  .plan-bottom { grid-template-columns: minmax(0, 1fr); }
+  .plan-st-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1000px) {
   .plan-ov-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }

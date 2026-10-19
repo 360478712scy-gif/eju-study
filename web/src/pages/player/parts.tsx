@@ -4,14 +4,40 @@ import type { Confidence, Item, ItemProgress, SessionAnswer } from '@shared/type
 import type { GradeResult } from '@shared/grading.ts';
 import { toggleStar } from '@shared/actions.ts';
 import { daysBetween } from '@shared/dates.ts';
+import { MISTAKE_GRADUATE_BOX } from '@shared/srs.ts';
 import { update, useApp } from '../../lib/store.ts';
 import { Icon, type IconName } from '../../components/Icon.tsx';
 import { Button, Kbd, Modal } from '../../components/ui.tsx';
 import { Explanation } from '../../components/question/Explanation.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
+import { splitReadingStem } from '../../components/question/QuestionStem.tsx';
 import { cx, fmtClock } from '../../lib/format.ts';
+import { useClock, type StudyClock } from './clock.ts';
 import type { StripCell } from './TopBar.tsx';
+
+// ─── Stem layout ───
+
+export const isRecall = (item: Item) => item.id.startsWith('recall-');
+export const isGrammar = (item: Item) => item.subject === 'japanese' && item.topic.startsWith('ja.vocab');
+
+/**
+ * How to lay out the stem: reading passages split into 本文 + 设问 (the question goes to the side);
+ * grammar items keep their one-line question under the sentence; short stems (recall checks,
+ * grammar, one-liners) get a compact, larger card instead of a mostly empty page.
+ */
+export function stemLayout(item: Item): { split: { passage: string; question: string } | null; inline: { passage: string; question: string } | null; short: boolean } {
+  const parts = splitReadingStem(item);
+  const grammar = isGrammar(item);
+  const plain = item.stem.replace(/\\[a-zA-Z]+|[$_{}\\^]/g, '');
+  const short =
+    item.format === 'choice' &&
+    !item.audio &&
+    !item.figures?.length &&
+    (isRecall(item) || grammar || (!parts && plain.length <= 110 && !/\n\s*\n[\s\S]*\n\s*\n/.test(item.stem)));
+  if (grammar) return { split: null, inline: parts, short };
+  return { split: parts, inline: null, short };
+}
 
 // ─── Item header (source · topic · difficulty · target) ───
 
@@ -131,8 +157,51 @@ function relDay(today: string, due: string): string {
   const n = daysBetween(today, due);
   if (n <= 0) return '今天';
   if (n === 1) return '明天';
-  if (n === 2) return '后天';
   return `${n} 天后`;
+}
+
+/** When (and why) this item comes back, from the progress right after the answer. */
+function reviewNote(
+  correct: boolean,
+  answer: SessionAnswer,
+  today: string,
+  p: ItemProgress | undefined,
+  before: ItemProgress | null | undefined,
+): { text: string; good?: boolean } | null {
+  if (!p) return null;
+  const conf = answer.confidence;
+  if (p.inMistakes && p.due) {
+    const when = `${relDay(today, p.due)}再练`;
+    if (!correct || answer.gaveUp) return { text: `已记入错题本 · ${when}` };
+    if (conf === 'guess') return { text: `猜对的也记入错题本 · ${when}` };
+    if (conf === 'unsure') return { text: `没把握的题会再出现 · ${when}` };
+    if (p.box >= MISTAKE_GRADUATE_BOX - 1) return { text: `再答对 1 次就移出错题本 · ${when}`, good: true };
+    return { text: `错题本复习中 · ${when}` };
+  }
+  if (correct && before?.inMistakes) return { text: '已移出错题本，这题拿下了', good: true };
+  if (correct && p.slow) return { text: '答对了但用时偏长 · 过几天会再练一次提速' };
+  return null;
+}
+
+// ─── Exam: gentle nudge on a question that is eating the clock ───
+
+export function SlowNudge({ clock, saved, target, onSkip }: { clock: StudyClock; saved: number; target: number; onSkip: () => void }) {
+  useClock(clock);
+  const t = saved + clock.pendingItem();
+  if (t <= 2 * target) return null;
+  return (
+    <div className="pl-nudge" role="status">
+      <Icon name="clock" size={14} className="pl-nudge-icon" />
+      <span className="pl-nudge-text">
+        <span>这题用时已超 2 倍，</span>
+        <span>先跳过，最后再回来</span>
+      </span>
+      <button type="button" className="pl-nudge-btn" onClick={onSkip} onMouseDown={(e) => e.preventDefault()}>
+        跳过
+        <Icon name="skip" size={13} />
+      </button>
+    </div>
+  );
 }
 
 export function ResultBanner({
@@ -141,6 +210,7 @@ export function ResultBanner({
   grade,
   today,
   progress,
+  before,
   exam,
 }: {
   item: Item;
@@ -148,6 +218,8 @@ export function ResultBanner({
   grade: GradeResult;
   today: string;
   progress?: ItemProgress;
+  /** Progress just before this answer (undefined when unknown, null when the item was new). */
+  before?: ItemProgress | null;
   /** Exam review: an empty answer means time ran out / skipped, not "gave up". */
   exam?: boolean;
 }) {
@@ -187,13 +259,7 @@ export function ResultBanner({
   const diff = secs - item.targetSec;
   const timeNote = Math.abs(diff) < 5 ? '正好在目标内' : diff < 0 ? `比目标快 ${fmtClock(-diff)}` : `超出目标 ${fmtClock(diff)}`;
   const conf = answer.confidence && answer.confidence !== 'sure' ? (answer.confidence === 'guess' ? '猜的' : '没把握') : null;
-  let review: string | null = null;
-  if (progress?.inMistakes && progress.due) {
-    const when = relDay(today, progress.due);
-    if (!correct) review = `已记入错题本 · ${when}再练`;
-    else if (answer.confidence === 'guess') review = `猜对的题也会回来 · ${when}再练`;
-    else review = `错题本复习中 · ${when}再确认一次`;
-  }
+  const review = reviewNote(correct, answer, today, progress, before);
 
   return (
     <div className={cx('pl-res', `tone-${tone}`)} role="status">
@@ -214,9 +280,9 @@ export function ResultBanner({
           <span className="faint">{timeNote}</span>
         </div>
         {review && (
-          <div className="pl-res-review">
-            <Icon name="refresh" size={12} />
-            {review}
+          <div className={cx('pl-res-review', review.good && 'is-good')}>
+            <Icon name={review.good ? 'checkCircle' : 'refresh'} size={12} />
+            {review.text}
           </div>
         )}
       </div>

@@ -9,7 +9,7 @@
 //
 // Supply rules: never-seen questions are rationed across the sprint so first tries keep coming;
 // due mistakes are mixed into drills; papers reserved for scheduled mocks are held back.
-import type { AppState, BlockKind, DayPlan, Item, MockKind, Phase, PlanBlock, Subject } from './types.ts';
+import type { AppState, BlockKind, DayPlan, Item, MockKind, Phase, PlanBlock, Subject, VocabSkill } from './types.ts';
 import type { BankIndex } from './bank.ts';
 import { mockItems, mockTimeLimit, MOCK_LABEL, sessionLabel } from './bank.ts';
 import { addDays, daysBetween } from './dates.ts';
@@ -301,10 +301,13 @@ export function shortTopic(bank: BankIndex, topic: string): string {
 /** Never-seen, non-reserved items left per main pool. */
 export function freshRemaining(state: AppState, bank: BankIndex): Record<string, number> {
   const seen = lastSeen(state);
+  const padding = reservedPadding(state, bank);
   const out: Record<string, number> = {};
   for (const pool of [...MAIN_POOLS, 'ja-grammar', 'recall'] as Pool[]) {
     const reserved = reservedSessions(state, bank, POOL_MOCK_KINDS[pool]);
-    out[pool] = poolItems(bank, pool).filter((it) => !seen.has(it.id) && !(it.source.session && reserved.has(it.source.session)) && it.verified.status !== 'disputed').length;
+    out[pool] = poolItems(bank, pool).filter(
+      (it) => !seen.has(it.id) && !padding.has(it.id) && !(it.source.session && reserved.has(it.source.session)) && it.verified.status !== 'disputed',
+    ).length;
   }
   return out;
 }
@@ -483,8 +486,11 @@ function drillBlock(ctx: Ctx, pool: Pool, minutes: number, opts: DrillOpts = {})
 function reviewBlock(ctx: Ctx, maxMinutes: number): PlanBlock | null {
   if (maxMinutes < 8) return null;
   const due: Item[] = [];
+  // In the last days, a mistake scheduled for exam day or later would never come back: bring it forward.
+  const late = ctx.left <= 3;
   for (const [id, p] of Object.entries(ctx.state.progress)) {
-    if (!isDue(p, ctx.date) || ctx.used.has(id)) continue;
+    const dueNow = isDue(p, ctx.date) || (late && p.inMistakes && !!p.due);
+    if (!dueNow || ctx.used.has(id)) continue;
     const it = ctx.bank.byId.get(id);
     if (it) due.push(it);
   }
@@ -546,37 +552,71 @@ export function vocabNewLimit(state: AppState, bank: BankIndex, date: string): n
   return Math.max(0, Math.min(cap, Math.round((120 - vocabDueCount(state, bank, date)) / 4)));
 }
 
-function vocabBlock(ctx: Ctx, minutes: number): PlanBlock | null {
-  const dueCards = vocabDueCount(ctx.state, ctx.bank, ctx.date);
-  let unseen = 0;
-  for (const v of ctx.bank.bundle.vocab) {
-    const p = ctx.state.vocab[v.id];
-    if (!p || vocabSkills(v).every((k) => !p[k])) unseen++;
+/**
+ * Today's word cards: due reviews (oldest, failed first, at most 80), then new cards. New cards are
+ * whole new words by value (false friends and kana connectors first) plus the untested second skill
+ * of words already met; together they stay within newLimit words × 2 cards.
+ */
+export function vocabQueue(state: AppState, bank: BankIndex, date: string, newLimit: number): { id: string; skill: VocabSkill }[] {
+  const due: { id: string; skill: VocabSkill; key: string }[] = [];
+  const second: { id: string; skill: VocabSkill }[] = [];
+  const fresh: { id: string; skill: VocabSkill }[] = [];
+  const value = (v: (typeof bank.bundle.vocab)[number]) => (v.trapZh ? 0 : 4) + (KANA_ONLY.test(v.word) ? 0 : 1) + (v.category === 'general' || v.category === 'reading' ? 0 : 2);
+  const candidates = [...bank.bundle.vocab].sort((a, b) => value(a) - value(b) || (a.id < b.id ? -1 : 1));
+  let newWords = 0;
+  for (const v of candidates) {
+    const skills = vocabSkills(v);
+    const p = state.vocab[v.id];
+    if (!p || skills.every((k) => !p[k])) {
+      if (newWords < newLimit) {
+        newWords++;
+        for (const k of skills) fresh.push({ id: v.id, skill: k });
+      }
+      continue;
+    }
+    for (const skill of skills) {
+      const sp = p[skill];
+      if (!sp) second.push({ id: v.id, skill });
+      else if (sp.due <= date) due.push({ id: v.id, skill, key: sp.due + (sp.lastCorrect ? '1' : '0') });
+    }
   }
-  const newCount = Math.min(unseen, vocabNewLimit(ctx.state, ctx.bank, ctx.date));
-  const dueCount = Math.min(dueCards, 80);
-  if (newCount + dueCount === 0) return null;
-  const est = Math.round(((dueCount + newCount * 2) * 9) / 60);
-  const parts = [dueCount ? `复习 ${dueCount}` : '', newCount ? `新词 ${newCount}` : ''].filter(Boolean).join(' + ');
+  due.sort((a, b) => a.key.localeCompare(b.key));
+  const newCards = [...second, ...fresh].slice(0, newLimit * 2);
+  return [...due.slice(0, 80).map(({ id, skill }) => ({ id, skill })), ...newCards];
+}
+
+/** Numbers shown for today's vocabulary everywhere (cards, not words). */
+export function vocabToday(state: AppState, bank: BankIndex, date: string): { dueCards: number; newWords: number; cards: number; minutes: number } {
+  const newWords = vocabNewLimit(state, bank, date);
+  const q = vocabQueue(state, bank, date, newWords);
+  const dueCards = vocabDueCount(state, bank, date);
+  return { dueCards, newWords, cards: q.length, minutes: Math.max(1, Math.round((q.length * 9) / 60)) };
+}
+
+function vocabBlock(ctx: Ctx, minutes: number): PlanBlock | null {
+  const t = vocabToday(ctx.state, ctx.bank, ctx.date);
+  if (!t.cards) return null;
   return newBlock(ctx, {
     kind: 'vocab',
     subject: 'japanese',
-    title: `词汇 · ${parts}`,
-    reason: '先看字写读音（不放音频），再选意思；读音和词义分开记录。睡前做记得更牢。',
-    minutes: Math.max(5, Math.min(minutes, est || 5)),
+    title: `词汇 · ${t.cards} 张卡`,
+    reason: `${t.dueCards ? `到期复习 ${Math.min(80, t.dueCards)} 张` : '没有到期的卡'}${t.newWords ? `，新词 ${t.newWords} 个` : '，今天不加新词'}。先看字写读音（不放音频），再选意思。睡前做记得更牢。`,
+    minutes: Math.max(5, Math.min(Math.max(minutes, t.minutes), 30)),
     itemIds: [],
-    vocabCount: dueCount + newCount,
+    vocabCount: t.cards,
   });
 }
 
 // ─────────────────────────── Mocks, notes, traps ───────────────────────────
 
-function mockBlocks(ctx: Ctx, slot: ScheduledMock): number {
+function mockBlocks(ctx: Ctx, slot: ScheduledMock, keep: PlanBlock[]): number {
   let minutes = 0;
   const order: MockKind[] = ['ja-reading', 'ja-listening', 'science', 'math'];
   const parts = [...slot.parts].sort((a, b) => order.indexOf(a.kind) - order.indexOf(b.kind));
+  const same = (x: { kind: MockKind; session: string } | undefined, p: { kind: MockKind; session: string }) => !!x && x.kind === p.kind && x.session === p.session;
+  const doneToday = (p: { kind: MockKind; session: string }) => ctx.state.mocks.some((m) => same(m, p) && m.date === ctx.date);
   for (const part of parts) {
-    if (part.done) continue;
+    if (part.done || keep.some((b) => same(b.mock, part))) continue;
     const items = mockItemsPadded(ctx.state, ctx.bank, part.kind, part.session);
     if (!items.length) continue;
     const mins = Math.round(mockLimitFor(part.kind, items) / 60);
@@ -593,7 +633,9 @@ function mockBlocks(ctx: Ctx, slot: ScheduledMock): number {
     minutes += mins;
   }
   for (const part of parts) {
-    if (part.done) continue;
+    // A part finished on an earlier day had its correction that day.
+    if (part.done && !doneToday(part)) continue;
+    if (keep.some((b) => same(b.reviewOfMock, part))) continue;
     // The full simulation day is already long: keep its corrections short (the mistake book picks up the rest).
     const full = slot.parts.length >= 4;
     const reviewMins = part.kind === 'math' || part.kind === 'science' ? (full ? 25 : 40) : full ? 10 : 15;
@@ -729,29 +771,34 @@ export function buildDayPlan(state: AppState, bank: BankIndex, date: string, opt
   const plan: DayPlan = { date, phase, budgetMinutes: budget, generatedAt: new Date().toISOString(), plannerVersion: PLANNER_VERSION, blocks: ctx.blocks };
   if (phase === 'exam' || budget <= 0) return plan;
 
-  let remaining = budget - keep.reduce((n, b) => n + b.minutes, 0);
+  // Skipped blocks keep their items out of today's plan but do not use up time.
+  const keptMinutes = keep.filter((b) => b.status !== 'skipped').reduce((n, b) => n + b.minutes, 0);
+  let remaining = budget - keptMinutes;
   const take = (b: PlanBlock | null) => {
     if (b) remaining -= b.minutes;
   };
+  const small = budget < 120;
 
-  // 1) Scheduled mock (due today, or yesterday's if it was missed).
+  // 1) Scheduled mock: today's slot, else the oldest missed one (on a day without its own mock).
   const schedule = mockSchedule(state, bank);
-  const slot = schedule.find((m) => m.daysLeft >= left && m.parts.some((p) => !p.done) && m.daysLeft - left <= 1);
-  const mockToday = !!slot && phase !== 'foundation';
-  if (mockToday && !kept((b) => !!b.mock && slot!.parts.some((p) => p.kind === b.mock!.kind && p.session === b.mock!.session))) {
-    remaining -= mockBlocks(ctx, slot!);
-  }
+  const open = (m: ScheduledMock) => m.parts.some((p) => !p.done) || kept((b) => !!b.reviewOfMock && m.parts.some((p) => p.kind === b.reviewOfMock!.kind && p.session === b.reviewOfMock!.session));
+  const todays = schedule.find((m) => m.daysLeft === left && (open(m) || kept((b) => !!b.mock)));
+  const overdue = left >= 2 ? schedule.find((m) => m.daysLeft > left && m.parts.some((p) => !p.done)) : undefined;
+  const slot = todays || overdue;
+  const mockToday = !!slot && phase !== 'foundation' && (budget >= 150 || kept((b) => !!b.mock));
+  if (mockToday) remaining -= mockBlocks(ctx, slot!, keep);
 
   // 2) Mistakes: sized from the backlog (the rest is mixed into drills).
   if (!kept((b) => b.kind === 'review' && !b.reviewOfMock)) {
-    const cap = phase === 'final' ? Math.min(100, Math.max(40, Math.round(remaining * 0.45))) : Math.min(75, Math.max(30, Math.round(remaining * 0.22)));
+    let cap = phase === 'final' ? Math.min(100, Math.max(40, Math.round(remaining * 0.45))) : Math.min(75, Math.max(30, Math.round(remaining * 0.22)));
+    if (small) cap = Math.min(cap, Math.round(budget * 0.4));
     take(reviewBlock(ctx, cap));
   }
 
   // 3) Small daily blocks: vocabulary, recall checks, grammar; notes and trap sheet near the end.
   if (!kept((b) => b.kind === 'vocab')) take(vocabBlock(ctx, Math.max(10, Math.min(25, Math.round(budget * 0.06)))));
-  if (!kept((b) => b.title.includes('考点速测'))) take(drillBlock(ctx, 'recall', phase === 'final' ? 15 : 10, { maxItems: phase === 'final' ? 20 : 15 }));
-  if (phase !== 'final' && !mockToday && !kept((b) => b.title.includes('文型'))) take(drillBlock(ctx, 'ja-grammar', 8, { maxItems: 12, maxTier: 3 }));
+  if (!small && !kept((b) => b.title.includes('考点速测'))) take(drillBlock(ctx, 'recall', phase === 'final' ? 15 : 10, { maxItems: phase === 'final' ? 20 : 15 }));
+  if (!small && phase !== 'final' && !mockToday && !kept((b) => b.title.includes('文型'))) take(drillBlock(ctx, 'ja-grammar', 8, { maxItems: 12, maxTier: 3 }));
   if (phase === 'final' && remaining > 20 && !kept((b) => b.kind === 'notes')) {
     const m = Math.min(35, Math.round(remaining * 0.25));
     newBlock(ctx, {
@@ -796,7 +843,7 @@ export function buildDayPlan(state: AppState, bank: BankIndex, date: string, opt
   }
 
   // 5) Top up: leftover time goes to the pools furthest from target.
-  const planned = () => ctx.blocks.reduce((n, b) => n + b.minutes, 0) + keep.reduce((n, b) => n + b.minutes, 0);
+  const planned = () => ctx.blocks.reduce((n, b) => n + b.minutes, 0) + keptMinutes;
   const order = [...MAIN_POOLS].sort((a, b) => w[b] - w[a]);
   for (let guard = 0; guard < 8 && budget - planned() >= 15; guard++) {
     let added = false;
@@ -856,7 +903,7 @@ export function extraBlock(state: AppState, bank: BankIndex, date: string, pool:
   const ctx = makeCtx(state, bank, date, plan?.blocks || []);
   const b = drillBlock(ctx, pool, minutes);
   if (!b) return null;
-  b.id = `${date}:x${(plan?.blocks.length || 0) + 1}`;
+  b.id = `${date}:x${(plan?.blocks.length || 0) + 1}-${Date.now().toString(36)}`;
   b.extra = true;
   return b;
 }
