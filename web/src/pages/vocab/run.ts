@@ -5,7 +5,7 @@ import { useSyncExternalStore } from 'react';
 import type { AppState, VocabEntry, VocabSkill } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { vocabQueue } from '@shared/actions.ts';
-import { daysLeftOn, phaseFor, vocabDueCount, vocabNewLimit, vocabSkills } from '@shared/planner.ts';
+import { daysLeftOn, phaseFor, vocabDueCount, vocabSkills, vocabToday } from '@shared/planner.ts';
 
 export interface RunCard {
   vocabId: string;
@@ -74,15 +74,21 @@ export function useRun(): VocabRun | null {
 
 // ─── Queue ───
 
+/** Cards in one "加练" round once today's queue is done. */
+export const MORE_COUNT = 20;
+
 /**
- * Today's words come straight from the shared engine, so this page and the day plan agree:
- * the new-word limit is vocabNewLimit (none in the final days, fewer when reviews pile up),
- * the cards are vocabQueue, and each word trains the skills vocabSkills gives it.
+ * Today's words come straight from the shared engine, so this page, the day plan, Today and
+ * Stats agree: due cards are vocabDueCount, and as the day began the round is exactly
+ * vocabToday's queue (the vocab block's card count). Later in the day the same rule runs on the
+ * records as the day began, so finished reviews and today's new words are not handed out again.
  */
 export interface VocabDay {
-  /** Cards due now — the whole pile, not only what fits in one round. */
+  /** Cards due now — the whole pile, not only what fits in one round (vocabDueCount). */
   due: number;
-  /** Engine limit on new words for today (as the day began). */
+  /** Cards that were due as the day began (what the automatic new-word number is based on). */
+  dueStart: number;
+  /** Engine limit on new words for today (vocabToday as the day began). */
   planned: number;
   /** New words allowed today: the engine's, or the learner's own choice on this device. */
   limit: number;
@@ -96,24 +102,65 @@ export interface VocabDay {
   left: number;
   /** This round, in the engine's order. */
   queue: { id: string; skill: VocabSkill }[];
+  /** The round split: due reviews, the untested other skill of words met before, brand-new words. */
+  split: QueueSplit;
+}
+
+export interface QueueSplit {
+  /** Due review cards. */
+  review: number;
+  /** 补另一项: words practised in only one skill (读音 or 词义) get a card for the other one. */
+  fill: number;
+  /** Cards of words never practised. */
+  fresh: number;
+  /** Words never practised (one or two cards each). */
+  newWords: number;
 }
 
 export function vocabDay(state: AppState, bank: BankIndex, date: string, override: number | null): VocabDay {
   const start = dayStart(state, bank, date);
-  const planned = vocabNewLimit(start.view, bank, date);
+  const engine = vocabToday(start.view, bank, date);
+  const planned = engine.newWords;
   const limit = override ?? planned;
   const left = Math.max(0, limit - start.started);
   const phase = phaseFor(daysLeftOn(state, date));
+  const queue = vocabQueue(state, bank, date, left);
   return {
     due: vocabDueCount(state, bank, date),
+    dueStart: engine.dueCards,
     planned,
     limit,
     manual: override !== null,
     finalDays: phase === 'final' || phase === 'exam',
     started: start.started,
     left,
-    queue: vocabQueue(state, bank, date, left),
+    queue,
+    split: splitQueue(state, bank, queue),
   };
+}
+
+export function splitQueue(state: AppState, bank: BankIndex, queue: { id: string; skill: VocabSkill }[]): QueueSplit {
+  const out: QueueSplit = { review: 0, fill: 0, fresh: 0, newWords: 0 };
+  const words = new Set<string>();
+  for (const q of queue) {
+    const p = state.vocab[q.id];
+    const v = bank.vocabById.get(q.id);
+    if (p?.[q.skill]) out.review++;
+    else if (p && v && vocabSkills(v).some((k) => p[k])) out.fill++;
+    else {
+      out.fresh++;
+      words.add(q.id);
+    }
+  }
+  out.newWords = words.size;
+  return out;
+}
+
+/** Seconds per card, the same pace as the engine's estimate (vocabToday). */
+export const SECONDS_PER_CARD = 9;
+
+export function cardMinutes(cards: number): number {
+  return Math.max(1, Math.round((cards * SECONDS_PER_CARD) / 60));
 }
 
 /**
@@ -155,9 +202,15 @@ function dayStart(state: AppState, bank: BankIndex, date: string): { view: AppSt
 
 /** How many new words, and why, in a few words. */
 export function newWordsNote(day: VocabDay): string {
-  if (day.manual) return `你设了每天 ${day.limit} 个（自动是 ${day.planned} 个）· 今天已学 ${day.started} 个`;
-  if (day.planned === 0) return day.finalDays ? '考前最后几天只复习，不加新词' : '待复习的卡较多，今天先不加新词';
-  return `按待复习量自动定 · 今天 ${day.planned} 个，已学 ${day.started} 个`;
+  const started = day.started ? ` · 今天已学 ${day.started} 个` : '';
+  // 补另一项 cards share the new-word allowance (two cards per word), ahead of brand-new words.
+  const shared = day.split.fill ? '，补另一项的卡也占这个名额' : '';
+  if (day.manual) return `你设了每天 ${day.limit} 个（自动是 ${day.planned} 个）${shared}${started}`;
+  if (day.planned === 0) {
+    if (day.finalDays) return '考前最后几天只复习，不加新词';
+    return `今天开始时待复习 ${day.dueStart} 张卡，先只复习；降到约 120 张以下才加新词`;
+  }
+  return `按待复习量自动定：今天 ${day.planned} 个${shared}${started}`;
 }
 
 const GAP = 6;

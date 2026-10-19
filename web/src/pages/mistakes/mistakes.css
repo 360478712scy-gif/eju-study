@@ -434,6 +434,103 @@
   border-radius: var(--radius-lg);
 }
 
+/* ── First visit: nothing in any tab yet ── */
+.mb-first {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 40px 32px 30px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background: radial-gradient(120% 120% at 50% 0%, var(--primary-soft) 0%, transparent 55%), var(--bg-elev);
+  box-shadow: var(--shadow-xs);
+}
+.mb-first-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-soft);
+  color: var(--primary-text);
+}
+.mb-first-title {
+  margin: 4px 0 0;
+  font-size: var(--fs-xl);
+  font-weight: 720;
+  letter-spacing: -0.01em;
+}
+.mb-first-desc {
+  margin: 0;
+  max-width: 480px;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+.mb-first-steps {
+  list-style: none;
+  margin: 10px 0 14px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 720px;
+}
+.mb-first-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 10px 12px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-sunken);
+}
+.mb-first-step:not(.is-last)::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid var(--text-3);
+  border-right: 1.5px solid var(--text-3);
+  transform: translateY(-50%) rotate(45deg);
+}
+.mb-first-n {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--bg-elev);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.mb-first-step.is-last .mb-first-n {
+  background: var(--success-soft);
+  color: var(--success-text);
+  border-color: transparent;
+}
+.mb-first-when {
+  font-weight: 680;
+  font-size: var(--fs-base);
+}
+.mb-first-what {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.mb-first-foot {
+  margin: 2px 0 0;
+}
+
 /* ── Timed modal ── */
 .mb-timed {
   display: flex;

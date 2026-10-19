@@ -84,9 +84,14 @@ export function resultRows(state: AppState, bank: BankIndex, r: MockResult): Res
   return rows;
 }
 
-/** Items to correct after a mock: wrong, unanswered, partial or marked as a guess. */
+/** Items to correct after a mock: wrong, unanswered, partial, or right but not sure (same rule as the planner's correction block). */
 export function correctionIds(rows: ResultRow[]): string[] {
-  return rows.filter((r) => r.status !== 'right' || r.confidence === 'guess').map((r) => r.item.id);
+  return rows.filter((r) => r.status !== 'right' || isShaky(r)).map((r) => r.item.id);
+}
+
+/** Answered right but marked 没把握 / 蒙的. */
+export function isShaky(r: ResultRow): boolean {
+  return r.status === 'right' && !!r.confidence && r.confidence !== 'sure';
 }
 
 export function kindSubject(kind: MockKind): Subject | 'mixed' {

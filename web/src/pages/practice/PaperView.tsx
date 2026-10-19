@@ -44,7 +44,7 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
           if (isWrong(p)) wrong++;
         }
         const mock = [...state.mocks].reverse().find((m) => m.kind === section.mock && m.session === paper.session);
-        return { session: paper.session, section, items, done, right, wrong, held: items.length ? reserved.get(`${section.mock}:${paper.session}`) : undefined, mock };
+        return { session: paper.session, section, items, done, right, wrong, held: items.length ? reserved.papers.get(`${section.mock}:${paper.session}`) : undefined, mock };
       });
       return { paper, cells, total: cells.reduce((s, c) => s + c.items.length, 0), done: cells.reduce((s, c) => s + c.done, 0) };
     });
@@ -56,6 +56,7 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
       const ok = await confirm.ask('这套卷留给了模考', {
         body: `${fmtDateShort(cell.held.date)}「${cell.held.title}」会用这套卷的${cell.section.name}。现在练了，到时模考分数会偏高；想找练习题可以换一套没有旗标的卷子。`,
         ok: '仍然现在练',
+        focus: 'cancel',
       });
       if (!ok) return;
     }

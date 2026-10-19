@@ -12,7 +12,7 @@ import { Icon } from '../../components/Icon.tsx';
 import { QuestionStem } from '../../components/question/QuestionStem.tsx';
 import { OptionList, BlanksAnswer } from '../../components/question/OptionList.tsx';
 import { Explanation } from '../../components/question/Explanation.tsx';
-import { lastAttemptOf, reservedFor, reservedMap, shortLabel } from './practiceData.ts';
+import { isPadding, lastAttemptOf, reservedFor, reservedMap, shortLabel } from './practiceData.ts';
 import './preview.css';
 
 type Response = number | Record<string, string> | null;
@@ -133,11 +133,16 @@ function PreviewFooter({ item, onClose }: { item: Item; onClose: () => void }) {
 
   const practice = async () => {
     if (!state || !bank) return;
-    const held = reservedFor(reservedMap(state, bank), item);
+    const reserved = reservedMap(state, bank);
+    const held = reservedFor(reserved, item);
     if (held) {
-      const ok = await confirm.ask('这道题在模考预留卷里', {
-        body: `${fmtDateShort(held.date)}「${held.title}」会用到这套卷。现在做了，到时模考会偏高。`,
+      const pad = isPadding(reserved, item);
+      const ok = await confirm.ask(pad ? '这道题留给了模考' : '这道题在模考预留卷里', {
+        body: pad
+          ? `${fmtDateShort(held.date)}「${held.title}」会用这道原创题补足日语题量。现在做了，到时模考会偏高。`
+          : `${fmtDateShort(held.date)}「${held.title}」会用到这套卷。现在做了，到时模考会偏高。`,
         ok: '仍然练这题',
+        focus: 'cancel',
       });
       if (!ok) return;
     }

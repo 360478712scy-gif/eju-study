@@ -130,11 +130,21 @@ export function MistakesPage() {
 
   const orderedIds = useMemo(() => groups.flatMap((g) => g.topics.flatMap((t) => t.rows.map((r) => r.item.id))), [groups]);
 
+  // Nothing in any tab yet: one card that explains the book and points to today's tasks.
+  if (!all.mistakes.length && !all.slow.length && !all.starred.length) {
+    return (
+      <div className="page mb-page">
+        <PageHeader title="错题本" />
+        <FirstRun graduated={all.graduated} />
+      </div>
+    );
+  }
+
   return (
     <div className="page mb-page">
       <PageHeader title="错题本" desc="做错或猜的题 2 天后再练，再隔 4 天；间隔答对 2 次（选“确定”）就移出错题本。" />
 
-      <DueHero dueRows={dueRows} total={all.mistakes} graduated={all.graduated} today={today} onTimed={() => setTimedOpen(true)} />
+      {all.mistakes.length > 0 && <DueHero dueRows={dueRows} total={all.mistakes} graduated={all.graduated} today={today} onTimed={() => setTimedOpen(true)} />}
 
       <div className="mb-toolbar">
         <Segmented<Tab>
@@ -240,13 +250,13 @@ export function MistakesPage() {
           ) : all.mistakes.length === 0 ? (
             <Empty
               icon="checkCircle"
-              title="错题本是空的"
-              desc="去做题吧。做错或标了「猜的」的题会自动收进来，2 天后再练，再隔 4 天；标了「没把握」的题 4 天后再练一次。"
-              action={
-                <Button variant="primary" icon="arrowRight" onClick={() => navigate('/practice')}>
-                  去题库练习
-                </Button>
+              title={all.graduated ? '错题都清完了' : '错题本是空的'}
+              desc={
+                all.graduated
+                  ? `已经有 ${all.graduated} 道题间隔答对 2 次，移出了错题本。新做错或猜的题会自动收进来。`
+                  : '做错或猜的题会自动收进来：2 天后再练，再隔 4 天，间隔答对 2 次（选“确定”）就移出。'
               }
+              action={<TodayButton />}
             />
           ) : (
             <Empty
@@ -334,7 +344,7 @@ function DueHero({ dueRows, total, graduated, today, onTimed }: { dueRows: Row[]
                 下一批：{nextDue.info.text} {nextDue.count} 题。想多练可以限时重练全部错题。
               </>
             ) : (
-              <>做错的题 2 天后回来找你，答对后再隔 4 天来一次。</>
+              <>做错的题 2 天后回来找你，答对再隔 4 天；间隔答对 2 次就移出。</>
             )}
           </div>
         </div>
@@ -363,13 +373,60 @@ function DueHero({ dueRows, total, graduated, today, onTimed }: { dueRows: Row[]
       )}
 
       <div className="mb-hero-actions">
-        <Button variant="primary" size="lg" icon="refresh" disabled={n === 0} onClick={() => launch({ kind: 'review', title: '今日到期错题', items: dueRows.map((r) => r.item) })}>
-          {n > 0 ? `重做今天到期的 ${n} 题` : '今天没有到期的题'}
-        </Button>
-        <Button variant="ghost" icon="clock" disabled={total.length === 0} onClick={onTimed}>
-          全部错题限时重练
-        </Button>
+        {n > 0 ? (
+          <Button variant="primary" size="lg" icon="refresh" onClick={() => launch({ kind: 'review', title: '今日到期错题', items: dueRows.map((r) => r.item) })}>
+            重做今天到期的 {n} 题
+          </Button>
+        ) : (
+          <TodayButton size="lg" />
+        )}
+        {total.length > 0 && (
+          <Button variant="ghost" icon="clock" onClick={onTimed}>
+            全部错题限时重练
+          </Button>
+        )}
       </div>
+    </section>
+  );
+}
+
+function TodayButton({ size = 'md' }: { size?: 'md' | 'lg' }) {
+  return (
+    <Button variant="primary" size={size} iconRight="arrowRight" onClick={() => navigate('/')}>
+      去做今天的任务
+    </Button>
+  );
+}
+
+const FIRST_STEPS: { when: string; what: string }[] = [
+  { when: '做错或猜的', what: '自动收进来' },
+  { when: '2 天后', what: '再练一次' },
+  { when: '再隔 4 天', what: '再练一次' },
+  { when: '间隔答对 2 次', what: '选“确定”就移出' },
+];
+
+/** First visit: what the book does, in four steps, and the one thing to do now. */
+function FirstRun({ graduated }: { graduated: number }) {
+  return (
+    <section className="mb-first">
+      <div className="mb-first-icon">
+        <Icon name={graduated ? 'checkCircle' : 'notebook'} size={24} />
+      </div>
+      <h2 className="mb-first-title">{graduated ? '错题都清完了' : '错题本还是空的'}</h2>
+      <p className="mb-first-desc">
+        {graduated ? `已经有 ${graduated} 道题间隔答对 2 次，移出了错题本。` : '不用自己抄错题。'}答错或标了“猜的”的题，会按这个节奏自动回来找你。
+      </p>
+      <ol className="mb-first-steps">
+        {FIRST_STEPS.map((st, i) => (
+          <li key={st.when} className={cx('mb-first-step', i === FIRST_STEPS.length - 1 && 'is-last')}>
+            <span className="mb-first-n num">{i + 1}</span>
+            <span className="mb-first-when">{st.when}</span>
+            <span className="mb-first-what">{st.what}</span>
+          </li>
+        ))}
+      </ol>
+      <TodayButton size="lg" />
+      <p className="mb-first-foot faint text-sm">在题目里点“收藏”的题，也会收在这里。</p>
     </section>
   );
 }

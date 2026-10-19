@@ -66,6 +66,10 @@
   font-size: var(--fs-sm);
   color: var(--text);
 }
+/* The field already shows the ring (focus-within); no second ring on the input itself. */
+.nt-search input:focus-visible {
+  box-shadow: none;
+}
 .nt-search input::placeholder {
   color: var(--text-3);
 }

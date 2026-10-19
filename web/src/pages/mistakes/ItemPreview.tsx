@@ -6,14 +6,15 @@ import { dismissMistake, setItemNote, toggleStar } from '@shared/actions.ts';
 import { useReady, update } from '../../lib/store.ts';
 import { href } from '../../lib/router.ts';
 import { playSpeech, stopSpeech, onSpeechChange, speechElement } from '../../lib/audio.ts';
-import { cx, fmtClock } from '../../lib/format.ts';
-import { Badge, Button, IconButton, Modal, SubjectTag, toast, useConfirm } from '../../components/ui.tsx';
+import { cx, fmtClock, fmtDateShort } from '../../lib/format.ts';
+import { Badge, Button, IconButton, Modal, SubjectTag, modalDepth, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { QuestionStem } from '../../components/question/QuestionStem.tsx';
 import { BlanksAnswer, OptionList, optionLabel } from '../../components/question/OptionList.tsx';
 import { Explanation } from '../../components/question/Explanation.tsx';
 import { MODE_LABEL, RESULT_TEXT, dueInfo, fmtMD, launch, resultOf, sourceLabel } from './helpers.ts';
 import { BoxDots, ResultMark } from './bits.tsx';
+import { reservedFor, reservedMap } from '../practice/practiceData.ts';
 import './item-preview.css';
 
 interface Props {
@@ -28,9 +29,17 @@ export function ItemPreview({ itemId, ids, onSelect }: Props) {
   const close = useCallback(() => onSelect(null), [onSelect]);
   const { bank } = useReady();
   const item = itemId ? bank.byId.get(itemId) : undefined;
+  const open = !!item;
+  // Depth of the preview in the modal stack, taken after the Modal registered itself (child
+  // effects run first). Arrow keys only page through items while nothing is open on top.
+  const depth = useRef(0);
+  useEffect(() => {
+    depth.current = open ? modalDepth() : 0;
+  }, [open]);
+  const isTop = useCallback(() => depth.current > 0 && modalDepth() === depth.current, []);
   return (
-    <Modal open={!!item} onClose={close} width={860} title={item ? <PreviewTitle item={item} /> : undefined}>
-      {item && <PreviewBody key={item.id} item={item} ids={ids} onSelect={onSelect} />}
+    <Modal open={open} onClose={close} width={860} title={item ? <PreviewTitle item={item} /> : undefined}>
+      {item && <PreviewBody key={item.id} item={item} ids={ids} onSelect={onSelect} isTop={isTop} />}
     </Modal>
   );
 }
@@ -44,7 +53,7 @@ function PreviewTitle({ item }: { item: Item }) {
   );
 }
 
-function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSelect: (id: string | null) => void }) {
+function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]; onSelect: (id: string | null) => void; isTop: () => boolean }) {
   const { state, bank, today } = useReady();
   const p = state.progress[item.id];
   const history = useMemo(() => state.attempts.filter((a) => a.itemId === item.id), [state.attempts, item.id]);
@@ -59,7 +68,7 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.isComposing || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.isComposing || e.metaKey || e.ctrlKey || e.altKey || !isTop()) return;
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
       if (e.key === 'ArrowLeft' && prevId) {
@@ -72,9 +81,19 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [prevId, nextId, onSelect]);
+  }, [prevId, nextId, onSelect, isTop]);
 
-  const redo = () => {
+  const redo = async () => {
+    // Mistake re-tests follow their own schedule; a plain redo of a paper held for a mock gets a warning first.
+    const held = p?.inMistakes ? undefined : reservedFor(reservedMap(state, bank), item);
+    if (held) {
+      const ok = await confirm.ask('这道题在模考预留卷里', {
+        body: `${fmtDateShort(held.date)}「${held.title}」会用到这套卷。现在做了，到时模考分数会偏高。`,
+        ok: '仍然做这题',
+        focus: 'cancel',
+      });
+      if (!ok) return;
+    }
     stopSpeech();
     launch({ kind: p?.inMistakes ? 'review' : 'drill', title: p?.inMistakes ? '错题重做' : '单题练习', items: [item] });
   };
@@ -90,6 +109,7 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
       body: '这道题不再安排复习。以后再做错，会自动回到错题本。',
       ok: '移出',
       danger: true,
+      focus: 'cancel',
     });
     if (!ok) return;
     const next = nextId || prevId;
@@ -169,7 +189,7 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
             <Button variant="ghost" icon="eye" onClick={() => setReveal(true)}>
               直接看答案
             </Button>
-            <Button variant="primary" icon="play" onClick={redo}>
+            <Button variant="primary" icon="play" onClick={() => void redo()}>
               做这题
             </Button>
           </div>
@@ -193,7 +213,7 @@ function PreviewBody({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
               移出错题本
             </Button>
           )}
-          <Button variant="primary" icon="refresh" onClick={redo}>
+          <Button variant="primary" icon="refresh" onClick={() => void redo()}>
             {p?.inMistakes ? '重做这题' : history.length ? '再做一次' : '做这题'}
           </Button>
         </div>

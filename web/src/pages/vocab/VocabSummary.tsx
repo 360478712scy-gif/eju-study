@@ -5,10 +5,8 @@ import { useApp } from '../../lib/store.ts';
 import { cx, fmtDuration, pct } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Button, Ring } from '../../components/ui.tsx';
-import { extraQueue, readNewWords, setRun, SKILL_LABEL, spaceCards, useRun, vocabDay } from './run.ts';
+import { extraQueue, MORE_COUNT, readNewWords, setRun, SKILL_LABEL, spaceCards, useRun, vocabDay } from './run.ts';
 import { startRun } from './VocabSession.tsx';
-
-export const MORE_COUNT = 20;
 const WATCH_PREVIEW = 12;
 
 export function VocabSummary({ onOpen }: { onOpen: (id: string) => void }) {

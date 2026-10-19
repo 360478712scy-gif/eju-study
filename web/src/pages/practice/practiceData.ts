@@ -1,7 +1,7 @@
 // Pure helpers for the practice bank browser and the mock pages (no React).
 import type { AppState, Item, ItemProgress, MockKind, Subject } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
-import { mockSchedule, shortTopic, type ScheduledMock } from '@shared/planner.ts';
+import { mockItemsPadded, mockSchedule, reservedPadding, shortTopic, type ScheduledMock } from '@shared/planner.ts';
 
 // ───────────────────────── Item status ─────────────────────────
 
@@ -63,17 +63,50 @@ export function shortLabel(it: Item): string {
 
 // ───────────────────────── Scheduled mocks ─────────────────────────
 
-/** `${kind}:${session}` → the scheduled mock that still needs that paper. */
-export type ReservedMap = Map<string, ScheduledMock>;
-
-export function reservedMap(state: AppState, bank: BankIndex): ReservedMap {
-  const m: ReservedMap = new Map();
-  for (const sm of mockSchedule(state, bank)) for (const p of sm.parts) if (!p.done && !m.has(`${p.kind}:${p.session}`)) m.set(`${p.kind}:${p.session}`, sm);
-  return m;
+/** What upcoming scheduled mocks still need, so drills and the browser can keep it fresh. */
+export interface ReservedMap {
+  /** `${kind}:${session}` → the scheduled mock that still needs that paper. */
+  papers: Map<string, ScheduledMock>;
+  /** Original item id → the scheduled Japanese mock it pads to exam length. */
+  padding: Map<string, ScheduledMock>;
 }
 
+const isJa = (kind: MockKind): kind is 'ja-reading' | 'ja-listening' => kind === 'ja-reading' || kind === 'ja-listening';
+
+export function reservedMap(state: AppState, bank: BankIndex): ReservedMap {
+  const schedule = mockSchedule(state, bank);
+  const papers = new Map<string, ScheduledMock>();
+  for (const sm of schedule) for (const p of sm.parts) if (!p.done && !papers.has(`${p.kind}:${p.session}`)) papers.set(`${p.kind}:${p.session}`, sm);
+  // reservedPadding is the source of truth for which originals are held; walk the schedule in the
+  // same order it fills them in only to say which mock each one pads.
+  const held = reservedPadding(state, bank);
+  const padding = new Map<string, ScheduledMock>();
+  if (held.size) {
+    const taken = new Set<string>();
+    for (const sm of schedule) {
+      for (const p of sm.parts) {
+        if (p.done || !isJa(p.kind)) continue;
+        for (const it of mockItemsPadded(state, bank, p.kind, p.session, taken)) {
+          if (!held.has(it.id) || padding.has(it.id)) continue;
+          padding.set(it.id, sm);
+          taken.add(it.id);
+        }
+      }
+    }
+    const first = schedule.find((sm) => sm.parts.some((p) => !p.done && isJa(p.kind)));
+    if (first) for (const id of held) if (!padding.has(id)) padding.set(id, first);
+  }
+  return { papers, padding };
+}
+
+/** The scheduled mock that still needs this item (its paper, or as Japanese padding). */
 export function reservedFor(map: ReservedMap, it: Item): ScheduledMock | undefined {
-  return it.source.session ? map.get(`${mockKindOf(it)}:${it.source.session}`) : undefined;
+  return (it.source.session ? map.papers.get(`${mockKindOf(it)}:${it.source.session}`) : undefined) ?? map.padding.get(it.id);
+}
+
+/** Held only as padding for a Japanese mock (an original, not a paper question). */
+export function isPadding(map: ReservedMap, it: Item): boolean {
+  return map.padding.has(it.id) && !(it.source.session && map.papers.has(`${mockKindOf(it)}:${it.source.session}`));
 }
 
 // ───────────────────────── Drill picking ─────────────────────────
@@ -89,14 +122,14 @@ function hash(s: string): number {
 
 export interface DrillPick {
   ids: string[];
-  /** Had to fall back to papers held for a scheduled mock. */
+  /** Had to fall back to items held for a scheduled mock (its paper or its Japanese padding). */
   usesReserved: boolean;
 }
 
 /**
  * Pick about `n` items: never-seen first (official, easier first), then mistakes,
- * then the longest-unseen ones. Papers held for a scheduled mock are skipped unless
- * nothing else is left. Passages (group) stay together.
+ * then the longest-unseen ones. Papers held for a scheduled mock, and the originals held to
+ * pad Japanese mocks, are skipped unless nothing else is left. Passages (group) stay together.
  */
 export function pickDrill(state: AppState, items: Item[], n: number, reserved: ReservedMap, seed: string): DrillPick {
   const usable = items.filter((it) => it.verified.status !== 'disputed');

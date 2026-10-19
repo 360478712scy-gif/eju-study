@@ -93,13 +93,17 @@ export function PracticePage(_props: {}) {
     return out;
   }, [state.progress, bank]);
 
-  const total = bank.bundle.items.length;
+  const counts = useMemo(() => {
+    let official = 0;
+    for (const it of bank.bundle.items) if (it.source.kind === 'official') official++;
+    return { official, original: bank.bundle.items.length - official };
+  }, [bank]);
 
   return (
     <div className="page pr-page">
       <PageHeader
         title="题库练习"
-        desc={`${total} 道 EJU 真题，按考点专项练、按套卷整节练，或直接搜题。`}
+        desc={`真题 ${counts.official} · 原创 ${counts.original}，按考点专项练、按套卷整节练，或直接搜题。`}
         actions={
           <Segmented<View>
             value={view}

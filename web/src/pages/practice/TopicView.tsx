@@ -85,24 +85,23 @@ export function TopicView({
           pick: pickDrill(state, items, DRILL_SIZE, reserved, today + t.id),
         };
       });
-      rows.sort((a, b) => (a.items.length ? 0 : 1) - (b.items.length ? 0 : 1));
-      const total = rows.reduce((s, r) => s + r.items.length, 0);
+      // Topics without questions yet do not get rows: they collapse into one muted line per unit.
+      const empty = rows.filter((r) => !r.items.length).map((r) => r.topic);
+      const filled = rows.filter((r) => r.items.length > 0);
+      const total = filled.reduce((s, r) => s + r.items.length, 0);
       const done = rows.reduce((s, r) => s + r.done, 0);
       // Unit mastery: topic mastery weighted by how often each topic was tried (same scale as the rows).
       const tries = rows.reduce((s, r) => s + (r.stat?.attempts || 0), 0);
       const weighted = rows.reduce((s, r) => s + (r.stat && r.stat.attempts ? r.stat.mastery * r.stat.attempts : 0), 0);
-      return { id: u.id, name: u.name, rows, total, done, mastery: tries ? weighted / tries : null, weak: isWeakTopic(weakList, u.id) };
+      return { id: u.id, name: u.name, rows: filled, empty, total, done, mastery: tries ? weighted / tries : null, weak: isWeakTopic(weakList, u.id) };
     });
   }, [bank, subject, state, stats, weakList, reserved, today]);
 
-  const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(units.filter((u) => u.total === 0).map((u) => u.id)));
+  const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set());
 
   const ranked = useMemo(
     () =>
-      units
-        .flatMap((u) => u.rows)
-        .filter((r) => r.items.length > 0)
-        .sort((a, b) => b.priority - a.priority),
+      units.flatMap((u) => u.rows).sort((a, b) => b.priority - a.priority),
     [units],
   );
 
@@ -111,9 +110,10 @@ export function TopicView({
     if (!pick.ids.length) return;
     if (pick.usesReserved) {
       const held = r.items.map((it) => reservedFor(reserved, it)).find(Boolean);
-      const ok = await confirm.ask('剩下的题都在模考预留卷里', {
+      const ok = await confirm.ask('剩下的题都留给了模考', {
         body: held ? `${fmtDateShort(held.date)}「${held.title}」会用到这些题。现在练了，到时模考分数会偏高。` : '现在练了，之后的模考分数会偏高。',
         ok: '仍然练习',
+        focus: 'cancel',
       });
       if (!ok) return;
     }
@@ -179,6 +179,7 @@ export function TopicView({
         </div>
         {order === 'units' ? (
           units.map((u) => {
+            if (!u.total) return <NoQuestions key={u.id} unit={u.name} topics={u.empty} weak={u.weak} />;
             const open = !collapsed.has(u.id);
             return (
               <div key={u.id} className={cx('pr-unit', open && 'is-open')}>
@@ -191,26 +192,25 @@ export function TopicView({
                     </Badge>
                   )}
                   <span className="pr-unit-meta">
-                    {u.total ? (
-                      <>
-                        <span className="num">
-                          {u.done}/{u.total}
-                        </span>
-                        <span className="pr-unit-bar">
-                          <i style={{ width: `${(u.done / u.total) * 100}%` }} />
-                        </span>
-                        {u.mastery !== null && (
-                          <span className="num pr-unit-acc" title="本单元掌握度">
-                            掌握 {pct(u.mastery)}
-                          </span>
-                        )}
-                      </>
-                    ) : (
-                      <span className="faint">暂无题目</span>
+                    <span className="num">
+                      {u.done}/{u.total}
+                    </span>
+                    <span className="pr-unit-bar">
+                      <i style={{ width: `${(u.done / u.total) * 100}%` }} />
+                    </span>
+                    {u.mastery !== null && (
+                      <span className="num pr-unit-acc" title="本单元掌握度">
+                        掌握 {pct(u.mastery)}
+                      </span>
                     )}
                   </span>
                 </button>
-                {open && <div className="pr-unit-rows">{u.rows.map((r) => renderRow(r, false))}</div>}
+                {open && (
+                  <div className="pr-unit-rows">
+                    {u.rows.map((r) => renderRow(r, false))}
+                    {u.empty.length > 0 && <NoQuestions topics={u.empty} />}
+                  </div>
+                )}
               </div>
             );
           })
@@ -230,20 +230,15 @@ export function TopicView({
 }
 
 function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRowData; showUnit: boolean; hasNote: boolean; onDrill: () => void; onOpen: () => void }) {
-  const empty = r.items.length === 0;
   const tried = !!r.stat && r.stat.attempts > 0;
   const n = r.pick.ids.length;
   return (
-    <div className={cx('pr-topic', empty && 'is-empty')}>
+    <div className="pr-topic">
       <div className="pr-topic-main">
         <div className="pr-topic-line">
-          {empty ? (
-            <span className="pr-topic-name is-static">{r.topic.name}</span>
-          ) : (
-            <button type="button" className="pr-topic-name" onClick={onOpen} title="查看这个考点的全部题目">
-              {r.topic.name}
-            </button>
-          )}
+          <button type="button" className="pr-topic-name" onClick={onOpen} title="查看这个考点的全部题目">
+            {r.topic.name}
+          </button>
           {r.weak && (
             <Badge tone="warning" className="pr-weak">
               薄弱
@@ -253,18 +248,14 @@ function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRo
         <div className="pr-topic-sub">
           {showUnit && <span>{r.unitName}</span>}
           {r.topic.ja && <span lang="ja">{r.topic.ja}</span>}
-          {!empty && <span>{r.original ? `真题 ${r.official} · 原创 ${r.original}` : `${r.official} 道真题`}</span>}
+          <span>{r.original ? `真题 ${r.official} · 原创 ${r.original}` : `${r.official} 道真题`}</span>
         </div>
       </div>
       <div className="pr-topic-count">
-        {empty ? (
-          <span className="faint">—</span>
-        ) : (
-          <span className="num">
-            <b>{r.done}</b>
-            <span className="faint">/{r.items.length}</span>
-          </span>
-        )}
+        <span className="num">
+          <b>{r.done}</b>
+          <span className="faint">/{r.items.length}</span>
+        </span>
       </div>
       <div className="pr-topic-mastery" title={tried && r.stat ? `作答 ${r.stat.attempts} 次，得分 ${Math.round(r.stat.correct * 10) / 10}` : undefined}>
         {tried && r.stat ? (
@@ -273,7 +264,7 @@ function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRo
             <span className="num">{pct(r.stat.mastery)}</span>
           </>
         ) : (
-          <span className="faint">{empty ? '' : '未练'}</span>
+          <span className="faint">未练</span>
         )}
       </div>
       <div className="pr-topic-mistakes">
@@ -282,7 +273,7 @@ function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRo
             {r.mistakes}
           </Badge>
         ) : (
-          <span className="faint">{empty ? '' : '0'}</span>
+          <span className="faint">0</span>
         )}
       </div>
       <div className="pr-topic-actions">
@@ -293,14 +284,44 @@ function TopicRow({ row: r, showUnit, hasNote, onDrill, onOpen }: { row: TopicRo
         ) : (
           <span className="pr-note-gap" />
         )}
-        {empty || !n ? (
-          <span className="pr-empty-tag">暂无题目</span>
-        ) : (
-          <Button variant="soft" size="sm" icon={r.pick.usesReserved ? 'flag' : 'play'} onClick={onDrill} title={r.pick.usesReserved ? '剩下的题都在模考预留卷里' : '没做过的优先，其次是错题'}>
+        {n ? (
+          <Button variant="soft" size="sm" icon={r.pick.usesReserved ? 'flag' : 'play'} onClick={onDrill} title={r.pick.usesReserved ? '剩下的题都留给了模考' : '没做过的优先，其次是错题'}>
             练 {n} 题
           </Button>
+        ) : (
+          <span className="pr-empty-tag">暂无可练</span>
         )}
       </div>
+    </div>
+  );
+}
+
+/** Topics (or a whole unit) without questions yet: one muted line; topic names open their notes. */
+function NoQuestions({ unit, topics, weak }: { unit?: string; topics: TaxonomyTopic[]; weak?: boolean }) {
+  const { bank } = useReady();
+  return (
+    <div className={cx('pr-none', unit && 'pr-unit is-unit')}>
+      {unit && <span className="pr-none-unit">{unit}</span>}
+      {unit && weak && (
+        <Badge tone="warning" className="pr-weak">
+          薄弱
+        </Badge>
+      )}
+      <span className="pr-none-label">暂无题目</span>
+      <span className="pr-none-topics">
+        {topics.map((t) =>
+          bank.notesByTopic.has(t.id) ? (
+            <button key={t.id} type="button" className="pr-none-topic is-link" onClick={() => navigate('/notes/' + t.id)} title="看考点笔记">
+              <Icon name="notebook" size={12} />
+              {t.name}
+            </button>
+          ) : (
+            <span key={t.id} className="pr-none-topic">
+              {t.name}
+            </span>
+          ),
+        )}
+      </span>
     </div>
   );
 }

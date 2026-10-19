@@ -4,7 +4,7 @@ import { SUBJECTS, type Item, type Subject } from '@shared/types.ts';
 import { sessionLabel } from '@shared/bank.ts';
 import { useReady } from '../../lib/store.ts';
 import { cx, SUBJECT_NAME } from '../../lib/format.ts';
-import { Badge, Button, Empty, Segmented } from '../../components/ui.tsx';
+import { Badge, Button, Empty, modalDepth, Segmented } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import {
@@ -207,7 +207,7 @@ function SearchBox({ onSearch }: { onSearch: (q: string) => void }) {
       if (e.key !== '/' || e.isComposing || e.metaKey || e.ctrlKey || e.altKey) return;
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
-      if (document.querySelector('.modal-backdrop')) return;
+      if (modalDepth() > 0) return;
       e.preventDefault();
       input.current?.focus();
     };

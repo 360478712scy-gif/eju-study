@@ -10,12 +10,13 @@ import { useRoute } from '../../lib/router.ts';
 import { findBlock, markBlock } from '@shared/actions.ts';
 import { href, navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.ts';
-import { Badge, Button, Empty, PageHeader, Progress, Ring, Segmented, SubjectTag, type Tone } from '../../components/ui.tsx';
+import { Badge, Button, Empty, PageHeader, Progress, Ring, Segmented, SubjectTag, useConfirm, type Tone } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { ItemPreview } from '../mistakes/ItemPreview.tsx';
 import { ResultMark } from '../mistakes/bits.tsx';
-import { SUBJECT_ORDER, drillOrder, launch, resultOf, sourceLabel } from '../mistakes/helpers.ts';
+import { SUBJECT_ORDER, launch, resultOf, sourceLabel } from '../mistakes/helpers.ts';
+import { drillTitle, pickDrill, reservedFor, reservedMap } from '../practice/practiceData.ts';
 import { BAND_TEXT, masteryBand, targetRatio, type Band } from '../stats/model.ts';
 import './notes.css';
 
@@ -254,10 +255,13 @@ function TopicCard({ e, showSubject }: { e: Entry; showSubject?: boolean }) {
 
 // ───────────────────────── Topic page ─────────────────────────
 
+const DRILL_SIZE = 10;
+
 function TopicView({ topic }: { topic: string }) {
-  const { state, bank } = useReady();
+  const { state, bank, today } = useReady();
   const top = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const confirm = useConfirm();
   const info = bank.topics.get(topic);
   const note = bank.notesByTopic.get(topic);
   const items = useMemo(
@@ -265,6 +269,9 @@ function TopicView({ topic }: { topic: string }) {
     [bank, topic],
   );
   const stat = useMemo(() => topicStats(state, bank).get(topic), [state, bank, topic]);
+  // Same pick as the practice page: papers held for a scheduled mock only when nothing else is left.
+  const reserved = useMemo(() => reservedMap(state, bank), [state, bank]);
+  const pick = useMemo(() => pickDrill(state, bank.byTopic.get(topic) || [], DRILL_SIZE, reserved, today + topic), [state, bank, topic, reserved, today]);
 
   useEffect(() => {
     top.current?.scrollIntoView({ block: 'start' });
@@ -281,9 +288,22 @@ function TopicView({ topic }: { topic: string }) {
     );
   }
 
-  const drill = drillOrder(state, bank, topic, 10);
   const unseen = items.filter((it) => !state.progress[it.id]?.attempts).length;
-  const startDrill = () => launch({ kind: 'drill', title: `考点 · ${shortTopic(bank, topic)}`, items: drill });
+  const drillCount = pick.ids.length;
+  const startDrill = async () => {
+    if (!drillCount) return;
+    if (pick.usesReserved) {
+      const held = items.map((it) => reservedFor(reserved, it)).find(Boolean);
+      const ok = await confirm.ask('剩下的题都在模考预留卷里', {
+        body: held ? `${fmtDateShort(held.date)}「${held.title}」会用到这些题。现在练了，到时模考分数会偏高。` : '现在练了，之后的模考分数会偏高。',
+        ok: '仍然练习',
+      });
+      if (!ok) return;
+    }
+    const picked = pick.ids.map((id) => bank.byId.get(id)).filter((it): it is Item => !!it);
+    launch({ kind: 'drill', title: drillTitle(bank, topic, picked.length), items: picked });
+  };
+  const drillHint = pick.usesReserved ? '剩下的题都在模考预留卷里' : '没做过的优先，其次是错题';
 
   return (
     <div className="page nt-page nt-topic" ref={top}>
@@ -305,9 +325,9 @@ function TopicView({ topic }: { topic: string }) {
         title={info.name}
         desc={info.ja ? <span lang="ja">{info.ja}</span> : undefined}
         actions={
-          drill.length > 0 ? (
-            <Button variant="primary" size="lg" icon="play" onClick={startDrill}>
-              练这个考点 · {drill.length} 题
+          drillCount > 0 ? (
+            <Button variant="primary" size="lg" icon={pick.usesReserved ? 'flag' : 'play'} onClick={() => void startDrill()} title={drillHint}>
+              练这个考点 · {drillCount} 题
             </Button>
           ) : undefined
         }
@@ -335,8 +355,8 @@ function TopicView({ topic }: { topic: string }) {
                   <h3>真题</h3>
                   <p className="faint text-xs">{items.length ? `${items.length} 道 · 没做过 ${unseen} 道` : '题库里暂时没有'}</p>
                 </div>
-                {drill.length > 0 && (
-                  <Button size="sm" variant="soft" icon="play" onClick={startDrill}>
+                {drillCount > 0 && (
+                  <Button size="sm" variant="soft" icon={pick.usesReserved ? 'flag' : 'play'} onClick={() => void startDrill()} title={drillHint}>
                     练
                   </Button>
                 )}
@@ -354,6 +374,7 @@ function TopicView({ topic }: { topic: string }) {
         </aside>
       </div>
       <ItemPreview itemId={selected} ids={items.map((it) => it.id)} onSelect={setSelected} />
+      {confirm.node}
     </div>
   );
 }

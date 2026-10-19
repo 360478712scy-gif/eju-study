@@ -81,6 +81,11 @@ export function setMusic(enabled: boolean, track: string, volume: number) {
   else music.pause();
 }
 
+/** Try to start music that is enabled but was blocked (autoplay policy). */
+export function resumeMusic() {
+  if (music && musicWanted) void music.play().catch(() => {});
+}
+
 export function musicPlaying() {
   return !!music && !music.paused;
 }

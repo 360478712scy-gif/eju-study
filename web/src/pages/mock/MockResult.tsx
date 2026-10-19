@@ -12,7 +12,7 @@ import { Icon } from '../../components/Icon.tsx';
 import { ItemPreview, type PreviewContext } from '../practice/ItemPreview.tsx';
 import { drillTitle, pickDrill, reservedFor, reservedMap, shortLabel } from '../practice/practiceData.ts';
 import { masteryTone } from '../practice/TopicView.tsx';
-import { correctionIds, findMockSession, KIND_INFO, kindTarget, MOCK_MAX, resultRows, type ResultRow, type RowStatus } from './mockData.ts';
+import { correctionIds, findMockSession, isShaky, KIND_INFO, kindTarget, MOCK_MAX, resultRows, type ResultRow, type RowStatus } from './mockData.ts';
 import { isSlow, TimeBars } from './charts.tsx';
 
 const TOPIC_PREVIEW = 8;
@@ -32,6 +32,7 @@ export function MockResultView({ result: r }: { result: MockResult }) {
   const limit = session?.timeLimitSec;
   const gap = r.estimate - target;
   const blank = rows.filter((x) => x.status === 'blank').length;
+  const shaky = rows.filter(isShaky).length;
 
   const topics = useMemo(() => {
     const m = new Map<string, { topic: string; subject: Subject; n: number; got: number; wrong: number }>();
@@ -82,9 +83,10 @@ export function MockResultView({ result: r }: { result: MockResult }) {
     if (!pick.ids.length) return;
     if (pick.usesReserved) {
       const held = (bank.byTopic.get(topic) || []).map((it) => reservedFor(reserved, it)).find(Boolean);
-      const ok = await confirm.ask('剩下的题都在模考预留卷里', {
+      const ok = await confirm.ask('剩下的题都留给了模考', {
         body: held ? `${fmtDateShort(held.date)}「${held.title}」会用到这些题。现在练了，到时模考分数会偏高。` : '现在练了，之后的模考分数会偏高。',
         ok: '仍然练习',
+        focus: 'cancel',
       });
       if (!ok) return;
     }
@@ -155,9 +157,11 @@ export function MockResultView({ result: r }: { result: MockResult }) {
             {fix.length ? (
               <>
                 <Button variant="primary" size="lg" icon="refresh" block onClick={correct}>
-                  订正错题 · {fix.length} 题
+                  {shaky ? '订正' : '订正错题'} · {fix.length} 题
                 </Button>
-                <p className="faint text-xs">先自己重做，再看解析。做错的题已进入错题本，隔天会再出现。</p>
+                <p className="faint text-xs">
+                  {shaky ? `含 ${shaky} 道答对但没把握的题。` : ''}先自己重做，再看解析。做错的题已进入错题本，隔天会再出现。
+                </p>
               </>
             ) : (
               <p className="mk-perfect">

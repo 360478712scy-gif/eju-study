@@ -6,15 +6,14 @@ import { navigate, useRoute } from '../../lib/router.ts';
 import { cx, pct } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Button, PageHeader, Ring, Segmented } from '../../components/ui.tsx';
-import { extraQueue, getRun, NEW_WORD_CHOICES, newWordsNote, readNewWords, setRun, spaceCards, useRun, vocabDay, writeNewWords } from './run.ts';
+import { cardMinutes, extraQueue, getRun, MORE_COUNT, NEW_WORD_CHOICES, newWordsNote, readNewWords, setRun, spaceCards, useRun, vocabDay, writeNewWords } from './run.ts';
 import { startRun, VocabSession } from './VocabSession.tsx';
-import { MORE_COUNT, VocabSummary } from './VocabSummary.tsx';
+import { VocabSummary } from './VocabSummary.tsx';
 import { WordList } from './WordList.tsx';
 import { WordDetail } from './WordDetail.tsx';
 import './vocab.css';
 
-/** Same pace as the day plan's estimate. */
-const SECONDS_PER_CARD = 9;
+const NO_SPLIT = { review: 0, fill: 0, fresh: 0, newWords: 0 };
 
 export function VocabPage() {
   const run = useRun();
@@ -55,26 +54,11 @@ export function VocabPage() {
     return s;
   }, [state, bank, today]);
 
-  // Today's round from the shared engine (skipped while a run is on screen).
+  // Today's round from the shared engine (skipped while a run is on screen). Before any practice
+  // today it is exactly vocabToday's queue, i.e. the card count of Today's vocab block.
   const day = useMemo(() => (state && bank && !run ? vocabDay(state, bank, today, override) : null), [state, bank, today, override, run]);
   const queue = useMemo(() => day?.queue ?? [], [day]);
-  const split = useMemo(() => {
-    const out = { review: 0, fill: 0, fresh: 0, newWords: 0 };
-    if (!state || !bank) return out;
-    const words = new Set<string>();
-    for (const q of queue) {
-      const p = state.vocab[q.id];
-      const v = bank.vocabById.get(q.id);
-      if (p?.[q.skill]) out.review++;
-      else if (p && v && vocabSkills(v).some((k) => p[k])) out.fill++;
-      else {
-        out.fresh++;
-        words.add(q.id);
-      }
-    }
-    out.newWords = words.size;
-    return out;
-  }, [queue, state, bank]);
+  const split = day?.split ?? NO_SPLIT;
   const block = state?.plans[today]?.blocks.find((b) => b.kind === 'vocab');
 
   const start = () => {
@@ -120,13 +104,13 @@ export function VocabPage() {
   }
 
   const total = bank.bundle.vocab.length;
-  const minutes = Math.max(1, Math.round((queue.length * SECONDS_PER_CARD) / 60));
+  const minutes = cardMinutes(queue.length);
   const blockDone = block?.status === 'done';
   const todayAcc = stats.todayN ? stats.todayOk / stats.todayN : null;
   const due = day?.due ?? 0;
   const notes = [
-    due > split.review ? `一轮最多复习 ${split.review} 张，先练最该复习的；剩下 ${due - split.review} 张，这轮练完接着来。` : '',
-    split.fill > 0 ? `另有 ${split.fill} 张补练：这些词之前只练过读音或词义其中一项。` : '',
+    due > split.review ? `一轮最多复习 ${split.review} 张，先练最该复习的；剩下 ${due - split.review} 张这轮练完接着来。` : '',
+    split.fill > 0 ? `另有 ${split.fill} 张补另一项：这些词只练过读音或词义中的一项，这次补上没练过的那一项。` : '',
   ].filter(Boolean);
   const choose = (value: string) => {
     const n = value === 'auto' ? null : Number(value);
@@ -173,7 +157,7 @@ export function VocabPage() {
               )}
               <div className="vc-hero-actions">
                 <Button variant="primary" size="lg" iconRight="arrowRight" onClick={start}>
-                  {blockDone ? '再练一轮' : '开始训练'} · {queue.length} 张
+                  {blockDone ? '再练一轮' : '开始训练'} · {queue.length} 张卡
                 </Button>
                 <span className="vc-hero-time">
                   <Icon name="clock" size={15} />约 {minutes} 分钟
@@ -191,7 +175,7 @@ export function VocabPage() {
                   <p className="muted">还有余力就加练一组，巩固最容易错的词。</p>
                   <div className="vc-hero-actions">
                     <Button variant="primary" size="lg" icon="plus" onClick={extra}>
-                      加练 {MORE_COUNT} 张
+                      加练 {MORE_COUNT} 张卡
                     </Button>
                   </div>
                 </>

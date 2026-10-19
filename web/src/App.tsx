@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useApp, tickToday, update } from './lib/store.ts';
+import { useApp, tickToday, update, getSnapshot } from './lib/store.ts';
 import { useRoute, navigate } from './lib/router.ts';
 import { onShellCommand, SHELL_PAGES } from './lib/native.ts';
-import { setMusic, musicPlaying } from './lib/audio.ts';
+import { setMusic, musicPlaying, resumeMusic } from './lib/audio.ts';
 import { Toaster, Spinner, Button, Modal, Kbd } from './components/ui.tsx';
 import { Sidebar } from './components/Sidebar.tsx';
 import { TodayPage } from './pages/today/TodayPage.tsx';
@@ -47,8 +47,14 @@ function useMusicSync() {
 }
 
 export function toggleMusic() {
+  const enabled = getSnapshot().state?.settings.musicEnabled;
+  // Enabled but silent means the browser blocked autoplay: start it instead of switching it off.
+  if (enabled && !musicPlaying()) {
+    resumeMusic();
+    return;
+  }
   update((d) => {
-    d.settings.musicEnabled = !musicPlaying() && !d.settings.musicEnabled ? true : !d.settings.musicEnabled;
+    d.settings.musicEnabled = !d.settings.musicEnabled;
   });
 }
 
