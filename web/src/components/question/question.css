@@ -78,27 +78,29 @@
 .q-prompt-icon { flex: none; margin-top: 0.42em; color: var(--text-3); }
 .q-prompt-text { font-size: calc(var(--fs-base) * var(--reading-scale)); line-height: 1.75; }
 
-/* ── Figures: the frame belongs to the container; in dark the inverted drawing melts into the card ── */
-.q-figures { display: flex; flex-wrap: wrap; gap: 14px; }
-.q-figure { margin: 0; display: flex; flex-direction: column; gap: 6px; max-width: 100%; }
+/* ── Figures: an unbordered plate on the paper (no box in a box). White melts into whatever is
+   behind it (multiply in light, invert + lighten in dark), so hover can lift a quiet plate. ── */
+.q-figures { display: flex; flex-wrap: wrap; gap: 14px 22px; }
+.q-figure { margin: 0; display: flex; flex-direction: column; gap: 4px; max-width: 100%; }
 .q-figure-btn {
-  position: relative; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev); padding: 12px;
-  cursor: zoom-in; max-width: 100%; transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  position: relative; border: none; border-radius: var(--radius); background: transparent; padding: 8px; margin: -8px -8px 0;
+  cursor: zoom-in; max-width: calc(100% + 16px); transition: background var(--dur) var(--ease);
 }
-.q-figure-btn:hover { box-shadow: var(--shadow-sm); border-color: var(--border-strong); }
+.q-figure-btn:hover { background: var(--bg-hover); }
 .q-figure-btn:focus-visible { box-shadow: var(--focus-ring); }
-.q-figure-btn img { display: block; max-width: min(100%, 620px); max-height: 440px; height: auto; object-fit: contain; }
+.q-figure-btn img { display: block; max-width: min(100%, 620px); max-height: 440px; height: auto; object-fit: contain; mix-blend-mode: multiply; }
 .q-figure-zoom-hint {
-  position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border-radius: var(--radius-sm);
+  position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; border-radius: var(--radius-sm);
   display: flex; align-items: center; justify-content: center;
   background: var(--bg-elev-2); color: var(--text-2); box-shadow: var(--shadow-sm);
   opacity: 0; transition: opacity var(--dur) var(--ease);
 }
-.q-figure-btn:hover .q-figure-zoom-hint { opacity: 1; }
-.q-figure figcaption { display: flex; align-items: center; gap: 5px; color: var(--text-3); font-size: var(--fs-xs); line-height: 1.5; }
+.q-figure-btn:hover .q-figure-zoom-hint, .q-figure-btn:focus-visible .q-figure-zoom-hint { opacity: 1; }
+.q-figure figcaption { display: flex; align-items: flex-start; gap: 6px; color: var(--text-3); font-size: var(--fs-xs); line-height: 1.6; }
+.q-figure figcaption svg { flex: none; margin-top: 3px; }
 .q-figure-zoom-wrap { background: var(--bg-elev); border-radius: var(--radius); padding: 8px; }
-.q-figure-zoom { display: block; width: 100%; height: auto; max-height: calc(100vh - 180px); object-fit: contain; }
-/* Inverted white lands below the card colour and `lighten` keeps the card: no plate rectangle. */
+.q-figure-zoom { display: block; width: 100%; height: auto; max-height: calc(100vh - 180px); object-fit: contain; mix-blend-mode: multiply; }
+/* Inverted white lands below the surface colour and `lighten` keeps the surface: no plate rectangle. */
 :root[data-theme='dark'] .q-figure-btn img, :root[data-theme='dark'] .q-figure-zoom { filter: invert(1) hue-rotate(180deg) brightness(0.86) contrast(0.95); mix-blend-mode: lighten; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .q-figure-btn img, :root:not([data-theme='light']) .q-figure-zoom { filter: invert(1) hue-rotate(180deg) brightness(0.86) contrast(0.95); mix-blend-mode: lighten; }
@@ -140,25 +142,41 @@
 .q-diff-bars i.is-on { background: var(--text-2); }
 
 /* ── Explanation ── */
-.q-ex { display: flex; flex-direction: column; gap: 18px; container-type: inline-size; }
+.q-ex { display: flex; flex-direction: column; gap: 22px; }
 .q-ex-main { font-size: calc(var(--fs-base) * var(--reading-scale)); line-height: 1.9; }
-/* 考点 and 易错 side by side when the card is wide; 考场速解 takes the full width under them. */
-.q-ex-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
-@container (min-width: 640px) {
-  .q-ex-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .q-ex-grid > .q-ex-box.is-wide, .q-ex-grid > .q-ex-box:only-child { grid-column: 1 / -1; }
-}
-.q-ex-box.callout { min-width: 0; padding: 14px 16px; font-size: calc(var(--fs-ui) * var(--reading-scale)); line-height: 1.75; }
-.q-ex-box .callout-icon { margin-top: 2px; }
-.q-ex-box .callout-title { font-size: var(--fs-xs); margin-bottom: 4px; }
-.q-ex-box .katex-display { overflow-x: auto; overflow-y: hidden; margin: 0.4em 0; }
-.q-ex-box ul { margin: 0; padding-left: 1.1em; }
-.q-ex-box li + li { margin-top: 4px; }
-.q-ex-box .q-ex-box-text { font-size: inherit; line-height: inherit; }
+/* A bold label on its own line ("思路", "解答", "其余选项") is a small heading. */
+.rt.q-ex-main > p.q-ex-h { margin-top: 20px; font-size: var(--fs-base); line-height: var(--lh-head); }
+.rt.q-ex-main > p.q-ex-h:first-child { margin-top: 0; }
+.rt.q-ex-main > .q-ex-h + * { margin-top: 8px; }
+.rt.q-ex-main > ol, .rt.q-ex-main > ul { padding-left: 1.5em; }
+.rt.q-ex-main li + li { margin-top: 6px; }
+.rt.q-ex-main ol > li::marker { font-family: var(--font-num); font-variant-numeric: tabular-nums; color: var(--text-3); }
 /* Display math inside explanations: tight margins, and a list number stays on its equation's line. */
 .q-ex .katex-display { margin: 0.4em 0; }
 .q-ex li > .rt-math-display { display: inline-block; max-width: 100%; vertical-align: top; padding: 0; }
 .q-ex li > .rt-math-display > .katex-display { margin: 0; text-align: left; }
+
+/* 考点 / 易错 / 考场速解: one quiet well, hairline rules between the parts, tone only in icon + label.
+   Side by side when the column is wide; the shortcut takes the full width under them. */
+.q-notes-box { container-type: inline-size; }
+.q-notes {
+  --q-rule: color-mix(in srgb, var(--border-strong) 62%, var(--bg-sunken));
+  display: grid; grid-template-columns: minmax(0, 1fr); border-radius: var(--radius); background: var(--bg-sunken);
+}
+.q-note { min-width: 0; padding: 14px 18px 16px; font-size: calc(var(--fs-ui) * var(--reading-scale)); line-height: 1.75; color: var(--text); }
+.q-note + .q-note { box-shadow: inset 0 1px 0 var(--q-rule); }
+@container (min-width: 600px) {
+  .q-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .q-note.is-wide, .q-note:only-child, .q-note:first-child:has(+ .is-wide) { grid-column: 1 / -1; }
+  .q-note:nth-child(2):not(.is-wide) { box-shadow: inset 1px 0 0 var(--q-rule); }
+}
+.q-note-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; color: var(--tone-text); font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: 1.4; }
+.q-note-head svg { color: var(--tone); }
+.q-note-body ul { margin: 0; padding-left: 1.1em; }
+.q-note-body li + li { margin-top: 4px; }
+.q-note-body li::marker { color: var(--text-3); }
+.q-note-body .q-note-text { font-size: inherit; line-height: inherit; }
+.q-note-body .katex-display { overflow-x: auto; overflow-y: hidden; margin: 0.4em 0; }
 .q-ex-sub { display: flex; align-items: center; gap: 6px; color: var(--text-3); font-size: var(--fs-xs); font-weight: var(--fw-medium); margin-bottom: 8px; }
 .q-terms { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
 .q-term {

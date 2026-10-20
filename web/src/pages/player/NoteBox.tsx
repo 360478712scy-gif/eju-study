@@ -1,13 +1,24 @@
 // Personal note on an item (saved into the learner's progress, shown in the mistake book).
+// The player shows a quiet "写一句笔记" button among the tools and the editor under them.
 import { useEffect, useRef, useState } from 'react';
 import { setItemNote } from '@shared/actions.ts';
 import { update, useApp } from '../../lib/store.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { cx } from '../../lib/format.ts';
 
-export function NoteBox({ itemId }: { itemId: string }) {
+const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
+
+export function NoteButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" className="pl-tool" onClick={onClick} onMouseDown={keepFocus}>
+      <Icon name="pen" size={15} />
+      写一句笔记
+    </button>
+  );
+}
+
+export function NoteEditor({ itemId }: { itemId: string }) {
   const saved = useApp((s) => s.state?.progress[itemId]?.note ?? '');
-  const [open, setOpen] = useState(!!saved);
   const [text, setText] = useState(saved);
   const [state, setState] = useState<'idle' | 'dirty' | 'saved'>('idle');
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -31,25 +42,17 @@ export function NoteBox({ itemId }: { itemId: string }) {
     [itemId],
   );
 
-  if (!open) {
-    return (
-      <button type="button" className="pl-tool" onClick={() => setOpen(true)}>
-        <Icon name="pen" size={15} />
-        写一句笔记
-      </button>
-    );
-  }
   return (
     <div className="pl-note">
       <div className="pl-note-head">
         <span>
           <Icon name="pen" size={13} /> 我的笔记
         </span>
-        <span className={cx('pl-note-state', state === 'saved' && 'is-saved')}>{state === 'dirty' ? '编辑中…' : state === 'saved' ? '已保存' : '会自动保存'}</span>
+        <span className={cx('pl-note-state', state === 'saved' && 'is-saved')}>{state === 'dirty' ? '编辑中…' : state === 'saved' ? '已保存' : '自动保存'}</span>
       </div>
       <textarea
         value={text}
-        rows={3}
+        rows={2}
         autoFocus={!saved}
         placeholder="下次看到这题时想提醒自己的话，例如「先画受力图」"
         onChange={(e) => {

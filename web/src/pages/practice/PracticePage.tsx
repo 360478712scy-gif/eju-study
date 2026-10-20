@@ -4,9 +4,8 @@ import { SUBJECTS, type Subject } from '@shared/types.ts';
 import { topicStats } from '@shared/stats.ts';
 import { useReady } from '../../lib/store.ts';
 import { navigate, useRoute } from '../../lib/router.ts';
-import { cx, SUBJECT_NAME } from '../../lib/format.ts';
-import { IconTile, PageHeader, Segmented } from '../../components/ui.tsx';
-import { SUBJECT_ICON } from '../../components/Icon.tsx';
+import { SUBJECT_NAME } from '../../lib/format.ts';
+import { PageHeader, Segmented, SubjectDot, Tabs } from '../../components/ui.tsx';
 import { ItemPreview } from './ItemPreview.tsx';
 import { isWrong, reservedMap } from './practiceData.ts';
 import { TopicView } from './TopicView.tsx';
@@ -101,51 +100,37 @@ export function PracticePage(_props: {}) {
 
   return (
     <div className="page pr-page">
-      <PageHeader
-        title="题库练习"
-        desc={`真题 ${counts.official} · 原创 ${counts.original}，按考点专项练、按套卷整节练，或直接搜题。`}
-        actions={
-          <Segmented<View>
-            value={view}
-            onChange={(v) => go({ view: v })}
-            options={[
-              { value: 'topics', label: '按考点', icon: 'layers' },
-              { value: 'papers', label: '按真题卷', icon: 'file' },
-              { value: 'items', label: '题目', icon: 'search' },
-            ]}
-          />
-        }
-      />
+      <PageHeader title="题库练习" desc={`真题 ${counts.official} · 原创 ${counts.original}，按考点专项练、按套卷整节练，或直接搜题。`} />
 
-      {view !== 'papers' && (
-        <div className="pr-subjects" role="tablist" aria-label="科目">
-          {SUBJECTS.map((s) => {
-            const sum = summaries[s];
-            return (
-              <button
-                key={s}
-                type="button"
-                role="tab"
-                aria-selected={s === subject}
-                className={cx('pr-subject', `tone-${s}`, s === subject && 'is-active')}
-                onClick={() => go({ s })}
-              >
-                <IconTile icon={SUBJECT_ICON[s]} tone={s} size="md" />
-                <span className="pr-subject-text">
-                  <span className="pr-subject-name">{SUBJECT_NAME[s]}</span>
-                  <span className="pr-subject-meta num">
-                    已做 {sum.done}/{sum.total}
-                    {sum.wrong > 0 && ` · 错 ${sum.wrong}`}
-                  </span>
-                </span>
-                <span className="pr-subject-bar">
-                  <i style={{ width: `${(sum.done / Math.max(1, sum.total)) * 100}%` }} />
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      {/* Page-level view switch (underline tabs); the subject filter sits on the same line. */}
+      <div className="pr-nav">
+        <Tabs<View>
+          value={view}
+          onChange={(v) => go({ view: v })}
+          options={[
+            { value: 'topics', label: '按考点' },
+            { value: 'papers', label: '按真题卷' },
+            { value: 'items', label: '题目' },
+          ]}
+        />
+        {view !== 'papers' && (
+          <Segmented<Subject>
+            size="sm"
+            className="pr-subjects"
+            value={subject}
+            onChange={(s) => go({ s })}
+            options={SUBJECTS.map((s) => ({
+              value: s,
+              label: (
+                <>
+                  <SubjectDot subject={s} />
+                  {SUBJECT_NAME[s]}
+                </>
+              ),
+            }))}
+          />
+        )}
+      </div>
 
       {view === 'topics' && (
         <TopicView

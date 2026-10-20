@@ -95,6 +95,8 @@ export function TopicView({
   }, [bank, subject, state, stats, weakList, reserved, today]);
 
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set());
+  /** Topics without questions yet (whole units or single topics): one footer line for the subject. */
+  const noteOnly = useMemo(() => units.flatMap((u) => u.empty), [units]);
 
   const ranked = useMemo(() => units.flatMap((u) => u.rows).sort((a, b) => b.priority - a.priority), [units]);
   /** The one recommended drill: the highest-priority topic that still has questions to pick. */
@@ -173,7 +175,7 @@ export function TopicView({
         <div className="pr-thead pr-grid" aria-hidden>
           <span>考点</span>
           <span className="is-num">已做</span>
-          <span>掌握度</span>
+          <span className="pr-col-m">掌握度</span>
           <span className="is-num">错题</span>
           <span />
         </div>
@@ -181,52 +183,50 @@ export function TopicView({
           // The recommended drill sits on top (it can be anywhere in the unit order); its own
           // unit row stays plain so there is one filled button.
           <div className="pr-pinned">
-            <div className="pr-pinned-label">建议先练</div>
+            <div className="pr-group-label">建议先练</div>
             {renderRow(next, true, true)}
           </div>
         )}
         {order === 'units' ? (
-          units.map((u) => {
-            if (!u.total) return <NotesOnly key={u.id} unit={u.name} topics={u.empty} weak={u.weak} />;
-            const open = !collapsed.has(u.id);
-            return (
-              <div key={u.id} className={cx('pr-unit', open && 'is-open')}>
-                <button type="button" className="pr-unit-head pr-grid" onClick={() => toggle(u.id)} aria-expanded={open}>
-                  <span className="pr-unit-title">
-                    <Icon name="right" size={15} className="pr-unit-chevron" />
-                    <span className="pr-unit-name">{u.name}</span>
-                    {u.weak && (
-                      <Badge size="sm" className="pr-weak">
-                        薄弱
-                      </Badge>
-                    )}
-                  </span>
-                  {u.rows.length > 1 ? (
-                    <>
-                      <span className="pr-count num">
-                        <b>{u.done}</b>
-                        <span>/{u.total}</span>
-                      </span>
-                      <MasteryBar value={u.mastery} target={target} />
-                      <span className={cx('pr-mistakes num', !u.mistakes && 'is-zero')}>{u.mistakes || '—'}</span>
-                      <span />
-                    </>
-                  ) : null}
-                </button>
-                {open && (
-                  <div className="pr-unit-rows">
-                    {u.rows.map((r) => renderRow(r, false, false))}
-                    {u.empty.length > 0 && <NotesOnly topics={u.empty} />}
-                  </div>
-                )}
-              </div>
-            );
-          })
+          units
+            .filter((u) => u.total > 0)
+            .map((u) => {
+              const open = !collapsed.has(u.id);
+              return (
+                <div key={u.id} className={cx('pr-unit', open && 'is-open')}>
+                  <button type="button" className="pr-unit-head pr-grid" onClick={() => toggle(u.id)} aria-expanded={open}>
+                    <span className="pr-unit-title">
+                      <Icon name="right" size={14} className="pr-unit-chevron" />
+                      <span className="pr-unit-name">{u.name}</span>
+                      {u.weak && (
+                        <Badge size="sm" className="pr-weak">
+                          薄弱
+                        </Badge>
+                      )}
+                    </span>
+                    {/* Unit totals only where they add something: several topics, or the unit is folded. */}
+                    {u.rows.length > 1 || !open ? (
+                      <>
+                        <span className="pr-count num">
+                          {u.done}/{u.total}
+                        </span>
+                        <span className="pr-col-m pr-unit-mastery num">{u.mastery === null ? '' : pct(u.mastery)}</span>
+                        <span className="pr-mistakes num">{u.mistakes || ''}</span>
+                        <span />
+                      </>
+                    ) : null}
+                  </button>
+                  {open && <div className="pr-unit-rows">{u.rows.map((r) => renderRow(r, false, false))}</div>}
+                </div>
+              );
+            })
         ) : ranked.length ? (
           <div className="pr-unit-rows">{ranked.map((r) => renderRow(r, true))}</div>
-        ) : (
+        ) : null}
+        {!ranked.length && (
           <Empty title="这一科还没有题目" desc="可以先去考点笔记复习，题目上线后会出现在这里。" action={<Button size="sm" onClick={() => navigate('/notes')}>看考点笔记</Button>} />
         )}
+        {ranked.length > 0 && noteOnly.length > 0 && <NotesOnly topics={noteOnly} />}
       </div>
       <div className="pr-foot">
         <span className="pr-foot-label">掌握度</span>
@@ -291,7 +291,7 @@ function TopicRow({
         <span>/{r.items.length}</span>
       </span>
       <Tooltip label={tried && r.stat ? `作答 ${r.stat.attempts} 次，得分 ${Math.round(r.stat.correct * 10) / 10}` : '还没练过'}>
-        <span className="pr-topic-mastery">
+        <span className="pr-topic-mastery pr-col-m">
           <MasteryBar value={tried && r.stat ? r.stat.mastery : null} target={target} />
         </span>
       </Tooltip>
@@ -313,45 +313,26 @@ function TopicRow({
 }
 
 /**
- * Topics (or a whole unit) without questions yet: one muted line. It expands into the topic names,
- * which open their notes.
+ * Topics without questions yet, for the whole subject: one quiet footer line under the table. It
+ * expands into the topic names, which open their notes.
  */
-function NotesOnly({ unit, topics, weak }: { unit?: string; topics: TaxonomyTopic[]; weak?: boolean }) {
+function NotesOnly({ topics }: { topics: TaxonomyTopic[] }) {
   const { bank } = useReady();
   const [open, setOpen] = useState(false);
   const withNotes = topics.filter((t) => bank.notesByTopic.has(t.id)).length;
-  const label = unit
-    ? withNotes === topics.length
-      ? `只有笔记 · ${topics.length} 个考点`
-      : `暂无题目 · ${topics.length} 个考点`
-    : withNotes === topics.length
-      ? `另有 ${topics.length} 个考点只有笔记`
-      : `另有 ${topics.length} 个考点暂无题目`;
+  const label = withNotes === topics.length ? `另有 ${topics.length} 个考点暂时只有笔记` : `另有 ${topics.length} 个考点暂无题目`;
   return (
-    <div className={cx('pr-notes-only', unit && 'is-unit', open && 'is-open')}>
+    <div className={cx('pr-notes-only', open && 'is-open')}>
       <button type="button" className="pr-notes-toggle" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
-        {unit && (
-          <span className="pr-notes-unit">
-            <Icon name="right" size={15} className="pr-unit-chevron" />
-            {unit}
-            {weak && (
-              <Badge size="sm" className="pr-weak">
-                薄弱
-              </Badge>
-            )}
-          </span>
-        )}
-        <span className="pr-notes-label">
-          {label}
-          {!unit && <Icon name="right" size={13} className="pr-notes-caret" />}
-        </span>
+        <Icon name="notebook" size={14} className="pr-notes-icon" />
+        <span>{label}</span>
+        <Icon name="right" size={13} className="pr-notes-caret" />
       </button>
       {open && (
         <div className="pr-notes-links">
           {topics.map((t) =>
             bank.notesByTopic.has(t.id) ? (
               <a key={t.id} className="pr-notes-link" href={href('/notes/' + t.id)}>
-                <Icon name="notebook" size={13} />
                 {t.name}
               </a>
             ) : (

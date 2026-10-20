@@ -660,7 +660,7 @@ async function main() {
       const L = todayLayout(st, today);
       await waitText('.td-plan .card-sub', new RegExp(`今天共 ${n} 项 · 约 ${reEsc(fmtMinutes(sum))}`));
       await waitText('.td-pg-count', new RegExp(`0 / ${n} 项`));
-      await waitText('.td-progress .td-pg-line', new RegExp(`计划 ${reEsc(fmtMinutes(budget))}`));
+      await waitText('.td-progress .td-pg-line', new RegExp(`计划 ${reEsc(fmtMinutes(sum))}`)); // the tasks' own total, as in the list and 跟学
       eq(await text('.td-title'), '从第 1 项开始吧', 'headline');
       eq(await text('.td-hero-title'), shownTitle(L.hero), 'the hero is the first task in 跟学 order');
       await waitText('.td-hero-step', new RegExp(`第 1 项 · 共 ${n} 项`));
@@ -1161,7 +1161,13 @@ async function main() {
       eq(st2.sessions[rid].kind, 'review', 'redo session kind');
       eq(JSON.stringify(st2.sessions[rid].itemIds), JSON.stringify([it.id]), 'redo items');
       const locks = lockedGroups(st2, bank, it.id);
-      const lockedLetters = groups.slice(0, half).flatMap((g) => [...g]);
+      // Locks follow the stem order up to the first wrong group (`groups` above is sorted for typing).
+      const wrongGroups = new Set(groups.slice(half));
+      const lockedLetters = [];
+      for (const g of blankGroups(it)) {
+        if (wrongGroups.has(g)) break;
+        lockedLetters.push(...g);
+      }
       eq(JSON.stringify(Object.keys(locks).sort()), JSON.stringify([...lockedLetters].sort()), 'lockedGroups = the groups before the first wrong one');
       await waitText('.pl-sheet-lock', /上次已答对/);
       eq(await page.locator('.pl-cell.is-locked').count(), lockedLetters.length, 'locked cells');
@@ -1418,7 +1424,7 @@ async function main() {
     if (ctx.linger) assert(day.seconds >= ctx.linger, `study seconds ${day.seconds} < ${ctx.linger} spent on one item`);
     await waitText('.td-pg-ratio', new RegExp(`^${doneN}\\s*/${countable}$`));
     await waitText('.td-pg-title', new RegExp(`完成 ${doneN} 项，还剩 ${countable - doneN} 项`));
-    await waitText('.td-progress .td-pg-line', new RegExp(`已学 ${reEsc(fmtMinutes(day.seconds / 60))} / 计划 ${reEsc(fmtMinutes(plan.budgetMinutes))}`));
+    await waitText('.td-progress .td-pg-line', new RegExp(`已学 ${reEsc(fmtMinutes(day.seconds / 60))} / 计划 ${reEsc(fmtMinutes(L.counted.reduce((s, b) => s + b.minutes, 0)))}`));
     const tile = (await page.locator('.td-pg-stats .stat-tile').filter({ hasText: '今日做题' }).innerText()).replace(/\s+/g, '');
     assert(tile.includes(`${day.answered}题`) && tile.includes(`正确率${pct(day.correct / day.answered)}`), `今日做题 tile "${tile}"`);
     eq(await text('.td-plan .card-sub'), `今天共 ${countable} 项 · 约 ${fmtMinutes(L.counted.reduce((s, b) => s + b.minutes, 0))}`, 'list summary');
@@ -1558,8 +1564,8 @@ async function main() {
     const used = usedItems(before);
     const reused = blocksNow.filter((b) => b.status === 'todo').flatMap((b) => b.itemIds).filter((id) => used.has(id));
     eq(reused.length, 0, `new tasks repeat items finished today (${reused.slice(0, 3).join(', ')})`);
-    await waitText('.td-progress .td-pg-line', /计划 8 小时/);
     const L = todayLayout(st, today);
+    await waitText('.td-progress .td-pg-line', new RegExp(`计划 ${reEsc(fmtMinutes(L.counted.reduce((s, b) => s + b.minutes, 0)))}`));
     await waitText('.td-plan .card-sub', new RegExp(`约 ${reEsc(fmtMinutes(L.counted.reduce((s, b) => s + b.minutes, 0)))}`));
     eq(await todayCount(), blocksNow.length, 'tasks on Today after re-planning');
     await snap('today-8h');
@@ -1789,8 +1795,8 @@ async function main() {
       await page.locator('.td-plan').waitFor({ timeout: T.short });
       await waitState((s) => s.plans[d7].blocks.every((b) => b.status === 'skipped'), 'every task skipped');
       await waitText('.td-hero-title', /今天的任务都跳过了/);
-      eq(await text('.td-title'), '今天还一项都没做', 'headline');
-      eq(await text('.td-plan .card-sub'), `${n} 项都已跳过`, 'list summary');
+      assert(/^(今天先休息一下|今天先到这里，去睡吧)$/.test(await text('.td-title')), `headline "${await text('.td-title')}"`);
+      await waitText('.td-plan', new RegExp(`已跳过 ${n} 项`));
       eq(await page.locator('.td-done').count(), 0, 'no 今天收工了 card');
       await snap('today-all-skipped');
       await page.locator('.td-hero').getByRole('button', { name: '全部恢复' }).click();
@@ -2076,8 +2082,8 @@ async function main() {
     await exitFlow();
     const st0 = await waitState((s) => s.plans[dFinal].blocks.every((b) => b.status === 'done' || b.status === 'skipped'), 'every task resolved');
     const skipped = st0.plans[dFinal].blocks.filter((b) => b.status === 'skipped').length;
-    await waitText('.td-done .td-hero-title', /今天收工了/);
-    eq(await text('.td-title'), '今天的任务都完成了', 'headline');
+    await waitText('.td-done', /今日小结/);
+    assert(/^今天的任务都完成了/.test(await text('.td-title')), `headline "${await text('.td-title')}"`);
     await waitText('.td-done-stats', new RegExp(`跳过 ${skipped} 项`));
     await snap('final-done');
     const n0 = st0.plans[dFinal].blocks.length;

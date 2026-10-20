@@ -167,6 +167,13 @@ export function parseBlocks(src: string): Block[] {
       blocks.push({ type: 'table', header, rows });
       continue;
     }
+    // A lead-in line right above a flat list, with no blank line between ("**其余选项**：\n- 1：…\n- 3：…").
+    const lead = lines.findIndex((l) => /^-\s+/.test(l));
+    if (lead > 0 && lines.slice(lead).every((l) => /^-\s+/.test(l)) && !lines.slice(0, lead).some((l) => /^\s*(-|\d+[.)])\s+/.test(l))) {
+      blocks.push({ type: 'p', children: parseInline(lines.slice(0, lead).join('\n')) });
+      blocks.push({ type: 'list', ordered: false, items: lines.slice(lead).map((l) => parseInline(l.replace(/^-\s+/, ''))) });
+      continue;
+    }
     if (lines.every((l) => /^\s*-\s+/.test(l))) {
       blocks.push({ type: 'list', ordered: false, items: lines.map((l) => parseInline(l.replace(/^\s*-\s+/, ''))) });
       continue;

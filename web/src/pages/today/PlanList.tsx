@@ -55,9 +55,36 @@ function targetRate(state: AppState, subject: Subject | 'mixed'): number {
   return state.profile.targets[subject] / SCALE_MAX[subject];
 }
 
-/** The reason without its trailing numbers in brackets ("（新题 7 · 回炉 6）"), which go to the tooltip. */
-function shortReason(r: string): string {
-  return r.replace(/\s*[（(][^）)]*[）)]\s*[。.]?$/, '').trim();
+/**
+ * One short, complete reason for a row (the full one is the tooltip and the hero's). The planner's
+ * reasons are written for the hero; rows get the gist so nothing is cut mid-sentence.
+ */
+function rowReason(b: PlanBlock, full: string): string {
+  const r = full.replace(/\s*[（(][^）)]*[）)]/g, '');
+  if (b.reviewOfMock) return '先自己重做错题，再看解析';
+  switch (b.kind) {
+    case 'review':
+      return '到期的错题和没把握的题';
+    case 'vocab':
+      return '先看字写读音，再选意思';
+    case 'notes':
+      return '只看公式、结论和易错点';
+    case 'traps':
+      return '你做错过的易错点，汇成一页';
+    case 'listening':
+      return '每题只听一遍，答完精听原文';
+    case 'mock':
+      return '限时整卷，交卷后估分';
+    case 'reading':
+      if (b.title.includes('文型')) return '读解常见的文型和接续词';
+      return b.timed ? '每题约 1.5 分钟，先找依据句' : '先找原文依据，再选答案';
+  }
+  if (b.title.includes('考点速测')) return '一题 30 秒，忘了的马上补';
+  if (b.timed) return '每题约 2 分钟，卡住先跳过';
+  const mastery = /掌握度\s*(\d+)%/.exec(r);
+  if (mastery) return `掌握度 ${mastery[1]}%${/薄弱/.test(r) ? '，薄弱方向' : '，继续巩固'}`;
+  if (/还没练过/.test(r)) return '高频考点，还没练过';
+  return r.split(/[，。；]/)[0] || r;
 }
 
 function Row({
@@ -85,9 +112,10 @@ function Row({
   const open = view === 'active' ? openSessionFor(state, b.id) : undefined;
   const mockResult = isMock && b.mock && view === 'done' ? [...state.mocks].reverse().find((m) => m.kind === b.mock?.kind && m.session === b.mock?.session) : undefined;
   const size = [n !== null ? countLabel(b, n) : null, fmtMinutes(b.minutes)].filter(Boolean).join(' · ');
-  const short = shortReason(reason);
-  // The kind leads the line when the title does not already say it ("专项练习 · 掌握度 68%…").
-  const metaText = title.startsWith(kind.slice(0, 2)) || isMock ? short : `${kind} · ${short}`;
+  const short = rowReason(b, reason);
+  // The kind leads the line only when the title does not already say it ("专项练习 · 掌握度 68%").
+  const kindShown = isMock || b.kind === 'review' || b.kind === 'vocab' || b.kind === 'notes' || b.kind === 'traps' || title.includes(kind) || title.includes(kind.slice(-2));
+  const metaText = kindShown ? short : `${kind} · ${short}`;
 
   let trail: ReactNode = <span className="td-row-size num">{size}</span>;
   let hover: ReactNode = null;
@@ -251,6 +279,7 @@ export function PlanList({
   sub,
   actions,
   footer,
+  bare,
   onStart,
 }: {
   state: AppState;
@@ -263,6 +292,8 @@ export function PlanList({
   sub: ReactNode;
   actions: ReactNode;
   footer?: ReactNode;
+  /** A finished or fully skipped day: the hero already says so, the list is one folded row. */
+  bare?: boolean;
   onStart: (b: PlanBlock) => void;
 }) {
   const [moreOpen, setMoreOpen] = useState(false);
@@ -278,14 +309,16 @@ export function PlanList({
   const row = (e: Entry, isLater?: boolean) => <Row key={e.block.id} state={state} bank={bank} today={today} entry={e} later={isLater} onStart={onStart} />;
 
   return (
-    <section className="card card-flush td-plan">
-      <header className="td-plan-head">
-        <div className="td-plan-headtext">
-          <h2 className="card-title">{title}</h2>
-          <p className="card-sub">{sub}</p>
-        </div>
-        <div className="td-plan-actions">{actions}</div>
-      </header>
+    <section className={cx('card card-flush td-plan', bare && 'is-bare')} aria-label={bare ? '今天的任务' : undefined}>
+      {!bare && (
+        <header className="td-plan-head">
+          <div className="td-plan-headtext">
+            <h2 className="card-title">{title}</h2>
+            <p className="card-sub">{sub}</p>
+          </div>
+          {actions && <div className="td-plan-actions">{actions}</div>}
+        </header>
+      )}
       <List className="td-list">
         {shown.map((e) => row(e))}
         {hidden.length > 0 && (
@@ -324,7 +357,7 @@ export function PlanList({
                     : `已完成 ${done.length} 项${skipped.length ? ` · 跳过 ${skipped.length} 项` : ''}`
                   : `已跳过 ${skipped.length} 项`
               }
-              meta={done.length ? `共 ${fmtMinutes(doneMin)}` : '点开可以恢复'}
+              meta={done.length ? (allDone ? '点开看每一项的结果' : doneMin >= 1 ? `共 ${fmtMinutes(doneMin)}` : undefined) : '点开可以逐项恢复'}
               open={doneOpen}
               onToggle={() => setDoneOpen((o) => !o)}
             />

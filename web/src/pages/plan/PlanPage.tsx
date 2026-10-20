@@ -1,19 +1,22 @@
-// 冲刺日历 — the sprint calendar: an overview strip, one neutral card per phase with a compact
-// tile per day (budget editable for today and future days, scheduled mocks, and for past days
-// what was done), the exam day, score targets per subject, and a folded "怎么排的？" explainer.
+// 冲刺日历 — the sprint calendar: an overview strip (one cell per day, grouped by phase), one
+// neutral card per phase with a compact tile per day (today and future days are buttons that edit
+// the day's budget; a tile only says more than its date when the day differs: a mock, a rest day,
+// other hours, or what was done on a past day), the exam day, score targets per subject, and a
+// folded "怎么排的？" explainer. Phases are told apart by name and position, not colour: the current
+// phase gets the indigo dot, the others stay neutral.
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useReady, update } from '../../lib/store.ts';
-import { Badge, Button, Chip, Dot, Empty, IconTile, Modal, PageHeader, StatTile, SubjectTag, Tooltip, toast } from '../../components/ui.tsx';
+import { Badge, Button, Chip, Dot, Empty, IconTile, Modal, PageHeader, StatTile, Tooltip, toast, type Tone } from '../../components/ui.tsx';
 import { navigate } from '../../lib/router.ts';
-import { Icon, type IconName } from '../../components/Icon.tsx';
+import { Icon, SUBJECT_ICON, type IconName } from '../../components/Icon.tsx';
 import type { AppState, Phase } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
-import { PHASE_INFO, calendar, daysLeftOn, mockSchedule, type DaySkeleton, type ScheduledMock } from '@shared/planner.ts';
+import { PHASE_INFO, calendar, daysLeftOn, mockSchedule, phaseFor, type DaySkeleton, type ScheduledMock } from '@shared/planner.ts';
 import { estimateAll, SCALE_MAX, type SubjectEstimate } from '@shared/stats.ts';
 import { weekdayZh } from '@shared/dates.ts';
-import { cx, fmtDateShort, pct } from '../../lib/format.ts';
+import { SUBJECT_NAME, cx, fmtDateShort, pct } from '../../lib/format.ts';
 import { DurationDialog } from '../today/DurationDialog.tsx';
-import { PHASE_TONE, plainNumbers, regenerateDay } from '../today/blocks.ts';
+import { plainNumbers, regenerateDay } from '../today/blocks.ts';
 import { SCORE_ORDER, TOTAL_MAX, isLowData, shownScore } from '../today/scores.ts';
 import './plan.css';
 
@@ -40,6 +43,11 @@ function shortDate(date: string): string {
 interface PhaseGroup {
   phase: Phase;
   days: DaySkeleton[];
+}
+
+/** The current phase wears the indigo dot ("you are here"); the others stay neutral. */
+function phaseTone(phase: Phase, current: Phase | null): Tone {
+  return phase === current ? 'primary' : 'neutral';
 }
 
 const HOW_KEY = 'eju-plan-how-open';
@@ -70,6 +78,7 @@ export function PlanPage() {
   const todayIdx = days.findIndex((d) => d.date === today);
   const examDate = state.profile.examDate;
   const daysToExam = daysLeftOn(state, today);
+  const current = daysToExam >= 0 ? phaseFor(daysToExam) : null;
 
   if (!days.length) {
     return (
@@ -83,14 +92,14 @@ export function PlanPage() {
   return (
     <div className="page plan">
       <PageHeader
-        title={`${days.length} 天冲刺日历`}
+        title={daysToExam > 0 ? `还有 ${daysToExam} 天` : '今天考试'}
         desc={
           <>
-            {shortDate(start)} – {shortDate(examDate)}
+            {shortDate(start)} – {shortDate(examDate)} 冲刺 {days.length} 天
             {todayIdx >= 0 && daysToExam > 0 && (
               <>
                 {' '}
-                · 今天第 <b className="num">{todayIdx + 1}</b> 天 · 还有 <b className="num">{daysToExam}</b> 天
+                · 今天是第 <b className="num">{todayIdx + 1}</b> 天
               </>
             )}
           </>
@@ -103,14 +112,14 @@ export function PlanPage() {
         }
       />
 
-      <Overview state={state} days={days} groups={groups} today={today} />
+      <Overview state={state} days={days} groups={groups} today={today} current={current} />
 
       <div className="plan-phases">
         {groups.map((g) =>
           g.phase === 'exam' ? (
             <ExamCard key={g.phase} day={g.days[0]} left={daysToExam} />
           ) : (
-            <PhaseCard key={g.phase} group={g} state={state} today={today} carried={carried} onEdit={setEditing} />
+            <PhaseCard key={g.phase} group={g} state={state} today={today} current={current} carried={carried} onEdit={setEditing} />
           ),
         )}
       </div>
@@ -126,7 +135,7 @@ export function PlanPage() {
 
 // ─────────────────────────── Overview strip ───────────────────────────
 
-function Overview({ state, days, groups, today }: { state: AppState; days: DaySkeleton[]; groups: PhaseGroup[]; today: string }) {
+function Overview({ state, days, groups, today, current }: { state: AppState; days: DaySkeleton[]; groups: PhaseGroup[]; today: string; current: Phase | null }) {
   const stats = useMemo(() => {
     let seconds = 0;
     let studied = 0;
@@ -146,7 +155,6 @@ function Overview({ state, days, groups, today }: { state: AppState; days: DaySk
     const remaining = days.filter((d) => d.date >= today).reduce((s, d) => s + d.budget, 0);
     return { seconds, studied, blocks, done, remaining };
   }, [state, days, today]);
-  const cols = { gridTemplateColumns: `repeat(${days.length}, minmax(0, 1fr))` };
 
   return (
     <section className="card plan-overview">
@@ -156,33 +164,36 @@ function Overview({ state, days, groups, today }: { state: AppState; days: DaySk
         <StatTile icon="checkCircle" label="完成任务" value={`${stats.done}/${stats.blocks}`} unit="项" />
         <StatTile icon="calendar" label="剩余计划" value={Math.round(stats.remaining / 6) / 10} unit="小时" />
       </div>
-      <div className="plan-ov-track" style={cols}>
-        {days.map((d) => {
-          const log = state.days[d.date];
-          const min = (log?.seconds ?? 0) / 60;
-          const ratio = d.budget ? Math.min(1, min / d.budget) : min > 0 ? 1 : 0;
-          const past = d.date < today;
-          const isToday = d.date === today;
-          return (
-            <Tooltip key={d.date} label={`${fmtDateShort(d.date)} ${weekdayZh(d.date)} · ${past || isToday ? `已学 ${compactMinutes(min)}` : d.phase === 'exam' ? '考试' : d.budget ? hours(d.budget) : '休息'}`}>
-              <span
-                className={cx('plan-ov-seg', `tone-${PHASE_TONE[d.phase]}`, past && 'is-past', isToday && 'is-today', d.budget === 0 && d.phase !== 'exam' && 'is-rest', d.phase === 'exam' && 'is-exam')}
-              >
-                {(past || isToday) && ratio > 0 && <span className="plan-ov-fill" style={{ height: `${Math.max(ratio, 0.12) * 100}%` }} />}
-                {isToday && <span className="plan-today plan-ov-today">今天</span>}
-              </span>
-            </Tooltip>
-          );
-        })}
-      </div>
-      <div className="plan-ov-labels" style={cols}>
+      {/* One cell per day; phases are groups with a gap and a label under each. */}
+      <div className="plan-ov-track">
         {groups.map((g) => (
-          <div key={g.phase} className={cx('plan-ov-label', g.days.length <= 2 && 'is-narrow')} style={{ gridColumn: `span ${g.days.length}` }}>
-            <span className="plan-ov-name">
-              {g.phase === 'exam' ? <Icon name="flag" size={12} className="plan-ov-flag" /> : <Dot tone={PHASE_TONE[g.phase]} size="sm" />}
-              {g.phase === 'exam' ? '考试' : PHASE_INFO[g.phase].name}
-            </span>
-            <span className="plan-ov-range num">{g.days.length === 1 ? shortDate(g.days[0].date) : `${shortDate(g.days[0].date)}–${shortDate(g.days[g.days.length - 1].date)}`}</span>
+          <div key={g.phase} className={cx('plan-ov-group', g.phase === 'exam' && 'is-exam')} style={{ flexGrow: g.days.length }}>
+            <div className="plan-ov-cells" style={{ gridTemplateColumns: `repeat(${g.days.length}, minmax(0, 1fr))` }}>
+              {g.days.map((d) => {
+                const log = state.days[d.date];
+                const min = (log?.seconds ?? 0) / 60;
+                const ratio = d.budget ? Math.min(1, min / d.budget) : min > 0 ? 1 : 0;
+                const past = d.date < today;
+                const isToday = d.date === today;
+                const tip = `${fmtDateShort(d.date)} ${weekdayZh(d.date)} · ${past || isToday ? `已学 ${compactMinutes(min)}` : d.phase === 'exam' ? '考试' : d.budget ? hours(d.budget) : '休息'}${d.mocks ? ` · ${shortMockTitle(d.mocks.title)}` : ''}`;
+                return (
+                  <Tooltip key={d.date} label={tip}>
+                    <span className={cx('plan-ov-seg', past && 'is-past', isToday && 'is-today', d.budget === 0 && d.phase !== 'exam' && 'is-rest', d.phase === 'exam' && 'is-exam')}>
+                      {(past || isToday) && ratio > 0 && <span className="plan-ov-fill" style={{ height: `${Math.max(ratio, 0.12) * 100}%` }} />}
+                      {d.phase === 'exam' && <Icon name="flag" size={12} />}
+                      {isToday && <span className="plan-today plan-ov-today">今天</span>}
+                    </span>
+                  </Tooltip>
+                );
+              })}
+            </div>
+            <div className="plan-ov-label">
+              <span className="plan-ov-name">
+                {g.phase !== 'exam' && <Dot tone={phaseTone(g.phase, current)} size="sm" />}
+                {g.phase === 'exam' ? '考试' : PHASE_INFO[g.phase].name}
+              </span>
+              <span className="plan-ov-range num">{g.days.length === 1 ? shortDate(g.days[0].date) : `${shortDate(g.days[0].date)}–${shortDate(g.days[g.days.length - 1].date)}`}</span>
+            </div>
           </div>
         ))}
       </div>
@@ -192,24 +203,47 @@ function Overview({ state, days, groups, today }: { state: AppState; days: DaySk
 
 // ─────────────────────────── Phases ───────────────────────────
 
-function PhaseCard({ group, state, today, carried, onEdit }: { group: PhaseGroup; state: AppState; today: string; carried?: ScheduledMock; onEdit: (date: string) => void }) {
+function PhaseCard({
+  group,
+  state,
+  today,
+  current,
+  carried,
+  onEdit,
+}: {
+  group: PhaseGroup;
+  state: AppState;
+  today: string;
+  current: Phase | null;
+  carried?: ScheduledMock;
+  onEdit: (date: string) => void;
+}) {
   const info = PHASE_INFO[group.phase];
   const first = group.days[0];
   const last = group.days[group.days.length - 1];
-  const current = group.days.some((d) => d.date === today);
+  const isCurrent = group.phase === current;
   const past = last.date < today;
   const total = group.days.reduce((s, d) => s + d.budget, 0);
+  // The budget most days of the phase share: said once in the header, so tiles only show the exceptions.
+  const usual = useMemo(() => {
+    const count = new Map<number, number>();
+    for (const d of group.days) if (d.budget > 0) count.set(d.budget, (count.get(d.budget) ?? 0) + 1);
+    let best = 0;
+    let n = 0;
+    for (const [b, c] of count) if (c > n) [best, n] = [b, c];
+    return n * 2 > group.days.length ? best : 0;
+  }, [group.days]);
   return (
-    <section className={cx('card plan-phase', current && 'is-current', past && 'is-past')}>
+    <section className={cx('card plan-phase', isCurrent && 'is-current', past && 'is-past')}>
       <header className="plan-phase-head">
         <div className="plan-phase-title">
-          <Dot tone={PHASE_TONE[group.phase]} />
+          <Dot tone={phaseTone(group.phase, current)} />
           <h2>{info.name}</h2>
           <span className="plan-phase-range num">
             {group.days.length === 1 ? `${fmtDateShort(first.date)} ${weekdayZh(first.date)}` : `${shortDate(first.date)} – ${shortDate(last.date)} · ${group.days.length} 天`}
-            {total > 0 && ` · 约 ${hours(total)}`}
+            {usual > 0 && !past ? ` · 每天 ${hours(usual)}` : total > 0 && ` · 约 ${hours(total)}`}
           </span>
-          {current && <Badge tone="primary">当前阶段</Badge>}
+          {isCurrent && <Badge tone="primary">当前阶段</Badge>}
           {past && (
             <Badge tone="neutral" icon="check">
               已结束
@@ -220,14 +254,14 @@ function PhaseCard({ group, state, today, carried, onEdit }: { group: PhaseGroup
       </header>
       <div className="plan-days">
         {group.days.map((d) => (
-          <DayTile key={d.date} day={d} state={state} today={today} carried={d.date === today ? carried : undefined} onEdit={onEdit} />
+          <DayTile key={d.date} day={d} state={state} today={today} usual={usual} carried={d.date === today ? carried : undefined} onEdit={onEdit} />
         ))}
       </div>
     </section>
   );
 }
 
-function DayTile({ day, state, today, carried, onEdit }: { day: DaySkeleton; state: AppState; today: string; carried?: ScheduledMock; onEdit: (date: string) => void }) {
+function DayTile({ day, state, today, usual, carried, onEdit }: { day: DaySkeleton; state: AppState; today: string; usual: number; carried?: ScheduledMock; onEdit: (date: string) => void }) {
   const isToday = day.date === today;
   const past = day.date < today;
   const editable = !past;
@@ -241,28 +275,42 @@ function DayTile({ day, state, today, carried, onEdit }: { day: DaySkeleton; sta
   const slot = day.mocks ?? carried ?? null;
   const mocksDone = slot ? slot.parts.every((p) => p.done) : false;
   const missed = past && !!day.mocks && !mocksDone;
+  const adjusted = typeof override === 'number';
 
-  // Second line: the budget (today, future) or the time studied (past), then progress.
-  const parts: ReactNode[] = [];
+  // Second line: only what makes this day different from the phase's usual day.
+  let sub: ReactNode = null;
   if (past) {
-    if (studiedMin >= 1) parts.push(<span key="s" className="plan-day-strong num">{compactMinutes(studiedMin)}</span>);
-    else parts.push(<span key="s">{day.budget ? '没有学习记录' : '休息日'}</span>);
-    if (planned.length > 0 && (studiedMin >= 1 || doneBlocks)) parts.push(<span key="b" className="num">{`${doneBlocks}/${planned.length} 项`}</span>);
-  } else {
-    parts.push(
-      day.budget ? (
-        <span key="h" className="plan-day-strong num">
-          {hours(day.budget)}
-        </span>
+    sub =
+      studiedMin >= 1 ? (
+        <>
+          <span className="plan-day-strong num">{compactMinutes(studiedMin)}</span>
+          {planned.length > 0 && <span className="plan-day-count num">{`${doneBlocks}/${planned.length}`}</span>}
+        </>
       ) : (
-        <span key="h" className="plan-day-rest">
-          <Icon name="coffee" size={13} />
-          休息
-        </span>
-      ),
+        <span>{day.budget ? '没有记录' : '休息日'}</span>
+      );
+  } else if (!day.budget) {
+    sub = (
+      <span className="plan-day-rest">
+        <Icon name="coffee" size={13} />
+        休息
+      </span>
     );
-    if (isToday && planned.length > 0) parts.push(<span key="b" className="num">{`${doneBlocks}/${planned.length} 项`}</span>);
-    if (typeof override === 'number') parts.push(<span key="o">已调整</span>);
+  } else if (isToday && planned.length > 0) {
+    // Today's hours live on Today (the sum of its tasks); the tile shows how far the day is.
+    sub = (
+      <>
+        <span className="plan-day-strong num">{`${doneBlocks}/${planned.length} 项`}</span>
+        {adjusted && <span className="plan-day-count">已调整</span>}
+      </>
+    );
+  } else if (day.budget !== usual || adjusted) {
+    sub = (
+      <>
+        <span className="plan-day-strong num">{hours(day.budget)}</span>
+        {adjusted && <span className="plan-day-count">已调整</span>}
+      </>
+    );
   }
 
   const mock = slot && (
@@ -280,9 +328,9 @@ function DayTile({ day, state, today, carried, onEdit }: { day: DaySkeleton; sta
       <span className="plan-day-top">
         <span className="plan-day-date num">{shortDate(day.date)}</span>
         <span className="plan-day-wd">{weekdayZh(day.date)}</span>
-        {isToday ? <span className="plan-today">今天</span> : !past && <span className="plan-day-left num">D-{day.daysLeft}</span>}
+        {isToday && <span className="plan-today">今天</span>}
       </span>
-      <span className="plan-day-sub">{parts}</span>
+      {sub && <span className="plan-day-sub">{sub}</span>}
       {mock}
       {past && day.budget > 0 && studiedMin >= 1 && (
         <span className="plan-day-bar">
@@ -302,17 +350,20 @@ function DayTile({ day, state, today, carried, onEdit }: { day: DaySkeleton; sta
       </Tooltip>
     );
   }
+  const tip = `${fmtDateShort(day.date)} ${weekdayZh(day.date)} · ${day.budget ? hours(day.budget) : '休息'} · D-${day.daysLeft}`;
   return (
-    <button type="button" className={cls} onClick={() => onEdit(day.date)} aria-label={`${fmtDateShort(day.date)} ${weekdayZh(day.date)}，调整学习时长`}>
-      {body}
-    </button>
+    <Tooltip label={`${tip} · 点一下调整`}>
+      <button type="button" className={cls} onClick={() => onEdit(day.date)} aria-label={`${fmtDateShort(day.date)} ${weekdayZh(day.date)}，调整学习时长`}>
+        {body}
+      </button>
+    </Tooltip>
   );
 }
 
 function ExamCard({ day, left }: { day: DaySkeleton; left: number }) {
   return (
     <section className="card plan-exam">
-      <IconTile icon="flag" tone="danger" size="md" />
+      <IconTile icon="flag" tone="neutral" size="md" />
       <div className="plan-exam-main">
         <h2 className="plan-exam-title">
           EJU 考试日
@@ -322,7 +373,7 @@ function ExamCard({ day, left }: { day: DaySkeleton; left: number }) {
         </h2>
         <ul className="plan-exam-slots">
           <li>
-            <span className="num">9:30</span>日本語
+            <span className="num">9:30</span>日语
           </li>
           <li>
             <span className="num">13:30</span>理科
@@ -352,8 +403,17 @@ function TargetsCard({ state, bank }: { state: AppState; bank: BankIndex }) {
     const progress = span > 0 ? Math.max(0, Math.min(1, (cur - base) / span)) : cur >= target ? 1 : 0;
     const gap = target - cur;
     const low = !!e && isLowData(e);
+    // A prediction under the baseline (with enough data) is said plainly, never drawn as a drop.
+    const under = !!e && !low && cur < base;
+    const note = low && e ? '数据还少' : under ? '低于起点' : null;
+    const noteTip =
+      low && e
+        ? `做题还少，${e.estimate < e.baseline ? `先按起点 ${e.baseline} 算` : '预测仅作参考'} · 估计 ${e.low}–${e.high}`
+        : under && e
+          ? `最近的练习估计 ${cur}，比填的起点 ${base} 低。多做几套模考后会更准 · 估计 ${e.low}–${e.high}`
+          : null;
     return (
-      <div key={key} className={cx('plan-tg-row', key === 'total' && 'is-total', low && 'is-low')} role="row">
+      <div key={key} className={cx('plan-tg-row', key === 'total' ? 'is-total' : `tone-${key}`, low && 'is-low')} role="row">
         <span className="plan-tg-subj" role="cell">
           {label}
         </span>
@@ -368,16 +428,16 @@ function TargetsCard({ state, bank }: { state: AppState; bank: BankIndex }) {
           <small>/{max}</small>
         </span>
         <span className="plan-tg-prog" role="cell">
-          <span className="plan-tg-track">
-            <span className={cx('plan-tg-bar', gap <= 0 && 'is-ok')}>
-              <span style={{ width: `${progress * 100}%` }} />
-            </span>
-            {low && e && (
-              <span className="plan-tg-low">
-                数据还少{e.estimate < e.baseline ? `，先按起点 ${e.baseline} 算` : ''} · {e.low}–{e.high}
-              </span>
-            )}
+          <span className={cx('plan-tg-bar', gap <= 0 && 'is-ok')}>
+            <span style={{ width: `${progress * 100}%` }} />
           </span>
+          {note && noteTip && (
+            <Tooltip label={noteTip}>
+              <span className="plan-tg-note" tabIndex={0}>
+                {note}
+              </span>
+            </Tooltip>
+          )}
           {gap > 0 ? <Chip>还差 {gap}</Chip> : <Badge tone="success">已达标</Badge>}
         </span>
       </div>
@@ -409,7 +469,20 @@ function TargetsCard({ state, bank }: { state: AppState; bank: BankIndex }) {
               提分进度
             </span>
           </div>
-          {SCORE_ORDER.map((s) => row(s, <SubjectTag subject={s} size="sm" />, baseline[s], shownScore(est[s]), targets[s], SCALE_MAX[s], est[s]))}
+          {SCORE_ORDER.map((s) =>
+            row(
+              s,
+              <span className="plan-tg-subj-name">
+                <IconTile icon={SUBJECT_ICON[s]} tone={s} />
+                {SUBJECT_NAME[s]}
+              </span>,
+              baseline[s],
+              shownScore(est[s]),
+              targets[s],
+              SCALE_MAX[s],
+              est[s],
+            ),
+          )}
           {row('total', <span className="plan-tg-total">合计</span>, totalBase, totalShown, totalTarget, TOTAL_MAX)}
         </div>
       </div>

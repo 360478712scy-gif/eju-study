@@ -23,9 +23,8 @@
 .td-phase-name { color: var(--text); }
 .td-phase-day { color: var(--text-3); }
 .td-phase-go { margin-left: -3px; color: var(--text-3); }
-.td-phase-desc { min-width: 0; color: var(--text-3); font-size: var(--fs-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* Bedtime banner (within 90 minutes of tonight's target, and after it) */
+/* Bedtime notice when there is no hero task to carry it (within 90 minutes of tonight's target). */
 .td-bed {
   display: flex; align-items: center; gap: 10px; margin: calc(-1 * var(--sp-2)) 0 var(--sp-5);
   padding: 10px 16px; border-radius: var(--radius);
@@ -53,38 +52,45 @@
 .td-dot-sep { margin: 0 6px; color: var(--border-strong); }
 
 /* Hero: one card, one icon tile, one filled CTA. */
-.td-hero-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--sp-4); }
+.td-hero-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 22px; margin-bottom: var(--sp-4); }
 .td-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--text-2); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
 .td-hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
 .td-hero-step { color: var(--text-3); font-size: var(--fs-sm); }
+/* Tonight's finishing time (from D-10, within 90 minutes of it) takes the step count's place. */
+.td-hero-bed { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); font-size: var(--fs-sm); white-space: nowrap; }
+.td-hero-bed svg { flex: none; color: var(--text-3); }
+.td-hero-bed b { color: var(--text); font-weight: var(--fw-semibold); }
+.td-hero-bed.is-late svg { color: var(--warning); }
 .td-hero-main { display: flex; gap: var(--sp-4); align-items: flex-start; }
 .td-hero-text { flex: 1; min-width: 0; }
 .td-hero-title { margin-top: 7px; font-size: var(--fs-xl); font-weight: var(--fw-semibold); letter-spacing: -0.01em; line-height: var(--lh-head); }
 .td-hero-reason { margin-top: 6px; color: var(--text-2); font-size: var(--fs-base); line-height: var(--lh-ui); }
-.td-hero-progress { display: flex; align-items: center; gap: 10px; max-width: 380px; margin-top: 14px; }
-.td-hero-progress .progress { flex: 1; }
-.td-hero-progress > span { color: var(--text-2); font-size: var(--fs-xs); white-space: nowrap; }
 .td-hero-text > .td-hero-meta { display: flex; margin-top: 10px; }
-/* Foot: the meta (or the 跟学 note) on the left, the actions on the right; it lines up with the title. */
+/* Foot: the meta, the progress of a session under way or the 跟学 note on the left (in the title's
+   column), the actions on the right. */
 .td-hero-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; margin-top: var(--sp-5); padding-left: 60px; flex-wrap: wrap; }
-.td-hero-foot.has-flow { margin-top: var(--sp-5); padding: var(--sp-4) 0 0; border-top: 1px solid var(--divider); }
-.td-hero-actions { display: flex; gap: 8px; margin-left: auto; }
+.td-hero-foot.has-flow { padding-top: var(--sp-4); border-top: 1px solid var(--divider); }
+.td-hero-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .td-hero-actions .btn-primary.btn-lg { min-width: 132px; }
-.td-hero-foot.has-flow .btn-ghost { padding: 0 14px; }
+.td-hero-solo { color: var(--text-2); }
 .td-hero-side { flex: none; align-self: center; margin-left: auto; }
-.td-hero-flow { display: flex; align-items: center; gap: 16px; min-width: 0; flex: 1 1 260px; }
-.td-hero-flow-icon {
-  flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 36px;
-  color: var(--primary-text);
-}
-.td-hero-flow-text { display: flex; flex-direction: column; min-width: 0; }
+.td-hero-flow { display: flex; flex-direction: column; min-width: 0; flex: 1 1 240px; }
 .td-hero-flow-title { color: var(--text); font-size: var(--fs-ui); font-weight: var(--fw-semibold); line-height: 1.45; }
 .td-hero-flow-desc { color: var(--text-3); font-size: var(--fs-sm); line-height: 1.45; }
+.td-hero-progress { display: flex; align-items: center; gap: 12px; flex: 1 1 160px; min-width: 0; color: var(--text-2); font-size: var(--fs-sm); white-space: nowrap; }
+.td-hero-progress .progress { flex: 0 1 140px; min-width: 64px; }
+.td-hero-progress .meta::before { content: "·"; margin-right: 6px; color: var(--border-strong); }
 
-/* Day done */
-.td-done .td-hero-title { margin-top: 2px; }
-.td-done-stats { margin-top: 6px; color: var(--text-2); font-size: var(--fs-base); }
-.td-done-next { margin-top: 4px; color: var(--text-3); font-size: var(--fs-sm); }
+/* Day done: a quiet summary, tomorrow, and 加练 */
+.td-done-mark { color: var(--success); }
+.td-done-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.td-done-stats .stat-tile-value .num .stat-tile-unit { margin: 0 4px 0 3px; }
+.td-done-stats .stat-tile-value .num .stat-tile-unit:last-child { margin-right: 0; }
+.td-done-next { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-4); color: var(--text-2); font-size: var(--fs-sm); }
+.td-done-next svg { flex: none; color: var(--text-3); }
+
+/* Everything skipped */
+.td-skipped .td-hero-foot { padding-left: 0; }
 
 /* 加练: a quiet toggle that opens a 2×3 grid */
 .td-extra { margin-top: var(--sp-5); padding-top: 14px; border-top: 1px solid var(--border); }
@@ -148,7 +154,7 @@
 .td-row-skip { padding: 0 8px; color: var(--text-3); font-size: var(--fs-xs); gap: 4px; }
 .td-row-go { padding: 0 10px; }
 .td-row.is-done .list-row-title { color: var(--text-2); }
-.td-row.is-skipped .list-row-title { color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--border-strong); }
+.td-row.is-skipped .list-row-title { color: var(--text-3); }
 .td-row.is-later .list-row-lead, .td-row.is-later .list-row-main,
 .td-row.is-locked .list-row-lead, .td-row.is-locked .list-row-main { opacity: 0.55; }
 
@@ -193,17 +199,18 @@
 .td-hm .num { font-weight: var(--fw-semibold); }
 .td-hm-unit { margin-right: 4px; color: var(--text-2); font-size: var(--fs-sm); }
 
-/* Bedtime card (from D-10) */
+/* Bedtime card (from D-10): the time, one line why. */
 .td-sleep { padding: 16px 20px; }
 .td-sleep-top { display: flex; align-items: center; gap: 12px; }
-.td-sleep-main { flex: 1; min-width: 0; }
-.td-sleep-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 22px; }
-.td-sleep-time { display: flex; align-items: baseline; gap: 4px; min-width: 0; color: var(--text-2); font-size: var(--fs-sm); }
-.td-sleep-time .num { color: var(--text); font-size: var(--fs-xl); font-weight: var(--fw-bold); line-height: 1.15; letter-spacing: -0.01em; }
-.td-sleep-trend { margin-left: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-3); font-size: var(--fs-xs); }
-.td-sleep-note { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--divider); color: var(--text-2); font-size: var(--fs-sm); line-height: 1.55; }
-.td-sleep-alert { margin-top: 10px; padding: 8px 12px; font-size: var(--fs-sm); }
+.td-sleep-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.td-sleep-time { display: flex; align-items: baseline; gap: 4px; color: var(--text-2); font-size: var(--fs-sm); }
+.td-sleep-time .num { color: var(--text); font-size: var(--fs-xl); font-weight: var(--fw-bold); line-height: 1.2; letter-spacing: -0.01em; }
+.td-sleep-top .badge { align-self: flex-start; }
+.td-sleep-note { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--divider); color: var(--text-3); font-size: var(--fs-xs); line-height: 1.5; }
+.td-sleep-alert { margin-top: 12px; padding: 8px 12px; font-size: var(--fs-sm); }
 .td-sleep-alert .callout-icon { margin-top: 2px; }
+.td-sleep.is-alert-only { padding: 6px; }
+.td-sleep.is-alert-only .td-sleep-alert { margin-top: 0; }
 
 /* Predicted score */
 .td-score { padding: 18px 20px; }
@@ -217,16 +224,22 @@
 .td-subj-name { display: inline-flex; align-items: center; gap: 7px; color: var(--text-2); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
 .td-subj-bar { position: relative; height: 6px; border-radius: var(--radius-pill); background: var(--track); }
 .td-subj-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: inherit; background: var(--tone); transition: width 400ms var(--ease); }
-.td-subj-row.is-low .td-subj-fill { opacity: 0.5; }
+/* Little data: the likely range, hatched in the subject colour, beside a full-colour value. */
+.td-subj-range, .td-score-hatch {
+  background: repeating-linear-gradient(120deg, color-mix(in srgb, var(--tone) 55%, transparent) 0 2px, transparent 2px 5px);
+}
+.td-subj-range { position: absolute; top: 0; bottom: 0; border-radius: 0 var(--radius-pill) var(--radius-pill) 0; }
+.td-subj-row.has-range .td-subj-fill { border-radius: var(--radius-pill) 0 0 var(--radius-pill); }
 .td-subj-target { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; border-radius: 1px; background: var(--text-2); }
 .td-subj-val { text-align: right; color: var(--text); font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
 .td-subj-row.is-low .td-subj-val { color: var(--text-2); }
-.td-score-note { margin-top: 12px; color: var(--text-3); font-size: var(--fs-xs); }
+.td-score-note { display: flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--text-3); font-size: var(--fs-xs); }
+.td-score-hatch { --tone: var(--text-3); flex: none; width: 16px; height: 6px; border-radius: var(--radius-pill); }
 
-/* Due reviews */
-.td-due { padding: 6px; display: flex; flex-direction: column; }
-.td-due-row { position: relative; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius-md); color: var(--text); transition: background var(--dur) var(--ease); }
-.td-due-row + .td-due-row::before { content: ""; position: absolute; top: 0; left: 12px; right: 12px; height: 1px; background: var(--divider); }
+/* Due reviews: two halves of one card under the task list. */
+.td-due { padding: 6px; display: flex; flex-direction: row; }
+.td-due-row { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 10px 14px 10px 12px; border-radius: var(--radius-md); color: var(--text); transition: background var(--dur) var(--ease); }
+.td-due-row + .td-due-row::before { content: ""; position: absolute; top: 10px; bottom: 10px; left: -1px; width: 1px; background: var(--divider); }
 .td-due-row:hover { background: var(--bg-hover); }
 .td-due-row:hover::before, .td-due-row:hover + .td-due-row::before { opacity: 0; }
 .td-due-row:focus-visible { box-shadow: var(--focus-ring); }
@@ -250,31 +263,28 @@ a.td-mock:focus-visible { box-shadow: var(--focus-ring); }
 .td-mock-paper { margin-left: auto; color: var(--text-3); font-size: var(--fs-xs); }
 .td-mock-empty { color: var(--text-2); font-size: var(--fs-sm); }
 
-/* One column: hero, bedtime and progress stay above the list. */
+/* One column: the hero and the bedtime card stay above the list; progress, score and mock follow. */
 @media (max-width: 1180px) {
   .td-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-4); }
   .td-main, .td-aside { display: contents; }
   .td-hero, .td-stale { order: 1; }
   .td-sleep { order: 2; }
-  .td.has-bed .td-sleep { display: none; }
-  .td-progress { order: 3; }
-  .td-plan { order: 4; }
-  .td-aside-rest { order: 5; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "score mock" "due due"; }
-  .td-aside-rest .td-score { grid-area: score; }
-  .td-aside-rest .td-mock { grid-area: mock; }
-  .td-aside-rest .td-due { grid-area: due; flex-direction: row; }
-  .td-due .td-due-row { flex: 1; min-width: 0; }
-  .td-due .td-due-row + .td-due-row::before { top: 10px; bottom: 10px; left: 0; right: auto; width: 1px; height: auto; }
+  .td-plan { order: 3; }
+  .td-due { order: 4; }
+  .td-progress { order: 5; }
+  .td-aside-rest { order: 6; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); align-items: start; }
+  /* Bedtime: one slim row. */
+  .td-sleep:not(.is-alert-only) { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 20px; padding: 12px 20px; }
+  .td-sleep-top { flex: none; }
+  .td-sleep-note { flex: 1; min-width: 200px; margin: 0; padding: 0 0 0 20px; border-top: none; border-left: 1px solid var(--divider); font-size: var(--fs-sm); }
+  .td-sleep-alert { flex-basis: 100%; margin-top: 4px; }
   .td-progress { display: flex; align-items: center; gap: 24px; padding: 16px 20px; }
   .td-pg-head { flex: 1.15; min-width: 0; }
   .td-pg-stats { flex: 1; margin-top: 0; }
 }
-@media (max-width: 1000px) {
-  .td-phase-desc { display: none; }
-}
 @media (max-width: 860px) {
-  .td-aside-rest { grid-template-columns: minmax(0, 1fr); grid-template-areas: "score" "due" "mock"; }
-  .td-aside-rest .td-due { flex-direction: column; }
+  .td-aside-rest { grid-template-columns: minmax(0, 1fr); }
+  .td-due { flex-direction: column; }
   .td-due .td-due-row + .td-due-row::before { top: 0; bottom: auto; left: 12px; right: 12px; width: auto; height: 1px; }
   .td-progress { flex-direction: column; align-items: stretch; }
   .td-pg-stats { margin-top: var(--sp-4); }

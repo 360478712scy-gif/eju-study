@@ -3,7 +3,7 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { navigate } from '../../lib/router.ts';
 import { update } from '../../lib/store.ts';
-import { Button, IconTile, Meta, Progress, toast } from '../../components/ui.tsx';
+import { Button, IconTile, Meta, Progress, StatTile, toast } from '../../components/ui.tsx';
 import { Icon, SUBJECT_ICON, type IconName } from '../../components/Icon.tsx';
 import type { AppState, PlanBlock, PracticeSession, Subject } from '@shared/types.ts';
 import { markBlock } from '@shared/actions.ts';
@@ -50,6 +50,30 @@ export interface FlowLaunch {
   onStart: () => void;
 }
 
+/** Tonight's finishing time, shown in the hero's top line within 90 minutes of it (from D-10). */
+export interface BedLine {
+  clock: string;
+  /** Minutes left; ≤ 0 once it has passed. */
+  toGo: number;
+}
+
+function BedNote({ bed }: { bed: BedLine }) {
+  return (
+    <span className={cx('td-hero-bed', bed.toGo <= 0 && 'is-late')}>
+      <Icon name="moon" size={14} />
+      {bed.toGo > 0 ? (
+        <span>
+          <b className="num">{bed.clock}</b> 收工 · 还有 <b className="num">{bed.toGo}</b> 分钟
+        </span>
+      ) : (
+        <span>
+          已过 <b className="num">{bed.clock}</b> 收工时间
+        </span>
+      )}
+    </span>
+  );
+}
+
 export function NextHero({
   state,
   bank,
@@ -59,8 +83,9 @@ export function NextHero({
   index,
   total,
   flow,
+  bed,
   onStart,
-}: Ctx & { session?: PracticeSession; block?: PlanBlock; index: number; total: number; flow?: FlowLaunch; onStart: (b: PlanBlock) => void }) {
+}: Ctx & { session?: PracticeSession; block?: PlanBlock; index: number; total: number; flow?: FlowLaunch; bed?: BedLine; onStart: (b: PlanBlock) => void }) {
   const tone = block ? blockTone(block) : session?.kind === 'mock' ? 'primary' : (session?.subject ?? 'mixed');
   const icon: IconName = block ? blockIcon(block) : session?.kind === 'mock' ? 'target' : session?.kind === 'review' ? 'refresh' : SUBJECT_ICON[session?.subject ?? 'mixed'];
   const view = block ? blockView(state, block) : 'active';
@@ -94,13 +119,13 @@ export function NextHero({
           : '看完公式和易错点后，回来点「已完成」进入下一项。';
   }
 
-  // Meta: time and size only (the kind is already the title or the icon).
+  // Meta: time and size only (the kind is already the title or the icon). A session under way shows
+  // its progress instead; the time studied today is the progress card's line, not repeated here.
   const meta: ReactNode[] = [];
-  if (open && remainMin !== null) meta.push(<span key="t">计时还剩 {remainMin} 分钟</span>);
-  else if (open && open.elapsedSec >= 60) meta.push(<span key="t">已用 {fmtMinutes(open.elapsedSec / 60)}</span>);
-  else if (block) meta.push(<span key="t">{limit ? timedText(limit, block.minutes) : `约 ${fmtMinutes(block.minutes)}`}</span>);
-  if (open) meta.push(<span key="n">{open.itemIds.length} 题</span>);
-  else if (block && count !== null) meta.push(<span key="n">{countLabel(block, count)}</span>);
+  if (open) {
+    if (remainMin !== null) meta.push(<span key="t">计时还剩 {remainMin} 分钟</span>);
+  } else if (block) meta.push(<span key="t">{limit ? timedText(limit, block.minutes) : `约 ${fmtMinutes(block.minutes)}`}</span>);
+  if (!open && block && count !== null) meta.push(<span key="n">{countLabel(block, count)}</span>);
   if (isMock) meta.push(<span key="m">整卷限时 · 交卷后估分</span>);
   else if (block?.timed && !limit && !open) meta.push(<span key="m">限时 · 做完统一看解析</span>);
 
@@ -112,6 +137,17 @@ export function NextHero({
   const launch = !open && !manual && flow ? flow : undefined;
   const metaNode = meta.length > 0 ? <Meta className="td-hero-meta">{meta}</Meta> : null;
 
+  const progress =
+    open && answered > 0 ? (
+      <div className="td-hero-progress">
+        <Progress value={answered / Math.max(1, open.itemIds.length)} size="sm" />
+        <span className="num">
+          已做 {answered}/{open.itemIds.length}
+        </span>
+        {metaNode}
+      </div>
+    ) : null;
+
   return (
     <section className="card card-hero td-hero">
       <div className="td-hero-top">
@@ -119,10 +155,15 @@ export function NextHero({
           <span className="td-hero-dot" />
           {eyebrow}
         </span>
-        {block && index >= 0 && (
-          <span className="td-hero-step">
-            第 {index + 1} 项 · 共 {total} 项
-          </span>
+        {bed ? (
+          <BedNote bed={bed} />
+        ) : (
+          block &&
+          index >= 0 && (
+            <span className="td-hero-step">
+              第 {index + 1} 项 · 共 {total} 项
+            </span>
+          )
         )}
       </div>
       <div className="td-hero-main">
@@ -130,35 +171,22 @@ export function NextHero({
         <div className="td-hero-text">
           <h2 className="td-hero-title">{title}</h2>
           {reason && <p className="td-hero-reason">{reason}</p>}
-          {open && answered > 0 && (
-            <div className="td-hero-progress">
-              <Progress value={answered / Math.max(1, open.itemIds.length)} size="sm" />
-              <span className="num">
-                已做 {answered}/{open.itemIds.length}
-              </span>
-            </div>
-          )}
           {launch && metaNode}
         </div>
       </div>
       <div className={cx('td-hero-foot', launch && 'has-flow')}>
         {launch ? (
           <div className="td-hero-flow">
-            <span className="td-hero-flow-icon" aria-hidden>
-              <Icon name="play" size={15} />
-            </span>
-            <span className="td-hero-flow-text">
-              <span className="td-hero-flow-title">跟学模式</span>
-              <span className="td-hero-flow-desc">{launch.desc}</span>
-            </span>
+            <span className="td-hero-flow-title">跟学模式</span>
+            <span className="td-hero-flow-desc">{launch.desc}</span>
           </div>
         ) : (
-          metaNode
+          (progress ?? metaNode)
         )}
         <div className="td-hero-actions">
           {launch ? (
             <>
-              <Button variant="ghost" size="lg" onClick={go}>
+              <Button variant="ghost" className="td-hero-solo" onClick={go}>
                 {isMock ? '只做这场模考' : '只做这一项'}
               </Button>
               <Button variant="primary" size="lg" iconRight="arrowRight" onClick={launch.onStart} autoFocus>
@@ -203,12 +231,40 @@ export function addExtra(pool: Pool) {
   else toast('这个方向暂时没有新题了，换一个试试', 'warning');
 }
 
-/** "加练" picker behind a quiet toggle. Each pool shows what it would add; pools without fresh items are disabled. */
+/** The 加练 pools as a 3×2 grid. Each shows what it would add; pools without fresh items are disabled. */
+function ExtraGrid({ state, bank, today }: Ctx) {
+  // extraBlock is pure (it only reads the state), so it doubles as a preview.
+  const options = useMemo(() => POOLS.map((p) => ({ ...p, preview: extraBlock(state, bank, today, p.id) })), [state, bank, today]);
+  const any = options.some((o) => o.preview);
+  return any ? (
+    <div className="td-extra-grid">
+      {options.map((o) => (
+        <button key={o.id} type="button" className="td-extra-btn" onClick={() => addExtra(o.id)} disabled={!o.preview}>
+          <IconTile icon={POOL_ICON[o.id]} tone={o.preview ? POOL_TONE[o.id] : 'neutral'} size="md" />
+          <span className="td-extra-text">
+            <span className="td-extra-name">{o.name}</span>
+            <span className="td-extra-sub">{o.preview ? `${o.preview.itemIds.length} 题 · ${fmtMinutes(o.preview.minutes)}` : '暂无新题'}</span>
+          </span>
+          {o.preview && <Icon name="plus" size={15} className="td-extra-plus" />}
+        </button>
+      ))}
+    </div>
+  ) : (
+    <div className="td-extra-none">
+      <span>题库里能加练的新题这几天都做过了。</span>
+      <Button variant="ghost" size="sm" icon="alert" onClick={() => navigate('/mistakes')}>
+        去错题本
+      </Button>
+      <Button variant="ghost" size="sm" icon="book" onClick={() => navigate('/practice')}>
+        题库自由练习
+      </Button>
+    </div>
+  );
+}
+
+/** "加练" picker behind a quiet toggle. */
 function ExtraChooser({ state, bank, today, label, defaultOpen = false }: Ctx & { label: string; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
-  // extraBlock is pure (it only reads the state), so it doubles as a preview.
-  const options = useMemo(() => (open ? POOLS.map((p) => ({ ...p, preview: extraBlock(state, bank, today, p.id) })) : []), [open, state, bank, today]);
-  const any = options.some((o) => o.preview);
   return (
     <div className={cx('td-extra', open && 'is-open')}>
       <button type="button" className="td-extra-toggle" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
@@ -216,31 +272,7 @@ function ExtraChooser({ state, bank, today, label, defaultOpen = false }: Ctx & 
         {label}
         <Icon name={open ? 'up' : 'down'} size={14} className="td-extra-chev" />
       </button>
-      {open &&
-        (any ? (
-          <div className="td-extra-grid">
-            {options.map((o) => (
-              <button key={o.id} type="button" className="td-extra-btn" onClick={() => addExtra(o.id)} disabled={!o.preview}>
-                <IconTile icon={POOL_ICON[o.id]} tone={o.preview ? POOL_TONE[o.id] : 'neutral'} size="md" />
-                <span className="td-extra-text">
-                  <span className="td-extra-name">{o.name}</span>
-                  <span className="td-extra-sub">{o.preview ? `${o.preview.itemIds.length} 题 · ${fmtMinutes(o.preview.minutes)}` : '暂无新题'}</span>
-                </span>
-                {o.preview && <Icon name="plus" size={15} className="td-extra-plus" />}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <div className="td-extra-none">
-            <span>题库里能加练的新题这几天都做过了。</span>
-            <Button variant="ghost" size="sm" icon="alert" onClick={() => navigate('/mistakes')}>
-              去错题本
-            </Button>
-            <Button variant="ghost" size="sm" icon="book" onClick={() => navigate('/practice')}>
-              题库自由练习
-            </Button>
-          </div>
-        ))}
+      {open && <ExtraGrid state={state} bank={bank} today={today} />}
     </div>
   );
 }
@@ -269,55 +301,96 @@ function useTomorrow(state: AppState, bank: BankIndex, today: string): string | 
   }, [state, bank, today]);
 }
 
-export function DoneHero({ state, bank, today, skipped, night }: Ctx & { skipped: string[]; night: boolean }) {
+/** A duration as a stat value: "45 分钟", "4 小时 1 分" (numerals large, units small). */
+function Duration({ minutes }: { minutes: number }) {
+  const m = Math.max(0, Math.round(minutes));
+  const h = Math.floor(m / 60);
+  const r = m % 60;
+  if (!h) return <>{r}<span className="stat-tile-unit">分钟</span></>;
+  return (
+    <>
+      {h}
+      <span className="stat-tile-unit">小时</span>
+      {r > 0 && (
+        <>
+          {r}
+          <span className="stat-tile-unit">分</span>
+        </>
+      )}
+    </>
+  );
+}
+
+/** The finished day: the H1 already says so; the card shows the result and what comes tomorrow. */
+export function DoneHero({ state, bank, today, skipped, done, night }: Ctx & { skipped: string[]; done: number; night: boolean }) {
   const day = state.days[today];
   const answered = day?.answered ?? 0;
+  const studied = (day?.seconds ?? 0) / 60;
   const st = streak(state, today);
   const tomorrow = useTomorrow(state, bank, today);
   return (
     <section className="card card-hero td-hero td-done">
-      <div className="td-hero-main">
-        <IconTile icon="check" tone="success" size="lg" />
-        <div className="td-hero-text">
-          <h2 className="td-hero-title">{night ? '今天收工了，去睡吧' : '今天收工了'}</h2>
-          <Meta className="td-done-stats">
-            <span>{fmtMinutes((day?.seconds ?? 0) / 60)}</span>
-            {answered > 0 && <span>{answered} 题</span>}
-            {answered > 0 && <span>正确率 {pct((day?.correct ?? 0) / answered)}</span>}
-            {st > 0 && <span>连续 {st} 天</span>}
-            {skipped.length > 0 && <span>跳过 {skipped.length} 项</span>}
-          </Meta>
-          {tomorrow && <p className="td-done-next">{tomorrow}</p>}
-        </div>
+      <div className="td-hero-top">
+        <span className="td-hero-eyebrow">
+          <Icon name="checkCircle" size={15} className="td-done-mark" />
+          {night ? '今日小结 · 早点睡' : '今日小结'}
+        </span>
         {skipped.length > 0 && (
-          <Button variant="secondary" size="sm" icon="undo" onClick={() => restoreAll(skipped)} className="td-hero-side">
+          <Button variant="ghost" size="sm" icon="undo" onClick={() => restoreAll(skipped)}>
             恢复跳过的 {skipped.length} 项
           </Button>
         )}
       </div>
+      <div className="td-done-stats">
+        <StatTile boxed label="完成" value={done} unit="项" sub={skipped.length > 0 ? `跳过 ${skipped.length} 项` : undefined} />
+        {studied >= 1 && <StatTile boxed label="学习" value={<Duration minutes={studied} />} />}
+        {answered > 0 && <StatTile boxed label="做题" value={answered} unit="题" sub={`正确率 ${pct((day?.correct ?? 0) / answered)}`} />}
+        {st > 0 && <StatTile boxed label="连续学习" value={st} unit="天" />}
+      </div>
+      {tomorrow && (
+        <p className="td-done-next">
+          <Icon name="calendar" size={14} />
+          {tomorrow}
+        </p>
+      )}
       {!night && <ExtraChooser state={state} bank={bank} today={today} label="还有精力？加练一项" />}
     </section>
   );
 }
 
-/** Every block skipped and none done: say so plainly, and offer the way back. */
+/** Every block skipped and none done: say so plainly, and offer the way back (or one extra task). */
 export function SkippedHero({ state, bank, today, skipped, night }: Ctx & { skipped: string[]; night: boolean }) {
   const studied = (state.days[today]?.seconds ?? 0) / 60;
+  const [extra, setExtra] = useState(false);
   return (
-    <section className="card card-hero td-hero">
+    <section className="card card-hero td-hero td-skipped">
       <div className="td-hero-main">
         <IconTile icon="skip" tone="neutral" size="lg" />
         <div className="td-hero-text">
           <h2 className="td-hero-title">今天的任务都跳过了</h2>
           <p className="td-hero-reason">
-            {studied >= 1 ? `今天学了 ${fmtMinutes(studied)}。` : ''}状态不好就早点休息；想学一点的话，恢复几项再开始。
+            {studied >= 1 ? `今天学了 ${fmtMinutes(studied)}。` : ''}
+            {night ? '睡个好觉，明天的计划会重新排好。' : '休息也是计划的一部分。想学一点的话，随时可以恢复。'}
           </p>
         </div>
-        <Button variant="primary" icon="undo" onClick={() => restoreAll(skipped)} className="td-hero-side">
-          全部恢复
-        </Button>
       </div>
-      {!night && <ExtraChooser state={state} bank={bank} today={today} label="或者只加练一项" />}
+      <div className="td-hero-foot">
+        <div className="td-hero-actions">
+          {!night && (
+            <Button variant="secondary" size="lg" icon="plus" aria-expanded={extra} onClick={() => setExtra((o) => !o)}>
+              只加练一项
+            </Button>
+          )}
+          <Button variant={night ? 'secondary' : 'primary'} size="lg" icon="undo" onClick={() => restoreAll(skipped)}>
+            全部恢复
+          </Button>
+        </div>
+      </div>
+      {extra && !night && (
+        <div className="td-extra is-open">
+          <ExtraGrid state={state} bank={bank} today={today} />
+        </div>
+      )}
     </section>
   );
 }

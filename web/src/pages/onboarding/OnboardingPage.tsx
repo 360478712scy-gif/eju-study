@@ -1,9 +1,11 @@
-// First launch of v2: welcome back, confirm scores and targets, choose the daily time, start.
+// First launch of v2: confirm scores and targets, choose the daily time, start. A quiet split
+// screen: the countdown and what the app does on the left (where the sidebar will be), the two
+// steps on the right.
 import { useMemo, useState, type FormEvent } from 'react';
 import { useReady, update } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
-import { Button, SubjectTag } from '../../components/ui.tsx';
-import { Icon, type IconName } from '../../components/Icon.tsx';
+import { Button, IconTile } from '../../components/ui.tsx';
+import { Icon, SUBJECT_ICON, type IconName } from '../../components/Icon.tsx';
 import type { ScoreMap, Subject } from '@shared/types.ts';
 import { SCALE_MAX } from '@shared/stats.ts';
 import { budgetFor, daysLeftOn } from '@shared/planner.ts';
@@ -21,6 +23,7 @@ const HOURS: { h: number; label: string }[] = [
   { h: 7, label: '加量' },
   { h: 8, label: '全力冲刺' },
 ];
+const RECOMMENDED = 6;
 
 type Draft = Record<Subject, string>;
 
@@ -85,41 +88,43 @@ export function OnboardingPage() {
 
   return (
     <div className="ob">
-      <div className="ob-card">
-        <aside className="ob-hero">
-          <div className="ob-brand">
-            <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden>
-              <rect width="64" height="64" rx="16" fill="currentColor" fillOpacity={0.18} />
-              <path d="M18 40c6-14 22-14 28 0" stroke="currentColor" strokeWidth="5" fill="none" strokeLinecap="round" />
-              <circle cx="32" cy="24" r="5" fill="currentColor" />
-            </svg>
-            <span>澄学 EJU</span>
-          </div>
+      <aside className="ob-hero">
+        <div className="ob-brand">
+          <svg className="ob-logo" viewBox="0 0 64 64" width="28" height="28" aria-hidden>
+            <rect width="64" height="64" rx="16" />
+            <path d="M18 40c6-14 22-14 28 0" strokeWidth="5" fill="none" strokeLinecap="round" />
+            <circle cx="32" cy="24" r="5" />
+          </svg>
+          <span>澄学 EJU</span>
+        </div>
 
+        <div className="ob-hero-body">
           <div className="ob-count">
-            <div className="ob-count-label">欢迎回来 · 距 {fmtDateShort(profile.examDate)} EJU</div>
+            <div className="ob-count-label">距 {fmtDateShort(profile.examDate)} EJU 还有</div>
             <div className="ob-count-row">
               <span className="ob-count-num num">{left}</span>
               <span className="ob-count-unit">天</span>
             </div>
-            <div className="ob-count-sub">目标 {targetTotal || profile.targetTotal} 分，从今天开始全力冲刺。</div>
+            <div className="ob-count-sub">目标 {targetTotal || profile.targetTotal} 分，从今天开始冲刺。</div>
           </div>
 
           <ul className="ob-points">
-            <Point icon="calendar" title={`${left} 天，三个阶段`} text="专项突破 → 套题实战 → 考前调整。每天打开就知道先做什么。" />
-            <Point icon="checkCircle" title="每题自动判分 + 详细解析" text="不用再对答案表，做完立刻知道对错和原因。" />
-            <Point icon="refresh" title="错题自动回炉" text="做错和没把握的题隔 2 天、再隔 4 天回来，两次有把握地答对才移出。" />
+            <Point icon="calendar" title={`${left} 天，三个阶段`} text="专项突破 → 套题实战 → 考前调整" />
+            <Point icon="checkCircle" title="做完立刻判分" text="不用对答案表，每题都有解析" />
+            <Point icon="refresh" title="错题自动回炉" text="隔 2 天、4 天再做，答对两次移出" />
           </ul>
+        </div>
 
-          {(history > 0 || vocabHistory > 0) && (
-            <div className="ob-kept">
-              <Icon name="check" size={14} />
-              已保留你之前的 {[history > 0 ? `${history} 条做题记录` : '', vocabHistory > 0 ? `${vocabHistory} 次单词练习` : ''].filter(Boolean).join('和')}
-            </div>
-          )}
-        </aside>
+        {(history > 0 || vocabHistory > 0) && (
+          <div className="ob-kept">
+            <Icon name="check" size={14} />
+            已保留之前的 {[history > 0 ? `${history} 条做题记录` : '', vocabHistory > 0 ? `${vocabHistory} 次单词练习` : ''].filter(Boolean).join('和')}
+          </div>
+        )}
+      </aside>
 
-        <main className="ob-main">
+      <main className="ob-main">
+        <div className="ob-inner">
           <div className="ob-steps" aria-label={`第 ${step + 1} 步，共 2 步`}>
             <span className={cx('ob-step', step === 0 && 'is-on', step > 0 && 'is-done')}>
               <span className="ob-step-dot">{step > 0 ? <Icon name="check" size={12} /> : '1'}</span>
@@ -135,7 +140,7 @@ export function OnboardingPage() {
           {step === 0 ? (
             <form className="ob-pane" key="scores" onSubmit={next}>
               <h1 className="ob-title">先确认起点和目标</h1>
-              <p className="ob-sub">起点填最近一次成绩或自测估计。目标决定每科分到多少时间，之后也能改。</p>
+              <p className="ob-sub">起点填最近一次成绩或自测估计；目标决定每科分到多少时间，之后也能改。</p>
 
               <div className="ob-table" role="table" aria-label="起点和目标">
                 <div className="ob-thead" role="row">
@@ -152,8 +157,9 @@ export function OnboardingPage() {
                   const gain = b !== null && t !== null ? t - b : null;
                   return (
                     <div key={s} className="ob-row" role="row">
-                      <span role="cell">
-                        <SubjectTag subject={s} />
+                      <span role="cell" className="ob-subject">
+                        <IconTile icon={SUBJECT_ICON[s]} tone={s} />
+                        {SUBJECT_NAME[s]}
                       </span>
                       <span role="cell">
                         <ScoreInput value={base[s]} invalid={b === null} onChange={(v) => setBase({ ...base, [s]: v })} max={SCALE_MAX[s]} label={`${SUBJECT_NAME[s]}起点`} />
@@ -161,7 +167,7 @@ export function OnboardingPage() {
                       <span role="cell">
                         <ScoreInput value={target[s]} invalid={t === null} onChange={(v) => setTarget({ ...target, [s]: v })} max={SCALE_MAX[s]} label={`${SUBJECT_NAME[s]}目标`} strong />
                       </span>
-                      <span role="cell" className={cx('ob-gain num', gain !== null && gain > 0 && 'is-up')}>
+                      <span role="cell" className="ob-gain num">
                         {gain === null ? '—' : gain > 0 ? `+${gain}` : gain === 0 ? '持平' : gain}
                       </span>
                     </div>
@@ -175,7 +181,7 @@ export function OnboardingPage() {
                   <span role="cell" className="num ob-total-num ob-total-target">
                     {targetTotal}
                   </span>
-                  <span role="cell" className={cx('ob-gain num', targetTotal > baseTotal && 'is-up')}>
+                  <span role="cell" className="ob-gain num">
                     {targetTotal > baseTotal ? `+${targetTotal - baseTotal}` : '—'}
                   </span>
                 </div>
@@ -201,11 +207,13 @@ export function OnboardingPage() {
                     type="button"
                     role="radio"
                     aria-checked={minutes === h * 60}
-                    className={cx('ob-hour', minutes === h * 60 && 'is-on', h === 6 && 'is-rec')}
+                    className={cx('ob-hour', minutes === h * 60 && 'is-on', h === RECOMMENDED && 'is-rec')}
                     onClick={() => setMinutes(h * 60)}
                   >
-                    <span className="ob-hour-num num">{h}</span>
-                    <span className="ob-hour-unit">小时</span>
+                    <span className="ob-hour-value">
+                      <span className="ob-hour-num num">{h}</span>
+                      <span className="ob-hour-unit">小时</span>
+                    </span>
                     <span className="ob-hour-label">{label}</span>
                   </button>
                 ))}
@@ -218,7 +226,7 @@ export function OnboardingPage() {
                 </div>
                 <div className="ob-sum-note">
                   <Icon name="info" size={15} />
-                  <span>考前最后一天自动减量到 2.5 小时以内，前几天也会略减，把状态留给考场。</span>
+                  <span>考前几天自动减量，把状态留给考场</span>
                 </div>
               </div>
 
@@ -232,8 +240,8 @@ export function OnboardingPage() {
               </div>
             </div>
           )}
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
@@ -241,9 +249,7 @@ export function OnboardingPage() {
 function Point({ icon, title, text }: { icon: IconName; title: string; text: string }) {
   return (
     <li className="ob-point">
-      <span className="ob-point-icon">
-        <Icon name={icon} size={17} />
-      </span>
+      <IconTile icon={icon} tone="neutral" size="md" />
       <div>
         <div className="ob-point-title">{title}</div>
         <div className="ob-point-text">{text}</div>

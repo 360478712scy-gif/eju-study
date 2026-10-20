@@ -46,12 +46,18 @@
 .shortcut-list {
   column-gap: 32px;
 }
+.shortcut-group {
+  break-inside: avoid;
+  padding-bottom: 14px;
+}
+.shortcut-group > .t-eyebrow {
+  margin: 0 0 2px;
+}
 .shortcut-row {
   min-height: 42px;
   padding: 8px 0;
   font-size: var(--fs-ui);
   border-bottom: 1px solid var(--divider);
-  break-inside: avoid;
 }
 .shortcut-row:last-child {
   border-bottom: none;
@@ -68,7 +74,8 @@
     columns: 2;
   }
   .shortcut-row {
-    min-height: 40px;
+    min-height: 36px;
+    padding: 6px 0;
     border-bottom: none;
   }
 }

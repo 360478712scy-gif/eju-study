@@ -7,7 +7,7 @@ import { startSession } from '@shared/actions.ts';
 import { useReady, update } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
 import { cx, fmtDateShort, fmtMinutes, pct } from '../../lib/format.ts';
-import { Badge, Button, Callout, IconButton, InfoTip, SubjectDot, SubjectTag, Tooltip, useConfirm } from '../../components/ui.tsx';
+import { Button, Callout, IconButton, InfoTip, SubjectDot, SubjectTag, Tooltip, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { itemStatus, isWrong, mockTitle, SECTIONS, sectionItems, sessionRank, shortLabel, type ReservedMap, type SectionDef, type SectionKey } from './practiceData.ts';
 
@@ -83,6 +83,48 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
     navigate('/session/' + s.id);
   };
 
+  // Papers whose every section is held for a scheduled mock go to the bottom, under one label.
+  const groups = useMemo(() => {
+    const isHeld = (p: (typeof papers)[number]) => p.cells.every((c) => !c.items.length || c.held);
+    return { free: papers.filter((p) => !isHeld(p)), held: papers.filter(isHeld) };
+  }, [papers]);
+
+  const renderPaper = ({ paper, cells, held, total, done }: (typeof papers)[number]) => {
+    const openCell = open?.session === paper.session ? cells.find((c) => c.section.key === open.key) : undefined;
+    const allHeld = held.length > 0 && cells.every((c) => !c.items.length || c.held);
+    return (
+      <Fragment key={paper.session}>
+        <div className={cx('pr-mx-row pr-mx-grid', openCell && 'is-open', allHeld && 'is-held')}>
+          <div className="pr-mx-paper">
+            <span className="pr-mx-label">
+              {paper.label}
+              {held.length > 0 && !allHeld && (
+                <Tooltip label={`${held.map((c) => c.section.short).join('、')}留给 ${fmtDateShort(held[0].held!.date)}「${mockTitle(held[0].held!.title, true)}」`}>
+                  <span className="pr-mx-held" tabIndex={0} aria-label="有几节留给模考">
+                    <Icon name="flag" size={13} />
+                  </span>
+                </Tooltip>
+              )}
+            </span>
+            <span className="pr-mx-sub num">{allHeld ? `${fmtDateShort(held[0].held!.date)} 模考` : `${done}/${total} 题`}</span>
+          </div>
+          {cells.map((c) => (
+            <PaperCell key={c.section.key} cell={c} active={openCell === c} onClick={() => setOpen(openCell === c ? null : { session: c.session, key: c.section.key })} />
+          ))}
+        </div>
+        {openCell && (
+          <SectionPanel
+            cell={openCell}
+            progress={state.progress}
+            onClose={() => setOpen(null)}
+            onPreview={onPreview}
+            onStart={(items, what) => void start(openCell, items, what)}
+          />
+        )}
+      </Fragment>
+    );
+  };
+
   return (
     <div className="pr-papers">
       <div className="pr-toolbar">
@@ -100,8 +142,9 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
               留给模考 <b className="num">{summary.held}</b> 套
             </span>
           )}
-          <InfoTip>格子里是已做 / 总题数。点开一节可以不限时整节练习，每题提交后马上看解析。带「留给模考」的卷子已排进模考日程，先别练。</InfoTip>
+          <InfoTip>格子里是已做 / 总题数。点开一节可以不限时整节练习，每题提交后马上看解析。带旗子的卷子有几节已排进模考日程（灰色的格子），先别练。</InfoTip>
         </div>
+        <span className="pr-toolbar-hint">点格子展开这一节</span>
       </div>
 
       <div className="card card-flush pr-matrix">
@@ -114,47 +157,17 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
             </span>
           ))}
         </div>
-        {papers.map(({ paper, cells, held, total, done }) => {
-          const openCell = open?.session === paper.session ? cells.find((c) => c.section.key === open.key) : undefined;
-          return (
-            <Fragment key={paper.session}>
-              <div className={cx('pr-mx-row pr-mx-grid', openCell && 'is-open')}>
-                <div className="pr-mx-paper">
-                  <span className="pr-mx-label">
-                    {paper.label}
-                    {held.length > 0 && (
-                      <Tooltip label={`${held.map((c) => c.section.short).join('、')}留给 ${fmtDateShort(held[0].held!.date)}「${mockTitle(held[0].held!.title, true)}」`}>
-                        <span className="pr-mx-held" tabIndex={0}>
-                          <Badge size="sm">留给模考</Badge>
-                        </span>
-                      </Tooltip>
-                    )}
-                  </span>
-                  <span className="pr-mx-sub num">
-                    {done}/{total} 题
-                  </span>
-                </div>
-                {cells.map((c) => (
-                  <PaperCell
-                    key={c.section.key}
-                    cell={c}
-                    active={openCell === c}
-                    onClick={() => setOpen(openCell === c ? null : { session: c.session, key: c.section.key })}
-                  />
-                ))}
-              </div>
-              {openCell && (
-                <SectionPanel
-                  cell={openCell}
-                  progress={state.progress}
-                  onClose={() => setOpen(null)}
-                  onPreview={onPreview}
-                  onStart={(items, what) => void start(openCell, items, what)}
-                />
-              )}
-            </Fragment>
-          );
-        })}
+        {groups.free.map(renderPaper)}
+        {groups.held.length > 0 && (
+          <>
+            <div className="pr-mx-group">
+              <Icon name="flag" size={13} />
+              <span className="pr-mx-group-name">留给模考</span>
+              <span>已排进模考日程，先别练，模考才准</span>
+            </div>
+            {groups.held.map(renderPaper)}
+          </>
+        )}
       </div>
       {confirm.node}
     </div>
@@ -162,9 +175,15 @@ export function PaperView({ reserved, onPreview }: { reserved: ReservedMap; onPr
 }
 
 function PaperCell({ cell: c, active, onClick }: { cell: Cell; active: boolean; onClick: () => void }) {
-  // A paper without this section: a blank cell, no placeholder glyph.
-  if (!c.items.length) return <span className="pr-cell is-none" aria-hidden />;
+  // A paper without this section: a quiet dash, so the grid never looks like missing data.
+  if (!c.items.length)
+    return (
+      <span className="pr-cell is-none" aria-label="这套卷没有这一节">
+        —
+      </span>
+    );
   const frac = c.done / c.items.length;
+  const full = c.done === c.items.length;
   const tip = c.held
     ? `留给 ${fmtDateShort(c.held.date)}「${mockTitle(c.held.title, true)}」`
     : c.mock
@@ -176,7 +195,7 @@ function PaperCell({ cell: c, active, onClick }: { cell: Cell; active: boolean; 
     <Tooltip label={tip}>
       <button
         type="button"
-        className={cx('pr-cell', `tone-${c.section.subject}`, active && 'is-active', c.held && 'is-held')}
+        className={cx('pr-cell', active && 'is-active', c.held && 'is-held', full && 'is-full')}
         onClick={onClick}
         aria-label={`${c.section.name} 已做 ${c.done}/${c.items.length}${c.held ? '，留给模考' : ''}`}
         aria-expanded={active}
@@ -185,6 +204,7 @@ function PaperCell({ cell: c, active, onClick }: { cell: Cell; active: boolean; 
           <b>{c.done}</b>
           <span>/{c.items.length}</span>
           {c.mock && <Icon name="check" size={13} className="pr-cell-mock" />}
+          <Icon name={active ? 'up' : 'down'} size={14} className="pr-cell-go" />
         </span>
         <span className="pr-cell-bar">
           <i style={{ width: `${frac * 100}%` }} />

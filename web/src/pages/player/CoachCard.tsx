@@ -1,11 +1,12 @@
 // "问 AI": follow-up questions about one item, answered by the local coach (lib/api.ts).
 // Jobs and answers are kept per item for the whole app session, so leaving and coming back keeps them.
-import { useEffect, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import type { Item, SessionAnswer } from '@shared/types.ts';
 import { askCoach, cancelCoach, coachStatus, pollCoach, type CoachResult } from '../../lib/api.ts';
 import { RichText } from '../../components/RichText.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { Button, Callout, IconTile, Spinner } from '../../components/ui.tsx';
+import { Button, IconButton, Spinner, Tooltip } from '../../components/ui.tsx';
+import { ExNotes } from '../../components/question/Explanation.tsx';
 import { cx } from '../../lib/format.ts';
 
 interface Entry {
@@ -19,67 +20,108 @@ interface Entry {
 const entries = new Map<string, Entry>();
 let statusCache: { at: number; available: boolean } | null = null;
 
-type Kind = 'choice' | 'blanks' | 'ja' | 'listen';
-const QUICK: Record<Kind, string[]> = {
-  choice: ['我的思路哪里错了？', '有没有考场上更快的做法？', '题干里这几个日语词是什么意思？'],
-  blanks: ['这一步是怎么想到的？', '我填错的那几格错在哪？', '有没有更快的算法？'],
-  ja: ['正确答案在原文哪一句？', '我选的选项为什么不对？', '这段文章的结构怎么快速抓？'],
-  listen: ['答案依据是录音里哪一句？', '我选的选项错在哪？', '这类题听的时候该抓什么？'],
-};
+type Kind = 'physics' | 'chemistry' | 'math' | 'blanks' | 'ja' | 'grammar' | 'listen';
+
+/** Follow-ups after a wrong (or given-up) answer. The third one depends on the item. */
+function quickWrong(kind: Kind, item: Item): string[] {
+  switch (kind) {
+    case 'blanks':
+      return ['这一步是怎么想到的？', '我填错的那几格错在哪？', '有没有更快的算法？'];
+    case 'ja':
+      return ['正确答案在原文哪一句？', '我选的选项为什么不对？', '这段文章的结构怎么快速抓？'];
+    case 'grammar':
+      return ['为什么选这个文型？', '我选的为什么不行？', '这几个文型怎么区分？'];
+    case 'listen':
+      return ['答案依据是录音里哪一句？', '我选的选项错在哪？', '这类题听的时候该抓什么？'];
+    default:
+      // Only offer the vocabulary question when the stem really has Japanese words worth glossing.
+      return ['我的思路哪里错了？', '有没有考场上更快的做法？', item.explanation.terms?.length ? '题干里这几个日语词是什么意思？' : '这题的关键一步是什么？'];
+  }
+}
+
 /** After a right answer the questions are about going further, not about a mistake. */
-const QUICK_RIGHT: Record<Kind, string[]> = {
-  choice: ['帮我总结关键思路', '有没有更快的做法？', '这类题还会怎么考？'],
-  blanks: ['帮我总结关键思路', '有没有更快的算法？', '这类题还会怎么考？'],
-  ja: ['帮我总结这题的解题线索', '有没有更快的定位方法？', '这类题还会怎么考？'],
-  listen: ['帮我总结这段录音的要点', '这类题听的时候该抓什么？', '这类题还会怎么考？'],
-};
+function quickRight(kind: Kind): string[] {
+  switch (kind) {
+    case 'ja':
+      return ['帮我总结这题的解题线索', '有没有更快的定位方法？', '这类题还会怎么考？'];
+    case 'grammar':
+      return ['这个文型还有哪些用法？', '容易和哪个文型混淆？', '帮我造两个例句'];
+    case 'listen':
+      return ['帮我总结这段录音的要点', '这类题听的时候该抓什么？', '这类题还会怎么考？'];
+    case 'blanks':
+      return ['帮我总结关键思路', '有没有更快的算法？', '这类题还会怎么考？'];
+    default:
+      return ['帮我总结关键思路', '有没有更快的做法？', '这类题还会怎么考？'];
+  }
+}
+
 const PLACEHOLDER: Record<Kind, string> = {
-  choice: '写下你卡住的地方，例如「为什么不能用动能守恒？」',
-  blanks: '写下你卡住的地方，例如「第二问的范围怎么确定？」',
-  ja: '写下你卡住的地方，例如「下线部指的是哪件事？」',
-  listen: '写下你卡住的地方，例如「她最后到底同意了没有？」',
+  physics: '比如「为什么不能用动能守恒？」',
+  chemistry: '比如「这里为什么不考虑水解？」',
+  math: '比如「这个范围是怎么确定的？」',
+  blanks: '比如「第二问的范围怎么确定？」',
+  ja: '比如「下线部指的是哪件事？」',
+  grammar: '比如「这两个文型怎么区分？」',
+  listen: '比如「她最后到底同意了没有？」',
 };
 
 function kindOf(item: Item): Kind {
-  if (item.subject === 'japanese') return item.audio ? 'listen' : 'ja';
-  return item.format === 'blanks' ? 'blanks' : 'choice';
+  if (item.subject === 'japanese') return item.audio ? 'listen' : item.topic.startsWith('ja.vocab') ? 'grammar' : 'ja';
+  if (item.format === 'blanks') return 'blanks';
+  return item.subject;
 }
 
 type Phase = 'idle' | 'asking' | 'done' | 'error';
 
+/** True when this item already has a question to the coach in this app session (the panel then starts open). */
+export function hasCoachEntry(itemId: string): boolean {
+  return entries.has(itemId);
+}
+
+/**
+ * The coach panel. `inline` sits inside the answer card (two-pane layout), `card` stands on its own
+ * under the result row (single column). It opens only when asked for (问 AI), next to the answer.
+ */
 export function CoachCard({
   item,
   response,
   wasCorrect,
-  focusRef,
-  defaultOpen,
+  variant = 'card',
+  onClose,
+  reveal,
 }: {
   item: Item;
   response: SessionAnswer['response'];
   wasCorrect: boolean;
-  focusRef?: RefObject<(() => void) | null>;
-  /** Expanded from the start (after a wrong answer); otherwise a one-line row until asked for. */
-  defaultOpen?: boolean;
+  variant?: 'card' | 'inline';
+  onClose?: () => void;
+  /** Just opened from 问 AI: scroll it into view once (not when coming back to an item that has one). */
+  reveal?: boolean;
 }) {
   const existing = entries.get(item.id);
-  const [open, setOpen] = useState(!!defaultOpen || !!existing);
   const [phase, setPhase] = useState<Phase>(existing?.result ? 'done' : existing?.error ? 'error' : existing?.jobId ? 'asking' : 'idle');
   const [entry, setEntry] = useState<Entry | undefined>(existing);
   const [text, setText] = useState('');
   const [available, setAvailable] = useState<boolean | null>(statusCache && Date.now() - statusCache.at < 60_000 ? statusCache.available : null);
   const [now, setNow] = useState(Date.now());
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const rootRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLElement>(null);
+  const answerRef = useRef<HTMLDivElement>(null);
   const alive = useRef(true);
+  const lastPhase = useRef(phase);
 
-  const expand = () => {
-    setOpen(true);
-    setTimeout(() => {
-      rootRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      inputRef.current?.focus({ preventScroll: true });
-    }, 60);
-  };
-  if (focusRef) focusRef.current = expand;
+  // Opened on purpose: bring it into view (no focus, so Enter / arrows keep driving the player).
+  useEffect(() => {
+    if (!reveal) return;
+    const t = setTimeout(() => rootRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }), 60);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // An answer that arrives while the learner waits is brought into view (it may land below the fold of the card).
+  useEffect(() => {
+    if (phase === 'done' && lastPhase.current === 'asking') answerRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    lastPhase.current = phase;
+  }, [phase]);
 
   useEffect(() => {
     alive.current = true;
@@ -177,36 +219,23 @@ export function CoachCard({
   };
 
   const kind = kindOf(item);
-  const quick = (wasCorrect ? QUICK_RIGHT : QUICK)[kind];
+  const quick = wasCorrect ? quickRight(kind) : quickWrong(kind, item);
   const waited = entry ? Math.max(0, Math.round((now - entry.startedAt) / 1000)) : 0;
 
-  if (!open) {
-    return (
-      <section className="pl-card pl-coach is-collapsed" ref={rootRef}>
-        <button type="button" className="pl-coach-row" onClick={expand}>
-          <Icon name="sparkles" size={16} className="pl-coach-spark" />
-          <span className="pl-coach-row-title">问 AI 老师</span>
-          <span className="pl-coach-row-sub">{wasCorrect ? '想再深入一点？针对这道题追问' : '解析没看懂？针对这道题追问'}</span>
-          <Icon name="right" size={16} className="pl-coach-row-chev" />
-        </button>
-      </section>
-    );
-  }
-
+  const sub = wasCorrect ? '想再深入一点？针对这道题追问' : '解析没看懂？针对这道题追问';
   return (
-    <section className="pl-card pl-coach" ref={rootRef}>
-      <header className="pl-card-head">
-        <span className="pl-card-title">
-          <IconTile icon="sparkles" tone="primary" />
-          问 AI 老师
-        </span>
-        <span className="pl-card-sub">{wasCorrect ? '想再深入一点？针对这道题追问' : '解析没看懂？针对这道题追问'}</span>
+    <section className={cx('pl-coach', variant === 'card' ? 'card' : 'is-inline')} ref={rootRef} aria-label="问 AI 老师">
+      <header className="pl-coach-head">
+        <Icon name="sparkles" size={15} className="pl-coach-spark" />
+        <span className="pl-coach-title">问 AI 老师</span>
+        <span className="pl-coach-sub">{sub}</span>
+        {onClose && <IconButton icon="x" label="收起" size="sm" className="pl-coach-close" onClick={onClose} />}
       </header>
 
       {available === false ? (
         <div className="pl-coach-off">
           <Icon name="info" size={15} />
-          <span>AI 现在连不上（本机的 Codex 没有登录或未安装）。上面的解析已经完整覆盖思路，先照着它过一遍。</span>
+          <span>AI 现在连不上（本机的 Codex 没有登录或未安装）。解析里已经有完整思路，先照着它过一遍。</span>
         </div>
       ) : (
         <>
@@ -239,7 +268,7 @@ export function CoachCard({
           )}
 
           {phase === 'done' && entry?.result && (
-            <div className="pl-coach-answer">
+            <div className="pl-coach-answer" ref={answerRef}>
               <RichText text={entry.result.answer} lang="zh" className="pl-coach-text" />
               {entry.result.steps.length > 0 && (
                 <ol className="pl-coach-steps">
@@ -251,20 +280,12 @@ export function CoachCard({
                   ))}
                 </ol>
               )}
-              {(entry.result.keyPoint || entry.result.pitfall) && (
-                <div className="pl-coach-tags">
-                  {entry.result.keyPoint && (
-                    <Callout tone="primary" icon="target" title="考点">
-                      <RichText text={entry.result.keyPoint} lang="zh" inline />
-                    </Callout>
-                  )}
-                  {entry.result.pitfall && (
-                    <Callout tone="warning" icon="alert" title="易错">
-                      <RichText text={entry.result.pitfall} lang="zh" inline />
-                    </Callout>
-                  )}
-                </div>
-              )}
+              <ExNotes
+                notes={[
+                  ...(entry.result.keyPoint ? [{ tone: 'primary' as const, icon: 'target' as const, title: '考点', body: <RichText text={entry.result.keyPoint} lang="zh" inline /> }] : []),
+                  ...(entry.result.pitfall ? [{ tone: 'warning' as const, icon: 'alert' as const, title: '易错', body: <RichText text={entry.result.pitfall} lang="zh" inline /> }] : []),
+                ]}
+              />
             </div>
           )}
 
@@ -277,18 +298,20 @@ export function CoachCard({
                   </button>
                 ))}
               </div>
-              <div className={cx('pl-coach-input', text && 'has-text')}>
+              <div className={cx('pl-coach-input', text.trim() && 'has-text')}>
                 <textarea
-                  ref={inputRef}
                   rows={1}
                   value={text}
+                  aria-label="向 AI 老师提问"
                   placeholder={phase === 'done' ? '还想追问什么？' : PLACEHOLDER[kind]}
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={onKey}
                 />
-                <Button size="sm" variant="primary" icon="arrowRight" onClick={() => void ask(text)} disabled={!text.trim() || available === null}>
-                  发送
-                </Button>
+                <Tooltip label="发送" kbd="Enter">
+                  <button type="button" className="pl-coach-send" onClick={() => void ask(text)} disabled={!text.trim() || available === null} aria-label="发送">
+                    <Icon name="arrowRight" size={16} />
+                  </button>
+                </Tooltip>
               </div>
             </>
           )}

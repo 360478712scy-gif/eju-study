@@ -154,6 +154,11 @@ export interface TimeBar {
 
 export const isSlow = (b: { seconds: number; target: number }) => b.seconds > b.target * 1.5 && b.seconds - b.target >= 30;
 
+/**
+ * Time per item against its own target: each bar is used time ÷ target time, so the target is one
+ * dashed line for every question (targets differ a lot between items, and per-bar ticks said little).
+ * Bars beyond the top of the scale are drawn with a break; the tooltip has the exact times.
+ */
 export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; height?: number; onSelect?: (id: string) => void }) {
   const [ref, width] = useWidth<HTMLDivElement>();
   const [hover, setHover] = useState<number | null>(null);
@@ -163,14 +168,13 @@ export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; he
   const padB = 8;
   const innerW = Math.max(10, width - padL - padR);
   const innerH = height - padT - padB;
-  const peak = Math.max(30, ...bars.map((b) => Math.max(b.seconds, b.target)));
-  // Nice tops whose middle tick is a whole minute (or 30 s for the 1-minute top).
-  const top = [60, 120, 240, 360, 480, 600, 720, 960, 1200, 1800, 2400, 3600].find((t) => t >= peak * 1.05) ?? Math.ceil(peak / 600) * 600;
-  const y = (s: number) => padT + innerH * (1 - Math.min(s, top) / top);
+  const ratio = (b: TimeBar) => (b.target > 0 ? b.seconds / b.target : 0);
+  const peak = Math.max(1.2, ...bars.map(ratio));
+  const top = [1.5, 2, 3, 4].find((t) => t >= peak * 1.04) ?? 4;
+  const y = (r: number) => padT + innerH * (1 - Math.min(r, top) / top);
   const slot = innerW / Math.max(1, bars.length);
   const bw = Math.max(3, Math.min(18, slot - 2));
   const midX = (i: number) => padL + slot * i + slot / 2;
-  const ticks = [0, top / 2, top];
   const groups: { name: string; from: number }[] = [];
   bars.forEach((b, i) => {
     if (!groups.length || groups[groups.length - 1].name !== b.group) groups.push({ name: b.group, from: i });
@@ -179,15 +183,18 @@ export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; he
   return (
     <div className="mk-chart" ref={ref} style={{ height }}>
       {width > 0 && (
-        <svg width={width} height={height} role="img" aria-label="每题用时">
-          {ticks.map((t) => (
-            <g key={t}>
-              <line x1={padL} x2={width - padR} y1={y(t)} y2={y(t)} className="mk-grid" />
-              <text x={padL - 8} y={y(t) + 4} className={cx('mk-axis', t > 0 && 'mk-axis-zh')} textAnchor="end">
-                {t === 0 ? '0' : t < 60 ? `${t}秒` : `${Math.round(t / 60)}分`}
-              </text>
-            </g>
-          ))}
+        <svg width={width} height={height} role="img" aria-label="每题用时（相对目标用时）">
+          <line x1={padL} x2={width - padR} y1={y(0)} y2={y(0)} className="mk-grid" />
+          <line x1={padL} x2={width - padR} y1={y(top)} y2={y(top)} className="mk-grid" />
+          <text x={padL - 8} y={y(0) + 4} className="mk-axis" textAnchor="end">
+            0
+          </text>
+          <text x={padL - 8} y={y(top) + 4} className="mk-axis mk-axis-zh" textAnchor="end">
+            {top}倍
+          </text>
+          <text x={padL - 8} y={y(1) + 4} className="mk-axis mk-axis-zh" textAnchor="end">
+            目标
+          </text>
           {groups.length > 1 &&
             groups.map((g, gi) => (
               <g key={g.name}>
@@ -198,18 +205,21 @@ export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; he
               </g>
             ))}
           {bars.map((b, i) => {
-            const h = Math.max(b.seconds > 0 ? 2 : 0, padT + innerH - y(b.seconds));
+            const r0 = ratio(b);
+            const h = Math.max(b.seconds > 0 ? 2 : 0, padT + innerH - y(r0));
             const x0 = midX(i) - bw / 2;
             const y0 = padT + innerH - h;
-            const r = Math.min(3, bw / 2, h);
-            const d = h > 0 ? `M${x0},${y0 + h} V${y0 + r} Q${x0},${y0} ${x0 + r},${y0} H${x0 + bw - r} Q${x0 + bw},${y0} ${x0 + bw},${y0 + r} V${y0 + h} Z` : '';
+            const rr = Math.min(3, bw / 2, h);
+            const d = h > 0 ? `M${x0},${y0 + h} V${y0 + rr} Q${x0},${y0} ${x0 + rr},${y0} H${x0 + bw - rr} Q${x0 + bw},${y0} ${x0 + bw},${y0 + rr} V${y0 + h} Z` : '';
             return (
               <g key={b.id} className={cx(isSlow(b) ? 'is-slow' : undefined, hover === i ? 'is-hover' : undefined)}>
                 {d && <path d={d} className="mk-bar" />}
-                <line x1={midX(i) - bw / 2 - 1} x2={midX(i) + bw / 2 + 1} y1={y(b.target)} y2={y(b.target)} className="mk-tick" />
+                {/* Off the scale: an axis break near the top of the bar. */}
+                {r0 > top && <rect x={x0 - 1} y={y0 + 7} width={bw + 2} height={2.5} className="mk-break" />}
               </g>
             );
           })}
+          <line x1={padL} x2={width - padR} y1={y(1)} y2={y(1)} className="mk-target" />
           {bars.map((b, i) => (
             <rect
               key={b.id}
@@ -227,7 +237,7 @@ export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; he
         </svg>
       )}
       {hover !== null && bars[hover] && (
-        <Tooltip x={midX(hover)} y={y(Math.max(bars[hover].seconds, bars[hover].target)) - 10} width={width}>
+        <Tooltip x={midX(hover)} y={y(Math.max(ratio(bars[hover]), 1)) - 10} width={width}>
           <b>{bars[hover].label}</b>
           <span className="num">
             用时 {fmtClock(bars[hover].seconds)} · 目标 {fmtClock(bars[hover].target)}

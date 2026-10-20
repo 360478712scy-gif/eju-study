@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useReady } from '../../lib/store.ts';
 import { href } from '../../lib/router.ts';
-import { Button, IconTile } from '../../components/ui.tsx';
+import { Button, IconTile, StatTile } from '../../components/ui.tsx';
 import { Icon, type IconName } from '../../components/Icon.tsx';
 import { navigate } from '../../lib/router.ts';
 import { weekdayZh } from '@shared/dates.ts';
@@ -21,7 +21,7 @@ interface Slot {
 }
 
 const SLOTS: Slot[] = [
-  { start: '09:30', end: '12:00', name: '日本語', detail: '记述 30 分 · 读解 40 分 · 听读解 / 听解 55 分', icon: 'languages', tone: 'japanese' },
+  { start: '09:30', end: '12:00', name: '日语', detail: '记述 30 分 · 读解 40 分 · 听读解 / 听解 55 分', icon: 'languages', tone: 'japanese' },
   { start: '12:00', end: '13:30', name: '午休', detail: '吃饭、喝水、闭眼休息。不对答案，不翻难题。', icon: 'coffee', tone: 'neutral', rest: true },
   { start: '13:30', end: '15:00', name: '理科', detail: '物理 · 化学 共 80 分钟，两科时间自己分配', icon: 'atom', tone: 'physics' },
   { start: '15:00', end: '15:40', name: '休息', detail: '活动一下，看一眼公式速记就够了。', icon: 'coffee', tone: 'neutral', rest: true },
@@ -102,6 +102,9 @@ export function ExamDay() {
   const curIdx = SLOTS.findIndex((s) => time >= s.start && time < s.end);
   const nextIdx = SLOTS.findIndex((s) => !s.rest && time < s.start);
   const finished = time >= '17:10';
+  // Before the first session the checklist is the time-critical card, after the last one the wrap-up:
+  // either leads when the layout stacks.
+  const leaving = time < SLOTS[0].start;
 
   return (
     <div className="page ex">
@@ -111,10 +114,10 @@ export function ExamDay() {
             <Icon name="flag" size={14} />
             {fmtDateShort(today)} {weekdayZh(today)} · 考试日
           </div>
-          <h1 className="ex-title">{finished ? '今天的三场都考完了，辛苦了' : '今天就是考试日，按平时的节奏来'}</h1>
+          <h1 className="ex-title">{finished ? '考完了，辛苦了' : '今天就是考试日，按平时的节奏来'}</h1>
           <p className="ex-sub">
             {finished ? (
-              '好好吃一顿，早点休息。'
+              '这段时间的努力都是真的。'
             ) : effort.days > 0 ? (
               <>
                 <span className="num">{effort.days}</span> 天 · <span className="num">{effort.wholeHours}</span> 小时 · <span className="num">{effort.answered.toLocaleString('en-US')}</span> 题 · 你准备好了
@@ -163,37 +166,56 @@ export function ExamDay() {
           </ol>
         </section>
 
-        <div className="ex-side">
-          <section className="card ex-check">
-            <div className="ex-card-head">
-              <h2 className="ex-h2">出门前检查</h2>
-              <span className={cx('ex-count num', ready === CHECKLIST.length && 'is-ok')}>
-                {ready}/{CHECKLIST.length}
-              </span>
-            </div>
-            <ul className="ex-items">
-              {CHECKLIST.map((c) => (
-                <li key={c.id}>
-                  <button type="button" className={cx('ex-item', checks[c.id] && 'is-on')} onClick={() => toggle(c.id)} aria-pressed={!!checks[c.id]}>
-                    <span className="ex-box">{checks[c.id] && <Icon name="check" size={14} />}</span>
-                    <span className="ex-item-label">{c.label}</span>
-                    <span className="ex-item-hint">{c.hint}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className="card ex-tips">
-            <h2 className="ex-h2">考场提醒</h2>
-            <ul>
-              {TIPS.map((t) => (
-                <li key={t}>
-                  <Icon name="check" size={14} />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </section>
+        <div className={cx('ex-side', (leaving || finished) && 'is-first')}>
+          {finished ? (
+            <section className="card ex-wrap">
+              <IconTile icon="award" tone="success" size="lg" />
+              <h2 className="ex-wrap-title">今晚好好休息</h2>
+              <p className="ex-wrap-text">不对答案，不翻题。好好吃一顿，早点睡。</p>
+              {effort.days > 0 && (
+                <div className="ex-wrap-stats">
+                  <StatTile boxed label="冲刺" value={effort.days} unit="天" />
+                  <StatTile boxed label="学习" value={effort.wholeHours} unit="小时" />
+                  <StatTile boxed label="做题" value={effort.answered.toLocaleString('en-US')} unit="题" />
+                </div>
+              )}
+            </section>
+          ) : (
+            <>
+              <section className="card ex-check">
+                <div className="ex-card-head">
+                  <h2 className="ex-h2">出门前检查</h2>
+                  <span className={cx('ex-count num', ready === CHECKLIST.length && 'is-ok')}>
+                    {ready}/{CHECKLIST.length}
+                  </span>
+                </div>
+                <ul className="ex-items">
+                  {CHECKLIST.map((c) => (
+                    <li key={c.id}>
+                      <button type="button" className={cx('ex-item', checks[c.id] && 'is-on')} onClick={() => toggle(c.id)} aria-pressed={!!checks[c.id]}>
+                        <span className="ex-box">{checks[c.id] && <Icon name="check" size={14} />}</span>
+                        <span className="ex-item-text">
+                          <span className="ex-item-label">{c.label}</span>
+                          <span className="ex-item-hint">{c.hint}</span>
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+              <section className="card ex-tips">
+                <h2 className="ex-h2">考场提醒</h2>
+                <ul>
+                  {TIPS.map((t) => (
+                    <li key={t}>
+                      <Icon name="check" size={14} />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </>
+          )}
         </div>
       </div>
     </div>

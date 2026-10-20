@@ -1,7 +1,7 @@
 // Read-only preview of one bank item: stem, options, answer + explanation, and "练这题".
 // Shared by the practice browser and the mock result page. Layout (also the target for the
-// mistake book's preview): header = SubjectTag + source · meta row = topic link · difficulty ·
-// 目标 m:ss · status badge · body on the modal surface · footer = context slot on the left,
+// mistake book's preview): header = SubjectTag + source · one Meta line = topic link · difficulty ·
+// 目标 m:ss · last status · body on the modal surface · footer = context slot on the left,
 // ghost actions then exactly one primary on the right.
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { Item, ItemProgress } from '@shared/types.ts';
@@ -10,7 +10,7 @@ import { useApp, update } from '../../lib/store.ts';
 import { href, navigate } from '../../lib/router.ts';
 import { playSpeech, stopSpeech, onSpeechChange, speechElement } from '../../lib/audio.ts';
 import { cx, fmtClock, fmtDateShort } from '../../lib/format.ts';
-import { Badge, Button, Callout, Modal, SubjectTag, toast, useConfirm, type Tone } from '../../components/ui.tsx';
+import { Badge, Button, Callout, Meta, Modal, StatusIcon, SubjectTag, toast, useConfirm, type ItemStatus } from '../../components/ui.tsx';
 import type { IconName } from '../../components/Icon.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { QuestionStem } from '../../components/question/QuestionStem.tsx';
@@ -68,11 +68,12 @@ function PreviewTitle({ item }: { item: Item }) {
   );
 }
 
-function statusBadge(p: ItemProgress | undefined, lastDate?: string): { tone: Tone; icon?: IconName; text: string } {
-  if (!p || p.attempts === 0) return { tone: 'neutral', text: '还没做过' };
+/** Last-attempt status, written like the other meta facts (a small status mark + text, no chip). */
+function lastStatus(p: ItemProgress | undefined, lastDate?: string): { status: ItemStatus; text: string } {
+  if (!p || p.attempts === 0) return { status: 'todo', text: '还没做过' };
   const when = lastDate ? ` · ${fmtDateShort(lastDate)}` : '';
-  const times = p.attempts > 1 ? `做过 ${p.attempts} 次 · ` : '';
-  return p.lastCorrect ? { tone: 'success', icon: 'check', text: `${times}上次答对${when}` } : { tone: 'danger', icon: 'x', text: `${times}上次答错${when}` };
+  const times = p.attempts > 1 ? `做过 ${p.attempts} 次，` : '';
+  return p.lastCorrect ? { status: 'right', text: `${times}上次答对${when}` } : { status: 'wrong', text: `${times}上次答错${when}` };
 }
 
 function PreviewBody({ item, context }: { item: Item; context?: PreviewContext }) {
@@ -86,39 +87,35 @@ function PreviewBody({ item, context }: { item: Item; context?: PreviewContext }
   const topic = bank?.topics.get(item.topic);
   const hasNote = !!bank?.notesByTopic.has(item.topic);
   const held = useMemo(() => (state && bank && !context ? reservedFor(reservedMap(state, bank), item) : undefined), [state, bank, item, context]);
-  const status = statusBadge(p, last?.date);
+  const status = lastStatus(p, last?.date);
 
   return (
     <div className="ip-body">
-      <div className="ip-meta">
+      {/* One meta line, one treatment: text facts joined by "·", each with at most a small glyph. */}
+      <Meta className="ip-meta">
         {topic &&
           (hasNote ? (
             <a className="ip-topic" href={href('/notes/' + item.topic)}>
-              <Icon name="notebook" size={13} />
               {topic.name}
+              <Icon name="notebook" size={13} />
             </a>
           ) : (
-            <span className="ip-topic is-plain">
-              <Icon name="layers" size={13} />
-              {topic.name}
-            </span>
+            <span className="ip-topic is-plain">{topic.name}</span>
           ))}
         <DifficultyMeter value={item.difficulty} />
-        <span className="ip-meta-item num">
-          <Icon name="clock" size={13} />
-          目标 {fmtClock(item.targetSec)}
-        </span>
+        <span className="num">目标 {fmtClock(item.targetSec)}</span>
         {!context && (
-          <Badge tone={status.tone} icon={status.icon}>
+          <span className={cx('ip-status', `is-${status.status}`)}>
+            {status.status !== 'todo' && <StatusIcon status={status.status} size={16} />}
             {status.text}
-          </Badge>
+          </span>
         )}
         {held && (
-          <Badge icon="flag">
-            留给 {fmtDateShort(held.date)} 模考
-          </Badge>
+          <span className="ip-held">
+            <Icon name="flag" size={13} />留给 {fmtDateShort(held.date)} 模考
+          </span>
         )}
-      </div>
+      </Meta>
 
       {context?.note && (
         <Callout tone={context.noteTone || 'neutral'} icon={context.noteIcon || 'info'} className="ip-note">

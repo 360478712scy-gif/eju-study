@@ -5,6 +5,7 @@ import { daysBetween, parseDate, weekdayZh } from '@shared/dates.ts';
 import { update, useApp } from '../../lib/store.ts';
 import { cx, fmtMinutes, SUBJECT_NAME } from '../../lib/format.ts';
 import { Icon, SUBJECT_ICON } from '../../components/Icon.tsx';
+import { SubjectDot } from '../../components/ui.tsx';
 import { Row, SettingCard, Slider } from './controls.tsx';
 
 const ORDER: Subject[] = ['japanese', 'math', 'physics', 'chemistry'];
@@ -167,7 +168,7 @@ export function GoalsCard({ onPlanStale }: { onPlanStale: () => void }) {
               <span role="cell">
                 <ScoreInput kind="targets" subject={s} value={profile.targets[s]} other={profile.baseline[s]} onCommit={(n) => setScore('targets', s, n)} />
               </span>
-              <span role="cell" className={cx('sg-gain num sg-col-gain', gain > 0 && 'is-up')}>
+              <span role="cell" className="sg-gain num sg-col-gain">
                 {gain > 0 ? `+${gain}` : gain}
               </span>
             </div>
@@ -178,10 +179,10 @@ export function GoalsCard({ onPlanStale }: { onPlanStale: () => void }) {
           <span role="cell" className="num">
             {baseTotal}
           </span>
-          <span role="cell" className="num sg-total-target">
+          <span role="cell" className="num">
             {targetTotal}
           </span>
-          <span role="cell" className="sg-gain num is-up sg-col-gain">
+          <span role="cell" className="sg-gain num sg-col-gain">
             +{targetTotal - baseTotal}
           </span>
         </div>
@@ -215,12 +216,15 @@ export function GoalsCard({ onPlanStale }: { onPlanStale: () => void }) {
         <div className="sg-weak">
           {units.map(({ subject, units: list }) => (
             <div key={subject} className="sg-weak-group">
-              <span className={cx('sg-weak-subject', `tone-${subject}`)}>{SUBJECT_NAME[subject]}</span>
+              <span className="sg-weak-subject">
+                <SubjectDot subject={subject} />
+                {SUBJECT_NAME[subject]}
+              </span>
               <div className="sg-chips">
                 {list.map((u) => {
                   const on = profile.weakTopics.includes(u.id);
                   return (
-                    <button key={u.id} type="button" className={cx('sg-chip', `tone-${subject}`, on && 'is-on')} aria-pressed={on} onClick={() => toggleWeak(u.id)}>
+                    <button key={u.id} type="button" className={cx('sg-chip', on && 'is-on')} aria-pressed={on} onClick={() => toggleWeak(u.id)}>
                       {on && <Icon name="check" size={13} />}
                       {u.name}
                     </button>

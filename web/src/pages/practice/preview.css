@@ -4,15 +4,22 @@
 .ip-title-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ip-body { display: flex; flex-direction: column; gap: 16px; padding-top: 2px; }
 
-.ip-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; color: var(--text-3); font-size: var(--fs-sm); }
-.ip-meta-item { display: inline-flex; align-items: center; gap: 5px; }
-.ip-topic {
-  display: inline-flex; align-items: center; gap: 5px; max-width: 100%; color: var(--text-2); font-weight: var(--fw-medium);
-  border-radius: var(--radius-xs); transition: color var(--dur) var(--ease);
-}
-.ip-topic svg { color: var(--text-3); }
+.ip-meta { row-gap: 4px; }
+.ip-meta > * { display: inline-flex; align-items: center; gap: 5px; }
+.ip-meta > * + *::before { margin-right: 1px; }
+.ip-topic { max-width: 100%; color: var(--text-2); font-weight: var(--fw-medium); border-radius: var(--radius-xs); transition: color var(--dur) var(--ease); }
+.ip-topic svg { color: var(--text-3); transition: color var(--dur) var(--ease); }
 a.ip-topic:hover { color: var(--primary-text); }
 a.ip-topic:hover svg { color: currentColor; }
+.ip-status.is-right { color: var(--success-text); }
+.ip-status.is-wrong { color: var(--text-2); }
+.ip-held { color: var(--text-2); }
+.ip-held svg { color: var(--text-3); }
+
+/* Figures in the preview stay short enough that the question and options fit around them
+   (click a figure to zoom); the body ends with room below the last caption. */
+.ip-modal .modal-body { padding-bottom: 28px; }
+.ip-modal .q-figure-btn img { max-height: min(400px, 40vh); }
 
 .ip-note { font-size: var(--fs-sm); }
 .ip-audio { display: flex; align-items: center; gap: 10px; }

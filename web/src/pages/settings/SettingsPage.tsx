@@ -475,7 +475,7 @@ function DataCard() {
     }
   };
 
-  const shownJournal = allJournal ? journal : journal.slice(0, 4);
+  const shownJournal = allJournal ? journal : journal.slice(0, 3);
 
   return (
     <SettingCard id="data" icon="download" title="数据" desc="学习记录只保存在这台电脑上，每次改动都会自动保存。">
@@ -504,7 +504,7 @@ function DataCard() {
           <p className="sg-muted-line">还没有备份：开始学习后会自动生成第一份。</p>
         ) : (
           <ul className="sg-backups">
-            {backups.slice(0, 5).map((b) => {
+            {backups.slice(0, 3).map((b) => {
               const info = backupInfo(b);
               return (
                 <li key={b.file}>

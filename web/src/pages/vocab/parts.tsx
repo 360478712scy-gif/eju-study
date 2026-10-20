@@ -1,13 +1,13 @@
 // Small building blocks shared by the vocab views.
 import { Fragment, useSyncExternalStore } from 'react';
-import type { VocabSkill, VocabSkillProgress } from '@shared/types.ts';
+import type { VocabSkillProgress } from '@shared/types.ts';
 import { VOCAB_MAX_BOX } from '@shared/srs.ts';
 import { useApp } from '../../lib/store.ts';
 import { onSpeechChange, playSpeech, speechElement, stopSpeech } from '../../lib/audio.ts';
 import { cx } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
-import { toast } from '../../components/ui.tsx';
-import { SKILL_TONE } from './run.ts';
+import { toast, Tooltip } from '../../components/ui.tsx';
+import { REMEMBERED_BOX } from './run.ts';
 
 function isPlaying(src: string | undefined): boolean {
   const el = speechElement();
@@ -36,27 +36,28 @@ export function AudioButton({ src, label, size = 'md' }: { src: string | undefin
   const rate = useApp((s) => s.state?.settings.pronunciationRate ?? 1);
   const playing = useSpeaking(src);
   if (!src) return null;
-  return (
+  const button = (
     <button
       type="button"
       className={cx('vc-audio', `vc-audio-${size}`, playing && 'is-playing', !label && 'is-round')}
       onClick={() => speak(src, rate)}
       aria-label={label ? `播放${label}` : '播放'}
-      title={label ? `播放${label}` : '播放'}
     >
       <Icon name={playing ? 'pause' : 'volume'} size={size === 'lg' ? 20 : size === 'sm' ? 14 : 16} />
       {label && <span>{label}</span>}
     </button>
   );
+  // A labelled button says what it plays; a round one gets the shared tooltip, never a native title.
+  return label ? button : <Tooltip label="播放">{button}</Tooltip>;
 }
 
-/** Five-step Leitner meter for one skill: filled steps in the skill's colour, green once 已稳 (3+),
- *  an amber first step when the last answer was wrong (due for review, not a failure mark). */
-export function Meter({ p, skill, label }: { p: VocabSkillProgress | undefined; skill: VocabSkill; label?: string }) {
-  const state = !p ? 'none' : !p.lastCorrect ? 'weak' : p.box >= 3 ? 'solid' : 'grow';
-  const title = !p ? `${label ?? ''}未学` : `${label ?? ''} 第 ${p.box}/${VOCAB_MAX_BOX} 级 · 练过 ${p.seen} 次${!p.lastCorrect ? ' · 上次答错' : ''}`;
+/** Five-step Leitner meter for one skill: filled steps neutral while learning, green once 已记住
+ *  (level 2+), an amber first step when the last answer was wrong (due again, not a failure mark). */
+export function Meter({ p, label }: { p: VocabSkillProgress | undefined; label?: string }) {
+  const state = !p ? 'none' : !p.lastCorrect ? 'weak' : p.box >= REMEMBERED_BOX ? 'known' : 'grow';
+  const title = !p ? `${label ?? ''}未学` : `${label ?? ''} 第 ${p.box}/${VOCAB_MAX_BOX} 级 · 练过 ${p.seen} 次${!p.lastCorrect ? ' · 上次答错' : state === 'known' ? ' · 已记住' : ''}`;
   return (
-    <span className={cx('vc-meter', `is-${state}`, `tone-${SKILL_TONE[skill]}`)} role="img" aria-label={title}>
+    <span className={cx('vc-meter', `is-${state}`)} role="img" aria-label={title}>
       {label && <span className="vc-meter-label">{label}</span>}
       <span className="vc-meter-bars">
         {Array.from({ length: VOCAB_MAX_BOX }, (_, i) => (

@@ -7,13 +7,13 @@
   justify-content: flex-end;
   gap: 8px;
   flex: none;
-  width: 92px;
+  width: 96px;
 }
 .nt-mini-track {
   position: relative;
-  width: 40px;
-  height: 4px;
-  border-radius: 2px;
+  width: 56px;
+  height: 5px;
+  border-radius: var(--radius-pill);
   background: var(--track);
   overflow: hidden;
 }
@@ -24,26 +24,26 @@
   background: var(--tone);
 }
 .nt-mini-val {
-  min-width: 36px;
+  min-width: 32px;
   text-align: right;
   color: var(--tone-text);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
 }
 .nt-mini.tone-neutral .nt-mini-val {
   color: var(--text-2);
 }
-.nt-mini.is-none {
-  width: auto;
-  color: var(--text-3);
-  font-size: var(--fs-sm);
+/* Never practised: an empty dashed track, no text. */
+.nt-mini.is-none .nt-mini-track {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
 }
+/* 考频 4–5: said in words in the meta line. */
 .nt-hot {
-  display: inline-block;
-  flex: none;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary);
+  color: var(--text-2);
+  font-weight: var(--fw-medium);
 }
 .nt-band {
   font-weight: var(--fw-medium);
@@ -78,46 +78,56 @@
 .nt-subjects {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
+}
+/* One card per subject; its units flow in columns inside it, so uneven column ends stay inside one frame. */
+.nt-subject {
+  padding: 18px 12px 8px;
 }
 .nt-subject-head {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin: 0 10px 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--divider);
 }
 .nt-units {
-  columns: 3 264px;
-  column-gap: 16px;
+  columns: 3 280px;
+  column-gap: 20px;
 }
 .nt-unit {
   break-inside: avoid;
-  margin-bottom: 16px;
-  padding: 14px 6px 6px;
+  padding-bottom: 14px;
 }
 .nt-unit-name {
-  margin: 0 10px 4px 16px;
+  margin: 0 10px 2px;
 }
 .nt-rows {
   display: flex;
   flex-direction: column;
 }
+/* Name on its own line (full column width, so it rarely wraps); the meta and the mastery bar share the second. */
 .nt-row {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 8px 10px 8px 16px;
+  column-gap: 12px;
+  min-height: 50px;
+  padding: 7px 10px;
   border-radius: var(--radius-md);
   color: var(--text);
   transition: background var(--dur) var(--ease);
+}
+.nt-row:focus-visible {
+  box-shadow: var(--focus-ring);
 }
 .nt-row + .nt-row::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 16px;
+  left: 10px;
   right: 10px;
   height: 1px;
   background: var(--divider);
@@ -130,22 +140,23 @@
   opacity: 0;
 }
 .nt-row-main {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
+  display: contents;
 }
 .nt-row-name {
-  display: flex;
-  align-items: center;
-  gap: 7px;
+  grid-column: 1 / -1;
+}
+.nt-row-sub {
+  grid-column: 1;
+  min-width: 0;
+}
+.nt-row > .nt-mini {
+  grid-column: 2;
+  grid-row: 2;
+}
+.nt-row-name {
   font-size: var(--fs-ui);
   font-weight: var(--fw-medium);
   line-height: 1.45;
-}
-.nt-row-name .nt-hot {
-  margin-left: -13px;
 }
 .nt-row.is-thin .nt-row-name {
   color: var(--text-2);
@@ -153,11 +164,16 @@
 }
 .nt-row-sub {
   display: flex;
-  gap: 8px;
+  gap: 0 6px;
   color: var(--text-3);
   font-size: var(--fs-xs);
   white-space: nowrap;
   overflow: hidden;
+}
+.nt-row-sub > span + span::before {
+  content: '·';
+  margin-right: 6px;
+  color: var(--border-strong);
 }
 .nt-row-sub span:first-child {
   overflow: hidden;
@@ -170,10 +186,65 @@
   flex: 0 1 auto;
 }
 
-.nt-weak-hint {
+.nt-weak {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.nt-wgroup-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 2px 12px;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.nt-wgroup-title .num {
+  color: var(--text-3);
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-medium);
+}
+.nt-wgroup-desc {
+  margin-left: 4px;
   color: var(--text-3);
   font-size: var(--fs-sm);
-  margin: -8px 0 14px;
+  font-weight: var(--fw-regular);
+}
+.nt-rest-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.nt-rest-toggle:hover {
+  background: var(--bg-hover);
+}
+.nt-rest-toggle:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.nt-rest-toggle .nt-wgroup-title {
+  margin: 0;
+}
+.nt-rest-toggle.is-open {
+  margin-bottom: 12px;
+}
+.nt-rest-chev {
+  margin-left: auto;
+  color: var(--text-3);
+  transform: rotate(-90deg);
+  transition: transform var(--dur) var(--ease);
+}
+.nt-rest-toggle.is-open .nt-rest-chev {
+  transform: none;
 }
 .nt-grid {
   display: grid;
@@ -221,15 +292,53 @@
 }
 .nt-card-bottom {
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 12px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse;
+  flex-direction: column;
   gap: 8px;
 }
-.nt-card-bottom .nt-mini {
-  width: auto;
+.nt-card-bar {
+  display: block;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--track);
+  overflow: hidden;
+}
+.nt-card-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--text-3);
+}
+.nt-card.band-weak .nt-card-bar > i {
+  background: var(--danger);
+}
+.nt-card.band-good .nt-card-bar > i {
+  background: var(--success);
+}
+.nt-card.band-none .nt-card-bar {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+}
+.nt-card-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.nt-card-val {
+  flex: none;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+.nt-card-val.is-weak {
+  color: var(--danger-text);
+}
+.nt-card-val.is-good {
+  color: var(--success-text);
 }
 .nt-card-band {
   margin-left: auto;
@@ -414,8 +523,16 @@
   font-size: var(--fs-base);
   line-height: 1.8;
 }
-.nt-traps .callout-title {
-  margin-bottom: 6px;
+.nt-traps {
+  padding: 20px 32px 22px;
+}
+.nt-traps .nt-sec-title {
+  margin-bottom: 10px;
+}
+.nt-sec-count {
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
 }
 
 .nt-term-grid {
@@ -508,30 +625,58 @@
   gap: 8px;
   padding: 18px 16px 6px 22px;
 }
+.nt-items-head .card-sub.meta {
+  display: flex;
+  font-size: var(--fs-sm);
+}
 .nt-items-head .btn {
   margin-top: -4px;
-}
-.nt-item-list {
-  max-height: 460px;
-  overflow-y: auto;
-  /* Scroll shadows: a soft edge shows only when more rows are hidden above or below. */
-  background:
-    linear-gradient(var(--bg-elev) 30%, transparent) center top / 100% 28px no-repeat local,
-    linear-gradient(transparent, var(--bg-elev) 70%) center bottom / 100% 28px no-repeat local,
-    linear-gradient(var(--scroll-shadow), transparent) center top / 100% 10px no-repeat scroll,
-    linear-gradient(transparent, var(--scroll-shadow)) center bottom / 100% 10px no-repeat scroll;
 }
 .nt-item.list-row {
   min-height: 40px;
   padding: 8px 12px;
+  gap: 10px;
 }
 .nt-item .list-row-title {
   font-size: var(--fs-sm);
   font-weight: var(--fw-regular);
 }
 .nt-item.list-row + .list-row::before {
-  left: 38px;
+  left: 40px;
   right: 12px;
+}
+.nt-item-date {
+  min-width: 36px;
+  text-align: right;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.nt-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: calc(100% - 12px);
+  height: 36px;
+  margin: -2px 6px 6px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.nt-more:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.nt-more:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.nt-more svg {
+  color: var(--text-3);
 }
 .nt-star {
   color: var(--warning);
@@ -597,4 +742,7 @@
   .nt-note {
     padding: 4px 24px 24px;
   }
+}
+.nt-card-top .nt-hot {
+  font-size: var(--fs-xs);
 }

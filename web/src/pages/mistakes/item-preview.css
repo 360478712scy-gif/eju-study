@@ -1,4 +1,6 @@
-/* Item preview modal (.mbp-) */
+/* Item preview modal (.mbp-): the practice preview's layout (header SubjectTag + source · one meta
+   row · body on the modal surface · footer pager left, ghost actions + one primary right), plus a
+   "why it is here" block above the stem and the learner's note at the end. */
 .mbp-title {
   display: inline-flex;
   align-items: center;
@@ -6,6 +8,12 @@
   min-width: 0;
   font-size: var(--fs-md);
   font-weight: var(--fw-semibold);
+}
+.mbp-title-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* The body fades out over its last 12px so content never cuts hard under the footer. */
 .mbp-modal .modal-body {
@@ -15,115 +23,69 @@
 .mbp {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  padding-top: 2px;
 }
 
+/* Meta row: topic · difficulty · target time · one status badge */
 .mbp-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 14px;
-  margin-top: -2px;
+  gap: 6px 14px;
+  color: var(--text-3);
+  font-size: var(--fs-sm);
 }
 .mbp-meta-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 .mbp-topic {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 28px;
-  padding: 0 8px 0 10px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-sunken);
-  color: var(--text);
-  font-size: var(--fs-sm);
+  gap: 5px;
+  max-width: 100%;
+  color: var(--text-2);
   font-weight: var(--fw-medium);
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+  border-radius: var(--radius-xs);
+  transition: color var(--dur) var(--ease);
 }
 .mbp-topic svg {
   color: var(--text-3);
 }
-.mbp-topic:hover {
-  background: var(--bg-active);
+a.mbp-topic:hover {
+  color: var(--primary-text);
 }
-.mbp-topic-go {
-  margin-left: -2px;
-}
-.mbp-diff {
-  display: inline-flex;
-  gap: 2px;
-}
-.mbp-diff i {
-  width: 5px;
-  height: 11px;
-  border-radius: 2px;
-  background: var(--track);
-}
-.mbp-diff i.on {
-  background: var(--text-3);
-}
-.mbp-due {
-  font-weight: var(--fw-medium);
-}
-.mbp-due.is-now {
-  color: var(--warning-text);
-  font-weight: var(--fw-semibold);
-}
-.mbp-due.is-soon {
-  color: var(--text-2);
+a.mbp-topic:hover svg {
+  color: currentColor;
 }
 
-.mbp-audio {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: var(--radius);
-  background: var(--bg-sunken);
-}
-
-/* The stem sits in a quiet well (lighter than the modal in dark, never a black cut-out). */
-.mbp-stem {
-  padding: 18px 20px;
-  border-radius: var(--radius);
-  background: var(--bg-sunken);
-}
-
-.mbp-sec {
+/* Why it is here: last answer, its time against the target, and the trap behind it. */
+.mbp-last {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-.mbp-sec-title {
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
-  color: var(--text);
-}
-.mbp-sec-title svg {
-  color: var(--text-3);
-}
-.mbp-ans-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 16px;
-}
-.mbp-ans-facts {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
   font-size: var(--fs-sm);
+}
+.mbp-last-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.mbp-last-head .mb-res {
+  margin-right: -2px;
+}
+.mbp-last-meta {
+  color: var(--text-2);
 }
 .mbp-res-text {
   font-weight: var(--fw-semibold);
+  color: var(--text);
 }
 .mbp-res-text.is-right {
   color: var(--success-text);
@@ -135,22 +97,51 @@
 .mbp-res-text.is-partial {
   color: var(--warning-text);
 }
-.mbp-fact {
+.mbp-fact.is-slow {
+  color: var(--warning-text);
+}
+.mbp-last-trap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text);
+  font-size: var(--fs-ui);
+  line-height: var(--lh-ui);
+}
+.mbp-last-label {
+  flex: none;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: var(--text-2);
-}
-.mbp-fact svg {
-  color: var(--text-3);
-}
-.mbp-fact.is-slow,
-.mbp-fact.is-slow svg {
+  margin-top: 1px;
   color: var(--warning-text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
 }
-.mbp-hint {
+
+.mbp-audio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mbp-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mbp-answer-label {
   color: var(--text-3);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+.mbp-opts.is-compact .q-options-ro {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 6px;
+}
+.mbp-opts.is-compact .q-opt-ro {
+  align-items: center;
 }
 
 .mbp-history {
@@ -158,7 +149,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  margin-top: -6px;
 }
 .mbp-history-label {
   margin-right: 4px;
@@ -178,40 +168,80 @@
   box-shadow: var(--focus-ring);
 }
 
-.mbp-hidden {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  padding: 16px 18px;
-  border-radius: var(--radius);
-  background: var(--bg-sunken);
-}
-.mbp-hidden-text {
-  flex: 1;
-  min-width: 180px;
+.mbp-ex {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider);
 }
-.mbp-hidden-text span {
-  color: var(--text-2);
-  font-size: var(--fs-sm);
-}
-.mbp-hidden-actions {
+.mbp-ex-head {
   display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.mbp-ex-head svg {
+  color: var(--warning);
+}
+
+.mbp-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.mbp-reveal:hover {
+  background: var(--bg-active);
+  color: var(--text);
+}
+.mbp-reveal:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.mbp-reveal-main {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-medium);
+}
+.mbp-reveal-hint {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
 }
 
 .mbp-note {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider);
 }
 .mbp-note-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.mbp-sec-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.mbp-sec-title svg {
+  color: var(--text-3);
 }
 .mbp-note-state {
   color: var(--text-3);
@@ -268,13 +298,6 @@
   color: var(--warning-text);
 }
 .mbp-star.is-on svg {
-  fill: currentColor;
-}
-.mbp-opts.is-compact .q-options-ro {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 6px;
-}
-.mbp-opts.is-compact .q-opt-ro {
-  align-items: center;
+  fill: var(--warning);
+  stroke: var(--warning);
 }

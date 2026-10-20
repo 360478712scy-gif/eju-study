@@ -12,7 +12,7 @@ import { cx } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { Badge, Button, Callout, IconButton, Kbd, SubjectDot, Tooltip, isModalOpen, toast } from '../../components/ui.tsx';
 import { answerCandidates, answerKana, hasRomaji, nearMissHint } from './kana.ts';
-import { getRun, meaningChoice, newRun, setRun, SKILL_NAME, SKILL_TONE, splitMeaning, useRun, withRetry, type RunAnswer, type RunCard, type VocabRun } from './run.ts';
+import { getRun, meaningChoice, newRun, setRun, SKILL_ICON, SKILL_NAME, splitMeaning, useRun, withRetry, type RunAnswer, type RunCard, type VocabRun } from './run.ts';
 import { AudioButton, Highlighted, speak } from './parts.tsx';
 
 const AUTOPLAY_KEY = 'eju-vocab-autoplay';
@@ -286,7 +286,7 @@ export function VocabSession() {
           aria-label={`${SKILL_NAME[card.skill]}：${v.word}`}
         >
           <div className="vc-stage-tags">
-            <Badge tone={SKILL_TONE[card.skill]} icon={card.skill === 'read' ? 'pen' : 'list'}>
+            <Badge icon={SKILL_ICON[card.skill]}>
               {SKILL_NAME[card.skill]}
             </Badge>
             {card.retry && (

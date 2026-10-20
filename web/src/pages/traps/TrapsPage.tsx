@@ -1,21 +1,27 @@
-// 考前一页纸: traps and key points from every item the learner got wrong, grouped by subject.
+// 考前一页纸: one line per trap from every item the learner got wrong, grouped by subject;
+// the other traps, key points and the original question open under a line.
 import { useMemo, useState } from 'react';
 import type { Item, Subject } from '@shared/types.ts';
 import { findBlock, markBlock } from '@shared/actions.ts';
 import { shortTopic } from '@shared/planner.ts';
 import { useReady, update } from '../../lib/store.ts';
-import { navigate, useRoute } from '../../lib/router.ts';
+import { href, navigate, useRoute } from '../../lib/router.ts';
 import { cx, SUBJECT_NAME } from '../../lib/format.ts';
-import { Button, Empty, Meta, PageHeader, Segmented, SubjectTag, Tooltip } from '../../components/ui.tsx';
+import { Button, Dot, Empty, PageHeader, Segmented, Tooltip } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { slashFractions } from '../notes/fractions.ts';
+import { ItemPreview } from '../mistakes/ItemPreview.tsx';
+import { sourceLabel } from '../mistakes/helpers.ts';
 import './traps.css';
 
 interface Entry {
   item: Item;
   misses: number;
-  lines: string[];
+  /** The line shown in the list: the first trap, or the first key point when there is no trap. */
+  head: string;
+  headIsTrap: boolean;
+  traps: string[];
   points: string[];
 }
 
@@ -51,6 +57,8 @@ export function TrapsPage() {
   const block = blockId ? findBlock(state, blockId) : undefined;
   const [filter, setFilter] = useState<Filter>('all');
   const [remembered, setRemembered] = useState<Set<string>>(loadRemembered);
+  const [open, setOpen] = useState<Set<string>>(() => new Set());
+  const [preview, setPreview] = useState<string | null>(null);
 
   const groups = useMemo(() => {
     const misses = new Map<string, number>();
@@ -60,10 +68,18 @@ export function TrapsPage() {
     for (const [id, n] of misses) {
       const item = bank.byId.get(id);
       if (!item) continue;
-      const lines = item.explanation.traps ?? [];
+      const traps = item.explanation.traps ?? [];
       const points = item.explanation.keyPoints ?? [];
-      if (!lines.length && !points.length) continue;
-      entries.push({ item, misses: n, lines, points });
+      if (!traps.length && !points.length) continue;
+      const headIsTrap = traps.length > 0;
+      entries.push({
+        item,
+        misses: n,
+        head: headIsTrap ? traps[0] : points[0],
+        headIsTrap,
+        traps: headIsTrap ? traps.slice(1) : [],
+        points: (headIsTrap ? points : points.slice(1)).slice(0, 3),
+      });
     }
     const weight = (e: Entry) => e.misses * 2 + (bank.topics.get(e.item.topic)?.weight ?? 3) + (state.progress[e.item.id]?.inMistakes ? 2 : 0);
     entries.sort((a, b) => weight(b) - weight(a));
@@ -72,15 +88,24 @@ export function TrapsPage() {
   }, [state.attempts, state.progress, bank]);
 
   const shown = groups.filter((g) => filter === 'all' || g.subject === filter);
-  const total = shown.reduce((n, g) => n + g.entries.length, 0);
-  const left = shown.reduce((n, g) => n + g.entries.filter((e) => !remembered.has(e.item.id)).length, 0);
+  const shownEntries = shown.flatMap((g) => g.entries);
+  const total = shownEntries.length;
+  const left = shownEntries.filter((e) => !remembered.has(e.item.id)).length;
+  const allOpen = total > 0 && shownEntries.every((e) => open.has(e.item.id));
 
-  const toggle = (id: string) =>
+  const toggleRemembered = (id: string) =>
     setRemembered((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
       saveRemembered(next);
+      return next;
+    });
+  const toggleOpen = (id: string) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
       return next;
     });
 
@@ -92,10 +117,10 @@ export function TrapsPage() {
   return (
     <div className="page tp-page">
       <PageHeader
-        eyebrow="考前一页纸"
-        title="我的易错点"
-        desc="从做错过的题里挑出最常错、最高频的点。考前只看这一页。"
-        info={`按没答对的次数和考点频率排序，最多 ${LIMIT} 条。${SUBJECT_NAME.japanese}的易错点多是读题和听力陷阱。看熟一条就勾上「记住了」，它会变淡。`}
+        back={block ? { label: '今日', href: href('/') } : { label: '错题本', href: href('/mistakes') }}
+        title="考前一页纸"
+        desc="做错过的题里最常踩的坑，考前只看这一页。"
+        info={`按没答对的次数和考点频率排序，最多 ${LIMIT} 条。点一行看同一道题的其他易错点和要点；看熟了就点「记住了」，它会变淡。`}
         actions={
           block ? (
             <Button variant="success" icon="check" onClick={finish}>
@@ -122,20 +147,10 @@ export function TrapsPage() {
                 ]}
               />
             )}
-            <span className="tp-legend">
-              <span>
-                <Icon name="alert" size={14} className="tp-ico is-trap" />
-                易错陷阱
-              </span>
-              <span>
-                <Icon name="arrowRight" size={14} className="tp-ico is-point" />
-                该抓的要点
-              </span>
-            </span>
             <span className="tp-left">
               {left > 0 ? (
                 <>
-                  还剩 <b className="num">{left}</b> 条
+                  还剩 <b className="num">{left}</b> 条没记住
                 </>
               ) : (
                 <span className="tp-done">
@@ -144,6 +159,9 @@ export function TrapsPage() {
                 </span>
               )}
             </span>
+            <Button variant="ghost" size="sm" icon={allOpen ? 'up' : 'down'} onClick={() => setOpen(allOpen ? new Set() : new Set(shownEntries.map((e) => e.item.id)))}>
+              {allOpen ? '全部收起' : '全部展开'}
+            </Button>
           </div>
 
           <div className="tp-groups">
@@ -151,13 +169,23 @@ export function TrapsPage() {
               <section key={g.subject} className="tp-group">
                 {filter === 'all' && groups.length > 1 && (
                   <h2 className="tp-group-title">
-                    <SubjectTag subject={g.subject} />
+                    <Dot tone={g.subject} />
+                    {SUBJECT_NAME[g.subject]}
                     <span className="num">{g.entries.length}</span>
                   </h2>
                 )}
-                <ol className="tp-list">
+                <ol className="card card-flush tp-list">
                   {g.entries.map((e) => (
-                    <TrapCard key={e.item.id} e={e} topic={shortTopic(bank, e.item.topic)} done={remembered.has(e.item.id)} onToggle={() => toggle(e.item.id)} />
+                    <TrapRow
+                      key={e.item.id}
+                      e={e}
+                      topic={shortTopic(bank, e.item.topic)}
+                      done={remembered.has(e.item.id)}
+                      open={open.has(e.item.id)}
+                      onToggle={() => toggleOpen(e.item.id)}
+                      onRemember={() => toggleRemembered(e.item.id)}
+                      onPreview={() => setPreview(e.item.id)}
+                    />
                   ))}
                 </ol>
               </section>
@@ -165,41 +193,97 @@ export function TrapsPage() {
           </div>
         </>
       )}
+      <ItemPreview itemId={preview} ids={shownEntries.map((e) => e.item.id)} onSelect={setPreview} />
     </div>
   );
 }
 
-function TrapCard({ e, topic, done, onToggle }: { e: Entry; topic: string; done: boolean; onToggle: () => void }) {
+function TrapRow({
+  e,
+  topic,
+  done,
+  open,
+  onToggle,
+  onRemember,
+  onPreview,
+}: {
+  e: Entry;
+  topic: string;
+  done: boolean;
+  open: boolean;
+  onToggle: () => void;
+  onRemember: () => void;
+  onPreview: () => void;
+}) {
   return (
-    <li className={cx('card tp-card', done && 'is-done')}>
-      <header className="tp-head">
-        <div className="tp-head-text">
-          <h3 className="tp-topic">{topic}</h3>
-          <Meta className="tp-meta">
-            <span>{e.item.source.label.replace(/（解答番号\d+）/, '')}</span>
-            <span>没答对 {e.misses} 次</span>
-          </Meta>
+    <li className={cx('tp-card', done && 'is-done', open && 'is-open')}>
+      {/* The whole line opens the details; the keyboard reaches the same toggle through its button. */}
+      <div
+        className="tp-row"
+        onClick={(ev) => {
+          if ((ev.target as HTMLElement).closest('button')) return;
+          onToggle();
+        }}
+      >
+        <button type="button" className="tp-toggle" aria-expanded={open} onClick={onToggle}>
+          <span className={cx('tp-lead', e.headIsTrap ? 'is-trap' : 'is-point')} aria-label={e.headIsTrap ? '易错' : '要点'} role="img">
+            <Icon name={e.headIsTrap ? 'alert' : 'target'} size={15} />
+          </span>
+          <span className="tp-head">
+            <RichText text={slashFractions(e.head)} lang="zh" inline />
+          </span>
+        </button>
+        <span className="tp-trail">
+          {/* The source line and the 记住了 toggle share one slot: hovering a line swaps them. */}
+          <span className="tp-slot">
+            <span className="tp-src">
+              {topic}
+              <span className="tp-sep">·</span>错 <span className="num">{e.misses}</span> 次
+            </span>
+            <Tooltip label={done ? '标成还没记住' : '看熟了就点，这一行会变淡'}>
+              <button type="button" className={cx('tp-mark', done && 'is-on')} aria-pressed={done} onClick={onRemember}>
+                <Icon name="check" size={14} />
+                {done ? '已记住' : '记住了'}
+              </button>
+            </Tooltip>
+          </span>
+          <Icon name="down" size={16} className="tp-chev" />
+        </span>
+      </div>
+      {open && (
+        <div className="tp-detail">
+          {e.traps.length > 0 && (
+            <div className="tp-dgroup">
+              <span className="tp-dlabel is-trap">还要当心</span>
+              <ul className="tp-lines">
+                {e.traps.map((t, i) => (
+                  <li key={i}>
+                    <RichText text={slashFractions(t)} lang="zh" inline />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {e.points.length > 0 && (
+            <div className="tp-dgroup">
+              <span className="tp-dlabel">该抓的要点</span>
+              <ul className="tp-lines">
+                {e.points.map((t, i) => (
+                  <li key={i}>
+                    <RichText text={slashFractions(t)} lang="zh" inline />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="tp-dfoot">
+            <span className="tp-dsrc">{sourceLabel(e.item)}</span>
+            <Button variant="ghost" size="sm" icon="eye" onClick={onPreview}>
+              看原题
+            </Button>
+          </div>
         </div>
-        <Tooltip label={done ? '标成还没记住' : '记住了'}>
-          <button type="button" className={cx('tp-check', done && 'is-on')} aria-pressed={done} aria-label="记住了" onClick={onToggle}>
-            <Icon name="check" size={13} style={{ strokeWidth: 3 }} />
-          </button>
-        </Tooltip>
-      </header>
-      <ul className="tp-lines">
-        {e.lines.map((t, i) => (
-          <li key={'t' + i} className="tp-line">
-            <Icon name="alert" size={14} className="tp-ico is-trap" />
-            <RichText text={slashFractions(t)} lang="zh" inline />
-          </li>
-        ))}
-        {e.points.slice(0, 2).map((t, i) => (
-          <li key={'p' + i} className="tp-line is-point">
-            <Icon name="arrowRight" size={14} className="tp-ico is-point" />
-            <RichText text={slashFractions(t)} lang="zh" inline />
-          </li>
-        ))}
-      </ul>
+      )}
     </li>
   );
 }

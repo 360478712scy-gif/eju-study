@@ -106,19 +106,31 @@ function serialize(xs: Inline[], budget: { left: number }): string {
 
 const snippetCache = new Map<string, string>();
 
-/** First ~70 characters of the stem as single-line markup (math kept intact). */
-export function stemSnippet(it: Item, max = 70): string {
+/** The generic instruction every listening stem opens with ("音声を聞いて、…ください。"). */
+const LISTEN_INSTRUCTION = /^\s*音声を聞いて[^。]*。\s*/;
+
+/**
+ * What a listening item is about: the scene and question the narrator reads out
+ * ("先生が、現代アートについて話しています。…"). The stem alone is a generic instruction.
+ */
+function listeningLead(it: Item): string {
+  const stem = it.stem.replace(LISTEN_INSTRUCTION, '').trim();
+  if (stem.length >= 16) return stem;
+  const first = (it.transcript || '').split('\n').find((l) => l.trim()) || '';
+  return first
+    .replace(/^\s*\d+\s*番[\s　]*/, '')
+    .replace(/^ナレーター[：:]\s*/, '')
+    .trim();
+}
+
+/** First ~48 characters of the stem as single-line markup (math kept intact). */
+export function stemSnippet(it: Item, max = 48): string {
   const hit = snippetCache.get(it.id);
   if (hit !== undefined) return hit;
   const budget = { left: max };
-  // Listening items only carry a generic instruction; their options identify them better.
-  if (it.audio && it.options?.length && it.stem.length < 60) {
-    const s = it.options.map((o) => serialize([{ type: 'text', text: o.replace(/\$[^$]*\$/g, '…') }], { left: 24 })).join(' / ');
-    snippetCache.set(it.id, s);
-    return s;
-  }
+  const source = (it.audio && listeningLead(it)) || it.stem;
   const parts: string[] = [];
-  for (const b of parseBlocks(it.stem)) {
+  for (const b of parseBlocks(source)) {
     if (budget.left <= 0) break;
     if (b.type === 'p') parts.push(serialize(b.children, budget));
     else if (b.type === 'list') for (const li of b.items) parts.push(serialize(li, budget));

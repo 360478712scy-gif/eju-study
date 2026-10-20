@@ -6,7 +6,7 @@ import { planSeconds } from '@shared/planner.ts';
 import { useReady } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtMinutes, SUBJECT_NAME } from '../../lib/format.ts';
-import { Button, Dot, Empty, IconButton, IconTile, Legend, List, ListRow, Meta, Modal, PageHeader, Segmented, StatTile, SubjectDot, Tabs, Tooltip } from '../../components/ui.tsx';
+import { Button, Dot, Empty, IconButton, IconTile, List, ListRow, Meta, Modal, PageHeader, Segmented, StatTile, SubjectDot, Tabs, Tooltip } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { ItemPreview } from './ItemPreview.tsx';
@@ -176,63 +176,73 @@ export function MistakesPage() {
 
   return (
     <div className="page mb-page">
-      <PageHeader title="错题本" desc="到期的错题先做，间隔答对 2 次就移出。" info={RULES} />
+      <PageHeader
+        title="错题本"
+        desc="到期的错题先做，间隔答对 2 次就移出。"
+        info={RULES}
+        actions={
+          <Button variant="ghost" size="sm" icon="file" onClick={() => navigate('/traps')}>
+            考前一页纸
+          </Button>
+        }
+      />
 
       {all.mistakes.length > 0 && <DueHero dueRows={dueRows} total={all.mistakes} graduated={all.graduated} today={today} onTimed={() => setTimedOpen(true)} />}
 
-      <Tabs<Tab>
-        className="mb-tabs"
-        value={tab}
-        onChange={(v) => {
-          setTab(v);
-          setSelected(null);
-          setRestOpen(null);
-        }}
-        options={[
-          { value: 'mistakes', label: '错题', count: all.mistakes.length },
-          { value: 'slow', label: '做对但太慢', count: all.slow.length },
-          { value: 'starred', label: '收藏', count: all.starred.length },
-        ]}
-      />
-
-      {source.length > 0 && (
-        <div className="mb-filters">
-          <Segmented<SubjectFilter>
-            size="sm"
-            value={subject}
-            onChange={setSubject}
-            options={(['all', ...SUBJECT_ORDER] as SubjectFilter[])
-              .filter((s) => s === 'all' || s === subject || subjectCounts[s] > 0)
-              .map((s) => ({
-                value: s,
-                label:
-                  s === 'all' ? (
-                    '全部'
-                  ) : (
-                    <span className="mb-seg">
-                      <SubjectDot subject={s} />
-                      {SUBJECT_NAME[s]}
-                    </span>
-                  ),
-                count: subjectCounts[s],
-              }))}
-          />
-          {sorts.length > 1 && (
-            <label className="btn btn-ghost btn-sm mb-sort">
-              <Icon name="sort" size={15} />
-              <span>{sorts.find((s) => s.value === sortKey)?.label}</span>
-              <Icon name="down" size={14} />
-              <select value={sortKey} onChange={(e) => setSort(e.target.value as SortKey)} aria-label="排序">
-                {sorts.map((s) => (
-                  <option key={s.value} value={s.value}>
-                    {s.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
-        </div>
-      )}
+      <div className="mb-viewbar">
+        <Tabs<Tab>
+          className="mb-tabs"
+          value={tab}
+          onChange={(v) => {
+            setTab(v);
+            setSelected(null);
+            setRestOpen(null);
+          }}
+          options={[
+            { value: 'mistakes', label: '错题', count: all.mistakes.length },
+            { value: 'slow', label: '做对但太慢', count: all.slow.length },
+            { value: 'starred', label: '收藏', count: all.starred.length },
+          ]}
+        />
+        {source.length > 0 && (
+          <div className="mb-filters">
+            <Segmented<SubjectFilter>
+              size="sm"
+              value={subject}
+              onChange={setSubject}
+              options={(['all', ...SUBJECT_ORDER] as SubjectFilter[])
+                .filter((s) => s === 'all' || s === subject || subjectCounts[s] > 0)
+                .map((s) => ({
+                  value: s,
+                  label:
+                    s === 'all' ? (
+                      '全部'
+                    ) : (
+                      <span className="mb-seg">
+                        <SubjectDot subject={s} />
+                        {SUBJECT_NAME[s]}
+                      </span>
+                    ),
+                  count: subjectCounts[s],
+                }))}
+            />
+            {sorts.length > 1 && (
+              <label className="btn btn-ghost btn-sm mb-sort">
+                <Icon name="sort" size={15} />
+                <span>{sorts.find((s) => s.value === sortKey)?.label}</span>
+                <Icon name="down" size={14} />
+                <select value={sortKey} onChange={(e) => setSort(e.target.value as SortKey)} aria-label="排序">
+                  {sorts.map((s) => (
+                    <option key={s.value} value={s.value}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+          </div>
+        )}
+      </div>
 
       {empty ? (
         <div className="card mb-empty-card">
@@ -266,7 +276,7 @@ export function MistakesPage() {
       ) : (
         <div className="mb-parts">
           {tab === 'slow' && <SlowNote rows={filtered} />}
-          <GroupCard part="all" groups={parts.all} slow={tab === 'slow'} {...groupProps} />
+          <GroupCard part="all" groups={parts.all} starredTab={tab === 'starred'} {...groupProps} />
         </div>
       )}
 
@@ -368,27 +378,31 @@ function DueHero({ dueRows, total, graduated, today, onTimed }: { dueRows: Row[]
             还剩 <b className="num">{total.length}</b> 题
           </span>
         </div>
-        <div className="mb-ladder-bar">
-          {[
-            { c: graduated, cls: 'is-out', label: '已移出' },
-            { c: once, cls: 'is-once', label: '间隔答对 1 次' },
-            { c: fresh, cls: 'is-new', label: '新错题' },
-          ].map((seg) =>
-            seg.c > 0 ? (
-              <Tooltip key={seg.cls} label={`${seg.label} ${seg.c} 题`}>
-                <span className={cx('mb-ladder-seg', seg.cls)} style={{ flexGrow: seg.c }} />
-              </Tooltip>
-            ) : null,
-          )}
+        <div className="mb-ladder-tiles">
+          <StatTile
+            label={
+              <>
+                <Dot tone="warning" size="sm" />
+                已答对 1 次
+              </>
+            }
+            value={once}
+            unit="题"
+            sub={once ? '再对 1 次就移出' : '隔 2 天重做，答对记 1 次'}
+          />
+          <StatTile
+            label={
+              <>
+                <Dot tone="success" size="sm" />
+                已移出
+              </>
+            }
+            value={graduated}
+            unit="题"
+            tone={graduated ? 'success' : undefined}
+            sub={graduated ? '间隔答对 2 次' : fresh ? `新错题 ${fresh} 题在排队` : '间隔答对 2 次就移出'}
+          />
         </div>
-        <Legend
-          className="mb-ladder-legend"
-          items={[
-            { label: '已移出', tone: 'success', value: graduated },
-            { label: '对 1 次', tone: 'warning', value: once },
-            { label: '新错题', color: 'var(--border-strong)', value: fresh },
-          ]}
-        />
       </div>
     </section>
   );
@@ -438,7 +452,7 @@ function GroupCard({
   part,
   groups,
   today,
-  slow,
+  starredTab,
   onOpen,
   isOpen,
   toggle,
@@ -446,7 +460,7 @@ function GroupCard({
   part: Part;
   groups: TopicGroup[];
   today: string;
-  slow?: boolean;
+  starredTab?: boolean;
   onOpen: (id: string) => void;
   isOpen: (part: Part, topic: string) => boolean;
   toggle: (part: Part, topic: string) => void;
@@ -454,7 +468,7 @@ function GroupCard({
   return (
     <div className="card mb-card">
       {groups.map((g) => (
-        <TopicBlock key={g.topic} part={part} group={g} today={today} slow={slow} open={isOpen(part, g.topic)} onToggle={() => toggle(part, g.topic)} onOpen={onOpen} />
+        <TopicBlock key={g.topic} part={part} group={g} today={today} starredTab={starredTab} open={isOpen(part, g.topic)} onToggle={() => toggle(part, g.topic)} onOpen={onOpen} />
       ))}
     </div>
   );
@@ -464,7 +478,7 @@ function TopicBlock({
   part,
   group,
   today,
-  slow,
+  starredTab,
   open,
   onToggle,
   onOpen,
@@ -472,7 +486,7 @@ function TopicBlock({
   part: Part;
   group: TopicGroup;
   today: string;
-  slow?: boolean;
+  starredTab?: boolean;
   open: boolean;
   onToggle: () => void;
   onOpen: (id: string) => void;
@@ -502,12 +516,13 @@ function TopicBlock({
           <Dot tone={group.subject} />
         </span>
         <span className="mb-gname">{group.name}</span>
-        {group.unitName && <span className="mb-gunit">{group.unitName}</span>}
         <IconButton icon="notebook" label="考点笔记" size="sm" className="mb-gnote" onClick={() => navigate('/notes/' + group.topic)} />
         <Meta className="mb-gmeta">
-          <span>
-            <span className="num">{group.rows.length}</span> 题
-          </span>
+          {group.rows.length > 1 && (
+            <span>
+              <span className="num">{group.rows.length}</span> 题
+            </span>
+          )}
           {next && <span className={cx('mb-due', `is-${next.tone}`)}>{next.text}</span>}
         </Meta>
         <Icon name="down" size={16} className="mb-chev" />
@@ -515,7 +530,7 @@ function TopicBlock({
       {open && (
         <List className="mb-rows">
           {group.rows.map((r) => (
-            <MistakeRow key={r.item.id} row={r} today={today} part={part} slow={slow} onOpen={onOpen} />
+            <MistakeRow key={r.item.id} row={r} today={today} part={part} starredTab={starredTab} onOpen={onOpen} />
           ))}
         </List>
       )}
@@ -523,7 +538,7 @@ function TopicBlock({
   );
 }
 
-function MistakeRow({ row, today, part, slow, onOpen }: { row: Row; today: string; part: Part; slow?: boolean; onOpen: (id: string) => void }) {
+function MistakeRow({ row, today, part, starredTab, onOpen }: { row: Row; today: string; part: Part; starredTab?: boolean; onOpen: (id: string) => void }) {
   const { item, p, last } = row;
   // Today's list needs no "今天" on every row; the rest shows when each comes back.
   const due = p.inMistakes && part !== 'due' ? dueInfo(p.due, today) : null;
@@ -536,24 +551,24 @@ function MistakeRow({ row, today, part, slow, onOpen }: { row: Row; today: strin
         <span className="mb-row-title">
           {sourceLabel(item)}
           {p.note && <Icon name="pen" size={13} className="mb-flag" />}
-          {p.starred && !slow && <Icon name="star" size={13} className="mb-flag is-star" />}
+          {p.starred && !starredTab && <Icon name="star" size={13} className="mb-flag is-star" />}
         </span>
       }
       meta={<RichText text={stemSnippet(item)} lang="ja" inline className="mb-snip" />}
       trail={
         <span className="mb-trail">
-          {slow ? (
-            <Tooltip label={`上次用时是考场节奏的 ${row.ratio.toFixed(1)} 倍`}>
-              <span className="mb-ratio num">{row.ratio.toFixed(1)}×</span>
-            </Tooltip>
-          ) : (
-            <Tooltip label={`上次用时 · 考场节奏 ${fmtClock(item.targetSec)}`}>
-              <span className={cx('mb-time', over && 'is-slow')}>
-                上次 <span className="num">{last ? fmtClock(last.seconds) : '—'}</span>
+          {/* Last time against the exam pace, both labelled, so the amber needs no legend. */}
+          <Tooltip label={!last ? '还没有用时记录' : over ? `比目标慢 ${fmtClock(last.seconds - item.targetSec)}，考场上会拖时间` : '上次用时在目标以内'}>
+            <span className={cx('mb-time', over && 'is-slow')}>
+              <span className="mb-time-v">
+                用时 <span className="num">{last ? fmtClock(last.seconds) : '—'}</span>
               </span>
-            </Tooltip>
-          )}
-          {part !== 'due' && <span className={cx('mb-due', due && `is-${due.tone}`)}>{due ? due.text : p.inMistakes ? '' : '已移出'}</span>}
+              <span className="mb-time-t">
+                目标 <span className="num">{fmtClock(item.targetSec)}</span>
+              </span>
+            </span>
+          </Tooltip>
+          {part !== 'due' && <span className={cx('mb-due', due && `is-${due.tone}`)}>{due ? due.text : !p.inMistakes && p.box >= MISTAKE_GRADUATE_BOX ? '已移出' : ''}</span>}
         </span>
       }
     />

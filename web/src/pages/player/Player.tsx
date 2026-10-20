@@ -21,9 +21,9 @@ import { IdlePill, TopBar, type StripCell } from './TopBar.tsx';
 import { ChoicePad } from './ChoicePad.tsx';
 import { MarkSheet, openShortcuts } from './MarkSheet.tsx';
 import { AudioPanel } from './AudioPanel.tsx';
-import { CoachCard } from './CoachCard.tsx';
-import { NoteBox } from './NoteBox.tsx';
-import { ActionRow, ConfidencePicker, ExamSheet, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, SlowNudge, correctStreak, nextConfidence, revealAnswer, revealResult, stemLayout } from './parts.tsx';
+import { CoachCard, hasCoachEntry } from './CoachCard.tsx';
+import { NoteButton, NoteEditor } from './NoteBox.tsx';
+import { ActionRow, ConfidencePicker, ExamSheet, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ReferencePeek, ResultBanner, SlowNudge, correctStreak, nextConfidence, referenceSelector, revealAnswer, revealResult, stemLayout, useScrolledAway, useScrollFade } from './parts.tsx';
 import { hasSlot } from '../../components/question/boxRefs.ts';
 import { optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
 import { hintsFor, readJaFont, writeJaFont, type JaFont } from './prefs.ts';
@@ -133,7 +133,11 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const played = useRef(new Set<string>());
   const [, bumpPlayed] = useState(0);
   const audioToggle = useRef<(() => void) | null>(null);
-  const coachFocus = useRef<(() => void) | null>(null);
+  /** Per item: the note editor / the AI panel were opened (or closed) on purpose. */
+  const [noteOpen, setNoteOpen] = useState<Record<string, boolean>>({});
+  const [coachOpen, setCoachOpen] = useState<Record<string, boolean>>({});
+  /** The item whose AI panel was opened just now (scrolled into view once). */
+  const coachJustOpened = useRef<string | null>(null);
   const mainRef = useRef<HTMLElement>(null);
   const sideRef = useRef<HTMLDivElement>(null);
   const [zen, setZen] = useState(zenPref);
@@ -195,6 +199,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const heroAudio = item.section === 'listening' && !!item.audio && !item.figures?.length;
   /** Short items (recall, grammar, one-liners) and pure listening: one centered column, no side panel. */
   const single = !split && (layout.short || heroAudio);
+  useScrollFade(sideRef, single);
   const nOpts = item.options?.length ?? 4;
   /** Digit key of the first option: 0 when the options are printed ⓪ ① …, so keys match the labels. */
   const keyBase = item.format === 'choice' && optionBadge(optionLabel(item, 0)) === '0' ? 0 : 1;
@@ -508,23 +513,28 @@ export function Player({ session, items }: { session: PracticeSession; items: It
 
   /**
    * Bring a freshly opened explanation into view. `top`: its header 16px under the top bar (after a
-   * wrong answer in the split layout, where the options stay visible on the side); otherwise only
-   * when it starts low, without hiding the whole question.
+   * wrong answer in the two-pane layout, where the answer card keeps the options and the figure in
+   * view); otherwise only when it starts low, and never so far that the answers leave the screen.
    */
   const revealExplanation = (top = false) => {
     const main = mainRef.current;
     const card = main?.querySelector('.pl-excard');
     if (!main || !card) return;
-    const y = card.getBoundingClientRect().top - main.getBoundingClientRect().top;
+    const mTop = main.getBoundingClientRect().top;
+    const y = card.getBoundingClientRect().top - mTop;
     if (top) main.scrollTo({ top: main.scrollTop + y - 16, behavior: 'smooth' });
-    else if (y > main.clientHeight * 0.72) main.scrollTo({ top: main.scrollTop + y - main.clientHeight * 0.32, behavior: 'smooth' });
+    else if (y > main.clientHeight * 0.72) {
+      const answers = main.querySelector('.pl-paper-answer, .pl-audio-answer');
+      const keep = answers ? answers.getBoundingClientRect().top - mTop - 12 : Infinity;
+      main.scrollTo({ top: main.scrollTop + Math.max(0, Math.min(y - main.clientHeight * 0.55, keep)), behavior: 'smooth' });
+    }
   };
 
-  /** "看解析": open it if needed and bring it up. */
+  /** "看解析" / E: open it if needed and bring it up (in the single column only as far as the answers allow). */
   const showExplanation = () => {
     if (!graded) return;
     setExOpen((m) => ({ ...m, [item.id]: true }));
-    setTimeout(() => revealExplanation(true), 40);
+    setTimeout(() => revealExplanation(!single), 40);
   };
 
   const toggleZen = () => {
@@ -597,7 +607,8 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       case 'E':
         if (graded) {
           e.preventDefault();
-          setExOpen((m) => ({ ...m, [item.id]: !(m[item.id] ?? explanationDefault(ans)) }));
+          if (exOpenNow) setExOpen((m) => ({ ...m, [item.id]: false }));
+          else showExplanation();
         }
         return;
       case ' ':
@@ -753,12 +764,13 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const answered = done(item, response);
   const nudge = exam && canEdit && !complete(item, response) && !skipped[item.id] && item.section !== 'listening' && item.section !== 'listening-reading' && nextOpen() !== null;
   const exOpenNow = exOpen[item.id] ?? explanationDefault(ans);
+  /** Two-pane review: the figure / underlined sentence joins the answer card once it scrolls away. */
+  const refAway = useScrolledAway(mainRef, referenceSelector(item), graded && !single && exOpenNow, item.id);
   const answeredCount = cells.filter((c) => c.state === 'answered').length;
   const allAnswered = exam && answeredCount === N;
   const isLast = index === N - 1;
   /** Mark sheet in practice: cells filled / to fill (shown next to 提交). */
   const sheetFill = !exam && canEdit && item.format === 'blanks' ? { filled: openLetters.filter((l) => (values[l] || '').trim()).length, of: openLetters.length } : null;
-  const wasWrong = graded && (!ans?.correct || !!ans?.gaveUp);
   const streak = graded && ans?.correct ? correctStreak(session.itemIds, session.answers, item.id) : 0;
   /** Grammar: the （　　） previews the picked option, and the right one after grading. */
   const blank =
@@ -779,7 +791,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const topActions = exam ? (
     <>
       {zenPill}
-      <Button size="sm" variant="secondary" icon="grid" onClick={() => setSheetOpen(true)} onMouseDown={keepFocus}>
+      <Button size="sm" variant="ghost" icon="grid" onClick={() => setSheetOpen(true)} onMouseDown={keepFocus}>
         答题卡
       </Button>
       {/* Hot only when it is the obvious next step: everything answered (the footer then steps back). */}
@@ -820,23 +832,42 @@ export function Player({ session, items }: { session: PracticeSession; items: It
 
   const confidencePicker = canEdit && <ConfidencePicker value={confidence} onChange={setConf} exam={exam} compact={single} />;
 
-  const tools = graded && (
+  const noteShown = noteOpen[item.id] ?? !!progressMap[item.id]?.note;
+  const coachShown = settings.coachEnabled && (coachOpen[item.id] ?? hasCoachEntry(item.id));
+  /** Quiet tools under the verdict: each one disappears once what it opens is on screen (no second way in). */
+  const showExTool = !single && !exOpenNow;
+  const tools = graded && (showExTool || !noteShown || (settings.coachEnabled && !coachShown)) && (
     <div className="pl-tools">
-      {!single && (
+      {showExTool && (
         <button type="button" className="pl-tool" onClick={showExplanation} onMouseDown={keepFocus}>
           <Icon name="bulb" size={15} />
           看解析
           <Kbd>E</Kbd>
         </button>
       )}
-      <NoteBox key={item.id} itemId={item.id} />
-      {settings.coachEnabled && (
-        <button type="button" className="pl-tool" onClick={() => coachFocus.current?.()} onMouseDown={keepFocus}>
+      {!noteShown && <NoteButton onClick={() => setNoteOpen((m) => ({ ...m, [item.id]: true }))} />}
+      {settings.coachEnabled && !coachShown && (
+        <button type="button" className="pl-tool" onClick={() => {
+            coachJustOpened.current = item.id;
+            setCoachOpen((m) => ({ ...m, [item.id]: true }));
+          }} onMouseDown={keepFocus}>
           <Icon name="sparkles" size={15} />
           问 AI
         </button>
       )}
     </div>
+  );
+  const noteEditor = graded && noteShown && <NoteEditor key={`n-${item.id}`} itemId={item.id} />;
+  const coach = graded && coachShown && (
+    <CoachCard
+      key={`c-${item.id}`}
+      item={item}
+      response={ans!.response}
+      wasCorrect={!!ans!.correct && !ans!.gaveUp}
+      variant={single ? 'card' : 'inline'}
+      onClose={() => setCoachOpen((m) => ({ ...m, [item.id]: false }))}
+      reveal={coachJustOpened.current === item.id}
+    />
   );
 
   const result = graded && grade && ans && (
@@ -848,6 +879,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       progress={progressMap[item.id]}
       before={item.id in before.current ? before.current[item.id] : undefined}
       streak={streak}
+      review={session.kind === 'review'}
     />
   );
 
@@ -901,17 +933,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
 
   const examNote = exam && (
     <div className="pl-foot-note">
-      <span>
-        已作答 <b className="num">{answeredCount}</b> / <span className="num">{N}</span>
-      </span>
-      {answered ? (
-        <span className="pl-saved">
-          <Icon name="check" size={12} />
-          已记录
-        </span>
-      ) : (
-        <span>本题未作答</span>
-      )}
+      已作答 <b className="num">{answeredCount}</b> / <span className="num">{N}</span>
     </div>
   );
 
@@ -927,14 +949,7 @@ export function Player({ session, items }: { session: PracticeSession; items: It
     />
   );
 
-  const after = (
-    <>
-      {graded && <ExplanationCard item={item} open={exOpenNow} onToggle={() => setExOpen((m) => ({ ...m, [item.id]: !exOpenNow }))} />}
-      {graded && settings.coachEnabled && (
-        <CoachCard key={`c-${item.id}`} item={item} response={ans!.response} wasCorrect={!!ans!.correct} focusRef={coachFocus} defaultOpen={wasWrong} />
-      )}
-    </>
-  );
+  const explanation = graded && <ExplanationCard item={item} open={exOpenNow} onToggle={() => setExOpen((m) => ({ ...m, [item.id]: !exOpenNow }))} />;
 
   const audio = (answerArea?: ReactNode) =>
     item.audio && (
@@ -989,11 +1004,17 @@ export function Player({ session, items }: { session: PracticeSession; items: It
         {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
         {graded ? (
           <>
-            {result}
-            <ActionRow>
-              {tools}
-              {actions}
+            {/* The verdict and the next step share one row: no separate result card. */}
+            <ActionRow className="is-graded">
+              {result}
+              <div className="pl-row-end">
+                {tools}
+                {actions}
+              </div>
             </ActionRow>
+            {noteEditor}
+            {coach}
+            {explanation}
           </>
         ) : (
           <ActionRow className={exam ? 'is-exam' : undefined}>
@@ -1001,7 +1022,6 @@ export function Player({ session, items }: { session: PracticeSession; items: It
             {actions}
           </ActionRow>
         )}
-        {after}
       </div>
     </main>
   ) : (
@@ -1028,48 +1048,51 @@ export function Player({ session, items }: { session: PracticeSession; items: It
             )}
             {stem}
           </article>
-          {after}
+          {explanation}
         </div>
       </main>
 
       <aside className="pl-side">
-        <div className="pl-side-scroll" ref={sideRef}>
-          {split ? (
-            <div className="pl-ask">
-              <span className="pl-ask-label">设问</span>
-              <RichText text={split.question} lang="ja" className="pl-ask-text" />
-            </div>
-          ) : (
-            answerHead
-          )}
-          {split && canEdit && hints && <div className="pl-side-label is-quiet">{keyHint(pickHint)}</div>}
+        <div className="card card-flush pl-side-card">
+          <div className="pl-side-scroll" ref={sideRef}>
+            {split && (
+              <div className="pl-ask">
+                <span className="pl-ask-label">设问</span>
+                <RichText text={split.question} lang="ja" className="pl-ask-text" />
+              </div>
+            )}
+            {answerHead}
 
-          {item.format === 'choice' ? (
-            choicePad
-          ) : (
-            <MarkSheet
-              groups={groups}
-              values={values}
-              active={activeLetter}
-              onActivate={canEdit ? (l) => setCursor({ id: item.id, letter: l }) : undefined}
-              onMark={canEdit ? mark : undefined}
-              onErase={erase}
-              results={grade?.groups}
-              locked={lock}
-              hints={hints}
-            />
-          )}
+            {item.format === 'choice' ? (
+              choicePad
+            ) : (
+              <MarkSheet
+                groups={groups}
+                values={values}
+                active={activeLetter}
+                onActivate={canEdit ? (l) => setCursor({ id: item.id, letter: l }) : undefined}
+                onMark={canEdit ? mark : undefined}
+                onErase={erase}
+                results={grade?.groups}
+                locked={lock}
+                hints={hints}
+              />
+            )}
 
-          {confidencePicker}
-          {/* After grading the verdict sits right under the answer it is about; only the next step stays pinned. */}
-          {result}
-          {tools}
-        </div>
+            {confidencePicker}
+            {/* After grading the verdict sits right under the answer it is about; only the next step stays pinned. */}
+            {result}
+            {tools}
+            {noteEditor}
+            {coach}
+            {graded && exOpenNow && refAway && <ReferencePeek item={item} passage={split?.passage} />}
+          </div>
 
-        <div className="pl-side-foot">
-          {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
-          {actions}
-          {examNote}
+          <div className="pl-side-foot">
+            {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
+            {actions}
+            {examNote}
+          </div>
         </div>
       </aside>
     </>

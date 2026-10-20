@@ -4,15 +4,16 @@ import type { VocabEntry, VocabProgress } from '@shared/types.ts';
 import { normalizeKana } from '@shared/grading.ts';
 import { useApp } from '../../lib/store.ts';
 import { Icon } from '../../components/Icon.tsx';
-import { Button, Dot, Empty, isModalOpen, Legend, SearchField, Segmented, Tooltip } from '../../components/ui.tsx';
+import { Empty, IconButton, isModalOpen, Legend, SearchField, Segmented, Tooltip } from '../../components/ui.tsx';
 import { Meter } from './parts.tsx';
 import { hasRomaji, romajiToKana } from './kana.ts';
 import { vocabSkills } from '@shared/planner.ts';
-import { CATEGORY_LABEL, gloss, noReadReason, SKILL_TONE, vocabGroup } from './run.ts';
+import { CATEGORY_LABEL, gloss, isRemembered, noReadReason, vocabGroup } from './run.ts';
 
-type Status = 'all' | 'due' | 'weak' | 'new' | 'solid';
+type Status = 'all' | 'due' | 'weak' | 'new' | 'known';
 
-const PAGE = 60;
+/** Words per page: the list is paged, never one 800-row wall. */
+const PAGE = 20;
 
 function statusOf(v: VocabEntry, p: VocabProgress | undefined, today: string): Set<Status> {
   const s = new Set<Status>(['all']);
@@ -21,7 +22,7 @@ function statusOf(v: VocabEntry, p: VocabProgress | undefined, today: string): S
   if (!seen.length) s.add('new');
   if (seen.some((x) => x!.due <= today)) s.add('due');
   if (seen.some((x) => !x!.lastCorrect)) s.add('weak');
-  if (skills.every((x) => x && x.box >= 3)) s.add('solid');
+  if (isRemembered(v, p)) s.add('known');
   return s;
 }
 
@@ -37,7 +38,8 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<Status>('all');
   const [topic, setTopic] = useState('all');
-  const [limit, setLimit] = useState(PAGE);
+  const [page, setPage] = useState(0);
+  const cardRef = useRef<HTMLElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
   // "/" jumps to the search field (not while typing somewhere or in a modal).
@@ -84,23 +86,33 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
 
   // Words per tab; 待复习 counts cards, like the hero above, Today and Stats.
   const counts = useMemo(() => {
-    const c: Record<Status, number> = { all: 0, due: 0, weak: 0, new: 0, solid: 0 };
+    const c: Record<Status, number> = { all: 0, due: 0, weak: 0, new: 0, known: 0 };
     for (const v of scoped) for (const k of statuses.get(v.id) ?? []) if (k !== 'due') c[k]++;
     for (const v of scoped) c.due += dueCardsOf(v, progress?.[v.id], today);
     return c;
   }, [scoped, statuses, progress, today]);
 
   const rows = useMemo(() => scoped.filter((v) => statuses.get(v.id)?.has(status)), [scoped, statuses, status]);
+  const pages = Math.max(1, Math.ceil(rows.length / PAGE));
+  const at = Math.min(page, pages - 1);
+  const shown = rows.slice(at * PAGE, at * PAGE + PAGE);
+
+  // Turning a page brings the list's top back into view when it has scrolled away.
+  const turn = (to: number) => {
+    setPage(to);
+    const el = cardRef.current;
+    if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: 'start' });
+  };
 
   return (
-    <section className="card card-flush vc-list-card">
+    <section className="card card-flush vc-list-card" ref={cardRef}>
       <div className="vc-list-tools">
         <SearchField
           className="vc-search"
           value={query}
           onChange={(q) => {
             setQuery(q);
-            setLimit(PAGE);
+            setPage(0);
           }}
           placeholder="搜索汉字、读音、罗马字或中文意思"
           kbd="/"
@@ -113,7 +125,7 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
             value={topic}
             onChange={(e) => {
               setTopic(e.target.value);
-              setLimit(PAGE);
+              setPage(0);
             }}
             aria-label="类别和主题"
           >
@@ -144,14 +156,14 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
           value={status}
           onChange={(s) => {
             setStatus(s);
-            setLimit(PAGE);
+            setPage(0);
           }}
           options={[
             { value: 'all', label: '全部', count: counts.all },
             { value: 'due', label: '待复习', count: counts.due },
             { value: 'weak', label: '上次答错', count: counts.weak },
             { value: 'new', label: '未学', count: counts.new },
-            { value: 'solid', label: '已稳', count: counts.solid },
+            { value: 'known', label: '已记住', count: counts.known },
           ]}
         />
         {status === 'due' && rows.length > 0 ? (
@@ -162,8 +174,9 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
           <Legend
             className="vc-list-legend"
             items={[
-              { label: '已稳', tone: 'success', shape: 'bar' },
-              { label: '上次答错', tone: 'warning', shape: 'bar' },
+              { label: '在学', color: 'var(--vc-learning)', shape: 'square' },
+              { label: '已记住', tone: 'success', shape: 'square' },
+              { label: '上次答错', tone: 'warning', shape: 'square' },
             ]}
           />
         )}
@@ -181,16 +194,10 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
             <span>单词</span>
             <span>假名</span>
             <span className="vc-col-meaning">意思</span>
-            <span className="vc-col-skill">
-              <Dot tone={SKILL_TONE.read} size="sm" />
-              读音
-            </span>
-            <span className="vc-col-skill">
-              <Dot tone={SKILL_TONE.meaning} size="sm" />
-              词义
-            </span>
+            <span className="vc-col-skill">读音</span>
+            <span className="vc-col-skill">词义</span>
           </div>
-          {rows.slice(0, limit).map((v) => {
+          {shown.map((v) => {
             const p = progress?.[v.id];
             const noRead = noReadReason(v);
             return (
@@ -208,20 +215,27 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
                       <span className="vc-na">只考词义</span>
                     </Tooltip>
                   ) : (
-                    <Meter p={p?.read} skill="read" label="读音" />
+                    <Meter p={p?.read} label="读音" />
                   )}
                 </span>
                 <span className="vc-col-skill">
-                  <Meter p={p?.meaning} skill="meaning" label="词义" />
+                  <Meter p={p?.meaning} label="词义" />
                 </span>
               </button>
             );
           })}
-          {rows.length > limit && (
-            <div className="vc-list-more">
-              <Button variant="ghost" size="sm" icon="down" onClick={() => setLimit(limit + PAGE * 2)}>
-                再显示 {Math.min(PAGE * 2, rows.length - limit)} 个（共 {rows.length} 个词）
-              </Button>
+          {pages > 1 && (
+            <div className="vc-list-foot">
+              <span className="vc-list-range">
+                第 <span className="num">{at * PAGE + 1}–{at * PAGE + shown.length}</span> 个 · 共 <span className="num">{rows.length}</span> 个词
+              </span>
+              <div className="vc-pager">
+                <IconButton icon="left" label="上一页" size="sm" disabled={at === 0} onClick={() => turn(at - 1)} />
+                <span className="vc-pager-at num">
+                  {at + 1} / {pages}
+                </span>
+                <IconButton icon="right" label="下一页" size="sm" disabled={at >= pages - 1} onClick={() => turn(at + 1)} />
+              </div>
             </div>
           )}
         </div>

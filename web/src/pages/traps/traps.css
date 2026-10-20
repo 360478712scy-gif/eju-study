@@ -1,22 +1,10 @@
-/* 考前一页纸 (.tp-) */
+/* 考前一页纸 (.tp-): one line per trap, grouped by subject; details open under a line. */
 .tp-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 20px;
+  gap: 10px 16px;
   margin-bottom: 20px;
-}
-.tp-legend {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  color: var(--text-2);
-  font-size: var(--fs-xs);
-}
-.tp-legend > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
 }
 .tp-left {
   margin-left: auto;
@@ -27,6 +15,9 @@
   color: var(--text);
   font-weight: var(--fw-semibold);
 }
+.tp-bar > .btn {
+  margin-right: -6px;
+}
 .tp-done {
   display: inline-flex;
   align-items: center;
@@ -34,123 +25,251 @@
   color: var(--success-text);
   font-weight: var(--fw-medium);
 }
-.tp-ico {
-  flex: none;
-}
-.tp-ico.is-trap {
-  color: var(--warning);
-}
-.tp-ico.is-point {
-  color: var(--text-3);
-}
 
 .tp-groups {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 .tp-group-title {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  color: var(--text-3);
+  gap: 8px;
+  margin: 0 2px 10px;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
 }
-/* Two balanced columns of cards; each card is read top to bottom. */
+.tp-group-title .num {
+  color: var(--text-3);
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-medium);
+}
+
 .tp-list {
   list-style: none;
   margin: 0;
-  padding: 0;
-  columns: 2 360px;
-  column-gap: 16px;
+  padding: 6px;
 }
 .tp-card {
-  break-inside: avoid;
-  margin-bottom: 16px;
-  padding: 18px 20px 18px;
+  position: relative;
+}
+.tp-card + .tp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 44px;
+  right: 14px;
+  height: 1px;
+  background: var(--divider);
   transition: opacity var(--dur) var(--ease);
 }
-.tp-card.is-done {
-  opacity: 0.5;
+.tp-card:has(> .tp-row:hover)::before,
+.tp-card:has(> .tp-row:hover) + .tp-card::before {
+  opacity: 0;
 }
-.tp-card.is-done:hover,
-.tp-card.is-done:has(:focus-visible) {
-  opacity: 0.72;
-}
-.tp-head {
+
+.tp-row {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
 }
-.tp-head-text {
+.tp-row:hover {
+  background: var(--bg-hover);
+}
+.tp-row:has(.tp-toggle:focus-visible) {
+  box-shadow: var(--focus-ring);
+}
+.tp-toggle {
   flex: 1;
   min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
-.tp-topic {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-head);
+.tp-toggle:focus-visible {
+  box-shadow: none;
 }
-.tp-meta {
-  margin-top: 4px;
-  font-size: var(--fs-xs);
-}
-/* "记住了": a quiet round checkbox, filled green when ticked. */
-.tp-check {
+.tp-lead {
   flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
-  margin-top: 1px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: inset 0 0 0 1.5px var(--border-strong);
-  color: transparent;
-  cursor: pointer;
-  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), color var(--dur) var(--ease);
+  width: 18px;
+  height: 24px;
 }
-.tp-check:hover {
-  box-shadow: inset 0 0 0 1.5px var(--text-3);
+.tp-lead.is-trap {
+  color: var(--warning);
+}
+.tp-lead.is-point {
   color: var(--text-3);
 }
-.tp-check.is-on {
-  background: var(--success);
-  box-shadow: none;
-  color: var(--on-success);
-}
-.tp-check:focus-visible {
-  box-shadow: var(--focus-ring), inset 0 0 0 1.5px var(--border-strong);
-}
-.tp-lines {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.tp-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: var(--fs-base);
-  line-height: 1.75;
+.tp-head {
+  flex: 1;
+  min-width: 0;
   color: var(--text);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  transition: color var(--dur) var(--ease);
 }
-.tp-line > .tp-ico {
-  margin-top: 0.4em;
+.tp-card.is-done .tp-toggle {
+  opacity: 0.5;
+  transition: opacity var(--dur) var(--ease);
 }
-.tp-line.is-point {
-  color: var(--text-2);
+.tp-card.is-done .tp-row:hover .tp-toggle,
+.tp-card.is-done.is-open .tp-toggle {
+  opacity: 0.8;
 }
 /* Numeric fractions that stay stacked (½mv²) get a readable size. */
-.tp-line .katex .mfrac:has(> .vlist-t > .vlist-r > .vlist > span > .sizing.reset-size6.size3) {
+.tp-card .katex .mfrac:has(> .vlist-t > .vlist-r > .vlist > span > .sizing.reset-size6.size3) {
   font-size: 1.18em;
+}
+
+.tp-trail {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 24px;
+}
+.tp-slot {
+  display: grid;
+  justify-items: end;
+  align-items: center;
+}
+.tp-slot > * {
+  grid-area: 1 / 1;
+}
+.tp-src {
+  pointer-events: none;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  transition: opacity var(--dur) var(--ease);
+}
+.tp-row:hover .tp-src,
+.tp-row:focus-within .tp-src,
+.tp-card.is-done .tp-src {
+  opacity: 0;
+}
+.tp-sep {
+  margin: 0 5px;
+  color: var(--border-strong);
+}
+.tp-chev {
+  color: var(--text-3);
+  transition: transform var(--dur) var(--ease);
+}
+.tp-card.is-open .tp-chev {
+  transform: rotate(180deg);
+}
+
+/* "记住了": a quiet labelled toggle that appears on hover; once ticked it stays, in green. */
+.tp-mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  margin-right: -8px;
+  padding: 0 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.tp-row:hover .tp-mark,
+.tp-row:focus-within .tp-mark,
+.tp-mark.is-on {
+  opacity: 1;
+}
+.tp-mark:not(.is-on) {
+  pointer-events: none;
+}
+.tp-row:hover .tp-mark,
+.tp-row:focus-within .tp-mark {
+  pointer-events: auto;
+}
+.tp-mark:hover {
+  background: var(--bg-active);
+  color: var(--text);
+}
+.tp-mark.is-on {
+  color: var(--success-text);
+}
+.tp-mark.is-on:hover {
+  background: var(--bg-active);
+}
+.tp-mark:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Details: the item's other traps and key points, its source and the original question. */
+.tp-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 14px 10px 44px;
+  padding: 2px 0 4px;
+}
+.tp-dgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tp-dlabel {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+}
+.tp-dlabel.is-trap {
+  color: var(--warning-text);
+}
+.tp-lines {
+  margin: 0;
+  padding-left: 1.2em;
+  list-style: disc;
+  color: var(--text-2);
+  font-size: var(--fs-ui);
+  line-height: 1.75;
+}
+.tp-lines li + li {
+  margin-top: 2px;
+}
+.tp-lines li::marker {
+  color: var(--text-3);
+}
+.tp-dfoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tp-dfoot .btn {
+  margin-right: -8px;
+}
+.tp-dsrc {
+  min-width: 0;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

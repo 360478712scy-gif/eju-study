@@ -1,5 +1,5 @@
 // Smaller building blocks of the player screen.
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
 import type { Confidence, Item, ItemProgress, SessionAnswer } from '@shared/types.ts';
 import type { GradeResult } from '@shared/grading.ts';
 import { toggleStar } from '@shared/actions.ts';
@@ -9,6 +9,7 @@ import { update, useApp } from '../../lib/store.ts';
 import { Icon, type IconName } from '../../components/Icon.tsx';
 import { Button, IconTile, Kbd, Modal, Tooltip } from '../../components/ui.tsx';
 import { Explanation } from '../../components/question/Explanation.tsx';
+import { Figures } from '../../components/question/Figures.tsx';
 import { DifficultyMeter } from '../../components/question/DifficultyMeter.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
@@ -68,6 +69,37 @@ export function ActionRow({ className, children }: { className?: string; childre
       {children}
     </div>
   );
+}
+
+// ─── Answer card: fade the cut edge while there is more to scroll ───
+
+/**
+ * Marks the scroller with `has-more` while content continues below its bottom edge, so a row cut by
+ * the edge reads as "scroll for more" (a soft fade) instead of looking clipped.
+ */
+export function useScrollFade(ref: RefObject<HTMLElement | null>, key: unknown) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const check = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => el.classList.toggle('has-more', el.scrollTop + el.clientHeight < el.scrollHeight - 2));
+    };
+    check();
+    el.addEventListener('scroll', check, { passive: true });
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(check) : null;
+    ro?.observe(el);
+    const mo = new MutationObserver(check);
+    mo.observe(el, { childList: true, subtree: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener('scroll', check);
+      ro?.disconnect();
+      mo.disconnect();
+    };
+    // `key`: the scroller mounts again when the layout switches (single column ↔ two panes).
+  }, [ref, key]);
 }
 
 // ─── Item header (source · topic · difficulty · target) ───
@@ -255,6 +287,7 @@ export function ResultBanner({
   before,
   exam,
   streak = 0,
+  review: reviewSession,
 }: {
   item: Item;
   answer: SessionAnswer;
@@ -267,6 +300,8 @@ export function ResultBanner({
   exam?: boolean;
   /** Right answers in a row ending here (practice). */
   streak?: number;
+  /** A redo of known items (mistake book, mock correction): a quick answer is expected, not a misread. */
+  review?: boolean;
 }) {
   const gaveUp = !!answer.gaveUp;
   const blank = !!exam && (answer.response === null || answer.response === undefined);
@@ -325,7 +360,7 @@ export function ResultBanner({
   const showReview = review && !(fact && review.graduated) && !(review.short && !correct && !gaveUp);
   let timeNote: { text: string; warn?: boolean } | null = null;
   if (correct && diff > 15) timeNote = { text: `超出目标 ${fmtClock(diff)}`, warn: true };
-  else if (!correct && !gaveUp && !blank && secs < item.targetSec * 0.25) timeNote = { text: '太快了，可能没读完题', warn: true };
+  else if (!correct && !gaveUp && !blank && !reviewSession && secs >= 1 && secs < Math.min(20, item.targetSec * 0.2)) timeNote = { text: '答得很快，题目读完了吗？', warn: true };
   const conf = answer.confidence && answer.confidence !== 'sure' ? (answer.confidence === 'guess' ? '猜的' : '没把握') : null;
 
   return (
@@ -341,43 +376,42 @@ export function ResultBanner({
         {review?.short && !correct && !gaveUp ? <span>{review.short}</span> : null}
         <span>{timeText}</span>
       </div>
-      {timeNote && <div className={cx('pl-res-note', timeNote.warn && 'is-warn')}>{timeNote.text}</div>}
       {showReview && <div className={cx('pl-res-review', review.good && 'is-good')}>{review.text}</div>}
+      {timeNote && <div className={cx('pl-res-review pl-res-note', timeNote.warn && 'is-warn')}>{timeNote.text}</div>}
     </div>
   );
 }
 
 /**
- * After grading, scroll the side panel (only it) so the right option / the mark sheet is visible,
- * and the result card under it as far as the room allows (small windows leave little).
+ * After grading, scroll the answer card (only it) so the right option / the mark sheet is visible,
+ * and the verdict and its tools under it as far as the room allows (small windows leave little).
  */
 export function revealAnswer(box: HTMLElement | null) {
   const el = box?.querySelector('.pl-opt.is-right, .pl-sheet-groups');
   if (!box || !el) return;
   const b = box.getBoundingClientRect();
   const r = el.getBoundingClientRect();
-  const res = box.querySelector('.pl-res')?.getBoundingClientRect();
-  const want = Math.max(r.bottom, res?.bottom ?? 0);
-  if (want > b.bottom - 6) box.scrollTop += Math.max(0, Math.min(want - b.bottom + 12, r.top - b.top - 8));
+  const below = box.querySelector('.pl-tools') ?? box.querySelector('.pl-res');
+  const want = Math.max(r.bottom, below?.getBoundingClientRect().bottom ?? 0);
+  if (want > b.bottom - 6) box.scrollTop += Math.max(0, Math.min(want - b.bottom + 14, r.top - b.top - 8));
   else if (r.top < b.top) box.scrollTop -= b.top - r.top + 8;
 }
 
 /**
- * Single column after grading: make sure the result card is not hidden behind the action row
- * that is pinned to the bottom of short windows (e.g. when coming back to a graded item).
+ * Single column after grading: the action row carries the verdict and 下一题. Bring it fully into view
+ * (in flow), or keep the answers clear of it while it is pinned to the bottom of a short window.
  */
 export function revealResult(main: HTMLElement | null) {
-  const res = main?.querySelector('.pl-res');
-  if (!main || !res) return;
+  const row = main?.querySelector<HTMLElement>('.pl-single-row');
+  if (!main || !row) return;
   const m = main.getBoundingClientRect();
-  const r = res.getBoundingClientRect();
-  const row = main.querySelector('.pl-single-row');
-  const pinned = !!row && getComputedStyle(row).position === 'sticky';
-  // Pinned row: keep the card clear of it. In-flow row: bring the row (下一题) into view too.
-  const bottom = row && !pinned ? Math.max(r.bottom, row.getBoundingClientRect().bottom) : r.bottom;
-  const reserve = row && pinned ? row.getBoundingClientRect().height + 8 : 16;
-  const over = bottom - (m.bottom - reserve);
-  if (over > 0) main.scrollTop += Math.max(0, Math.min(over, r.top - m.top - 12));
+  const answers = main.querySelector('.pl-paper-answer, .pl-audio-answer')?.getBoundingClientRect();
+  const rowBox = row.getBoundingClientRect();
+  const pinned = getComputedStyle(row).position === 'sticky' && rowBox.bottom >= m.bottom - 2;
+  const bottom = pinned ? (answers?.bottom ?? 0) + rowBox.height + 8 : rowBox.bottom + 16;
+  const over = bottom - m.bottom;
+  const keepTop = (answers?.top ?? rowBox.top) - m.top - 12;
+  if (over > 0) main.scrollTop += Math.max(0, Math.min(over, keepTop));
 }
 
 // ─── Explanation card ───
@@ -451,16 +485,17 @@ export function ExamSheet({
     >
       <div className="pl-xs-legend">
         <span>
-          <i className="pl-xs-dot is-answered" /> 已作答 <b className="num">{answered}</b>
+          <i className="pl-xs-swatch is-answered" /> 已作答 <b className="num">{answered}</b>
         </span>
         <span>
-          <i className="pl-xs-dot is-todo" /> 未作答 <b className="num">{cells.length - answered}</b>
+          <i className="pl-xs-swatch is-todo" /> 未作答 <b className="num">{cells.length - answered}</b>
         </span>
-        {flagged > 0 && (
-          <span>
-            <Icon name="flag" size={12} className="pl-xs-legend-flag" /> 已标记 <b className="num">{flagged}</b>
-          </span>
-        )}
+        <span className={cx(!flagged && 'is-zero')}>
+          <i className="pl-xs-swatch is-flag">
+            <Icon name="flag" size={9} />
+          </i>{' '}
+          已标记 <b className="num">{flagged}</b>
+        </span>
       </div>
       <div className="pl-xs-grid">
         {cells.map((c, i) => (
@@ -475,10 +510,111 @@ export function ExamSheet({
             }}
           >
             <span className="num">{i + 1}</span>
-            {c.flag && <Icon name="flag" size={11} className="pl-xs-flag" />}
+            {c.flag && (
+              <span className="pl-xs-flag" aria-hidden>
+                <Icon name="flag" size={9} />
+              </span>
+            )}
           </button>
         ))}
       </div>
     </Modal>
+  );
+}
+
+// ─── Two-pane review: what the explanation talks about stays beside it ───
+
+/** The sentence(s) of a passage that hold its underlined part (__…__), or null. */
+export function underlinedSentences(passage: string): string | null {
+  const paras = passage.split(/\n[ \t]*\n/);
+  const out: string[] = [];
+  for (const p of paras) {
+    if (!p.includes('__')) continue;
+    const sentences = p.replace(/\n/g, '').match(/[^。！？]*(?:[。！？]+[」』）]*|$)/g)?.filter((x) => x.trim()) ?? [];
+    let open = false;
+    let cur = '';
+    for (const sen of sentences) {
+      const marks = (sen.match(/__/g) || []).length;
+      if (open || marks) cur += sen;
+      if (marks % 2 === 1) open = !open;
+      if (!open && cur) {
+        out.push(cur.trim());
+        cur = '';
+      }
+    }
+    if (out.length >= 2) break;
+  }
+  return out.length ? out.slice(0, 2).join('\n\n') : null;
+}
+
+/** What the reference peek mirrors in the paper: the figures, or the underlined part of a passage. */
+export function referenceSelector(item: Item): string | null {
+  if (item.figures?.length) return '.pl-paper .q-figures';
+  return splitReadingStem(item) ? '.pl-paper .rt-u' : null;
+}
+
+/**
+ * True while the element `selector` (inside the scroller) is (mostly) scrolled out of view. The answer
+ * card shows the reference peek only then, so the figure is never on screen twice.
+ */
+export function useScrolledAway(rootRef: RefObject<HTMLElement | null>, selector: string | null, active: boolean, key: string): boolean {
+  const [away, setAway] = useState(false);
+  useEffect(() => {
+    const root = rootRef.current;
+    const el = active && selector ? root?.querySelector(selector) : null;
+    if (!root || !el || typeof IntersectionObserver === 'undefined') {
+      setAway(false);
+      return;
+    }
+    const io = new IntersectionObserver(([e]) => setAway(e.intersectionRatio < 0.35), { root, threshold: [0, 0.35, 0.7] });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [rootRef, selector, active, key]);
+  return away;
+}
+
+/**
+ * After grading in the two-pane layout the explanation pushes the question out of view; the answer
+ * card then keeps the figure (or the underlined sentence of a passage) next to it.
+ */
+export function ReferencePeek({ item, passage }: { item: Item; passage?: string }) {
+  const quote = passage ? underlinedSentences(passage) : null;
+  const ref = useRef<HTMLElement>(null);
+  // Arriving below the fold of the card: scroll it up into view, but never past the answers.
+  useEffect(() => {
+    const el = ref.current;
+    const box = el?.closest<HTMLElement>('.pl-side-scroll');
+    if (!el || !box) return;
+    const t = setTimeout(() => {
+      const b = box.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
+      // The topmost of the right answer and the learner's pick stays in view.
+      const anchor = box.querySelector('.pl-opt.is-right, .pl-opt.is-wrong, .pl-sheet-groups')?.getBoundingClientRect();
+      const want = r.bottom - b.bottom + 14;
+      const limit = anchor ? anchor.top - b.top - 8 : want;
+      if (want > 0) box.scrollBy({ top: Math.max(0, Math.min(want, limit)), behavior: 'smooth' });
+    }, 60);
+    return () => clearTimeout(t);
+  }, []);
+  if (item.figures?.length) {
+    return (
+      <section className="pl-ref" ref={ref}>
+        <div className="pl-ref-label">
+          <Icon name="image" size={13} />
+          题图
+        </div>
+        <Figures figures={item.figures} />
+      </section>
+    );
+  }
+  if (!quote) return null;
+  return (
+    <section className="pl-ref" ref={ref}>
+      <div className="pl-ref-label">
+        <Icon name="file" size={13} />
+        原文 · 下线部
+      </div>
+      <RichText text={quote} lang="ja" className="pl-ref-quote" />
+    </section>
   );
 }

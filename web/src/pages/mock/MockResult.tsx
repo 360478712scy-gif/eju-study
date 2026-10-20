@@ -10,8 +10,7 @@ import { cx, fmtClock, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.
 import { Badge, Button, Card, Dot, Empty, Legend, PageHeader, StatTile, StatusIcon, SubjectTag, Tooltip, useConfirm, type ItemStatus } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { ItemPreview, type PreviewContext } from '../practice/ItemPreview.tsx';
-import { drillTitle, masteryTarget, mockTitle, pickDrill, reservedFor, reservedMap, shortLabel } from '../practice/practiceData.ts';
-import { MasteryBar, MasteryLegend } from '../practice/Mastery.tsx';
+import { drillTitle, mockTitle, pickDrill, reservedFor, reservedMap, shortLabel } from '../practice/practiceData.ts';
 import { correctionIds, findMockSession, isShaky, KIND_INFO, kindTarget, MOCK_MAX, resultRows, type ResultRow, type RowStatus } from './mockData.ts';
 import { TargetGap } from './MockList.tsx';
 import { isSlow, ScoreBar, TimeBars } from './charts.tsx';
@@ -36,15 +35,19 @@ export function MockResultView({ result: r }: { result: MockResult }) {
   const shaky = rows.filter(isShaky).length;
 
   const topics = useMemo(() => {
-    const m = new Map<string, { topic: string; subject: Subject; n: number; got: number; wrong: number }>();
+    const m = new Map<string, { topic: string; subject: Subject; n: number; got: number; marks: RowStatus[] }>();
     for (const row of rows) {
-      const t = m.get(row.item.topic) || { topic: row.item.topic, subject: row.item.subject, n: 0, got: 0, wrong: 0 };
+      const t = m.get(row.item.topic) || { topic: row.item.topic, subject: row.item.subject, n: 0, got: 0, marks: [] };
       t.n += 1;
       t.got += row.score;
-      if (row.status !== 'right') t.wrong += 1;
+      t.marks.push(row.status);
       m.set(row.item.topic, t);
     }
-    return [...m.values()].sort((a, b) => a.got / a.n - b.got / b.n || b.n - a.n);
+    const order: Record<RowStatus, number> = { right: 0, partial: 1, wrong: 2, blank: 2 };
+    for (const t of m.values()) t.marks.sort((a, b) => order[a] - order[b]);
+    // Most points lost first; among equals, topics with more questions (more telling) lead. A topic
+    // with one question is one square, so a single miss never reads as a red "0%".
+    return [...m.values()].sort((a, b) => b.n - b.got - (a.n - a.got) || b.n - a.n || a.got / a.n - b.got / b.n);
   }, [rows]);
 
   const groups = useMemo(() => {
@@ -72,8 +75,6 @@ export function MockResultView({ result: r }: { result: MockResult }) {
     [rows],
   );
   const totalTarget = rows.reduce((s, x) => s + x.item.targetSec, 0);
-  // One mastery scale; a science mock mixes physics and chemistry (two targets), so its legend says 达标 only.
-  const legendTarget = info.subject === 'mixed' ? null : masteryTarget(state.profile, info.subject);
 
   const correct = () => {
     if (!fix.length) return;
@@ -139,41 +140,39 @@ export function MockResultView({ result: r }: { result: MockResult }) {
       />
 
       <Card variant="hero" className={cx('mk-score', `tone-${info.tone}`)}>
-        <div className="mk-score-main">
-          <div className="t-eyebrow">估分</div>
-          <div className="mk-score-line">
-            <span className="num num-2xl">{r.estimate}</span>
-            <span className="num-unit">/ {MOCK_MAX}</span>
+        <div className="mk-score-top">
+          <div className="mk-score-main">
+            <div className="t-eyebrow">估分</div>
+            <div className="mk-score-line">
+              <span className="num num-2xl">{r.estimate}</span>
+              <span className="num-unit">/ {MOCK_MAX}</span>
+              <TargetGap value={r.estimate} target={target} />
+            </div>
           </div>
-          <div className="mk-score-gap">
-            <TargetGap value={r.estimate} target={target} />
-          </div>
-          <ScoreBar value={r.estimate} target={target} max={MOCK_MAX} />
-        </div>
-        <div className="mk-score-side">
           <div className="mk-stats">
             <StatTile label="得分率" value={pct(r.raw)} />
             <StatTile label="答对" value={`${r.correct}/${r.total}`} />
             <StatTile label="用时" value={fmtClock(r.seconds)} sub={limit ? `限时 ${fmtClock(limit)}` : `目标 ${fmtClock(totalTarget)}`} />
             <StatTile label="未作答" value={String(blank)} sub={blank ? '考场上先蒙一个' : '全部作答'} />
           </div>
-          <div className="mk-cta">
-            {fix.length ? (
-              <>
-                <Button variant="primary" size="lg" icon="refresh" className="mk-cta-btn" onClick={correct}>
-                  {shaky ? '订正' : '订正错题'} · <span className="num">{fix.length}</span> 题
-                </Button>
-                <p className="mk-cta-hint">
-                  {shaky ? `含 ${shaky} 道答对但没把握的题。` : ''}先自己重做，再看解析。做错的题已进入错题本。
-                </p>
-              </>
-            ) : (
-              <p className="mk-perfect">
-                <StatusIcon status="right" />
-                全部答对，没有需要订正的题。
+        </div>
+        <ScoreBar value={r.estimate} target={target} max={MOCK_MAX} />
+        <div className="mk-cta">
+          {fix.length ? (
+            <>
+              <Button variant="primary" size="lg" icon="refresh" className="mk-cta-btn" onClick={correct}>
+                {shaky ? '订正' : '订正错题'} · <span className="num">{fix.length}</span> 题
+              </Button>
+              <p className="mk-cta-hint">
+                {shaky ? `含 ${shaky} 道答对但没把握的题。` : ''}先自己重做，再看解析。做错的题已进入错题本。
               </p>
-            )}
-          </div>
+            </>
+          ) : (
+            <p className="mk-perfect">
+              <StatusIcon status="right" />
+              全部答对，没有需要订正的题。
+            </p>
+          )}
         </div>
       </Card>
 
@@ -184,7 +183,8 @@ export function MockResultView({ result: r }: { result: MockResult }) {
             if (!part) return null;
             const t = state.profile.targets[s];
             return (
-              <Card key={s} className={cx('mk-subject', `tone-${s}`)}>
+              // Subject identity lives in the tag; the bar stays neutral (green only once the target is met).
+              <Card key={s} className="mk-subject">
                 <div className="row-between">
                   <SubjectTag subject={s} />
                   <TargetGap value={part.estimate} target={t} />
@@ -239,23 +239,18 @@ export function MockResultView({ result: r }: { result: MockResult }) {
       </Card>
 
       <div className="mk-two">
-        <Card title="各考点得分" subtitle="从最弱的开始补，点一行练这个考点" className="mk-topics-card">
+        <Card title="各考点得分" subtitle="每格是一道题，失分多的排在前面；点一行练这个考点" className="mk-topics-card">
           <div className="mk-topics">
-            {(allTopics ? topics : topics.slice(0, TOPIC_PREVIEW)).map((t) => {
-              const acc = t.got / t.n;
-              const name = bank.topics.get(t.topic)?.name || t.topic;
-              return (
-                <TopicLine
-                  key={t.topic}
-                  name={name}
-                  sub={r.kind === 'science' ? SUBJECT_NAME[t.subject] : undefined}
-                  acc={acc}
-                  target={masteryTarget(state.profile, t.subject)}
-                  count={`${Math.round(t.got * 10) / 10}/${t.n}`}
-                  onDrill={() => void drillTopic(t.topic, t.subject)}
-                />
-              );
-            })}
+            {(allTopics ? topics : topics.slice(0, TOPIC_PREVIEW)).map((t) => (
+              <TopicLine
+                key={t.topic}
+                name={bank.topics.get(t.topic)?.name || t.topic}
+                sub={r.kind === 'science' ? SUBJECT_NAME[t.subject] : undefined}
+                marks={t.marks}
+                count={`${Math.round(t.got * 10) / 10}/${t.n}`}
+                onDrill={() => void drillTopic(t.topic, t.subject)}
+              />
+            ))}
           </div>
           <div className="mk-topics-foot">
             {topics.length > TOPIC_PREVIEW ? (
@@ -265,11 +260,17 @@ export function MockResultView({ result: r }: { result: MockResult }) {
             ) : (
               <span />
             )}
-            <MasteryLegend target={legendTarget} />
+            <Legend
+              items={[
+                { label: '得分', tone: 'success', shape: 'square' },
+                ...(counts.partial ? [{ label: '部分得分', tone: 'warning' as const, shape: 'square' as const }] : []),
+                { label: '失分', color: 'var(--mk-lost)', shape: 'square' },
+              ]}
+            />
           </div>
         </Card>
 
-        <Card title="每题用时" subtitle="横线是目标用时，点柱子看那道题" className="mk-time-card">
+        <Card title="每题用时" subtitle="和各题目标用时相比，虚线是目标；点柱子看那道题" className="mk-time-card">
           {rows.some((x) => x.seconds > 0) ? (
             <>
               <TimeBars
@@ -287,8 +288,8 @@ export function MockResultView({ result: r }: { result: MockResult }) {
                 className="mk-chart-legend"
                 items={[
                   { label: '用时', shape: 'square', color: 'var(--mk-bar)' },
-                  { label: '超出目标 50% 以上', shape: 'square', color: 'var(--mk-slow)' },
-                  { label: '目标用时', shape: 'bar', color: 'var(--text-2)' },
+                  { label: '超出目标一半以上', shape: 'square', color: 'var(--mk-slow)' },
+                  { label: '目标用时', shape: 'bar', color: 'var(--text-3)' },
                 ]}
               />
               {slowest.length > 0 ? (
@@ -330,8 +331,8 @@ export function MockResultView({ result: r }: { result: MockResult }) {
   );
 }
 
-/** One topic of this mock: the whole row starts a 10-question drill on it. */
-function TopicLine({ name, sub, acc, target, count, onDrill }: { name: string; sub?: string; acc: number; target: number; count: string; onDrill: () => void }) {
+/** One topic of this mock: one square per question (filled = points), the whole row starts a drill. */
+function TopicLine({ name, sub, marks, count, onDrill }: { name: string; sub?: string; marks: RowStatus[]; count: string; onDrill: () => void }) {
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget || e.nativeEvent.isComposing) return;
     if (e.key === 'Enter' || e.key === ' ') {
@@ -340,12 +341,16 @@ function TopicLine({ name, sub, acc, target, count, onDrill }: { name: string; s
     }
   };
   return (
-    <div className="mk-topic" role="button" tabIndex={0} onClick={onDrill} onKeyDown={onKey} aria-label={`${name}：专项练 10 题`}>
+    <div className="mk-topic" role="button" tabIndex={0} onClick={onDrill} onKeyDown={onKey} aria-label={`${name}：本次得分 ${count}，专项练 10 题`}>
       <div className="mk-topic-name">
         <span>{name}</span>
         {sub && <span className="mk-topic-sub">{sub}</span>}
       </div>
-      <MasteryBar value={acc} target={target} />
+      <span className="mk-marks" aria-hidden>
+        {marks.map((m, i) => (
+          <i key={i} className={`is-${m}`} />
+        ))}
+      </span>
       <span className="mk-topic-trail">
         <span className="num mk-topic-n">{count}</span>
         <span className="mk-topic-go" aria-hidden>

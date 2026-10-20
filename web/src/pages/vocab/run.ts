@@ -2,7 +2,7 @@
 // coming back resumes where the learner stopped. Answers are recorded into AppState
 // immediately; this only remembers the order and what is on screen.
 import { useSyncExternalStore } from 'react';
-import type { AppState, VocabEntry, VocabSkill } from '@shared/types.ts';
+import type { AppState, VocabEntry, VocabProgress, VocabSkill } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { vocabQueue } from '@shared/actions.ts';
 import { daysLeftOn, phaseFor, vocabDueCount, vocabSkills, vocabToday } from '@shared/planner.ts';
@@ -448,5 +448,24 @@ export const SKILL_NAME: Record<VocabSkill, string> = {
   meaning: '看词选意思',
 };
 
-/** One colour per skill everywhere (drill badge, summary, word list meters, word card, Stats). */
+/** Icons that tell the two skills apart on the vocab pages (they carry no colour of their own). */
+export const SKILL_ICON = { read: 'pen', meaning: 'list' } as const satisfies Record<VocabSkill, 'pen' | 'list'>;
+
+/** Series colours of the two skills in Stats' accuracy bars. The vocab pages tell the skills apart by
+ *  label and icon instead, so mastery colours (green / amber) are the only colours in their meters. */
 export const SKILL_TONE = { read: 'primary', meaning: 'japanese' } as const satisfies Record<VocabSkill, 'primary' | 'japanese'>;
+
+/**
+ * 已记住: one rule and one word everywhere (vocab hero, word list, word card, Stats): a word is
+ * remembered once any skill it trains reached level 2, i.e. two right answers in a row, spaced.
+ */
+export const REMEMBERED_BOX = 2;
+
+export function isRemembered(v: VocabEntry, p: VocabProgress | undefined): boolean {
+  return !!p && vocabSkills(v).some((k) => (p[k]?.box ?? 0) >= REMEMBERED_BOX);
+}
+
+/** Learned (学过) = practised in at least one skill the word trains, as Stats counts it. */
+export function isLearned(v: VocabEntry, p: VocabProgress | undefined): boolean {
+  return !!p && vocabSkills(v).some((k) => !!p[k]);
+}

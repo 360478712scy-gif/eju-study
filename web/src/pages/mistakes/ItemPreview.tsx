@@ -1,19 +1,22 @@
 // Preview of one bank item: stem, the learner's last answer, explanation, personal note and actions.
 // Used by the mistake book and the topic notes page.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { Attempt, Item } from '@shared/types.ts';
+import type { Attempt, Item, ItemProgress } from '@shared/types.ts';
 import { dismissMistake, setItemNote, toggleStar } from '@shared/actions.ts';
+import { MISTAKE_GRADUATE_BOX } from '@shared/srs.ts';
 import { useReady, update } from '../../lib/store.ts';
 import { href } from '../../lib/router.ts';
 import { playSpeech, stopSpeech, onSpeechChange, speechElement } from '../../lib/audio.ts';
 import { cx, fmtClock, fmtDateShort } from '../../lib/format.ts';
-import { Badge, Button, IconButton, IconTile, Meta, Modal, SubjectTag, Tooltip, modalDepth, toast, useConfirm } from '../../components/ui.tsx';
-import { Icon } from '../../components/Icon.tsx';
+import { Badge, Button, IconButton, Meta, Modal, SubjectTag, Tooltip, modalDepth, toast, useConfirm, type Tone } from '../../components/ui.tsx';
+import { Icon, type IconName } from '../../components/Icon.tsx';
+import { RichText } from '../../components/RichText.tsx';
 import { QuestionStem } from '../../components/question/QuestionStem.tsx';
-import { BlanksAnswer, OptionList, optionLabel } from '../../components/question/OptionList.tsx';
+import { BlanksAnswer, OptionList, optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
 import { Explanation } from '../../components/question/Explanation.tsx';
+import { DifficultyMeter } from '../../components/question/DifficultyMeter.tsx';
 import { MODE_LABEL, RESULT_TEXT, dueInfo, fmtMD, launch, resultOf, sourceLabel } from './helpers.ts';
-import { ItemMark, ResultMark, markText } from './bits.tsx';
+import { ResultMark } from './bits.tsx';
 import { reservedFor, reservedMap } from '../practice/practiceData.ts';
 import './item-preview.css';
 
@@ -41,7 +44,7 @@ export function ItemPreview({ itemId, ids, onSelect }: Props) {
     <Modal
       open={open}
       onClose={close}
-      width={860}
+      width={760}
       className="mbp-modal"
       title={item ? <PreviewTitle item={item} /> : undefined}
       footer={item ? <PreviewFoot key={item.id} item={item} ids={ids} onSelect={onSelect} /> : undefined}
@@ -111,7 +114,7 @@ function PreviewFoot({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
         <IconButton icon="right" label="下一题（→）" disabled={!a.nextId} onClick={() => a.nextId && onSelect(a.nextId)} />
       </div>
       <div className="mbp-actions">
-        <Button variant="ghost" icon="star" className={cx('mbp-star', a.p?.starred && 'is-on')} onClick={a.star}>
+        <Button variant="ghost" icon="star" className={cx('mbp-star', a.p?.starred && 'is-on')} aria-pressed={!!a.p?.starred} onClick={a.star}>
           {a.p?.starred ? '已收藏' : '收藏'}
         </Button>
         {a.p?.inMistakes && (
@@ -119,7 +122,7 @@ function PreviewFoot({ item, ids, onSelect }: { item: Item; ids: string[]; onSel
             移出错题本
           </Button>
         )}
-        <Button variant="primary" icon="refresh" onClick={() => void a.redo()}>
+        <Button variant="primary" icon={a.p?.inMistakes || tried ? 'refresh' : 'play'} onClick={() => void a.redo()}>
           {a.p?.inMistakes ? '重做这题' : tried ? '再做一次' : '做这题'}
         </Button>
       </div>
@@ -132,20 +135,39 @@ function PreviewTitle({ item }: { item: Item }) {
   return (
     <span className="mbp-title">
       <SubjectTag subject={item.subject} size="sm" />
-      <span>{sourceLabel(item)}</span>
+      <span className="mbp-title-text">{sourceLabel(item)}</span>
     </span>
   );
 }
 
+/** One status badge, as in the practice preview: when it comes back and how far from leaving the book. */
+function statusBadge(p: ItemProgress | undefined, today: string, lastDate?: string): { tone: Tone; icon?: IconName; text: string } | null {
+  if (!p || p.attempts === 0) return { tone: 'neutral', text: '还没做过' };
+  if (p.inMistakes) {
+    const due = dueInfo(p.due, today);
+    const left = Math.max(1, MISTAKE_GRADUATE_BOX - Math.max(0, p.box));
+    const when = !due ? '在错题本' : due.tone === 'now' ? '今天到期' : `${due.text}复习`;
+    return { tone: due?.tone === 'now' ? 'warning' : 'neutral', icon: 'clock', text: `${when} · 再对 ${left} 次移出` };
+  }
+  if (p.slow && p.lastCorrect) return { tone: 'warning', icon: 'clock', text: '做对但太慢' };
+  const when = lastDate ? ` · ${fmtDateShort(lastDate)}` : '';
+  if (p.box >= MISTAKE_GRADUATE_BOX && p.lastCorrect) return { tone: 'success', icon: 'check', text: `已移出错题本${when}` };
+  return p.lastCorrect ? { tone: 'success', icon: 'check', text: `上次答对${when}` } : { tone: 'neutral', text: `上次没答对${when}` };
+}
+
 function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]; onSelect: (id: string | null) => void; isTop: () => boolean }) {
   const { state, bank, today } = useReady();
+  const showGloss = state.settings.showZhGloss;
   const history = useMemo(() => state.attempts.filter((a) => a.itemId === item.id), [state.attempts, item.id]);
   const last = history[history.length - 1];
   const [reveal, setReveal] = useState(history.length > 0);
   const a = useItemActions(item, ids, onSelect);
   const { p, prevId, nextId, held } = a;
   const topic = bank.topics.get(item.topic);
-  const due = p?.inMistakes ? dueInfo(p.due, today) : null;
+  const hasNote = bank.notesByTopic.has(item.topic);
+  const status = statusBadge(p, today, last?.date);
+  const chosen = last && typeof last.response === 'number' ? last.response : null;
+  const given = last && last.response && typeof last.response === 'object' ? last.response : null;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -167,88 +189,68 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
   return (
     <div className="mbp">
       <div className="mbp-meta">
-        {topic && (
-          <a className="mbp-topic" href={href('/notes/' + item.topic)}>
-            <Icon name="notebook" size={14} />
-            {topic.name}
-            <Icon name="right" size={13} className="mbp-topic-go" />
-          </a>
-        )}
-        <Meta>
-          <span className="mbp-meta-item">
-            难度
-            <span className="mbp-diff" aria-label={`难度 ${item.difficulty}/3`}>
-              {[1, 2, 3].map((n) => (
-                <i key={n} className={cx(n <= item.difficulty && 'on')} />
-              ))}
+        {topic &&
+          (hasNote ? (
+            <a className="mbp-topic" href={href('/notes/' + item.topic)}>
+              <Icon name="notebook" size={13} />
+              {topic.name}
+            </a>
+          ) : (
+            <span className="mbp-topic is-plain">
+              <Icon name="layers" size={13} />
+              {topic.name}
             </span>
-          </span>
-          <span>
-            考场节奏 <span className="num">{fmtClock(item.targetSec)}</span>
-          </span>
-          {p?.inMistakes && (
-            <span className="mbp-meta-item">
-              <ItemMark p={p} tooltip={false} />
-              {markText(p).replace('在错题本 · ', '')}
-            </span>
-          )}
-          {due && <span className={cx('mbp-due', `is-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
-        </Meta>
-        {held && (
-          <Badge tone="warning" icon="flag">
-            {fmtDateShort(held.date)}模考要用
+          ))}
+        <DifficultyMeter value={item.difficulty} />
+        <span className="mbp-meta-item num">
+          <Icon name="clock" size={13} />
+          目标 {fmtClock(item.targetSec)}
+        </span>
+        {status && (
+          <Badge tone={status.tone} icon={status.icon}>
+            {status.text}
           </Badge>
         )}
-        {p && !p.inMistakes && p.slow && p.lastCorrect ? (
-          <Badge tone="warning" icon="clock">
-            做对但太慢
-          </Badge>
-        ) : (
-          p &&
-          !p.inMistakes &&
-          p.attempts > 0 &&
-          p.correct > 0 && (
-            <Badge tone="success" icon="check">
-              不在错题本
-            </Badge>
-          )
-        )}
+        {held && <Badge icon="flag">留给 {fmtDateShort(held.date)} 模考</Badge>}
       </div>
+
+      {last && <LastTry item={item} last={last} />}
 
       {item.audio && <AudioBar src={item.audio.src} start={item.audio.start} />}
 
-      <div className="mbp-stem">
-        <QuestionStem item={item} />
-      </div>
+      <QuestionStem item={item} showGloss={showGloss} />
+
+      {item.format === 'choice' && (
+        <div className={cx('mbp-opts', compactOptions(item) && 'is-compact')}>
+          <OptionList item={item} chosen={chosen} reveal={reveal} />
+        </div>
+      )}
 
       {reveal ? (
         <>
-          <AnswerBlock item={item} last={last} />
-          {history.length > 0 && <History list={history} />}
-          <section className="mbp-sec">
-            <h4 className="mbp-sec-title">
-              <Icon name="bulb" size={16} />
+          {item.format === 'blanks' && (
+            <div className="mbp-answer">
+              <div className="mbp-answer-label">正确答案{given ? '（红色是填错的格子，划线是你当时的答案）' : ''}</div>
+              <BlanksAnswer item={item} given={given} />
+            </div>
+          )}
+          {history.length > 1 && <History list={history} />}
+          <section className="mbp-ex">
+            <h4 className="mbp-ex-head">
+              <Icon name="bulb" size={15} />
               解析
             </h4>
             <Explanation item={item} />
           </section>
         </>
       ) : (
-        <div className="mbp-hidden">
-          <IconTile icon="eyeOff" size="md" />
-          <div className="mbp-hidden-text">
-            <b>这题你还没做过</b>
-            <span>先自己做一遍，印象最深。</span>
-          </div>
-          <div className="mbp-hidden-actions">
-            <Button variant="ghost" icon="eye" onClick={() => setReveal(true)}>
-              直接看答案
-            </Button>
-            <Button variant="secondary" icon="play" onClick={() => void a.redo()}>
-              做这题
-            </Button>
-          </div>
-        </div>
+        <button type="button" className="mbp-reveal" onClick={() => setReveal(true)}>
+          <span className="mbp-reveal-main">
+            <Icon name="eye" size={16} />
+            显示答案与解析
+          </span>
+          <span className="mbp-reveal-hint">想先自己做，就点「做这题」</span>
+        </button>
       )}
 
       {p && reveal && <NoteEditor itemId={item.id} initial={p.note || ''} />}
@@ -257,50 +259,42 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
   );
 }
 
-function AnswerBlock({ item, last }: { item: Item; last?: Attempt }) {
+/** Why this item is here, above the fold: the last answer, its time against the target, and the trap. */
+function LastTry({ item, last }: { item: Item; last: Attempt }) {
   const kind = resultOf(last);
-  const chosen = last && typeof last.response === 'number' ? last.response : null;
-  const given = last && last.response && typeof last.response === 'object' ? last.response : null;
+  const chosen = typeof last.response === 'number' ? last.response : null;
   let what = '';
-  if (last) {
-    if (last.gaveUp || last.response === null) what = '没有作答';
-    else if (item.format === 'choice' && chosen !== null) what = `选了 ${optionLabel(item, chosen)}`;
-    else if (item.format === 'blanks') what = `填对 ${Math.round(last.score * 100)}%`;
-  }
-  const slow = last && last.seconds > item.targetSec * 1.2;
+  if (last.gaveUp || last.response === null) what = '没有作答';
+  else if (item.format === 'choice' && chosen !== null) what = `选了 ${optionBadge(optionLabel(item, chosen))}`;
+  else if (item.format === 'blanks') what = `填对 ${Math.round(last.score * 100)}%`;
+  const slow = last.seconds > item.targetSec * 1.2;
+  const trap = kind !== 'right' ? item.explanation.traps?.[0] : undefined;
   return (
-    <section className="mbp-sec">
-      <div className="mbp-ans-head">
-        <h4 className="mbp-sec-title">
-          <Icon name="target" size={16} />
-          {last ? '上次作答' : '正确答案'}
-        </h4>
-        {last && (
-          <div className="mbp-ans-facts">
-            <ResultMark kind={kind} />
-            <span className={cx('mbp-res-text', `is-${kind}`)}>{RESULT_TEXT[kind]}</span>
-            {what && <span className="faint">· {what}</span>}
-            <Tooltip label={`考场节奏 ${fmtClock(item.targetSec)}`}>
-              <span className={cx('mbp-fact', slow && 'is-slow')}>
-                <Icon name="clock" size={13} />
-                <span className="num">{fmtClock(last.seconds)}</span>
-                {slow && <span> · 超时</span>}
-              </span>
-            </Tooltip>
-            {last.confidence === 'unsure' && <Badge tone="warning">没把握</Badge>}
-            {last.confidence === 'guess' && <Badge tone="warning">猜的</Badge>}
-          </div>
-        )}
+    <div className="mbp-last">
+      <div className="mbp-last-head">
+        <ResultMark kind={kind} size="xs" />
+        <span className={cx('mbp-res-text', `is-${kind}`)}>上次{RESULT_TEXT[kind]}</span>
+        <Meta className="mbp-last-meta">
+          {what && <span>{what}</span>}
+          <span className={cx('mbp-fact', slow && 'is-slow')}>
+            用时 <span className="num">{fmtClock(last.seconds)}</span>
+            {slow && <> · 比目标慢 <span className="num">{fmtClock(last.seconds - item.targetSec)}</span></>}
+          </span>
+          <span>{fmtDateShort(last.date)}</span>
+        </Meta>
+        {last.confidence === 'unsure' && <Badge tone="warning">没把握</Badge>}
+        {last.confidence === 'guess' && <Badge tone="warning">猜的</Badge>}
       </div>
-      {item.format === 'choice' ? (
-        <div className={cx('mbp-opts', compactOptions(item) && 'is-compact')}>
-          <OptionList item={item} chosen={chosen} />
+      {trap && (
+        <div className="mbp-last-trap">
+          <span className="mbp-last-label">
+            <Icon name="alert" size={14} />
+            易错
+          </span>
+          <RichText text={trap} lang="zh" inline />
         </div>
-      ) : (
-        <BlanksAnswer item={item} given={given} />
       )}
-      {item.format === 'blanks' && given && <p className="mbp-hint">红色是你填错的格子，划线是你当时的答案。</p>}
-    </section>
+    </div>
   );
 }
 

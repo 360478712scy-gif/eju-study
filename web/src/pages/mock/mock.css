@@ -1,10 +1,14 @@
 /* 模考 (.mk-) */
 
-.mk-page, .mk-result { --mk-bar: color-mix(in srgb, var(--text-3) 42%, transparent); --mk-slow: var(--warning); }
-/* At night the over-time bars stay amber but lose the full-tone glare. */
-:root[data-theme="dark"] :is(.mk-page, .mk-result) { --mk-slow: color-mix(in srgb, var(--warning) 72%, var(--bg-elev)); }
+/* Chart fills: neutral bars; over-time bars amber but softened (no full-tone blocks), more so at night. */
+.mk-page, .mk-result {
+  --mk-bar: color-mix(in srgb, var(--text-3) 38%, transparent);
+  --mk-slow: color-mix(in srgb, var(--warning) 62%, var(--bg-elev));
+  --mk-lost: color-mix(in srgb, var(--text-3) 24%, transparent);
+}
+:root[data-theme="dark"] :is(.mk-page, .mk-result) { --mk-slow: color-mix(in srgb, var(--warning) 56%, var(--bg-elev)); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) :is(.mk-page, .mk-result) { --mk-slow: color-mix(in srgb, var(--warning) 72%, var(--bg-elev)); }
+  :root:not([data-theme="light"]) :is(.mk-page, .mk-result) { --mk-slow: color-mix(in srgb, var(--warning) 56%, var(--bg-elev)); }
 }
 .mk-eyebrow { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; color: var(--text-3); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
 
@@ -36,7 +40,7 @@
 .mk-rule-text { display: block; color: var(--text-3); font-size: var(--fs-xs); line-height: 1.5; }
 
 .mk-timeline {
-  list-style: none; margin: 20px 0 0; padding: 18px 0 0; border-top: 1px solid var(--divider);
+  list-style: none; margin: 22px 0 0; padding: 20px 0 0; border-top: 1px solid var(--divider);
   display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
 }
 .mk-step { position: relative; display: flex; flex-direction: column; gap: 1px; padding-top: 24px; min-width: 0; }
@@ -50,9 +54,9 @@
 }
 .mk-step.is-done .mk-step-dot { background: var(--success-solid); box-shadow: none; }
 .mk-step.is-current .mk-step-dot { background: var(--bg-elev); box-shadow: inset 0 0 0 5px var(--primary); }
-.mk-step-date { font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
-.mk-step-title { font-size: var(--fs-xs); color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 12px; }
-.mk-step.is-current .mk-step-title { color: var(--primary-text); font-weight: var(--fw-medium); }
+.mk-step-date { font-size: var(--fs-ui); font-weight: var(--fw-semibold); }
+.mk-step-title { font-size: var(--fs-sm); color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 12px; }
+.mk-step.is-current .mk-step-title { color: var(--text); font-weight: var(--fw-medium); }
 .mk-step.is-done .mk-step-title { color: var(--text-2); }
 
 @media (max-width: 1120px) {
@@ -101,7 +105,7 @@
 .mk-sep { stroke: var(--border-strong); stroke-width: 1; }
 .mk-axis { fill: var(--text-3); font-size: 11px; font-family: var(--font-num); font-variant-numeric: tabular-nums; }
 .mk-axis-zh { fill: var(--text-3); font-size: var(--fs-xs); }
-.mk-target { stroke: var(--text-3); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.mk-target { stroke: var(--text-3); stroke-width: 1.5; stroke-dasharray: 4 4; pointer-events: none; }
 .mk-target-label { fill: var(--text-2); font-size: var(--fs-xs); font-weight: var(--fw-medium); }
 .mk-area { fill: var(--tone); opacity: 0.08; }
 .mk-line { fill: none; stroke: var(--tone); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
@@ -111,7 +115,7 @@
 .is-slow .mk-bar { fill: var(--mk-slow); }
 .is-hover .mk-bar { fill: var(--text-3); }
 .is-slow.is-hover .mk-bar { fill: var(--warning-text); }
-.mk-tick { stroke: var(--text-2); stroke-width: 2; stroke-linecap: round; }
+.mk-break { fill: var(--bg-elev); }
 .mk-tip {
   position: absolute; transform: translate(-50%, -100%); z-index: 5; pointer-events: none;
   display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 10px;
@@ -182,24 +186,33 @@ button.mk-tr:hover .mk-tr-go, button.mk-tr:focus-visible .mk-tr-go { opacity: 1;
 .mk-paper-title { display: inline-flex; align-items: center; gap: 8px; }
 .mk-paper .list-row-title { font-weight: var(--fw-medium); }
 .mk-paper .list-row-meta { font-size: var(--fs-xs); }
+/* "其余 N 套": the folded rest of a paper library, one summary row with an expander. */
+.mk-more {
+  position: relative; display: flex; align-items: center; gap: 6px; width: calc(100% - 12px); height: 44px; margin: 0 6px 6px; padding: 0 14px;
+  border: none; border-radius: var(--radius-md); background: transparent; color: var(--text-2); font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  cursor: pointer; transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.mk-more::before { content: ''; position: absolute; top: 0; left: 14px; right: 14px; height: 1px; background: var(--divider); transition: opacity var(--dur) var(--ease); }
+.mk-more:hover { background: var(--bg-hover); color: var(--text); }
+.mk-more:hover::before { opacity: 0; }
+.mk-more:focus-visible { box-shadow: var(--focus-ring); }
+.mk-more svg { color: var(--text-3); }
 
 
 /* ── Result page ── */
-.mk-score { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
-.mk-score-main { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-width: 0; }
+/* Hero: the score and the four stats share one row, the score bar spans the card, the CTA closes it. */
+.mk-score { display: flex; flex-direction: column; }
+.mk-score-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.mk-score-main { min-width: 0; }
 .mk-score-line { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; color: var(--text); }
-.mk-score-gap { display: flex; align-items: center; gap: 10px; margin: 14px 0 18px; color: var(--text-3); font-size: var(--fs-sm); }
+.mk-score-line .chip, .mk-score-line .badge { margin-left: 10px; }
+.mk-stats { display: flex; align-items: flex-start; padding-bottom: 4px; }
+.mk-stats > .stat-tile { padding: 0 22px; border-left: 1px solid var(--divider); min-width: 0; }
+.mk-stats > .stat-tile:last-child { padding-right: 0; }
 .mk-score .mk-sbar { margin-bottom: 2px; }
-
-.mk-score-side { display: flex; flex-direction: column; justify-content: center; gap: 22px; min-width: 0; }
-.mk-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.mk-stats > .stat-tile { padding: 12px 18px; }
-.mk-stats > .stat-tile:nth-child(odd) { border-right: 1px solid var(--divider); padding-left: 0; }
-.mk-stats > .stat-tile:nth-child(-n + 2) { border-bottom: 1px solid var(--divider); padding-top: 0; }
-.mk-stats > .stat-tile:nth-child(n + 3) { padding-bottom: 0; }
-.mk-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-.mk-cta-btn { min-width: 220px; }
-.mk-cta-hint { color: var(--text-3); font-size: var(--fs-sm); }
+.mk-cta { display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; margin-top: 16px; padding-top: 18px; border-top: 1px solid var(--divider); }
+.mk-cta-btn { min-width: 200px; }
+.mk-cta-hint { flex: 1; min-width: 200px; color: var(--text-3); font-size: var(--fs-sm); }
 .mk-perfect { display: flex; align-items: center; gap: 8px; color: var(--success-text); font-weight: var(--fw-medium); }
 
 .mk-subjects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
@@ -231,7 +244,7 @@ button.mk-tr:hover .mk-tr-go, button.mk-tr:focus-visible .mk-tr-go { opacity: 1;
 .mk-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; align-items: start; }
 .mk-topics { display: flex; flex-direction: column; margin: 0 -10px; }
 .mk-topic {
-  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(110px, 156px) 64px; gap: 14px; align-items: center;
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 140px 56px; gap: 12px; align-items: center;
   min-height: 46px; padding: 6px 10px; border-radius: var(--radius-md); cursor: pointer; transition: background var(--dur) var(--ease);
 }
 .mk-topic + .mk-topic::before { content: ''; position: absolute; top: 0; left: 10px; right: 10px; height: 1px; background: var(--divider); transition: opacity var(--dur) var(--ease); }
@@ -250,6 +263,11 @@ button.mk-tr:hover .mk-tr-go, button.mk-tr:focus-visible .mk-tr-go { opacity: 1;
 }
 .mk-topic:hover .mk-topic-go, .mk-topic:focus-visible .mk-topic-go { opacity: 1; }
 .mk-topic:hover .mk-topic-n, .mk-topic:focus-visible .mk-topic-n { opacity: 0; }
+/* One square per question in this mock: filled = points, empty = lost. Neutral, never a red 0%. */
+.mk-marks { display: flex; justify-content: flex-end; gap: 4px; min-width: 0; }
+.mk-marks i { flex: 0 1 16px; min-width: 3px; height: 12px; border-radius: 3px; background: var(--mk-lost); }
+.mk-marks i.is-right { background: var(--success); }
+.mk-marks i.is-partial { background: var(--warning); }
 .mk-topics-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--divider); }
 
 .mk-chart-legend { margin-top: 12px; }
@@ -268,12 +286,6 @@ button.mk-tr:hover .mk-tr-go, button.mk-tr:focus-visible .mk-tr-go { opacity: 1;
 .mk-slow-over { justify-self: end; }
 .mk-pace-ok { display: flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--success-text); font-size: var(--fs-sm); }
 
-@media (max-width: 1080px) {
-  .mk-score { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .mk-score-main .mk-sbar { max-width: 560px; }
-  /* Stacked hero: the four stats sit in one row so the CTA stays in view. */
-  .mk-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-top: 18px; border-top: 1px solid var(--divider); }
-  .mk-stats > .stat-tile:nth-child(n) { padding: 0 16px; border-bottom: none; border-right: 1px solid var(--divider); }
-  .mk-stats > .stat-tile:first-child { padding-left: 0; }
-  .mk-stats > .stat-tile:last-child { border-right: none; }
+@media (max-width: 1100px) {
+  .mk-stats > .stat-tile { padding: 0 16px; }
 }

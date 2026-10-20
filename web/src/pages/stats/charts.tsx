@@ -2,7 +2,7 @@
 // every chart follows the light/dark theme. Each chart measures its container and draws
 // in real pixels so text stays crisp; hover shows a small tooltip.
 import { useLayoutEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
-import { cx } from '../../lib/format.ts';
+import { cx, fmtMinutes } from '../../lib/format.ts';
 
 export function useWidth<T extends HTMLElement>(fallback = 320) {
   const ref = useRef<T>(null);
@@ -65,10 +65,12 @@ export interface DayBar {
   answered: number;
   correct: number;
   isToday: boolean;
+  /** A planned day still ahead: only its budget tick is drawn. */
+  isFuture?: boolean;
   title: string;
 }
 
-export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: number }) {
+export function StudyBars({ days, height = 184 }: { days: DayBar[]; height?: number }) {
   const [ref, width] = useWidth<HTMLDivElement>(480);
   const [hover, setHover] = useState<number | null>(null);
   const m = { l: 34, r: 6, t: 22, b: 26 };
@@ -79,7 +81,7 @@ export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: num
   const yMax = Math.ceil((peak * 1.05) / step) * step;
   const y = (v: number) => m.t + ih - (v / yMax) * ih;
   const slot = iw / days.length;
-  const bw = Math.max(6, Math.min(22, slot * 0.6));
+  const bw = Math.max(6, Math.min(days.length <= 7 ? 28 : 22, slot * 0.5));
   const ticks: number[] = [];
   for (let v = 0; v <= yMax; v += step) ticks.push(v);
   const every = slot < 24 ? 2 : 1;
@@ -90,8 +92,11 @@ export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: num
         y: Math.min(y(Math.max(hd.minutes, hd.budget ?? 0)), m.t + ih - 10) - 4,
         content: (
           <>
-            <div className="st-tip-title">{hd.title}</div>
-            <TipRow color="var(--mixed)" value={fmtHM(hd.minutes)} label="学习" />
+            <div className="st-tip-title">
+              {hd.title}
+              {hd.isFuture ? ' · 还没到' : ''}
+            </div>
+            {!hd.isFuture && <TipRow color="var(--mixed)" value={fmtHM(hd.minutes)} label="学习" />}
             {hd.budget !== null && <TipRow color="var(--text-2)" value={fmtHM(hd.budget)} label="计划" />}
             {hd.answered > 0 && <TipRow value={`${hd.answered} 题`} label={`正确 ${Math.round((hd.correct / hd.answered) * 100)}%`} />}
           </>
@@ -101,7 +106,7 @@ export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: num
 
   return (
     <div className="st-chart" ref={ref}>
-      <svg width={width} height={height} role="img" aria-label="最近 14 天每天学习分钟数与计划时长">
+      <svg width={width} height={height} role="img" aria-label="每天学习时长与计划时长">
         {ticks.map((v) => (
           <g key={v}>
             <line x1={m.l} x2={width - m.r} y1={y(v)} y2={y(v)} className="st-grid" />
@@ -116,9 +121,11 @@ export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: num
           return (
             <g key={d.date} className={cx('st-bar-g', hover === i && 'is-hover', hover !== null && hover !== i && 'is-dim')}>
               {h > 0.5 && <path d={roundTop(cx0 - bw / 2, y(d.minutes), bw, h, 4)} className={cx('st-bar', d.isToday && 'is-today')} />}
-              {d.budget !== null && d.budget > 0 && <line x1={cx0 - bw / 2 - 4} x2={cx0 + bw / 2 + 4} y1={y(d.budget)} y2={y(d.budget)} className="st-budget" />}
+              {d.budget !== null && d.budget > 0 && (
+                <line x1={cx0 - bw / 2 - 4} x2={cx0 + bw / 2 + 4} y1={y(d.budget)} y2={y(d.budget)} className={cx('st-budget', d.isFuture && 'is-future')} />
+              )}
               {(i % every === 0 || d.isToday) && (
-                <text x={cx0} y={height - 8} className={cx('st-axis', d.isToday && 'is-strong')} textAnchor="middle">
+                <text x={cx0} y={height - 8} className={cx('st-axis', d.isToday && 'is-strong', d.isFuture && 'is-future')} textAnchor="middle">
                   {d.label}
                 </text>
               )}
@@ -151,103 +158,8 @@ function roundTop(x: number, y: number, w: number, h: number, r: number): string
   return `M${x},${y + h}V${y + rr}Q${x},${y} ${x + rr},${y}H${x + w - rr}Q${x + w},${y} ${x + w},${y + rr}V${y + h}Z`;
 }
 
-export function fmtHM(min: number): string {
-  const m = Math.round(min);
-  if (m < 60) return `${m} 分`;
-  const h = Math.floor(m / 60);
-  const r = m % 60;
-  return r ? `${h} 时 ${r} 分` : `${h} 小时`;
-}
-
-// ───────────────────────── Small line chart (accuracy) ─────────────────────────
-
-export interface LinePoint {
-  date: string;
-  label: string;
-  value: number | null;
-  n: number;
-}
-
-export function MiniLine({ points, target, color, height = 128, name }: { points: LinePoint[]; target: number; color: string; height?: number; name: string }) {
-  const [ref, width] = useWidth<HTMLDivElement>(220);
-  const [hover, setHover] = useState<number | null>(null);
-  // The right margin holds the target label, outside the plot.
-  const m = { l: 34, r: 60, t: 10, b: 22 };
-  const iw = Math.max(10, width - m.l - m.r);
-  const ih = height - m.t - m.b;
-  const n = points.length;
-  const x = (i: number) => m.l + (n <= 1 ? iw / 2 : (i / (n - 1)) * iw);
-  const y = (v: number) => m.t + ih - v * ih;
-  const real = points.map((p, i) => ({ ...p, i })).filter((p): p is LinePoint & { i: number; value: number } => p.value !== null);
-  const d = real.map((p, k) => `${k ? 'L' : 'M'}${x(p.i).toFixed(1)},${y(p.value).toFixed(1)}`).join('');
-  const hp = hover !== null ? points[hover] : null;
-  const tip: TipState | null =
-    hp && hover !== null
-      ? {
-          x: x(hover),
-          y: hp.value !== null ? y(hp.value) - 8 : m.t + ih / 2,
-          content: (
-            <>
-              <div className="st-tip-title">{hp.label}</div>
-              {hp.value !== null ? (
-                <TipRow color={color} value={`${Math.round(hp.value * 100)}%`} label={`${name} · ${hp.n} 题`} />
-              ) : (
-                <span className="st-tip-dim">这天没做{name}</span>
-              )}
-            </>
-          ),
-        }
-      : null;
-  return (
-    <div className="st-chart" ref={ref}>
-      <svg width={width} height={height} role="img" aria-label={`${name}每日正确率`}>
-        {[0, 0.5, 1].map((v) => (
-          <g key={v}>
-            <line x1={m.l} x2={width - m.r} y1={y(v)} y2={y(v)} className="st-grid" />
-            <text x={m.l - 8} y={y(v)} className="st-axis" textAnchor="end" dominantBaseline="middle">
-              {v * 100}%
-            </text>
-          </g>
-        ))}
-        <line x1={m.l} x2={width - m.r} y1={y(target)} y2={y(target)} className="st-target" />
-        <text x={width - m.r + 8} y={y(target)} className="st-axis is-label" textAnchor="start" dominantBaseline="middle">
-          目标 {Math.round(target * 100)}%
-        </text>
-        {d && <path d={d} fill="none" style={{ stroke: color }} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />}
-        {hover !== null && <line x1={x(hover)} x2={x(hover)} y1={m.t} y2={m.t + ih} className="st-cross" />}
-        {real.map((p) => (
-          <circle key={p.date} cx={x(p.i)} cy={y(p.value)} r={hover === p.i ? 4.5 : 3} style={{ fill: color }} className="st-point" />
-        ))}
-        {n > 0 && (
-          <>
-            <text x={x(0)} y={height - 5} className="st-axis" textAnchor={n > 1 ? 'start' : 'middle'}>
-              {points[0].label}
-            </text>
-            {n > 1 && (
-              <text x={x(n - 1)} y={height - 5} className="st-axis" textAnchor="end">
-                {points[n - 1].label}
-              </text>
-            )}
-          </>
-        )}
-        <rect
-          x={m.l - 6}
-          y={0}
-          width={iw + 12}
-          height={height}
-          fill="transparent"
-          onPointerMove={(e) => {
-            const px = localX(e) - 6;
-            setHover(n <= 1 ? 0 : Math.max(0, Math.min(n - 1, Math.round((px / iw) * (n - 1)))));
-          }}
-          onPointerLeave={() => setHover(null)}
-        />
-      </svg>
-      {real.length === 0 && <div className="st-chart-empty">还没有{name}作答</div>}
-      <Tip tip={tip} width={width} />
-    </div>
-  );
-}
+/** Durations in the app's one format: "45 分钟" / "1 小时 8 分". */
+export const fmtHM = fmtMinutes;
 
 // ───────────────────────── Sparkline with hover ─────────────────────────
 
@@ -259,6 +171,7 @@ export interface TrendPoint {
 export function Spark({
   points,
   color = 'var(--mixed)',
+  dot,
   height = 36,
   format = (v: number) => String(Math.round(v)),
   name,
@@ -266,6 +179,8 @@ export function Spark({
 }: {
   points: TrendPoint[];
   color?: string;
+  /** Colour of the end / hover dot (defaults to the line colour). */
+  dot?: string;
   height?: number;
   format?: (v: number) => string;
   name: string;
@@ -293,7 +208,7 @@ export function Spark({
         {reference !== undefined && <line x1={0} x2={width} y1={y(reference)} y2={y(reference)} className="st-ref" />}
         {n > 1 && <path d={d} fill="none" style={{ stroke: color }} strokeWidth={1.5} strokeLinejoin="round" strokeLinecap="round" />}
         {hover !== null && <line x1={x(hover)} x2={x(hover)} y1={0} y2={height} className="st-cross" />}
-        {n > 0 && <circle cx={x(hover ?? n - 1)} cy={y(points[hover ?? n - 1].value)} r={3} style={{ fill: color }} className="st-point" />}
+        {n > 0 && <circle cx={x(hover ?? n - 1)} cy={y(points[hover ?? n - 1].value)} r={3} style={{ fill: dot || color }} className="st-point" />}
         <rect
           x={0}
           y={0}
@@ -310,7 +225,7 @@ export function Spark({
           tip={{
             x: x(hover),
             y: y(hp.value) - 6,
-            content: <TipRow color={color} value={format(hp.value)} label={hp.label} />,
+            content: <TipRow color={dot || color} value={format(hp.value)} label={hp.label} />,
           }}
         />
       )}
@@ -358,63 +273,6 @@ export function ScoreBar({
           目标 <span className="num">{target}</span>
         </span>
       </span>
-    </div>
-  );
-}
-
-// ───────────────────────── Pace dot plot ─────────────────────────
-
-const PACE_LO = 0.5;
-const PACE_HI = 2.5;
-const PACE_TICKS = [0.5, 1, 1.5, 2, 2.5];
-const paceX = (v: number, ml: number, iw: number) => ml + ((Math.max(PACE_LO, Math.min(PACE_HI, v)) - PACE_LO) / (PACE_HI - PACE_LO)) * iw;
-
-export function PaceDot({ ratio, color, name }: { ratio: number | null; color: string; name: string }) {
-  const [ref, width] = useWidth<HTMLDivElement>(260);
-  const h = 34;
-  const ml = 8;
-  const mr = 8;
-  const iw = Math.max(10, width - ml - mr);
-  const lx = (v: number) => paceX(v, ml, iw);
-  const cy = 20;
-  return (
-    <div className="st-chart" ref={ref}>
-      <svg width={width} height={h} role="img" aria-label={ratio === null ? `${name}暂无用时数据` : `${name}用时是考场节奏的 ${ratio.toFixed(2)} 倍`}>
-        <rect x={lx(0.85)} y={cy - 9} width={lx(1.15) - lx(0.85)} height={18} rx={4} className="st-band" />
-        <line x1={ml} x2={width - mr} y1={cy} y2={cy} className="st-grid" />
-        {PACE_TICKS.filter((v) => v !== 1).map((v) => (
-          <line key={v} x1={lx(v)} x2={lx(v)} y1={cy - 3} y2={cy + 3} className="st-grid" />
-        ))}
-        <line x1={lx(1)} x2={lx(1)} y1={cy - 10} y2={cy + 10} className="st-mark-base" />
-        {ratio !== null && (
-          <>
-            <line x1={lx(1)} x2={lx(ratio)} y1={cy} y2={cy} style={{ stroke: color }} strokeWidth={2} strokeLinecap="round" />
-            <circle cx={lx(ratio)} cy={cy} r={5.5} style={{ fill: color }} className="st-dot" />
-            <text x={lx(ratio)} y={cy - 11} textAnchor={lx(ratio) > width - 24 ? 'end' : 'middle'} className="st-val is-sm">
-              {ratio >= PACE_HI ? `>${PACE_HI}` : ratio.toFixed(1)}×
-            </text>
-          </>
-        )}
-      </svg>
-    </div>
-  );
-}
-
-export function PaceAxis() {
-  const [ref, width] = useWidth<HTMLDivElement>(260);
-  const ml = 8;
-  const mr = 8;
-  const iw = Math.max(10, width - ml - mr);
-  const lx = (v: number) => paceX(v, ml, iw);
-  return (
-    <div className="st-chart" ref={ref}>
-      <svg width={width} height={18} aria-hidden>
-        {PACE_TICKS.map((v) => (
-          <text key={v} x={lx(v)} y={12} textAnchor={v === PACE_LO ? 'start' : v === PACE_HI ? 'end' : 'middle'} className={cx('st-axis', v === 1 && 'is-strong')}>
-            {v}×
-          </text>
-        ))}
-      </svg>
     </div>
   );
 }

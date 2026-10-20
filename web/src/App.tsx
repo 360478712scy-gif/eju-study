@@ -60,21 +60,49 @@ export function toggleMusic() {
   });
 }
 
-const SHORTCUTS: [string, string][] = [
-  ['⌘1 / ⌘2 / ⌘3 / ⌘4', '今日 / 题库 / 错题本 / 数据'],
-  ['1–9', '选择选项（词汇：1–4 选择，0 不认识）'],
-  ['Enter', '提交 / 下一题'],
-  ['← / →', '上一题 / 下一题'],
-  ['F', '切换把握：确定 / 没把握 / 猜的（模考中为标记）'],
-  ['E', '展开 / 收起解析（词汇：例句）'],
-  ['Space', '播放 / 暂停听力、读音'],
-  ['− 0–9', '数学答题卡填一格'],
-  ['↑ / ↓', '数学答题卡换格'],
-  ['⌫', '删除答题卡上的一格'],
-  ['Esc', '关闭弹窗'],
-  ['⇧⌘M', '背景音乐开关'],
-  ['⌘+ / ⌘− / ⌘0', '放大 / 缩小 / 实际大小（桌面版）'],
-  ['⌘/', '快捷键一览'],
+const SHORTCUTS: { title: string; rows: [string, string][] }[] = [
+  {
+    title: '导航',
+    rows: [
+      ['⌘1 / ⌘2 / ⌘3 / ⌘4', '今日 / 题库 / 错题本 / 数据'],
+      ['Esc', '关闭弹窗'],
+      ['⌘/', '快捷键一览'],
+    ],
+  },
+  {
+    title: '答题',
+    rows: [
+      ['1–9', '选择选项'],
+      ['Enter', '提交 / 下一题'],
+      ['← / →', '上一题 / 下一题'],
+      ['F', '切换把握；模考中标记本题'],
+      ['E', '展开 / 收起解析'],
+    ],
+  },
+  {
+    title: '数学答题卡',
+    rows: [
+      ['− 0–9', '填一格'],
+      ['↑ / ↓', '换格'],
+      ['⌫', '删除一格'],
+    ],
+  },
+  {
+    title: '听力与词汇',
+    rows: [
+      ['Space', '播放 / 暂停音频'],
+      ['1–4', '词汇：选意思'],
+      ['0', '词汇：不认识'],
+      ['E', '词汇：看例句'],
+    ],
+  },
+  {
+    title: '应用',
+    rows: [
+      ['⇧⌘M', '背景音乐开关'],
+      ['⌘+ / ⌘− / ⌘0', '放大 / 缩小 / 实际大小'],
+    ],
+  },
 ];
 
 export function App() {
@@ -209,15 +237,20 @@ export function App() {
       <Toaster />
       <Modal open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} title="快捷键" width={460}>
         <div className="shortcut-list">
-          {SHORTCUTS.map(([k, v]) => (
-            <div key={k} className="row-between shortcut-row">
-              <span className="muted">{v}</span>
-              <span className="row" style={{ gap: 4 }}>
-                {k.split(' / ').map((x) => (
-                  <Kbd key={x}>{x}</Kbd>
-                ))}
-              </span>
-            </div>
+          {SHORTCUTS.map((g) => (
+            <section key={g.title} className="shortcut-group">
+              <h3 className="t-eyebrow">{g.title}</h3>
+              {g.rows.map(([k, v]) => (
+                <div key={k + v} className="row-between shortcut-row">
+                  <span className="muted">{v}</span>
+                  <span className="row" style={{ gap: 4 }}>
+                    {k.split(' / ').map((x) => (
+                      <Kbd key={x}>{x}</Kbd>
+                    ))}
+                  </span>
+                </div>
+              ))}
+            </section>
           ))}
         </div>
       </Modal>

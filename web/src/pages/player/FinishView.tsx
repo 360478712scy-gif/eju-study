@@ -36,6 +36,11 @@ function answerText(item: Item, a: SessionAnswer | undefined): string {
   return v === 'gave' ? '看了解析' : `对 ${ok} / ${g.length} 组`;
 }
 
+/** "2015年第2回 物理 問13（解答番号13）" → "2015年第2回 物理 問13": the 問 tells rows apart, the topic goes to the meta line. */
+function shortSource(label: string): string {
+  return label.replace(/\s*[（(]解答番号[^）)]*[）)]\s*$/, '');
+}
+
 function headline(acc: number, wrong: number, booked: number, done: number): string {
   if (done === 0) return '这组还没开始做';
   if (wrong === 0) return '全对，干净利落';
@@ -108,7 +113,8 @@ export function FinishView({ session, items }: { session: PracticeSession; items
   const itemSecs = worked.reduce((s, it) => s + (session.answers[it.id]?.seconds ?? 0), 0);
   const avg = worked.length ? itemSecs / worked.length : 0;
   const avgTarget = worked.length ? worked.reduce((s, it) => s + it.targetSec, 0) / worked.length : 0;
-  const tone = wrong.length === 0 || acc >= 0.85 ? 'success' : 'primary';
+  // Indigo is for actions: a score is green when it is good, otherwise neutral (never red for a result).
+  const tone = done > 0 && (wrong.length === 0 || acc >= 0.85) ? 'success' : 'neutral';
 
   // What comes next today, and how far along the day is.
   const plan = state.plans[today];
@@ -157,8 +163,8 @@ export function FinishView({ session, items }: { session: PracticeSession; items
       <ListRow
         key={it.id}
         lead={<span className="pl-fin-n num">{n}</span>}
-        title={topics.get(it.topic)?.name ?? it.topic}
-        meta={it.source.label}
+        title={shortSource(it.source.label)}
+        meta={topics.get(it.topic)?.name ?? it.topic}
         trail={
           <>
             <span className={cx('pl-fin-verdict', `is-${v}`)}>{answerText(it, a)}</span>
@@ -227,7 +233,7 @@ export function FinishView({ session, items }: { session: PracticeSession; items
                 tone={avg > avgTarget * 1.15 ? 'warning' : undefined}
               />
             </div>
-            {plan && dayBlocks.length > 0 && (
+            {plan && dayBlocks.length > 0 && session.blockId && (
               <Meta className="pl-fin-day">
                 <span>
                   今日 <span className="num">{dayDone}</span> / <span className="num">{dayBlocks.length}</span> 项

@@ -1,11 +1,12 @@
 // 今日 — the home screen. Answers "what do I do now?" at a glance: a state-driven heading, one
 // hero card with the next step (its main button starts 跟学模式, which walks through the whole
-// day), the next few tasks (each startable on its own), and a side panel with progress, bedtime,
-// the predicted score, due reviews and the next mock. Tasks are shown in the order 跟学 takes them.
+// day), the next few tasks (each startable on its own) and the due reviews under them, and a side
+// panel with progress, bedtime, the predicted score and the next mock. Tasks are shown in the
+// order 跟学 takes them.
 import { useEffect, useMemo, useState } from 'react';
 import { useReady, update } from '../../lib/store.ts';
 import { href } from '../../lib/router.ts';
-import { Button, Dot, toast, useConfirm } from '../../components/ui.tsx';
+import { Button, Dot, Tooltip, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import type { AppState, DayPlan, PlanBlock } from '@shared/types.ts';
 import { MOCK_LABEL, type BankIndex } from '@shared/bank.ts';
@@ -14,7 +15,7 @@ import { studyDate, weekdayZh } from '@shared/dates.ts';
 import { cx, fmtDateShort, fmtMinutes } from '../../lib/format.ts';
 import { DurationDialog } from './DurationDialog.tsx';
 import { AfterExam, ExamDay } from './ExamDay.tsx';
-import { PHASE_TONE, blockKindLabel, blockView, openSessionFor, regenerateDay, resumableSession, runBlock, sessionAnswered } from './blocks.ts';
+import { blockKindLabel, blockView, openSessionFor, regenerateDay, resumableSession, runBlock, sessionAnswered } from './blocks.ts';
 import { DoneHero, NextHero, RestHero, SkippedHero, StaleNotice, WaitingHero } from './hero.tsx';
 import { PlanList, type Entry } from './PlanList.tsx';
 import { flowOrder, startFlow, warmupTopics } from '../flow/flowState.ts';
@@ -131,7 +132,7 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
   let headline: string;
   const resumeKind = resume ? (heroBlock ? blockKindLabel(heroBlock) : resume.kind === 'review' ? '错题重做' : resume.kind === 'mock' ? '模考' : resume.title) : '';
   if (!blocks.length) headline = '今天是休息日';
-  else if (allSkipped) headline = night ? '今天先到这里，去睡吧' : '今天还一项都没做';
+  else if (allSkipped) headline = night ? '今天先到这里，去睡吧' : '今天先休息一下';
   else if (allResolved) headline = night ? '今天的任务都完成了，去睡吧' : '今天的任务都完成了';
   else if (waiting) headline = '模考交卷后再订正';
   else if (pastBed) headline = '到点了，今天先到这里';
@@ -190,15 +191,20 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
   const supply = useMemo(() => supplyNote(freshRemaining(state, bank)), [state, bank]);
 
   const showBanner = lateWindow && bedtime !== null && (!!heroBlock || !!resume || later.length > 0);
+  const heroShown = !!resume || !!heroBlock;
+  const bedLine = showBanner && heroShown && bedtime !== null && toBed !== null ? { clock: clockText(bedtime), toGo: toBed } : undefined;
+  // A finished or fully skipped day: the hero carries the summary, so the progress card steps aside.
+  const resolved = allResolved;
 
   let listSub: string;
   if (countable === 0) listSub = `${blocks.length} 项都已跳过`;
+  else if (allResolved) listSub = '展开看每一项的结果';
   else if (lateWindow && !pastBed && later.length) listSub = fits > 0 ? `今晚还够做 ${fits} 项，其余明天继续` : '今晚先收尾，其余明天继续';
   else if (pastBed && (upcoming.length || later.length)) listSub = '已过收工时间，剩下的明天继续';
   else listSub = `今天共 ${countable} 项 · 约 ${fmtMinutes(plannedMinutes)}`;
 
   return (
-    <div className={cx('page td', showBanner && 'has-bed')}>
+    <div className="page td">
       <header className="td-head">
         <div className="td-eyebrow">
           <Icon name="calendar" size={14} />
@@ -215,21 +221,23 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
         </div>
         <h1 className="td-title">{headline}</h1>
         <div className="td-phase">
-          <a className="td-phase-pill" href={href('/plan')}>
-            <Dot tone={PHASE_TONE[phase]} />
-            <span className="td-phase-name">{PHASE_INFO[phase].name}</span>
-            {phaseIdx >= 0 && (
-              <span className="td-phase-day num">
-                第 {phaseIdx + 1} / {phaseDays.length} 天
-              </span>
-            )}
-            <Icon name="right" size={13} className="td-phase-go" />
-          </a>
-          <span className="td-phase-desc">{PHASE_INFO[phase].desc}</span>
+          <Tooltip label={PHASE_INFO[phase].desc} side="bottom">
+            <a className="td-phase-pill" href={href('/plan')}>
+              <Dot tone="primary" />
+              <span className="td-phase-name">{PHASE_INFO[phase].name}</span>
+              {phaseIdx >= 0 && (
+                <span className="td-phase-day num">
+                  第 {phaseIdx + 1} / {phaseDays.length} 天
+                </span>
+              )}
+              <Icon name="right" size={13} className="td-phase-go" />
+            </a>
+          </Tooltip>
         </div>
       </header>
 
-      {showBanner && bedtime !== null && toBed !== null && (
+      {/* Without a hero task the bedtime line has no card to sit in: a slim notice instead. */}
+      {showBanner && !heroShown && bedtime !== null && toBed !== null && (
         <div className={cx('td-bed', pastBed && 'is-late')} role="status">
           <Icon name="moon" size={16} />
           {pastBed ? (
@@ -238,14 +246,13 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
             </span>
           ) : (
             <span>
-              <b className="num">{clockText(bedtime)}</b> 收工 · 还有 <b className="num">{toBed}</b> 分钟 ·{' '}
-              {fits === 0 ? '做不完一整项，收个尾就睡' : fits === 1 ? '够做第 1 项' : `够做 ${fits} 项`}
+              <b className="num">{clockText(bedtime)}</b> 收工 · 还有 <b className="num">{toBed}</b> 分钟 · 剩下的明天继续
             </span>
           )}
         </div>
       )}
 
-      <div className="td-layout">
+      <div className={cx('td-layout', resolved && 'is-resolved')}>
         <div className="td-main">
           {resume || heroBlock ? (
             <NextHero
@@ -257,12 +264,13 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
               index={stepNo - 1}
               total={countable}
               flow={flow}
+              bed={bedLine}
               onStart={start}
             />
           ) : allSkipped ? (
             <SkippedHero state={state} bank={bank} today={today} skipped={skippedIds} night={night} />
           ) : allResolved ? (
-            <DoneHero state={state} bank={bank} today={today} skipped={skippedIds} night={night} />
+            <DoneHero state={state} bank={bank} today={today} skipped={skippedIds} done={doneCount} night={night} />
           ) : !blocks.length ? (
             <RestHero state={state} bank={bank} today={today} onAdjust={() => setDurationOpen(true)} night={night} />
           ) : (
@@ -281,18 +289,20 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
               finished={finished}
               title={upcoming.length || later.length ? '接下来' : '今天的任务'}
               sub={listSub}
+              bare={allResolved}
               onStart={start}
               actions={
-                <>
-                  <Button size="sm" variant="ghost" icon="clock" onClick={() => setDurationOpen(true)}>
-                    调整时长
-                  </Button>
-                  {(!allResolved || allSkipped) && (
+                // A finished or fully skipped day needs no planning controls here.
+                !allResolved && (
+                  <>
+                    <Button size="sm" variant="ghost" icon="clock" onClick={() => setDurationOpen(true)}>
+                      调整时长
+                    </Button>
                     <Button size="sm" variant="ghost" icon="refresh" onClick={() => void regen()}>
                       换一套安排
                     </Button>
-                  )}
-                </>
+                  </>
+                )
               }
               footer={
                 supply && !allResolved ? (
@@ -304,22 +314,25 @@ function TodayMain({ state, bank, today, left }: Ctx & { left: number }) {
               }
             />
           )}
+
+          <DueCard state={state} today={today} bank={bank} />
         </div>
 
         <aside className="td-aside">
-          <ProgressCard
-            state={state}
-            today={today}
-            plan={plan}
-            done={doneCount}
-            total={countable || blocks.length}
-            started={!!heroSession && sessionAnswered(heroSession) > 0}
-            onAdjust={() => setDurationOpen(true)}
-          />
-          <SleepCard state={state} bank={bank} today={today} left={left} now={now} showCountdown={!showBanner} />
+          {!resolved && (
+            <ProgressCard
+              state={state}
+              today={today}
+              planned={plannedMinutes}
+              done={doneCount}
+              total={countable || blocks.length}
+              started={!!heroSession && sessionAnswered(heroSession) > 0}
+              onAdjust={() => setDurationOpen(true)}
+            />
+          )}
+          <SleepCard state={state} bank={bank} today={today} left={left} now={now} inHero={!!bedLine} />
           <div className="td-aside-rest">
             <ScoreCard state={state} bank={bank} />
-            <DueCard state={state} today={today} bank={bank} />
             <MockCard state={state} bank={bank} today={today} />
           </div>
         </aside>

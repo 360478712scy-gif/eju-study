@@ -1,5 +1,5 @@
 // #/mock — next scheduled mock, results history with trends, and every paper that can be mocked.
-import { useMemo, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import type { MockKind, MockResult, PracticeSession } from '@shared/types.ts';
 import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
 import { mockSchedule, PHASE_INFO, type ScheduledMock } from '@shared/planner.ts';
@@ -59,6 +59,15 @@ export function MockList() {
   }, [state.sessions, state.activeSessionId]);
 
   const results = useMemo(() => [...state.mocks].sort((a, b) => b.finishedAt.localeCompare(a.finishedAt)), [state.mocks]);
+  /** Paper libraries the learner unfolded ("其余 N 套"). */
+  const [more, setMore] = useState<Set<MockKind>>(() => new Set());
+  const toggleMore = (kind: MockKind) =>
+    setMore((prev) => {
+      const next = new Set(prev);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
   const latest = (kind: MockKind, session: string) => results.find((r) => r.kind === kind && r.session === session);
 
   const start = async (kind: MockKind, session: string) => {
@@ -144,7 +153,11 @@ export function MockList() {
 
   return (
     <div className="page mk-page">
-      <PageHeader title="模考" desc="按 EJU 真实时长整卷限时做，交卷后估分、逐题复盘。" />
+      <PageHeader
+        title="模考"
+        desc="按 EJU 真实时长整卷限时做，交卷后估分、逐题复盘。"
+        info="和考场一样：按考试时长倒计时，到点自动交卷；中途不显示对错和解析；交卷后估分，看逐题对错、考点和用时。"
+      />
 
       {unfinished && (
         <Card className="mk-resume">
@@ -181,7 +194,7 @@ export function MockList() {
                         <>
                           第一场安排在 {fmtDateShort(next.date)}。
                           <br />
-                          想先熟悉节奏，可以从下面挑一套没有计划的卷子。
+                          想先熟悉节奏，可以在下面展开「其余」，挑一套没排进计划的卷子。
                         </>
                       )
                     : '从下面挑一套卷子开始第一场模考。'
@@ -206,6 +219,68 @@ export function MockList() {
             const papers = bank.bundle.papers.filter((p) => p.mocks.includes(kind));
             if (!papers.length) return null;
             const info = KIND_INFO[kind];
+            // In view: an open attempt or a paper on the schedule; the rest fold into one "其余 N 套" row.
+            const keep = (session: string) => openByPaper.has(`${kind}:${session}`) || (phase === 'before' && slotOf.has(`${kind}:${session}`));
+            let lead = papers.filter((p) => keep(p.session));
+            if (!lead.length) lead = papers.slice(0, 3);
+            const rest = papers.filter((p) => !lead.includes(p));
+            const expanded = more.has(kind);
+            const row = (p: (typeof papers)[number]) => {
+              const done = latest(kind, p.session);
+              const open = openByPaper.get(`${kind}:${p.session}`);
+              const facts = paperFacts(state, bank, kind, p.session, { open, result: done });
+              const slot = phase === 'before' ? slotOf.get(`${kind}:${p.session}`) : undefined;
+              const seen = facts.items.filter((it) => (state.progress[it.id]?.attempts ?? 0) > 0).length;
+              const go = open ? () => navigate('/session/' + open.id) : done ? () => navigate('/mock/' + done.id) : () => void start(kind, p.session);
+              return (
+                <ListRow
+                  key={p.session}
+                  className="mk-paper"
+                  onClick={go}
+                  current={!!open}
+                  title={
+                    <span className="mk-paper-title">
+                      {p.label}
+                      {done ? (
+                        <Badge tone="success" icon="check" className="num">
+                          已完成 · {done.estimate}
+                        </Badge>
+                      ) : open ? (
+                        <Badge tone="warning" icon="clock">
+                          未交卷
+                        </Badge>
+                      ) : slot ? (
+                        <Chip icon="calendar">计划 {fmtDateShort(slot.date)}</Chip>
+                      ) : null}
+                    </span>
+                  }
+                  meta={
+                    <span className="num">
+                      {paperMeta(facts)}
+                      {open ? (
+                        <span> · 已用 {fmtClock(open.elapsedSec)}</span>
+                      ) : (
+                        !done && seen > 0 && <span> · 已练过 {seen} 题</span>
+                      )}
+                    </span>
+                  }
+                  trail={
+                    open ? (
+                      <Button variant="secondary" size="sm" iconRight="arrowRight" onClick={go}>
+                        继续作答
+                      </Button>
+                    ) : undefined
+                  }
+                  hoverAction={
+                    open ? undefined : (
+                      <Button variant="ghost" size="sm" iconRight={done ? 'right' : 'arrowRight'} onClick={go} tabIndex={-1}>
+                        {done ? '复盘' : '开始'}
+                      </Button>
+                    )
+                  }
+                />
+              );
+            };
             return (
               <Card key={kind} className="mk-kind" padding={false}>
                 <header className="mk-kind-head">
@@ -216,63 +291,15 @@ export function MockList() {
                   </div>
                 </header>
                 <List className="mk-papers">
-                  {papers.map((p) => {
-                    const done = latest(kind, p.session);
-                    const open = openByPaper.get(`${kind}:${p.session}`);
-                    const facts = paperFacts(state, bank, kind, p.session, { open, result: done });
-                    const slot = phase === 'before' ? slotOf.get(`${kind}:${p.session}`) : undefined;
-                    const seen = facts.items.filter((it) => (state.progress[it.id]?.attempts ?? 0) > 0).length;
-                    const go = open ? () => navigate('/session/' + open.id) : done ? () => navigate('/mock/' + done.id) : () => void start(kind, p.session);
-                    return (
-                      <ListRow
-                        key={p.session}
-                        className="mk-paper"
-                        onClick={go}
-                        current={!!open}
-                        title={
-                          <span className="mk-paper-title">
-                            {p.label}
-                            {done ? (
-                              <Badge tone="success" icon="check" className="num">
-                                已完成 · {done.estimate}
-                              </Badge>
-                            ) : open ? (
-                              <Badge tone="warning" icon="clock">
-                                未交卷
-                              </Badge>
-                            ) : slot ? (
-                              <Chip icon="calendar">计划 {fmtDateShort(slot.date)}</Chip>
-                            ) : null}
-                          </span>
-                        }
-                        meta={
-                          <span className="num">
-                            {paperMeta(facts)}
-                            {open ? (
-                              <span> · 已用 {fmtClock(open.elapsedSec)}</span>
-                            ) : (
-                              !done && seen > 0 && <span> · 已练过 {seen} 题</span>
-                            )}
-                          </span>
-                        }
-                        trail={
-                          open ? (
-                            <Button variant="secondary" size="sm" iconRight="arrowRight" onClick={go}>
-                              继续作答
-                            </Button>
-                          ) : undefined
-                        }
-                        hoverAction={
-                          open ? undefined : (
-                            <Button variant="ghost" size="sm" iconRight={done ? 'right' : 'arrowRight'} onClick={go} tabIndex={-1}>
-                              {done ? '复盘' : '开始'}
-                            </Button>
-                          )
-                        }
-                      />
-                    );
-                  })}
+                  {lead.map(row)}
+                  {expanded && rest.map(row)}
                 </List>
+                {rest.length > 0 && (
+                  <button type="button" className="mk-more" aria-expanded={expanded} onClick={() => toggleMore(kind)}>
+                    {expanded ? '收起' : `其余 ${rest.length} 套`}
+                    <Icon name={expanded ? 'up' : 'down'} size={14} />
+                  </button>
+                )}
               </Card>
             );
           })}
@@ -310,7 +337,7 @@ function NextMock({
   const lead = next?.parts.find((p) => !p.done);
   return (
     <Card variant="hero" className="mk-hero">
-      <div className={cx('mk-hero-top', phase === 'over' && 'is-single')}>
+      <div className={cx('mk-hero-top', phase !== 'day' && 'is-single')}>
         <div className="mk-hero-main">
           {phase === 'day' ? (
             <>
@@ -379,7 +406,12 @@ function NextMock({
                           继续作答
                         </Button>
                       ) : (
-                        <Button variant={filled ? 'primary' : isToday ? 'secondary' : 'ghost'} size="sm" onClick={() => onStart(p.kind, p.session)}>
+                        <Button
+                          variant={filled ? 'primary' : 'secondary'}
+                          size="sm"
+                          iconRight={isToday ? undefined : 'arrowRight'}
+                          onClick={() => onStart(p.kind, p.session)}
+                        >
                           {isToday ? '开始' : '提前做'}
                         </Button>
                       )}
@@ -399,20 +431,14 @@ function NextMock({
             </>
           )}
         </div>
-        {phase === 'day' ? (
+        {phase === 'day' && (
           <ul className="mk-rules">
             {times.split(' · ').map((t) => {
               const [name, ...rest] = t.trim().split(' ');
               return <Rule key={t} icon="clock" title={name} text={<span className="num">{rest.join(' ')}</span>} />;
             })}
           </ul>
-        ) : phase === 'before' ? (
-          <ul className="mk-rules">
-            <Rule icon="clock" title="限时" text="按考试时长倒计时，到点自动交卷" />
-            <Rule icon="eyeOff" title="中途不看解析" text="和考场一样，做完整卷再批改" />
-            <Rule icon="chart" title="交卷后估分" text="估分、逐题对错、考点与用时分析" />
-          </ul>
-        ) : null}
+        )}
       </div>
       {phase === 'before' && schedule.length > 0 && (
         <ol className="mk-timeline">
@@ -530,7 +556,8 @@ function History({ results, schedule, phase, today }: { results: MockResult[]; s
         })}
       </div>
 
-      <MockTable results={results} />
+      {/* With one result per kind the cards above already say everything; the table starts with a second one. */}
+      {results.length > kinds.length && <MockTable results={results} />}
     </div>
   );
 }

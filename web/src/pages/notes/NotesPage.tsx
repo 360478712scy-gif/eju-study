@@ -1,7 +1,8 @@
 // 考点笔记: every taxonomy topic with mastery and note status; a topic page with the note,
 // the learner's numbers on it, its real exam items and a one-click drill.
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
-import type { AppState, Item, KeyTerm, Subject, TaxonomyTopic } from '@shared/types.ts';
+import type { AppState, Item, ItemProgress, KeyTerm, Subject, TaxonomyTopic } from '@shared/types.ts';
+import { isDue } from '@shared/srs.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { topicStats, type TopicStat } from '@shared/stats.ts';
 import { shortTopic } from '@shared/planner.ts';
@@ -12,7 +13,6 @@ import { href, navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.ts';
 import {
   Button,
-  Callout,
   Empty,
   IconTile,
   isModalOpen,
@@ -24,16 +24,17 @@ import {
   SearchField,
   Segmented,
   StatTile,
+  StatusIcon,
   SubjectTag,
   Tooltip,
   useConfirm,
+  type ItemStatus,
   type Tone,
 } from '../../components/ui.tsx';
 import { Icon, type IconName } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { ItemPreview } from '../mistakes/ItemPreview.tsx';
-import { ItemMark } from '../mistakes/bits.tsx';
-import { SUBJECT_ORDER, launch, sourceLabel } from '../mistakes/helpers.ts';
+import { SUBJECT_ORDER, fmtMD, launch, sourceLabel } from '../mistakes/helpers.ts';
 import { drillTitle, pickDrill, reservedFor, reservedMap } from '../practice/practiceData.ts';
 import { BAND_TEXT, BAND_TONE, masteryBand, targetRatio, type Band } from '../stats/model.ts';
 import { slashFractions } from './fractions.ts';
@@ -45,12 +46,19 @@ export function NotesPage({ topic }: { topic?: string }) {
   return topic ? <TopicView key={topic} topic={topic} /> : <NotesIndex />;
 }
 
-/** Small mastery bar (the one mastery scale) with its percentage; "未练" when never tried. */
+/** Small mastery bar (the one mastery scale) with its percentage; an empty dashed track when never tried. */
 function MasteryMini({ stat, band }: { stat: TopicStat | undefined; band: Band }) {
   const att = stat?.attempts ?? 0;
-  if (!att) return <span className="nt-mini is-none">未练</span>;
+  if (!att) {
+    return (
+      <span className="nt-mini is-none" role="img" aria-label="还没练">
+        <span className="nt-mini-track" />
+        <span className="nt-mini-val" />
+      </span>
+    );
+  }
   return (
-    <span className={cx('nt-mini', `tone-${BAND_TONE[band]}`)}>
+    <span className={cx('nt-mini', `tone-${BAND_TONE[band]}`)} role="img" aria-label={`掌握 ${pct(stat?.mastery)}`}>
       <span className="nt-mini-track">
         <i style={{ width: `${Math.max(0, Math.min(1, stat?.mastery ?? 0)) * 100}%` }} />
       </span>
@@ -59,13 +67,8 @@ function MasteryMini({ stat, band }: { stat: TopicStat | undefined; band: Band }
   );
 }
 
-function HotDot() {
-  return (
-    <Tooltip label="高频考点">
-      <span className="nt-hot" role="img" aria-label="高频考点" />
-    </Tooltip>
-  );
-}
+/** Exam weight 4–5 of 5: said in words, so it needs no legend. */
+const HOT_WEIGHT = 4;
 
 // ───────────────────────── Index ─────────────────────────
 
@@ -202,18 +205,20 @@ function UnitList({ entries, bank }: { entries: Entry[]; bank: BankIndex }) {
     <div className="nt-subjects">
       {bySubject.map(({ s, list, units }) => {
         const practised = list.filter((e) => e.stat && e.stat.attempts > 0).length;
+        const weak = list.filter((e) => e.band === 'weak').length;
         return (
-          <section key={s} className="nt-subject">
+          <section key={s} className="card nt-subject">
             <header className="nt-subject-head">
               <SubjectTag subject={s} />
               <Meta>
                 <span>{list.length} 个考点</span>
                 <span>练过 {practised} 个</span>
+                {weak > 0 && <span>薄弱 {weak} 个</span>}
               </Meta>
             </header>
             <div className="nt-units">
               {units.map((u) => (
-                <div key={u.id} className="card nt-unit">
+                <div key={u.id} className="nt-unit">
                   <div className="t-eyebrow nt-unit-name">{u.name}</div>
                   <div className="nt-rows">
                     {u.list.map((e) => (
@@ -231,15 +236,58 @@ function UnitList({ entries, bank }: { entries: Entry[]; bank: BankIndex }) {
 }
 
 function WeakList({ entries }: { entries: Entry[] }) {
+  const [restOpen, setRestOpen] = useState(false);
   const sorted = [...entries].sort((a, b) => a.priority - b.priority || b.info.weight - a.info.weight || b.items - a.items);
+  const below = sorted.filter((e) => e.band === 'weak' || e.band === 'near');
+  const fresh = sorted.filter((e) => e.band === 'none' && e.items > 0);
+  const rest = sorted.filter((e) => e.band === 'good' || (e.band === 'none' && e.items === 0));
+  const good = rest.filter((e) => e.band === 'good').length;
   return (
     <div className="nt-weak">
-      <p className="nt-weak-hint">按「离目标多远 × 考频」排序；没练过但有真题的考点排在已达标的前面。</p>
-      <div className="nt-grid">
-        {sorted.map((e) => (
-          <TopicCard key={e.info.id} e={e} />
-        ))}
-      </div>
+      {below.length > 0 && (
+        <section className="nt-wgroup">
+          <h2 className="nt-wgroup-title">
+            离目标最远<span className="num">{below.length}</span>
+            <span className="nt-wgroup-desc">按差距 × 考频排序</span>
+          </h2>
+          <div className="nt-grid">
+            {below.map((e) => (
+              <TopicCard key={e.info.id} e={e} />
+            ))}
+          </div>
+        </section>
+      )}
+      {fresh.length > 0 && (
+        <section className="nt-wgroup">
+          <h2 className="nt-wgroup-title">
+            还没练过<span className="num">{fresh.length}</span>
+            <span className="nt-wgroup-desc">都有真题，考频高的在前</span>
+          </h2>
+          <div className="nt-grid">
+            {fresh.map((e) => (
+              <TopicCard key={e.info.id} e={e} />
+            ))}
+          </div>
+        </section>
+      )}
+      {rest.length > 0 && (
+        <section className="nt-wgroup">
+          <button type="button" className={cx('nt-rest-toggle', restOpen && 'is-open')} aria-expanded={restOpen} onClick={() => setRestOpen(!restOpen)}>
+            <span className="nt-wgroup-title">
+              {good > 0 && rest.length > good ? '已达标和暂无真题' : good > 0 ? '已达标' : '暂无真题'}
+              <span className="num">{rest.length}</span>
+            </span>
+            <Icon name="down" size={16} className="nt-rest-chev" />
+          </button>
+          {restOpen && (
+            <div className="nt-grid">
+              {rest.map((e) => (
+                <TopicCard key={e.info.id} e={e} />
+              ))}
+            </div>
+          )}
+        </section>
+      )}
     </div>
   );
 }
@@ -248,13 +296,11 @@ function TopicRow({ e }: { e: Entry }) {
   return (
     <a className={cx('nt-row', !e.items && !e.hasNote && 'is-thin')} href={href('/notes/' + e.info.id)}>
       <span className="nt-row-main">
-        <span className="nt-row-name">
-          {e.info.weight >= 4 && <HotDot />}
-          <span>{e.info.name}</span>
-        </span>
+        <span className="nt-row-name">{e.info.name}</span>
         <span className="nt-row-sub">
           {e.info.ja && <span lang="ja">{e.info.ja}</span>}
           <span>{e.items ? `${e.items} 题` : '暂无真题'}</span>
+          {e.info.weight >= HOT_WEIGHT && <span className="nt-hot">高频</span>}
           {!e.hasNote && <span>笔记待补</span>}
         </span>
       </span>
@@ -265,11 +311,12 @@ function TopicRow({ e }: { e: Entry }) {
 
 function TopicCard({ e }: { e: Entry }) {
   const att = e.stat?.attempts ?? 0;
+  const m = Math.max(0, Math.min(1, e.stat?.mastery ?? 0));
   return (
-    <a className={cx('card card-interactive nt-card', !e.items && !e.hasNote && 'is-thin')} href={href('/notes/' + e.info.id)}>
+    <a className={cx('card card-interactive nt-card', `band-${e.band}`, !e.items && !e.hasNote && 'is-thin')} href={href('/notes/' + e.info.id)}>
       <div className="nt-card-top">
         <SubjectTag subject={e.info.subject} size="sm" />
-        {e.info.weight >= 4 && <HotDot />}
+        {e.info.weight >= HOT_WEIGHT && <span className="nt-hot">高频</span>}
         {att > 0 && <span className={cx('nt-band', 'nt-card-band', `is-${e.band}`)}>{BAND_TEXT[e.band]}</span>}
       </div>
       <div className="nt-card-name">{e.info.name}</div>
@@ -279,11 +326,16 @@ function TopicCard({ e }: { e: Entry }) {
         </div>
       )}
       <div className="nt-card-bottom">
-        <MasteryMini stat={e.stat} band={e.band} />
-        <Meta className="nt-card-meta">
-          <span>{e.items ? `${e.items} 题` : '暂无真题'}</span>
-          {att > 0 && <span>做过 {att} 次</span>}
-        </Meta>
+        <span className="nt-card-bar" aria-hidden>
+          {att > 0 && <i style={{ width: `${m * 100}%` }} />}
+        </span>
+        <div className="nt-card-foot">
+          <Meta className="nt-card-meta">
+            <span>{e.items ? `${e.items} 题` : '暂无真题'}</span>
+            {att > 0 && <span>做过 {att} 次</span>}
+          </Meta>
+          {att > 0 && <span className={cx('nt-card-val num', `is-${e.band}`)}>{pct(m)}</span>}
+        </div>
       </div>
     </a>
   );
@@ -329,6 +381,9 @@ function TopicView({ topic }: { topic: string }) {
   }
 
   const unseen = items.filter((it) => !state.progress[it.id]?.attempts).length;
+  // The list leads with what needs the learner: due re-tests, then last wrong, then not done, then right.
+  const rank: Record<ItemStatus, number> = { due: 0, wrong: 1, partial: 1, todo: 2, skipped: 2, right: 3 };
+  const ordered = [...items].sort((a, b) => rank[itemStatus(state.progress[a.id], today).status] - rank[itemStatus(state.progress[b.id], today).status]);
   const drillCount = pick.ids.length;
   const startDrill = async () => {
     if (!drillCount) return;
@@ -369,7 +424,7 @@ function TopicView({ topic }: { topic: string }) {
         actions={
           drillCount > 0 ? (
             <Tooltip label={drillHint}>
-              <Button variant={inBlock ? 'secondary' : 'primary'} size="lg" icon={pick.usesReserved ? 'flag' : 'play'} onClick={() => void startDrill()}>
+              <Button variant={inBlock ? 'secondary' : 'primary'} icon={pick.usesReserved ? 'flag' : 'play'} onClick={() => void startDrill()}>
                 练这个考点 · {drillCount} 题
               </Button>
             </Tooltip>
@@ -396,34 +451,11 @@ function TopicView({ topic }: { topic: string }) {
 
         <aside className="nt-side">
           {items.length > 0 && <TopicStats info={info} stat={stat} items={items} state={state} />}
-          {items.length > 0 && (
-            <section className="card card-flush nt-items">
-              <header className="nt-items-head">
-                <div>
-                  <h3 className="card-title">真题</h3>
-                  <p className="card-sub">
-                    {items.length} 道 · 没做过 {unseen} 道
-                  </p>
-                </div>
-                {drillCount > 0 && (
-                  <Tooltip label={drillHint}>
-                    <Button size="sm" variant="ghost" icon={pick.usesReserved ? 'flag' : 'play'} onClick={() => void startDrill()}>
-                      练 {drillCount} 题
-                    </Button>
-                  </Tooltip>
-                )}
-              </header>
-              <List className="nt-item-list">
-                {items.map((it) => (
-                  <ItemRow key={it.id} item={it} state={state} onOpen={setSelected} />
-                ))}
-              </List>
-            </section>
-          )}
+          {items.length > 0 && <ItemsCard items={ordered} state={state} today={today} unseen={unseen} drillCount={drillCount} drillHint={drillHint} reserved={pick.usesReserved} onDrill={() => void startDrill()} onOpen={setSelected} />}
           <Siblings info={info} state={state} bank={bank} />
         </aside>
       </div>
-      <ItemPreview itemId={selected} ids={items.map((it) => it.id)} onSelect={setSelected} />
+      <ItemPreview itemId={selected} ids={ordered.map((it) => it.id)} onSelect={setSelected} />
       {confirm.node}
     </div>
   );
@@ -612,15 +644,103 @@ function TopicStats({ info, stat, items, state }: { info: TopicInfo; stat: Topic
   );
 }
 
-function ItemRow({ item, state, onOpen }: { item: Item; state: AppState; onOpen: (id: string) => void }) {
-  const p = state.progress[item.id];
+/** How the learner stands on one item, in the list's one status mark. */
+function itemStatus(p: ItemProgress | undefined, today: string): { status: ItemStatus; label: string } {
+  if (!p || p.attempts === 0) return { status: 'todo', label: '还没做过' };
+  if (p.inMistakes && isDue(p, today)) return { status: 'due', label: '错题今天到期' };
+  return p.lastCorrect ? { status: 'right', label: '上次答对' } : { status: 'wrong', label: '上次答错' };
+}
+
+const ITEMS_SHOWN = 8;
+
+/** Real exam items of a topic: a status mark per item, the first few, the rest behind an expander. */
+function ItemsCard({
+  items,
+  state,
+  today,
+  unseen,
+  drillCount,
+  drillHint,
+  reserved,
+  onDrill,
+  onOpen,
+}: {
+  items: Item[];
+  state: AppState;
+  today: string;
+  unseen: number;
+  drillCount: number;
+  drillHint: string;
+  reserved: boolean;
+  onDrill: () => void;
+  onOpen: (id: string) => void;
+}) {
+  const [all, setAll] = useState(false);
+  const shown = all ? items : items.slice(0, ITEMS_SHOWN);
+  const counts = useMemo(() => {
+    const c = { right: 0, wrong: 0, due: 0 };
+    for (const it of items) {
+      const st = itemStatus(state.progress[it.id], today).status;
+      if (st === 'right' || st === 'wrong' || st === 'due') c[st] += 1;
+    }
+    return c;
+  }, [items, state.progress, today]);
+  // Study date of the last attempt per item (the study day starts at 04:00, so not lastAt's UTC date).
+  const lastDate = useMemo(() => {
+    const ids = new Set(items.map((it) => it.id));
+    const m = new Map<string, string>();
+    for (const a of state.attempts) if (ids.has(a.itemId)) m.set(a.itemId, a.date);
+    return m;
+  }, [items, state.attempts]);
+  return (
+    <section className="card card-flush nt-items">
+      <header className="nt-items-head">
+        <div>
+          <h3 className="card-title">真题</h3>
+          <Meta className="card-sub">
+            <span>{items.length} 道</span>
+            {unseen > 0 && <span>没做过 {unseen}</span>}
+            {counts.right > 0 && <span>对 {counts.right}</span>}
+            {counts.wrong + counts.due > 0 && <span>错 {counts.wrong + counts.due}</span>}
+          </Meta>
+        </div>
+        {drillCount > 0 && (
+          <Tooltip label={drillHint}>
+            <Button size="sm" variant="ghost" icon={reserved ? 'flag' : 'play'} onClick={onDrill}>
+              练 {drillCount} 题
+            </Button>
+          </Tooltip>
+        )}
+      </header>
+      <List className="nt-item-list">
+        {shown.map((it) => (
+          <ItemRow key={it.id} item={it} p={state.progress[it.id]} last={lastDate.get(it.id)} today={today} onOpen={onOpen} />
+        ))}
+      </List>
+      {items.length > ITEMS_SHOWN && (
+        <button type="button" className="nt-more" aria-expanded={all} onClick={() => setAll(!all)}>
+          {all ? '收起' : `显示全部 ${items.length} 道`}
+          <Icon name={all ? 'up' : 'down'} size={14} />
+        </button>
+      )}
+    </section>
+  );
+}
+
+function ItemRow({ item, p, last, today, onOpen }: { item: Item; p: ItemProgress | undefined; last?: string; today: string; onOpen: (id: string) => void }) {
+  const st = itemStatus(p, today);
   return (
     <ListRow
       className="nt-item"
       onClick={() => onOpen(item.id)}
-      lead={<ItemMark p={p} />}
+      lead={<StatusIcon status={st.status} size={18} label={st.label} />}
       title={sourceLabel(item)}
-      trail={p?.starred ? <Icon name="star" size={13} className="nt-star" /> : undefined}
+      trail={
+        <>
+          {p?.starred && <Icon name="star" size={13} className="nt-star" />}
+          {last && <span className="nt-item-date num">{fmtMD(last)}</span>}
+        </>
+      }
     />
   );
 }
@@ -685,7 +805,12 @@ function Traps({ items }: { items: Item[] }) {
   const traps = uniq(items.flatMap((it) => it.explanation.traps || [])).slice(0, 8);
   if (!traps.length) return null;
   return (
-    <Callout tone="warning" icon="alert" title="真题里的易错点" className="nt-traps">
+    <section className="card nt-traps">
+      <h3 className="nt-sec-title">
+        <Icon name="alert" size={17} className="nt-sec-icon tone-warning" />
+        真题里的易错点
+        <span className="nt-sec-count num">{traps.length}</span>
+      </h3>
       <ul className="nt-list">
         {traps.map((t, i) => (
           <li key={i}>
@@ -693,7 +818,7 @@ function Traps({ items }: { items: Item[] }) {
           </li>
         ))}
       </ul>
-    </Callout>
+    </section>
   );
 }
 

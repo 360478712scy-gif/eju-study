@@ -25,13 +25,20 @@
 .vc-audio-lg.is-round { width: 40px; padding: 0; }
 .vc-audio.is-playing { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 
-/* Leitner meter: filled steps in the skill colour, green once 已稳, amber first step after a miss. */
+/* Mastery colours of the vocab pages. Skills carry no colour (label + icon); progress is neutral
+   while learning, green once 已记住, amber when the last answer was wrong. */
+.vc-page, .vc-focus, .vc-detail {
+  --vc-learning: color-mix(in srgb, var(--text-3) 50%, var(--track));
+  --vc-fresh: var(--track);
+}
+
+/* Leitner meter: five steps, filled neutral while learning, green once 已记住, amber first step after a miss. */
 .vc-meter { display: inline-flex; align-items: center; gap: 7px; }
 .vc-meter-label { font-size: var(--fs-xs); color: var(--text-3); font-weight: var(--fw-medium); }
 .vc-meter-bars { display: inline-flex; gap: 3px; }
 .vc-meter-bars i { display: block; width: 10px; height: 6px; border-radius: 3px; background: var(--track); }
-.vc-meter.is-grow i.on { background: var(--tone); }
-.vc-meter.is-solid i.on { background: var(--success); }
+.vc-meter.is-grow i.on { background: var(--vc-learning); }
+.vc-meter.is-known i.on { background: var(--success); }
 .vc-meter.is-weak i:first-child { background: var(--warning); }
 
 .vc-mark { background: transparent; color: inherit; font-weight: var(--fw-semibold); box-shadow: inset 0 -0.4em 0 color-mix(in srgb, var(--japanese) 22%, transparent); border-radius: 2px; }
@@ -54,44 +61,47 @@
 .vc-example-zh { color: var(--text-2); font-size: var(--fs-sm); }
 
 /* ── Overview ── */
+/* 每天新词 on the title row: a quiet label, the shared select, the rule in an (i). */
+.vc-newwords { display: flex; align-items: center; gap: 8px; }
+.vc-newwords-label { font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--text-3); white-space: nowrap; }
+.vc-newwords-select { min-width: 156px; }
+
 .vc-hero { display: grid; grid-template-columns: minmax(0, 1fr) 296px; padding: 0; overflow: hidden; }
-.vc-hero-main { display: flex; flex-direction: column; padding: 24px 28px 22px; min-width: 0; }
+.vc-hero-main { display: flex; flex-direction: column; justify-content: center; padding: 28px 28px 28px; min-width: 0; }
 .vc-hero-head { display: flex; align-items: center; gap: 10px; min-height: 22px; }
 .vc-hero-title { margin-top: 6px; font-size: var(--fs-2xl); font-weight: var(--fw-semibold); letter-spacing: -0.015em; line-height: var(--lh-head); }
 .vc-hero-title-sm { font-size: var(--fs-xl); }
 .vc-hero-dot { margin: 0 10px; color: var(--text-3); font-weight: var(--fw-regular); }
-.vc-hero-lead { display: flex; align-items: center; gap: 2px; margin-top: 6px; color: var(--text-2); font-size: var(--fs-ui); }
-.vc-hero-actions { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
-.vc-hero-target { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--divider); }
-.vc-hero-target-label { font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--text-2); }
-.vc-hero-note { font-size: var(--fs-xs); color: var(--text-3); }
+.vc-hero-lead { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; margin-top: 6px; color: var(--text-2); font-size: var(--fs-ui); }
+.vc-hero-actions { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
 
-.vc-hero-side { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 22px 24px; border-left: 1px solid var(--divider); min-width: 0; }
-.vc-side-top { display: flex; align-items: center; gap: 16px; }
-.vc-ring-num { font-size: var(--fs-lg); font-weight: var(--fw-semibold); line-height: 1; }
-.vc-ring-num .num-unit { font-size: var(--fs-xs); }
-.vc-side-head { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.vc-side-big { display: flex; align-items: baseline; gap: 4px; line-height: 1.15; }
+/* Side: 学过 x / total, one stacked bar (已记住 · 在学 · 未学) and its legend. No ring: one number, one bar. */
+.vc-hero-side { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 24px; border-left: 1px solid var(--divider); min-width: 0; }
+.vc-side-head { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.vc-side-big { display: flex; align-items: baseline; gap: 6px; line-height: 1.1; }
 .vc-side-big > .num:first-child { font-size: var(--fs-2xl); font-weight: var(--fw-bold); letter-spacing: -0.02em; }
-.vc-side-of { color: var(--text-3); font-size: var(--fs-sm); }
-.vc-side-today { padding-top: 12px; border-top: 1px solid var(--divider); font-size: var(--fs-sm); color: var(--text-2); }
-.vc-stack { display: flex; height: 8px; border-radius: var(--radius-pill); overflow: hidden; background: var(--track); }
+.vc-side-of { color: var(--text-3); font-size: var(--fs-ui); }
+.vc-stack { display: flex; height: 8px; border-radius: var(--radius-pill); overflow: hidden; background: var(--vc-fresh); }
 .vc-stack i { display: block; min-width: 3px; height: 100%; }
 .vc-stack i + i { box-shadow: -1px 0 0 var(--bg-elev); }
-.vc-stack .is-solid { background: var(--success); }
-.vc-stack .is-learning { background: var(--japanese); }
-.vc-stack .is-new { background: var(--track); }
-.vc-side-legend { gap: 4px 14px; }
-.vc-side-legend .tone-neutral .legend-mark { background: var(--border-strong); }
-.vc-side-note { font-size: var(--fs-xs); color: var(--text-3); line-height: 1.5; }
+.vc-stack .is-known { background: var(--success); }
+.vc-stack .is-learning { background: var(--vc-learning); }
+.vc-stack .is-new { background: var(--vc-fresh); }
+.vc-side-legend { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 6px; font-size: var(--fs-sm); }
+.vc-side-legend .legend-item { gap: 8px; }
+.vc-side-legend .legend-value { margin-left: auto; }
+.vc-side-legend .legend-item:nth-child(3) .legend-mark { box-shadow: inset 0 0 0 1px var(--border-strong); }
+.vc-side-note { padding-top: 12px; border-top: 1px solid var(--divider); font-size: var(--fs-sm); color: var(--text-3); line-height: 1.5; }
 
 /* ── Word list ── */
 .vc-list-tools { display: flex; gap: 10px; padding: 16px 18px 0; }
 .vc-search { flex: 1; }
 .vc-topic { flex: none; min-width: 168px; max-width: 240px; }
 .vc-topic select { text-overflow: ellipsis; }
-.vc-list-filters { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; padding: 12px 18px 14px; }
+.vc-list-filters { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; padding: 12px 18px 12px; }
 .vc-list-unit { font-size: var(--fs-xs); color: var(--text-3); }
+/* Legend marks drawn like one meter step. */
+.vc-list-legend .legend-mark.is-square { width: 10px; height: 6px; border-radius: 3px; }
 
 .vc-list { display: flex; flex-direction: column; }
 .vc-row {
@@ -105,14 +115,18 @@
 }
 .vc-row:hover { background: var(--bg-hover); }
 .vc-row:focus-visible { box-shadow: inset var(--focus-ring); }
-.vc-row-head { cursor: default; padding-top: 8px; padding-bottom: 8px; background: var(--bg-sunken); border-top-color: var(--border); color: var(--text-3); font-size: var(--fs-xs); font-weight: var(--fw-medium); }
-.vc-row-head:hover { background: var(--bg-sunken); }
-.vc-row-head .vc-col-skill { display: inline-flex; align-items: center; gap: 6px; }
+/* Column labels: flat like the rows, only a hairline above (no sunken band). */
+.vc-row-head { cursor: default; padding-top: 8px; padding-bottom: 8px; color: var(--text-3); font-size: var(--fs-xs); font-weight: var(--fw-medium); }
+.vc-row-head:hover { background: transparent; }
 .vc-row-word { min-width: 0; font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vc-row-reading { color: var(--text-2); font-size: var(--fs-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vc-row-meaning { color: var(--text-2); font-size: var(--fs-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vc-row .vc-meter-label { display: none; }
 .vc-list-more { display: flex; justify-content: center; padding: 10px; border-top: 1px solid var(--divider); }
+.vc-list-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 12px 8px 20px; border-top: 1px solid var(--divider); }
+.vc-list-range { color: var(--text-3); font-size: var(--fs-sm); }
+.vc-pager { display: flex; align-items: center; gap: 2px; }
+.vc-pager-at { min-width: 64px; text-align: center; color: var(--text-2); font-size: var(--fs-sm); }
 
 /* ── Run and summary: full window like the question player (no sidebar) ── */
 .app:has(.vc-focus) { grid-template-columns: minmax(0, 1fr); }
@@ -263,25 +277,27 @@ body:has(.app .main .vc-focus) .toaster { left: 50%; max-width: calc(100vw - 32p
 .vc-foot-actions { display: flex; align-items: center; gap: 8px; }
 .vc-stage-foot .btn .kbd { margin-left: 8px; }
 
-/* ── Summary: the player's finish view (ring · eyebrow · title · stat row · CTAs) ── */
-.vc-summary { max-width: 880px; padding: 32px 32px 64px; display: flex; flex-direction: column; gap: 16px; animation: vc-in var(--dur-slow) var(--ease); }
-.vc-sum-hero { display: flex; align-items: center; gap: 36px; }
-.vc-sum-pct { line-height: 1; }
-.vc-sum-pct-unit { margin-left: 1px; font-size: 0.5em; color: var(--text-2); font-weight: var(--fw-semibold); letter-spacing: 0; }
-.vc-sum-pct-label { margin-top: 6px; font-size: var(--fs-xs); color: var(--text-3); font-weight: var(--fw-medium); }
-.vc-sum-main { flex: 1; min-width: 0; }
+/* ── Summary: eyebrow · headline · stat row · CTAs, then the words to look at again ── */
+.vc-summary { max-width: 840px; padding: 32px 32px 64px; display: flex; flex-direction: column; gap: 16px; animation: vc-in var(--dur-slow) var(--ease); }
+/* A short summary sits in the optical middle of the window instead of leaving it two-thirds empty. */
+.vc-summary.is-compact { margin-block: auto; }
+.vc-sum-hero { display: flex; flex-direction: column; }
 .vc-sum-eyebrow { display: flex; align-items: center; gap: 6px; color: var(--text-3); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
 .vc-sum-eyebrow.is-done { color: var(--success-text); }
-.vc-sum-title { margin-top: 6px; font-size: var(--fs-2xl); font-weight: var(--fw-semibold); letter-spacing: -0.015em; line-height: var(--lh-head); }
+.vc-sum-title { margin-top: 8px; font-size: var(--fs-2xl); font-weight: var(--fw-semibold); letter-spacing: -0.015em; line-height: var(--lh-head); }
 .vc-sum-sub { margin-top: 6px; color: var(--text-2); font-size: var(--fs-base); }
-.vc-sum-stats { display: flex; gap: 36px; margin-top: 20px; flex-wrap: wrap; }
-.vc-sum-stats .stat-tile-label { gap: 6px; }
-.vc-sum-cta { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+/* Four equal columns: a short run's two tiles keep their size instead of stretching. */
+.vc-sum-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+.vc-sum-stats .stat-tile.is-boxed { padding: 14px 16px; }
+.vc-sum-stats .stat-tile-sub { margin-top: 2px; }
+.vc-sum-cta { display: flex; align-items: center; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.vc-sum-next { margin-left: 6px; color: var(--text-3); font-size: var(--fs-sm); }
 .vc-sum-count { margin-left: 4px; color: var(--text-3); font-weight: var(--fw-medium); }
 .vc-watch .card-head { margin-bottom: 4px; }
 .vc-watch-word { display: block; width: 128px; font-size: var(--fs-lg); font-weight: var(--fw-semibold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.vc-watch-reading { color: var(--text); }
-.vc-watch-skills { font-size: var(--fs-xs); color: var(--text-3); }
+.vc-watch-title { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.vc-watch-reading { min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.vc-watch-skill { flex: none; }
 .vc-watch .vc-list-more { border-top: none; padding: 0 0 12px; }
 .vc-watch-empty { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px; color: var(--text-2); font-size: var(--fs-sm); }
 .vc-watch-empty svg { color: var(--success); }
@@ -297,6 +313,7 @@ body:has(.app .main .vc-focus) .toaster { left: 50%; max-width: calc(100vw - 32p
 .vc-detail-skill { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: var(--radius); background: var(--bg-sunken); }
 .vc-detail-skill-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .vc-detail-skill-name { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+.vc-detail-skill-name svg { color: var(--text-3); }
 .vc-detail-skill-sub { color: var(--text-3); font-size: var(--fs-xs); }
 .vc-due-text { color: var(--warning-text); font-weight: var(--fw-medium); }
 .vc-detail-h { margin-bottom: 4px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-2); }
@@ -315,7 +332,7 @@ body:has(.app .main .vc-focus) .toaster { left: 50%; max-width: calc(100vw - 32p
   .vc-meter-bars i { width: 8px; }
 }
 @media (max-width: 1000px) {
-  .vc-hero-main { padding: 22px 24px 20px; }
+  .vc-hero-main { padding: 24px; }
   .vc-row { grid-template-columns: minmax(96px, 120px) minmax(96px, 128px) minmax(0, 1fr) 64px 64px; }
   .vc-stage { padding: 20px 26px 0; }
   .vc-stage-foot { margin: 0 -26px; padding: 12px 26px 16px; }
@@ -324,8 +341,6 @@ body:has(.app .main .vc-focus) .toaster { left: 50%; max-width: calc(100vw - 32p
   .vc-word.is-long { font-size: var(--fs-3xl); }
   .vc-top { gap: 16px; }
   .vc-summary { padding: 24px 24px 56px; }
-  .vc-sum-hero { gap: 28px; }
-  .vc-sum-stats { gap: 28px; }
 }
 @media (max-height: 720px) {
   .vc-top { height: 52px; }

@@ -213,6 +213,9 @@ export function norm(s: string): string {
   return s.normalize('NFKC').toLowerCase();
 }
 
+/** Excerpt label of a match in the item's own topic name (the list shows the stem instead). */
+export const TOPIC_FIELD = '所属考点';
+
 interface Field {
   label: string;
   text: string;
@@ -229,7 +232,8 @@ function fields(bank: BankIndex, it: Item): Field[] {
     { label: '考点', text: [...(ex.keyPoints || []), ...(ex.traps || []), ex.shortcut || ''].join(' ／ ') },
     { label: '术语', text: (ex.terms || []).map((x) => `${x.ja} ${x.kana || ''} ${x.zh}`).join(' ／ ') },
     { label: '听力原文', text: it.transcript || '' },
-    { label: '考点', text: `${t?.name || ''} ${t?.ja || ''} ${t?.unitName || ''}` },
+    // The item's own topic: a list already shows it as the row title.
+    { label: TOPIC_FIELD, text: `${t?.name || ''} ${t?.ja || ''} ${t?.unitName || ''}` },
     { label: '出处', text: it.source.label },
   ];
 }
@@ -297,8 +301,26 @@ export function excerpt(bank: BankIndex, it: Item, terms: string[]): Excerpt | n
   return null;
 }
 
-/** A short markup snippet that tells items apart in a list (rendered inline, clamped). */
+/**
+ * One-line list snippets: inline fractions become "a/b" so a stacked fraction never makes one row
+ * taller than the next (FRONTEND: write inline fractions as a/b in running text).
+ */
+function flattenMath(s: string): string {
+  const wrap = (x: string) => (/^[\w.\\{}^]+$/.test(x.trim()) ? x.trim() : `(${x.trim()})`);
+  return s.replace(/\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}/g, (_, a: string, b: string) => `${wrap(a)}/${wrap(b)}`);
+}
+
+/** Paragraph markers that start most physics stems ("**B**　次の図のように…") say nothing in a list. */
+function stripMarker(s: string): string {
+  return s.replace(/^(\*\*)?([A-ZＡ-Ｚ]|[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]+)(\*\*)?[\s　]+/, '');
+}
+
+/** A short markup snippet that tells items apart in a list (rendered inline on one line). */
 export function snippet(it: Item): string {
+  return flattenMath(stripMarker(rawSnippet(it)));
+}
+
+function rawSnippet(it: Item): string {
   if (it.section === 'listening' && it.options?.length) return it.options.join(' ／ ');
   const paras = it.stem
     .split(/\n{2,}/)

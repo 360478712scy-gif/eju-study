@@ -5,9 +5,10 @@ import { VOCAB_MAX_BOX } from '@shared/srs.ts';
 import { daysBetween } from '@shared/dates.ts';
 import { useApp } from '../../lib/store.ts';
 import { cx, fmtDateShort } from '../../lib/format.ts';
-import { Badge, Callout, Dot, IconButton, Modal, StatusIcon } from '../../components/ui.tsx';
+import { Icon } from '../../components/Icon.tsx';
+import { Badge, Callout, IconButton, Modal, StatusIcon } from '../../components/ui.tsx';
 import { AudioButton, Highlighted, Meter } from './parts.tsx';
-import { CATEGORY_LABEL, noReadReason, SKILL_LABEL, SKILL_NAME, SKILL_TONE, gloss, splitMeaning, vocabGroup } from './run.ts';
+import { CATEGORY_LABEL, noReadReason, REMEMBERED_BOX, SKILL_ICON, SKILL_LABEL, SKILL_NAME, gloss, splitMeaning, vocabGroup } from './run.ts';
 
 function dueText(due: string, today: string): string {
   const d = daysBetween(today, due);
@@ -93,17 +94,17 @@ export function WordDetail({ vocabId, onClose }: { vocabId: string | null; onClo
                 <div key={skill} className="vc-detail-skill">
                   <div className="vc-detail-skill-head">
                     <span className="vc-detail-skill-name">
-                      <Dot tone={SKILL_TONE[skill]} size="sm" />
+                      <Icon name={SKILL_ICON[skill]} size={14} />
                       {SKILL_NAME[skill]}
                     </span>
-                    {!noRead && <Meter p={sp} skill={skill} />}
+                    {!noRead && <Meter p={sp} />}
                   </div>
                   <div className="vc-detail-skill-sub">
                     {noRead ? (
                       `${noRead}。`
                     ) : sp ? (
                       <>
-                        第 {sp.box}/{VOCAB_MAX_BOX} 级 · 练 {sp.seen} 次对 {sp.correct} 次 ·{' '}
+                        {sp.box >= REMEMBERED_BOX ? '已记住' : `第 ${sp.box}/${VOCAB_MAX_BOX} 级`} · 练 {sp.seen} 次对 {sp.correct} 次 ·{' '}
                         <span className={cx(sp.due <= today && 'vc-due-text')}>{dueText(sp.due, today)}</span>
                       </>
                     ) : (

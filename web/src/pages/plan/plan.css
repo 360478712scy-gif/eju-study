@@ -8,27 +8,28 @@
   font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: 1; white-space: nowrap;
 }
 
-/* Overview: stats, one cell per day, phase labels */
+/* Overview: stats, then one cell per day grouped by phase (a gap between phases, a label under each). */
 .plan-overview { padding: 20px 22px 18px; }
 .plan-ov-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-.plan-ov-track { display: grid; gap: 3px; height: 30px; margin-top: 40px; }
+.plan-ov-track { display: flex; gap: 10px; margin-top: 36px; }
+.plan-ov-group { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.plan-ov-cells { display: grid; gap: 3px; height: 28px; }
 .plan-ov-seg {
-  position: relative; display: block; overflow: visible;
-  border-radius: var(--radius-xs); background: var(--bg-sunken);
-  box-shadow: inset 0 -2px 0 var(--tone);
+  position: relative; display: flex; align-items: center; justify-content: center; overflow: visible;
+  border-radius: var(--radius-xs); background: var(--track); color: var(--text-3);
 }
 .plan-ov-seg.is-rest { background: repeating-linear-gradient(135deg, var(--track) 0 3px, transparent 3px 6px); }
+.plan-ov-seg.is-exam { background: transparent; box-shadow: inset 0 0 0 1px var(--border-strong); }
 .plan-ov-fill { position: absolute; left: 0; right: 0; bottom: 0; border-radius: var(--radius-xs); background: var(--primary); }
-.plan-ov-seg.is-today { box-shadow: inset 0 -2px 0 var(--tone), 0 0 0 1.5px var(--primary); }
+.plan-ov-seg.is-today { box-shadow: 0 0 0 1.5px var(--primary); }
 .plan-ov-today { position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%); }
-.plan-ov-labels { display: grid; gap: 3px; margin-top: 10px; }
 .plan-ov-label { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .plan-ov-name { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); font-size: var(--fs-xs); font-weight: var(--fw-medium); white-space: nowrap; }
-.plan-ov-flag { color: var(--danger); }
 .plan-ov-range { padding-left: 12px; color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.plan-ov-label.is-narrow { position: relative; height: 36px; }
-.plan-ov-label.is-narrow > * { position: absolute; right: 0; }
-.plan-ov-label.is-narrow .plan-ov-range { top: 18px; padding-left: 0; }
+/* The one-day exam group: its label hangs from the right edge. */
+.plan-ov-group.is-exam { position: relative; min-width: 24px; }
+.plan-ov-group.is-exam .plan-ov-label { position: absolute; right: 0; top: 36px; align-items: flex-end; }
+.plan-ov-group.is-exam .plan-ov-range { padding-left: 0; }
 
 /* Phases: neutral cards; the phase is a dot and a name */
 .plan-phases { display: flex; flex-direction: column; gap: var(--sp-4); margin-top: var(--sp-4); }
@@ -40,42 +41,42 @@
 .plan-phase-range { color: var(--text-3); font-size: var(--fs-sm); }
 .plan-phase-desc { margin-top: 4px; max-width: 760px; color: var(--text-2); font-size: var(--fs-sm); }
 
-.plan-days { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 8px; }
+/* Days: a week per row. Today and future days are buttons (outlined like any control); past days
+   are quiet text with a thin bar of the time studied. */
+.plan-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
 .plan-day {
   position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 2px; min-width: 0;
-  min-height: 56px; padding: 9px 12px 10px; border: none; border-radius: var(--radius);
-  background: var(--bg-sunken); color: var(--text); text-align: left; font: inherit;
-  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  min-height: 60px; padding: 9px 12px 10px; border: 1px solid transparent; border-radius: var(--radius);
+  background: transparent; color: var(--text); text-align: left; font: inherit;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-button.plan-day { cursor: pointer; }
-button.plan-day:hover { background: var(--bg-active); }
+button.plan-day { cursor: pointer; border-color: var(--border); background: var(--bg-elev); }
+button.plan-day:hover { border-color: var(--border-strong); background: var(--bg-hover); }
 button.plan-day:focus-visible { box-shadow: var(--focus-ring); }
 .plan-day-top { display: flex; align-items: center; gap: 5px; min-width: 0; min-height: 21px; }
 .plan-day-date { font-size: var(--fs-base); font-weight: var(--fw-semibold); line-height: 1.35; white-space: nowrap; }
 .plan-day-wd { color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; }
-.plan-day-left { margin-left: auto; color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; }
 .plan-day-top .plan-today { margin-left: auto; }
-.plan-day-sub { display: flex; align-items: center; min-width: 0; gap: 0 5px; color: var(--text-3); font-size: var(--fs-xs); line-height: 1.6; white-space: nowrap; overflow: hidden; }
-.plan-day-sub > * + *::before { content: "·"; margin-right: 5px; color: var(--border-strong); }
+.plan-day-sub { display: flex; align-items: baseline; min-width: 0; gap: 0 6px; color: var(--text-3); font-size: var(--fs-xs); line-height: 1.6; white-space: nowrap; overflow: hidden; }
 .plan-day-strong { color: var(--text-2); font-size: var(--fs-sm); }
+.plan-day-count { color: var(--text-3); }
 .plan-day-rest { display: inline-flex; align-items: center; gap: 4px; color: var(--text-3); font-size: var(--fs-sm); }
-.plan-day-mock { display: flex; align-items: center; gap: 5px; min-width: 0; margin-top: 2px; color: var(--text-2); font-size: var(--fs-xs); font-weight: var(--fw-medium); line-height: 1.5; }
+.plan-day-mock { display: flex; align-items: center; gap: 5px; min-width: 0; margin-top: 2px; color: var(--text); font-size: var(--fs-xs); font-weight: var(--fw-medium); line-height: 1.5; }
 .plan-day-mock span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .plan-day-mock svg { flex: none; color: var(--primary-text); }
+.plan-day-mock.is-done { color: var(--text-2); }
 .plan-day-mock.is-done svg { color: var(--success); }
 .plan-day-mock.is-missed { color: var(--text-3); }
 .plan-day-mock.is-missed svg { color: var(--text-3); }
 .plan-day-bar { position: absolute; left: 12px; right: 12px; bottom: 7px; height: 3px; border-radius: var(--radius-pill); background: var(--track); overflow: hidden; }
 .plan-day-bar span { display: block; height: 100%; border-radius: inherit; background: var(--primary); }
-.plan-day.is-past { padding-bottom: 16px; background: transparent; box-shadow: inset 0 0 0 1px var(--border); }
-.plan-day.is-past .plan-day-date { color: var(--text-2); }
-.plan-day.is-past .plan-day-strong { color: var(--text); font-weight: var(--fw-medium); }
-.plan-day.is-today { background: color-mix(in srgb, var(--primary-soft) 70%, transparent); box-shadow: inset 0 0 0 1px var(--primary-soft-2); }
-button.plan-day.is-today:hover { background: var(--primary-soft); }
-button.plan-day.is-today:focus-visible { box-shadow: inset 0 0 0 1px var(--primary-soft-2), var(--focus-ring); }
+.plan-day.is-past { padding-bottom: 16px; }
+.plan-day.is-past .plan-day-date { color: var(--text-2); font-weight: var(--fw-medium); }
+.plan-day.is-today { border-color: var(--primary-soft-2); background: color-mix(in srgb, var(--primary-soft) 70%, transparent); }
+button.plan-day.is-today:hover { background: var(--primary-soft); border-color: var(--primary-soft-2); }
 .plan-day.is-today .plan-day-sub { color: var(--text-2); }
 
-/* Exam day: one neutral card, a red flag */
+/* Exam day: one neutral card, a quiet flag */
 .plan-exam { display: flex; align-items: center; gap: 14px; padding: 16px 20px; }
 .plan-exam-main { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 28px; flex: 1; min-width: 0; }
 .plan-exam-title { display: flex; align-items: baseline; gap: 8px; font-size: var(--fs-md); font-weight: var(--fw-semibold); line-height: var(--lh-head); }
@@ -99,16 +100,18 @@ button.plan-day.is-today:focus-visible { box-shadow: inset 0 0 0 1px var(--prima
 .plan-tg-cur { font-weight: var(--fw-semibold); }
 .plan-tg-row.is-low .plan-tg-cur { color: var(--text-2); }
 .plan-tg-progh { padding-left: 12px; }
-.plan-tg-prog { display: flex; align-items: center; gap: 14px; min-width: 0; padding-left: 12px; }
-.plan-tg-track { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 0; }
-.plan-tg-bar { display: block; height: 6px; border-radius: var(--radius-pill); background: var(--track); overflow: hidden; }
-.plan-tg-bar span { display: block; height: 100%; border-radius: inherit; background: var(--primary); transition: width 400ms var(--ease); }
+.plan-tg-prog { display: flex; align-items: center; gap: 12px; min-width: 0; padding-left: 12px; }
+.plan-tg-bar { display: block; flex: 1; min-width: 40px; height: 6px; border-radius: var(--radius-pill); background: var(--track); overflow: hidden; }
+/* Each subject's bar in its own colour (as on Today); the total in neutral ink. */
+.plan-tg-bar span { display: block; height: 100%; border-radius: inherit; background: var(--tone, var(--text-2)); transition: width 400ms var(--ease); }
+.plan-tg-row.is-total .plan-tg-bar span { background: var(--text-2); }
 .plan-tg-bar.is-ok span { background: var(--success); }
-.plan-tg-row.is-low .plan-tg-bar span { opacity: 0.5; }
-.plan-tg-low { color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.plan-tg-note { flex: none; color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; border-radius: var(--radius-xs); cursor: help; text-decoration: underline dotted; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.plan-tg-note:focus-visible { box-shadow: var(--focus-ring); }
 .plan-tg-prog .chip, .plan-tg-prog .badge { flex: none; min-width: 64px; justify-content: center; }
 .plan-tg-row.is-total { border-top-color: var(--border-strong); }
 .plan-tg-total { padding-left: 2px; font-weight: var(--fw-semibold); }
+.plan-tg-subj-name { display: inline-flex; align-items: center; gap: 10px; font-size: var(--fs-ui); font-weight: var(--fw-medium); white-space: nowrap; }
 .plan-tg-row.is-total .plan-tg-num { font-size: var(--fs-md); }
 
 /* 怎么排的？ */
@@ -149,12 +152,14 @@ button.plan-day.is-today:focus-visible { box-shadow: inset 0 0 0 1px var(--prima
 .plan-def-note { display: flex; gap: 8px; color: var(--text-2); font-size: var(--fs-sm); }
 .plan-def-note svg { flex: none; margin-top: 3px; color: var(--text-3); }
 
-@media (max-width: 1100px) {
+@media (max-width: 860px) {
   .plan-ov-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
 }
 @media (max-width: 1000px) {
-  .plan-ov-range { display: none; }
-  .plan-ov-label.is-narrow { height: 18px; }
+  .plan-day.is-today .plan-day-wd { display: none; }
+  .plan-days { gap: 6px; }
+  .plan-day { padding: 8px 9px 9px; }
+  .plan-day-bar { left: 9px; right: 9px; }
   .plan-tg-row { grid-template-columns: 76px 44px 44px 68px minmax(0, 1fr); gap: 10px; }
   .plan-how-list { grid-template-columns: minmax(0, 1fr); }
 }

@@ -1,9 +1,10 @@
-// Today's side panel: progress, bedtime, predicted score, due reviews and the next mock.
+// Today's side panel: progress, bedtime, predicted score and the next mock; the due reviews card
+// sits under the task list.
 import { useMemo, type ReactNode } from 'react';
 import { href } from '../../lib/router.ts';
-import { Badge, Callout, Chip, Ring, StatTile, SubjectDot, Tooltip } from '../../components/ui.tsx';
+import { Badge, Callout, Chip, IconTile, Ring, StatTile, SubjectDot, Tooltip } from '../../components/ui.tsx';
 import { Icon, type IconName } from '../../components/Icon.tsx';
-import type { AppState, DayPlan } from '@shared/types.ts';
+import type { AppState } from '@shared/types.ts';
 import { MOCK_LABEL, sessionLabel, type BankIndex } from '@shared/bank.ts';
 import { mockSchedule, vocabDueCount } from '@shared/planner.ts';
 import { estimateAll, streak, SCALE_MAX } from '@shared/stats.ts';
@@ -87,7 +88,7 @@ export function HM({ minutes, className }: { minutes: number; className?: string
 export function ProgressCard({
   state,
   today,
-  plan,
+  planned,
   done,
   total,
   started,
@@ -95,7 +96,8 @@ export function ProgressCard({
 }: {
   state: AppState;
   today: string;
-  plan?: DayPlan;
+  /** Minutes of today's tasks that are not skipped: the same total the list and 跟学 show. */
+  planned: number;
   done: number;
   total: number;
   /** The first task is under way (a session with answers). */
@@ -104,7 +106,6 @@ export function ProgressCard({
 }) {
   const day = state.days[today];
   const studied = (day?.seconds ?? 0) / 60;
-  const budget = plan?.budgetMinutes ?? 0;
   const answered = day?.answered ?? 0;
   const st = streak(state, today);
   const all = total > 0 && done >= total;
@@ -132,7 +133,7 @@ export function ProgressCard({
             <div className="td-pg-text">
               <div className="td-pg-title">{all ? `${total} 项全部完成` : `完成 ${done} 项，还剩 ${total - done} 项`}</div>
               <span className="td-pg-line">
-                已学 {fmtMinutes(studied)} / 计划 {budget ? fmtMinutes(budget) : '休息'}
+                已学 {fmtMinutes(studied)} / 计划 {planned ? fmtMinutes(planned) : '休息'}
               </span>
             </div>
           </div>
@@ -150,7 +151,7 @@ export function ProgressCard({
               </div>
             )}
             <span className="td-pg-line">
-              计划 {budget ? fmtMinutes(budget) : '休息'}
+              计划 {planned ? fmtMinutes(planned) : '休息'}
               {adjust}
             </span>
           </div>
@@ -166,14 +167,20 @@ export function ProgressCard({
 
 // ─── Bedtime ───
 
-export function SleepCard({ state, bank, left, now, showCountdown }: Ctx & { left: number; now: Date; showCountdown: boolean }) {
+export function SleepCard({ state, bank, left, now, inHero }: Ctx & { left: number; now: Date; inHero: boolean }) {
   const sim = useMemo(
     () => mockSchedule(state, bank).find((m) => m.daysLeft === left - 1 && m.parts.length >= 4 && m.parts.some((p) => !p.done)),
     [state, bank, left],
   );
   const target = bedtimeFor(left);
   if (target === null) return null;
-  const exam = state.profile.examDate;
+  const alert = sim && (
+    <Callout tone="primary" icon="sun" className="td-sleep-alert">
+      {md(sim.date)} 全真模拟请早上 9:30 开始
+    </Callout>
+  );
+  // Within the last 90 minutes the hero's top line already says the time: keep only the reminder.
+  if (inHero) return alert ? <section className="card td-sleep is-alert-only">{alert}</section> : null;
   const prev = bedtimeFor(left + 1);
   const trend =
     prev === null
@@ -187,27 +194,17 @@ export function SleepCard({ state, bank, left, now, showCountdown }: Ctx & { lef
   return (
     <section className="card td-sleep">
       <div className="td-sleep-top">
-        <span className="icon-tile icon-tile-md tone-neutral" aria-hidden>
-          <Icon name="moon" size={18} />
-        </span>
+        <IconTile icon="moon" tone="neutral" size="md" />
         <div className="td-sleep-main">
-          <div className="td-sleep-label">
-            <span className="t-eyebrow">今晚收工</span>
-            {showCountdown && (toGo <= 0 ? <Badge tone="warning">已到点</Badge> : toGo <= 60 && <Badge tone="neutral">还有 {toGo} 分钟</Badge>)}
-          </div>
-          <div className="td-sleep-time">
-            <span className="num">{clockText(target)}</span>
-            <span>前</span>
-            <span className="td-sleep-trend">{trend}</span>
-          </div>
+          <span className="t-eyebrow">今晚收工</span>
+          <span className="td-sleep-time">
+            <span className="num">{clockText(target)}</span>前
+          </span>
         </div>
+        {toGo <= 0 ? <Badge tone="warning">已到点</Badge> : toGo <= 60 && <Badge tone="neutral">还有 {toGo} 分钟</Badge>}
       </div>
-      <p className="td-sleep-note">{md(exam)} 日语 9:30 开考，占总分一半，生物钟要跟着往前挪。</p>
-      {sim && (
-        <Callout tone="primary" icon="sun" className="td-sleep-alert">
-          {md(sim.date)} 全真模拟请早上 9:30 开始
-        </Callout>
-      )}
+      <p className="td-sleep-note">{trend}，让 9:30 的日语状态最好</p>
+      {alert}
     </section>
   );
 }
@@ -253,17 +250,23 @@ export function ScoreCard({ state, bank }: { state: AppState; bank: BankIndex })
           const e = est[s];
           const max = SCALE_MAX[s];
           const low = isLowData(e);
-          const note = lowDataNote(e);
+          // A dip under the baseline is said in words (tooltip), never drawn as a drop.
+          const note = lowDataNote(e) ?? (shown[i] < state.profile.baseline[s] ? `比起点 ${state.profile.baseline[s]} 低，多做几套模考会更准` : null);
+          const pctOf = (v: number) => `${Math.max(0, Math.min(100, (v / max) * 100))}%`;
+          // Little data: solid up to the low end of the range, hatched across the rest of it.
+          const hatch = low && shown[i] <= e.high;
+          const solid = hatch ? Math.min(e.low, shown[i]) : shown[i];
           return (
-            <li key={s} className={cx('td-subj-row', `tone-${s}`, low && 'is-low')}>
+            <li key={s} className={cx('td-subj-row', `tone-${s}`, low && 'is-low', hatch && 'has-range')}>
               <span className="td-subj-name">
                 <SubjectDot subject={s} />
                 {SUBJECT_NAME[s]}
               </span>
               <Tooltip label={`${note ? note + ' · ' : ''}估计 ${e.low}–${e.high} · 目标 ${e.target} / ${max}`}>
                 <span className="td-subj-bar">
-                  <span className="td-subj-fill" style={{ width: `${Math.min(100, (shown[i] / max) * 100)}%` }} />
-                  <span className="td-subj-target" style={{ left: `${Math.min(100, (e.target / max) * 100)}%` }} />
+                  {hatch && <span className="td-subj-range" style={{ left: pctOf(solid), width: `calc(${pctOf(e.high)} - ${pctOf(solid)})` }} />}
+                  <span className="td-subj-fill" style={{ width: pctOf(solid) }} />
+                  <span className="td-subj-target" style={{ left: pctOf(e.target) }} />
                 </span>
               </Tooltip>
               <span className="td-subj-val num">{shown[i]}</span>
@@ -273,8 +276,8 @@ export function ScoreCard({ state, bank }: { state: AppState; bank: BankIndex })
       </ul>
       {thin.length > 0 && (
         <p className="td-score-note">
-          {thin.map((s) => SUBJECT_NAME[s]).join('、')}数据还少
-          {thin.every((s) => est[s].estimate < est[s].baseline) ? '，先按起点算' : thin.some((s) => est[s].estimate < est[s].baseline) ? '，低于起点的先按起点算' : '，预测仅作参考'}
+          <span className="td-score-hatch" aria-hidden />
+          {thin.map((s) => SUBJECT_NAME[s]).join('、')}数据还少，斜线是可能的范围
         </p>
       )}
     </section>

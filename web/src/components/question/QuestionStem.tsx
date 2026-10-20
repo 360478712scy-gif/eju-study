@@ -96,12 +96,19 @@ function decorateKatexBoxes(root: HTMLElement, marks: StemMarks | undefined) {
   });
 }
 
-/** Mark source citations and footnotes in Japanese passages so they can be styled quietly. */
+/**
+ * Mark source citations and footnotes in Japanese passages so they can be styled quietly, and running
+ * prose paragraphs so a passage can indent them like the printed paper (notices, lists and headings stay flush).
+ */
 function decoratePassage(root: HTMLElement) {
   root.querySelectorAll<HTMLElement>('.q-stem-text > p').forEach((p) => {
     const t = (p.textContent || '').trim();
-    p.classList.toggle('q-cite', /^（[\s\S]*[『「][\s\S]*）$/.test(t) && t.length < 160);
-    p.classList.toggle('q-note', /^＊/.test(t));
+    const cite = /^（[\s\S]*[『「][\s\S]*）$/.test(t) && t.length < 160;
+    const note = /^＊/.test(t);
+    const heading = p.childNodes.length === 1 && p.firstElementChild?.tagName === 'STRONG';
+    p.classList.toggle('q-cite', cite);
+    p.classList.toggle('q-note', note);
+    p.classList.toggle('q-prose', !cite && !note && !heading && t.length > 40 && !p.querySelector('br') && !/^[・\-*※●○◆■□（(【]/.test(t));
   });
 }
 

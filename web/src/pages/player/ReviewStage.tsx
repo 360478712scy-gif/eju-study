@@ -15,9 +15,9 @@ import { isFocusedControl, isTextField } from './hotkeys.ts';
 import { ChoicePad } from './ChoicePad.tsx';
 import { MarkSheet } from './MarkSheet.tsx';
 import { AudioPanel } from './AudioPanel.tsx';
-import { CoachCard } from './CoachCard.tsx';
-import { NoteBox } from './NoteBox.tsx';
-import { ActionRow, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, revealAnswer, revealResult, stemLayout } from './parts.tsx';
+import { CoachCard, hasCoachEntry } from './CoachCard.tsx';
+import { NoteButton, NoteEditor } from './NoteBox.tsx';
+import { ActionRow, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ReferencePeek, ResultBanner, referenceSelector, revealAnswer, revealResult, stemLayout, useScrolledAway, useScrollFade } from './parts.tsx';
 
 export function ReviewStage({ session, list, start, onClose }: { session: PracticeSession; list: Item[]; start: number; onClose: () => void }) {
   const settings = useApp((s) => s.state!.settings);
@@ -33,7 +33,10 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
   const split = layout.split;
   const groups = useMemo(() => (item.format === 'blanks' ? [...blankGroups(item)].sort((a, b) => a.localeCompare(b)) : []), [item]);
   const audioToggle = useRef<(() => void) | null>(null);
-  const coachFocus = useRef<(() => void) | null>(null);
+  const [noteOpen, setNoteOpen] = useState<Record<string, boolean>>({});
+  const [coachOpen, setCoachOpen] = useState<Record<string, boolean>>({});
+  /** The item whose AI panel was opened just now (scrolled into view once). */
+  const coachJustOpened = useRef<string | null>(null);
   const mainRef = useRef<HTMLElement>(null);
   const sideRef = useRef<HTMLDivElement>(null);
   const values = ans?.response && typeof ans.response === 'object' ? ans.response : {};
@@ -77,18 +80,47 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
   }, []);
 
   const single = !split && (layout.short || heroAudio);
-  const result = <ResultBanner exam={session.exam} item={item} answer={answerView} grade={ans?.gaveUp ? { ...grade, correct: false } : grade} today={today} progress={progress[item.id]} />;
+  useScrollFade(sideRef, single);
+  const refAway = useScrolledAway(mainRef, referenceSelector(item), !single && exOpen, item.id);
+  const result = (
+    <ResultBanner
+      exam={session.exam}
+      review
+      item={item}
+      answer={answerView}
+      grade={ans?.gaveUp ? { ...grade, correct: false } : grade}
+      today={today}
+      progress={progress[item.id]}
+    />
+  );
   const choicePad = item.format === 'choice' ? <ChoicePad item={item} value={typeof ans?.response === 'number' ? ans.response : null} reveal columns={single && (item.options?.length ?? 4) <= 4 ? 2 : undefined} /> : null;
-  const tools = (
+  const noteShown = noteOpen[item.id] ?? !!progress[item.id]?.note;
+  const coachShown = settings.coachEnabled && (coachOpen[item.id] ?? hasCoachEntry(item.id));
+  const tools = (!noteShown || (settings.coachEnabled && !coachShown)) && (
     <div className="pl-tools">
-      <NoteBox key={item.id} itemId={item.id} />
-      {settings.coachEnabled && (
-        <button type="button" className="pl-tool" onClick={() => coachFocus.current?.()}>
+      {!noteShown && <NoteButton onClick={() => setNoteOpen((m) => ({ ...m, [item.id]: true }))} />}
+      {settings.coachEnabled && !coachShown && (
+        <button type="button" className="pl-tool" onClick={() => {
+            coachJustOpened.current = item.id;
+            setCoachOpen((m) => ({ ...m, [item.id]: true }));
+          }} onMouseDown={(e) => e.preventDefault()}>
           <Icon name="sparkles" size={15} />
           问 AI
         </button>
       )}
     </div>
+  );
+  const noteEditor = noteShown && <NoteEditor key={`n-${item.id}`} itemId={item.id} />;
+  const coach = coachShown && (
+    <CoachCard
+      key={`c-${item.id}`}
+      item={item}
+      response={ans?.response ?? null}
+      wasCorrect={!!ans?.correct && !ans?.gaveUp}
+      variant={single ? 'card' : 'inline'}
+      onClose={() => setCoachOpen((m) => ({ ...m, [item.id]: false }))}
+      reveal={coachJustOpened.current === item.id}
+    />
   );
   const action =
     pos < list.length - 1 ? (
@@ -130,12 +162,7 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
         {answerArea}
       </AudioPanel>
     );
-  const after = (
-    <>
-      <ExplanationCard item={item} open={exOpen} onToggle={() => setExOpen((o) => !o)} />
-      {settings.coachEnabled && <CoachCard key={`c-${item.id}`} item={item} response={ans?.response ?? null} wasCorrect={!!ans?.correct} focusRef={coachFocus} defaultOpen={!ans?.correct} />}
-    </>
-  );
+  const explanation = <ExplanationCard item={item} open={exOpen} onToggle={() => setExOpen((o) => !o)} />;
 
   return (
     <div className={cx('pl pl-review', single && 'is-single')}>
@@ -184,12 +211,16 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
                   <div className="pl-paper-answer">{choicePad}</div>
                 </article>
               )}
-              {result}
-              <ActionRow>
-                {tools}
-                {action}
+              <ActionRow className="is-graded">
+                {result}
+                <div className="pl-row-end">
+                  {tools}
+                  {action}
+                </div>
               </ActionRow>
-              {after}
+              {noteEditor}
+              {coach}
+              {explanation}
             </div>
           </main>
         ) : (
@@ -206,29 +237,31 @@ export function ReviewStage({ session, list, start, onClose }: { session: Practi
                   )}
                   {stem}
                 </article>
-                {after}
+                {explanation}
               </div>
             </main>
             <aside className="pl-side">
-              <div className="pl-side-scroll" ref={sideRef}>
-                {split ? (
-                  <div className="pl-ask">
-                    <span className="pl-ask-label">设问</span>
-                    <RichText text={split.question} lang="ja" className="pl-ask-text" />
-                  </div>
-                ) : (
-                  item.format === 'choice' && (
+              <div className="card card-flush pl-side-card">
+                <div className="pl-side-scroll" ref={sideRef}>
+                  {split && (
+                    <div className="pl-ask">
+                      <span className="pl-ask-label">设问</span>
+                      <RichText text={split.question} lang="ja" className="pl-ask-text" />
+                    </div>
+                  )}
+                  {item.format === 'choice' && (
                     <div className="pl-side-label">
                       <span>你的作答</span>
                     </div>
-                  )
-                )}
-                {item.format === 'choice' ? choicePad : <MarkSheet groups={groups} values={values} active={null} results={grade.groups} />}
-                {result}
-                {tools}
-              </div>
-              <div className="pl-side-foot">
-                {action}
+                  )}
+                  {item.format === 'choice' ? choicePad : <MarkSheet groups={groups} values={values} active={null} results={grade.groups} />}
+                  {result}
+                  {tools}
+                  {noteEditor}
+                  {coach}
+                  {exOpen && refAway && <ReferencePeek item={item} passage={split?.passage} />}
+                </div>
+                <div className="pl-side-foot">{action}</div>
               </div>
             </aside>
           </>

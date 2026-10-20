@@ -1,6 +1,6 @@
 // Plan-block helpers shared by the Today and Plan pages: presentation (icon, tone, labels)
 // and the actions behind "开始 / 继续 / 再练 / 跳过". The UI calls a block 项 / 任务, never 块.
-import type { AppState, Phase, PlanBlock, PracticeSession } from '@shared/types.ts';
+import type { AppState, PlanBlock, PracticeSession } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { blockItems, findBlock, markBlock, regeneratePlan, startBlock, startSession } from '@shared/actions.ts';
 import { mockDone } from '@shared/planner.ts';
@@ -9,9 +9,6 @@ import { navigate } from '../../lib/router.ts';
 import { toast, type Tone } from '../../components/ui.tsx';
 import { SUBJECT_ICON, type IconName } from '../../components/Icon.tsx';
 import { extraQueue, getRun, MORE_COUNT, readNewWords, vocabDay } from '../vocab/run.ts';
-
-/** Colour of each sprint phase (calendar bands, Today header). */
-export const PHASE_TONE: Record<Phase, Tone> = { foundation: 'primary', practice: 'warning', final: 'success', exam: 'danger' };
 
 /** Status as the learner sees it: a correction block stays locked until its mock is done. */
 export type BlockView = 'todo' | 'active' | 'done' | 'skipped' | 'locked';
@@ -45,6 +42,8 @@ export function blockIcon(b: PlanBlock): IconName {
 /** Identity colour of a block: its subject; mixed sets (错题重做, 考前一页纸) stay neutral slate. Never amber. */
 export function blockTone(b: PlanBlock): Tone {
   if (b.kind === 'mock') return 'primary';
+  // Due mistakes are review work: amber (DESIGN §8), not the grey of a mixed set.
+  if (b.kind === 'review') return 'warning';
   if (b.subject !== 'mixed') return b.subject;
   return 'mixed';
 }

@@ -1,18 +1,25 @@
 // Mastery bar + legend: the one mastery scale (薄弱 < 50% · 接近目标 · 达标 ≥ target) used by the
-// practice topic table and the mock result's topic list. Untried topics get a quiet dashed track.
+// practice topic table. Untried topics say "未练" (like "—" in the 错题 column) instead of an empty bar.
 import { cx, pct } from '../../lib/format.ts';
 import { Legend } from '../../components/ui.tsx';
 import { masteryTone } from './practiceData.ts';
 import './mastery.css';
 
 export function MasteryBar({ value, target, showValue = true, className }: { value: number | null; target: number; showValue?: boolean; className?: string }) {
-  const tone = value === null ? 'neutral' : masteryTone(value, target);
-  return (
-    <span className={cx('mstry', `tone-${tone}`, value === null && 'is-untried', className)}>
-      <span className="mstry-track" role={value === null ? undefined : 'progressbar'} aria-valuenow={value === null ? undefined : Math.round(value * 100)} aria-label={value === null ? '还没练过' : undefined}>
-        {value !== null && <i style={{ width: `${Math.max(0, Math.min(1, value)) * 100}%` }} />}
+  if (value === null) {
+    return (
+      <span className={cx('mstry', 'is-untried', className)}>
+        <span className="mstry-none">未练</span>
       </span>
-      {showValue && <span className="mstry-val num">{value === null ? '' : pct(value)}</span>}
+    );
+  }
+  const tone = masteryTone(value, target);
+  return (
+    <span className={cx('mstry', `tone-${tone}`, className)}>
+      <span className="mstry-track" role="progressbar" aria-valuenow={Math.round(value * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <i style={{ width: `${Math.max(0, Math.min(1, value)) * 100}%` }} />
+      </span>
+      {showValue && <span className="mstry-val num">{pct(value)}</span>}
     </span>
   );
 }

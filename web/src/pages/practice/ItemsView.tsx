@@ -3,8 +3,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { SUBJECTS, type Item, type Subject } from '@shared/types.ts';
 import { sessionLabel } from '@shared/bank.ts';
 import { useReady } from '../../lib/store.ts';
-import { SUBJECT_NAME } from '../../lib/format.ts';
-import { Badge, Button, Empty, Kbd, modalDepth, Segmented, StatusIcon } from '../../components/ui.tsx';
+import type { ScheduledMock } from '@shared/planner.ts';
+import { fmtDateShort, SUBJECT_NAME } from '../../lib/format.ts';
+import { Badge, Button, Empty, Kbd, modalDepth, Segmented, StatusIcon, Tooltip } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import {
@@ -13,6 +14,7 @@ import {
   isWrong,
   itemStatus,
   matches,
+  mockTitle,
   queryTerms,
   reservedFor,
   SECTIONS,
@@ -20,6 +22,7 @@ import {
   sessionRank,
   shortLabel,
   snippet,
+  TOPIC_FIELD,
   type ReservedMap,
 } from './practiceData.ts';
 import type { BankIndex } from '@shared/bank.ts';
@@ -151,7 +154,7 @@ export function ItemsView({
       {shown.length > 0 ? (
         <div className="card card-flush pr-list">
           {shown.map((it) => (
-            <ItemRow key={it.id} item={it} terms={terms} reserved={!!reservedFor(reserved, it)} onOpen={() => onPreview(it.id)} />
+            <ItemRow key={it.id} item={it} terms={terms} held={reservedFor(reserved, it)} onOpen={() => onPreview(it.id)} />
           ))}
           {results.length > limit && (
             <div className="pr-more">
@@ -258,13 +261,20 @@ function SearchBox({ onSearch }: { onSearch: (q: string) => void }) {
   );
 }
 
-function ItemRow({ item: it, terms, reserved, onOpen }: { item: Item; terms: string[]; reserved: boolean; onOpen: () => void }) {
+/**
+ * One item: status · topic (the title) with its source and markers on the first line, then one line
+ * of the stem — or, while searching, the matching excerpt in its place, so every row is two lines.
+ */
+function ItemRow({ item: it, terms, held, onOpen }: { item: Item; terms: string[]; held?: ScheduledMock; onOpen: () => void }) {
   const { state, bank } = useReady();
   const p = state.progress[it.id];
   const st = itemStatus(p);
-  const ex = useMemo(() => excerpt(bank, it, terms), [bank, it, terms]);
+  const hit = useMemo(() => excerpt(bank, it, terms), [bank, it, terms]);
+  // A hit in the topic name is already visible in the title; show the stem then.
+  const ex = hit && hit.label !== TOPIC_FIELD ? hit : null;
   const text = useMemo(() => snippet(it), [it]);
   const topic = bank.topics.get(it.topic);
+  const source = (it.source.session ? sessionLabel(it.source.session) + ' · ' : '') + shortLabel(it);
   return (
     <button type="button" className="pr-item" onClick={onOpen}>
       <span className="pr-item-status">
@@ -272,29 +282,38 @@ function ItemRow({ item: it, terms, reserved, onOpen }: { item: Item; terms: str
       </span>
       <span className="pr-item-main">
         <span className="pr-item-head">
-          <span className="pr-item-src">
-            {it.source.session ? sessionLabel(it.source.session) + ' · ' : ''}
-            {shortLabel(it)}
-          </span>
-          {topic && <span className="pr-item-topic">{topic.name}</span>}
+          <span className="pr-item-topic">{topic?.name || shortLabel(it)}</span>
+          <span className="pr-item-src">{source}</span>
+          {(p?.starred || it.audio || (it.figures && it.figures.length > 0)) && (
+            <span className="pr-item-marks">
+              {p?.starred && <Icon name="star" size={13} className="pr-star-on" aria-label="已收藏" />}
+              {it.audio && <Icon name="headphones" size={13} aria-label="听力" />}
+              {it.figures && it.figures.length > 0 && <Icon name="image" size={13} aria-label="有图" />}
+            </span>
+          )}
         </span>
-        <span className="pr-item-snippet">
-          <RichText text={text} lang="ja" inline />
-        </span>
-        {ex && (
-          <span className="pr-item-ex">
+        {ex ? (
+          <span className="pr-item-line pr-item-ex">
             <span className="pr-item-ex-label">{ex.label}</span>
             {ex.before}
             <mark>{ex.hit}</mark>
             {ex.after}
           </span>
+        ) : (
+          <span className="pr-item-line pr-item-snippet">
+            <RichText text={text} lang="ja" inline />
+          </span>
         )}
       </span>
       <span className="pr-item-side">
-        {p?.starred && <Icon name="star" size={14} className="pr-star-on" title="已收藏" />}
-        {it.audio && <Icon name="headphones" size={14} title="听力" />}
-        {it.figures && it.figures.length > 0 && <Icon name="image" size={14} title="有图" />}
-        {reserved && <Badge size="sm">留给模考</Badge>}
+        {held && (
+          <Tooltip label={`留给 ${fmtDateShort(held.date)}「${mockTitle(held.title, true)}」`}>
+            <span className="pr-item-held">
+              <Icon name="flag" size={13} />
+              留给模考
+            </span>
+          </Tooltip>
+        )}
         {p?.inMistakes && <Badge size="sm">错题本</Badge>}
         <Icon name="right" size={16} className="pr-item-go" />
       </span>

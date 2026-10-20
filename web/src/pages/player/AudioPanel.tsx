@@ -199,23 +199,15 @@ export function AudioPanel({
       <div className={cx('pl-audio pl-audio-hero', playing && 'is-playing', locked && 'is-locked')}>
         {title && <div className="pl-audio-eyebrow">{title}</div>}
         <div className="pl-audio-stage">{button}</div>
-        <div className="pl-audio-status">
-          {playing ? (
-            <span className="pl-audio-elapsed num">{fmtClock(pos)}</span>
-          ) : (
-            <>
-              {status}
-              {pos > 0 && !ended && <span className="num"> · {fmtClock(pos)}</span>}
-            </>
-          )}
+        <div className="pl-audio-status" aria-live="polite">
+          {playing && <span className="pl-audio-live" aria-hidden />}
+          {status}
         </div>
         <div className="pl-audio-track">
-          {/* Same width as the duration on the right, so the bar centers under the button. */}
-          <span className="num pl-audio-ghost" aria-hidden>
-            {duration ? fmtClock(duration) : '–:––'}
-          </span>
+          {/* Elapsed and total sit on both ends from the start, so nothing jumps in when playback begins. */}
+          <span className="num pl-audio-pos">{fmtClock(pos)}</span>
           {bar}
-          <span className="num">{duration ? fmtClock(duration) : '–:––'}</span>
+          <span className="num pl-audio-dur">{duration ? fmtClock(duration) : '–:––'}</span>
         </div>
         <div className="pl-audio-foot">{controls}</div>
         {caption && <div className="pl-audio-caption">{caption}</div>}

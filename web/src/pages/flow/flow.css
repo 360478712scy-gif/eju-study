@@ -17,17 +17,20 @@
 .fl-top-count b { color: var(--text); font-weight: var(--fw-semibold); }
 .fl-top-time { color: var(--text-3); font-size: var(--fs-sm); white-space: nowrap; }
 .fl-top-time b { color: var(--text-2); font-weight: var(--fw-medium); }
+/* Segments: pending ones are drawn in the strong border colour so they read on the light bar. */
 .fl-steps { flex: 1; min-width: 80px; max-width: 520px; margin: 0 auto; display: flex; gap: 3px; height: 4px; }
-.fl-steps span { flex: 1; border-radius: var(--radius-pill); background: var(--track); transition: background var(--dur-slow) var(--ease); }
+.fl-steps span { flex: 1; border-radius: var(--radius-pill); background: var(--border-strong); transition: background var(--dur-slow) var(--ease); }
 .fl-steps span.is-done { background: var(--primary); }
-.fl-steps span.is-current { background: color-mix(in srgb, var(--primary) 38%, var(--track)); }
+.fl-steps span.is-current { background: color-mix(in srgb, var(--primary) 40%, var(--border-strong)); }
 
-/* Stage + path */
+/* Stage + path. The stage fills the window height so a short card sits in its middle. */
 .fl-main {
   flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: var(--sp-8) var(--sp-8) var(--sp-12);
-  display: grid; grid-template-columns: minmax(0, 1fr) 296px; gap: var(--sp-6); align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) 312px; gap: var(--sp-6); align-items: center;
 }
+/* A short card sits level with the middle of the path; a long note starts at the top. */
 .fl-stage { min-width: 0; }
+.fl-stage:has(> .fl-reader) { align-self: start; }
 .fl-main.is-solo { grid-template-columns: minmax(0, 640px); justify-content: center; }
 .fl-card { padding: 28px 32px 0; scroll-margin-top: 72px; }
 @media (prefers-reduced-motion: no-preference) {
@@ -41,11 +44,16 @@
 .fl-title { font-size: var(--fs-2xl); font-weight: var(--fw-semibold); letter-spacing: -0.015em; line-height: var(--lh-head); }
 .fl-head .fl-title { margin-top: 3px; }
 .fl-lead { margin-top: 8px; color: var(--text-2); font-size: var(--fs-base); line-height: var(--lh-ui); }
-.fl-meta { display: flex; margin-top: 12px; }
-.fl-progress { display: flex; align-items: center; gap: 10px; max-width: 380px; margin-top: 14px; }
-.fl-progress .progress { flex: 1; }
-.fl-progress > span { color: var(--text-2); font-size: var(--fs-xs); white-space: nowrap; }
-.fl-callout { margin-top: var(--sp-5); }
+.fl-callout { margin-top: var(--sp-4); }
+
+/* What the task is, at a glance: time, size, how it is checked. */
+.fl-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: var(--sp-6); }
+.fl-facts .stat-tile { min-height: 76px; justify-content: center; }
+/* Units inside a composite value ("1 小时 8 分"). */
+.fl-card .stat-tile-value .num .stat-tile-unit { margin: 0 4px 0 3px; }
+.fl-card .stat-tile-value .num .stat-tile-unit:last-child { margin-right: 0; }
+.fl-fact-text { font-family: var(--font-ui); font-size: var(--fs-md); font-weight: var(--fw-semibold); line-height: 1.6; }
+.fl-fact-progress .progress { margin-top: 6px; }
 
 /* What was just finished: one quiet line above the next step. */
 .fl-done-line {
@@ -55,39 +63,50 @@
 .fl-done-line > svg { flex: none; color: var(--success); }
 .fl-done-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* 5-minute break */
-.fl-break {
-  display: flex; align-items: center; gap: 12px; margin-top: var(--sp-5); padding: 12px 16px 12px 12px;
-  border-radius: var(--radius); background: var(--bg-sunken);
-}
-.fl-break-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-.fl-break-title { color: var(--text); font-size: var(--fs-ui); font-weight: var(--fw-semibold); }
-.fl-break-sub { color: var(--text-3); font-size: var(--fs-sm); }
-.fl-break-clock { flex: none; color: var(--text); font-size: var(--fs-2xl); font-weight: var(--fw-bold); letter-spacing: -0.02em; }
+/* 5-minute break: owns the card. */
+.fl-break { display: flex; flex-direction: column; align-items: center; padding: 40px 32px 32px; text-align: center; }
+.fl-break .ring { margin-bottom: var(--sp-6); }
+.fl-break-clock { color: var(--text); font-size: var(--fs-3xl); font-weight: var(--fw-bold); line-height: 1.1; letter-spacing: -0.02em; }
+.fl-break-of { margin-top: 2px; color: var(--text-3); font-size: var(--fs-xs); }
+.fl-break .fl-lead { max-width: 420px; }
+.fl-break-actions { margin-top: var(--sp-6); }
 
-/* Warm-up notes */
-.fl-dots { display: inline-flex; align-items: center; gap: 4px; }
-.fl-dots > span:not(.fl-dots-num) { width: 16px; height: 4px; border-radius: var(--radius-pill); background: var(--track); }
-.fl-dots > span.is-done { background: var(--primary); }
-.fl-dots > span.is-current { background: color-mix(in srgb, var(--primary) 38%, var(--track)); }
-.fl-dots-num { margin-left: 6px; color: var(--text-3); }
+/* Warm-up notes: the formulas and traps; the full note one click away. */
+.fl-dots-num { color: var(--text-3); }
 .fl-title-row { display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
 .fl-ja { color: var(--text-3); font-size: var(--fs-md); }
-.fl-note { margin-top: var(--sp-5); padding-top: var(--sp-5); border-top: 1px solid var(--divider); }
-.fl-note-none { color: var(--text-2); }
+.fl-note { margin-top: var(--sp-5); padding-top: var(--sp-2); border-top: 1px solid var(--divider); }
+.fl-note-none { margin-top: var(--sp-4); color: var(--text-2); }
+.fl-sec-title { display: flex; align-items: center; gap: 8px; margin: var(--sp-5) 0 6px; font-size: var(--fs-base); font-weight: var(--fw-semibold); line-height: var(--lh-head); }
+.fl-sec-icon { flex: none; color: var(--tone); }
+.fl-prose { font-size: calc(var(--fs-base) * var(--reading-scale)); line-height: 1.85; }
+.fl-prose li + li { margin-top: 0.45em; }
+/* Numeric coefficients (½mv²) stay stacked: give the text-size fraction a readable size (as 考点笔记). */
+.fl-prose .katex .mfrac:has(> .vlist-t > .vlist-r > .vlist > span > .sizing.reset-size6.size3) { font-size: 1.18em; }
 .fl-terms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--sp-5); }
 .fl-term { display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 10px; border-radius: var(--radius-sm); background: var(--bg-sunken); font-size: var(--fs-sm); }
 .fl-term b { font-weight: var(--fw-semibold); }
 .fl-term-kana { color: var(--text-3); font-size: var(--fs-xs); }
 .fl-term-zh { color: var(--text-2); }
+.fl-more {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; margin: var(--sp-4) 0 0 -10px; padding: 0 10px;
+  border: none; border-radius: var(--radius-sm); background: transparent; cursor: pointer;
+  color: var(--text-2); font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.fl-more:hover { background: var(--bg-hover); color: var(--text); }
+.fl-more:focus-visible { box-shadow: var(--focus-ring); }
+.fl-more-count { color: var(--text-3); font-weight: var(--fw-regular); }
+.fl-more svg { color: var(--text-3); }
 
-/* Sticky card footer: stays in view while reading a long note. */
+/* Card footer: an opaque bar with a hairline, sticky so it stays in reach while reading. */
 .fl-actions {
   position: sticky; bottom: 0; z-index: 2;
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  margin: var(--sp-6) -32px 0; padding: 14px 32px 24px;
+  margin: var(--sp-6) -32px 0; padding: 16px 32px 24px;
+  border-top: 1px solid var(--divider);
   border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-elev) 0%, transparent), var(--bg-elev) 18px);
+  background: var(--bg-elev);
 }
 .fl-actions-left { display: flex; align-items: center; gap: 2px; margin-left: -12px; margin-right: auto; }
 .fl-actions-left .btn-ghost { color: var(--text-2); }
@@ -95,27 +114,40 @@
 .fl-go .kbd { margin-left: 4px; }
 
 /* Day done / empty */
-.fl-finish { display: flex; flex-direction: column; align-items: center; padding: 40px 32px 32px; text-align: center; }
+.fl-finish { display: flex; flex-direction: column; align-items: center; padding: 40px 36px 28px; text-align: center; }
 .fl-finish-icon { margin-bottom: var(--sp-4); }
-.fl-finish-stats { justify-content: center; margin-top: 10px; color: var(--text-2); font-size: var(--fs-base); }
-.fl-finish-note { max-width: 420px; margin-top: 6px; color: var(--text-3); font-size: var(--fs-sm); }
+.fl-finish-note { max-width: 440px; margin-top: 8px; color: var(--text-2); font-size: var(--fs-ui); line-height: var(--lh-ui); }
+.fl-finish-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 10px; width: 100%; max-width: 520px; margin-top: var(--sp-6); text-align: left; }
 .fl-finish-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: var(--sp-6); }
+.fl-finish-actions .btn { min-width: 132px; }
+.fl-extra {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; margin-top: var(--sp-3); padding: 0 10px;
+  border: none; border-radius: var(--radius-sm); background: transparent; cursor: pointer;
+  color: var(--text-3); font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.fl-extra:hover { background: var(--bg-hover); color: var(--text); }
+.fl-extra:focus-visible { box-shadow: var(--focus-ring); }
 .fl-card > .empty { padding-bottom: 32px; }
 
 /* Today's path */
-.fl-queue { position: sticky; top: 88px; padding: 16px 12px 12px; max-height: calc(100vh - 112px); overflow: auto; }
+.fl-queue { position: sticky; top: 88px; align-self: start; padding: 16px 12px 12px; max-height: calc(100vh - 112px); overflow: auto; }
 .fl-queue-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 0 8px 8px; }
 .fl-queue-title { font-size: var(--fs-ui); font-weight: var(--fw-semibold); line-height: var(--lh-head); }
-.fl-queue-count { color: var(--text-3); font-size: var(--fs-xs); }
+.fl-queue-count { color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; }
 .fl-q-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
-.fl-q { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 6px 8px; border-radius: var(--radius-md); color: var(--text-2); font-size: var(--fs-sm); }
+.fl-q { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 6px 8px; border-radius: var(--radius-md); color: var(--text-2); font-size: var(--fs-sm); line-height: 1.4; }
+.fl-q { align-items: flex-start; }
 .fl-q .icon-tile { flex: none; }
-.fl-q-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Title and minutes share a baseline; a long title wraps to a second line under itself. */
+.fl-q-body { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 10px; padding-top: 5px; }
+.fl-q-text { flex: 1; min-width: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .fl-q-min { flex: none; color: var(--text-3); font-size: var(--fs-xs); }
 .fl-q.is-current { background: color-mix(in srgb, var(--primary-soft) 70%, transparent); box-shadow: inset 0 0 0 1px var(--primary-soft-2); color: var(--text); font-weight: var(--fw-medium); }
 .fl-q.is-done { color: var(--text-3); }
-.fl-q.is-skipped .fl-q-text { color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--border-strong); }
-.fl-q.is-locked { color: var(--text-3); }
+.fl-q.is-done .icon-tile { color: var(--success-text); }
+.fl-q.is-skipped, .fl-q.is-locked { color: var(--text-3); }
+.fl-q.is-skipped .icon-tile, .fl-q.is-locked .icon-tile { color: var(--text-3); }
 
 /* One column under 1040px: the card first, the path below it. */
 @media (max-width: 1040px) {
@@ -124,12 +156,22 @@
   .fl-q-list { display: block; columns: 2; column-gap: 12px; }
   .fl-q { break-inside: avoid; margin-bottom: 2px; }
   .fl-card { padding: 24px 24px 0; }
-  .fl-actions { margin: var(--sp-5) -24px 0; padding: 12px 24px 20px; }
-  .fl-finish { padding: 32px 24px 28px; }
+  .fl-actions { margin: var(--sp-5) -24px 0; padding: 14px 24px 20px; }
+  .fl-finish, .fl-break { padding: 32px 24px 24px; }
   .fl-top { gap: 14px; padding: 0 12px 0 20px; }
   .fl-top-plan { display: none; }
+}
+/* A short window: tighter chrome so the note keeps most of the height. */
+@media (max-height: 720px) {
+  .fl-main { padding-top: var(--sp-4); }
+  .fl-card { padding-top: 20px; }
+  .fl-reader .fl-eyebrow { margin-bottom: var(--sp-3); }
+  .fl-reader .fl-note { margin-top: var(--sp-4); }
+  .fl-reader .fl-sec-title { margin-top: var(--sp-4); }
+  .fl-actions { padding-top: 12px; padding-bottom: 14px; }
 }
 @media (max-width: 760px) {
   .fl-top-count, .fl-top-time { display: none; }
   .fl-q-list { columns: 1; }
+  .fl-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

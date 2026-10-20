@@ -54,7 +54,19 @@ export function ProgressStrip({ cells, current, onJump }: { cells: StripCell[]; 
   );
 }
 
-/** Per-question time: "本题 0:12" over a 2px line that fills toward the target (warning past it). */
+/** A 14px ring that fills toward the target time (amber once past it). */
+function TimeRing({ frac, over }: { frac: number; over: boolean }) {
+  const r = 5.5;
+  const c = 2 * Math.PI * r;
+  return (
+    <svg className="pl-timer-ring" width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+      <circle cx="7" cy="7" r={r} className="pl-timer-ring-track" />
+      <circle cx="7" cy="7" r={r} className="pl-timer-ring-fill" strokeDasharray={c} strokeDashoffset={c * (1 - (over ? 1 : frac))} transform="rotate(-90 7 7)" />
+    </svg>
+  );
+}
+
+/** Per-question time: "本题 0:12" with a small ring that fills toward the target (warning past it). */
 function ItemTimer({ clock, saved, target, live, total }: { clock: StudyClock; saved: number; target: number; live: boolean; total?: number }) {
   useClock(clock);
   const t = saved + (live ? clock.pendingItem() : 0);
@@ -64,12 +76,9 @@ function ItemTimer({ clock, saved, target, live, total }: { clock: StudyClock; s
   return (
     <Tooltip label={tip} side="bottom">
       <span className={cx('pl-timer', over && 'is-over')} tabIndex={-1}>
-        <Icon name="timer" size={13} className="pl-timer-icon" />
+        <TimeRing frac={frac} over={over} />
         <span className="pl-timer-label">本题</span>
         <span className="pl-timer-value num">{fmtClock(t)}</span>
-        <span className="pl-timer-line" aria-hidden>
-          <i style={{ width: `${frac * 100}%` }} />
-        </span>
       </span>
     </Tooltip>
   );
@@ -87,6 +96,7 @@ function Countdown({ clock, elapsed, limit }: { clock: StudyClock; elapsed: numb
   const left = Math.max(0, limit - elapsed - clock.pendingStudy());
   return (
     <span className={cx('pl-countdown', left <= 60 ? 'is-danger' : left <= 300 && 'is-warning')} role="timer" aria-label={`剩余时间 ${fmtClock(left)}`}>
+      <Icon name="timer" size={14} className="pl-countdown-icon" />
       <span className="pl-countdown-label">剩余</span>
       <span className="pl-countdown-value num">{fmtClock(left)}</span>
     </span>
@@ -98,6 +108,7 @@ function ExamElapsed({ clock, elapsed }: { clock: StudyClock; elapsed: number })
   useClock(clock);
   return (
     <span className="pl-countdown is-elapsed">
+      <Icon name="timer" size={14} className="pl-countdown-icon" />
       <span className="pl-countdown-label">已用</span>
       <span className="pl-countdown-value num">{fmtClock(elapsed + clock.pendingStudy())}</span>
     </span>
@@ -154,13 +165,9 @@ export function TopBar({
         <IconButton icon="arrowLeft" label="退出（进度会保存）" tooltipSide="bottom" onClick={onExit} />
         <div className="pl-top-title">
           <SubjectDot subject={subject} />
-          <span className="pl-top-name">{title}</span>
-          {exam && (
-            <span className="pl-exam-tag">
-              <Icon name="timer" size={12} />
-              {limit ? '限时' : '考试模式'}
-            </span>
-          )}
+          {/* The mode lives in the tag, so a "限时 · " prefix of the title is not repeated. */}
+          <span className="pl-top-name">{exam ? title.replace(/^(加练|限时)\s*·\s*/, '') : title}</span>
+          {exam && <span className="pl-exam-tag">{limit ? '限时' : '考试模式'}</span>}
         </div>
       </div>
       <div className="pl-top-center">
@@ -172,11 +179,13 @@ export function TopBar({
         )}
       </div>
       <div className="pl-top-right">
+        {/* Exam: one clock (the paper's); the per-question pace shows up as a nudge on a slow question. */}
         {exam ? (
-          <>
-            <ItemTimer clock={clock} saved={itemSaved} target={itemTarget} live={itemLive} />
-            {limit ? <Countdown clock={clock} elapsed={elapsed} limit={limit} /> : <ExamElapsed clock={clock} elapsed={elapsed} />}
-          </>
+          limit ? (
+            <Countdown clock={clock} elapsed={elapsed} limit={limit} />
+          ) : (
+            <ExamElapsed clock={clock} elapsed={elapsed} />
+          )
         ) : (
           <PracticeTimer clock={clock} elapsed={elapsed} saved={itemSaved} target={itemTarget} live={itemLive} />
         )}

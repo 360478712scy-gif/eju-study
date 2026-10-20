@@ -4,7 +4,7 @@
 @keyframes sg-eq { 0%, 100% { height: 4px; } 50% { height: 14px; } }
 
 .sg-layout { display: grid; grid-template-columns: 172px minmax(0, 1fr); gap: 28px; align-items: start; }
-.sg-nav { position: sticky; top: 8px; }
+.sg-nav { position: sticky; top: 16px; align-self: start; }
 .sg-nav-list { display: flex; flex-direction: column; gap: 2px; }
 .sg-nav-bar { display: none; }
 .sg-nav-item {
@@ -94,14 +94,13 @@
 .sg-exam-label { font-size: var(--fs-xs); color: var(--text-3); font-weight: var(--fw-medium); }
 .sg-exam-value { font-size: var(--fs-md); font-weight: var(--fw-semibold); }
 .sg-exam-left { display: flex; align-items: baseline; gap: 4px; color: var(--text-2); font-size: var(--fs-ui); }
-.sg-exam-left b { font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--primary-text); letter-spacing: -0.02em; line-height: 1; }
+.sg-exam-left b { font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--text); letter-spacing: -0.02em; line-height: 1; }
 
 .sg-scores { display: flex; flex-direction: column; padding-bottom: 8px; }
 .sg-scores-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr) 72px; align-items: center; gap: 14px; padding: 6px 0; }
 .sg-scores-head { padding: 0 0 2px; color: var(--text-3); font-size: var(--fs-xs); font-weight: var(--fw-medium); }
 .sg-scores-total { margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--divider); font-weight: var(--fw-semibold); }
 .sg-scores-total > span:nth-child(2), .sg-scores-total > span:nth-child(3) { padding-left: 13px; font-size: var(--fs-md); }
-.sg-total-target { color: var(--primary-text); }
 .sg-subject { display: inline-flex; align-items: center; gap: 10px; font-weight: var(--fw-medium); }
 .sg-subject-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--tone-soft); color: var(--tone-text); }
 .sg-score {
@@ -116,7 +115,6 @@
 .sg-score input { flex: 1; min-width: 0; height: 100%; border: none; outline: none; background: transparent; font-size: var(--fs-md); font-weight: var(--fw-semibold); }
 .sg-score input:focus-visible { box-shadow: none; }
 .sg-score-max { color: var(--text-3); font-size: var(--fs-xs); white-space: nowrap; }
-.sg-score.is-target input { color: var(--primary-text); }
 .sg-score.is-error, .sg-score.is-error:focus-within { border-color: var(--danger); box-shadow: 0 0 0 3px var(--danger-soft); }
 .sg-score-error {
   position: absolute; left: 0; top: calc(100% + 5px); z-index: 3;
@@ -126,12 +124,13 @@
   box-shadow: var(--shadow-sm);
 }
 .sg-col-gain { text-align: right; }
-.sg-gain { text-align: right; color: var(--text-3); font-weight: var(--fw-semibold); }
-.sg-gain.is-up { color: var(--success-text); }
+/* What is still to gain is a gap, so it stays neutral (green is for at / above target). */
+.sg-gain { text-align: right; color: var(--text-2); font-weight: var(--fw-semibold); }
 
 .sg-weak { display: flex; flex-direction: column; gap: 10px; }
-.sg-weak-group { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; align-items: start; }
-.sg-weak-subject { padding-top: 5px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--tone-text); }
+.sg-weak-group { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; align-items: start; }
+/* Subject identity is the dot; the label and the chips stay neutral, selection is indigo (§8). */
+.sg-weak-subject { display: inline-flex; align-items: center; gap: 8px; height: 30px; font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--text-2); }
 .sg-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .sg-chip {
   display: inline-flex; align-items: center; gap: 4px;
@@ -141,11 +140,13 @@
   font-size: var(--fs-sm); font-weight: var(--fw-medium); cursor: pointer;
   transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.sg-chip:hover { border-color: var(--tone); color: var(--text); }
-.sg-chip.is-on { background: var(--tone-soft); border-color: var(--tone); color: var(--tone-text); }
+.sg-chip svg { color: var(--primary); }
+.sg-chip:hover { border-color: color-mix(in srgb, var(--border-strong) 55%, var(--text-3)); color: var(--text); }
+.sg-chip.is-on { background: var(--primary-soft); border-color: var(--primary); color: var(--primary-text); }
+.sg-chip:focus-visible { box-shadow: var(--focus-ring); }
 
 .sg-replan {
-  position: sticky; top: 12px; z-index: 6;
+  position: sticky; top: 16px; z-index: 6;
   display: flex; align-items: center; gap: 12px;
   padding: 12px 14px;
   border: 1px solid var(--primary-soft-2); border-radius: var(--radius-lg);
@@ -161,12 +162,14 @@
 .sg-themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .sg-theme {
   position: relative; display: flex; align-items: center; gap: 12px;
-  padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius);
+  padding: 12px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius);
   background: var(--bg-elev); text-align: left; cursor: pointer;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.sg-theme:hover { border-color: var(--border-strong); }
-.sg-theme.is-on { border-color: var(--primary); background: var(--primary-soft); }
+.sg-theme:hover { border-color: color-mix(in srgb, var(--border-strong) 55%, var(--text-3)); }
+.sg-theme.is-on { border-color: var(--primary); background: color-mix(in srgb, var(--primary-soft) var(--tint-amount), var(--bg-elev)); box-shadow: inset 0 0 0 1px var(--primary); }
+.sg-theme:focus-visible { box-shadow: var(--focus-ring); }
+.sg-theme.is-on:focus-visible { box-shadow: var(--focus-ring), inset 0 0 0 1px var(--primary); }
 .sg-theme-icon { width: 36px; height: 36px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); background: var(--bg-sunken); color: var(--text-2); }
 .sg-theme.is-on .sg-theme-icon { background: var(--primary); color: var(--on-primary); }
 .sg-theme-text { display: flex; flex-direction: column; min-width: 0; }
@@ -175,7 +178,7 @@
 .sg-theme-check { position: absolute; top: 9px; right: 9px; color: var(--primary); }
 
 .sg-preview { display: flex; flex-direction: column; gap: 6px; padding: 14px 18px; border-radius: var(--radius); background: var(--bg-sunken); }
-.sg-preview-ja { font-size: calc(17px * var(--reading-scale)); line-height: var(--lh-read-ja); }
+.sg-preview-ja { font-size: calc(var(--fs-md) * var(--reading-scale)); line-height: var(--lh-read-ja); }
 .sg-preview-zh { font-size: calc(var(--fs-base) * var(--reading-scale)); line-height: var(--lh-read-zh); color: var(--text-2); }
 
 /* ── Practice ── */
