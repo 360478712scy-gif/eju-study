@@ -1,3 +1,5 @@
+/* App shell: sidebar + scrolling main. --sidebar-w shrinks at ≤1100px and becomes a 64px icon rail
+   at ≤1024px (tokens.css), so the 920×650 native minimum keeps ~856px for the page. */
 .app {
   display: grid;
   grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
@@ -11,12 +13,14 @@
   overflow-x: hidden;
   height: 100vh;
   scroll-behavior: smooth;
+  scroll-padding-top: 16px;
 }
 .boot {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px;
   color: var(--text-3);
 }
 .boot-card {
@@ -31,19 +35,40 @@
   align-items: flex-start;
   box-shadow: var(--shadow);
 }
+.boot-card h2 {
+  font-size: var(--fs-lg);
+}
+
+/* ⌘/ shortcuts sheet: two columns when there is room, label left / keys right. */
+.modal:has(> .modal-body > .shortcut-list) {
+  width: min(720px, calc(100vw - 48px)) !important;
+}
 .shortcut-list {
-  display: flex;
-  flex-direction: column;
+  column-gap: 32px;
 }
 .shortcut-row {
-  padding: 9px 0;
-  border-bottom: 1px solid var(--border);
+  min-height: 42px;
+  padding: 8px 0;
+  font-size: var(--fs-ui);
+  border-bottom: 1px solid var(--divider);
+  break-inside: avoid;
 }
 .shortcut-row:last-child {
   border-bottom: none;
 }
-@media (max-width: 860px) {
-  .app {
-    grid-template-columns: 64px minmax(0, 1fr);
+.shortcut-row > .muted {
+  color: var(--text-2);
+}
+.shortcut-row .kbd {
+  flex: none;
+}
+@media (min-width: 760px) {
+  .shortcut-list {
+    display: block;
+    columns: 2;
+  }
+  .shortcut-row {
+    min-height: 40px;
+    border-bottom: none;
   }
 }

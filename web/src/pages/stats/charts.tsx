@@ -91,7 +91,7 @@ export function StudyBars({ days, height = 210 }: { days: DayBar[]; height?: num
         content: (
           <>
             <div className="st-tip-title">{hd.title}</div>
-            <TipRow color="var(--primary)" value={fmtHM(hd.minutes)} label="学习" />
+            <TipRow color="var(--mixed)" value={fmtHM(hd.minutes)} label="学习" />
             {hd.budget !== null && <TipRow color="var(--text-2)" value={fmtHM(hd.budget)} label="计划" />}
             {hd.answered > 0 && <TipRow value={`${hd.answered} 题`} label={`正确 ${Math.round((hd.correct / hd.answered) * 100)}%`} />}
           </>
@@ -171,7 +171,8 @@ export interface LinePoint {
 export function MiniLine({ points, target, color, height = 128, name }: { points: LinePoint[]; target: number; color: string; height?: number; name: string }) {
   const [ref, width] = useWidth<HTMLDivElement>(220);
   const [hover, setHover] = useState<number | null>(null);
-  const m = { l: 32, r: 8, t: 10, b: 20 };
+  // The right margin holds the target label, outside the plot.
+  const m = { l: 34, r: 60, t: 10, b: 22 };
   const iw = Math.max(10, width - m.l - m.r);
   const ih = height - m.t - m.b;
   const n = points.length;
@@ -179,7 +180,6 @@ export function MiniLine({ points, target, color, height = 128, name }: { points
   const y = (v: number) => m.t + ih - v * ih;
   const real = points.map((p, i) => ({ ...p, i })).filter((p): p is LinePoint & { i: number; value: number } => p.value !== null);
   const d = real.map((p, k) => `${k ? 'L' : 'M'}${x(p.i).toFixed(1)},${y(p.value).toFixed(1)}`).join('');
-  const area = real.length > 1 ? `${d}L${x(real[real.length - 1].i).toFixed(1)},${y(0)}L${x(real[0].i).toFixed(1)},${y(0)}Z` : '';
   const hp = hover !== null ? points[hover] : null;
   const tip: TipState | null =
     hp && hover !== null
@@ -204,20 +204,19 @@ export function MiniLine({ points, target, color, height = 128, name }: { points
         {[0, 0.5, 1].map((v) => (
           <g key={v}>
             <line x1={m.l} x2={width - m.r} y1={y(v)} y2={y(v)} className="st-grid" />
-            <text x={m.l - 6} y={y(v)} className="st-axis" textAnchor="end" dominantBaseline="middle">
+            <text x={m.l - 8} y={y(v)} className="st-axis" textAnchor="end" dominantBaseline="middle">
               {v * 100}%
             </text>
           </g>
         ))}
         <line x1={m.l} x2={width - m.r} y1={y(target)} y2={y(target)} className="st-target" />
-        <text x={width - m.r} y={y(target) - 4} className="st-axis" textAnchor="end">
+        <text x={width - m.r + 8} y={y(target)} className="st-axis is-label" textAnchor="start" dominantBaseline="middle">
           目标 {Math.round(target * 100)}%
         </text>
-        {area && <path d={area} style={{ fill: color }} opacity={0.1} />}
         {d && <path d={d} fill="none" style={{ stroke: color }} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />}
         {hover !== null && <line x1={x(hover)} x2={x(hover)} y1={m.t} y2={m.t + ih} className="st-cross" />}
         {real.map((p) => (
-          <circle key={p.date} cx={x(p.i)} cy={y(p.value)} r={hover === p.i ? 5 : 4} style={{ fill: color }} className="st-dot" />
+          <circle key={p.date} cx={x(p.i)} cy={y(p.value)} r={hover === p.i ? 4.5 : 3} style={{ fill: color }} className="st-point" />
         ))}
         {n > 0 && (
           <>
@@ -259,7 +258,7 @@ export interface TrendPoint {
 
 export function Spark({
   points,
-  color = 'var(--primary)',
+  color = 'var(--mixed)',
   height = 36,
   format = (v: number) => String(Math.round(v)),
   name,
@@ -287,16 +286,14 @@ export function Spark({
   const x = (i: number) => pad + (n <= 1 ? (width - 2 * pad) / 2 : (i / (n - 1)) * (width - 2 * pad));
   const y = (v: number) => pad + (1 - (v - lo) / (hi - lo)) * (height - 2 * pad);
   const d = points.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`).join('');
-  const area = n > 1 ? `${d}L${x(n - 1).toFixed(1)},${height}L${x(0).toFixed(1)},${height}Z` : '';
   const hp = hover !== null ? points[hover] : null;
   return (
     <div className="st-chart st-spark" ref={ref}>
       <svg width={width} height={height} role="img" aria-label={`${name}趋势：${points.map((p) => `${p.label} ${format(p.value)}`).join('，')}`}>
-        {reference !== undefined && <line x1={0} x2={width} y1={y(reference)} y2={y(reference)} className="st-grid" />}
-        {area && <path d={area} style={{ fill: color }} opacity={0.1} />}
-        {n > 1 && <path d={d} fill="none" style={{ stroke: color }} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />}
+        {reference !== undefined && <line x1={0} x2={width} y1={y(reference)} y2={y(reference)} className="st-ref" />}
+        {n > 1 && <path d={d} fill="none" style={{ stroke: color }} strokeWidth={1.5} strokeLinejoin="round" strokeLinecap="round" />}
         {hover !== null && <line x1={x(hover)} x2={x(hover)} y1={0} y2={height} className="st-cross" />}
-        {n > 0 && <circle cx={x(hover ?? n - 1)} cy={y(points[hover ?? n - 1].value)} r={4} style={{ fill: color }} className="st-dot" />}
+        {n > 0 && <circle cx={x(hover ?? n - 1)} cy={y(points[hover ?? n - 1].value)} r={3} style={{ fill: color }} className="st-point" />}
         <rect
           x={0}
           y={0}
@@ -321,107 +318,56 @@ export function Spark({
   );
 }
 
-// ───────────────────────── Score gauge / bullet ─────────────────────────
+// ───────────────────────── Score bar ─────────────────────────
+// The same pattern as the mock pages: a track 0…max with the predicted score as a fill and the
+// target as a 2×14 tick labelled under it. The denominator of a score is always the maximum; the
+// target is never a denominator. An optional start tick is drawn faint and unlabelled.
 
 export function ScoreBar({
-  estimate,
-  low,
-  high,
-  baseline,
-  target,
+  value,
   max,
-  color = 'var(--primary)',
-  size = 'sm',
-  name,
+  target,
+  start,
+  tone = 'mixed',
+  size = 'md',
+  label,
 }: {
-  estimate: number;
-  low: number;
-  high: number;
-  baseline: number;
-  target: number;
+  value: number;
   max: number;
-  color?: string;
-  size?: 'sm' | 'lg';
-  name: string;
+  target: number;
+  start?: number;
+  /** A subject, or 'mixed' for totals. */
+  tone?: string;
+  size?: 'md' | 'lg';
+  label: string;
 }) {
-  const [ref, width] = useWidth<HTMLDivElement>(240);
-  const big = size === 'lg';
-  const span = Math.max(target, high, estimate) - Math.min(baseline, low, estimate);
-  const pad = Math.max(span * 0.18, max * (big ? 0.012 : 0.04));
-  const lo = Math.max(0, Math.floor((Math.min(baseline, low, estimate) - pad) / 5) * 5);
-  const hi = Math.min(max, Math.ceil((Math.max(target, high, estimate) + pad) / 5) * 5);
-  const ml = 6;
-  const mr = 6;
-  const iw = Math.max(10, width - ml - mr);
-  const x = (v: number) => ml + ((Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo || 1)) * iw;
-  const barY = big ? 26 : 8;
-  const barH = big ? 14 : 8;
-  const height = big ? 76 : 46;
-  const labelY = barY + barH + (big ? 20 : 16);
-  const reached = estimate >= target;
-  // Keep the two tick labels apart when baseline and target sit close together.
-  const xb = x(baseline);
-  const xt = x(target);
-  const close = Math.abs(xt - xb) < (big ? 84 : 70);
-  const mid = (xb + xt) / 2;
-  const baseLabel = close ? { x: mid - 4, anchor: 'end' as const } : { x: xb, anchor: anchorFor(xb, width) };
-  const targetLabel = close ? { x: mid + 4, anchor: 'start' as const } : { x: xt, anchor: anchorFor(xt, width) };
+  const frac = (v: number) => Math.max(0, Math.min(1, v / max));
+  const tp = frac(target);
   return (
-    <div className="st-chart" ref={ref}>
-      <svg
-        width={width}
-        height={height}
-        role="img"
-        aria-label={`${name}预测 ${estimate}（约 ${low}–${high}），起点 ${baseline}，目标 ${target}`}
-        className={cx('st-score', big && 'is-big')}
-      >
-        <rect x={ml} y={barY} width={iw} height={barH} rx={barH / 2} className="st-track" />
-        <rect x={x(low)} y={barY} width={Math.max(2, x(high) - x(low))} height={barH} rx={barH / 2} style={{ fill: color }} opacity={0.18} />
-        <rect x={ml} y={barY} width={Math.max(barH, x(estimate) - ml)} height={barH} rx={barH / 2} style={{ fill: color }} />
-        <line x1={x(baseline)} x2={x(baseline)} y1={barY - 4} y2={barY + barH + 4} className="st-mark-base" />
-        <line x1={x(target)} x2={x(target)} y1={barY - (big ? 8 : 4)} y2={barY + barH + 4} className={cx('st-mark-target', reached && 'is-reached')} />
-        {big && <path d={flagPath(x(target), barY - 8)} className={cx('st-flag', reached && 'is-reached')} />}
-        <circle cx={x(estimate)} cy={barY + barH / 2} r={big ? 8 : 5.5} style={{ fill: color }} className="st-dot" />
-        {big && (
-          <text x={x(estimate)} y={barY - 10} textAnchor={x(estimate) > width - 60 ? 'end' : 'middle'} className="st-val">
-            预测 {estimate}
-          </text>
-        )}
-        <text x={baseLabel.x} y={labelY} textAnchor={baseLabel.anchor} className="st-axis">
-          起点 {baseline}
-        </text>
-        <text x={targetLabel.x} y={labelY} textAnchor={targetLabel.anchor} className="st-axis is-strong">
-          目标 {target}
-        </text>
-        {big && (
-          <>
-            <text x={ml} y={labelY} className="st-axis is-faint" textAnchor="start">
-              {x(baseline) - ml > 54 ? lo : ''}
-            </text>
-            <text x={width - mr} y={labelY} className="st-axis is-faint" textAnchor="end">
-              {width - mr - x(target) > 54 ? hi : ''}
-            </text>
-          </>
-        )}
-      </svg>
+    <div
+      className={cx('st-sbar', `tone-${tone}`, size === 'lg' && 'is-lg')}
+      role="img"
+      aria-label={`${label}预测 ${value} / ${max}，目标 ${target}${start !== undefined ? `，起点 ${start}` : ''}`}
+    >
+      <div className="st-sbar-track">
+        <i className="st-sbar-fill" style={{ width: `${frac(value) * 100}%` }} />
+      </div>
+      {start !== undefined && <span className="st-sbar-start" style={{ left: `${frac(start) * 100}%` }} />}
+      <span className={cx('st-sbar-target', tp > 0.84 && 'is-end', tp < 0.16 && 'is-start')} style={{ left: `${tp * 100}%` }}>
+        <span>
+          目标 <span className="num">{target}</span>
+        </span>
+      </span>
     </div>
   );
-}
-
-function anchorFor(px: number, width: number): 'start' | 'middle' | 'end' {
-  if (px < 30) return 'start';
-  if (px > width - 30) return 'end';
-  return 'middle';
-}
-
-function flagPath(x: number, top: number): string {
-  return `M${x},${top}V${top - 12}L${x + 10},${top - 8}L${x},${top - 4}Z`;
 }
 
 // ───────────────────────── Pace dot plot ─────────────────────────
 
 const PACE_LO = 0.5;
 const PACE_HI = 2.5;
+const PACE_TICKS = [0.5, 1, 1.5, 2, 2.5];
+const paceX = (v: number, ml: number, iw: number) => ml + ((Math.max(PACE_LO, Math.min(PACE_HI, v)) - PACE_LO) / (PACE_HI - PACE_LO)) * iw;
 
 export function PaceDot({ ratio, color, name }: { ratio: number | null; color: string; name: string }) {
   const [ref, width] = useWidth<HTMLDivElement>(260);
@@ -429,21 +375,21 @@ export function PaceDot({ ratio, color, name }: { ratio: number | null; color: s
   const ml = 8;
   const mr = 8;
   const iw = Math.max(10, width - ml - mr);
-  const lx = (v: number) => ml + ((Math.log(Math.max(PACE_LO, Math.min(PACE_HI, v))) - Math.log(PACE_LO)) / (Math.log(PACE_HI) - Math.log(PACE_LO))) * iw;
+  const lx = (v: number) => paceX(v, ml, iw);
   const cy = 20;
   return (
     <div className="st-chart" ref={ref}>
       <svg width={width} height={h} role="img" aria-label={ratio === null ? `${name}暂无用时数据` : `${name}用时是考场节奏的 ${ratio.toFixed(2)} 倍`}>
         <rect x={lx(0.85)} y={cy - 9} width={lx(1.15) - lx(0.85)} height={18} rx={4} className="st-band" />
         <line x1={ml} x2={width - mr} y1={cy} y2={cy} className="st-grid" />
-        {[0.5, 1.5, 2].map((v) => (
+        {PACE_TICKS.filter((v) => v !== 1).map((v) => (
           <line key={v} x1={lx(v)} x2={lx(v)} y1={cy - 3} y2={cy + 3} className="st-grid" />
         ))}
-        <line x1={lx(1)} x2={lx(1)} y1={cy - 11} y2={cy + 11} className="st-mark-base" />
+        <line x1={lx(1)} x2={lx(1)} y1={cy - 10} y2={cy + 10} className="st-mark-base" />
         {ratio !== null && (
           <>
             <line x1={lx(1)} x2={lx(ratio)} y1={cy} y2={cy} style={{ stroke: color }} strokeWidth={2} strokeLinecap="round" />
-            <circle cx={lx(ratio)} cy={cy} r={6} style={{ fill: color }} className="st-dot" />
+            <circle cx={lx(ratio)} cy={cy} r={5.5} style={{ fill: color }} className="st-dot" />
             <text x={lx(ratio)} y={cy - 11} textAnchor={lx(ratio) > width - 24 ? 'end' : 'middle'} className="st-val is-sm">
               {ratio >= PACE_HI ? `>${PACE_HI}` : ratio.toFixed(1)}×
             </text>
@@ -459,13 +405,13 @@ export function PaceAxis() {
   const ml = 8;
   const mr = 8;
   const iw = Math.max(10, width - ml - mr);
-  const lx = (v: number) => ml + ((Math.log(v) - Math.log(PACE_LO)) / (Math.log(PACE_HI) - Math.log(PACE_LO))) * iw;
+  const lx = (v: number) => paceX(v, ml, iw);
   return (
     <div className="st-chart" ref={ref}>
       <svg width={width} height={18} aria-hidden>
-        {[0.5, 1, 1.5, 2].map((v) => (
-          <text key={v} x={lx(v)} y={12} textAnchor={v === 0.5 ? 'start' : 'middle'} className={cx('st-axis', v === 1 && 'is-strong')}>
-            {v === 1 ? '考场节奏' : `${v}×`}
+        {PACE_TICKS.map((v) => (
+          <text key={v} x={lx(v)} y={12} textAnchor={v === PACE_LO ? 'start' : v === PACE_HI ? 'end' : 'middle'} className={cx('st-axis', v === 1 && 'is-strong')}>
+            {v}×
           </text>
         ))}
       </svg>

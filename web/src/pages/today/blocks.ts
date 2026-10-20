@@ -1,5 +1,5 @@
 // Plan-block helpers shared by the Today and Plan pages: presentation (icon, tone, labels)
-// and the actions behind "开始 / 继续 / 再练 / 跳过".
+// and the actions behind "开始 / 继续 / 再练 / 跳过". The UI calls a block 项 / 任务, never 块.
 import type { AppState, Phase, PlanBlock, PracticeSession } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { blockItems, findBlock, markBlock, regeneratePlan, startBlock, startSession } from '@shared/actions.ts';
@@ -42,13 +42,11 @@ export function blockIcon(b: PlanBlock): IconName {
   }
 }
 
+/** Identity colour of a block: its subject; mixed sets (错题重做, 考前一页纸) stay neutral slate. Never amber. */
 export function blockTone(b: PlanBlock): Tone {
   if (b.kind === 'mock') return 'primary';
   if (b.subject !== 'mixed') return b.subject;
-  if (b.kind === 'review') return 'warning';
-  if (b.kind === 'notes') return 'success';
-  if (b.kind === 'traps') return 'warning';
-  return 'primary';
+  return 'mixed';
 }
 
 export function blockKindLabel(b: PlanBlock): string {
@@ -124,12 +122,29 @@ export function blockTitle(state: AppState, bank: BankIndex, b: PlanBlock, date:
   return v.extra ? `词汇 · 加练 ${v.cards} 张卡` : `词汇 · ${v.cards} 张卡`;
 }
 
+/** "数理整卷模考 ①" → "数理整卷模考 1": circled digits read as an (i) icon at UI sizes. */
+export function plainNumbers(s: string): string {
+  return s.replace(/\s*([\u2460-\u2473])/g, (_, c: string) => ` ${c.charCodeAt(0) - 0x2460 + 1}`);
+}
+
+/**
+ * Short title for lists and the hero: the count and the "限时 / 加练" prefixes live in the meta
+ * line instead ("错题重做 · 17 题" → "错题重做", "限时 · 物理 · 电场" → "物理 · 电场").
+ */
+export function displayTitle(state: AppState, bank: BankIndex, b: PlanBlock, date: string): string {
+  const t = plainNumbers(blockTitle(state, bank, b, date))
+    .replace(/^(加练|限时)\s*·\s*/, '')
+    .replace(/^(加练|限时)\s*·\s*/, '')
+    .replace(/\s*·\s*(复习|加练)?\s*\d+\s*(题|张卡)?(\s*\+\s*新词\s*\d+)?$/, '');
+  return t.trim() || blockKindLabel(b);
+}
+
 /** Reason shown for a block; an open vocab block explains its live numbers. */
 export function blockReason(state: AppState, bank: BankIndex, b: PlanBlock, date: string): string {
   if (b.kind !== 'vocab' || b.status === 'done') return b.reason;
   const v = vocabNow(state, bank, date);
   if (v.running) return `这一轮 ${v.cards} 张卡正在进行，接着做完就好。`;
-  if (v.extra) return v.cards ? `今天该练的卡都练完了，这一块练 ${v.cards} 张最容易错的卡。` : '还没有学过的词，先去词汇页学几个新词。';
+  if (v.extra) return v.cards ? `今天该练的卡都练完了，这一项练 ${v.cards} 张最容易错的卡。` : '还没有学过的词，先去词汇页学几个新词。';
   const parts = [!v.review ? '没有到期的卡' : v.due > v.review ? `到期 ${v.due} 张，这一轮先复习最该复习的 ${v.review} 张` : `到期复习 ${v.review} 张`];
   if (v.fill) parts.push(`补另一项 ${v.fill} 张`);
   // 补另一项 cards come out of the new-word allowance, so "no new words" is only said when neither is there.
@@ -242,7 +257,17 @@ export function runBlock(state: AppState, bank: BankIndex, block: PlanBlock) {
     return draft ? startBlock(d, b, draft) : null;
   });
   if (s) navigate('/session/' + s.id);
-  else toast('这一块暂时没有可做的题，可以先做下一块', 'warning');
+  else toast('这一项暂时没有可做的题，可以先做下一项', 'warning');
+}
+
+/** The latest finished practice session of a block (its result page). */
+export function finishedSessionFor(state: AppState, blockId: string): PracticeSession | undefined {
+  let best: PracticeSession | undefined;
+  for (const s of Object.values(state.sessions)) {
+    if (s.blockId !== blockId || !s.finishedAt) continue;
+    if (!best || s.startedAt > best.startedAt) best = s;
+  }
+  return best;
 }
 
 /** Practise a finished block's items again without touching the plan. */
@@ -259,7 +284,7 @@ export function redoBlock(state: AppState, block: PlanBlock) {
     ids = last?.itemIds ?? [];
   }
   if (!ids.length) {
-    toast('这一块没有可以再练的题', 'warning');
+    toast('这一项没有可以再练的题', 'warning');
     return;
   }
   const s = update((d) => startSession(d, { kind: 'drill', title: `再练 · ${block.title}`, subject: block.subject, itemIds: [...ids] }));
@@ -268,7 +293,6 @@ export function redoBlock(state: AppState, block: PlanBlock) {
 
 export function skipBlock(blockId: string) {
   update((d) => markBlock(d, blockId, 'skipped'));
-  toast('已跳过，随时可以恢复');
 }
 
 export function restoreBlock(blockId: string) {
@@ -277,7 +301,7 @@ export function restoreBlock(blockId: string) {
 
 export function finishBlockManually(blockId: string) {
   update((d) => markBlock(d, blockId, 'done'));
-  toast('已完成这一块', 'success');
+  toast('已完成这一项', 'success');
 }
 
 /**

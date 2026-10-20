@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useApp, tickToday, update, getSnapshot } from './lib/store.ts';
 import { useRoute, navigate } from './lib/router.ts';
 import { onShellCommand, SHELL_PAGES } from './lib/native.ts';
@@ -17,6 +17,8 @@ import { NotesPage } from './pages/notes/NotesPage.tsx';
 import { SettingsPage } from './pages/settings/SettingsPage.tsx';
 import { OnboardingPage } from './pages/onboarding/OnboardingPage.tsx';
 import { TrapsPage } from './pages/traps/TrapsPage.tsx';
+import { FlowPage } from './pages/flow/FlowPage.tsx';
+import { flowActive, onFlowChange } from './pages/flow/flowState.ts';
 
 function useTheme() {
   const theme = useApp((s) => s.state?.settings.theme);
@@ -80,6 +82,9 @@ export function App() {
   const error = useApp((s) => s.error);
   const onboarded = useApp((s) => s.state?.profile.onboarded);
   const route = useRoute();
+  const today = useApp((s) => s.today);
+  // 跟学模式: while it is on, "home" is the follow-along page, so finishing any block comes back to it.
+  const flow = useSyncExternalStore(onFlowChange, () => flowActive(today));
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
   useTheme();
   useMusicSync();
@@ -151,11 +156,15 @@ export function App() {
   }
 
   const [head, a] = route.parts;
-  const focus = head === 'session';
+  const showFlow = head === 'flow' || (head === undefined && flow);
+  const focus = head === 'session' || showFlow;
   let page;
   switch (head) {
     case undefined:
-      page = <TodayPage />;
+      page = flow ? <FlowPage /> : <TodayPage />;
+      break;
+    case 'flow':
+      page = <FlowPage />;
       break;
     case 'plan':
       page = <PlanPage />;

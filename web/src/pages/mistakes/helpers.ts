@@ -30,16 +30,17 @@ export function attemptsByItem(attempts: Attempt[]): Map<string, Attempt[]> {
 
 export interface DueInfo {
   text: string;
-  tone: 'warning' | 'primary' | 'neutral';
+  /** now = due today (amber text), soon = tomorrow (text-2), later = text-3. Never a pill. */
+  tone: 'now' | 'soon' | 'later';
   days: number;
 }
 
 export function dueInfo(due: string | undefined, today: string): DueInfo | null {
   if (!due) return null;
   const n = daysBetween(today, due);
-  if (n <= 0) return { text: '今天', tone: 'warning', days: n };
-  if (n === 1) return { text: '明天', tone: 'primary', days: n };
-  return { text: `${n} 天后`, tone: 'neutral', days: n };
+  if (n <= 0) return { text: '今天', tone: 'now', days: n };
+  if (n === 1) return { text: '明天', tone: 'soon', days: n };
+  return { text: `${n} 天后`, tone: 'later', days: n };
 }
 
 export type ResultKind = 'right' | 'wrong' | 'guess' | 'gaveup' | 'partial' | 'none';

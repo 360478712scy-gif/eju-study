@@ -3,16 +3,17 @@ import { useMemo, useState } from 'react';
 import type { AppState, MockKind, Subject } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
-import { estimateAll, paceStats, SCALE_MAX, streak, topicStats, totalEstimate, type PaceStat, type SubjectEstimate, type TopicStat } from '@shared/stats.ts';
+import { estimateAll, paceStats, SCALE_MAX, streak, topicStats, type PaceStat, type SubjectEstimate, type TopicStat } from '@shared/stats.ts';
 import { addDays, dateRange, daysBetween, parseDate, weekdayZh } from '@shared/dates.ts';
 import { budgetFor, shortTopic, vocabDueCount, vocabSkills } from '@shared/planner.ts';
 import { useReady, useApp } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct, SUBJECT_NAME } from '../../lib/format.ts';
-import { Badge, Button, Card, Empty, PageHeader, Ring, Segmented, SubjectDot, SubjectTag } from '../../components/ui.tsx';
+import { Badge, Button, Card, Chip, Empty, Legend, List, ListRow, Meta, PageHeader, Progress, Ring, Segmented, StatTile, SubjectDot, SubjectTag, Tooltip } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { SUBJECT_ORDER, launch } from '../mistakes/helpers.ts';
 import { pickDrill, reservedMap } from '../practice/practiceData.ts';
+import { isLowData, lowDataNote, shownScore, TOTAL_MAX } from '../today/scores.ts';
 import {
   BAND_TEXT,
   COLOR,
@@ -23,16 +24,15 @@ import {
   SCIENCE_ITEMS,
   SCIENCE_TOTAL,
   targetRatio,
-  type Band,
   type Finish,
   type ScienceSubject,
 } from './model.ts';
 import { MiniLine, PaceAxis, PaceDot, ScoreBar, Spark, StudyBars, fmtHM, type DayBar, type LinePoint, type TrendPoint } from './charts.tsx';
+import { SKILL_TONE } from '../vocab/run.ts';
 import './stats.css';
 
 const EST_ORDER: Subject[] = ['japanese', 'math', 'physics', 'chemistry'];
 const SCIENCE: ScienceSubject[] = ['physics', 'chemistry'];
-const BANDS: Band[] = ['weak', 'near', 'good', 'none'];
 
 function shortLabel(d: string): string {
   const dt = parseDate(d);
@@ -52,7 +52,6 @@ export function StatsPage() {
 
   const est = useMemo(() => estimateAll(state, bank), [attempts, mocks, profile, bank]);
   const pace = useMemo(() => paceStats(state, bank), [attempts, bank]);
-  const total = totalEstimate(est);
 
   // Estimate trend: the day before the sprint (baseline) through today.
   const trend = useMemo(() => {
@@ -65,11 +64,11 @@ export function StatsPage() {
 
   return (
     <div className="page st-page">
-      <PageHeader title="数据" desc="预测只算每题的第一次作答，以官方真题为主，理科再按你现在的速度折算。当趋势看，别当成绩单。" />
-      <ScoreHero est={est} total={total} trend={trend} state={state} today={today} />
+      <PageHeader title="数据" desc="预测只算第一次作答，当趋势看，别当成绩单。" info={RULES} />
+      <ScoreHero est={est} trend={trend} state={state} today={today} />
       <div className="grid grid-4 st-subjects">
         {EST_ORDER.map((s) => (
-          <SubjectCard key={s} e={est[s]} pace={pace[s]} trend={trend.map((t) => ({ label: t.label, value: t.est[s].estimate }))} />
+          <SubjectCard key={s} e={est[s]} pace={pace[s]} trend={trend.map((t) => ({ label: t.label, value: shownScore(t.est[s]) }))} />
         ))}
       </div>
 
@@ -93,22 +92,28 @@ export function StatsPage() {
   );
 }
 
+const RULES = '预测只算每题的第一次作答，以官方真题为主；理科再按你现在的答题速度，折算成 80 分钟内能拿到的分。某科首答不到 30 题时数据还少，先按起点算，并给出大约的区间。';
+
+/** The total as Today and Plan show it: subjects with little data count at their starting score. */
+function shownTotal(est: Record<Subject, SubjectEstimate>): number {
+  return EST_ORDER.reduce((s, k) => s + shownScore(est[k]), 0);
+}
+
 // ───────────────────────── Score prediction ─────────────────────────
 
 function ScoreHero({
   est,
-  total,
   trend,
   state,
   today,
 }: {
   est: Record<Subject, SubjectEstimate>;
-  total: number;
   trend: { label: string; est: Record<Subject, SubjectEstimate> }[];
   state: AppState;
   today: string;
 }) {
   const p = state.profile;
+  const total = shownTotal(est);
   const baseline = EST_ORDER.reduce((s, k) => s + p.baseline[k], 0);
   const target = p.targetTotal;
   const below = Math.round(Math.sqrt(EST_ORDER.reduce((s, k) => s + (est[k].estimate - est[k].low) ** 2, 0)));
@@ -118,66 +123,69 @@ function ScoreHero({
   const daysLeft = daysBetween(today, p.examDate);
   const left = Math.max(1, daysLeft);
   const perDay = gap > 0 ? gap / left : 0;
-  const totals: TrendPoint[] = trend.map((t) => ({ label: t.label, value: totalEstimate(t.est) }));
+  const totals: TrendPoint[] = trend.map((t) => ({ label: t.label, value: shownTotal(t.est) }));
   const samples = EST_ORDER.reduce((s, k) => s + est[k].samples, 0);
   const sci = scienceFinish(est).all;
 
   return (
-    <section className="st-hero">
-      <div className="st-hero-left">
-        <div className="st-eyebrow">
-          <Icon name="target" size={14} />
-          预测总分
+    <section className="card card-hero st-hero">
+      <div className="st-hero-main">
+        <div className="t-eyebrow">预测总分</div>
+        <div className="st-hero-score">
+          <span className="num num-2xl">{total}</span>
+          <span className="num-unit">/ {TOTAL_MAX}</span>
+          {delta > 0 ? (
+            <Badge tone="success" icon="trending">
+              较起点 +{delta}
+            </Badge>
+          ) : (
+            <Chip>{delta < 0 ? `较起点 ${delta}` : '和起点持平'}</Chip>
+          )}
         </div>
-        <div className="st-hero-num">
-          <span className="st-big">{total}</span>
-          <span className="st-hero-of">/ {target}</span>
+        <div className="st-hero-bar">
+          <ScoreBar size="lg" label="总分" value={total} max={TOTAL_MAX} target={target} />
         </div>
-        <div className="st-hero-chips">
-          <span className={cx('st-delta', delta > 0 ? 'is-up' : delta < 0 ? 'is-down' : '')}>
-            <Icon name={delta >= 0 ? 'trending' : 'down'} size={14} />
-            比起点 {delta >= 0 ? '+' : ''}
-            {delta}
+        <Meta className="st-hero-meta">
+          <span>{gap > 0 ? <>离目标还差 <span className="num">{gap}</span> 分</> : '已到目标线'}</span>
+          <span>
+            大约 <span className="num">{total - below}–{total + above}</span>
           </span>
-          <span className="faint">
-            大约 {total - below}–{total + above}
-          </span>
-        </div>
+        </Meta>
         <p className="st-hero-say">
           {daysLeft < 0 ? (
             <>
-              考试已经结束。冲刺期间预测从 {baseline} 到了 <b>{total}</b>
-              {delta !== 0 && <>（{delta > 0 ? '+' : ''}{delta}）</>}，一共做了 <b>{firstTries(state)}</b> 道题。辛苦了，等成绩出来再对照看看。
+              考试已经结束。冲刺期间预测从 {baseline} 到了 <b className="num">{total}</b>，一共做了 <b className="num">{firstTries(state)}</b> 道题。辛苦了，等成绩出来再对照看看。
             </>
           ) : daysLeft === 0 ? (
-            <>今天考试。预测 {total} 分只是练习时的参考，进考场照平时的节奏做，先把会做的题做对。</>
+            <>今天考试。预测只是练习时的参考，进考场照平时的节奏做，先把会做的题做对。</>
           ) : daysLeft === 1 ? (
-            <>
-              {gap > 0 ? <>离 {target} 还差 {gap} 分。</> : <>已经够到 {target} 了。</>}明天就考了，今天只做轻量复习、早点睡，把会做的题做对就是在涨分。
-            </>
+            <>明天就考了，今天只做轻量复习、早点睡，把会做的题做对就是在涨分。</>
           ) : gap > 0 ? (
             <>
-              离 {target} 还差 <b>{gap}</b> 分。还有 {left} 天，平均每天涨 <b>{perDay.toFixed(1)}</b> 分就够。
+              还有 {left} 天，平均每天涨 <b className="num">{perDay.toFixed(1)}</b> 分就够。
             </>
           ) : (
-            <>已经够到 {target} 了。接下来稳住正确率和节奏，别在简单题上丢分。</>
+            <>接下来稳住正确率和节奏，别在简单题上丢分。</>
           )}
           {daysLeft > 1 && sci && sci.done < sci.total && (
             <>
-              理科按现在的速度，80 分钟约能做完 <b>{sci.done}</b>/{sci.total} 题，先把速度提上来。
+              理科按现在的速度，80 分钟约能做完 <b className="num">{sci.done}</b> / {sci.total} 题，先把速度提上来。
             </>
           )}
         </p>
       </div>
-      <div className="st-hero-right">
-        <ScoreBar size="lg" name="总分" estimate={total} low={total - below} high={total + above} baseline={baseline} target={target} max={800} />
+      <div className="st-hero-side">
         <div className="st-hero-trend">
           <div className="st-hero-trend-head">
             <span>每天的预测</span>
-            <span className="faint">{samples} 题样本</span>
+            <span className="num">{samples} 题样本</span>
           </div>
-          <Spark points={totals} name="预测总分" height={44} reference={baseline} />
-          {totals.length > 1 && (
+          {samples > 0 ? (
+            <Spark points={totals} name="预测总分" height={112} reference={baseline} />
+          ) : (
+            <p className="st-hero-trend-empty">做几组题后，这里会画出每天的预测。</p>
+          )}
+          {samples > 0 && totals.length > 1 && (
             <div className="st-hero-trend-foot">
               <span>
                 {totals[0].label} <b className="num">{Math.round(totals[0].value)}</b>
@@ -200,35 +208,44 @@ function firstTries(state: AppState): number {
 
 function SubjectCard({ e, pace, trend }: { e: SubjectEstimate; pace: PaceStat; trend: TrendPoint[] }) {
   const max = SCALE_MAX[e.subject];
-  const reached = e.estimate >= e.target;
+  const value = shownScore(e);
+  const low = isLowData(e);
+  const reached = value >= e.target;
   return (
-    <section className={cx('st-subj card', `tone-${e.subject}`)}>
+    <section className={cx('card st-subj', `tone-${e.subject}`)}>
       <header className="st-subj-head">
         <SubjectTag subject={e.subject} size="sm" />
-        <span className="faint text-xs">{e.samples ? `近 ${e.samples} 题` : '暂无作答'}</span>
+        <span className="st-subj-n">{e.samples ? `近 ${e.samples} 题` : '暂无作答'}</span>
       </header>
       <div className="st-subj-mid">
-        <div className="st-subj-num">
-          <span className="st-num-lg">{e.estimate}</span>
-          <span className="faint text-sm">/{max}</span>
+        <div className="st-subj-score">
+          <span className="num num-lg">{value}</span>
+          <span className="st-of num">/ {max}</span>
         </div>
-        <div className="st-subj-spark">
-          <Spark points={trend} name={`${SUBJECT_NAME[e.subject]}预测`} color={COLOR[e.subject]} height={34} reference={e.baseline} />
-        </div>
+        {e.samples > 0 && (
+          <div className="st-subj-spark">
+            <Spark points={trend} name={`${SUBJECT_NAME[e.subject]}预测`} color={COLOR[e.subject]} height={34} reference={e.baseline} />
+          </div>
+        )}
       </div>
-      <ScoreBar name={SUBJECT_NAME[e.subject]} estimate={e.estimate} low={e.low} high={e.high} baseline={e.baseline} target={e.target} max={max} color={COLOR[e.subject]} />
+      <div className={cx('st-subj-bar', low && 'is-low')}>
+        <ScoreBar label={SUBJECT_NAME[e.subject]} value={value} max={max} target={e.target} tone={e.subject} />
+      </div>
       <footer className="st-subj-foot">
-        <span className="faint">
-          区间 {e.low}–{e.high}
-        </span>
+        <Tooltip label={lowDataNote(e) ?? `起点 ${e.baseline} · 区间 ${e.low}–${e.high}`}>
+          <span className="st-subj-range" tabIndex={0}>
+            {low ? '数据还少' : <>起点 <span className="num">{e.baseline}</span></>}
+            <span className="st-sep">·</span>约 <span className="num">{e.low}–{e.high}</span>
+          </span>
+        </Tooltip>
         {reached ? (
           <span className="st-ok">
             <Icon name="check" size={13} />
             已达标
           </span>
         ) : (
-          <span className="muted">
-            还差 <b className="num">{e.target - e.estimate}</b>
+          <span className="st-gap">
+            还差 <span className="num">{e.target - value}</span>
           </span>
         )}
       </footer>
@@ -253,12 +270,12 @@ function SubjectExtra({ e, pace }: { e: SubjectEstimate; pace: PaceStat }) {
           <div key={k} className="st-half">
             <div className="st-extra-line">
               <span>{label}</span>
-              <span>
-                <b className="num">{parts[k]}</b>
-                <span className="faint">/200</span>
+              <span className="num">
+                <b>{parts[k]}</b>
+                <span className="st-of"> / 200</span>
               </span>
             </div>
-            <Meter value={parts[k] / 200} mark={half / 200} label={`${label}预测 ${parts[k]}/200，目标约 ${Math.round(half)}`} />
+            <Meter value={parts[k] / 200} mark={half / 200} label={`${label}预测 ${parts[k]} / 200，目标约 ${Math.round(half)}`} />
           </div>
         ))}
       </div>
@@ -270,7 +287,7 @@ function SubjectExtra({ e, pace }: { e: SubjectEstimate; pace: PaceStat }) {
       <div className="st-subj-extra">
         <div className="st-extra-line">
           <span>首答正确率</span>
-          {e.accuracy !== null ? <b className="num">{pct(e.accuracy)}</b> : <span className="faint">还没有</span>}
+          {e.accuracy !== null ? <b className="num">{pct(e.accuracy)}</b> : <span className="st-of">还没有</span>}
         </div>
         <Meter value={e.accuracy ?? 0} mark={goal} label={`首答正确率 ${e.accuracy !== null ? pct(e.accuracy) : '—'}，目标 ${pct(goal)}`} />
       </div>
@@ -281,8 +298,8 @@ function SubjectExtra({ e, pace }: { e: SubjectEstimate; pace: PaceStat }) {
     return (
       <div className="st-subj-extra">
         <div className="st-extra-line">
-          <span>考场上能做完多少</span>
-          <span className="faint">再做 {Math.max(1, PACE_MIN_SAMPLES - pace.samples)} 题</span>
+          <span>80 分钟能做完多少</span>
+          <span className="st-of">再做 {Math.max(1, PACE_MIN_SAMPLES - pace.samples)} 题</span>
         </div>
         <Meter value={0} label="用时数据还不够" />
       </div>
@@ -293,11 +310,12 @@ function SubjectExtra({ e, pace }: { e: SubjectEstimate; pace: PaceStat }) {
     <div className="st-subj-extra">
       <div className="st-extra-line">
         <span>
-          按现在速度约做完 <b className="num">{f.done}</b>/{f.total} 题
+          80 分钟约做完 <b className="num">{f.done}</b>
+          <span className="st-of num"> / {f.total}</span>
         </span>
-        <span className={cx('st-verdict', `is-${v.tone}`)}>{v.text}</span>
+        <span className={cx('st-verdict', `tone-${v.tone}`)}>{v.text}</span>
       </div>
-      <Meter value={f.done / f.total} label={`80 分钟约做完 ${f.done}/${f.total} 题`} />
+      <Meter value={f.done / f.total} label={`80 分钟约做完 ${f.done} / ${f.total} 题`} />
     </div>
   );
 }
@@ -305,7 +323,7 @@ function SubjectExtra({ e, pace }: { e: SubjectEstimate; pace: PaceStat }) {
 function Meter({ value, mark, label }: { value: number; mark?: number; label: string }) {
   const clamp = (x: number) => Math.max(0, Math.min(1, x));
   return (
-    <span className="st-meter" role="img" aria-label={label} title={label}>
+    <span className="st-meter" role="img" aria-label={label}>
       {value > 0 && <i style={{ width: `${clamp(value) * 100}%` }} />}
       {mark !== undefined && <em style={{ left: `${clamp(mark) * 100}%` }} />}
     </span>
@@ -313,6 +331,30 @@ function Meter({ value, mark, label }: { value: number; mark?: number; label: st
 }
 
 // ───────────────────────── Study time ─────────────────────────
+
+/** "4 时 17 分" with the units set small next to tabular digits (for StatTile values). */
+function HM({ min }: { min: number }) {
+  const m = Math.round(min);
+  const h = Math.floor(m / 60);
+  const r = m % 60;
+  return (
+    <>
+      {h > 0 && (
+        <>
+          {h}
+          <span className="st-u">时</span>
+        </>
+      )}
+      {(r > 0 || h === 0) && (
+        <>
+          {h > 0 ? ' ' : ''}
+          {r}
+          <span className="st-u">分</span>
+        </>
+      )}
+    </>
+  );
+}
 
 function StudyTime({ state, today }: { state: AppState; today: string }) {
   const start = state.profile.startDate;
@@ -344,35 +386,22 @@ function StudyTime({ state, today }: { state: AppState; today: string }) {
   const st = streak(state, today);
 
   return (
-    <Card title="学习时长" subtitle="最近 14 天 · 横线是当天计划" icon="clock" className="st-card">
+    <Card title="学习时长" subtitle="最近 14 天" icon="clock" className="st-card">
       <div className="st-kpis">
-        <Kpi label="今天" value={fmtHM(todayMin)} sub={todayBudget ? `计划 ${fmtHM(todayBudget)}` : '休息日'} />
-        <Kpi label="本周" value={fmtHM(week)} sub="周一起算" />
-        <Kpi label="开始以来" value={fmtHM(all)} sub={`日均 ${fmtHM(all / sinceDays)}`} />
-        <Kpi label="连续学习" value={`${st} 天`} sub="每天 ≥30 分钟" />
+        <StatTile label="今天" value={<HM min={todayMin} />} sub={todayBudget ? `计划 ${fmtHM(todayBudget)}` : '休息日'} />
+        <StatTile label="本周" value={<HM min={week} />} sub="周一起算" />
+        <StatTile label="开始以来" value={<HM min={all} />} sub={`日均 ${fmtHM(all / sinceDays)}`} />
+        <StatTile label="连续学习" value={st} unit="天" sub="每天 ≥30 分钟" />
       </div>
       <StudyBars days={bars} />
-      <div className="st-legend">
-        <span>
-          <i className="st-key-bar" />
-          实际学习
-        </span>
-        <span>
-          <i className="st-key-line" />
-          当天计划
-        </span>
-      </div>
+      <Legend
+        className="st-legend"
+        items={[
+          { label: '实际学习', color: 'var(--mixed)', shape: 'square' },
+          { label: '当天计划', color: 'var(--text-2)', shape: 'bar' },
+        ]}
+      />
     </Card>
-  );
-}
-
-function Kpi({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return (
-    <div className="st-kpi">
-      <div className="st-kpi-label">{label}</div>
-      <div className="st-kpi-value">{value}</div>
-      {sub && <div className="st-kpi-sub">{sub}</div>}
-    </div>
   );
 }
 
@@ -394,7 +423,7 @@ function Accuracy({ state, today }: { state: AppState; today: string }) {
     return SUBJECT_ORDER.map((s) => {
       const points: LinePoint[] = dates.map((d) => {
         const v = agg.get(`${s}|${d}`);
-        return { date: d, label: fmtDateShort(d), value: v ? v.s / v.n : null, n: v?.n ?? 0 };
+        return { date: d, label: shortLabel(d), value: v ? v.s / v.n : null, n: v?.n ?? 0 };
       });
       const n = points.reduce((x, p) => x + p.n, 0);
       const score = points.reduce((x, p) => x + (p.value ?? 0) * p.n, 0);
@@ -403,7 +432,7 @@ function Accuracy({ state, today }: { state: AppState; today: string }) {
   }, [state.attempts, from, today]);
 
   return (
-    <Card title="正确率" subtitle="按天统计 · 虚线是你目标分对应的正确率" icon="trending" className="st-card">
+    <Card title="正确率" subtitle="按天统计 · 虚线是目标分对应的正确率" icon="trending" className="st-card">
       <div className="st-multi">
         {series.map((x) => (
           <div key={x.subject} className="st-multi-cell">
@@ -413,8 +442,8 @@ function Accuracy({ state, today }: { state: AppState; today: string }) {
                 {SUBJECT_NAME[x.subject]}
               </span>
               <span className="st-multi-val">
-                {x.overall !== null ? <b className="num">{pct(x.overall)}</b> : <span className="faint">—</span>}
-                <span className="faint text-xs"> · {x.n} 题</span>
+                {x.overall !== null ? <b className="num">{pct(x.overall)}</b> : <span className="st-of">—</span>}
+                <span className="st-of num"> · {x.n} 题</span>
               </span>
             </div>
             <MiniLine points={x.points} target={targetRatio(state, x.subject)} color={COLOR[x.subject]} name={SUBJECT_NAME[x.subject]} />
@@ -450,10 +479,16 @@ function Mastery({ state, bank }: { state: AppState; bank: BankIndex }) {
     return list.sort((a, b) => a.gap * (1 + a.weight / 5) - b.gap * (1 + b.weight / 5)).slice(0, 6);
   }, [stats, bank, state]);
 
+  const drill = (id: string) => {
+    // Same picking rule as 题库练习: never-seen first, avoiding papers held for upcoming mocks.
+    const pick = pickDrill(state, bank.byTopic.get(id) ?? [], 8, reservedMap(state, bank), today + id);
+    launch({ kind: 'drill', title: `专项 · ${shortTopic(bank, id)}`, items: pick.ids.map((x) => bank.byId.get(x)!).filter(Boolean) });
+  };
+
   return (
     <Card
       title="考点掌握度"
-      subtitle="颜色看掌握，深浅看做题量。点一个考点看笔记和真题。"
+      subtitle="点一个考点看笔记和真题"
       icon="grid"
       className="st-card st-mastery-card"
       actions={<Segmented<Subject> size="sm" value={subject} onChange={setSubject} options={SUBJECT_ORDER.map((s) => ({ value: s, label: SUBJECT_NAME[s] }))} />}
@@ -469,71 +504,71 @@ function Mastery({ state, bank }: { state: AppState; bank: BankIndex }) {
                   const band = masteryBand(st, target);
                   const count = bank.byTopic.get(t.id)?.length ?? 0;
                   const att = st?.attempts ?? 0;
-                  const alpha = att === 0 ? 0 : 0.3 + 0.7 * Math.min(1, att / 10);
+                  const m = st?.mastery ?? 0;
+                  const tip = `${BAND_TEXT[band]}${att ? ` · 掌握 ${pct(m)} · 做过 ${att} 次` : ''} · 题库 ${count} 题`;
                   return (
-                    <button
-                      key={t.id}
-                      type="button"
-                      className={cx('st-tile', `band-${band}`, count === 0 && 'is-empty')}
-                      style={{ ['--a' as string]: alpha }}
-                      onClick={() => navigate('/notes/' + t.id)}
-                      title={`${t.name}${t.ja ? `（${t.ja}）` : ''}\n${BAND_TEXT[band]}${att ? ` · 掌握 ${pct(st?.mastery)} · 做过 ${att} 次` : ''} · 题库 ${count} 题\n点击看考点笔记`}
-                    >
-                      <span className="st-tile-name">{shortName(t.name)}</span>
-                      <span className="st-tile-meta">
-                        {att ? (
-                          <>
-                            <b className="num">{pct(st?.mastery)}</b>
-                            <span className="num">{att}次</span>
-                          </>
-                        ) : (
-                          <span>{count ? `${count} 题` : '—'}</span>
+                    <Tooltip key={t.id} label={tip}>
+                      <button type="button" className={cx('st-tile', `band-${band}`, count === 0 && 'is-empty')} onClick={() => navigate('/notes/' + t.id)}>
+                        <span className="st-tile-name">{shortName(t.name)}</span>
+                        <span className="st-tile-meta num">
+                          {att ? (
+                            <>
+                              <b>{pct(m)}</b> · {att}次
+                            </>
+                          ) : count ? (
+                            `${count} 题`
+                          ) : (
+                            '—'
+                          )}
+                        </span>
+                        {att > 0 && (
+                          <span className="st-tile-bar" aria-hidden>
+                            <i style={{ width: `${Math.max(4, Math.min(100, m * 100))}%` }} />
+                          </span>
                         )}
-                      </span>
-                    </button>
+                      </button>
+                    </Tooltip>
                   );
                 })}
               </div>
             ))}
           </div>
           <div className="st-heat-legend">
-            {BANDS.map((b) => (
-              <span key={b}>
-                <i className={`st-key band-${b}`} />
-                {BAND_TEXT[b]}
-              </span>
-            ))}
-            <span className="faint">目标正确率 {pct(target)} · 越深做得越多</span>
+            <Legend
+              items={[
+                { label: '薄弱 <50%', tone: 'danger', shape: 'bar' },
+                { label: `未达标 <${pct(target)}`, color: 'var(--text-3)', shape: 'bar' },
+                { label: '达标', tone: 'success', shape: 'bar' },
+              ]}
+            />
+            <span className="st-key-dashed">还没练</span>
           </div>
         </div>
         <aside className="st-weak">
-          <div className="st-weak-title">
-            <Icon name="flame" size={15} />
-            最该补的考点
-          </div>
+          <div className="st-weak-title">最该补的考点</div>
           {weakest.length === 0 ? (
-            <p className="faint text-sm">还没有明显的薄弱考点。多做几组专项，这里会列出离目标最远的考点。</p>
+            <p className="st-weak-empty">还没有明显的薄弱考点。多做几组专项，这里会列出离目标最远的考点。</p>
           ) : (
-            <ul className="st-weak-list">
+            <List className="st-weak-list">
               {weakest.map((w) => (
-                <li key={w.id}>
-                  <button type="button" className="st-weak-name" onClick={() => navigate('/notes/' + w.id)}>
-                    <SubjectDot subject={w.subject} />
-                    <span>{shortTopic(bank, w.id)}</span>
-                  </button>
-                  <span className="st-weak-meta num">
-                    {pct(w.stat.mastery)} · {w.stat.attempts} 次
-                  </span>
-                  <Button size="sm" variant="soft" onClick={() => {
-                      // Same picking rule as 题库练习: never-seen first, avoiding papers held for upcoming mocks.
-                      const pick = pickDrill(state, bank.byTopic.get(w.id) ?? [], 8, reservedMap(state, bank), today + w.id);
-                      launch({ kind: 'drill', title: `专项 · ${shortTopic(bank, w.id)}`, items: pick.ids.map((id) => bank.byId.get(id)!).filter(Boolean) });
-                    }}>
-                    练
-                  </Button>
-                </li>
+                <ListRow
+                  key={w.id}
+                  lead={<SubjectDot subject={w.subject} />}
+                  title={shortTopic(bank, w.id)}
+                  meta={
+                    <span className="num">
+                      {pct(w.stat.mastery)} · {w.stat.attempts} 次
+                    </span>
+                  }
+                  hoverAction={
+                    <Button size="sm" variant="ghost" icon="play" onClick={() => drill(w.id)}>
+                      练
+                    </Button>
+                  }
+                  onClick={() => navigate('/notes/' + w.id)}
+                />
               ))}
-            </ul>
+            </List>
           )}
         </aside>
       </div>
@@ -547,19 +582,19 @@ function shortName(name: string): string {
 
 // ───────────────────────── Pace ─────────────────────────
 
-function paceVerdict(r: number | null): { text: string; tone: 'warning' | 'success' | 'primary' | 'neutral'; say: string } {
+function paceVerdict(r: number | null): { text: string; tone: 'warning' | 'success' | 'neutral'; say: string } {
   if (r === null) return { text: '数据不足', tone: 'neutral', say: '首次作答的题还不够，做几组就有数了。' };
   if (r > 1.6) return { text: '明显偏慢', tone: 'warning', say: `每题用时是考场节奏的 ${r.toFixed(1)} 倍，考试会做不完。练习时开计时，卡住先跳。` };
   if (r > 1.15) return { text: '偏慢', tone: 'warning', say: `比考场节奏慢 ${Math.round((r - 1) * 100)}%。熟悉题型后先追速度，再追正确率。` };
-  if (r < 0.7) return { text: '偏快', tone: 'primary', say: '比考场节奏快不少，时间有富余，留一点给检查和难题。' };
+  if (r < 0.7) return { text: '偏快', tone: 'neutral', say: '比考场节奏快不少，时间有富余，留一点给检查和难题。' };
   return { text: '正常', tone: 'success', say: '和考场节奏差不多，保持住。' };
 }
 
 function Pace({ pace }: { pace: Record<Subject, PaceStat> }) {
   return (
-    <Card title="答题节奏" subtitle="首次作答用时的中位数 ÷ EJU 考场节奏" icon="zap" className="st-card">
+    <Card title="答题节奏" subtitle="首答用时中位数 ÷ EJU 考场节奏" icon="zap" className="st-card">
       {SUBJECT_ORDER.every((s) => pace[s].ratio === null) ? (
-        <Empty icon="clock" title="还没有用时数据" desc="每道题第一次作答的用时都会记下来。做几组题后，这里会告诉你每科比考场节奏快还是慢。" />
+        <Empty size="sm" icon="clock" title="还没有用时数据" desc="每道题第一次作答的用时都会记下来。做几组题后，这里会告诉你每科比考场节奏快还是慢。" />
       ) : (
         <div className="st-pace">
           {SUBJECT_ORDER.map((s) => {
@@ -568,26 +603,25 @@ function Pace({ pace }: { pace: Record<Subject, PaceStat> }) {
             return (
               <div key={s} className="st-pace-row">
                 <div className="st-pace-head">
-                  <SubjectTag subject={s} size="sm" />
-                  <Badge tone={v.tone}>{v.text}</Badge>
+                  <span className="st-multi-name">
+                    <SubjectDot subject={s} />
+                    {SUBJECT_NAME[s]}
+                  </span>
+                  <Badge tone={v.tone} size="sm">
+                    {v.text}
+                  </Badge>
                 </div>
                 <PaceDot ratio={p.ratio} color={COLOR[s]} name={SUBJECT_NAME[s]} />
                 <p className="st-pace-say">
                   {v.say}
-                  <span className="faint"> · {p.samples} 题</span>
+                  <span className="st-of num"> · {p.samples} 题</span>
                 </p>
               </div>
             );
           })}
           <div className="st-pace-axis">
-            <span />
+            <Legend items={[{ label: '正常 0.85–1.15×', color: 'color-mix(in srgb, var(--success) 24%, transparent)', shape: 'square' }]} />
             <PaceAxis />
-          </div>
-          <div className="st-legend">
-            <span>
-              <i className="st-key-band" />
-              正常区间 0.85–1.15×
-            </span>
           </div>
         </div>
       )}
@@ -606,7 +640,7 @@ function ScienceFinish({ est, pace }: { est: Record<Subject, SubjectEstimate>; p
   const left = total - done;
   const whole = known.length === SCIENCE.length;
   return (
-    <Card title="理科整卷做得完吗" subtitle={`物理 ${SCIENCE_ITEMS.physics} 题 + 化学 ${SCIENCE_ITEMS.chemistry} 题，共 80 分钟`} icon="clock" className="st-card">
+    <Card title="理科整卷做得完吗" subtitle={`物理 ${SCIENCE_ITEMS.physics} 题 + 化学 ${SCIENCE_ITEMS.chemistry} 题，共 80 分钟`} icon="timer" className="st-card">
       {!known.length ? (
         <p className="st-finish-say">
           物理、化学各做满 {PACE_MIN_SAMPLES} 道新题，就能按你的速度算出 80 分钟约能做完多少题。现在还差：
@@ -616,12 +650,13 @@ function ScienceFinish({ est, pace }: { est: Record<Subject, SubjectEstimate>; p
         <div className="st-finish">
           <div className="st-finish-top">
             <span className="st-finish-num">
-              {whole ? '80 分钟' : `${SUBJECT_NAME[known[0].s]}部分`}约能做完 <b className="num">{done}</b>
-              <span className="st-finish-of"> / {total} 题</span>
+              <span className="st-finish-label">{whole ? '80 分钟约能做完' : `${SUBJECT_NAME[known[0].s]}部分约能做完`}</span>
+              <span className="num num-lg">{done}</span>
+              <span className="num-unit">/ {total} 题</span>
             </span>
             <Badge tone={v.tone}>{v.text}</Badge>
           </div>
-          <div className="st-finish-cells" role="img" aria-label={rows.map((r) => `${SUBJECT_NAME[r.s]} ${r.f ? `${r.f.done}/${r.f.total}` : '未知'}`).join('，')}>
+          <div className="st-finish-cells" role="img" aria-label={rows.map((r) => `${SUBJECT_NAME[r.s]} ${r.f ? `${r.f.done} / ${r.f.total}` : '未知'}`).join('，')}>
             {rows.map(({ s, f }) => (
               <span key={s} className={cx('st-cells', `tone-${s}`)} style={{ flexGrow: SCIENCE_ITEMS[s] }}>
                 {Array.from({ length: SCIENCE_ITEMS[s] }, (_, i) => (
@@ -636,19 +671,17 @@ function ScienceFinish({ est, pace }: { est: Record<Subject, SubjectEstimate>; p
                 <SubjectDot subject={s} />
                 {SUBJECT_NAME[s]}
                 {f ? (
-                  <span>
-                    <b className="num">{f.done}</b>/{f.total}
+                  <span className="num">
+                    <b>{f.done}</b> / {f.total}
                   </span>
                 ) : (
-                  <span className="faint">再做 {need} 道新题才有数</span>
+                  <span className="st-of">再做 {need} 道新题才有数</span>
                 )}
               </span>
             ))}
           </div>
           <p className="st-finish-say">
-            {left === 0
-              ? '按现在的速度能做完，还能留几分钟检查。'
-              : `按现在的速度，最后约 ${left} 题来不及做、只能蒙。练习时开计时，卡住先跳，回头再做。`}
+            {left === 0 ? '按现在的速度能做完，还能留几分钟检查。' : `最后约 ${left} 题来不及做、只能蒙。练习时开计时，卡住先跳，回头再做。`}
           </p>
         </div>
       )}
@@ -693,21 +726,21 @@ function Vocab({ state, bank, today }: { state: AppState; bank: BankIndex; today
       icon="languages"
       className="st-card"
       actions={
-        <Button size="sm" variant="soft" iconRight="arrowRight" onClick={() => navigate('/vocab')}>
+        <Button size="sm" variant="ghost" iconRight="arrowRight" onClick={() => navigate('/vocab')}>
           {v.due ? `复习 ${v.due} 张卡` : '去背词'}
         </Button>
       }
     >
       <div className="st-vocab">
-        <Ring value={v.total ? v.learned / v.total : 0} size={116} stroke={10} tone="japanese">
-          <span className="st-ring-num">{v.learned}</span>
+        <Ring value={v.total ? v.learned / v.total : 0} size={112} stroke={9} tone="japanese">
+          <span className="num st-ring-num">{v.learned}</span>
           <span className="st-ring-sub">已记住</span>
         </Ring>
         <div className="st-vocab-side">
           <div className="st-vocab-kpis">
-            <Kpi label="学过" value={`${v.seen}`} sub={`共 ${v.total}`} />
-            <Kpi label="待复习" value={`${v.due}`} sub="张卡" />
-            <Kpi label="近 7 天" value={`${v.week}`} sub="次作答" />
+            <StatTile label="学过" value={v.seen} sub={`共 ${v.total}`} />
+            <StatTile label="待复习" value={v.due} unit="张" />
+            <StatTile label="近 7 天" value={v.week} unit="次" />
           </div>
           {(['read', 'meaning'] as const).map((k) => {
             const a = v.acc[k];
@@ -715,22 +748,19 @@ function Vocab({ state, bank, today }: { state: AppState; bank: BankIndex; today
             return (
               <div key={k} className="st-vbar">
                 <div className="st-vbar-head">
-                  <span>{k === 'read' ? '读音（看汉字写假名）' : '词义（看词选意思）'}</span>
-                  <span>
-                    <b className="num">{a.n ? pct(r) : '—'}</b>
-                    <span className="faint text-xs"> · {a.n} 次</span>
+                  <span>{k === 'read' ? '读音 · 看汉字写假名' : '词义 · 看词选意思'}</span>
+                  <span className="num">
+                    <b>{a.n ? pct(r) : '—'}</b>
+                    <span className="st-of"> · {a.n} 次</span>
                   </span>
                 </div>
-                <svg className="st-vbar-svg" width="100%" height="8" role="img" aria-label={`${k === 'read' ? '读音' : '词义'}正确率 ${pct(r)}`}>
-                  <rect x="0" y="0" width="100%" height="8" rx="4" className="st-track" />
-                  {a.n > 0 && <rect x="0" y="0" width={`${Math.max(2, r * 100)}%`} height="8" rx="4" className={k === 'read' ? 'st-vfill-read' : 'st-vfill-meaning'} />}
-                </svg>
+                <Progress value={r} tone={SKILL_TONE[k]} size="md" />
               </div>
             );
           })}
-          <p className="faint text-xs">任一项连续答对、升到第 2 级以上算「已记住」。</p>
         </div>
       </div>
+      <p className="st-vocab-note">任一项连续答对、升到第 2 级以上算「已记住」。</p>
     </Card>
   );
 }
@@ -752,7 +782,7 @@ function Mocks({ state }: { state: AppState }) {
   return (
     <Card
       title="模考记录"
-      subtitle="整卷限时模考的得分率和换算分（满分 200）"
+      subtitle="整卷限时模考的得分率和估分（满分 200）"
       icon="award"
       className="st-card st-mocks-card"
       actions={
@@ -763,11 +793,12 @@ function Mocks({ state }: { state: AppState }) {
     >
       {list.length === 0 ? (
         <Empty
+          size="sm"
           icon="target"
           title="还没做过整卷模考"
           desc="冲刺计划会在考前 11 天开始安排整卷模考。也可以现在就去做一套，看看真实节奏。"
           action={
-            <Button variant="primary" onClick={() => navigate('/mock')}>
+            <Button variant="secondary" iconRight="arrowRight" onClick={() => navigate('/mock')}>
               去模考
             </Button>
           }
@@ -780,12 +811,12 @@ function Mocks({ state }: { state: AppState }) {
                 <div key={k} className="st-mock-trend">
                   <div className="st-mock-trend-head">
                     <span>{MOCK_LABEL[k]}</span>
-                    <b className="num">
-                      {Math.round(pts[pts.length - 1].value)}
-                      <span className="faint">/200</span>
-                    </b>
+                    <span className="num">
+                      <b>{Math.round(pts[pts.length - 1].value)}</b>
+                      <span className="st-of"> / 200</span>
+                    </span>
                   </div>
-                  <Spark points={pts} name={MOCK_LABEL[k]} format={(x) => `${Math.round(x)}/200`} height={40} />
+                  <Spark points={pts} name={MOCK_LABEL[k]} format={(x) => `${Math.round(x)} / 200`} height={40} />
                 </div>
               ))}
             </div>
@@ -794,33 +825,31 @@ function Mocks({ state }: { state: AppState }) {
             <div className="st-mock-row is-head" role="row">
               <span>日期</span>
               <span>科目</span>
-              <span>正确</span>
+              <span className="is-num">正确</span>
               <span>得分率</span>
-              <span>换算</span>
-              <span>用时</span>
+              <span className="is-num">估分</span>
+              <span className="is-num">用时</span>
               <span />
             </div>
             {list.map((m) => (
               <button key={m.id} type="button" className="st-mock-row" role="row" onClick={() => navigate('/mock/' + m.id)}>
-                <span className="num">{fmtDateShort(m.date)}</span>
+                <span className="num">{shortLabel(m.date)}</span>
                 <span className="st-mock-name">
                   <b>{MOCK_LABEL[m.kind]}</b>
-                  <span className="faint">{sessionLabel(m.session)}</span>
+                  <span>{sessionLabel(m.session)}</span>
                 </span>
-                <span className="num">
-                  {m.correct}/{m.total}
+                <span className="num is-num">
+                  {m.correct} / {m.total}
                 </span>
                 <span className="st-mock-raw">
-                  <span className="st-mock-meter">
-                    <i style={{ width: `${Math.round(m.raw * 100)}%` }} />
-                  </span>
+                  <Progress value={m.raw} tone="mixed" size="sm" />
                   <span className="num">{pct(m.raw)}</span>
                 </span>
-                <span className="num">
+                <span className="num is-num">
                   <b>{m.estimate}</b>
-                  <span className="faint">/200</span>
+                  <span className="st-of"> / 200</span>
                 </span>
-                <span className="num faint">{fmtClock(m.seconds)}</span>
+                <span className="num is-num st-of">{fmtClock(m.seconds)}</span>
                 <Icon name="right" size={16} className="st-mock-go" />
               </button>
             ))}
@@ -834,7 +863,10 @@ function Mocks({ state }: { state: AppState }) {
                       return b ? (
                         <span key={m.id + s} className="st-mock-chip">
                           <SubjectDot subject={s} />
-                          {fmtDateShort(m.date)} {SUBJECT_NAME[s]} {b.correct}/{b.total} · 约 {b.estimate}/100
+                          {shortLabel(m.date)} {SUBJECT_NAME[s]}
+                          <span className="num">
+                            {b.correct} / {b.total} · 约 {b.estimate} / 100
+                          </span>
                         </span>
                       ) : null;
                     })

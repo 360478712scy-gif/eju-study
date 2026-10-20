@@ -1,12 +1,13 @@
 // Small building blocks shared by the vocab views.
 import { Fragment, useSyncExternalStore } from 'react';
-import type { VocabSkillProgress } from '@shared/types.ts';
+import type { VocabSkill, VocabSkillProgress } from '@shared/types.ts';
 import { VOCAB_MAX_BOX } from '@shared/srs.ts';
 import { useApp } from '../../lib/store.ts';
 import { onSpeechChange, playSpeech, speechElement, stopSpeech } from '../../lib/audio.ts';
 import { cx } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { toast } from '../../components/ui.tsx';
+import { SKILL_TONE } from './run.ts';
 
 function isPlaying(src: string | undefined): boolean {
   const el = speechElement();
@@ -49,12 +50,13 @@ export function AudioButton({ src, label, size = 'md' }: { src: string | undefin
   );
 }
 
-/** Five-step Leitner meter for one skill. */
-export function Meter({ p, label }: { p: VocabSkillProgress | undefined; label?: string }) {
-  const tone = !p ? 'none' : !p.lastCorrect ? 'weak' : p.box >= 3 ? 'solid' : 'grow';
-  const title = !p ? `${label ?? ''}未学` : `${label ?? ''} 第 ${p.box}/${VOCAB_MAX_BOX} 级 · 练过 ${p.seen} 次`;
+/** Five-step Leitner meter for one skill: filled steps in the skill's colour, green once 已稳 (3+),
+ *  an amber first step when the last answer was wrong (due for review, not a failure mark). */
+export function Meter({ p, skill, label }: { p: VocabSkillProgress | undefined; skill: VocabSkill; label?: string }) {
+  const state = !p ? 'none' : !p.lastCorrect ? 'weak' : p.box >= 3 ? 'solid' : 'grow';
+  const title = !p ? `${label ?? ''}未学` : `${label ?? ''} 第 ${p.box}/${VOCAB_MAX_BOX} 级 · 练过 ${p.seen} 次${!p.lastCorrect ? ' · 上次答错' : ''}`;
   return (
-    <span className={cx('vc-meter', `is-${tone}`)} title={title} aria-label={title}>
+    <span className={cx('vc-meter', `is-${state}`, `tone-${SKILL_TONE[skill]}`)} role="img" aria-label={title}>
       {label && <span className="vc-meter-label">{label}</span>}
       <span className="vc-meter-bars">
         {Array.from({ length: VOCAB_MAX_BOX }, (_, i) => (

@@ -1,14 +1,14 @@
 // Searchable word list with per-skill mastery.
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { VocabEntry, VocabProgress } from '@shared/types.ts';
 import { normalizeKana } from '@shared/grading.ts';
 import { useApp } from '../../lib/store.ts';
 import { Icon } from '../../components/Icon.tsx';
-import { Button, Empty, Segmented } from '../../components/ui.tsx';
+import { Button, Dot, Empty, isModalOpen, Legend, SearchField, Segmented, Tooltip } from '../../components/ui.tsx';
 import { Meter } from './parts.tsx';
 import { hasRomaji, romajiToKana } from './kana.ts';
 import { vocabSkills } from '@shared/planner.ts';
-import { CATEGORY_LABEL, noReadReason, vocabGroup } from './run.ts';
+import { CATEGORY_LABEL, gloss, noReadReason, SKILL_TONE, vocabGroup } from './run.ts';
 
 type Status = 'all' | 'due' | 'weak' | 'new' | 'solid';
 
@@ -38,6 +38,20 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
   const [status, setStatus] = useState<Status>('all');
   const [topic, setTopic] = useState('all');
   const [limit, setLimit] = useState(PAGE);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // "/" jumps to the search field (not while typing somewhere or in a modal).
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== '/' || e.isComposing || e.metaKey || e.ctrlKey || e.altKey || isModalOpen()) return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      e.preventDefault();
+      searchRef.current?.focus();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   const words = bank?.bundle.vocab ?? [];
 
@@ -79,56 +93,50 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
   const rows = useMemo(() => scoped.filter((v) => statuses.get(v.id)?.has(status)), [scoped, statuses, status]);
 
   return (
-    <section className="vc-list-card">
+    <section className="card card-flush vc-list-card">
       <div className="vc-list-tools">
-        <label className="vc-search">
-          <Icon name="search" size={16} />
-          <input
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setLimit(PAGE);
-            }}
-            placeholder="搜索汉字、读音、罗马字或中文意思"
-            aria-label="搜索单词"
-            spellCheck={false}
-          />
-          {query && (
-            <button type="button" className="vc-search-clear" onClick={() => setQuery('')} aria-label="清空">
-              <Icon name="x" size={14} />
-            </button>
-          )}
-        </label>
-        <span className="vc-select-wrap">
-        <select
-          className="vc-select"
-          value={topic}
-          onChange={(e) => {
-            setTopic(e.target.value);
+        <SearchField
+          className="vc-search"
+          value={query}
+          onChange={(q) => {
+            setQuery(q);
             setLimit(PAGE);
           }}
-          aria-label="类别和主题"
-        >
-          <option value="all">全部单词</option>
-          <optgroup label="类别">
-            {filters.cats.map(([c, n]) => (
-              <option key={c} value={`c:${c}`}>
-                {CATEGORY_LABEL[c]} · {n}
-              </option>
-            ))}
-          </optgroup>
-          {filters.groups.length > 0 && (
-            <optgroup label="主题">
-              {filters.groups.map(([g, n]) => (
-                <option key={g} value={`g:${g}`}>
-                  {g} · {n}
+          placeholder="搜索汉字、读音、罗马字或中文意思"
+          kbd="/"
+          inputRef={searchRef}
+        />
+        {/* The shared field look, with optgroups (类别 / 主题) that <Select> does not take. */}
+        <label className="field field-select vc-topic">
+          <Icon name="filter" size={15} />
+          <select
+            value={topic}
+            onChange={(e) => {
+              setTopic(e.target.value);
+              setLimit(PAGE);
+            }}
+            aria-label="类别和主题"
+          >
+            <option value="all">全部单词</option>
+            <optgroup label="类别">
+              {filters.cats.map(([c, n]) => (
+                <option key={c} value={`c:${c}`}>
+                  {CATEGORY_LABEL[c]} · {n}
                 </option>
               ))}
             </optgroup>
-          )}
-        </select>
-        <Icon name="down" size={15} className="vc-select-icon" />
-        </span>
+            {filters.groups.length > 0 && (
+              <optgroup label="主题">
+                {filters.groups.map(([g, n]) => (
+                  <option key={g} value={`g:${g}`}>
+                    {g} · {n}
+                  </option>
+                ))}
+              </optgroup>
+            )}
+          </select>
+          <Icon name="down" size={14} className="field-chevron" />
+        </label>
       </div>
       <div className="vc-list-filters">
         <Segmented<Status>
@@ -139,22 +147,26 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
             setLimit(PAGE);
           }}
           options={[
-            { value: 'all', label: `全部 ${counts.all}` },
-            { value: 'due', label: `待复习 ${counts.due} 张卡` },
-            { value: 'weak', label: `易错 ${counts.weak}` },
-            { value: 'new', label: `未学 ${counts.new}` },
-            { value: 'solid', label: `已稳 ${counts.solid}` },
+            { value: 'all', label: '全部', count: counts.all },
+            { value: 'due', label: '待复习', count: counts.due },
+            { value: 'weak', label: '上次答错', count: counts.weak },
+            { value: 'new', label: '未学', count: counts.new },
+            { value: 'solid', label: '已稳', count: counts.solid },
           ]}
         />
-        <span className="vc-list-legend faint">
-          {status === 'due' && rows.length > 0 && <span className="vc-list-unit">{rows.length} 个词 · 读音和词义各算一张卡</span>}
-          <span className="vc-legend-dot is-grow" />
-          在学
-          <span className="vc-legend-dot is-solid" />
-          已稳
-          <span className="vc-legend-dot is-weak" />
-          上次错
-        </span>
+        {status === 'due' && rows.length > 0 ? (
+          <span className="vc-list-unit">
+            {rows.length} 个词 · 读音和词义各算一张卡
+          </span>
+        ) : (
+          <Legend
+            className="vc-list-legend"
+            items={[
+              { label: '已稳', tone: 'success', shape: 'bar' },
+              { label: '上次答错', tone: 'warning', shape: 'bar' },
+            ]}
+          />
+        )}
       </div>
 
       {rows.length === 0 ? (
@@ -167,10 +179,16 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
         <div className="vc-list" role="list">
           <div className="vc-row vc-row-head" aria-hidden>
             <span>单词</span>
-            <span>读音</span>
+            <span>假名</span>
             <span className="vc-col-meaning">意思</span>
-            <span className="vc-col-skill">读音</span>
-            <span className="vc-col-skill">词义</span>
+            <span className="vc-col-skill">
+              <Dot tone={SKILL_TONE.read} size="sm" />
+              读音
+            </span>
+            <span className="vc-col-skill">
+              <Dot tone={SKILL_TONE.meaning} size="sm" />
+              词义
+            </span>
           </div>
           {rows.slice(0, limit).map((v) => {
             const p = progress?.[v.id];
@@ -183,18 +201,18 @@ export function WordList({ onOpen }: { onOpen: (id: string) => void }) {
                 <span className="vc-row-reading" lang="ja">
                   {v.reading}
                 </span>
-                <span className="vc-row-meaning vc-col-meaning">{v.meaningZh}</span>
+                <span className="vc-row-meaning vc-col-meaning">{gloss(v.meaningZh)}</span>
                 <span className="vc-col-skill">
                   {noRead ? (
-                    <span className="vc-na" title={noRead}>
-                      只考词义
-                    </span>
+                    <Tooltip label={noRead}>
+                      <span className="vc-na">只考词义</span>
+                    </Tooltip>
                   ) : (
-                    <Meter p={p?.read} label="读音" />
+                    <Meter p={p?.read} skill="read" label="读音" />
                   )}
                 </span>
                 <span className="vc-col-skill">
-                  <Meter p={p?.meaning} label="词义" />
+                  <Meter p={p?.meaning} skill="meaning" label="词义" />
                 </span>
               </button>
             );

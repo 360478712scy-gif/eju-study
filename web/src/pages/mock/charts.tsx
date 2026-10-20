@@ -27,6 +27,24 @@ function Tooltip({ x, y, width, children }: { x: number; y: number; width: numbe
   );
 }
 
+// ───────────────────────── Score bar ─────────────────────────
+
+/** Score on its scale with the target drawn as a tick (a target is never a denominator). */
+export function ScoreBar({ value, target, max, size = 'md', className }: { value: number; target: number; max: number; size?: 'sm' | 'md'; className?: string }) {
+  const v = Math.max(0, Math.min(1, value / max));
+  const t = Math.max(0, Math.min(1, target / max));
+  return (
+    <div className={cx('mk-sbar', size === 'sm' && 'is-sm', className)} role="img" aria-label={`${value} / ${max}，目标 ${target}`}>
+      <div className="mk-sbar-track">
+        <div className={cx('mk-sbar-fill', value >= target && 'is-met')} style={{ width: `${v * 100}%` }} />
+      </div>
+      <div className={cx('mk-sbar-target', t > 0.86 && 'is-end', t < 0.14 && 'is-start')} style={{ left: `${t * 100}%` }}>
+        <span className="num">目标 {target}</span>
+      </div>
+    </div>
+  );
+}
+
 // ───────────────────────── Score trend ─────────────────────────
 
 export interface TrendPoint {
@@ -79,7 +97,13 @@ export function TrendChart({ points, target, max, height = 150, onSelect }: { po
             <circle key={p.id} cx={x(i)} cy={y(p.value)} r={hover === i ? 6 : 4.5} className="mk-dot" />
           ))}
           {last >= 0 && (
-            <text x={x(last)} y={y(points[last].value) - 11} className="mk-value" textAnchor="middle">
+            // Above the last dot, or below it when that would sit on the target line.
+            <text
+              x={x(last)}
+              y={Math.abs(y(points[last].value) - 11 - y(target)) < 12 && y(points[last].value) + 20 < padT + innerH ? y(points[last].value) + 20 : y(points[last].value) - 11}
+              className="mk-value"
+              textAnchor="middle"
+            >
               {points[last].value}
             </text>
           )}
@@ -159,7 +183,7 @@ export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; he
           {ticks.map((t) => (
             <g key={t}>
               <line x1={padL} x2={width - padR} y1={y(t)} y2={y(t)} className="mk-grid" />
-              <text x={padL - 8} y={y(t) + 4} className="mk-axis" textAnchor="end">
+              <text x={padL - 8} y={y(t) + 4} className={cx('mk-axis', t > 0 && 'mk-axis-zh')} textAnchor="end">
                 {t === 0 ? '0' : t < 60 ? `${t}秒` : `${Math.round(t / 60)}分`}
               </text>
             </g>
@@ -168,7 +192,7 @@ export function TimeBars({ bars, height = 170, onSelect }: { bars: TimeBar[]; he
             groups.map((g, gi) => (
               <g key={g.name}>
                 {gi > 0 && <line x1={padL + slot * g.from} x2={padL + slot * g.from} y1={padT - 16} y2={padT + innerH} className="mk-sep" />}
-                <text x={padL + slot * g.from + 4} y={padT - 8} className="mk-axis">
+                <text x={padL + slot * g.from + 4} y={padT - 8} className="mk-axis mk-axis-zh">
                   {g.name}
                 </text>
               </g>

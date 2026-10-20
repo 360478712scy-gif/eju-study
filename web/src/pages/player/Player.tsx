@@ -1,7 +1,7 @@
 // The practice player: one item at a time, question on the left, answer on the right.
 // Practice sessions grade each answer immediately; exam sessions (mocks, timed sets)
 // keep everything silent until 交卷.
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { AppState, Confidence, Item, ItemProgress, PracticeSession, SessionAnswer } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { abandonSession, addStudyTime, finishSession, lockedGroups, saveDraft, setConfidence, submitAnswer } from '@shared/actions.ts';
@@ -10,7 +10,7 @@ import { flush, getSnapshot, update, useApp } from '../../lib/store.ts';
 import { addNavGuard, navigate } from '../../lib/router.ts';
 import { onWindowVisibility } from '../../lib/native.ts';
 import { stopSpeech } from '../../lib/audio.ts';
-import { Button, Kbd, isModalOpen, toast, useConfirm } from '../../components/ui.tsx';
+import { Button, IconButton, Kbd, Segmented, Tooltip, isModalOpen, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import { QuestionStem, type StemMarks } from '../../components/question/QuestionStem.tsx';
@@ -19,11 +19,14 @@ import { StudyClock } from './clock.ts';
 import { isFocusedControl, isTextField, markKey } from './hotkeys.ts';
 import { IdlePill, TopBar, type StripCell } from './TopBar.tsx';
 import { ChoicePad } from './ChoicePad.tsx';
-import { MarkSheet } from './MarkSheet.tsx';
+import { MarkSheet, openShortcuts } from './MarkSheet.tsx';
 import { AudioPanel } from './AudioPanel.tsx';
 import { CoachCard } from './CoachCard.tsx';
 import { NoteBox } from './NoteBox.tsx';
-import { ConfidencePicker, ExamSheet, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, SlowNudge, nextConfidence, revealAnswer, stemLayout } from './parts.tsx';
+import { ActionRow, ConfidencePicker, ExamSheet, ExplanationCard, ItemHeader, ListeningCaption, ListeningTitle, ResultBanner, SlowNudge, correctStreak, nextConfidence, revealAnswer, revealResult, stemLayout } from './parts.tsx';
+import { hasSlot } from '../../components/question/boxRefs.ts';
+import { optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
+import { hintsFor, readJaFont, writeJaFont, type JaFont } from './prefs.ts';
 
 type Resp = SessionAnswer['response'];
 type Mutate = (d: AppState, bank: BankIndex, today: string) => void;
@@ -134,6 +137,12 @@ export function Player({ session, items }: { session: PracticeSession; items: It
   const mainRef = useRef<HTMLElement>(null);
   const sideRef = useRef<HTMLDivElement>(null);
   const [zen, setZen] = useState(zenPref);
+  const [hints] = useState(() => hintsFor(sid));
+  const [jaFont, setJaFontState] = useState<JaFont>(readJaFont);
+  const setJaFont = (f: JaFont) => {
+    setJaFontState(f);
+    writeJaFont(f);
+  };
 
   // ── Derived ──
   /** Something of the learner's own is filled in (locked cells don't count). */
@@ -183,7 +192,15 @@ export function Player({ session, items }: { session: PracticeSession; items: It
 
   const layout = useMemo(() => stemLayout(item), [item]);
   const split = layout.split;
-  const groups = useMemo(() => (item.format === 'blanks' ? blankGroups(item) : []), [item]);
+  const heroAudio = item.section === 'listening' && !!item.audio && !item.figures?.length;
+  /** Short items (recall, grammar, one-liners) and pure listening: one centered column, no side panel. */
+  const single = !split && (layout.short || heroAudio);
+  const nOpts = item.options?.length ?? 4;
+  /** Digit key of the first option: 0 when the options are printed ⓪ ① …, so keys match the labels. */
+  const keyBase = item.format === 'choice' && optionBadge(optionLabel(item, 0)) === '0' ? 0 : 1;
+  const pickHint = `按 ${keyBase}–${Math.min(9, nOpts - 1 + keyBase)} 选择`;
+  // Answer-sheet cells in letter order (the stem can name a later box first, e.g. "\bx{C} 〜 \bx{G} には…").
+  const groups = useMemo(() => (item.format === 'blanks' ? [...blankGroups(item)].sort((a, b) => a.localeCompare(b)) : []), [item]);
   const letters = useMemo(() => groups.flatMap((g) => [...g]), [groups]);
   const lock = locks[item.id];
   /** Letters the learner fills (everything except the locked ones). */
@@ -308,11 +325,11 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       '全部作答完毕，交卷后立刻看到成绩和每题解析。'
     ) : (
       <div className="pl-confirm-body">
-        <span>还有 {left} 题没作答。{isMock ? '交卷后没作答的按答错计算。' : '没做的题不进错题本，之后还会出现。'}</span>
-        {left * 2 > N && (
+        <span>还有 {left} 题没作答，{isMock ? '交卷后按答错计算。' : '没做的不进错题本。'}</span>
+        {isMock && left * 2 > N && (
           <span className="pl-confirm-warn">
             <Icon name="alert" size={14} />
-            {isMock ? '超过一半没作答，这次的预测分会明显偏低。' : '超过一半没作答，这组的得分会明显偏低。'}
+            超过一半没作答，这次的预测分会明显偏低。
           </span>
         )}
       </div>
@@ -379,7 +396,8 @@ export function Player({ session, items }: { session: PracticeSession; items: It
     const ok = !!g?.correct && !opts.gaveUp;
     const openEx = !ok || conf !== 'sure';
     setExOpen((m) => ({ ...m, [item.id]: openEx }));
-    if (openEx) setTimeout(() => revealExplanation(), 80);
+    // A wrong (or given-up) answer: the explanation is the feedback, bring its header up under the bar.
+    if (openEx) setTimeout(() => revealExplanation(!ok && !single), 80);
     if (ok && settings.autoNextJapanese && item.subject === 'japanese' && item.format === 'choice' && index < N - 1) {
       setAutoNext(true);
       autoTimer.current = setTimeout(() => {
@@ -488,13 +506,25 @@ export function Player({ session, items }: { session: PracticeSession; items: It
     goTo(j);
   };
 
-  /** Bring a freshly opened explanation into view without hiding the whole question. */
-  const revealExplanation = () => {
+  /**
+   * Bring a freshly opened explanation into view. `top`: its header 16px under the top bar (after a
+   * wrong answer in the split layout, where the options stay visible on the side); otherwise only
+   * when it starts low, without hiding the whole question.
+   */
+  const revealExplanation = (top = false) => {
     const main = mainRef.current;
     const card = main?.querySelector('.pl-excard');
     if (!main || !card) return;
-    const top = card.getBoundingClientRect().top - main.getBoundingClientRect().top;
-    if (top > main.clientHeight * 0.72) main.scrollTo({ top: main.scrollTop + top - main.clientHeight * 0.32, behavior: 'smooth' });
+    const y = card.getBoundingClientRect().top - main.getBoundingClientRect().top;
+    if (top) main.scrollTo({ top: main.scrollTop + y - 16, behavior: 'smooth' });
+    else if (y > main.clientHeight * 0.72) main.scrollTo({ top: main.scrollTop + y - main.clientHeight * 0.32, behavior: 'smooth' });
+  };
+
+  /** "看解析": open it if needed and bring it up. */
+  const showExplanation = () => {
+    if (!graded) return;
+    setExOpen((m) => ({ ...m, [item.id]: true }));
+    setTimeout(() => revealExplanation(true), 40);
   };
 
   const toggleZen = () => {
@@ -532,10 +562,11 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       }
     }
     if (e.repeat && k !== 'ArrowLeft' && k !== 'ArrowRight') return;
-    if (item.format === 'choice' && /^[1-9]$/.test(k)) {
-      if (canEdit) {
+    if (item.format === 'choice' && /^[0-9]$/.test(k)) {
+      const i = Number(k) - keyBase;
+      if (canEdit && i >= 0) {
         e.preventDefault();
-        select(Number(k) - 1);
+        select(i);
       }
       return;
     }
@@ -558,7 +589,8 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       case 'F':
         if (canEdit) {
           e.preventDefault();
-          setConf(nextConfidence(confidence));
+          // Exam: a flag for a second look (on / off); practice: 确定 → 没把握 → 猜的.
+          setConf(exam ? (confidence === 'sure' ? 'unsure' : 'sure') : nextConfidence(confidence));
         }
         return;
       case 'e':
@@ -699,7 +731,10 @@ export function Player({ session, items }: { session: PracticeSession; items: It
 
   // After grading, keep the right answer in view above the result banner (the side panel is short on small windows).
   useLayoutEffect(() => {
-    if (graded) revealAnswer(sideRef.current);
+    if (!graded) return;
+    if (single) revealResult(mainRef.current);
+    else revealAnswer(sideRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [graded, item.id]);
 
   // ── Render ──
@@ -715,21 +750,31 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       : undefined;
 
   const listeningHidden = item.section === 'listening' && !graded;
-  const heroAudio = item.section === 'listening' && !!item.audio && !item.figures?.length;
   const answered = done(item, response);
   const nudge = exam && canEdit && !complete(item, response) && !skipped[item.id] && item.section !== 'listening' && item.section !== 'listening-reading' && nextOpen() !== null;
   const exOpenNow = exOpen[item.id] ?? explanationDefault(ans);
   const answeredCount = cells.filter((c) => c.state === 'answered').length;
+  const allAnswered = exam && answeredCount === N;
   const isLast = index === N - 1;
   /** Mark sheet in practice: cells filled / to fill (shown next to 提交). */
   const sheetFill = !exam && canEdit && item.format === 'blanks' ? { filled: openLetters.filter((l) => (values[l] || '').trim()).length, of: openLetters.length } : null;
-  const lastLeft = exam && isLast ? cells.filter((c, i) => i !== index && c.state === 'todo').length : 0;
+  const wasWrong = graded && (!ans?.correct || !!ans?.gaveUp);
+  const streak = graded && ans?.correct ? correctStreak(session.itemIds, session.answers, item.id) : 0;
+  /** Grammar: the （　　） previews the picked option, and the right one after grading. */
+  const blank =
+    layout.inline && item.format === 'choice' && hasSlot(layout.inline.passage)
+      ? graded
+        ? { text: item.answer !== undefined ? (item.options?.[item.answer] ?? null) : null, tone: 'right' as const }
+        : { text: typeof response === 'number' ? (item.options?.[response] ?? null) : null, tone: 'preview' as const }
+      : undefined;
 
   const zenPill = zen && (
-    <button type="button" className="pl-zen-pill" onClick={toggleZen} onMouseDown={keepFocus} title="退出专注模式（⇧⌘F）">
-      <Icon name="eyeOff" size={13} />
-      专注中
-    </button>
+    <Tooltip label="退出专注模式" kbd="⇧⌘F" side="bottom">
+      <button type="button" className="pl-zen-pill" onClick={toggleZen} onMouseDown={keepFocus}>
+        <Icon name="eyeOff" size={13} />
+        专注中
+      </button>
+    </Tooltip>
   );
   const topActions = exam ? (
     <>
@@ -737,21 +782,301 @@ export function Player({ session, items }: { session: PracticeSession; items: It
       <Button size="sm" variant="secondary" icon="grid" onClick={() => setSheetOpen(true)} onMouseDown={keepFocus}>
         答题卡
       </Button>
-      <Button size="sm" variant="primary" icon="check" onClick={() => void confirmSubmitExam()} onMouseDown={keepFocus}>
+      {/* Hot only when it is the obvious next step: everything answered (the footer then steps back). */}
+      <Button size="sm" variant={allAnswered && !isLast ? 'primary' : 'secondary'} icon="check" onClick={() => void confirmSubmitExam()} onMouseDown={keepFocus}>
         交卷
       </Button>
     </>
   ) : (
     <>
       {zenPill}
-      <Button size="sm" variant="ghost" icon="flag" onClick={() => void confirmFinishEarly()} onMouseDown={keepFocus} title="提前结束这一组，看小结">
-        结束
+      <Tooltip label="提前结束这一组，看小结" side="bottom">
+        <Button size="sm" variant="ghost" icon="flag" onClick={() => void confirmFinishEarly()} onMouseDown={keepFocus}>
+          结束
+        </Button>
+      </Tooltip>
+    </>
+  );
+
+  /** "按 1–4 选择" in the first sessions; afterwards a quiet keyboard button. */
+  const keyHint = (text: string) =>
+    hints ? (
+      <span className="pl-side-hint">{text}</span>
+    ) : (
+      <IconButton icon="keyboard" label="快捷键（⌘/）" size="sm" className="pl-keys-btn" onClick={openShortcuts} onMouseDown={keepFocus} />
+    );
+
+  const choicePad =
+    item.format === 'choice' ? (
+      <ChoicePad
+        item={item}
+        value={typeof response === 'number' ? response : null}
+        onSelect={canEdit ? select : undefined}
+        reveal={graded}
+        hideText={listeningHidden}
+        columns={single && nOpts <= 4 ? 2 : undefined}
+      />
+    ) : null;
+
+  const confidencePicker = canEdit && <ConfidencePicker value={confidence} onChange={setConf} exam={exam} compact={single} />;
+
+  const tools = graded && (
+    <div className="pl-tools">
+      {!single && (
+        <button type="button" className="pl-tool" onClick={showExplanation} onMouseDown={keepFocus}>
+          <Icon name="bulb" size={15} />
+          看解析
+          <Kbd>E</Kbd>
+        </button>
+      )}
+      <NoteBox key={item.id} itemId={item.id} />
+      {settings.coachEnabled && (
+        <button type="button" className="pl-tool" onClick={() => coachFocus.current?.()} onMouseDown={keepFocus}>
+          <Icon name="sparkles" size={15} />
+          问 AI
+        </button>
+      )}
+    </div>
+  );
+
+  const result = graded && grade && ans && (
+    <ResultBanner
+      item={item}
+      answer={ans}
+      grade={grade}
+      today={today}
+      progress={progressMap[item.id]}
+      before={item.id in before.current ? before.current[item.id] : undefined}
+      streak={streak}
+    />
+  );
+
+  /** The primary action row: exam navigation, 下一题 after grading, or 不会 / 提交. */
+  const actions = exam ? (
+    <div className="pl-foot-row">
+      <Button variant="secondary" icon="left" onClick={() => goTo(index - 1)} onMouseDown={keepFocus} disabled={index === 0}>
+        上一题
       </Button>
+      {isLast ? (
+        <Button variant="primary" icon="check" className="pl-grow" onClick={() => void confirmSubmitExam()} onMouseDown={keepFocus}>
+          交卷
+        </Button>
+      ) : (
+        <Button variant={allAnswered ? 'secondary' : 'primary'} iconRight="right" className="pl-grow" onClick={next} onMouseDown={keepFocus}>
+          下一题 <Kbd>Enter</Kbd>
+        </Button>
+      )}
+    </div>
+  ) : graded ? (
+    <Button
+      variant="primary"
+      size="lg"
+      block={!single}
+      className={cx('pl-next', autoNext && 'is-auto')}
+      onClick={() => (autoNext ? (cancelAutoNext(), goTo(index + 1)) : next())}
+      onMouseDown={keepFocus}
+    >
+      {isLast && allGraded ? '完成，看小结' : '下一题'}
+      <Kbd>Enter</Kbd>
+    </Button>
+  ) : (
+    <div className="pl-foot-row">
+      <Tooltip label="直接看解析（记为没做出来）">
+        <Button variant="ghost" icon="bulb" onClick={() => submit({ gaveUp: true })} onMouseDown={keepFocus}>
+          不会，看解析
+        </Button>
+      </Tooltip>
+      <Button variant="primary" size="lg" className="pl-grow pl-submit" disabled={!answered} onClick={() => submit()} onMouseDown={keepFocus}>
+        提交
+        {sheetFill && answered && sheetFill.filled < sheetFill.of ? (
+          <span className="pl-submit-fill num">
+            已填 {sheetFill.filled}/{sheetFill.of}
+          </span>
+        ) : (
+          <Kbd>Enter</Kbd>
+        )}
+      </Button>
+    </div>
+  );
+
+  const examNote = exam && (
+    <div className="pl-foot-note">
+      <span>
+        已作答 <b className="num">{answeredCount}</b> / <span className="num">{N}</span>
+      </span>
+      {answered ? (
+        <span className="pl-saved">
+          <Icon name="check" size={12} />
+          已记录
+        </span>
+      ) : (
+        <span>本题未作答</span>
+      )}
+    </div>
+  );
+
+  const stem = (
+    <QuestionStem
+      item={item}
+      text={split?.passage ?? layout.inline?.passage}
+      prompt={layout.inline?.question}
+      marks={marks}
+      gloss={gloss}
+      onGlossChange={setGloss}
+      blank={blank}
+    />
+  );
+
+  const after = (
+    <>
+      {graded && <ExplanationCard item={item} open={exOpenNow} onToggle={() => setExOpen((m) => ({ ...m, [item.id]: !exOpenNow }))} />}
+      {graded && settings.coachEnabled && (
+        <CoachCard key={`c-${item.id}`} item={item} response={ans!.response} wasCorrect={!!ans!.correct} focusRef={coachFocus} defaultOpen={wasWrong} />
+      )}
+    </>
+  );
+
+  const audio = (answerArea?: ReactNode) =>
+    item.audio && (
+      <AudioPanel
+        key={item.id}
+        audio={item.audio}
+        exam={exam}
+        played={played.current.has(item.id)}
+        onPlayed={() => {
+          if (exam && !played.current.has(item.id)) {
+            played.current.add(item.id);
+            bumpPlayed((x) => x + 1);
+          }
+        }}
+        toggleRef={audioToggle}
+        hero={heroAudio}
+        title={heroAudio ? <ListeningTitle item={item} /> : undefined}
+        caption={heroAudio ? <ListeningCaption item={item} revealed={graded} /> : undefined}
+        idleText={graded ? '可以再听一遍，对照解析里的原文' : undefined}
+      >
+        {answerArea}
+      </AudioPanel>
+    );
+
+  const answerHead = item.format === 'choice' && (
+    <div className="pl-side-label">
+      <span>{listeningHidden ? '听完后选出答案' : graded ? '你的作答' : '选择答案'}</span>
+      {canEdit && keyHint(pickHint)}
+    </div>
+  );
+
+  const body = single ? (
+    <main className="pl-main is-single" ref={mainRef}>
+      <div className="pl-col is-single" key={item.id}>
+        <ItemHeader item={item} groupPos={groupPos} />
+        {heroAudio ? (
+          audio(
+            <>
+              {answerHead}
+              {choicePad}
+            </>,
+          )
+        ) : (
+          <article className={cx('pl-paper is-short', item.subject === 'japanese' && 'is-ja')}>
+            {stem}
+            <div className="pl-paper-answer">
+              {hints && canEdit && <div className="pl-side-label is-quiet">{keyHint(pickHint)}</div>}
+              {choicePad}
+            </div>
+          </article>
+        )}
+        {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
+        {graded ? (
+          <>
+            {result}
+            <ActionRow>
+              {tools}
+              {actions}
+            </ActionRow>
+          </>
+        ) : (
+          <ActionRow className={exam ? 'is-exam' : undefined}>
+            {confidencePicker}
+            {actions}
+          </ActionRow>
+        )}
+        {after}
+      </div>
+    </main>
+  ) : (
+    <>
+      <main className="pl-main" ref={mainRef}>
+        <div className="pl-col" key={item.id}>
+          <ItemHeader item={item} groupPos={groupPos} />
+          {audio()}
+          <article className={cx('pl-paper', item.subject === 'japanese' && 'is-ja', split && 'is-passage', split && jaFont === 'mincho' && 'is-mincho')}>
+            {split && (
+              <div className="pl-paper-label">
+                <span>本文</span>
+                <Segmented
+                  size="sm"
+                  className="pl-font-toggle"
+                  value={jaFont}
+                  onChange={setJaFont}
+                  options={[
+                    { value: 'mincho', label: '明朝' },
+                    { value: 'gothic', label: '黑体' },
+                  ]}
+                />
+              </div>
+            )}
+            {stem}
+          </article>
+          {after}
+        </div>
+      </main>
+
+      <aside className="pl-side">
+        <div className="pl-side-scroll" ref={sideRef}>
+          {split ? (
+            <div className="pl-ask">
+              <span className="pl-ask-label">设问</span>
+              <RichText text={split.question} lang="ja" className="pl-ask-text" />
+            </div>
+          ) : (
+            answerHead
+          )}
+          {split && canEdit && hints && <div className="pl-side-label is-quiet">{keyHint(pickHint)}</div>}
+
+          {item.format === 'choice' ? (
+            choicePad
+          ) : (
+            <MarkSheet
+              groups={groups}
+              values={values}
+              active={activeLetter}
+              onActivate={canEdit ? (l) => setCursor({ id: item.id, letter: l }) : undefined}
+              onMark={canEdit ? mark : undefined}
+              onErase={erase}
+              results={grade?.groups}
+              locked={lock}
+              hints={hints}
+            />
+          )}
+
+          {confidencePicker}
+          {/* After grading the verdict sits right under the answer it is about; only the next step stays pinned. */}
+          {result}
+          {tools}
+        </div>
+
+        <div className="pl-side-foot">
+          {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
+          {actions}
+          {examNote}
+        </div>
+      </aside>
     </>
   );
 
   return (
-    <div className={cx('pl', exam && 'pl-is-exam', zen && 'is-zen')}>
+    <div className={cx('pl', exam && 'pl-is-exam', zen && 'is-zen', single && 'is-single')}>
       <TopBar
         title={session.title}
         subject={session.subject}
@@ -769,202 +1094,9 @@ export function Player({ session, items }: { session: PracticeSession; items: It
         onExit={exit}
         actions={topActions}
       />
-      <div className="pl-body">
-        <main className="pl-main" ref={mainRef}>
-          <div className={cx('pl-col', layout.short && 'is-short')} key={item.id}>
-            <ItemHeader item={item} groupPos={groupPos} />
-            {item.audio && (
-              <AudioPanel
-                key={item.id}
-                audio={item.audio}
-                exam={exam}
-                played={played.current.has(item.id)}
-                onPlayed={() => {
-                  if (exam && !played.current.has(item.id)) {
-                    played.current.add(item.id);
-                    bumpPlayed((x) => x + 1);
-                  }
-                }}
-                toggleRef={audioToggle}
-                hero={heroAudio}
-                title={heroAudio ? <ListeningTitle item={item} /> : undefined}
-                caption={heroAudio ? <ListeningCaption item={item} revealed={graded} /> : undefined}
-                idleText={graded ? '可以再听一遍，对照解析里的原文' : undefined}
-              />
-            )}
-            {!heroAudio && (
-              <article className={cx('pl-paper', item.subject === 'japanese' && 'is-ja', split && 'is-passage', layout.short && 'is-short')}>
-                {split && <div className="pl-paper-label">本文</div>}
-                <QuestionStem
-                  item={item}
-                  text={split?.passage ?? layout.inline?.passage}
-                  prompt={layout.inline?.question}
-                  marks={marks}
-                  gloss={gloss}
-                  onGlossChange={setGloss}
-                />
-              </article>
-            )}
-            {graded && <ExplanationCard item={item} open={exOpenNow} onToggle={() => setExOpen((m) => ({ ...m, [item.id]: !exOpenNow }))} />}
-            {graded && settings.coachEnabled && <CoachCard key={`c-${item.id}`} item={item} response={ans!.response} wasCorrect={!!ans!.correct} focusRef={coachFocus} />}
-          </div>
-        </main>
-
-        <aside className="pl-side">
-          <div className="pl-side-scroll" ref={sideRef}>
-            {split ? (
-              <div className="pl-ask">
-                <span className="pl-ask-label">
-                  <Icon name="help" size={13} />
-                  设问
-                </span>
-                <RichText text={split.question} lang="ja" className="pl-ask-text" />
-              </div>
-            ) : (
-              item.format === 'choice' && (
-                <div className="pl-side-label">
-                  <span>{listeningHidden ? '听完后选出答案' : graded ? '你的作答' : '选择答案'}</span>
-                  {canEdit && <span className="faint text-xs">按 1–{Math.min(9, item.options?.length ?? 4)} 选择{!exam && ' · 双击直接提交'}</span>}
-                </div>
-              )
-            )}
-
-            {item.format === 'choice' ? (
-              <ChoicePad
-                item={item}
-                value={typeof response === 'number' ? response : null}
-                onSelect={canEdit ? select : undefined}
-                onCommit={canEdit && !exam ? (i) => submit({ resp: i }) : undefined}
-                reveal={graded}
-                hideText={listeningHidden}
-              />
-            ) : (
-              <MarkSheet
-                groups={groups}
-                values={values}
-                active={activeLetter}
-                onActivate={canEdit ? (l) => setCursor({ id: item.id, letter: l }) : undefined}
-                onMark={canEdit ? mark : undefined}
-                onErase={erase}
-                results={grade?.groups}
-                locked={lock}
-              />
-            )}
-
-            {canEdit && <ConfidencePicker value={confidence} onChange={setConf} exam={exam} />}
-
-            <div className="pl-keys" aria-hidden>
-              {graded ? (
-                <>
-                  <Kbd>E</Kbd> 解析 <Kbd>Enter</Kbd> {isLast && allGraded ? '看小结' : '下一题'} <Kbd>←</Kbd>
-                  <Kbd>→</Kbd> 翻看做过的题
-                </>
-              ) : exam ? (
-                <>
-                  <Kbd>Enter</Kbd> {!isLast ? '下一题' : lastLeft ? '回到没做的题' : '交卷'} <Kbd>F</Kbd> 标记 <Kbd>←</Kbd>
-                  <Kbd>→</Kbd> 上一题 / 下一题
-                </>
-              ) : (
-                <>
-                  <Kbd>Enter</Kbd> {sheetFill && sheetFill.filled > 0 && sheetFill.filled < sheetFill.of ? '跳到空格 / 提交' : '提交'} <Kbd>F</Kbd> 把握
-                  {index > 0 && (
-                    <>
-                      {' '}
-                      <Kbd>←</Kbd> 回看上一题
-                    </>
-                  )}
-                </>
-              )}
-              {!graded && item.audio && (
-                <>
-                  {' '}
-                  <Kbd>Space</Kbd> 播放
-                </>
-              )}
-            </div>
-
-            {graded && (
-              <div className="pl-tools">
-                <NoteBox key={item.id} itemId={item.id} />
-                {settings.coachEnabled && (
-                  <button type="button" className="pl-tool" onClick={() => coachFocus.current?.()}>
-                    <Icon name="sparkles" size={15} />
-                    问 AI
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="pl-side-foot">
-            {graded && grade && ans && (
-              <ResultBanner item={item} answer={ans} grade={grade} today={today} progress={progressMap[item.id]} before={item.id in before.current ? before.current[item.id] : undefined} />
-            )}
-            {exam ? (
-              <>
-                {nudge && <SlowNudge clock={clock} saved={ans?.seconds ?? 0} target={item.targetSec} onSkip={skipAhead} />}
-                <div className="pl-foot-row">
-                  <Button variant="secondary" icon="left" onClick={() => goTo(index - 1)} onMouseDown={keepFocus} disabled={index === 0}>
-                    上一题
-                  </Button>
-                  {isLast ? (
-                    <Button variant="primary" icon="check" className="pl-grow" onClick={() => void confirmSubmitExam()} onMouseDown={keepFocus}>
-                      交卷
-                    </Button>
-                  ) : (
-                    <Button variant="primary" iconRight="right" className="pl-grow" onClick={next} onMouseDown={keepFocus}>
-                      下一题 <Kbd>Enter</Kbd>
-                    </Button>
-                  )}
-                </div>
-                <div className="pl-foot-note">
-                  <span>
-                    已作答 <b className="num">{answeredCount}</b> / <span className="num">{N}</span>
-                  </span>
-                  {answered ? (
-                    <span className="pl-saved">
-                      <Icon name="check" size={12} />
-                      已记录
-                    </span>
-                  ) : (
-                    <span>本题未作答</span>
-                  )}
-                </div>
-              </>
-            ) : graded ? (
-              <Button
-                variant="primary"
-                size="lg"
-                block
-                className={cx('pl-next', autoNext && 'is-auto')}
-                onClick={() => (autoNext ? (cancelAutoNext(), goTo(index + 1)) : next())}
-                onMouseDown={keepFocus}
-              >
-                {isLast && allGraded ? '完成，看小结' : '下一题'}
-                <Kbd>Enter</Kbd>
-              </Button>
-            ) : (
-              <div className="pl-foot-row">
-                <Button variant="ghost" icon="bulb" onClick={() => submit({ gaveUp: true })} onMouseDown={keepFocus} title="直接看解析（记为没做出来）">
-                  不会，看解析
-                </Button>
-                <Button variant="primary" size="lg" className="pl-grow pl-submit" disabled={!answered} onClick={() => submit()} onMouseDown={keepFocus}>
-                  提交
-                  {sheetFill && answered && sheetFill.filled < sheetFill.of ? (
-                    <span className="pl-submit-fill num">
-                      已填 {sheetFill.filled}/{sheetFill.of}
-                    </span>
-                  ) : (
-                    <Kbd>Enter</Kbd>
-                  )}
-                </Button>
-              </div>
-            )}
-          </div>
-        </aside>
-      </div>
+      <div className="pl-body">{body}</div>
       <IdlePill clock={clock} />
-      {exam && <ExamSheet open={sheetOpen} onClose={() => setSheetOpen(false)} cells={cells} current={index} onJump={goTo} onSubmit={() => void confirmSubmitExam()} />}
+      {exam && <ExamSheet open={sheetOpen} onClose={() => setSheetOpen(false)} cells={cells} current={index} onJump={goTo} onSubmit={() => void confirmSubmitExam()} ready={allAnswered} />}
       {confirmNode}
     </div>
   );

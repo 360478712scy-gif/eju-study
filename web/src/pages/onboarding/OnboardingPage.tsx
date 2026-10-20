@@ -8,7 +8,7 @@ import type { ScoreMap, Subject } from '@shared/types.ts';
 import { SCALE_MAX } from '@shared/stats.ts';
 import { budgetFor, daysLeftOn } from '@shared/planner.ts';
 import { addDays } from '@shared/dates.ts';
-import { cx, fmtDateShort } from '../../lib/format.ts';
+import { SUBJECT_NAME, cx, fmtDateShort } from '../../lib/format.ts';
 import { regenerateDay } from '../today/blocks.ts';
 import './onboarding.css';
 
@@ -89,9 +89,9 @@ export function OnboardingPage() {
         <aside className="ob-hero">
           <div className="ob-brand">
             <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden>
-              <rect width="64" height="64" rx="16" fill="rgba(255,255,255,0.18)" />
-              <path d="M18 40c6-14 22-14 28 0" stroke="#fff" strokeWidth="5" fill="none" strokeLinecap="round" />
-              <circle cx="32" cy="24" r="5" fill="#fff" />
+              <rect width="64" height="64" rx="16" fill="currentColor" fillOpacity={0.18} />
+              <path d="M18 40c6-14 22-14 28 0" stroke="currentColor" strokeWidth="5" fill="none" strokeLinecap="round" />
+              <circle cx="32" cy="24" r="5" fill="currentColor" />
             </svg>
             <span>澄学 EJU</span>
           </div>
@@ -114,7 +114,7 @@ export function OnboardingPage() {
           {(history > 0 || vocabHistory > 0) && (
             <div className="ob-kept">
               <Icon name="check" size={14} />
-              已保留你之前的{[history > 0 ? `${history} 条做题记录` : '', vocabHistory > 0 ? `${vocabHistory} 次单词练习` : ''].filter(Boolean).join('和')}
+              已保留你之前的 {[history > 0 ? `${history} 条做题记录` : '', vocabHistory > 0 ? `${vocabHistory} 次单词练习` : ''].filter(Boolean).join('和')}
             </div>
           )}
         </aside>
@@ -137,40 +137,51 @@ export function OnboardingPage() {
               <h1 className="ob-title">先确认起点和目标</h1>
               <p className="ob-sub">起点填最近一次成绩或自测估计。目标决定每科分到多少时间，之后也能改。</p>
 
-              <div className="ob-table">
-                <div className="ob-thead">
-                  <span>科目</span>
-                  <span>起点</span>
-                  <span />
-                  <span>目标</span>
-                  <span className="ob-th-max">满分</span>
+              <div className="ob-table" role="table" aria-label="起点和目标">
+                <div className="ob-thead" role="row">
+                  <span role="columnheader">科目</span>
+                  <span role="columnheader">起点</span>
+                  <span role="columnheader">目标</span>
+                  <span role="columnheader" className="ob-th-gain">
+                    要提高
+                  </span>
                 </div>
                 {ORDER.map((s, i) => {
                   const b = baseNums[i];
                   const t = targetNums[i];
+                  const gain = b !== null && t !== null ? t - b : null;
                   return (
-                    <div key={s} className="ob-row">
-                      <SubjectTag subject={s} />
-                      <ScoreInput value={base[s]} invalid={b === null} onChange={(v) => setBase({ ...base, [s]: v })} max={SCALE_MAX[s]} label={`起点`} />
-                      <Icon name="arrowRight" size={16} className="ob-arrow" />
-                      <ScoreInput value={target[s]} invalid={t === null} onChange={(v) => setTarget({ ...target, [s]: v })} max={SCALE_MAX[s]} label={`目标`} strong />
-                      <span className={cx('ob-delta num', b !== null && t !== null && t - b > 0 && 'is-up')}>
-                        {b !== null && t !== null ? (t - b > 0 ? `+${t - b}` : t - b === 0 ? '持平' : `${t - b}`) : '—'}
-                        <small>/ {SCALE_MAX[s]}</small>
+                    <div key={s} className="ob-row" role="row">
+                      <span role="cell">
+                        <SubjectTag subject={s} />
+                      </span>
+                      <span role="cell">
+                        <ScoreInput value={base[s]} invalid={b === null} onChange={(v) => setBase({ ...base, [s]: v })} max={SCALE_MAX[s]} label={`${SUBJECT_NAME[s]}起点`} />
+                      </span>
+                      <span role="cell">
+                        <ScoreInput value={target[s]} invalid={t === null} onChange={(v) => setTarget({ ...target, [s]: v })} max={SCALE_MAX[s]} label={`${SUBJECT_NAME[s]}目标`} strong />
+                      </span>
+                      <span role="cell" className={cx('ob-gain num', gain !== null && gain > 0 && 'is-up')}>
+                        {gain === null ? '—' : gain > 0 ? `+${gain}` : gain === 0 ? '持平' : gain}
                       </span>
                     </div>
                   );
                 })}
-                <div className="ob-total">
-                  <span>合计</span>
-                  <span className="num">{baseTotal}</span>
-                  <Icon name="arrowRight" size={16} className="ob-arrow" />
-                  <span className="num ob-total-target">{targetTotal}</span>
-                  <span className="ob-total-gap num">{targetTotal > baseTotal ? `要提 ${targetTotal - baseTotal} 分` : ''}</span>
+                <div className="ob-row ob-total" role="row">
+                  <span role="cell">合计</span>
+                  <span role="cell" className="num ob-total-num">
+                    {baseTotal}
+                  </span>
+                  <span role="cell" className="num ob-total-num ob-total-target">
+                    {targetTotal}
+                  </span>
+                  <span role="cell" className={cx('ob-gain num', targetTotal > baseTotal && 'is-up')}>
+                    {targetTotal > baseTotal ? `+${targetTotal - baseTotal}` : '—'}
+                  </span>
                 </div>
               </div>
 
-              {!valid && <p className="ob-error">分数要在 0 到满分之间。</p>}
+              {!valid && <p className="ob-error">分数要在 0 到满分之间</p>}
 
               <div className="ob-actions">
                 <Button type="submit" variant="primary" size="lg" iconRight="arrowRight" disabled={!valid}>
@@ -241,19 +252,21 @@ function Point({ icon, title, text }: { icon: IconName; title: string; text: str
   );
 }
 
+/** Same field as Settings › 学习目标: the number, then "/ 400" inside the box. */
 function ScoreInput({ value, onChange, max, invalid, label, strong }: { value: string; onChange: (v: string) => void; max: number; invalid: boolean; label: string; strong?: boolean }) {
   return (
-    <input
-      className={cx('ob-input num', invalid && 'is-invalid', strong && 'is-strong')}
-      type="number"
-      inputMode="numeric"
-      min={0}
-      max={max}
-      step={1}
-      value={value}
-      aria-label={label}
-      onChange={(e) => onChange(e.target.value)}
-      onFocus={(e) => e.target.select()}
-    />
+    <label className={cx('ob-score', invalid && 'is-invalid', strong && 'is-target')}>
+      <input
+        className="num"
+        type="text"
+        inputMode="numeric"
+        value={value}
+        aria-label={label}
+        aria-invalid={invalid}
+        onChange={(e) => onChange(e.target.value.replace(/[^\d０-９]/g, '').replace(/[０-９]/g, (c) => String(c.charCodeAt(0) - 0xff10)))}
+        onFocus={(e) => e.target.select()}
+      />
+      <span className="ob-score-max">/ {max}</span>
+    </label>
   );
 }

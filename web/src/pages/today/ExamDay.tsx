@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useReady } from '../../lib/store.ts';
 import { href } from '../../lib/router.ts';
-import { Button } from '../../components/ui.tsx';
+import { Button, IconTile } from '../../components/ui.tsx';
 import { Icon, type IconName } from '../../components/Icon.tsx';
 import { navigate } from '../../lib/router.ts';
 import { weekdayZh } from '@shared/dates.ts';
@@ -61,8 +61,26 @@ function nowHM(): string {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
 
+/** Cumulative effort since the sprint began: days studied (≥ 30 min), hours, questions, mocks. */
+function useEffort() {
+  const { state } = useReady();
+  const start = state.profile.startDate;
+  return useMemo(() => {
+    let seconds = 0;
+    let days = 0;
+    for (const [d, log] of Object.entries(state.days)) {
+      if (d < start) continue;
+      seconds += log.seconds;
+      if (log.seconds >= 1800) days++;
+    }
+    const answered = state.attempts.filter((a) => a.date >= start).length;
+    return { hours: Math.round(seconds / 360) / 10, wholeHours: Math.round(seconds / 3600), days, answered, mocks: state.mocks.length };
+  }, [state, start]);
+}
+
 export function ExamDay() {
-  const { state, today } = useReady();
+  const { today } = useReady();
+  const effort = useEffort();
   const [checks, setChecks] = useState<Record<string, boolean>>(loadChecks);
   const [time, setTime] = useState(nowHM);
   useEffect(() => {
@@ -94,7 +112,17 @@ export function ExamDay() {
             {fmtDateShort(today)} {weekdayZh(today)} · 考试日
           </div>
           <h1 className="ex-title">{finished ? '今天的三场都考完了，辛苦了' : '今天就是考试日，按平时的节奏来'}</h1>
-          <p className="ex-sub">{finished ? '好好吃一顿，早点休息。' : `练了这么多天，你已经准备好了。${state.mocks.length ? `一共完成了 ${state.mocks.length} 次模考。` : ''}`}</p>
+          <p className="ex-sub">
+            {finished ? (
+              '好好吃一顿，早点休息。'
+            ) : effort.days > 0 ? (
+              <>
+                <span className="num">{effort.days}</span> 天 · <span className="num">{effort.wholeHours}</span> 小时 · <span className="num">{effort.answered.toLocaleString('en-US')}</span> 题 · 你准备好了
+              </>
+            ) : (
+              '按平时的节奏来，你准备好了。'
+            )}
+          </p>
         </div>
       </header>
 
@@ -173,26 +201,12 @@ export function ExamDay() {
 }
 
 export function AfterExam() {
-  const { state } = useReady();
-  const start = state.profile.startDate;
-  const summary = useMemo(() => {
-    let seconds = 0;
-    let days = 0;
-    for (const [d, log] of Object.entries(state.days)) {
-      if (d < start) continue;
-      seconds += log.seconds;
-      if (log.seconds >= 1800) days++;
-    }
-    const answered = state.attempts.filter((a) => a.date >= start).length;
-    return { hours: Math.round(seconds / 360) / 10, days, answered, mocks: state.mocks.length };
-  }, [state, start]);
+  const summary = useEffort();
 
   return (
     <div className="page ex-after">
       <section className="ex-after-card">
-        <div className="ex-after-icon">
-          <Icon name="award" size={30} />
-        </div>
+        <IconTile icon="award" tone="primary" size="lg" className="ex-after-icon" />
         <h1 className="ex-after-title">考试结束，辛苦了</h1>
         <p className="ex-after-sub">不管结果如何，这段时间的努力都是真的。先好好休息几天。</p>
         <div className="ex-after-stats">

@@ -352,21 +352,68 @@ export interface MeaningChoice {
   answer: number;
 }
 
+// The meanings are written as "名词/サ变动词：definition；usage notes". The options show only a
+// short gloss (no part of speech, which would give the answer away); the rest is revealed after.
+const POS_HEAD = /^((?:[^：:。，；（]|（[^）]*）){1,30})[：:。]\s*/;
+const POS_WORD = /(词|语|表达|说法|短语|缩略|句型|接续|口语|サ变|する|形容)/;
+const chars = (s: string) => [...s];
+
+/** Split "名词/サ变动词：…" into the part of speech and the definition. */
+export function splitMeaning(meaning: string): { pos: string; text: string } {
+  const m = POS_HEAD.exec(meaning);
+  if (m) {
+    const bare = m[1].replace(/（[^）]*）/g, '');
+    if (chars(bare).length <= 12 && POS_WORD.test(bare)) return { pos: m[1].trim(), text: meaning.slice(m[0].length).trim() };
+  }
+  return { pos: '', text: meaning.trim() };
+}
+
+function outsideParens(cs: string[], end: number): boolean {
+  let depth = 0;
+  for (let k = 0; k < end; k++) {
+    if (cs[k] === '（' || cs[k] === '(') depth++;
+    else if (cs[k] === '）' || cs[k] === ')') depth = Math.max(0, depth - 1);
+  }
+  return depth === 0;
+}
+
+/** Text before the last mark in [min, max] that is not inside parentheses. */
+function cutAt(text: string, marks: string, min: number, max: number): string | null {
+  const cs = chars(text);
+  for (let i = Math.min(max, cs.length - 1); i >= min; i--) if (marks.includes(cs[i]) && outsideParens(cs, i)) return cs.slice(0, i).join('');
+  return null;
+}
+
+/** First clause of the definition, ~30 characters at most (40 when it cannot be cut cleanly). */
+export function gloss(meaning: string, max = 30): string {
+  let t = splitMeaning(meaning).text.replace(/^①\s*/, '');
+  t = t.split(/[；;。②]/)[0].trim();
+  // Usage examples in brackets 「～を…」 belong to the reveal, not the option.
+  t = t.replace(/（[^）]*[「」～〜][^）]*）/g, '').replace(/\([^)]*[「」～〜][^)]*\)/g, '').trim();
+  if (chars(t).length <= max) return t;
+  const hard = max + 10;
+  const clause = cutAt(t, '，,', 10, max) ?? (chars(t).length <= hard ? t : cutAt(t, '，,', 10, hard));
+  if (clause) return clause;
+  return (cutAt(t, '、', 12, hard - 2) ?? chars(t).slice(0, hard - 2).join('')) + '…';
+}
+
 /** The right meaning plus three from the same category, in a stable order per word and day. */
 export function meaningChoice(bank: BankIndex, v: VocabEntry, date: string, salt = ''): MeaningChoice {
   const rand = rng(hash(`${v.id}|${date}|${salt}`));
   const all = bank.bundle.vocab;
+  const own = gloss(v.meaningZh);
   let pool = all.filter((x) => x.category === v.category && x.id !== v.id && x.meaningZh !== v.meaningZh);
   if (pool.length < 3) pool = all.filter((x) => x.id !== v.id && x.meaningZh !== v.meaningZh);
-  const seen = new Set<string>([v.meaningZh]);
-  const picks: VocabEntry[] = [];
+  const seen = new Set<string>([own]);
+  const picks: { vocabId: string; text: string }[] = [];
   for (const x of shuffled(pool, rand)) {
-    if (seen.has(x.meaningZh)) continue;
-    seen.add(x.meaningZh);
-    picks.push(x);
+    const g = gloss(x.meaningZh);
+    if (seen.has(g)) continue;
+    seen.add(g);
+    picks.push({ vocabId: x.id, text: g });
     if (picks.length === 3) break;
   }
-  const options = shuffled([v, ...picks], rand).map((x) => ({ vocabId: x.id, text: x.meaningZh }));
+  const options = shuffled([{ vocabId: v.id, text: own }, ...picks], rand);
   return { options, answer: options.findIndex((o) => o.vocabId === v.id) };
 }
 
@@ -394,3 +441,12 @@ export const SKILL_LABEL: Record<VocabSkill, string> = {
   read: '读音',
   meaning: '词义',
 };
+
+/** The drill names of the two skills. */
+export const SKILL_NAME: Record<VocabSkill, string> = {
+  read: '看字写读音',
+  meaning: '看词选意思',
+};
+
+/** One colour per skill everywhere (drill badge, summary, word list meters, word card, Stats). */
+export const SKILL_TONE = { read: 'primary', meaning: 'japanese' } as const satisfies Record<VocabSkill, 'primary' | 'japanese'>;

@@ -5,7 +5,7 @@ import type { Item, SessionAnswer } from '@shared/types.ts';
 import { askCoach, cancelCoach, coachStatus, pollCoach, type CoachResult } from '../../lib/api.ts';
 import { RichText } from '../../components/RichText.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { Button, Spinner } from '../../components/ui.tsx';
+import { Button, Callout, IconTile, Spinner } from '../../components/ui.tsx';
 import { cx } from '../../lib/format.ts';
 
 interface Entry {
@@ -26,6 +26,13 @@ const QUICK: Record<Kind, string[]> = {
   ja: ['正确答案在原文哪一句？', '我选的选项为什么不对？', '这段文章的结构怎么快速抓？'],
   listen: ['答案依据是录音里哪一句？', '我选的选项错在哪？', '这类题听的时候该抓什么？'],
 };
+/** After a right answer the questions are about going further, not about a mistake. */
+const QUICK_RIGHT: Record<Kind, string[]> = {
+  choice: ['帮我总结关键思路', '有没有更快的做法？', '这类题还会怎么考？'],
+  blanks: ['帮我总结关键思路', '有没有更快的算法？', '这类题还会怎么考？'],
+  ja: ['帮我总结这题的解题线索', '有没有更快的定位方法？', '这类题还会怎么考？'],
+  listen: ['帮我总结这段录音的要点', '这类题听的时候该抓什么？', '这类题还会怎么考？'],
+};
 const PLACEHOLDER: Record<Kind, string> = {
   choice: '写下你卡住的地方，例如「为什么不能用动能守恒？」',
   blanks: '写下你卡住的地方，例如「第二问的范围怎么确定？」',
@@ -40,8 +47,22 @@ function kindOf(item: Item): Kind {
 
 type Phase = 'idle' | 'asking' | 'done' | 'error';
 
-export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item; response: SessionAnswer['response']; wasCorrect: boolean; focusRef?: RefObject<(() => void) | null> }) {
+export function CoachCard({
+  item,
+  response,
+  wasCorrect,
+  focusRef,
+  defaultOpen,
+}: {
+  item: Item;
+  response: SessionAnswer['response'];
+  wasCorrect: boolean;
+  focusRef?: RefObject<(() => void) | null>;
+  /** Expanded from the start (after a wrong answer); otherwise a one-line row until asked for. */
+  defaultOpen?: boolean;
+}) {
   const existing = entries.get(item.id);
+  const [open, setOpen] = useState(!!defaultOpen || !!existing);
   const [phase, setPhase] = useState<Phase>(existing?.result ? 'done' : existing?.error ? 'error' : existing?.jobId ? 'asking' : 'idle');
   const [entry, setEntry] = useState<Entry | undefined>(existing);
   const [text, setText] = useState('');
@@ -51,12 +72,14 @@ export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item
   const rootRef = useRef<HTMLDivElement>(null);
   const alive = useRef(true);
 
-  if (focusRef) {
-    focusRef.current = () => {
+  const expand = () => {
+    setOpen(true);
+    setTimeout(() => {
       rootRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      setTimeout(() => inputRef.current?.focus(), 250);
-    };
-  }
+      inputRef.current?.focus({ preventScroll: true });
+    }, 60);
+  };
+  if (focusRef) focusRef.current = expand;
 
   useEffect(() => {
     alive.current = true;
@@ -154,19 +177,30 @@ export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item
   };
 
   const kind = kindOf(item);
-  const quick = QUICK[kind];
+  const quick = (wasCorrect ? QUICK_RIGHT : QUICK)[kind];
   const waited = entry ? Math.max(0, Math.round((now - entry.startedAt) / 1000)) : 0;
+
+  if (!open) {
+    return (
+      <section className="pl-card pl-coach is-collapsed" ref={rootRef}>
+        <button type="button" className="pl-coach-row" onClick={expand}>
+          <Icon name="sparkles" size={16} className="pl-coach-spark" />
+          <span className="pl-coach-row-title">问 AI 老师</span>
+          <span className="pl-coach-row-sub">{wasCorrect ? '想再深入一点？针对这道题追问' : '解析没看懂？针对这道题追问'}</span>
+          <Icon name="right" size={16} className="pl-coach-row-chev" />
+        </button>
+      </section>
+    );
+  }
 
   return (
     <section className="pl-card pl-coach" ref={rootRef}>
       <header className="pl-card-head">
         <span className="pl-card-title">
-          <span className="pl-coach-icon">
-            <Icon name="sparkles" size={15} />
-          </span>
+          <IconTile icon="sparkles" tone="primary" />
           问 AI 老师
         </span>
-        <span className="faint text-xs">解析没看懂？针对这道题追问</span>
+        <span className="pl-card-sub">{wasCorrect ? '想再深入一点？针对这道题追问' : '解析没看懂？针对这道题追问'}</span>
       </header>
 
       {available === false ? (
@@ -187,7 +221,7 @@ export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item
             <div className="pl-coach-wait">
               <Spinner size={16} />
               <span>正在思考… {waited > 0 && <span className="num">{waited}s</span>}</span>
-              <span className="faint text-xs">通常需要 20–60 秒，可以先做下一题</span>
+              <span className="pl-coach-wait-note">通常需要 20–60 秒，可以先做下一题</span>
               <Button size="sm" variant="ghost" icon="x" onClick={() => void cancel()}>
                 取消
               </Button>
@@ -217,24 +251,20 @@ export function CoachCard({ item, response, wasCorrect, focusRef }: { item: Item
                   ))}
                 </ol>
               )}
-              <div className="pl-coach-tags">
-                {entry.result.keyPoint && (
-                  <div className="pl-coach-tag tone-primary">
-                    <b>
-                      <Icon name="target" size={13} /> 考点
-                    </b>
-                    <RichText text={entry.result.keyPoint} lang="zh" inline />
-                  </div>
-                )}
-                {entry.result.pitfall && (
-                  <div className="pl-coach-tag tone-warning">
-                    <b>
-                      <Icon name="alert" size={13} /> 易错
-                    </b>
-                    <RichText text={entry.result.pitfall} lang="zh" inline />
-                  </div>
-                )}
-              </div>
+              {(entry.result.keyPoint || entry.result.pitfall) && (
+                <div className="pl-coach-tags">
+                  {entry.result.keyPoint && (
+                    <Callout tone="primary" icon="target" title="考点">
+                      <RichText text={entry.result.keyPoint} lang="zh" inline />
+                    </Callout>
+                  )}
+                  {entry.result.pitfall && (
+                    <Callout tone="warning" icon="alert" title="易错">
+                      <RichText text={entry.result.pitfall} lang="zh" inline />
+                    </Callout>
+                  )}
+                </div>
+              )}
             </div>
           )}
 

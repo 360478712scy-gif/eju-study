@@ -8,8 +8,8 @@ import { coachStatus } from '../../lib/api.ts';
 import { saveTextFile } from '../../lib/native.ts';
 import { cx, fmtDateShort } from '../../lib/format.ts';
 import { Icon, type IconName } from '../../components/Icon.tsx';
-import { Badge, Button, PageHeader, Segmented, Spinner, toast } from '../../components/ui.tsx';
-import { Row, savedToast, SettingCard, Slider, Switch } from './controls.tsx';
+import { Button, Meta, PageHeader, Segmented, Spinner, StatTile, Tooltip, toast } from '../../components/ui.tsx';
+import { Row, SettingCard, Slider, Switch } from './controls.tsx';
 import { GoalsCard } from './GoalsCard.tsx';
 import './settings.css';
 
@@ -25,19 +25,25 @@ const SECTIONS: { id: string; label: string; icon: IconName }[] = [
   { id: 'about', label: '关于', icon: 'info' },
 ];
 
-function setSetting<K extends keyof Settings>(key: K, value: Settings[K], quiet = false) {
+/** Settings save at once and silently (autosave never toasts). */
+function setSetting<K extends keyof Settings>(key: K, value: Settings[K]) {
   update((d) => {
     d.settings[key] = value;
   });
-  if (!quiet) savedToast();
 }
 
 function scroller(): HTMLElement | null {
   return document.querySelector('.main');
 }
 
-function useScrollSpy(ids: string[]): string {
+/**
+ * The section in view, whether the page has scrolled (the narrow-window nav then gets a hairline),
+ * and a jump that marks its target at once instead of sweeping through the sections it scrolls past.
+ */
+function useScrollSpy(ids: string[]): { active: string; scrolled: boolean; jump: (id: string) => void } {
   const [active, setActive] = useState(ids[0]);
+  const [scrolled, setScrolled] = useState(false);
+  const lock = useRef<{ id: string; until: number } | null>(null);
   useEffect(() => {
     const root = scroller();
     if (!root) return;
@@ -46,34 +52,51 @@ function useScrollSpy(ids: string[]): string {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const top = root.getBoundingClientRect().top;
+        const nav = document.querySelector('.sg-nav');
+        setScrolled(!!nav && nav.getBoundingClientRect().top - top <= 1 && root.scrollTop > 0);
+        if (lock.current && Date.now() < lock.current.until) return;
+        lock.current = null;
+        // A section is current once its top passes the upper third of the window (below the sticky bar).
+        const line = Math.max(140, root.clientHeight * 0.34);
         let cur = ids[0];
         for (const id of ids) {
           const el = document.getElementById(`st-${id}`);
-          if (el && el.getBoundingClientRect().top - top < 140) cur = id;
+          if (el && el.getBoundingClientRect().top - top < line) cur = id;
         }
         if (root.scrollTop + root.clientHeight >= root.scrollHeight - 4) cur = ids[ids.length - 1];
         setActive(cur);
       });
     };
+    // A wheel or key scroll by the learner takes over from a jump in progress.
+    const release = () => (lock.current = null);
     root.addEventListener('scroll', onScroll, { passive: true });
+    root.addEventListener('wheel', release, { passive: true });
+    root.addEventListener('keydown', release);
     onScroll();
     return () => {
       root.removeEventListener('scroll', onScroll);
+      root.removeEventListener('wheel', release);
+      root.removeEventListener('keydown', release);
       cancelAnimationFrame(frame);
     };
   }, [ids]);
-  return active;
+  const jump = (id: string) => {
+    const el = document.getElementById(`st-${id}`);
+    if (!el) return;
+    lock.current = { id, until: Date.now() + 1000 };
+    setActive(id);
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  return { active, scrolled, jump };
 }
 
 export function SettingsPage() {
   const ready = useApp((s) => !!s.state);
   const [planStale, setPlanStale] = useState(false);
   const ids = useMemo(() => SECTIONS.map((s) => s.id), []);
-  const active = useScrollSpy(ids);
+  const { active, scrolled, jump } = useScrollSpy(ids);
 
   if (!ready) return null;
-
-  const jump = (id: string) => document.getElementById(`st-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   const regenerate = () => {
     update((d, bank, today) => {
@@ -87,13 +110,17 @@ export function SettingsPage() {
     <div className="page sg-page">
       <PageHeader title="设置" desc="改动会立刻保存。" />
       <div className="sg-layout">
-        <nav className="sg-nav" aria-label="设置分区">
-          {SECTIONS.map((s) => (
-            <button key={s.id} type="button" className={cx('sg-nav-item', active === s.id && 'is-active')} onClick={() => jump(s.id)}>
-              <Icon name={s.icon} size={16} />
-              {s.label}
-            </button>
-          ))}
+        <nav className={cx('sg-nav', scrolled && 'is-scrolled')} aria-label="设置分区">
+          <div className="sg-nav-list">
+            {SECTIONS.map((s) => (
+              <button key={s.id} type="button" className={cx('sg-nav-item', active === s.id && 'is-active')} aria-current={active === s.id ? 'true' : undefined} onClick={() => jump(s.id)}>
+                <Icon name={s.icon} size={16} />
+                {s.label}
+              </button>
+            ))}
+          </div>
+          {/* Below 1100px the side list becomes a sticky segmented bar above the cards. */}
+          <Segmented<string> size="sm" className="sg-nav-bar" value={active} onChange={jump} options={SECTIONS.map((s) => ({ value: s.id, label: s.label, icon: s.icon }))} />
         </nav>
         <div className="sg-content">
           {planStale && (
@@ -232,9 +259,11 @@ function PracticeCard() {
             options={RATES.map((r) => ({ value: String(r), label: `${r.toFixed(1)}×` }))}
           />
           {sample && (
-            <Button variant="ghost" size="sm" icon="volume" onClick={() => preview(rate)} title={`试听「${sample.word}」`}>
-              试听
-            </Button>
+            <Tooltip label={`试听「${sample.word}」`}>
+              <Button variant="ghost" size="sm" icon="volume" onClick={() => preview(rate)}>
+                试听
+              </Button>
+            </Tooltip>
           )}
         </div>
       </Row>
@@ -386,10 +415,10 @@ function fmtBytes(n: number): string {
   return `${(n / 1024 / 1024).toFixed(1)} MB`;
 }
 
-const JOURNAL_KIND: Record<JournalEntry['kind'], { label: string; tone: 'primary' | 'success' | 'neutral' }> = {
-  note: { label: '笔记', tone: 'primary' },
-  review: { label: '复盘', tone: 'success' },
-  legacy: { label: '旧版记录', tone: 'neutral' },
+const JOURNAL_KIND: Record<JournalEntry['kind'], string> = {
+  note: '笔记',
+  review: '复盘',
+  legacy: '旧版记录',
 };
 
 function DataCard() {
@@ -450,12 +479,12 @@ function DataCard() {
 
   return (
     <SettingCard id="data" icon="download" title="数据" desc="学习记录只保存在这台电脑上，每次改动都会自动保存。">
-      <div className="sg-counts">
-        <Count label="题目作答" value={counts.attempts} unit="次" />
-        <Count label="词汇作答" value={counts.vocab} unit="次" />
-        <Count label="模考" value={counts.mocks} unit="场" />
-        <Count label="学习天数" value={counts.studyDays} unit="天" />
-        <Count label="累计时长" value={(counts.seconds / 3600).toFixed(1)} unit="小时" />
+      <div className="stat-row sg-counts">
+        <StatTile boxed label="题目作答" value={counts.attempts} unit="次" />
+        <StatTile boxed label="词汇作答" value={counts.vocab} unit="次" />
+        <StatTile boxed label="模考" value={counts.mocks} unit="场" />
+        <StatTile boxed label="学习天数" value={counts.studyDays} unit="天" />
+        <StatTile boxed label="累计时长" value={(counts.seconds / 3600).toFixed(1)} unit="小时" />
       </div>
 
       <Row title="导出学习记录" desc="把全部记录存成一个 JSON 文件，换电脑或备份时用。">
@@ -497,10 +526,10 @@ function DataCard() {
           <ul className="sg-journal">
             {shownJournal.map((j) => (
               <li key={j.id}>
-                <div className="sg-journal-meta">
+                <Meta className="sg-journal-meta">
                   <span className="num">{fmtDateShort(j.date)}</span>
-                  <Badge tone={JOURNAL_KIND[j.kind].tone}>{JOURNAL_KIND[j.kind].label}</Badge>
-                </div>
+                  <span>{JOURNAL_KIND[j.kind]}</span>
+                </Meta>
                 <p>{j.text}</p>
               </li>
             ))}
@@ -515,18 +544,6 @@ function DataCard() {
         )}
       </Row>
     </SettingCard>
-  );
-}
-
-function Count({ label, value, unit }: { label: string; value: ReactNode; unit?: string }) {
-  return (
-    <div className="sg-count">
-      <span className="sg-count-label">{label}</span>
-      <span className="sg-count-value num">
-        {value}
-        {unit && <small>{unit}</small>}
-      </span>
-    </div>
   );
 }
 

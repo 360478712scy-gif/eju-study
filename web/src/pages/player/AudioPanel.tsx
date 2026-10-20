@@ -20,6 +20,7 @@ export function AudioPanel({
   title,
   caption,
   idleText,
+  children,
 }: {
   audio: AudioRef;
   /** Big centered layout for pure listening items (the clip is the whole question). */
@@ -28,6 +29,8 @@ export function AudioPanel({
   caption?: ReactNode;
   /** Status line before playback starts. */
   idleText?: string;
+  /** Hero: the answer area, inside the same card under the caption. */
+  children?: ReactNode;
   exam: boolean;
   /** Exam: this clip has already been played through. */
   played: boolean;
@@ -168,12 +171,13 @@ export function AudioPanel({
       aria-label={playing ? '暂停' : '播放'}
       data-hotkeys
     >
-      {loading ? <span className="spinner" style={{ width: 20, height: 20 }} /> : <Icon name={playing ? (exam ? 'volume' : 'pause') : ended && !exam ? 'refresh' : 'play'} size={hero ? 28 : 22} />}
+      {loading ? <span className="spinner" style={{ width: 20, height: 20 }} /> : <Icon name={playing ? (exam ? 'volume' : 'pause') : ended && !exam ? 'refresh' : 'play'} size={hero ? 24 : 20} />}
     </button>
   );
   const bar = (
     <div className={cx('pl-audio-bar', !exam && 'is-seekable')} onClick={seek} role="slider" aria-label="播放进度" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(frac * 100)}>
       <div className="pl-audio-fill" style={{ width: `${frac * 100}%` }} />
+      {!exam && <span className="pl-audio-thumb" style={{ left: `${frac * 100}%` }} aria-hidden />}
     </div>
   );
   const controls = exam ? (
@@ -194,27 +198,28 @@ export function AudioPanel({
     return (
       <div className={cx('pl-audio pl-audio-hero', playing && 'is-playing', locked && 'is-locked')}>
         {title && <div className="pl-audio-eyebrow">{title}</div>}
-        <div className="pl-audio-stage">
-          <span className="pl-wave" aria-hidden>
-            {Array.from({ length: 5 }, (_, i) => (
-              <i key={i} />
-            ))}
-          </span>
-          {button}
-          <span className="pl-wave" aria-hidden>
-            {Array.from({ length: 5 }, (_, i) => (
-              <i key={i} />
-            ))}
-          </span>
+        <div className="pl-audio-stage">{button}</div>
+        <div className="pl-audio-status">
+          {playing ? (
+            <span className="pl-audio-elapsed num">{fmtClock(pos)}</span>
+          ) : (
+            <>
+              {status}
+              {pos > 0 && !ended && <span className="num"> · {fmtClock(pos)}</span>}
+            </>
+          )}
         </div>
-        <div className="pl-audio-status">{status}</div>
         <div className="pl-audio-track">
-          <span className="num">{fmtClock(pos)}</span>
+          {/* Same width as the duration on the right, so the bar centers under the button. */}
+          <span className="num pl-audio-ghost" aria-hidden>
+            {duration ? fmtClock(duration) : '–:––'}
+          </span>
           {bar}
           <span className="num">{duration ? fmtClock(duration) : '–:––'}</span>
         </div>
         <div className="pl-audio-foot">{controls}</div>
         {caption && <div className="pl-audio-caption">{caption}</div>}
+        {children && <div className="pl-audio-answer">{children}</div>}
       </div>
     );
   }

@@ -8,10 +8,11 @@ export function optionLabel(item: Item, i: number): string {
   return item.optionLabels?.[i] ?? String(i + 1);
 }
 
-/** Text to put inside a round label badge: circled digits (①…⑳) become plain digits. */
+/** Text to put inside a round label badge: circled digits (⓪, ①…⑳) become plain digits. */
 export function optionBadge(label: string): string {
   const c = label.codePointAt(0) ?? 0;
   if (label.length === 1 && c >= 0x2460 && c <= 0x2473) return String(c - 0x2460 + 1);
+  if (label === '\u24ea') return '0';
   return label;
 }
 

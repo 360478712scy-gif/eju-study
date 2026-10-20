@@ -1,13 +1,14 @@
 // Stem + figures (+ optional Chinese gloss). Shared by the player and previews.
 // With `marks`, EJU answer boxes (\bx{AB}) show the learner's typed mark-sheet values
 // live — both the boxes KaTeX draws inside formulas and the ones in plain text.
-import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react';
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from 'react';
 import type { Item } from '@shared/types.ts';
 import { normalizeMark } from '@shared/grading.ts';
 import { RichText, type BoxRenderer } from '../RichText.tsx';
 import { Figures } from './Figures.tsx';
 import { Icon } from '../Icon.tsx';
 import { cx } from '../../lib/format.ts';
+import { markRangeRefs, markSlot, rangeRefLabel, SLOT_LABEL } from './boxRefs.ts';
 import './question.css';
 
 export interface StemMarks {
@@ -37,9 +38,35 @@ function boxState(m: StemMarks, label: string): { state: BoxState; text: string 
   return { state: any ? 'filled' : 'idle', text };
 }
 
+/** "\bx{C} 〜 \bx{G}" in an instruction: a quiet label chip, never a box to fill or click. */
+function RefChip({ label }: { label: string }) {
+  return (
+    <span className="rt-box q-ref-box" aria-label={`答案框 ${label}`}>
+      {label}
+    </span>
+  );
+}
+
+/** The （　　） of a grammar item: an inline slot that previews the chosen option. */
+export interface StemBlank {
+  /** Option text to show in the slot (bank markup), or null for an empty slot. */
+  text: string | null;
+  tone?: 'preview' | 'right' | 'wrong';
+}
+
+function BlankSlot({ blank }: { blank: StemBlank }) {
+  return (
+    <span className={cx('q-slot', blank.text && `is-${blank.tone ?? 'preview'}`)} aria-label="空栏">
+      {blank.text ? <RichText text={blank.text} lang="ja" inline /> : '\u3000'}
+    </span>
+  );
+}
+
 /** A plain-text answer box (outside formulas) that mirrors the mark sheet. */
 function LiveBox({ label }: { label: string }) {
   const m = useContext(MarksContext);
+  const ref = rangeRefLabel(label);
+  if (ref) return <RefChip label={ref} />;
   if (!m) return <span className="rt-box">{label}</span>;
   const { state, text } = boxState(m, label);
   return (
@@ -98,6 +125,7 @@ export function QuestionStem({
   prompt,
   gloss: glossProp,
   onGlossChange,
+  blank,
 }: {
   item: Item;
   showGloss?: boolean;
@@ -112,6 +140,8 @@ export function QuestionStem({
   /** Controlled gloss visibility (falls back to internal state seeded by showGloss). */
   gloss?: boolean;
   onGlossChange?: (open: boolean) => void;
+  /** Grammar items: draw the first （　　） as an inline slot showing this option. */
+  blank?: StemBlank;
 }) {
   const [glossState, setGlossState] = useState(!!showGloss);
   useEffect(() => setGlossState(!!showGloss), [showGloss]);
@@ -122,8 +152,20 @@ export function QuestionStem({
     onGlossChange?.(next);
   };
 
-  const live = useCallback<BoxRenderer>((label) => <LiveBox label={label} />, []);
-  const boxRenderer = box ?? (marks ? live : undefined);
+  const blankText = blank?.text ?? null;
+  const blankTone = blank?.tone;
+  const hasBlank = !!blank;
+  const live = useCallback<BoxRenderer>(
+    (label) => (label === SLOT_LABEL ? <BlankSlot blank={{ text: blankText, tone: blankTone }} /> : <LiveBox label={label} />),
+    [blankText, blankTone],
+  );
+  const boxRenderer = box ?? live;
+  const source = text ?? item.stem;
+  const shown = useMemo(() => {
+    const t = markRangeRefs(source);
+    return hasBlank ? markSlot(t) : t;
+  }, [source, hasBlank]);
+  const glossShown = useMemo(() => (item.stemZh ? markRangeRefs(item.stemZh) : ''), [item.stemZh]);
 
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -131,6 +173,31 @@ export function QuestionStem({
     decorateKatexBoxes(ref.current, marks);
     if (item.subject === 'japanese') decoratePassage(ref.current);
   });
+
+  // Wide display formulas scroll sideways; fade the cut edge so the hidden part reads as "more".
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    const check = () => {
+      root.querySelectorAll<HTMLElement>('.katex-display').forEach((el) => {
+        const over = el.scrollWidth > el.clientWidth + 1;
+        el.classList.toggle('is-overflow', over);
+        el.classList.toggle('is-end', over && el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
+      });
+    };
+    check();
+    const onScroll = (e: Event) => {
+      const el = e.target as HTMLElement;
+      if (el.classList?.contains('katex-display')) el.classList.toggle('is-end', el.scrollLeft + el.clientWidth >= el.scrollWidth - 2);
+    };
+    root.addEventListener('scroll', onScroll, true);
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(check) : null;
+    ro?.observe(root);
+    return () => {
+      root.removeEventListener('scroll', onScroll, true);
+      ro?.disconnect();
+    };
+  }, [shown, gloss]);
 
   // Follow the box being filled when it changes (not on first render, so reading starts at the top).
   const active = marks?.active ?? null;
@@ -151,7 +218,7 @@ export function QuestionStem({
   return (
     <MarksContext.Provider value={marks ?? null}>
       <div className={cx('q-stem', marks && 'has-marks', marks?.onBoxClick && 'is-clickable')} ref={ref} onClick={onClick}>
-        <RichText text={text ?? item.stem} lang="ja" box={boxRenderer} className="q-stem-text" />
+        <RichText text={shown} lang="ja" box={boxRenderer} className="q-stem-text" />
         {prompt && (
           <div className="q-prompt">
             <Icon name="help" size={14} className="q-prompt-icon" />
@@ -165,7 +232,7 @@ export function QuestionStem({
               <Icon name="languages" size={14} />
               {gloss ? '收起中文对照' : '中文对照'}
             </button>
-            {gloss && <RichText text={item.stemZh} lang="zh" box={boxRenderer} className="q-gloss-text" />}
+            {gloss && <RichText text={glossShown} lang="zh" box={boxRenderer} className="q-gloss-text" />}
           </div>
         )}
       </div>

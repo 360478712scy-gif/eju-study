@@ -1,0 +1,135 @@
+/* ── 跟学模式 ── one focused card + today's path on the right; full window (no sidebar). */
+.fl { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); }
+
+/* Top bar: mode · count, one segment per task, time studied, exit. */
+.fl-top {
+  position: sticky; top: 0; z-index: var(--z-sticky);
+  display: flex; align-items: center; gap: 20px; height: 56px; padding: 0 20px 0 28px;
+  border-bottom: 1px solid var(--divider);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px);
+}
+.fl-top-left, .fl-top-right { display: flex; align-items: center; gap: 14px; flex: none; min-width: 0; }
+.fl-top-right { gap: 10px; margin-left: auto; }
+.fl-mode { display: inline-flex; align-items: center; gap: 6px; color: var(--text); font-size: var(--fs-ui); font-weight: var(--fw-semibold); white-space: nowrap; }
+.fl-mode svg { color: var(--primary-text); }
+.fl-top-count { color: var(--text-3); font-size: var(--fs-sm); white-space: nowrap; }
+.fl-top-count b { color: var(--text); font-weight: var(--fw-semibold); }
+.fl-top-time { color: var(--text-3); font-size: var(--fs-sm); white-space: nowrap; }
+.fl-top-time b { color: var(--text-2); font-weight: var(--fw-medium); }
+.fl-steps { flex: 1; min-width: 80px; max-width: 520px; margin: 0 auto; display: flex; gap: 3px; height: 4px; }
+.fl-steps span { flex: 1; border-radius: var(--radius-pill); background: var(--track); transition: background var(--dur-slow) var(--ease); }
+.fl-steps span.is-done { background: var(--primary); }
+.fl-steps span.is-current { background: color-mix(in srgb, var(--primary) 38%, var(--track)); }
+
+/* Stage + path */
+.fl-main {
+  flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: var(--sp-8) var(--sp-8) var(--sp-12);
+  display: grid; grid-template-columns: minmax(0, 1fr) 296px; gap: var(--sp-6); align-items: start;
+}
+.fl-stage { min-width: 0; }
+.fl-main.is-solo { grid-template-columns: minmax(0, 640px); justify-content: center; }
+.fl-card { padding: 28px 32px 0; scroll-margin-top: 72px; }
+@media (prefers-reduced-motion: no-preference) {
+  .fl-card { animation: fl-in var(--dur-slow) var(--ease); }
+  @keyframes fl-in { from { opacity: 0; transform: translateY(4px); } }
+}
+
+.fl-eyebrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--sp-4); color: var(--text-3); font-size: var(--fs-sm); font-weight: var(--fw-medium); }
+.fl-head { display: flex; align-items: flex-start; gap: var(--sp-4); }
+.fl-head-text { flex: 1; min-width: 0; }
+.fl-title { font-size: var(--fs-2xl); font-weight: var(--fw-semibold); letter-spacing: -0.015em; line-height: var(--lh-head); }
+.fl-head .fl-title { margin-top: 3px; }
+.fl-lead { margin-top: 8px; color: var(--text-2); font-size: var(--fs-base); line-height: var(--lh-ui); }
+.fl-meta { display: flex; margin-top: 12px; }
+.fl-progress { display: flex; align-items: center; gap: 10px; max-width: 380px; margin-top: 14px; }
+.fl-progress .progress { flex: 1; }
+.fl-progress > span { color: var(--text-2); font-size: var(--fs-xs); white-space: nowrap; }
+.fl-callout { margin-top: var(--sp-5); }
+
+/* What was just finished: one quiet line above the next step. */
+.fl-done-line {
+  display: flex; align-items: center; gap: 8px; margin: -4px 0 var(--sp-5); padding-bottom: 14px;
+  border-bottom: 1px solid var(--divider); color: var(--text-2); font-size: var(--fs-sm);
+}
+.fl-done-line > svg { flex: none; color: var(--success); }
+.fl-done-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 5-minute break */
+.fl-break {
+  display: flex; align-items: center; gap: 12px; margin-top: var(--sp-5); padding: 12px 16px 12px 12px;
+  border-radius: var(--radius); background: var(--bg-sunken);
+}
+.fl-break-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.fl-break-title { color: var(--text); font-size: var(--fs-ui); font-weight: var(--fw-semibold); }
+.fl-break-sub { color: var(--text-3); font-size: var(--fs-sm); }
+.fl-break-clock { flex: none; color: var(--text); font-size: var(--fs-2xl); font-weight: var(--fw-bold); letter-spacing: -0.02em; }
+
+/* Warm-up notes */
+.fl-dots { display: inline-flex; align-items: center; gap: 4px; }
+.fl-dots > span:not(.fl-dots-num) { width: 16px; height: 4px; border-radius: var(--radius-pill); background: var(--track); }
+.fl-dots > span.is-done { background: var(--primary); }
+.fl-dots > span.is-current { background: color-mix(in srgb, var(--primary) 38%, var(--track)); }
+.fl-dots-num { margin-left: 6px; color: var(--text-3); }
+.fl-title-row { display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
+.fl-ja { color: var(--text-3); font-size: var(--fs-md); }
+.fl-note { margin-top: var(--sp-5); padding-top: var(--sp-5); border-top: 1px solid var(--divider); }
+.fl-note-none { color: var(--text-2); }
+.fl-terms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--sp-5); }
+.fl-term { display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 10px; border-radius: var(--radius-sm); background: var(--bg-sunken); font-size: var(--fs-sm); }
+.fl-term b { font-weight: var(--fw-semibold); }
+.fl-term-kana { color: var(--text-3); font-size: var(--fs-xs); }
+.fl-term-zh { color: var(--text-2); }
+
+/* Sticky card footer: stays in view while reading a long note. */
+.fl-actions {
+  position: sticky; bottom: 0; z-index: 2;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: var(--sp-6) -32px 0; padding: 14px 32px 24px;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-elev) 0%, transparent), var(--bg-elev) 18px);
+}
+.fl-actions-left { display: flex; align-items: center; gap: 2px; margin-left: -12px; margin-right: auto; }
+.fl-actions-left .btn-ghost { color: var(--text-2); }
+.fl-go { min-width: 200px; }
+.fl-go .kbd { margin-left: 4px; }
+
+/* Day done / empty */
+.fl-finish { display: flex; flex-direction: column; align-items: center; padding: 40px 32px 32px; text-align: center; }
+.fl-finish-icon { margin-bottom: var(--sp-4); }
+.fl-finish-stats { justify-content: center; margin-top: 10px; color: var(--text-2); font-size: var(--fs-base); }
+.fl-finish-note { max-width: 420px; margin-top: 6px; color: var(--text-3); font-size: var(--fs-sm); }
+.fl-finish-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: var(--sp-6); }
+.fl-card > .empty { padding-bottom: 32px; }
+
+/* Today's path */
+.fl-queue { position: sticky; top: 88px; padding: 16px 12px 12px; max-height: calc(100vh - 112px); overflow: auto; }
+.fl-queue-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 0 8px 8px; }
+.fl-queue-title { font-size: var(--fs-ui); font-weight: var(--fw-semibold); line-height: var(--lh-head); }
+.fl-queue-count { color: var(--text-3); font-size: var(--fs-xs); }
+.fl-q-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.fl-q { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 6px 8px; border-radius: var(--radius-md); color: var(--text-2); font-size: var(--fs-sm); }
+.fl-q .icon-tile { flex: none; }
+.fl-q-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fl-q-min { flex: none; color: var(--text-3); font-size: var(--fs-xs); }
+.fl-q.is-current { background: color-mix(in srgb, var(--primary-soft) 70%, transparent); box-shadow: inset 0 0 0 1px var(--primary-soft-2); color: var(--text); font-weight: var(--fw-medium); }
+.fl-q.is-done { color: var(--text-3); }
+.fl-q.is-skipped .fl-q-text { color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--border-strong); }
+.fl-q.is-locked { color: var(--text-3); }
+
+/* One column under 1040px: the card first, the path below it. */
+@media (max-width: 1040px) {
+  .fl-main { grid-template-columns: minmax(0, 1fr); padding: var(--sp-6) var(--sp-6) var(--sp-10); gap: var(--sp-4); }
+  .fl-queue { position: static; max-height: none; }
+  .fl-q-list { display: block; columns: 2; column-gap: 12px; }
+  .fl-q { break-inside: avoid; margin-bottom: 2px; }
+  .fl-card { padding: 24px 24px 0; }
+  .fl-actions { margin: var(--sp-5) -24px 0; padding: 12px 24px 20px; }
+  .fl-finish { padding: 32px 24px 28px; }
+  .fl-top { gap: 14px; padding: 0 12px 0 20px; }
+  .fl-top-plan { display: none; }
+}
+@media (max-width: 760px) {
+  .fl-top-count, .fl-top-time { display: none; }
+  .fl-q-list { columns: 1; }
+}

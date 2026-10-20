@@ -3,22 +3,26 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
   font-size: var(--fs-md);
-  font-weight: 650;
+  font-weight: var(--fw-semibold);
+}
+/* The body fades out over its last 12px so content never cuts hard under the footer. */
+.mbp-modal .modal-body {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 12px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 12px), transparent);
 }
 .mbp {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .mbp-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 16px;
-  color: var(--text-2);
-  font-size: var(--fs-sm);
+  gap: 8px 14px;
   margin-top: -2px;
 }
 .mbp-meta-item {
@@ -30,42 +34,46 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 26px;
-  padding: 0 10px;
-  border-radius: var(--radius-pill);
+  height: 28px;
+  padding: 0 8px 0 10px;
+  border-radius: var(--radius-sm);
   background: var(--bg-sunken);
-  color: var(--text-2);
-  font-weight: 560;
-  transition:
-    background var(--dur) var(--ease),
-    color var(--dur) var(--ease);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.mbp-topic svg {
+  color: var(--text-3);
 }
 .mbp-topic:hover {
-  background: var(--primary-soft);
-  color: var(--primary-text);
+  background: var(--bg-active);
+}
+.mbp-topic-go {
+  margin-left: -2px;
 }
 .mbp-diff {
   display: inline-flex;
-  gap: 3px;
+  gap: 2px;
 }
 .mbp-diff i {
-  width: 6px;
-  height: 12px;
+  width: 5px;
+  height: 11px;
   border-radius: 2px;
-  background: var(--bg-sunken);
-  box-shadow: inset 0 0 0 1px var(--border-strong);
+  background: var(--track);
 }
 .mbp-diff i.on {
   background: var(--text-3);
-  box-shadow: none;
 }
 .mbp-due {
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-  background: var(--tone-soft);
-  color: var(--tone-text);
-  font-weight: 600;
-  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+}
+.mbp-due.is-now {
+  color: var(--warning-text);
+  font-weight: var(--fw-semibold);
+}
+.mbp-due.is-soon {
+  color: var(--text-2);
 }
 
 .mbp-audio {
@@ -77,11 +85,11 @@
   background: var(--bg-sunken);
 }
 
+/* The stem sits in a quiet well (lighter than the modal in dark, never a black cut-out). */
 .mbp-stem {
   padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
 }
 
 .mbp-sec {
@@ -92,9 +100,9 @@
 .mbp-sec-title {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: var(--fs-base);
-  font-weight: 680;
+  gap: 8px;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
   color: var(--text);
 }
 .mbp-sec-title svg {
@@ -115,7 +123,7 @@
   font-size: var(--fs-sm);
 }
 .mbp-res-text {
-  font-weight: 650;
+  font-weight: var(--fw-semibold);
 }
 .mbp-res-text.is-right {
   color: var(--success-text);
@@ -132,10 +140,12 @@
   align-items: center;
   gap: 4px;
   color: var(--text-2);
-  font-family: var(--font-num);
-  font-variant-numeric: tabular-nums;
 }
-.mbp-fact.is-slow {
+.mbp-fact svg {
+  color: var(--text-3);
+}
+.mbp-fact.is-slow,
+.mbp-fact.is-slow svg {
   color: var(--warning-text);
 }
 .mbp-hint {
@@ -148,11 +158,9 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
+  margin-top: -6px;
 }
 .mbp-history-label {
-  color: var(--text-3);
-  font-size: var(--fs-xs);
-  font-weight: 600;
   margin-right: 4px;
 }
 .mbp-hchip {
@@ -161,52 +169,65 @@
   gap: 6px;
   height: 26px;
   padding: 0 9px 0 4px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-xs);
+  background: var(--bg-sunken);
   font-size: var(--fs-xs);
   color: var(--text-2);
+}
+.mbp-hchip:focus-visible {
+  box-shadow: var(--focus-ring);
 }
 
 .mbp-hidden {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
   padding: 16px 18px;
-  border-radius: var(--radius-lg);
-  background: var(--primary-soft);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
 }
-.mbp-hidden > div:first-child {
+.mbp-hidden-text {
+  flex: 1;
+  min-width: 180px;
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+.mbp-hidden-text span {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.mbp-hidden-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .mbp-note {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding-top: 4px;
 }
 .mbp-note-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.mbp-note-state {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
 .mbp-note-input {
   width: 100%;
   resize: vertical;
   min-height: 64px;
   padding: 10px 12px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-strong);
   background: var(--bg-elev);
   font-size: var(--fs-base);
-  line-height: 1.6;
-  transition:
-    border-color var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
+  line-height: var(--lh-ui);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 .mbp-note-input::placeholder {
   color: var(--text-3);
@@ -217,27 +238,30 @@
   box-shadow: var(--focus-ring);
 }
 
+/* Footer (rendered by Modal's footer slot, so the dialog keeps its rounded corners). */
 .mbp-foot {
-  position: sticky;
-  bottom: -20px;
-  z-index: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  margin: 0 -24px -20px;
-  padding: 12px 20px 14px;
-  background: var(--bg-elev);
-  border-top: 1px solid var(--border);
+}
+.mbp-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -6px;
 }
 .mbp-pos {
-  min-width: 52px;
+  min-width: 56px;
   text-align: center;
   color: var(--text-3);
   font-size: var(--fs-sm);
 }
 .mbp-actions {
+  display: flex;
+  align-items: center;
   gap: 6px;
 }
 .mbp-star.is-on {

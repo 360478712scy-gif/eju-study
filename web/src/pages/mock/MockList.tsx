@@ -8,10 +8,10 @@ import { daysBetween, weekdayZh } from '@shared/dates.ts';
 import { useReady, update } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
 import { cx, fmtClock, fmtDateShort, pct } from '../../lib/format.ts';
-import { Badge, Button, Card, Empty, PageHeader, Section, useConfirm } from '../../components/ui.tsx';
-import { Icon } from '../../components/Icon.tsx';
-import { KIND_INFO, KIND_ORDER, kindTarget, MOCK_MAX, openMocks, paperFacts, paperMeta, paperMinutes } from './mockData.ts';
-import { TrendChart } from './charts.tsx';
+import { Badge, Button, Card, Chip, Dot, Empty, IconTile, List, ListRow, Meta, PageHeader, Section, useConfirm } from '../../components/ui.tsx';
+import { Icon, type IconName } from '../../components/Icon.tsx';
+import { KIND_INFO, KIND_ORDER, kindTarget, MOCK_MAX, mockTitle, openMocks, paperFacts, paperMeta, paperMinutes } from './mockData.ts';
+import { ScoreBar, TrendChart } from './charts.tsx';
 
 /** Exam day itself, or after it: no more "do it soon" nudges. */
 type ExamPhase = 'before' | 'day' | 'over';
@@ -22,6 +22,18 @@ function whenLabel(date: string, today: string): string {
   if (d === 1) return '明天';
   if (d > 1) return `还有 ${d} 天`;
   return `已过 ${-d} 天，尽快补上`;
+}
+
+/** "还差 17" (neutral) or "达标 +3" (success): a gap is never red. */
+export function TargetGap({ value, target }: { value: number; target: number }) {
+  const gap = value - target;
+  return gap >= 0 ? (
+    <Badge tone="success" className="num">
+      达标 +{gap}
+    </Badge>
+  ) : (
+    <Chip className="num">还差 {-gap}</Chip>
+  );
 }
 
 export function MockList() {
@@ -89,7 +101,7 @@ export function MockList() {
             <li>
               <Icon name="calendar" size={14} />
               <span>
-                原本安排在 {fmtDateShort(slot.date)}「{slot.title}」，提前做也算完成
+                原本安排在 {fmtDateShort(slot.date)}「{mockTitle(slot.title)}」，提前做也算完成
               </span>
             </li>
           )}
@@ -135,13 +147,11 @@ export function MockList() {
       <PageHeader title="模考" desc="按 EJU 真实时长整卷限时做，交卷后估分、逐题复盘。" />
 
       {unfinished && (
-        <div className="mk-resume">
-          <span className="mk-resume-icon">
-            <Icon name="clock" size={18} />
-          </span>
+        <Card className="mk-resume">
+          <IconTile icon="clock" tone="warning" size="md" />
           <div className="mk-resume-text">
             <b>有一场模考还没交卷</b>
-            <span className="muted num">
+            <span className="num">
               {unfinished.title} · 已用 {fmtClock(unfinished.elapsedSec)}
               {unfinished.timeLimitSec ? ` / ${fmtClock(unfinished.timeLimitSec)}` : ''}
             </span>
@@ -149,26 +159,35 @@ export function MockList() {
           <Button variant="primary" iconRight="arrowRight" onClick={() => navigate('/session/' + unfinished.id)}>
             继续作答
           </Button>
-        </div>
+        </Card>
       )}
 
-      <NextMock next={next} schedule={schedule} today={today} phase={phase} openByPaper={openByPaper} onStart={(k, s) => void start(k, s)} />
+      <NextMock next={next} schedule={schedule} today={today} phase={phase} openByPaper={openByPaper} quiet={!!unfinished} onStart={(k, s) => void start(k, s)} />
 
       <Section title="模考记录" desc="估分按得分率折算到 200 分制，看趋势比看单次更有意义。">
         {results.length ? (
-          <History results={results} />
+          <History results={results} schedule={schedule} phase={phase} today={today} />
         ) : (
-          <Empty
-            icon="target"
-            title="还没有模考记录"
-            desc={
-              phase !== 'before'
-                ? '这次冲刺没有留下模考记录。'
-                : next
-                  ? `第一场安排在 ${fmtDateShort(next.date)}。想先熟悉节奏，可以从下面挑一套没有计划的卷子。`
-                  : '从下面挑一套卷子开始第一场模考。'
-            }
-          />
+          <Card>
+            <Empty
+              icon="target"
+              size="sm"
+              title="还没有模考记录"
+              desc={
+                phase !== 'before'
+                  ? '这次冲刺没有留下模考记录。'
+                  : next
+                    ? (
+                        <>
+                          第一场安排在 {fmtDateShort(next.date)}。
+                          <br />
+                          想先熟悉节奏，可以从下面挑一套没有计划的卷子。
+                        </>
+                      )
+                    : '从下面挑一套卷子开始第一场模考。'
+              }
+            />
+          </Card>
         )}
       </Section>
 
@@ -188,30 +207,33 @@ export function MockList() {
             if (!papers.length) return null;
             const info = KIND_INFO[kind];
             return (
-              <Card key={kind} className={cx('mk-kind', `tone-${info.tone}`)} padding={false}>
+              <Card key={kind} className="mk-kind" padding={false}>
                 <header className="mk-kind-head">
-                  <span className="mk-kind-icon">
-                    <Icon name={info.icon} size={17} />
-                  </span>
+                  <IconTile icon={info.icon} tone={info.tone} size="md" />
                   <div>
-                    <h3>{info.name}</h3>
-                    <p className="faint text-sm">{kind === 'math' || kind === 'science' ? '80 分钟 · 满分 200' : kind === 'ja-reading' ? '按题量折算时间 · 满分 200' : '每题只听一遍 · 满分 200'}</p>
+                    <h3 className="card-title">{info.name}</h3>
+                    <p className="card-sub">{kind === 'math' || kind === 'science' ? '80 分钟 · 满分 200' : kind === 'ja-reading' ? '按题量折算时间 · 满分 200' : '每题只听一遍 · 满分 200'}</p>
                   </div>
                 </header>
-                <div className="mk-papers">
+                <List className="mk-papers">
                   {papers.map((p) => {
                     const done = latest(kind, p.session);
                     const open = openByPaper.get(`${kind}:${p.session}`);
                     const facts = paperFacts(state, bank, kind, p.session, { open, result: done });
                     const slot = phase === 'before' ? slotOf.get(`${kind}:${p.session}`) : undefined;
                     const seen = facts.items.filter((it) => (state.progress[it.id]?.attempts ?? 0) > 0).length;
+                    const go = open ? () => navigate('/session/' + open.id) : done ? () => navigate('/mock/' + done.id) : () => void start(kind, p.session);
                     return (
-                      <div key={p.session} className="mk-paper">
-                        <div className="mk-paper-main">
-                          <div className="mk-paper-title">
-                            <b>{p.label}</b>
+                      <ListRow
+                        key={p.session}
+                        className="mk-paper"
+                        onClick={go}
+                        current={!!open}
+                        title={
+                          <span className="mk-paper-title">
+                            {p.label}
                             {done ? (
-                              <Badge tone="success" icon="check">
+                              <Badge tone="success" icon="check" className="num">
                                 已完成 · {done.estimate}
                               </Badge>
                             ) : open ? (
@@ -219,37 +241,38 @@ export function MockList() {
                                 未交卷
                               </Badge>
                             ) : slot ? (
-                              <Badge tone="primary" icon="calendar">
-                                计划 {fmtDateShort(slot.date)}
-                              </Badge>
+                              <Chip icon="calendar">计划 {fmtDateShort(slot.date)}</Chip>
                             ) : null}
-                          </div>
-                          <div className="mk-paper-meta num">
+                          </span>
+                        }
+                        meta={
+                          <span className="num">
                             {paperMeta(facts)}
                             {open ? (
-                              <span className="mk-seen"> · 已用 {fmtClock(open.elapsedSec)}</span>
+                              <span> · 已用 {fmtClock(open.elapsedSec)}</span>
                             ) : (
-                              !done && seen > 0 && <span className="mk-seen"> · 已练过 {seen} 题</span>
+                              !done && seen > 0 && <span> · 已练过 {seen} 题</span>
                             )}
-                          </div>
-                        </div>
-                        {open ? (
-                          <Button variant="primary" size="sm" iconRight="arrowRight" onClick={() => navigate('/session/' + open.id)}>
-                            继续作答
-                          </Button>
-                        ) : done ? (
-                          <Button variant="ghost" size="sm" iconRight="right" onClick={() => navigate('/mock/' + done.id)}>
-                            复盘
-                          </Button>
-                        ) : (
-                          <Button variant="secondary" size="sm" icon="play" onClick={() => void start(kind, p.session)}>
-                            开始
-                          </Button>
-                        )}
-                      </div>
+                          </span>
+                        }
+                        trail={
+                          open ? (
+                            <Button variant="secondary" size="sm" iconRight="arrowRight" onClick={go}>
+                              继续作答
+                            </Button>
+                          ) : undefined
+                        }
+                        hoverAction={
+                          open ? undefined : (
+                            <Button variant="ghost" size="sm" iconRight={done ? 'right' : 'arrowRight'} onClick={go} tabIndex={-1}>
+                              {done ? '复盘' : '开始'}
+                            </Button>
+                          )
+                        }
+                      />
                     );
                   })}
-                </div>
+                </List>
               </Card>
             );
           })}
@@ -266,6 +289,7 @@ function NextMock({
   today,
   phase,
   openByPaper,
+  quiet,
   onStart,
 }: {
   next?: ScheduledMock;
@@ -273,6 +297,8 @@ function NextMock({
   today: string;
   phase: ExamPhase;
   openByPaper: Map<string, PracticeSession>;
+  /** Another card on the page already carries the filled primary (the resume banner). */
+  quiet: boolean;
   onStart: (kind: MockKind, session: string) => void;
 }) {
   const { state, bank } = useReady();
@@ -280,8 +306,10 @@ function NextMock({
   const examDate = state.profile.examDate;
   // "日语 9:30–12:00 · 理科 13:30–15:00 · 数学 15:40–17:10。带好…" → timetable rows + what to bring.
   const [times = '', ...bring] = PHASE_INFO.exam.desc.split('。').filter(Boolean);
+  // One filled button: the first part still to do today (or the open attempt to continue).
+  const lead = next?.parts.find((p) => !p.done);
   return (
-    <section className="mk-hero">
+    <Card variant="hero" className="mk-hero">
       <div className={cx('mk-hero-top', phase === 'over' && 'is-single')}>
         <div className="mk-hero-main">
           {phase === 'day' ? (
@@ -313,34 +341,45 @@ function NextMock({
               <div className="mk-eyebrow">
                 <Icon name="calendar" size={14} />
                 下一场 · {fmtDateShort(next.date)} {weekdayZh(next.date)}
-                <span className={cx('mk-when', isToday && 'is-today')}>{whenLabel(next.date, today)}</span>
+                {isToday ? (
+                  <Badge tone="primary" size="sm">
+                    {whenLabel(next.date, today)}
+                  </Badge>
+                ) : (
+                  <Chip className="mk-when">{whenLabel(next.date, today)}</Chip>
+                )}
               </div>
-              <h2 className="mk-hero-title">{next.title}</h2>
+              <h2 className="mk-hero-title">{mockTitle(next.title)}</h2>
               <div className="mk-parts">
                 {next.parts.map((p) => {
                   const open = openByPaper.get(`${p.kind}:${p.session}`);
                   const result = p.done ? [...state.mocks].reverse().find((m) => m.kind === p.kind && m.session === p.session) : undefined;
                   const facts = paperFacts(state, bank, p.kind, p.session, { open, result });
                   const info = KIND_INFO[p.kind];
+                  const filled = !quiet && p === lead && (isToday || !!open);
                   return (
-                    <div key={p.kind} className={cx('mk-part', `tone-${info.tone}`, p.done && 'is-done')}>
-                      <span className="mk-part-icon">
-                        <Icon name={p.done ? 'check' : info.icon} size={15} />
-                      </span>
+                    <div key={p.kind} className={cx('mk-part', p.done && 'is-done')}>
+                      <IconTile icon={p.done ? 'check' : info.icon} tone={p.done ? 'success' : info.tone} size="md" />
                       <span className="mk-part-text">
                         <b>{info.short}</b>
-                        <span className="faint num">
+                        <span className="num">
                           {sessionLabel(p.session)} · {paperMinutes(facts)} 分钟
                         </span>
                       </span>
                       {p.done ? (
-                        <span className="mk-part-done">已完成</span>
+                        result ? (
+                          <Button variant="ghost" size="sm" iconRight="right" onClick={() => navigate('/mock/' + result.id)}>
+                            <span className="num">{result.estimate}</span> 分
+                          </Button>
+                        ) : (
+                          <span className="mk-part-done">已完成</span>
+                        )
                       ) : open ? (
-                        <Button variant="primary" size="sm" onClick={() => navigate('/session/' + open.id)}>
+                        <Button variant={filled ? 'primary' : 'secondary'} size="sm" onClick={() => navigate('/session/' + open.id)}>
                           继续作答
                         </Button>
                       ) : (
-                        <Button variant={isToday ? 'primary' : 'ghost'} size="sm" onClick={() => onStart(p.kind, p.session)}>
+                        <Button variant={filled ? 'primary' : isToday ? 'secondary' : 'ghost'} size="sm" onClick={() => onStart(p.kind, p.session)}>
                           {isToday ? '开始' : '提前做'}
                         </Button>
                       )}
@@ -356,7 +395,7 @@ function NextMock({
                 计划内的模考
               </div>
               <h2 className="mk-hero-title">都做完了</h2>
-              <p className="muted">考前保持手感：从下面挑没做过的卷子加练，或者回到错题本。</p>
+              <p className="mk-calm">考前保持手感：从下面挑没做过的卷子加练，或者回到错题本。</p>
             </>
           )}
         </div>
@@ -375,44 +414,42 @@ function NextMock({
           </ul>
         ) : null}
       </div>
-      {schedule.length > 0 && (
+      {phase === 'before' && schedule.length > 0 && (
         <ol className="mk-timeline">
           {schedule.map((m) => {
             const done = m.parts.every((p) => p.done);
             const current = m === next;
             return (
               <li key={m.date + m.title} className={cx('mk-step', done && 'is-done', current && 'is-current')}>
-                <span className="mk-step-dot">{done && <Icon name="check" size={11} />}</span>
+                <span className="mk-step-dot">{done && <Icon name="check" size={10} />}</span>
                 <span className="mk-step-date num">{fmtDateShort(m.date)}</span>
-                <span className="mk-step-title">{m.title.replace('（按考试日时间表）', '')}</span>
+                <span className="mk-step-title">{mockTitle(m.title, true)}</span>
               </li>
             );
           })}
         </ol>
       )}
-    </section>
+    </Card>
   );
 }
 
-function Rule({ icon, title, text }: { icon: 'clock' | 'eyeOff' | 'chart'; title: string; text: ReactNode }) {
+function Rule({ icon, title, text }: { icon: IconName; title: string; text: ReactNode }) {
   return (
     <li className="mk-rule">
-      <span className="mk-rule-icon">
-        <Icon name={icon} size={15} />
-      </span>
+      <IconTile icon={icon} />
       <span>
         <b>{title}</b>
-        <span className="faint">{text}</span>
+        <span className="mk-rule-text">{text}</span>
       </span>
     </li>
   );
 }
 
-function History({ results }: { results: MockResult[] }) {
+function History({ results, schedule, phase, today }: { results: MockResult[]; schedule: ScheduledMock[]; phase: ExamPhase; today: string }) {
   const { state } = useReady();
   const kinds = KIND_ORDER.filter((k) => results.some((r) => r.kind === k));
   return (
-    <div className="stack">
+    <div className="stack mk-history">
       <div className="mk-trends">
         {kinds.map((kind) => {
           const list = results.filter((r) => r.kind === kind).sort((a, b) => a.finishedAt.localeCompare(b.finishedAt));
@@ -420,73 +457,144 @@ function History({ results }: { results: MockResult[] }) {
           const prev = list[list.length - 2];
           const target = kindTarget(state.profile, kind);
           const info = KIND_INFO[kind];
+          // The next planned mock of this kind (only while there is still time before the exam).
+          const upcoming = phase === 'before' ? schedule.find((m) => m.date >= today && m.parts.some((p) => p.kind === kind && !p.done)) : undefined;
+          if (list.length < 2) {
+            // One result: a compact stat row; the chart appears from the second result. Same header
+            // as the chart card (name + meta left, score right) so the two sit together cleanly.
+            return (
+              <Card key={kind} className={cx('mk-trend mk-first', `tone-${info.tone}`)}>
+                <button type="button" className="mk-first-body" onClick={() => navigate('/mock/' + last.id)} aria-label={`查看 ${fmtDateShort(last.date)} 的${info.short}模考成绩`}>
+                  <span className="mk-trend-head">
+                    <span className="mk-trend-id">
+                      <span className="mk-trend-name">
+                        <Dot tone={info.tone} />
+                        {info.name}
+                      </span>
+                      <span className="mk-trend-meta num">首次 · {fmtDateShort(last.date)}</span>
+                    </span>
+                    <span className="mk-trend-last">
+                      <span className="num num-lg">{last.estimate}</span>
+                      <span className="num-unit">/ {MOCK_MAX}</span>
+                      <TargetGap value={last.estimate} target={target} />
+                    </span>
+                  </span>
+                  <ScoreBar value={last.estimate} target={target} max={MOCK_MAX} size="sm" className={`tone-${info.tone}`} />
+                  <Meta className="mk-first-facts num">
+                    <span>
+                      答对 {last.correct}/{last.total}
+                    </span>
+                    <span>得分率 {pct(last.raw)}</span>
+                    <span>用时 {fmtClock(last.seconds)}</span>
+                  </Meta>
+                </button>
+                {phase === 'before' && (
+                  <p className="mk-first-hint">
+                    <Icon name="chart" size={14} />
+                    再做一次同类模考，就能看到走势{upcoming ? `（下一次 ${fmtDateShort(upcoming.date)}）` : ''}
+                  </p>
+                )}
+              </Card>
+            );
+          }
+          const delta = last.estimate - prev.estimate;
           return (
             <Card key={kind} className={cx('mk-trend', `tone-${info.tone}`)}>
               <div className="mk-trend-head">
-                <div>
+                <div className="mk-trend-id">
                   <div className="mk-trend-name">
-                    <span className="mk-swatch" />
+                    <Dot tone={info.tone} />
                     {info.name}
                   </div>
-                  <div className="faint text-sm">
+                  <div className="mk-trend-meta num">
                     {list.length} 次 · 目标 {target}
                   </div>
                 </div>
                 <div className="mk-trend-last">
-                  <span className="num mk-trend-value">{last.estimate}</span>
-                  {prev ? (
-                    <span className={cx('mk-delta num', last.estimate >= prev.estimate ? 'is-up' : 'is-down')}>
-                      {last.estimate >= prev.estimate ? '+' : ''}
-                      {last.estimate - prev.estimate}
-                    </span>
-                  ) : (
-                    <span className="faint text-xs">首次</span>
-                  )}
+                  <span className="num num-lg">{last.estimate}</span>
+                  <span className={cx('mk-delta num', delta > 0 && 'is-up')}>
+                    {delta > 0 ? '+' : delta < 0 ? '−' : '±'}
+                    {Math.abs(delta)}
+                  </span>
                 </div>
               </div>
               <TrendChart
                 points={list.map((r) => ({ id: r.id, label: fmtDateShort(r.date).replace('月', '/').replace('日', ''), sub: `${sessionLabel(r.session)} · 得分率 ${pct(r.raw)}`, value: r.estimate }))}
                 target={target}
                 max={MOCK_MAX}
-                height={140}
+                height={150}
                 onSelect={(id) => navigate('/mock/' + id)}
               />
-              {list.length === 1 && <p className="mk-trend-hint faint text-xs">再做一次同类模考，就能看到走势。</p>}
             </Card>
           );
         })}
       </div>
 
-      <div className="mk-table" role="table">
-        <div className="mk-tr mk-th" role="row">
-          <span>日期</span>
-          <span>科目</span>
-          <span>真题卷</span>
-          <span>估分 / 目标</span>
-          <span>得分率</span>
-          <span>用时</span>
-          <span />
-        </div>
+      <MockTable results={results} />
+    </div>
+  );
+}
+
+/**
+ * One table for mock records (the 模考 page and, with `compact`, the 数据 page): 日期 · 科目 ·
+ * 真题卷 · 估分 · 对比目标 · 得分率 · 用时. Compact hides 真题卷 and draws 得分率 as an inline bar.
+ */
+export function MockTable({ results, compact = false }: { results: MockResult[]; compact?: boolean }) {
+  const { state } = useReady();
+  return (
+    <div className={cx('card card-flush mk-table', compact && 'is-compact')} role="table" aria-label="模考记录">
+      <div className="mk-tr mk-th" role="row">
+        <span role="columnheader">日期</span>
+        <span role="columnheader">科目</span>
+        {!compact && <span role="columnheader">真题卷</span>}
+        <span role="columnheader" className="is-num">
+          估分
+        </span>
+        <span role="columnheader">对比目标</span>
+        <span role="columnheader" className="is-num">
+          得分率
+        </span>
+        <span role="columnheader" className="is-num">
+          用时
+        </span>
+        <span aria-hidden />
+      </div>
+      <div className="mk-tbody">
         {results.map((r) => {
-          const target = kindTarget(state.profile, r.kind);
-          const gap = r.estimate - target;
+          const info = KIND_INFO[r.kind];
           return (
             <button key={r.id} type="button" className="mk-tr" role="row" onClick={() => navigate('/mock/' + r.id)}>
-              <span className="num">
+              <span className="num" role="cell">
                 {fmtDateShort(r.date)} <span className="faint">{weekdayZh(r.date)}</span>
               </span>
-              <span className="mk-td-kind">
-                <span className={cx('mk-swatch', `tone-${KIND_INFO[r.kind].tone}`)} />
-                {KIND_INFO[r.kind].short}
+              <span className="mk-td-kind" role="cell">
+                <Dot tone={info.tone} />
+                {info.short}
+                {compact && <span className="faint">{sessionLabel(r.session)}</span>}
               </span>
-              <span>{sessionLabel(r.session)}</span>
-              <span className="num">
+              {!compact && (
+                <span className="mk-td-paper" role="cell">
+                  {sessionLabel(r.session)}
+                </span>
+              )}
+              <span className="num is-num" role="cell">
                 <b className="mk-td-score">{r.estimate}</b>
-                <span className="faint"> / {target}</span>
-                <span className={cx('mk-gap', gap >= 0 ? 'is-up' : 'is-down')}>{gap >= 0 ? `+${gap}` : gap}</span>
+                <span className="faint">/{MOCK_MAX}</span>
               </span>
-              <span className="num">{pct(r.raw)}</span>
-              <span className="num">{fmtClock(r.seconds)}</span>
+              <span role="cell">
+                <TargetGap value={r.estimate} target={kindTarget(state.profile, r.kind)} />
+              </span>
+              <span className="num is-num mk-td-raw" role="cell">
+                {compact && (
+                  <span className="mk-td-meter" aria-hidden>
+                    <i style={{ width: `${Math.round(r.raw * 100)}%` }} />
+                  </span>
+                )}
+                {pct(r.raw)}
+              </span>
+              <span className="num is-num" role="cell">
+                {fmtClock(r.seconds)}
+              </span>
               <Icon name="right" size={16} className="mk-tr-go" />
             </button>
           );

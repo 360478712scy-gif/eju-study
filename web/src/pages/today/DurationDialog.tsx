@@ -115,7 +115,7 @@ export function DurationDialog({ open, date, onClose, allowRest = false }: { ope
               <>
                 实际安排 <b>{fmtMinutes(effective)}</b>
                 {effective < minutes && (left === 1 ? '（考前最后一天自动减量）' : '（考前几天自动减量 15%）')}
-                {isToday && keptMinutes > 0 && <>，已完成和进行中的块保留</>}。
+                {isToday && keptMinutes > 0 && <>，已完成和进行中的任务保留</>}。
               </>
             )}
           </div>

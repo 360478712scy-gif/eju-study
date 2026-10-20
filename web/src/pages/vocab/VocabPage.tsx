@@ -1,11 +1,10 @@
 // 词汇: today's spaced-repetition run (reading and meaning tracked separately) and the word list.
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { vocabSkills } from '@shared/planner.ts';
 import { useApp } from '../../lib/store.ts';
 import { navigate, useRoute } from '../../lib/router.ts';
-import { cx, pct } from '../../lib/format.ts';
-import { Icon } from '../../components/Icon.tsx';
-import { Badge, Button, PageHeader, Ring, Segmented } from '../../components/ui.tsx';
+import { fmtMinutes, pct } from '../../lib/format.ts';
+import { Badge, Button, InfoTip, Legend, PageHeader, Ring, Section, Segmented } from '../../components/ui.tsx';
 import { cardMinutes, extraQueue, getRun, MORE_COUNT, NEW_WORD_CHOICES, newWordsNote, readNewWords, setRun, spaceCards, useRun, vocabDay, writeNewWords } from './run.ts';
 import { startRun, VocabSession } from './VocabSession.tsx';
 import { VocabSummary } from './VocabSummary.tsx';
@@ -14,6 +13,8 @@ import { WordDetail } from './WordDetail.tsx';
 import './vocab.css';
 
 const NO_SPLIT = { review: 0, fill: 0, fresh: 0, newWords: 0 };
+/** A skill counts as 已稳 from level 3 (three right answers in a row, spaced over days). */
+const SOLID_BOX = 3;
 
 export function VocabPage() {
   const run = useRun();
@@ -34,17 +35,19 @@ export function VocabPage() {
   );
 
   const stats = useMemo(() => {
-    const s = { learned: 0, readTotal: 0, solidRead: 0, solidMeaning: 0, todayN: 0, todayOk: 0 };
+    const s = { learned: 0, solid: 0, readTotal: 0, solidRead: 0, solidMeaning: 0, todayN: 0, todayOk: 0 };
     if (!state || !bank) return s;
     for (const v of bank.bundle.vocab) {
       const skills = vocabSkills(v);
       const p = state.vocab[v.id];
       if (skills.includes('read')) {
         s.readTotal++;
-        if (p?.read && p.read.box >= 3) s.solidRead++;
+        if (p?.read && p.read.box >= SOLID_BOX) s.solidRead++;
       }
       if (p && skills.some((k) => p[k])) s.learned++;
-      if (p?.meaning && p.meaning.box >= 3) s.solidMeaning++;
+      if (p?.meaning && p.meaning.box >= SOLID_BOX) s.solidMeaning++;
+      // 已稳 is the word list's rule: every skill of the word at level 3 or above.
+      if (p && skills.every((k) => (p[k]?.box ?? 0) >= SOLID_BOX)) s.solid++;
     }
     for (const a of state.vocabAttempts) {
       if (a.date !== today) continue;
@@ -86,20 +89,13 @@ export function VocabPage() {
 
   const detail = <WordDetail vocabId={openId} onClose={() => setOpenId(null)} />;
 
-  if (run && !run.finished) {
+  // The run and its summary take the whole window (.vc-focus hides the sidebar, like the player).
+  if (run) {
     return (
-      <div className="page vc-page vc-page-run">
-        <VocabSession />
+      <>
+        {run.finished ? <VocabSummary onOpen={setOpenId} /> : <VocabSession />}
         {detail}
-      </div>
-    );
-  }
-  if (run && run.finished) {
-    return (
-      <div className="page vc-page vc-page-run">
-        <VocabSummary onOpen={setOpenId} />
-        {detail}
-      </div>
+      </>
     );
   }
 
@@ -108,16 +104,17 @@ export function VocabPage() {
   const blockDone = block?.status === 'done';
   const todayAcc = stats.todayN ? stats.todayOk / stats.todayN : null;
   const due = day?.due ?? 0;
-  const notes = [
-    due > split.review ? `一轮最多复习 ${split.review} 张，先练最该复习的；剩下 ${due - split.review} 张这轮练完接着来。` : '',
-    split.fill > 0 ? '补另一项：这些词只练过读音或词义中的一项，这次补上没练过的那一项。' : '',
+  const rounds = split.review > 0 ? Math.ceil(due / split.review) : 1;
+  // One line under the headline: how this round relates to the whole pile.
+  const mixed = split.fill > 0 || split.newWords > 0;
+  const lead = [
+    due > split.review ? `共 ${due} 张到期，分 ${rounds} 轮练` : '',
+    mixed && split.review > 0 ? `复习 ${split.review} 张` : '',
+    split.fill > 0 ? `补另一项 ${split.fill} 张` : '',
+    split.newWords > 0 ? `新词 ${split.newWords} 个` : '',
   ].filter(Boolean);
-  // 待复习 is the whole pile (vocabDueCount, the number Today and Stats show); the button is this round.
-  const figures = [
-    { n: due, label: '张卡待复习', show: due > 0 || (!split.fill && !split.newWords) },
-    { n: split.fill, label: '张补另一项', show: split.fill > 0 },
-    { n: split.newWords, label: '个新词', show: split.newWords > 0 },
-  ].filter((f) => f.show);
+  const learning = stats.learned - stats.solid;
+  const fresh = total - stats.learned;
   const choose = (value: string) => {
     const n = value === 'auto' ? null : Number(value);
     setOverride(n);
@@ -126,63 +123,52 @@ export function VocabPage() {
 
   return (
     <div className="page vc-page">
-      <PageHeader eyebrow="每日词汇" title="词汇训练" desc="读音（看字写假名）和词义（看词选中文）分开记，理科术语和纯假名词只考词义；新词按待复习量自动定。" />
+      <PageHeader
+        title="词汇"
+        desc="读音和词义分开记，答错的会更快再出现。"
+        info="读音（看字写假名）和词义（看词选中文）分开记录；理科术语和纯假名词只考词义。每天的新词按待复习量自动定，也可以自己选。"
+      />
 
-      <div className="vc-hero">
+      <section className="card card-hero vc-hero">
         <div className="vc-hero-main">
-          <div className="vc-hero-top">
-            <span className="vc-hero-eyebrow">今天要练</span>
-            {block && (blockDone ? <Badge tone="success" icon="check">计划已完成</Badge> : <Badge tone="primary" icon="calendar">今日计划</Badge>)}
-          </div>
-
           {queue.length > 0 ? (
             <>
-              <div className="vc-hero-figures">
-                {figures.map((f, i) => (
-                  <Fragment key={f.label}>
-                    {i > 0 && <span className="vc-fig-plus">+</span>}
-                    <div className="vc-fig">
-                      <span className="vc-fig-num num">{f.n}</span>
-                      <span className="vc-fig-label">{f.label}</span>
-                    </div>
-                  </Fragment>
-                ))}
+              <div className="vc-hero-head">
+                <span className="t-eyebrow">{blockDone ? '今天的计划已完成 · 还可以再练' : '这一轮'}</span>
+                {block && !blockDone && <Badge tone="primary" icon="calendar">今日计划</Badge>}
               </div>
-              {notes.length > 0 && (
-                <div className="vc-hero-notes">
-                  {notes.map((n) => (
-                    <p key={n}>{n}</p>
-                  ))}
-                </div>
+              <h2 className="vc-hero-title">
+                <span className="num">{queue.length}</span> 张<span className="vc-hero-dot">·</span>约 {fmtMinutes(minutes)}
+              </h2>
+              {lead.length > 0 && (
+                <p className="vc-hero-lead">
+                  {lead.join(' · ')}
+                  {split.fill > 0 && <InfoTip side="top">补另一项：这些词只练过读音或词义中的一项，这次补上没练过的那一项。</InfoTip>}
+                </p>
               )}
               <div className="vc-hero-actions">
                 <Button variant="primary" size="lg" iconRight="arrowRight" onClick={start}>
-                  {blockDone ? '再练一轮' : '开始训练'} · {queue.length} 张卡
+                  {blockDone ? '再练一轮' : '开始训练'}
                 </Button>
-                <span className="vc-hero-time">
-                  <Icon name="clock" size={15} />约 {minutes} 分钟
-                </span>
               </div>
             </>
           ) : (
-            <div className="vc-hero-clear">
-              <div className="vc-hero-clear-title">
-                <Icon name="checkCircle" size={22} />
-                今天该练的词都练完了
+            <>
+              <div className="vc-hero-head">
+                <Badge tone="success" icon="checkCircle">
+                  {block ? '今日计划已完成' : '今天的都练完了'}
+                </Badge>
               </div>
-              {stats.learned > 0 ? (
-                <>
-                  <p className="muted">还有余力就加练一组，巩固最容易错的词。</p>
-                  <div className="vc-hero-actions">
-                    <Button variant="primary" size="lg" icon="plus" onClick={extra}>
-                      加练 {MORE_COUNT} 张卡
-                    </Button>
-                  </div>
-                </>
-              ) : (
-                <p className="muted">想先学一些新词，可以在下面选每天的新词数。</p>
+              <h2 className="vc-hero-title vc-hero-title-sm">今天该练的词都练完了</h2>
+              <p className="vc-hero-lead">{stats.learned > 0 ? '还有余力就加练一组，巩固最容易错的词。' : '想先学一些新词，可以在下面选每天的新词数。'}</p>
+              {stats.learned > 0 && (
+                <div className="vc-hero-actions">
+                  <Button variant="primary" size="lg" iconRight="arrowRight" onClick={extra}>
+                    加练 {MORE_COUNT} 张
+                  </Button>
+                </div>
               )}
-            </div>
+            </>
           )}
 
           <div className="vc-hero-target">
@@ -193,48 +179,60 @@ export function VocabPage() {
               onChange={choose}
               options={[{ value: 'auto', label: '自动' }, ...NEW_WORD_CHOICES.map((t) => ({ value: String(t), label: `${t} 个` }))]}
             />
-            {day && <span className="faint text-sm">{newWordsNote(day)}</span>}
+            {day && <span className="vc-hero-note">{newWordsNote(day)}</span>}
           </div>
         </div>
 
         <div className="vc-hero-side">
-          <Ring value={stats.learned / Math.max(1, total)} size={112} stroke={10} tone="japanese">
-            <span className="vc-ring-num num">{stats.learned}</span>
-            <span className="vc-ring-unit">/ {total} 已学</span>
-          </Ring>
-          <div className="vc-side-stats">
-            <SideStat label="读音已稳" value={stats.solidRead} total={stats.readTotal} tone="primary" />
-            <SideStat label="词义已稳" value={stats.solidMeaning} total={total} tone="japanese" />
-            <div className="vc-side-today">
-              今天已练 <b className="num">{stats.todayN}</b> 次{todayAcc !== null && <> · 正确率 <b className="num">{pct(todayAcc)}</b></>}
+          <div className="vc-side-top">
+            <Ring value={stats.learned / Math.max(1, total)} size={88} stroke={8} tone="japanese">
+              <span className="vc-ring-num num">
+                {Math.round((stats.learned / Math.max(1, total)) * 100)}
+                <span className="num-unit">%</span>
+              </span>
+            </Ring>
+            <div className="vc-side-head">
+              <span className="t-eyebrow">已学的词</span>
+              <span className="vc-side-big">
+                <span className="num">{stats.learned}</span>
+                <span className="vc-side-of num">/ {total}</span>
+              </span>
             </div>
           </div>
+          <div className="vc-stack" role="img" aria-label={`未学 ${fresh} 个，在学 ${learning} 个，已稳 ${stats.solid} 个`}>
+            {stats.solid > 0 && <i className="is-solid" style={{ flexGrow: stats.solid }} />}
+            {learning > 0 && <i className="is-learning" style={{ flexGrow: learning }} />}
+            {fresh > 0 && <i className="is-new" style={{ flexGrow: fresh }} />}
+          </div>
+          <Legend
+            className="vc-side-legend"
+            items={[
+              { label: '已稳', tone: 'success' as const, value: stats.solid },
+              { label: '在学', tone: 'japanese' as const, value: learning },
+              { label: '未学', tone: 'neutral' as const, value: fresh },
+            ].filter((x) => x.value > 0)}
+          />
+          <p className="vc-side-note">
+            {stats.solid > 0 ? (
+              <>
+                读音已稳 <span className="num">{stats.solidRead}</span> · 词义已稳 <span className="num">{stats.solidMeaning}</span>
+              </>
+            ) : (
+              '每项连续答对 3 次就算「已稳」'
+            )}
+          </p>
+          {stats.todayN > 0 && (
+            <p className="vc-side-today">
+              今天练了 <span className="num">{stats.todayN}</span> 次{todayAcc !== null && <> · 正确率 <span className="num">{pct(todayAcc)}</span></>}
+            </p>
+          )}
         </div>
-      </div>
+      </section>
 
-      <div className="vc-section-head">
-        <h2>单词表</h2>
-        <span className="faint text-sm">点开任意一个词，听读音、看例句和掌握情况</span>
-      </div>
-      <WordList onOpen={setOpenId} />
+      <Section title="单词表" desc="点开任意一个词，听读音、看例句和掌握情况。">
+        <WordList onOpen={setOpenId} />
+      </Section>
       {detail}
-    </div>
-  );
-}
-
-function SideStat({ label, value, total, tone }: { label: string; value: number; total: number; tone: 'primary' | 'japanese' }) {
-  return (
-    <div className={cx('vc-side-stat', `tone-${tone}`)}>
-      <div className="row-between">
-        <span>{label}</span>
-        <span className="num">
-          <b>{value}</b>
-          <span className="faint"> / {total}</span>
-        </span>
-      </div>
-      <div className="vc-side-bar">
-        <i style={{ width: `${(value / Math.max(1, total)) * 100}%` }} />
-      </div>
     </div>
   );
 }

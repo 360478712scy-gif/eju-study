@@ -19,10 +19,11 @@ function visibleLength(s: string): number {
   return t.length + wide + tall;
 }
 
-function layoutFor(item: Item, hideText: boolean): Layout {
+function layoutFor(item: Item, hideText: boolean, wide: boolean): Layout {
   const opts = item.options || [];
   if (hideText || opts.every((_, i) => optionIsBareLabel(item, i))) return 'labels';
-  if (opts.every((o) => visibleLength(o) <= 9)) return 'grid';
+  // The centered single column has room for a 2×2 grid of fairly short options (fractions, short phrases).
+  if (opts.every((o) => visibleLength(o) <= (wide ? 18 : 9))) return 'grid';
   return 'list';
 }
 
@@ -43,8 +44,8 @@ const MIN_CELL = { grid: [0, 0, 112, 130], labels: [0, 0, 56, 56] } as const;
  * Columns that fit the width the pad really has (the side panel shrinks on small windows):
  * every cell must hold its badge plus the longest option on one line.
  */
-function fitColumns(item: Item, layout: Layout, width: number | null, scale: number): number {
-  const want = preferredColumns(item, layout);
+function fitColumns(item: Item, layout: Layout, width: number | null, scale: number, prefer?: number): number {
+  const want = layout === 'grid' && prefer ? prefer : preferredColumns(item, layout);
   if (layout === 'list' || !width) return want;
   const longest = Math.max(0, ...(item.options || []).map(visibleLength));
   // badge 30 + gap 10 + side padding 2×11 + ~0.55em per narrow character, plus a little air.
@@ -83,25 +84,25 @@ export function ChoicePad({
   item,
   value,
   onSelect,
-  onCommit,
   reveal,
   hideText,
+  columns,
 }: {
   item: Item;
   value: number | null;
   /** Undefined → read-only. */
   onSelect?: (i: number) => void;
-  /** Double-click: select and submit at once. */
-  onCommit?: (i: number) => void;
   /** Show right / wrong after grading. */
   reveal?: boolean;
   /** Listening: only labels until the answer is in. */
   hideText?: boolean;
+  /** Preferred columns for short options (the centered single column asks for a 2×2 grid). */
+  columns?: number;
 }) {
   const opts = item.options || [];
-  const layout = layoutFor(item, !!hideText && !reveal);
+  const layout = layoutFor(item, !!hideText && !reveal, !!columns);
   const [ref, width] = useWidth<HTMLDivElement>();
-  const cols = fitColumns(item, layout, width, width ? readingScale() : 1);
+  const cols = fitColumns(item, layout, width, width ? readingScale() : 1, columns);
   return (
     <div
       ref={ref}
@@ -116,6 +117,7 @@ export function ChoicePad({
         const wrong = reveal && chosen && i !== item.answer;
         const dim = reveal && !right && !wrong;
         const label = optionLabel(item, i);
+        const mark = right ? <Icon name="check" size={18} className="pl-opt-mark" /> : wrong ? <Icon name="x" size={18} className="pl-opt-mark" /> : null;
         return (
           <button
             key={i}
@@ -124,20 +126,22 @@ export function ChoicePad({
             aria-checked={chosen}
             className={cx('pl-opt', chosen && 'is-chosen', right && 'is-right', wrong && 'is-wrong', dim && 'is-dim', !onSelect && 'is-static')}
             onClick={() => onSelect?.(i)}
-            onDoubleClick={() => onCommit?.(i)}
             onMouseDown={(e) => e.preventDefault()}
             disabled={!onSelect && !reveal}
             tabIndex={onSelect ? 0 : -1}
           >
-            <span className="pl-opt-badge num">{optionBadge(label)}</span>
+            <span className="pl-opt-badge num">
+              {optionBadge(label)}
+              {/* Label-only cells are narrow: the mark sits on the badge's corner. */}
+              {layout === 'labels' && mark}
+            </span>
             {layout !== 'labels' && (
               <span className="pl-opt-text">
                 <RichText text={o} lang="ja" inline />
               </span>
             )}
-            {right && <Icon name="check" size={18} className="pl-opt-mark" />}
-            {wrong && <Icon name="x" size={18} className="pl-opt-mark" />}
-            {onSelect && i < 9 && !reveal && <span className="pl-opt-key">{i + 1}</span>}
+            {layout !== 'labels' && mark}
+            {reveal && i === item.answer && !chosen && <span className="sr-only">正确答案</span>}
           </button>
         );
       })}

@@ -1,19 +1,29 @@
-/* Shared marks: Leitner dots and last-result icons (mistakes, notes, previews). */
-.mb-dots {
+/* Shared marks: item status (lists) and attempt results (previews). */
+
+/* 14px status mark: hollow ring = new mistake, half ring = correct once, check = cleared, dot = not done. */
+.ib-mark {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-}
-.mb-dots i {
-  width: 8px;
-  height: 8px;
+  justify-content: center;
+  flex: none;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: var(--bg-sunken);
-  box-shadow: inset 0 0 0 1.5px var(--border-strong);
+  color: var(--on-success);
 }
-.mb-dots i.on {
+.ib-mark.is-new,
+.ib-mark.is-missed {
+  box-shadow: inset 0 0 0 1.5px var(--text-3);
+}
+.ib-mark.is-once {
+  box-shadow: inset 0 0 0 1.5px var(--warning);
+  background: linear-gradient(90deg, transparent 50%, var(--warning) 50%);
+}
+.ib-mark.is-cleared {
   background: var(--success);
-  box-shadow: none;
+}
+.ib-mark.is-todo {
+  background: radial-gradient(circle, var(--border-strong) 0 3px, transparent 3.5px);
 }
 
 .mb-res {
@@ -21,8 +31,8 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--bg-sunken);
   color: var(--text-3);
@@ -44,7 +54,6 @@
   background: var(--warning-soft);
   color: var(--warning-text);
 }
-.mb-res.is-gaveup {
-  background: var(--bg-sunken);
-  color: var(--text-3);
+.mb-res.is-none {
+  background: radial-gradient(circle, var(--border-strong) 0 3px, transparent 3.5px);
 }

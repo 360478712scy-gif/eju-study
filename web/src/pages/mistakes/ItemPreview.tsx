@@ -7,13 +7,13 @@ import { useReady, update } from '../../lib/store.ts';
 import { href } from '../../lib/router.ts';
 import { playSpeech, stopSpeech, onSpeechChange, speechElement } from '../../lib/audio.ts';
 import { cx, fmtClock, fmtDateShort } from '../../lib/format.ts';
-import { Badge, Button, IconButton, Modal, SubjectTag, modalDepth, toast, useConfirm } from '../../components/ui.tsx';
+import { Badge, Button, IconButton, IconTile, Meta, Modal, SubjectTag, Tooltip, modalDepth, toast, useConfirm } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { QuestionStem } from '../../components/question/QuestionStem.tsx';
 import { BlanksAnswer, OptionList, optionLabel } from '../../components/question/OptionList.tsx';
 import { Explanation } from '../../components/question/Explanation.tsx';
 import { MODE_LABEL, RESULT_TEXT, dueInfo, fmtMD, launch, resultOf, sourceLabel } from './helpers.ts';
-import { BoxDots, ResultMark } from './bits.tsx';
+import { ItemMark, ResultMark, markText } from './bits.tsx';
 import { reservedFor, reservedMap } from '../practice/practiceData.ts';
 import './item-preview.css';
 
@@ -38,52 +38,29 @@ export function ItemPreview({ itemId, ids, onSelect }: Props) {
   }, [open]);
   const isTop = useCallback(() => depth.current > 0 && modalDepth() === depth.current, []);
   return (
-    <Modal open={open} onClose={close} width={860} title={item ? <PreviewTitle item={item} /> : undefined}>
+    <Modal
+      open={open}
+      onClose={close}
+      width={860}
+      className="mbp-modal"
+      title={item ? <PreviewTitle item={item} /> : undefined}
+      footer={item ? <PreviewFoot key={item.id} item={item} ids={ids} onSelect={onSelect} /> : undefined}
+    >
       {item && <PreviewBody key={item.id} item={item} ids={ids} onSelect={onSelect} isTop={isTop} />}
     </Modal>
   );
 }
 
-function PreviewTitle({ item }: { item: Item }) {
-  return (
-    <span className="mbp-title">
-      <SubjectTag subject={item.subject} size="sm" />
-      <span>{sourceLabel(item)}</span>
-    </span>
-  );
-}
-
-function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]; onSelect: (id: string | null) => void; isTop: () => boolean }) {
-  const { state, bank, today } = useReady();
+/** Redo / star / dismiss for one item. Used by the body (unseen items) and the footer. */
+function useItemActions(item: Item, ids: string[], onSelect: (id: string | null) => void) {
+  const { state, bank } = useReady();
   const p = state.progress[item.id];
-  const history = useMemo(() => state.attempts.filter((a) => a.itemId === item.id), [state.attempts, item.id]);
-  const last = history[history.length - 1];
-  const [reveal, setReveal] = useState(history.length > 0);
   const confirm = useConfirm();
-  const topic = bank.topics.get(item.topic);
   const idx = ids.indexOf(item.id);
   const prevId = idx > 0 ? ids[idx - 1] : null;
   const nextId = idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : null;
-  const due = p?.inMistakes ? dueInfo(p.due, today) : null;
   // Paper held for an upcoming mock (mistake re-tests keep their own schedule, so no flag for them).
   const held = useMemo(() => (p?.inMistakes ? undefined : reservedFor(reservedMap(state, bank), item)), [p?.inMistakes, state, bank, item]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.isComposing || e.metaKey || e.ctrlKey || e.altKey || !isTop()) return;
-      const t = e.target as HTMLElement | null;
-      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-      if (e.key === 'ArrowLeft' && prevId) {
-        e.preventDefault();
-        onSelect(prevId);
-      } else if (e.key === 'ArrowRight' && nextId) {
-        e.preventDefault();
-        onSelect(nextId);
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [prevId, nextId, onSelect, isTop]);
 
   const redo = async () => {
     // Mistake re-tests follow their own schedule; a plain redo of a paper held for a mock gets a warning first.
@@ -119,33 +96,104 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
     onSelect(next);
   };
 
+  return { p, idx, prevId, nextId, held, redo, star, dismiss, confirmNode: confirm.node };
+}
+
+function PreviewFoot({ item, ids, onSelect }: { item: Item; ids: string[]; onSelect: (id: string | null) => void }) {
+  const { state } = useReady();
+  const a = useItemActions(item, ids, onSelect);
+  const tried = state.attempts.some((x) => x.itemId === item.id);
+  return (
+    <div className="mbp-foot">
+      <div className="mbp-nav">
+        <IconButton icon="left" label="上一题（←）" disabled={!a.prevId} onClick={() => a.prevId && onSelect(a.prevId)} />
+        <span className="mbp-pos num">{a.idx >= 0 ? `${a.idx + 1} / ${ids.length}` : ''}</span>
+        <IconButton icon="right" label="下一题（→）" disabled={!a.nextId} onClick={() => a.nextId && onSelect(a.nextId)} />
+      </div>
+      <div className="mbp-actions">
+        <Button variant="ghost" icon="star" className={cx('mbp-star', a.p?.starred && 'is-on')} onClick={a.star}>
+          {a.p?.starred ? '已收藏' : '收藏'}
+        </Button>
+        {a.p?.inMistakes && (
+          <Button variant="ghost" icon="check" onClick={() => void a.dismiss()}>
+            移出错题本
+          </Button>
+        )}
+        <Button variant="primary" icon="refresh" onClick={() => void a.redo()}>
+          {a.p?.inMistakes ? '重做这题' : tried ? '再做一次' : '做这题'}
+        </Button>
+      </div>
+      {a.confirmNode}
+    </div>
+  );
+}
+
+function PreviewTitle({ item }: { item: Item }) {
+  return (
+    <span className="mbp-title">
+      <SubjectTag subject={item.subject} size="sm" />
+      <span>{sourceLabel(item)}</span>
+    </span>
+  );
+}
+
+function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]; onSelect: (id: string | null) => void; isTop: () => boolean }) {
+  const { state, bank, today } = useReady();
+  const history = useMemo(() => state.attempts.filter((a) => a.itemId === item.id), [state.attempts, item.id]);
+  const last = history[history.length - 1];
+  const [reveal, setReveal] = useState(history.length > 0);
+  const a = useItemActions(item, ids, onSelect);
+  const { p, prevId, nextId, held } = a;
+  const topic = bank.topics.get(item.topic);
+  const due = p?.inMistakes ? dueInfo(p.due, today) : null;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.isComposing || e.metaKey || e.ctrlKey || e.altKey || !isTop()) return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (e.key === 'ArrowLeft' && prevId) {
+        e.preventDefault();
+        onSelect(prevId);
+      } else if (e.key === 'ArrowRight' && nextId) {
+        e.preventDefault();
+        onSelect(nextId);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [prevId, nextId, onSelect, isTop]);
+
   return (
     <div className="mbp">
       <div className="mbp-meta">
         {topic && (
           <a className="mbp-topic" href={href('/notes/' + item.topic)}>
-            <Icon name="notebook" size={13} />
+            <Icon name="notebook" size={14} />
             {topic.name}
+            <Icon name="right" size={13} className="mbp-topic-go" />
           </a>
         )}
-        <span className="mbp-meta-item" title="难度">
-          难度
-          <span className="mbp-diff">
-            {[1, 2, 3].map((n) => (
-              <i key={n} className={cx(n <= item.difficulty && 'on')} />
-            ))}
-          </span>
-        </span>
-        <span className="mbp-meta-item">
-          <Icon name="clock" size={13} />
-          考场节奏 {fmtClock(item.targetSec)}
-        </span>
-        {p?.inMistakes && (
+        <Meta>
           <span className="mbp-meta-item">
-            <BoxDots box={p.box} />
-            {due && <span className={cx('mbp-due', `tone-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
+            难度
+            <span className="mbp-diff" aria-label={`难度 ${item.difficulty}/3`}>
+              {[1, 2, 3].map((n) => (
+                <i key={n} className={cx(n <= item.difficulty && 'on')} />
+              ))}
+            </span>
           </span>
-        )}
+          <span>
+            考场节奏 <span className="num">{fmtClock(item.targetSec)}</span>
+          </span>
+          {p?.inMistakes && (
+            <span className="mbp-meta-item">
+              <ItemMark p={p} tooltip={false} />
+              {markText(p).replace('在错题本 · ', '')}
+            </span>
+          )}
+          {due && <span className={cx('mbp-due', `is-${due.tone}`)}>{due.text === '今天' ? '今天到期' : `${due.text}复习`}</span>}
+        </Meta>
         {held && (
           <Badge tone="warning" icon="flag">
             {fmtDateShort(held.date)}模考要用
@@ -179,7 +227,7 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
           {history.length > 0 && <History list={history} />}
           <section className="mbp-sec">
             <h4 className="mbp-sec-title">
-              <Icon name="bulb" size={15} />
+              <Icon name="bulb" size={16} />
               解析
             </h4>
             <Explanation item={item} />
@@ -187,15 +235,16 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
         </>
       ) : (
         <div className="mbp-hidden">
-          <div>
+          <IconTile icon="eyeOff" size="md" />
+          <div className="mbp-hidden-text">
             <b>这题你还没做过</b>
-            <span className="muted">先自己做一遍，印象最深。</span>
+            <span>先自己做一遍，印象最深。</span>
           </div>
-          <div className="row">
+          <div className="mbp-hidden-actions">
             <Button variant="ghost" icon="eye" onClick={() => setReveal(true)}>
               直接看答案
             </Button>
-            <Button variant="primary" icon="play" onClick={() => void redo()}>
+            <Button variant="secondary" icon="play" onClick={() => void a.redo()}>
               做这题
             </Button>
           </div>
@@ -203,28 +252,7 @@ function PreviewBody({ item, ids, onSelect, isTop }: { item: Item; ids: string[]
       )}
 
       {p && reveal && <NoteEditor itemId={item.id} initial={p.note || ''} />}
-
-      <footer className="mbp-foot">
-        <div className="row">
-          <IconButton icon="left" label="上一题（←）" disabled={!prevId} onClick={() => prevId && onSelect(prevId)} />
-          <span className="mbp-pos num">{idx >= 0 ? `${idx + 1} / ${ids.length}` : ''}</span>
-          <IconButton icon="right" label="下一题（→）" disabled={!nextId} onClick={() => nextId && onSelect(nextId)} />
-        </div>
-        <div className="row mbp-actions">
-          <Button variant="ghost" icon="star" className={cx('mbp-star', p?.starred && 'is-on')} onClick={star}>
-            {p?.starred ? '已收藏' : '收藏'}
-          </Button>
-          {p?.inMistakes && (
-            <Button variant="ghost" icon="check" onClick={() => void dismiss()}>
-              移出错题本
-            </Button>
-          )}
-          <Button variant="primary" icon="refresh" onClick={() => void redo()}>
-            {p?.inMistakes ? '重做这题' : history.length ? '再做一次' : '做这题'}
-          </Button>
-        </div>
-      </footer>
-      {confirm.node}
+      {a.confirmNode}
     </div>
   );
 }
@@ -244,7 +272,7 @@ function AnswerBlock({ item, last }: { item: Item; last?: Attempt }) {
     <section className="mbp-sec">
       <div className="mbp-ans-head">
         <h4 className="mbp-sec-title">
-          <Icon name="target" size={15} />
+          <Icon name="target" size={16} />
           {last ? '上次作答' : '正确答案'}
         </h4>
         {last && (
@@ -252,11 +280,13 @@ function AnswerBlock({ item, last }: { item: Item; last?: Attempt }) {
             <ResultMark kind={kind} />
             <span className={cx('mbp-res-text', `is-${kind}`)}>{RESULT_TEXT[kind]}</span>
             {what && <span className="faint">· {what}</span>}
-            <span className={cx('mbp-fact', slow && 'is-slow')} title={`考场节奏 ${fmtClock(item.targetSec)}`}>
-              <Icon name="clock" size={13} />
-              {fmtClock(last.seconds)}
-              {slow && <span> · 超时</span>}
-            </span>
+            <Tooltip label={`考场节奏 ${fmtClock(item.targetSec)}`}>
+              <span className={cx('mbp-fact', slow && 'is-slow')}>
+                <Icon name="clock" size={13} />
+                <span className="num">{fmtClock(last.seconds)}</span>
+                {slow && <span> · 超时</span>}
+              </span>
+            </Tooltip>
             {last.confidence === 'unsure' && <Badge tone="warning">没把握</Badge>}
             {last.confidence === 'guess' && <Badge tone="warning">猜的</Badge>}
           </div>
@@ -283,16 +313,18 @@ function compactOptions(item: Item): boolean {
 function History({ list }: { list: Attempt[] }) {
   return (
     <div className="mbp-history" aria-label="作答记录">
-      <span className="mbp-history-label">作答记录</span>
+      <span className="t-eyebrow mbp-history-label">作答记录</span>
       {list.map((a) => {
         const k = resultOf(a);
         return (
-          <span key={a.id} className={cx('mbp-hchip', `is-${k}`)} title={`${a.date} · ${MODE_LABEL[a.mode]} · ${RESULT_TEXT[k]} · ${fmtClock(a.seconds)}`}>
-            <ResultMark kind={k} size="xs" />
-            <span className="num">{fmtMD(a.date)}</span>
-            <span className="faint">{MODE_LABEL[a.mode]}</span>
-            <span className="num faint">{fmtClock(a.seconds)}</span>
-          </span>
+          <Tooltip key={a.id} label={`${fmtMD(a.date)} · ${MODE_LABEL[a.mode]} · ${RESULT_TEXT[k]} · 用时 ${fmtClock(a.seconds)}`}>
+            <span className={cx('mbp-hchip', `is-${k}`)} tabIndex={0}>
+              <ResultMark kind={k} size="xs" />
+              <span className="num">{fmtMD(a.date)}</span>
+              <span className="faint">{MODE_LABEL[a.mode]}</span>
+              <span className="num faint">{fmtClock(a.seconds)}</span>
+            </span>
+          </Tooltip>
         );
       })}
     </div>
@@ -329,10 +361,10 @@ function NoteEditor({ itemId, initial }: { itemId: string; initial: string }) {
     <section className="mbp-note">
       <div className="mbp-note-head">
         <span className="mbp-sec-title">
-          <Icon name="pen" size={15} />
+          <Icon name="pen" size={16} />
           我的笔记
         </span>
-        <span className="mbp-note-state faint text-xs">{saved === 'saved' ? '已保存' : saved === 'dirty' ? '输入中…' : '自动保存'}</span>
+        <span className="mbp-note-state">{saved === 'saved' ? '已保存' : saved === 'dirty' ? '输入中…' : '自动保存'}</span>
       </div>
       <textarea
         className="mbp-note-input"

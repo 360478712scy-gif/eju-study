@@ -6,11 +6,12 @@ import { gradeItem } from '@shared/grading.ts';
 import { MOCK_LABEL, sessionLabel } from '@shared/bank.ts';
 import { update, useApp } from '../../lib/store.ts';
 import { navigate } from '../../lib/router.ts';
-import { Button, IconButton, Ring, SubjectTag } from '../../components/ui.tsx';
+import { Button, IconButton, List, ListRow, Meta, Ring, StatTile, SubjectDot } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { optionBadge, optionLabel } from '../../components/question/OptionList.tsx';
-import { SUBJECT_NAME, cx, fmtClock } from '../../lib/format.ts';
+import { SUBJECT_NAME, cx, fmtClock, fmtMinutes } from '../../lib/format.ts';
 import { correctionIds, resultRows } from '../mock/mockData.ts';
+import { blockView, runBlock } from '../today/blocks.ts';
 import { ReviewStage } from './ReviewStage.tsx';
 
 function verdict(a: SessionAnswer | undefined): 'right' | 'wrong' | 'gave' | 'blank' | 'todo' {
@@ -35,12 +36,12 @@ function answerText(item: Item, a: SessionAnswer | undefined): string {
   return v === 'gave' ? '看了解析' : `对 ${ok} / ${g.length} 组`;
 }
 
-function headline(acc: number, wrong: number, done: number): string {
+function headline(acc: number, wrong: number, booked: number, done: number): string {
   if (done === 0) return '这组还没开始做';
   if (wrong === 0) return '全对，干净利落';
-  if (acc >= 0.85) return '做得很稳';
-  if (acc >= 0.65) return '完成了，再把错题吃透';
-  return '完成了，今天的错题最值钱';
+  if (acc >= 0.85) return '这一组很稳';
+  if (acc >= 0.6) return booked > 0 ? `不错，错的 ${booked} 题已排进错题本` : '不错，再把错题吃透';
+  return `难度不小，先把这 ${wrong} 题弄懂`;
 }
 
 export function FinishView({ session, items }: { session: PracticeSession; items: Item[] }) {
@@ -107,7 +108,19 @@ export function FinishView({ session, items }: { session: PracticeSession; items
   const itemSecs = worked.reduce((s, it) => s + (session.answers[it.id]?.seconds ?? 0), 0);
   const avg = worked.length ? itemSecs / worked.length : 0;
   const avgTarget = worked.length ? worked.reduce((s, it) => s + it.targetSec, 0) / worked.length : 0;
-  const tone = wrong.length === 0 ? 'success' : acc >= 0.65 ? 'primary' : 'warning';
+  const tone = wrong.length === 0 || acc >= 0.85 ? 'success' : 'primary';
+
+  // What comes next today, and how far along the day is.
+  const plan = state.plans[today];
+  const nextBlock = plan?.blocks.find((b) => b.id !== session.blockId && blockView(state, b) === 'todo');
+  const dayBlocks = plan?.blocks.filter((b) => b.status !== 'skipped') ?? [];
+  const dayDone = dayBlocks.filter((b) => b.status === 'done').length;
+  const daySecs = state.days[today]?.seconds ?? 0;
+  const goNext = () => {
+    if (!nextBlock || nextBlock.kind === 'mock') navigate('/');
+    else runBlock(state, bank, nextBlock);
+  };
+  const nextLabel = nextBlock ? `下一项：${nextBlock.title} · ${fmtMinutes(nextBlock.minutes)}` : '回到今日';
 
   const redo = () => {
     const s = update((d) =>
@@ -141,87 +154,100 @@ export function FinishView({ session, items }: { session: PracticeSession; items
     const v = verdict(a);
     const n = items.indexOf(it) + 1;
     return (
-      <button key={it.id} type="button" className={cx('pl-fin-row', `is-${v}`)} onClick={() => openReview(list, i)}>
-        <span className="pl-fin-n num">{n}</span>
-        <span className="pl-fin-row-main">
-          <span className="pl-fin-row-title">{topics.get(it.topic)?.name ?? it.topic}</span>
-          <span className="pl-fin-row-src">{it.source.label}</span>
-        </span>
-        <span className={cx('pl-fin-verdict', `is-${v}`)}>{answerText(it, a)}</span>
-        <span className="pl-fin-time num">{fmtClock(a?.seconds ?? 0)}</span>
-        <Icon name="right" size={16} className="pl-fin-chev" />
-      </button>
+      <ListRow
+        key={it.id}
+        lead={<span className="pl-fin-n num">{n}</span>}
+        title={topics.get(it.topic)?.name ?? it.topic}
+        meta={it.source.label}
+        trail={
+          <>
+            <span className={cx('pl-fin-verdict', `is-${v}`)}>{answerText(it, a)}</span>
+            <span className="pl-fin-time num">{fmtClock(a?.seconds ?? 0)}</span>
+          </>
+        }
+        chevron
+        onClick={() => openReview(list, i)}
+      />
     );
   };
+
+  const ringLabel = mock ? '得分率' : hasBlanks ? '按组得分' : '正确率';
+  const title = headline(acc, wrong.length, booked, done);
+  /** The headline already says the wrong ones are in the mistake book (60–85%). */
+  const titleBooked = title.includes('错题本');
+  const sub =
+    done === 0
+      ? '这组没有作答记录，回到今日页挑下一项任务吧。'
+      : [
+          mock && correction?.ids.length
+            ? `没拿到分和没把握的 ${correction.ids.length} 题趁热订正${titleBooked || !booked ? '' : '，错题已经进了错题本'}。`
+            : booked > 0 && !titleBooked
+              ? `错的 ${booked} 题已经进了错题本，2 天后再练。`
+              : wrong.length === 0
+                ? '这一组的题都拿下了，继续保持这个节奏。'
+                : booked > 0
+                  ? '2 天后再练一次，趁现在先看懂。'
+                  : '',
+          freshBlanks > 0 ? `没来得及做的 ${freshBlanks} 题不进错题本，之后还会出现。` : '',
+          todo.length > 0 ? `还有 ${todo.length} 题没做，不算错。` : '',
+        ].join('');
 
   return (
     <div className="pl-fin" ref={rootRef}>
       <header className="pl-fin-top">
-        <IconButton icon="arrowLeft" label="回到今日" onClick={() => navigate('/')} />
+        <IconButton icon="arrowLeft" label="回到今日" tooltipSide="bottom" onClick={() => navigate('/')} />
+        <SubjectDot subject={session.subject} />
         <span className="pl-fin-top-title">{session.title}</span>
-        <SubjectTag subject={session.subject} size="sm" />
       </header>
 
       <div className="pl-fin-wrap">
-        <section className="pl-fin-hero">
-          <Ring value={acc} size={148} stroke={12} tone={tone}>
-            <span className="pl-fin-pct num">
+        <section className="card card-hero pl-fin-hero">
+          <Ring value={acc} size={140} stroke={10} tone={tone}>
+            <span className="pl-fin-pct num num-xl">
               {Math.round(acc * 100)}
-              <small>%</small>
+              <span className="pl-fin-pct-unit">%</span>
             </span>
-            <span className="pl-fin-pct-label">{mock || hasBlanks ? '得分率' : '正确率'}</span>
+            <span className="pl-fin-pct-label">{ringLabel}</span>
           </Ring>
           <div className="pl-fin-hero-main">
             <div className="pl-fin-eyebrow">
               <Icon name="checkCircle" size={14} />
               {session.exam ? '已交卷' : '本组完成'}
             </div>
-            <h1 className="pl-fin-title">{headline(acc, wrong.length, done)}</h1>
-            <p className="pl-fin-sub">
-              {done === 0
-                ? '这组没有作答记录，回到今日页挑下一项任务吧。'
-                : mock && correction?.ids.length
-                  ? `没拿到分和没把握的 ${correction.ids.length} 题趁热订正，错题已经进了错题本。`
-                  : booked > 0
-                    ? `错的 ${booked} 题已经进了错题本，2 天后再练。`
-                    : wrong.length === 0
-                      ? '这一组的题都拿下了，继续保持这个节奏。'
-                      : ''}
-              {freshBlanks > 0 && `没来得及做的 ${freshBlanks} 题不进错题本，之后还会出现。`}
-              {todo.length > 0 && `还有 ${todo.length} 题没做，不算错。`}
-            </p>
+            <h1 className="pl-fin-title">{title}</h1>
+            {sub && <p className="pl-fin-sub">{sub}</p>}
             <div className="pl-fin-stats">
-              <div className="pl-fin-stat">
-                <span className="pl-fin-stat-label">答对</span>
-                <span className="pl-fin-stat-value num">
-                  {correct}
-                  <small> / {done}</small>
-                </span>
-              </div>
-              <div className="pl-fin-stat">
-                <span className="pl-fin-stat-label">用时</span>
-                <span className={cx('pl-fin-stat-value num', used > planned * 1.15 && 'is-over')}>{fmtClock(used)}</span>
-                <span className="pl-fin-stat-sub">计划 {fmtClock(planned)}</span>
-              </div>
-              <div className="pl-fin-stat">
-                <span className="pl-fin-stat-label">平均每题</span>
-                <span className={cx('pl-fin-stat-value num', avg > avgTarget * 1.15 && 'is-over')}>{worked.length ? fmtClock(avg) : '—'}</span>
-                <span className="pl-fin-stat-sub">目标 {fmtClock(avgTarget || items[0].targetSec)}</span>
-              </div>
+              <StatTile label={hasBlanks ? '全对' : '答对'} value={correct} unit={`/ ${done} 题`} size="lg" />
+              <StatTile label="用时" value={fmtClock(used)} sub={`计划 ${fmtClock(planned)}`} size="lg" tone={used > planned * 1.15 ? 'warning' : undefined} />
+              <StatTile
+                label="平均每题"
+                value={worked.length ? fmtClock(avg) : '—'}
+                sub={`目标 ${fmtClock(avgTarget || items[0].targetSec)}`}
+                size="lg"
+                tone={avg > avgTarget * 1.15 ? 'warning' : undefined}
+              />
             </div>
+            {plan && dayBlocks.length > 0 && (
+              <Meta className="pl-fin-day">
+                <span>
+                  今日 <span className="num">{dayDone}</span> / <span className="num">{dayBlocks.length}</span> 项
+                </span>
+                <span>已学 {fmtMinutes(daySecs / 60)}</span>
+              </Meta>
+            )}
             <div className="pl-fin-cta">
               {mock && correction?.first && correction.ids.length > 0 ? (
                 <>
                   <Button variant="primary" size="lg" icon="refresh" onClick={correct_}>
                     订正错题 · {correction.ids.length}
                   </Button>
-                  <Button variant="secondary" size="lg" iconRight="arrowRight" onClick={() => navigate('/')}>
-                    回到今日
+                  <Button variant="secondary" size="lg" iconRight="arrowRight" onClick={goNext}>
+                    {nextLabel}
                   </Button>
                 </>
               ) : (
-                <Button variant="primary" size="lg" iconRight="arrowRight" onClick={() => navigate('/')}>
-                  下一项任务
+                <Button variant="primary" size="lg" iconRight="arrowRight" onClick={goNext}>
+                  {nextLabel}
                 </Button>
               )}
               {mock
@@ -252,9 +278,6 @@ export function FinishView({ session, items }: { session: PracticeSession; items
                 <span className="pl-fin-score-num num">{mock.estimate}</span>
                 <span className="pl-fin-score-of num">/ 200</span>
               </div>
-              <div className="faint text-sm">
-                原始得分率 {Math.round(mock.raw * 100)}% · 答对 {mock.correct} / {mock.total}
-              </div>
             </div>
             {mock.bySubject && Object.keys(mock.bySubject).length > 1 && (
               <div className="pl-fin-subjects">
@@ -284,30 +307,28 @@ export function FinishView({ session, items }: { session: PracticeSession; items
         )}
 
         {wrong.length > 0 && (
-          <section className="pl-card pl-fin-list">
-            <header className="pl-card-head">
-              <span className="pl-card-title">
-                <Icon name="alert" size={15} />
-                需要再看的题
-                <span className="pl-fin-badge num">{wrong.length}</span>
-              </span>
-              <span className="faint text-xs">点开逐题看解析，可以问 AI</span>
+          <section className="card card-flush pl-fin-list">
+            <header className="card-head pl-fin-list-head">
+              <div>
+                <h3 className="card-title">
+                  需要再看的题 <span className="pl-fin-count num">{wrong.length}</span>
+                </h3>
+                <p className="card-sub">点开逐题看解析，可以问 AI</p>
+              </div>
             </header>
-            <div className="pl-fin-rows">{wrong.map((it, i) => row(it, wrong, i))}</div>
+            <List>{wrong.map((it, i) => row(it, wrong, i))}</List>
           </section>
         )}
 
         {right.length > 0 && (
-          <details className="pl-card pl-fin-list pl-fin-right" open={wrong.length === 0}>
-            <summary className="pl-card-head">
-              <span className="pl-card-title">
-                <Icon name="checkCircle" size={15} />
-                答对的题
-                <span className="pl-fin-badge is-ok num">{right.length}</span>
-              </span>
+          <details className="card card-flush pl-fin-list pl-fin-right" open={wrong.length === 0}>
+            <summary className="pl-fin-sum">
+              <h3 className="card-title">
+                答对的题 <span className="pl-fin-count num">{right.length}</span>
+              </h3>
               <Icon name="down" size={16} className="pl-fin-sum-chev" />
             </summary>
-            <div className="pl-fin-rows">{right.map((it, i) => row(it, right, i))}</div>
+            <List>{right.map((it, i) => row(it, right, i))}</List>
           </details>
         )}
       </div>

@@ -5,8 +5,8 @@ import { topicStats } from '@shared/stats.ts';
 import { useReady } from '../../lib/store.ts';
 import { navigate, useRoute } from '../../lib/router.ts';
 import { cx, SUBJECT_NAME } from '../../lib/format.ts';
-import { PageHeader, Segmented } from '../../components/ui.tsx';
-import { Icon, SUBJECT_ICON } from '../../components/Icon.tsx';
+import { IconTile, PageHeader, Segmented } from '../../components/ui.tsx';
+import { SUBJECT_ICON } from '../../components/Icon.tsx';
 import { ItemPreview } from './ItemPreview.tsx';
 import { isWrong, reservedMap } from './practiceData.ts';
 import { TopicView } from './TopicView.tsx';
@@ -130,15 +130,12 @@ export function PracticePage(_props: {}) {
                 className={cx('pr-subject', `tone-${s}`, s === subject && 'is-active')}
                 onClick={() => go({ s })}
               >
-                <span className="pr-subject-icon">
-                  <Icon name={SUBJECT_ICON[s]} size={18} />
-                </span>
+                <IconTile icon={SUBJECT_ICON[s]} tone={s} size="md" />
                 <span className="pr-subject-text">
                   <span className="pr-subject-name">{SUBJECT_NAME[s]}</span>
                   <span className="pr-subject-meta num">
-                    <span className="pr-subject-label">已做 </span>
-                    {sum.done}/{sum.total}
-                    {sum.wrong > 0 && <span className="pr-subject-wrong"> · 错 {sum.wrong}</span>}
+                    已做 {sum.done}/{sum.total}
+                    {sum.wrong > 0 && ` · 错 ${sum.wrong}`}
                   </span>
                 </span>
                 <span className="pr-subject-bar">

@@ -1,16 +1,18 @@
 // The drill itself: 看字写读音 (type the reading, no audio before answering) and
 // 看词选意思 (pick the Chinese meaning). Each answer is graded and saved instantly.
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+// Runs full-window like the question player (see .vc-focus in vocab.css).
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from 'react';
 import type { VocabEntry } from '@shared/types.ts';
 import { addStudyTime, markBlock, recordVocab } from '@shared/actions.ts';
 import { readingMatches } from '@shared/grading.ts';
 import { useApp, update } from '../../lib/store.ts';
+import { navigate } from '../../lib/router.ts';
 import { stopSpeech } from '../../lib/audio.ts';
 import { cx } from '../../lib/format.ts';
 import { Icon } from '../../components/Icon.tsx';
-import { Badge, Button, IconButton, Kbd, Progress, isModalOpen } from '../../components/ui.tsx';
+import { Badge, Button, Callout, IconButton, Kbd, SubjectDot, Tooltip, isModalOpen, toast } from '../../components/ui.tsx';
 import { answerCandidates, answerKana, hasRomaji, nearMissHint } from './kana.ts';
-import { getRun, meaningChoice, newRun, setRun, SKILL_LABEL, useRun, withRetry, type RunAnswer, type RunCard } from './run.ts';
+import { getRun, meaningChoice, newRun, setRun, SKILL_NAME, SKILL_TONE, splitMeaning, useRun, withRetry, type RunAnswer, type RunCard, type VocabRun } from './run.ts';
 import { AudioButton, Highlighted, speak } from './parts.tsx';
 
 const AUTOPLAY_KEY = 'eju-vocab-autoplay';
@@ -65,6 +67,50 @@ function isTyping(t: EventTarget | null): boolean {
   return t.isContentEditable || t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT';
 }
 
+/** Top-bar controls should not keep focus after a click (Enter would press them again). */
+const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
+
+/**
+ * Full-window top bar shared by the run and its summary, the question player's pattern:
+ * back · subject dot + title │ centre │ right, with the run's progress as a line on its bottom edge.
+ */
+export function VocabTopBar({ title, onBack, backLabel, center, right, progress }: { title: string; onBack: () => void; backLabel: string; center?: ReactNode; right?: ReactNode; progress?: ReactNode }) {
+  return (
+    <header className="vc-top">
+      <div className="vc-top-left">
+        <IconButton icon="arrowLeft" label={backLabel} onClick={onBack} onMouseDown={keepFocus} tooltipSide="bottom" />
+        <div className="vc-top-title">
+          <SubjectDot subject="japanese" />
+          <span className="vc-top-name">{title}</span>
+        </div>
+      </div>
+      <div className="vc-top-center">{center}</div>
+      <div className="vc-top-right">{right}</div>
+      {progress}
+    </header>
+  );
+}
+
+/** First-pass cards fill the line; retries of missed cards get their own striped segment after it. */
+function RunProgress({ run }: { run: VocabRun }) {
+  const first = run.cards.filter((c) => !c.retry).length;
+  const retries = run.cards.length - first;
+  const firstDone = run.results.filter((x) => !x.retry).length;
+  const retryDone = run.results.length - firstDone;
+  return (
+    <div className="vc-progress" role="progressbar" aria-label="本轮进度" aria-valuenow={firstDone} aria-valuemin={0} aria-valuemax={first}>
+      <div className="vc-progress-main">
+        <i style={{ width: `${(firstDone / Math.max(1, first)) * 100}%` }} />
+      </div>
+      {retries > 0 && (
+        <div className="vc-progress-retry" style={{ width: `clamp(24px, ${retries * 10}px, 18%)` }}>
+          <i style={{ width: `${(retryDone / retries) * 100}%` }} />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function VocabSession() {
   const run = useRun();
   const bank = useApp((s) => s.bank);
@@ -79,6 +125,10 @@ export function VocabSession() {
 
   useEffect(() => {
     shownAt.current = performance.now();
+    // A meaning card starts with nothing focused-looking: focus the card itself (the read card
+    // focuses its input). Option rings appear only once the learner tabs or uses arrows.
+    if (getRun()?.cards[getRun()!.index]?.skill === 'meaning') stageRef.current?.focus({ preventScroll: true });
+    document.querySelector('.main')?.scrollTo({ top: 0 });
   }, [cardKey]);
 
   // Time away from the page is not study time: restart the clock on return, credit a little on leave.
@@ -133,6 +183,14 @@ export function VocabSession() {
     else setRun({ ...r, index: r.index + 1, current: null });
   };
 
+  // ← leaves the run where it is (it resumes on the 词汇 page); an untouched run is dropped.
+  const leave = () => {
+    const r = getRun();
+    if (r && !r.results.length) setRun(null);
+    else toast('这一轮先放着，回到词汇就能接着练', 'success');
+    navigate('/');
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.isComposing || e.repeat || e.metaKey || e.ctrlKey || e.altKey || isModalOpen() || isTyping(e.target)) return;
@@ -157,100 +215,117 @@ export function VocabSession() {
 
   if (!run || !card || !v || !bank) return null;
 
-  const total = run.cards.length;
-  const done = run.index + (run.current ? 1 : 0);
+  const firstTotal = run.cards.filter((c) => !c.retry).length;
+  const retryTotal = run.cards.length - firstTotal;
   const firstTries = run.results.filter((x) => !x.retry);
   const right = firstTries.filter((x) => x.correct).length;
   const wrong = firstTries.length - right;
+  const pos = Math.max(1, Math.min(firstTotal, firstTries.length + (!card.retry && !run.current ? 1 : 0)));
   const wordLen = [...v.word].length;
-  const retriesLeft = run.cards.slice(run.index + 1).filter((c) => c.retry).length;
+  const last = run.index + 1 >= run.cards.length;
 
   return (
-    <div className="vc-session">
-      <header className="vc-topbar">
-        <Button variant="ghost" size="sm" icon="arrowLeft" onClick={() => finishRun(false)}>
-          结束本轮
-        </Button>
-        <div className="vc-topbar-mid">
-          <span className="vc-count num">
-            {Math.min(done + (run.current ? 0 : 1), total)}
-            <span className="faint"> / {total}</span>
+    <div className="vc-focus">
+      <VocabTopBar
+        title={run.title}
+        onBack={leave}
+        backLabel="离开（这一轮会保留）"
+        progress={<RunProgress run={run} />}
+        center={
+          <span className="vc-count">
+            <b className="num">{pos}</b>
+            <span className="vc-count-of num"> / {firstTotal}</span>
           </span>
-          <Progress value={done / total} size="sm" className="vc-topbar-progress" />
-        </div>
-        <div className="vc-topbar-right">
-          <span className="vc-tally" title="本轮首次作答">
-            <span className="vc-tally-ok">
-              <Icon name="check" size={14} />
-              <b className="num">{right}</b>
-            </span>
-            <span className="vc-tally-bad">
-              <Icon name="x" size={14} />
-              <b className="num">{wrong}</b>
-            </span>
-          </span>
-          <IconButton
-            icon="volume"
-            size="sm"
-            label={autoplay ? '答完自动朗读：开' : '答完自动朗读：关'}
-            active={autoplay}
-            onClick={() => {
-              writeAutoplay(!autoplay);
-              setAutoplay(!autoplay);
-            }}
-          />
-        </div>
-      </header>
-
-      <div className={cx('vc-stage', run.current && (run.current.correct ? 'is-right' : 'is-wrong'))} ref={stageRef} tabIndex={-1} key={cardKey}>
-        <div className="vc-stage-tags">
-          <Badge tone={card.skill === 'read' ? 'primary' : 'japanese'} icon={card.skill === 'read' ? 'pen' : 'list'}>
-            {card.skill === 'read' ? '看字写读音' : '看词选意思'}
-          </Badge>
-          {card.retry && (
-            <Badge tone="warning" icon="refresh">
-              再练一次
-            </Badge>
-          )}
-        </div>
-
-        <div className={cx('vc-word', wordLen > 5 ? 'is-long' : wordLen > 3 && 'is-mid')} lang="ja">
-          {v.word}
-        </div>
-        {card.skill === 'read' ? <ReadInput v={v} answered={run.current} onAnswer={answer} /> : <MeaningOptions v={v} date={run.date} retry={!!card.retry} answered={run.current} onAnswer={answer} />}
-
-        {run.current && <Reveal v={v} card={card} a={run.current} />}
-
-        <footer className="vc-stage-foot">
-          {run.current ? (
-            <>
-              <span className="vc-keys faint">
-                <Kbd>Space</Kbd> 读音 {v.audio?.example && <><Kbd>E</Kbd> 例句</>}
+        }
+        right={
+          <>
+            {retryTotal > 0 && (
+              <Tooltip label="答错的词这一轮稍后再问一次，不算进总数" side="bottom">
+                <span className="vc-retry-chip" tabIndex={-1}>
+                  <span className="num">+{retryTotal}</span> 重练
+                </span>
+              </Tooltip>
+            )}
+            <Tooltip label="本轮第一次作答：答对 · 答错" side="bottom">
+              <span className="vc-tally" tabIndex={-1}>
+                <span className="vc-tally-ok">
+                  <Icon name="check" size={14} />
+                  <b className="num">{right}</b>
+                </span>
+                <span className="vc-tally-bad">
+                  <Icon name="x" size={14} />
+                  <b className="num">{wrong}</b>
+                </span>
               </span>
-              <Button variant="primary" size="lg" iconRight="arrowRight" onClick={next}>
-                {run.index + 1 >= total ? '完成' : '下一个'}
-                <Kbd>Enter</Kbd>
-              </Button>
-            </>
-          ) : (
-            <span className="vc-keys faint">
-              {card.skill === 'read' ? (
-                <>
-                  用日语输入法打假名，或直接打罗马字 · <Kbd>Enter</Kbd> 确认
-                </>
-              ) : (
-                <>
-                  <Kbd>1</Kbd>–<Kbd>4</Kbd> 选择 · <Kbd>0</Kbd> 不认识
-                </>
-              )}
-            </span>
-          )}
-        </footer>
-      </div>
+            </Tooltip>
+            <IconButton
+              icon="volume"
+              size="sm"
+              label={autoplay ? '答完自动朗读：开' : '答完自动朗读：关'}
+              tooltipSide="bottom"
+              active={autoplay}
+              onMouseDown={keepFocus}
+              onClick={() => {
+                writeAutoplay(!autoplay);
+                setAutoplay(!autoplay);
+              }}
+            />
+            <Button variant="ghost" size="sm" icon="flag" onClick={() => finishRun(false)} onMouseDown={keepFocus}>
+              结束
+            </Button>
+          </>
+        }
+      />
 
-      <p className="vc-session-note faint">
-        {retriesLeft > 0 ? `答错的 ${retriesLeft} 个会在本轮稍后再问一次。` : '读音和词义分开记录，答错的会在本轮稍后再问一次。'}
-      </p>
+      <div className="vc-focus-body">
+        <div
+          className={cx('vc-stage', run.current && (run.current.correct ? 'is-right' : 'is-wrong'))}
+          ref={stageRef}
+          tabIndex={-1}
+          key={cardKey}
+          aria-label={`${SKILL_NAME[card.skill]}：${v.word}`}
+        >
+          <div className="vc-stage-tags">
+            <Badge tone={SKILL_TONE[card.skill]} icon={card.skill === 'read' ? 'pen' : 'list'}>
+              {SKILL_NAME[card.skill]}
+            </Badge>
+            {card.retry && (
+              <Badge tone="warning" icon="refresh">
+                再练一次
+              </Badge>
+            )}
+          </div>
+
+          <div className={cx('vc-word', wordLen > 5 ? 'is-long' : wordLen > 3 && 'is-mid')} lang="ja">
+            {v.word}
+          </div>
+          {card.skill === 'read' ? (
+            <ReadInput v={v} answered={run.current} onAnswer={answer} />
+          ) : (
+            <MeaningOptions v={v} date={run.date} retry={!!card.retry} answered={run.current} onAnswer={answer} />
+          )}
+
+          {run.current && (
+            <>
+              <Reveal v={v} card={card} a={run.current} />
+              <footer className="vc-stage-foot">
+                <span className="vc-keys">
+                  <Kbd>Space</Kbd> 读音
+                  {v.audio?.example && (
+                    <>
+                      <Kbd>E</Kbd> 例句
+                    </>
+                  )}
+                </span>
+                <Button variant="primary" size="lg" iconRight="arrowRight" onClick={next}>
+                  {last ? '完成' : '下一个'}
+                  <Kbd>Enter</Kbd>
+                </Button>
+              </footer>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -303,53 +378,62 @@ function ReadInput({ v, answered, onAnswer }: { v: VocabEntry; answered: RunAnsw
   }
 
   return (
-    <div className="vc-read">
-      <div className={cx('vc-input-wrap', shake && 'is-shake')}>
-        <input
-          ref={inputRef}
-          className="vc-input"
-          lang="ja"
-          value={text}
-          placeholder="写出读音"
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck={false}
-          aria-label="读音（假名或罗马字）"
-          onChange={(e) => setText(e.target.value)}
-          onCompositionStart={() => (composing.current = true)}
-          onCompositionEnd={() => {
-            // keydown for the confirming Enter can arrive right after compositionend.
-            setTimeout(() => (composing.current = false), 0);
-          }}
-          onKeyDown={onKeyDown}
-        />
+    <>
+      <div className="vc-read">
+        <div className={cx('vc-input-wrap', shake && 'is-shake')}>
+          <input
+            ref={inputRef}
+            className="vc-input"
+            lang="ja"
+            value={text}
+            placeholder="写出读音"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
+            aria-label="读音（假名或罗马字）"
+            onChange={(e) => setText(e.target.value)}
+            onCompositionStart={() => (composing.current = true)}
+            onCompositionEnd={() => {
+              // keydown for the confirming Enter can arrive right after compositionend.
+              setTimeout(() => (composing.current = false), 0);
+            }}
+            onKeyDown={onKeyDown}
+          />
+        </div>
+        <div className="vc-romaji" aria-live="polite">
+          {kana ? (
+            <>
+              按假名判：<span lang="ja">{kana}</span>
+            </>
+          ) : (
+            '用日语输入法打假名，或直接打罗马字'
+          )}
+        </div>
       </div>
-      <div className="vc-romaji" aria-live="polite">
-        {kana ? (
-          <>
-            <span className="faint">按假名判：</span>
-            <span lang="ja">{kana}</span>
-          </>
-        ) : (
-          <span className="faint">&nbsp;</span>
-        )}
-      </div>
-      <div className="vc-read-actions">
-        <Button variant="ghost" onClick={() => onAnswer({ correct: false, response: '', typed: '' })}>
-          不会，看答案
-        </Button>
-        <Button variant="primary" icon="check" onClick={submit} disabled={!text.trim()}>
-          确认
-        </Button>
-      </div>
-    </div>
+      <footer className="vc-stage-foot">
+        <span className="vc-keys">
+          <Kbd>Enter</Kbd> 确认
+        </span>
+        <span className="vc-foot-actions">
+          <Button variant="ghost" size="lg" onClick={() => onAnswer({ correct: false, response: '', typed: '' })}>
+            不会，看答案
+          </Button>
+          <Button variant="primary" size="lg" icon="check" onClick={submit} disabled={!text.trim()}>
+            确认
+          </Button>
+        </span>
+      </footer>
+    </>
   );
 }
+
+const GRID_CHARS = 18;
 
 function MeaningOptions({ v, date, retry, answered, onAnswer }: { v: VocabEntry; date: string; retry: boolean; answered: RunAnswer | null; onAnswer: (a: RunAnswer) => void }) {
   const bank = useApp((s) => s.bank);
   const choice = useMemo(() => (bank ? meaningChoice(bank, v, date, retry ? 'retry' : '') : null), [bank, v, date, retry]);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const pick = (i: number) => {
     if (!choice || answered) return;
@@ -367,6 +451,16 @@ function MeaningOptions({ v, date, retry, answered, onAnswer }: { v: VocabEntry;
       } else if (e.key === '0') {
         e.preventDefault();
         pick(-1);
+      } else if (e.key.startsWith('Arrow')) {
+        // Arrows move between the options (2 × 2 on wide windows, a column otherwise).
+        const btns = [...(listRef.current?.querySelectorAll<HTMLButtonElement>('.vc-option') ?? [])];
+        if (!btns.length) return;
+        const at = btns.indexOf(document.activeElement as HTMLButtonElement);
+        const cols = listRef.current && getComputedStyle(listRef.current).gridTemplateColumns.split(' ').length > 1 ? 2 : 1;
+        const step = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' ? -cols : cols;
+        const to = at < 0 ? 0 : Math.max(0, Math.min(btns.length - 1, at + step));
+        e.preventDefault();
+        btns[to].focus();
       }
     };
     window.addEventListener('keydown', onKey);
@@ -374,75 +468,91 @@ function MeaningOptions({ v, date, retry, answered, onAnswer }: { v: VocabEntry;
   });
 
   if (!choice) return null;
+  // Four short glosses fit one line each in two columns; otherwise one option per row.
+  const grid = choice.options.every((o) => [...o.text].length <= GRID_CHARS);
   return (
-    <div className="vc-options">
-      {choice.options.map((o, i) => {
-        const isAnswer = i === choice.answer;
-        const chosen = answered?.choice === i;
-        return (
-          <button
-            key={o.vocabId}
-            type="button"
-            className={cx('vc-option', answered && isAnswer && 'is-right', answered && chosen && !isAnswer && 'is-wrong', answered && !isAnswer && !chosen && 'is-dim')}
-            onClick={() => pick(i)}
-            disabled={!!answered}
-          >
-            <span className="vc-option-key num">{i + 1}</span>
-            <span className="vc-option-text">{o.text}</span>
-            {answered && isAnswer && <Icon name="check" size={18} className="vc-option-mark" />}
-            {answered && chosen && !isAnswer && <Icon name="x" size={18} className="vc-option-mark" />}
-          </button>
-        );
-      })}
+    <>
+      <div className={cx('vc-options', grid && 'is-grid')} ref={listRef}>
+        {choice.options.map((o, i) => {
+          const isAnswer = i === choice.answer;
+          const chosen = answered?.choice === i;
+          return (
+            <button
+              key={o.vocabId}
+              type="button"
+              className={cx('vc-option', answered && isAnswer && 'is-right', answered && chosen && !isAnswer && 'is-wrong', answered && !isAnswer && !chosen && 'is-dim')}
+              onClick={() => pick(i)}
+              disabled={!!answered}
+            >
+              <span className="vc-option-key num">{i + 1}</span>
+              <span className="vc-option-text">{o.text}</span>
+              {answered && isAnswer && <Icon name="check" size={18} className="vc-option-mark" />}
+              {answered && chosen && !isAnswer && <Icon name="x" size={18} className="vc-option-mark" />}
+            </button>
+          );
+        })}
+      </div>
       {!answered && (
-        <button type="button" className="vc-option-skip" onClick={() => pick(-1)}>
-          不认识这个词
-        </button>
+        <footer className="vc-stage-foot">
+          <span className="vc-keys">
+            <Kbd>1</Kbd>–<Kbd>4</Kbd> 选择
+          </span>
+          <Button variant="ghost" size="lg" onClick={() => pick(-1)}>
+            不认识这个词
+            <Kbd>0</Kbd>
+          </Button>
+        </footer>
       )}
-    </div>
+    </>
   );
 }
 
 function Reveal({ v, card, a }: { v: VocabEntry; card: RunCard; a: RunAnswer }) {
   const alts = v.altReadings?.filter((x) => x !== v.reading) ?? [];
+  const { pos, text } = splitMeaning(v.meaningZh);
+  const title = a.correct ? (card.retry ? '这次对了' : '答对了') : card.retry ? '还是不太熟，明天再见' : card.skill === 'read' ? '读音记一下' : '意思记一下';
   return (
     <div className="vc-reveal">
-      <div className={cx('vc-verdict', a.correct ? 'is-right' : 'is-wrong')}>
-        <Icon name={a.correct ? 'checkCircle' : 'xCircle'} size={18} />
-        <span>{a.correct ? (card.retry ? '这次对了' : '答对了') : card.retry ? '还是不太熟，明天再见' : card.skill === 'read' ? '读音记一下' : '意思记一下'}</span>
-        <span className="vc-verdict-skill faint">{SKILL_LABEL[card.skill]}</span>
-      </div>
-      <div className="vc-reveal-main">
-        <div className="vc-reveal-reading">
-          <span className="vc-reading" lang="ja">
-            {v.reading}
-          </span>
+      <div className={cx('vc-verdict', a.correct ? 'tone-success' : 'tone-danger')} role="status">
+        <span className="vc-verdict-icon">
+          <Icon name={a.correct ? 'check' : 'x'} size={16} />
+        </span>
+        <span className="vc-verdict-title">{title}</span>
+        <span className="vc-verdict-answer">
+          {/* A right reading already shows in green above; repeating it would only echo. */}
+          {!(card.skill === 'read' && a.correct && a.response === v.reading) && (
+            <span className="vc-reading" lang="ja">
+              {v.reading}
+            </span>
+          )}
           {alts.length > 0 && (
-            <span className="faint text-sm" lang="ja">
+            <span className="vc-alt" lang="ja">
               也读 {alts.join('・')}
             </span>
           )}
           <AudioButton src={v.audio?.word} size="sm" />
-        </div>
-        {card.skill === 'read' && <p className="vc-meaning">{v.meaningZh}</p>}
-        {v.trapZh && (
-          <div className="vc-trap">
-            <Icon name="alert" size={15} />
-            <span>{v.trapZh}</span>
-          </div>
-        )}
-        {v.example && (
-          <div className="vc-example">
-            <div className="vc-example-ja" lang="ja">
-              <span className="vc-example-text">
-                  <Highlighted text={v.example.ja} word={v.word} />
-                </span>
-              <AudioButton src={v.audio?.example} size="sm" label="例句" />
-            </div>
-            {v.example.zh && <p className="vc-example-zh">{v.example.zh}</p>}
-          </div>
-        )}
+        </span>
       </div>
+      <p className="vc-meaning vc-def">
+        {pos && <span className="vc-pos">{pos}</span>}
+        {text}
+      </p>
+      {v.trapZh && (
+        <Callout tone="warning" icon="alert" className="vc-trap">
+          {v.trapZh}
+        </Callout>
+      )}
+      {v.example && (
+        <div className="vc-example">
+          <div className="vc-example-ja" lang="ja">
+            <span className="vc-example-text">
+              <Highlighted text={v.example.ja} word={v.word} />
+            </span>
+            <AudioButton src={v.audio?.example} size="sm" label="例句" />
+          </div>
+          {v.example.zh && <p className="vc-example-zh">{v.example.zh}</p>}
+        </div>
+      )}
     </div>
   );
 }

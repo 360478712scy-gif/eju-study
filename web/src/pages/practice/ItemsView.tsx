@@ -3,8 +3,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { SUBJECTS, type Item, type Subject } from '@shared/types.ts';
 import { sessionLabel } from '@shared/bank.ts';
 import { useReady } from '../../lib/store.ts';
-import { cx, SUBJECT_NAME } from '../../lib/format.ts';
-import { Badge, Button, Empty, modalDepth, Segmented } from '../../components/ui.tsx';
+import { SUBJECT_NAME } from '../../lib/format.ts';
+import { Badge, Button, Empty, Kbd, modalDepth, Segmented, StatusIcon } from '../../components/ui.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { RichText } from '../../components/RichText.tsx';
 import {
@@ -121,14 +121,14 @@ export function ItemsView({
           value={filter}
           onChange={setFilter}
           options={[
-            { value: 'all', label: <FilterLabel text="全部" n={counts.all} /> },
-            { value: 'new', label: <FilterLabel text="未做" n={counts.new} /> },
-            { value: 'wrong', label: <FilterLabel text="做错" n={counts.wrong} /> },
-            { value: 'starred', label: <FilterLabel text="收藏" n={counts.starred} /> },
+            { value: 'all', label: '全部', count: counts.all },
+            { value: 'new', label: '未做', count: counts.new },
+            { value: 'wrong', label: '做错', count: counts.wrong },
+            { value: 'starred', label: '收藏', count: counts.starred },
           ]}
         />
-        <label className="pr-select">
-          <Icon name="layers" size={14} />
+        <label className="field field-select pr-select">
+          <Icon name="layers" size={15} />
           <select value={validTopic || ''} onChange={(e) => onTopic(e.target.value || null)} aria-label="考点">
             <option value="">全部考点</option>
             {units.map((u) => (
@@ -143,13 +143,13 @@ export function ItemsView({
               </optgroup>
             ))}
           </select>
-          <Icon name="down" size={14} className="pr-select-caret" />
+          <Icon name="down" size={14} className="field-chevron" />
         </label>
         <SearchBox onSearch={setQuery} />
       </div>
 
       {shown.length > 0 ? (
-        <div className="pr-list">
+        <div className="card card-flush pr-list">
           {shown.map((it) => (
             <ItemRow key={it.id} item={it} terms={terms} reserved={!!reservedFor(reserved, it)} onOpen={() => onPreview(it.id)} />
           ))}
@@ -158,14 +158,14 @@ export function ItemsView({
               <Button variant="secondary" size="sm" icon="down" onClick={() => setLimit((l) => l + PAGE)}>
                 再显示 {Math.min(PAGE, results.length - limit)} 题
               </Button>
-              <span className="faint text-sm num">
+              <span className="pr-more-count num">
                 {limit} / {results.length}
               </span>
             </div>
           )}
         </div>
       ) : (
-        <div className="pr-list pr-list-empty">
+        <div className="card pr-list-empty">
           <EmptyState
             filter={filter}
             query={query}
@@ -179,15 +179,6 @@ export function ItemsView({
         </div>
       )}
     </div>
-  );
-}
-
-function FilterLabel({ text, n }: { text: string; n: number }) {
-  return (
-    <span className="pr-filter-label">
-      {text}
-      <span className="num pr-filter-n">{n}</span>
-    </span>
   );
 }
 
@@ -219,7 +210,7 @@ function SearchBox({ onSearch }: { onSearch: (q: string) => void }) {
   }, []);
 
   return (
-    <div className="pr-search">
+    <label className="field pr-search">
       <Icon name="search" size={15} />
       <input
         ref={input}
@@ -250,7 +241,7 @@ function SearchBox({ onSearch }: { onSearch: (q: string) => void }) {
       {text ? (
         <button
           type="button"
-          className="pr-search-clear"
+          className="field-clear"
           aria-label="清空搜索"
           onClick={() => {
             setText('');
@@ -258,12 +249,12 @@ function SearchBox({ onSearch }: { onSearch: (q: string) => void }) {
             input.current?.focus();
           }}
         >
-          <Icon name="x" size={13} />
+          <Icon name="x" size={12} />
         </button>
       ) : (
-        <kbd className="pr-search-kbd">/</kbd>
+        <Kbd>/</Kbd>
       )}
-    </div>
+    </label>
   );
 }
 
@@ -276,8 +267,8 @@ function ItemRow({ item: it, terms, reserved, onOpen }: { item: Item; terms: str
   const topic = bank.topics.get(it.topic);
   return (
     <button type="button" className="pr-item" onClick={onOpen}>
-      <span className={cx('pr-status', `is-${st}`)} aria-label={st === 'new' ? '没做过' : st === 'right' ? '上次答对' : '上次答错'}>
-        {st === 'right' ? <Icon name="check" size={13} /> : st === 'wrong' ? <Icon name="x" size={13} /> : null}
+      <span className="pr-item-status">
+        <StatusIcon status={st === 'new' ? 'todo' : st} label={st === 'new' ? '没做过' : st === 'right' ? '上次答对' : '上次答错'} />
       </span>
       <span className="pr-item-main">
         <span className="pr-item-head">
@@ -303,12 +294,8 @@ function ItemRow({ item: it, terms, reserved, onOpen }: { item: Item; terms: str
         {p?.starred && <Icon name="star" size={14} className="pr-star-on" title="已收藏" />}
         {it.audio && <Icon name="headphones" size={14} title="听力" />}
         {it.figures && it.figures.length > 0 && <Icon name="image" size={14} title="有图" />}
-        {reserved && (
-          <Badge tone="warning" icon="flag">
-            模考预留
-          </Badge>
-        )}
-        {p?.inMistakes && <Badge tone="danger">错题本</Badge>}
+        {reserved && <Badge size="sm">留给模考</Badge>}
+        {p?.inMistakes && <Badge size="sm">错题本</Badge>}
         <Icon name="right" size={16} className="pr-item-go" />
       </span>
     </button>
@@ -359,7 +346,7 @@ function EmptyState({
     );
   }
   if (filter === 'starred') {
-    return <Empty icon="star" title="还没有收藏的题" desc="打开任意一道题，点左下角的「收藏」，之后在这里集中复习。" action={<Button size="sm" onClick={onAll}>看全部题目</Button>} />;
+    return <Empty icon="star" title="还没有收藏的题" desc="打开任意一道题，点「收藏」，之后在这里集中复习。" action={<Button size="sm" onClick={onAll}>看全部题目</Button>} />;
   }
   if (filter === 'wrong') {
     return <Empty icon="checkCircle" title={topicName ? `「${topicName}」没有错题` : '这一科目前没有错题'} desc="保持住。做错的题会自动出现在这里和错题本里。" action={<Button size="sm" onClick={onAll}>看全部题目</Button>} />;

@@ -5,10 +5,9 @@ import { VOCAB_MAX_BOX } from '@shared/srs.ts';
 import { daysBetween } from '@shared/dates.ts';
 import { useApp } from '../../lib/store.ts';
 import { cx, fmtDateShort } from '../../lib/format.ts';
-import { Icon } from '../../components/Icon.tsx';
-import { Badge, Modal } from '../../components/ui.tsx';
+import { Badge, Callout, Dot, IconButton, Modal, StatusIcon } from '../../components/ui.tsx';
 import { AudioButton, Highlighted, Meter } from './parts.tsx';
-import { CATEGORY_LABEL, noReadReason, SKILL_LABEL, vocabGroup } from './run.ts';
+import { CATEGORY_LABEL, noReadReason, SKILL_LABEL, SKILL_NAME, SKILL_TONE, gloss, splitMeaning, vocabGroup } from './run.ts';
 
 function dueText(due: string, today: string): string {
   const d = daysBetween(today, due);
@@ -36,22 +35,22 @@ export function WordDetail({ vocabId, onClose }: { vocabId: string | null; onClo
     if (!a.response) return '没有作答';
     if (a.skill === 'read') return a.response;
     const chosen = bank?.vocabById.get(a.response);
-    if (chosen) return chosen.meaningZh;
+    if (chosen) return gloss(chosen.meaningZh);
     return /^\d+$/.test(a.response) ? `选项 ${a.response}` : a.response;
   };
 
+  const meaning = v ? splitMeaning(v.meaningZh) : null;
+
   return (
     <Modal open={!!v} onClose={onClose} width={600}>
-      {v && (
+      {v && meaning && (
         <div className="vc-detail">
           <div className="vc-detail-top">
             <div className="vc-detail-tags">
-              <Badge tone={v.category === 'science' ? 'physics' : 'neutral'}>{CATEGORY_LABEL[v.category]}</Badge>
+              <Badge>{CATEGORY_LABEL[v.category]}</Badge>
               {group && <Badge>{group}</Badge>}
             </div>
-            <button type="button" className="vc-detail-close" onClick={onClose} aria-label="关闭">
-              <Icon name="x" size={18} />
-            </button>
+            <IconButton icon="x" label="关闭" size="sm" tooltip={false} onClick={onClose} className="vc-detail-close" />
           </div>
           <div className="vc-detail-word" lang="ja">
             {v.word}
@@ -59,18 +58,20 @@ export function WordDetail({ vocabId, onClose }: { vocabId: string | null; onClo
           <div className="vc-detail-reading">
             <span lang="ja">{v.reading}</span>
             {v.altReadings && v.altReadings.length > 0 && (
-              <span className="faint text-sm" lang="ja">
+              <span className="vc-alt" lang="ja">
                 也读 {v.altReadings.join('・')}
               </span>
             )}
             <AudioButton src={v.audio?.word} label="读音" size="sm" />
           </div>
-          <p className="vc-detail-meaning">{v.meaningZh}</p>
+          <p className="vc-meaning vc-def">
+            {meaning.pos && <span className="vc-pos">{meaning.pos}</span>}
+            {meaning.text}
+          </p>
           {v.trapZh && (
-            <div className="vc-trap">
-              <Icon name="alert" size={15} />
-              <span>{v.trapZh}</span>
-            </div>
+            <Callout tone="warning" icon="alert" className="vc-trap">
+              {v.trapZh}
+            </Callout>
           )}
           {v.example && (
             <div className="vc-example">
@@ -88,22 +89,19 @@ export function WordDetail({ vocabId, onClose }: { vocabId: string | null; onClo
             {(['read', 'meaning'] as VocabSkill[]).map((skill) => {
               const sp = p?.[skill];
               const noRead = skill === 'read' ? noReadReason(v) : null;
-              if (noRead) {
-                return (
-                  <div key={skill} className="vc-detail-skill">
-                    <span className="vc-detail-skill-name">看字写读音</span>
-                    <div className="vc-detail-skill-sub">{noRead}。</div>
-                  </div>
-                );
-              }
               return (
                 <div key={skill} className="vc-detail-skill">
-                  <div className="row-between">
-                    <span className="vc-detail-skill-name">{skill === 'read' ? '看字写读音' : '看词选意思'}</span>
-                    <Meter p={sp} />
+                  <div className="vc-detail-skill-head">
+                    <span className="vc-detail-skill-name">
+                      <Dot tone={SKILL_TONE[skill]} size="sm" />
+                      {SKILL_NAME[skill]}
+                    </span>
+                    {!noRead && <Meter p={sp} skill={skill} />}
                   </div>
                   <div className="vc-detail-skill-sub">
-                    {sp ? (
+                    {noRead ? (
+                      `${noRead}。`
+                    ) : sp ? (
                       <>
                         第 {sp.box}/{VOCAB_MAX_BOX} 级 · 练 {sp.seen} 次对 {sp.correct} 次 ·{' '}
                         <span className={cx(sp.due <= today && 'vc-due-text')}>{dueText(sp.due, today)}</span>
@@ -122,14 +120,14 @@ export function WordDetail({ vocabId, onClose }: { vocabId: string | null; onClo
               <div className="vc-detail-h">最近作答</div>
               <ul>
                 {recent.map((a) => (
-                  <li key={a.id} className={cx(a.correct ? 'is-right' : 'is-wrong')}>
-                    <Icon name={a.correct ? 'check' : 'x'} size={14} />
+                  <li key={a.id}>
+                    <StatusIcon status={a.correct ? 'right' : 'wrong'} size={18} />
                     <span className="vc-hist-skill">{SKILL_LABEL[a.skill]}</span>
                     <span className="vc-hist-resp" lang={a.skill === 'read' ? 'ja' : undefined}>
                       {responseText(a)}
                     </span>
                     {(a.legacy || a.heardAudio) && <span className="vc-hist-flag">听音作答</span>}
-                    <span className="vc-hist-date faint">{fmtDateShort(a.date)}</span>
+                    <span className="vc-hist-date num">{fmtDateShort(a.date)}</span>
                   </li>
                 ))}
               </ul>

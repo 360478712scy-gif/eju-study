@@ -5,7 +5,7 @@ import { daysBetween, parseDate, weekdayZh } from '@shared/dates.ts';
 import { update, useApp } from '../../lib/store.ts';
 import { cx, fmtMinutes, SUBJECT_NAME } from '../../lib/format.ts';
 import { Icon, SUBJECT_ICON } from '../../components/Icon.tsx';
-import { Row, savedToast, SettingCard, Slider } from './controls.tsx';
+import { Row, SettingCard, Slider } from './controls.tsx';
 
 const ORDER: Subject[] = ['japanese', 'math', 'physics', 'chemistry'];
 /** EJU scale per subject (日语 = 读解 + 听解·听读解; 记述 is scored separately). */
@@ -96,7 +96,6 @@ export function GoalsCard({ onPlanStale }: { onPlanStale: () => void }) {
       d.profile[kind][subject] = n;
       d.profile.targetTotal = ORDER.reduce((s, k) => s + d.profile.targets[k], 0);
     });
-    savedToast();
     onPlanStale();
   };
 
@@ -106,7 +105,6 @@ export function GoalsCard({ onPlanStale }: { onPlanStale: () => void }) {
     update((d) => {
       d.profile.dailyMinutes = m;
     });
-    savedToast();
     onPlanStale();
   };
 
@@ -117,7 +115,6 @@ export function GoalsCard({ onPlanStale }: { onPlanStale: () => void }) {
       else set.add(id);
       d.profile.weakTopics = [...set];
     });
-    savedToast();
     onPlanStale();
   };
 

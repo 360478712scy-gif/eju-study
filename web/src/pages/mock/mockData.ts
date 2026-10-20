@@ -4,11 +4,14 @@ import { mockItems, type BankIndex } from '@shared/bank.ts';
 import { JA_FULL, mockItemsPadded, mockLimitFor } from '@shared/planner.ts';
 import type { IconName } from '../../components/Icon.tsx';
 
+export { mockTitle } from '../practice/practiceData.ts';
+
 export const KIND_ORDER: MockKind[] = ['math', 'science', 'ja-reading', 'ja-listening'];
 
-export const KIND_INFO: Record<MockKind, { name: string; short: string; tone: 'math' | 'primary' | 'japanese'; icon: IconName; subject: Subject | 'mixed' }> = {
+/** Tone = subject identity (理科 spans two subjects, so it takes the neutral 综合 tone). */
+export const KIND_INFO: Record<MockKind, { name: string; short: string; tone: 'math' | 'mixed' | 'japanese'; icon: IconName; subject: Subject | 'mixed' }> = {
   math: { name: '数学コース2', short: '数学', tone: 'math', icon: 'sigma', subject: 'math' },
-  science: { name: '理科（物理·化学）', short: '理科', tone: 'primary', icon: 'atom', subject: 'mixed' },
+  science: { name: '理科（物理·化学）', short: '理科', tone: 'mixed', icon: 'atom', subject: 'mixed' },
   'ja-reading': { name: '日语读解', short: '读解', tone: 'japanese', icon: 'book', subject: 'japanese' },
   'ja-listening': { name: '日语听解·听读解', short: '听解', tone: 'japanese', icon: 'headphones', subject: 'japanese' },
 };

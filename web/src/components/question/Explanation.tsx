@@ -1,20 +1,8 @@
 // The worked explanation: solution, key points, traps, shortcut, Japanese terms, transcript.
 import type { Item } from '@shared/types.ts';
 import { RichText } from '../RichText.tsx';
-import { Icon, type IconName } from '../Icon.tsx';
-import type { ReactNode } from 'react';
-
-function Box({ tone, icon, title, children }: { tone: string; icon: IconName; title: string; children: ReactNode }) {
-  return (
-    <div className={`q-ex-box tone-${tone}`}>
-      <div className="q-ex-box-title">
-        <Icon name={icon} size={14} />
-        {title}
-      </div>
-      {children}
-    </div>
-  );
-}
+import { Icon } from '../Icon.tsx';
+import { Callout } from '../ui.tsx';
 
 export function Explanation({ item, showTranscript = true }: { item: Item; showTranscript?: boolean }) {
   const ex = item.explanation;
@@ -23,7 +11,7 @@ export function Explanation({ item, showTranscript = true }: { item: Item; showT
       {(ex.keyPoints?.length || ex.traps?.length || ex.shortcut) && (
         <div className="q-ex-grid">
           {ex.keyPoints && ex.keyPoints.length > 0 && (
-            <Box tone="primary" icon="target" title="考点">
+            <Callout tone="primary" icon="target" title="考点" className="q-ex-box">
               <ul>
                 {ex.keyPoints.map((k, i) => (
                   <li key={i}>
@@ -31,10 +19,10 @@ export function Explanation({ item, showTranscript = true }: { item: Item; showT
                   </li>
                 ))}
               </ul>
-            </Box>
+            </Callout>
           )}
           {ex.traps && ex.traps.length > 0 && (
-            <Box tone="warning" icon="alert" title="易错">
+            <Callout tone="warning" icon="alert" title="易错" className="q-ex-box">
               <ul>
                 {ex.traps.map((k, i) => (
                   <li key={i}>
@@ -42,12 +30,12 @@ export function Explanation({ item, showTranscript = true }: { item: Item; showT
                   </li>
                 ))}
               </ul>
-            </Box>
+            </Callout>
           )}
           {ex.shortcut && (
-            <Box tone="success" icon="zap" title="考场速解">
+            <Callout tone="success" icon="zap" title="考场速解" className="q-ex-box is-wide">
               <RichText text={ex.shortcut} lang="zh" className="q-ex-box-text" />
-            </Box>
+            </Callout>
           )}
         </div>
       )}

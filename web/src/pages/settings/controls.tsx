@@ -2,17 +2,8 @@
 import { type ReactNode } from 'react';
 import { cx } from '../../lib/format.ts';
 import { Icon, type IconName } from '../../components/Icon.tsx';
-import { toast } from '../../components/ui.tsx';
 
-let lastSavedToast = 0;
-
-/** A quiet "已保存" after a change; at most one every 1.5 s while dragging sliders. */
-export function savedToast() {
-  const now = Date.now();
-  if (now - lastSavedToast < 1500) return;
-  lastSavedToast = now;
-  toast('已保存', 'success', 1300);
-}
+// Settings save silently: the page says "改动会立刻保存" and the sidebar shows the save state.
 
 export function Switch({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label: string }) {
   return (
@@ -89,13 +80,13 @@ export function Row({ title, desc, children, stack }: { title: ReactNode; desc?:
 
 export function SettingCard({ id, icon, title, desc, children, aside }: { id: string; icon: IconName; title: string; desc?: ReactNode; children: ReactNode; aside?: ReactNode }) {
   return (
-    <section className="sg-card" id={`st-${id}`} data-section={id}>
+    <section className="card sg-card" id={`st-${id}`} data-section={id}>
       <header className="sg-card-head">
-        <span className="sg-card-icon">
-          <Icon name={icon} size={17} />
-        </span>
         <div className="sg-card-titles">
-          <h2>{title}</h2>
+          <h2>
+            <Icon name={icon} size={16} className="sg-card-icon" />
+            {title}
+          </h2>
           {desc && <p>{desc}</p>}
         </div>
         {aside && <div className="sg-card-aside">{aside}</div>}

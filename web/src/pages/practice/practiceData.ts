@@ -1,7 +1,24 @@
 // Pure helpers for the practice bank browser and the mock pages (no React).
-import type { AppState, Item, ItemProgress, MockKind, Subject } from '@shared/types.ts';
+import type { AppState, Item, ItemProgress, MockKind, Profile, Subject } from '@shared/types.ts';
 import type { BankIndex } from '@shared/bank.ts';
 import { mockItemsPadded, mockSchedule, reservedPadding, shortTopic, type ScheduledMock } from '@shared/planner.ts';
+import { SCALE_MAX } from '@shared/stats.ts';
+
+// ───────────────────────── Mastery scale ─────────────────────────
+// One scale for every mastery bar, ring and tile: < 50% 薄弱 (danger), 50%–target neutral,
+// ≥ target 达标 (success). The target is the learner's own score target on that subject's scale.
+
+export type MasteryTone = 'danger' | 'neutral' | 'success';
+
+/** The learner's target as a share of the subject's scale (math 155/200 → 0.775). */
+export function masteryTarget(profile: Profile, subject: Subject): number {
+  return Math.min(1, profile.targets[subject] / SCALE_MAX[subject]);
+}
+
+export function masteryTone(m: number, target: number): MasteryTone {
+  if (m < 0.5) return 'danger';
+  return m >= target ? 'success' : 'neutral';
+}
 
 // ───────────────────────── Item status ─────────────────────────
 
@@ -69,6 +86,18 @@ export interface ReservedMap {
   papers: Map<string, ScheduledMock>;
   /** Original item id → the scheduled Japanese mock it pads to exam length. */
   padding: Map<string, ScheduledMock>;
+}
+
+const CIRCLED = '①②③④⑤⑥⑦⑧⑨⑩';
+
+/**
+ * Display title of a scheduled mock: circled numerals read like info icons at small sizes, so
+ * "数理整卷模考 ①" → "数理整卷模考 · 第 1 场". `short` also drops the "（按考试日时间表）" note.
+ */
+export function mockTitle(title: string, short = false): string {
+  let out = title.replace(/\s*([①-⑩])\s*$/, (_, c: string) => ` · 第 ${CIRCLED.indexOf(c) + 1} 场`);
+  if (short) out = out.replace(/（[^）]*）/g, '');
+  return out.trim();
 }
 
 const isJa = (kind: MockKind): kind is 'ja-reading' | 'ja-listening' => kind === 'ja-reading' || kind === 'ja-listening';

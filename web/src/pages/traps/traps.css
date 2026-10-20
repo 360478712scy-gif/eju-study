@@ -1,15 +1,156 @@
-.tp-groups { display: flex; flex-direction: column; gap: 22px; }
-.tp-group-title { display: flex; align-items: center; gap: 10px; font-size: var(--fs-md); margin-bottom: 10px; }
-.tp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 10px; }
-.tp-entry { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
-.tp-entry-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.tp-topic { font-weight: 650; }
-.tp-line { font-size: var(--fs-sm); line-height: 1.7; padding-left: 14px; position: relative; }
-.tp-line::before { content: ''; position: absolute; left: 2px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; }
-.tp-trap::before { background: var(--warning); }
-.tp-point::before { background: var(--primary); }
-.tp-point { color: var(--text-2); }
-.tp-legend { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.tp-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-left: 4px; }
-.tp-dot-trap { background: var(--warning); }
-.tp-dot-point { background: var(--primary); }
+/* 考前一页纸 (.tp-) */
+.tp-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-bottom: 20px;
+}
+.tp-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+}
+.tp-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tp-left {
+  margin-left: auto;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.tp-left b {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+.tp-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--success-text);
+  font-weight: var(--fw-medium);
+}
+.tp-ico {
+  flex: none;
+}
+.tp-ico.is-trap {
+  color: var(--warning);
+}
+.tp-ico.is-point {
+  color: var(--text-3);
+}
+
+.tp-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.tp-group-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-3);
+}
+/* Two balanced columns of cards; each card is read top to bottom. */
+.tp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2 360px;
+  column-gap: 16px;
+}
+.tp-card {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  padding: 18px 20px 18px;
+  transition: opacity var(--dur) var(--ease);
+}
+.tp-card.is-done {
+  opacity: 0.5;
+}
+.tp-card.is-done:hover,
+.tp-card.is-done:has(:focus-visible) {
+  opacity: 0.72;
+}
+.tp-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.tp-head-text {
+  flex: 1;
+  min-width: 0;
+}
+.tp-topic {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-head);
+}
+.tp-meta {
+  margin-top: 4px;
+  font-size: var(--fs-xs);
+}
+/* "记住了": a quiet round checkbox, filled green when ticked. */
+.tp-check {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--border-strong);
+  color: transparent;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.tp-check:hover {
+  box-shadow: inset 0 0 0 1.5px var(--text-3);
+  color: var(--text-3);
+}
+.tp-check.is-on {
+  background: var(--success);
+  box-shadow: none;
+  color: var(--on-success);
+}
+.tp-check:focus-visible {
+  box-shadow: var(--focus-ring), inset 0 0 0 1.5px var(--border-strong);
+}
+.tp-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tp-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  color: var(--text);
+}
+.tp-line > .tp-ico {
+  margin-top: 0.4em;
+}
+.tp-line.is-point {
+  color: var(--text-2);
+}
+/* Numeric fractions that stay stacked (½mv²) get a readable size. */
+.tp-line .katex .mfrac:has(> .vlist-t > .vlist-r > .vlist > span > .sizing.reset-size6.size3) {
+  font-size: 1.18em;
+}
