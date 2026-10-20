@@ -355,7 +355,9 @@ export function abandonSession(state: AppState, sessionId: string) {
     const b = findBlock(state, s.blockId);
     if (b && b.status === 'active' && !Object.values(s.answers).some((a) => a.submitted)) b.status = 'todo';
   }
-  if (!Object.values(s.answers).some((a) => a.submitted || a.response !== null)) delete state.sessions[sessionId];
+  const hasContent = (r: unknown) =>
+    r !== null && r !== undefined && (typeof r !== 'object' || Object.values(r as Record<string, unknown>).some((v) => String(v ?? '').trim() !== ''));
+  if (!Object.values(s.answers).some((a) => a.submitted || hasContent(a.response))) delete state.sessions[sessionId];
 }
 
 export function markBlock(state: AppState, blockId: string, status: PlanBlock['status'], now = new Date()) {

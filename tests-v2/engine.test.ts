@@ -5,7 +5,7 @@ import { bank } from './fixtures.ts';
 import { createInitialState, migrateV1 } from '../shared/migrate.ts';
 import { buildDayPlan, budgetFor, mockSchedule, phaseFor, daysLeftOn, reservedSessions, mockItemsPadded } from '../shared/planner.ts';
 import { estimateAll } from '../shared/stats.ts';
-import { startBlock, submitAnswer, finishSession, ensurePlan, recordVocab, vocabQueue, regeneratePlan } from '../shared/actions.ts';
+import { startBlock, submitAnswer, finishSession, ensurePlan, recordVocab, vocabQueue, regeneratePlan, abandonSession } from '../shared/actions.ts';
 import { gradeItem, normalizeKana, readingMatches } from '../shared/grading.ts';
 import { updateItemProgress } from '../shared/srs.ts';
 import { parseBlocks, parseInline, collectMath } from '../shared/markup.ts';
@@ -257,4 +257,17 @@ test('kana-only words skip the reading skill', () => {
   const b2 = { ...bank, bundle: { ...bank.bundle, vocab: [{ id: 'k1', word: 'むしろ', reading: 'むしろ', meaningZh: '与其说…不如说', category: 'reading' as const }] } };
   const q = vocabQueue(s, b2, '2026-10-20', 10);
   assert.deepEqual(q.map((x) => x.skill), ['meaning']);
+});
+
+test('leaving an untouched block discards the empty session and puts the block back', () => {
+  const s = fresh();
+  const date = '2026-10-21';
+  const plan = ensurePlan(s, bank, date);
+  const b = plan.blocks.find((x) => x.kind === 'drill' && x.itemIds.length)!;
+  const ss = startBlock(s, bank, b)!;
+  // A draft entry with no real content (e.g. confidence toggled, or an erased mark sheet).
+  ss.answers[ss.itemIds[0]] = { response: undefined as unknown as null, seconds: 12, submitted: false };
+  abandonSession(s, ss.id);
+  assert.equal(s.sessions[ss.id], undefined);
+  assert.equal(b.status, 'todo');
 });
