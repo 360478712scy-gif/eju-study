@@ -63,6 +63,8 @@
           { "id": "phys.mech.energy", "name": "功与能量", "ja": "仕事とエネルギー", "weight": 4 },
           { "id": "phys.mech.momentum", "name": "动量·碰撞", "ja": "運動量", "weight": 4 },
           { "id": "phys.mech.circular", "name": "圆周运动·简谐运动", "ja": "円運動・単振動", "weight": 4 },
+          { "id": "phys.mech.spring", "name": "弹簧与单振动", "ja": "ばね振り子", "weight": 3 },
+          { "id": "phys.mech.pendulum", "name": "单摆", "ja": "単振り子", "weight": 3 },
           { "id": "phys.mech.gravity", "name": "万有引力", "ja": "万有引力", "weight": 2 }
         ]},
         { "id": "phys.thermo", "name": "热学", "topics": [

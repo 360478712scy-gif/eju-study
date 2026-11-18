@@ -66,12 +66,16 @@ export function validateItem(it, errors, warnings) {
   for (const t of it.tags || []) need(TOPICS.has(t), `tag "${t}" not in taxonomy`);
   need([1, 2, 3].includes(it.difficulty), 'difficulty must be 1, 2 or 3');
   need(typeof it.targetSec === 'number' && it.targetSec >= 20 && it.targetSec <= 2400, 'targetSec out of range');
-  need(it.source && ['official', 'original'].includes(it.source.kind) && typeof it.source.label === 'string', 'source missing');
+  need(it.source && ['official', 'original', 'school'].includes(it.source.kind) && typeof it.source.label === 'string', 'source missing');
+  if (it.source?.kind === 'school') {
+    need(['waseda', 'meiji', 'aoyama', 'rikkyo', 'chuo', 'hosei'].includes(it.source.school), 'unknown school');
+  }
+  if (it.format !== 'written') need(it.written === undefined, 'unexpected written parts');
   need(typeof it.stem === 'string' && it.stem.trim().length > 0, 'stem empty');
   checkMarkup(it.stem, `${w} stem`, errors);
   if (it.subject === 'japanese') {
     need(['reading', 'listening-reading', 'listening'].includes(it.section), 'japanese item needs section');
-  } else if (!it.stemZh) {
+  } else if (it.source?.kind === 'official' && !it.stemZh) {
     warnings.push(`${w} stemZh missing`);
   }
   if (it.stemZh) checkMarkup(it.stemZh, `${w} stemZh`, errors);
@@ -109,8 +113,33 @@ export function validateItem(it, errors, warnings) {
       seenLetters.add(l);
     }
     need(it.options === undefined && it.answer === undefined, 'blanks item must not have options/answer');
+  } else if (it.format === 'written') {
+    need(it.answer === undefined && it.options === undefined && it.blanks === undefined, 'written must use parts for grading');
+    const parts = it.written?.parts;
+    need(Array.isArray(parts) && parts.length > 0, 'written.parts must be a nonempty array');
+    const partIds = new Set();
+    for (const part of Array.isArray(parts) ? parts : []) {
+      if (!part || typeof part !== 'object') { need(false, 'invalid written part'); continue; }
+      need(typeof part.id === 'string' && part.id.trim() && !partIds.has(part.id), 'missing or duplicate part id');
+      partIds.add(part.id);
+      need(typeof part.label === 'string' && part.label.trim(), 'part label missing');
+      need(Number.isSafeInteger(part.points) && part.points > 0, 'part points must be positive integers');
+      need(typeof part.modelAnswer === 'string' && part.modelAnswer.trim(), 'part needs modelAnswer');
+      for (const key of ['prompt', 'final']) need(part[key] === undefined || typeof part[key] === 'string', 'invalid part ' + key);
+      for (const key of ['prompt', 'modelAnswer', 'final']) checkMarkup(part[key], w + ' ' + key, errors);
+      const rubric = part.rubric;
+      need(Array.isArray(rubric) && rubric.length > 0, 'part needs nonempty rubric');
+      let total = 0;
+      for (const row of Array.isArray(rubric) ? rubric : []) {
+        need(typeof row?.text === 'string' && row.text.trim(), 'rubric text missing');
+        need(Number.isSafeInteger(row?.points) && row.points > 0, 'invalid rubric points');
+        checkMarkup(row?.text, w + ' rubric', errors);
+        total += row?.points;
+      }
+      need(part.points === total, 'rubric points must sum to part points');
+    }
   } else {
-    errors.push(`${w} format must be choice or blanks`);
+    errors.push(w + ' format must be choice, blanks or written');
   }
 
   const ex = it.explanation;

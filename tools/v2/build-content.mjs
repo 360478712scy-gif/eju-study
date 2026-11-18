@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Merge content/bank, content/vocab, content/notes and the taxonomy into content/dist/bank.json.
+// Merge science and mathematics items, content/notes and the taxonomy into content/dist/bank.json.
 // Items failing validation are skipped (and listed) so a broken file never breaks the app.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,6 +26,7 @@ for (const f of walk(path.join(ROOT, 'content/bank')).sort()) {
     continue;
   }
   for (const it of data.items || []) {
+    if (it.subject === 'japanese') continue;
     const errors = [];
     validateItem(it, errors, []);
     if (seen.has(it.id)) errors.push('duplicate id');
@@ -39,15 +40,6 @@ for (const f of walk(path.join(ROOT, 'content/bank')).sort()) {
 }
 
 const vocab = [];
-const vseen = new Set();
-for (const f of walk(path.join(ROOT, 'content/vocab')).sort()) {
-  for (const v of read(f).entries || []) {
-    if (!v.id || !v.word || !v.reading || !v.meaningZh || vseen.has(v.id)) continue;
-    vseen.add(v.id);
-    vocab.push(v);
-  }
-}
-
 const notes = [];
 for (const f of walk(path.join(ROOT, 'content/notes')).sort()) for (const n of read(f).notes || []) if (n.topic && n.body) notes.push(n);
 
@@ -66,8 +58,6 @@ const papers = [...bySession.entries()]
     const mocks = [];
     if (n((i) => i.subject === 'math') >= 4) mocks.push('math');
     if (n((i) => i.subject === 'physics') + n((i) => i.subject === 'chemistry') >= 30) mocks.push('science');
-    if (n((i) => i.subject === 'japanese' && i.section === 'reading') >= 5) mocks.push('ja-reading');
-    if (n((i) => i.subject === 'japanese' && i.section !== 'reading') >= 10) mocks.push('ja-listening');
     const [y, k] = session.split('_');
     return { session, label: `${y}年第${k}回`, mocks };
   });
