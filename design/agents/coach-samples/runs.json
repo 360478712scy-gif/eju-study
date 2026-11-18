@@ -1,0 +1,41 @@
+{
+  "model": "gpt-6.2-sol",
+  "effort": "medium",
+  "itemId": "2015_2-phy-18",
+  "runs": [
+    {
+      "file": "hint.json",
+      "request": {
+        "itemId": "2015_2-phy-18",
+        "question": "我总把磁场方向当成棒里的电流方向。看这张图时，该先想什么？",
+        "response": 3
+      },
+      "cliDurationMs": 19530,
+      "jobStatus": "done",
+      "createdAt": "2026-11-18T15:40:48.420Z"
+    },
+    {
+      "file": "reveal.json",
+      "request": {
+        "itemId": "2015_2-phy-18",
+        "question": "我想看答案。请给我完整解法，解释棒两端的电势怎么判断。",
+        "reveal": true
+      },
+      "cliDurationMs": 24061,
+      "jobStatus": "done",
+      "createdAt": "2026-11-18T15:41:08.417Z"
+    },
+    {
+      "file": "concept.json",
+      "request": {
+        "itemId": "2015_2-phy-18",
+        "topic": "phys.em.induction",
+        "page": "考点笔记",
+        "question": "什么是楞次定律？"
+      },
+      "cliDurationMs": 14238,
+      "jobStatus": "done",
+      "createdAt": "2026-11-18T15:41:32.666Z"
+    }
+  ]
+}

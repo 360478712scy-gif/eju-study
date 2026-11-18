@@ -94,16 +94,51 @@ weekly 的 start/end 是自然周边界，through 是实际统计截止日。pla
 
 ## AI 助教
 
-GET /api/coach/status 返回 {available,enabled,model,effort,busy}。available 表示找到可执行 CLI。任务在本机调用已登录的 Codex；模型请求使用现有账户。默认 gpt-6.2-astra、medium。设置动作可改 coachModel、coachEffort，启动环境 EJU_COACH_MODEL / EJU_COACH_EFFORT 优先。EJU_CODEX_PATH 可指定可执行文件。只读沙箱、隔离的临时目录、关闭 shell 和网页搜索、单任务执行及 schema 约束对四类任务一致。
+`GET /api/coach/status` 返回 `{available,enabled,model,effort,busy}`。默认模型为 `gpt-6.2-sol`，默认 effort 为 `medium`。首次加载旧 v3 档案时，将旧默认 `gpt-6.2-astra` 迁移为 Sol 并原子写回，保留自定义模型和 effort。迁移后主动选择的模型会跨重启保存。设置动作可改 `coachModel`、`coachEffort`。环境变量 `EJU_COACH_MODEL`、`EJU_COACH_EFFORT` 优先，`EJU_CODEX_PATH` 可指定 CLI。
 
-| POST 路径 | 示例请求体 | 完成后的 job.result |
+四个 POST 均异步受理。成功返回 HTTP 202 和 `{job:{id,kind,itemId?,status:"running",createdAt}}`，通过 `GET /api/coach/job?id=…` 轮询。`done` 带 `result`，`failed` 带 `error`，`cancelled` 表示取消。忙时返回 409，关闭助教时返回 403。每次 CLI 调用使用本机已登录的 Codex、全新临时目录、只读沙箱、禁用 shell 和网页搜索、严格输出 schema。一次只跑一个任务，每次调用限时 150 秒。`POST /api/coach/cancel` 传 `{"id":"…"}` 取消当前任务（包括正在进行的重问或独立验算）。保留最近 50 条任务，服务重启清空。
+
+| POST 路径 | 请求 | 完成后的 job.result |
 | --- | --- | --- |
-| /api/coach/ask | {"itemId":"2019_1-phy-01","question":"为什么选这个方向？","response":1} | {answer,steps:string[],keyPoint,pitfall} |
-| /api/coach/grade | {"itemId":"school-example","text":"由法拉第定律得 V=BLv。"} | {response:{method:"ai",text,marks},earned,possible,rows:[{partId,points,feedback}],summary}。展示后把 response 交给 answer，支持学生用自评覆盖 |
-| /api/coach/variant | {"itemId":"2019_1-phy-01"} | {item,solution}。生成日语单选变式，第二个全新 CLI 进程只见新题干和选项，检查唯一性并独立求解。两次答案一致才返回 item。开始练习用 action {type:"startVariant",jobId}，入库并创建普通会话，以后的作答、笔记、复习均可引用 |
-| /api/coach/weekly | {"date":"2026-11-22"} | {summary,nextSteps:string[]}，只发送服务计算的当周汇总；date 可省略 |
+| `/api/coach/ask` | `CoachAskBody`，必填 `question` | `CoachReply`，模式为 hint、reveal 或 concept |
+| `/api/coach/weekly` | `{"date":"2026-11-22"}`，可省略日期，默认当前学习日 | `CoachReply`，固定 review，只发送服务计算的当周汇总 |
+| `/api/coach/grade` | `{"itemId":"school-example","text":"由法拉第定律得 V=BLv。"}` | `{response:{method:"ai",text,marks},earned,possible,rows:[{partId,points,feedback}],summary}`。将 response 提交给 answer 即可保存，也支持学生自评覆盖 |
+| `/api/coach/variant` | `{"itemId":"2019_1-phy-01"}` | `{item,solution}`。生成日语单选变式，再用独立进程仅凭新题干和选项检查唯一性并求解。两次答案一致方可用 `{type:"startVariant",jobId}` 入库并创建练习 |
 
-成功受理返回 HTTP 202，例如 `{"job":{"id":"…","kind":"grade","itemId":"…","status":"running","createdAt":"…"}}`。以 GET /api/coach/job?id=… 轮询。终态 done 有 result；failed 有 error（例如 verification_failed、invalid_output、cli_missing、login_required、quota、timeout、cli_failed）；cancelled 表示取消。每次调用上限 150 秒，变式有两次调用。POST /api/coach/cancel 传 {"id":"…"} 取消指定运行任务。任务记录最多保留最近 50 条，服务重启清空。已评分作答和已通过 startVariant 保存的题目持久化。
+### 提问和历史
+
+以 [shared/coach-ui.ts](../shared/coach-ui.ts) 的类型为准。按题号提问示例为 `{"itemId":"2015_2-phy-18","question":"我总把磁场方向当成电流方向，该先观察什么？","response":3}`。在笔记页可传 `{"topic":"phys.em.induction","page":"考点笔记","question":"什么是楞次定律？","history":[{"role":"student","text":"我在复习电磁感应。"}]}`。
+
+| 字段 | 含义 |
+| --- | --- |
+| `question` | 必填非空字符串，至多 2,000 字符 |
+| `itemId?` | 提供时必须是已知题号，未知题号返回 404。省略时可根据本轮问句、topic、page、history 回答 |
+| `response?` | 学生当前的作答，可为选择项的零起算下标、填空或记述作答等 |
+| `topic?`、`page?` | 当前考点和页面。二者及 itemId 各限 200 字符 |
+| `history?` | 按从旧到新排列的 `{role:"student"\|"coach",text:string}[]`，仅取最后 8 条，每条文字至多 2,000 字符 |
+| `reveal?` | 布尔值，学生点击「我想看答案」时传 true。本轮直接索要答案或完整解法也可进入 reveal。历史中的授权只对当时有效 |
+
+请求体上限 64 KiB。字段类型错误、空问题、保留历史中的非法角色等返回 HTTP 400。
+
+### 回答块和教学模式
+
+`CoachReply = { mode, blocks: CoachBlock[], summary: string }`。summary 是可直接展示的一行摘要。blocks 按顺序渲染，每块通过 type 区分。支持 text、hints、question、choice、steps、formula、callout、table、plot、widget、actions。CLI 输出对每类块使用独立的严格对象，所有属性均声明，可选值可为 null，成功的 HTTP 结果会省略这些空字段。
+
+| mode | 面向学生的内容 |
+| --- | --- |
+| hint | 具体题默认模式。围绕学生的卡点反问，给一个思考方向和 2–4 级逐渐具体的提示。错误作答只提示检查条件。可用另一情境自测。末尾 actions 有「我想看答案」和 1–2 个追问 |
+| reveal | 给出完整 steps、适用的关键公式和易错点，末尾 question 邀请学生复述关键一步 |
+| concept | 解释概念并举例，用 choice 或 question 检查理解。从题目页单独问定义时只需要考点背景 |
+| review | 仅根据当周数据说明进展、样本局限和下周行动，可用 table、plot、callout、actions |
+
+### 服务端校验
+
+- 每条回答有 1–12 块（`COACH_MAX_BLOCKS`）。摘要最多 240 字符，正文每段 4,000，标签 120，公式 1,200，表达式 200。还会限制各块的列表长度。超限、空正文、额外字段和模式不符的块会产生 `invalid_output`。
+- choice 有 2–8 个选项，answer 是合法的零起算整数，feedback 与 options 等长。table 的每行与表头等宽。steps 仅供 reveal。追问按钮必须有 prompt，考点练习和笔记按钮必须有 topic。
+- plot 的轴范围严格递增，滑杆名称唯一、范围递增、步长为正、初值在范围内。表达式逐项检查，只允许数字、x、已声明参数、pi、e、四则运算、幂、圆括号和 sin、cos、tan、asin、acos、atan、exp、ln、log、sqrt、abs。
+- widget.height 取整并夹在 120–640。HTML 片段最多 60,000 字符（`WIDGET_MAX_HTML`）。服务端按允许的标签和属性重建片段，移除外链属性、内联事件、外部 CSS 和含网络调用的脚本（包括 fetch、XMLHttpRequest、WebSocket）。仅 script 的 src 可引用四个 HTTPS CDN 主机，分别为 cdnjs.cloudflare.com、cdn.jsdelivr.net、unpkg.com、esm.sh。清洗后须保有可渲染内容。渲染方在 `sandbox="allow-scripts"` 的独立 iframe 中运行片段，并用 CSP 限制脚本来源及 `connect-src 'none'`。
+- 带题目的 hint 会核对摘要、各级提示、自测反馈、可视化和按钮文案中是否出现官方选项标记或最终数值，包括组合填空和数值等价写法。命中后丢弃整稿，用原始问题在全新进程中重问一次。第二稿仍泄露则以 `failed / invalid_output` 结束，两稿均不交给前端。公式或文字是否提前完成决定性推导也受教学提示约束。
+- 其他任务错误包括 `verification_failed`、`cli_missing`、`login_required`、`quota`、`timeout`、`cli_failed`。已评分并提交的作答、已通过 startVariant 保存的题目随学习档案持久化。
 
 ## 本机服务及错误处理
 
