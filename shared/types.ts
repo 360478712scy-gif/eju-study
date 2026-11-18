@@ -1,16 +1,21 @@
-// Shared data model for 澄学 EJU v2 (server, client, content tools and tests).
+// Shared data model for 澄学 EJU v3 (server, client, content tools and tests).
 // Must stay erasable TypeScript (no enums/namespaces/parameter properties) so Node can strip it.
 
-export type Subject = 'math' | 'physics' | 'chemistry' | 'japanese';
-export const SUBJECTS: readonly Subject[] = ['math', 'physics', 'chemistry', 'japanese'];
+export type Subject = 'math' | 'physics' | 'chemistry';
+export const SUBJECTS: readonly Subject[] = ['math', 'physics', 'chemistry'];
 
-/** Japanese section of the exam. */
-export type JaSection = 'reading' | 'listening-reading' | 'listening';
+export const SCHOOLS = ['waseda', 'meiji', 'aoyama', 'rikkyo', 'chuo', 'hosei'] as const;
+export type School = (typeof SCHOOLS)[number];
+export const MAX_SCORE: Record<Subject, number> = { math: 200, physics: 100, chemistry: 100 };
+export function isSubject(value: unknown): value is Subject {
+  return SUBJECTS.includes(value as Subject);
+}
 
 // ───────────────────────────── Content ─────────────────────────────
 
 export interface SourceRef {
-  kind: 'official' | 'original';
+  kind: 'official' | 'original' | 'school';
+  school?: School;
   /** Exam session key, e.g. "2019_1" (official items). */
   session?: string;
   /** Human label, e.g. "2019年第1回 物理 問7". */
@@ -27,13 +32,6 @@ export interface Figure {
   caption?: string;
   /** Display width hint in CSS px at 100% zoom. */
   width?: number;
-}
-
-export interface AudioRef {
-  src: string;
-  /** Optional clip window inside a longer file, in seconds. */
-  start?: number;
-  end?: number;
 }
 
 export interface KeyTerm {
@@ -73,7 +71,6 @@ export interface Verification {
 export interface Item {
   id: string;
   subject: Subject;
-  section?: JaSection;
   /** Items sharing a passage / 大問 share a group id (shown together, done in order). */
   group?: string;
   /** Position within its source paper (for mock ordering). */
@@ -90,17 +87,15 @@ export interface Item {
   /** Optional Chinese gloss of the stem (science/math), hidden by default. */
   stemZh?: string;
   figures?: Figure[];
-  audio?: AudioRef;
-  format: 'choice' | 'blanks';
+  format: 'choice' | 'blanks' | 'written';
+  written?: { parts: WrittenPart[] };
   options?: string[];
   /** Labels shown on option buttons; defaults to 1…n. */
   optionLabels?: string[];
   answer?: number;
   blanks?: Record<string, string>;
   explanation: Explanation;
-  /** Listening script (Japanese), revealed after answering. */
-  transcript?: string;
-  verified: Verification;
+  verified?: Verification;
 }
 
 export interface BankFile {
@@ -128,24 +123,6 @@ export interface Taxonomy {
   subjects: Record<Subject, { name: string; units: TaxonomyUnit[] }>;
 }
 
-export interface VocabEntry {
-  id: string;
-  word: string;
-  reading: string;
-  /** Chinese meaning written as an explanation, avoiding the same kanji as the word. */
-  meaningZh: string;
-  /** Note on 中日同形异义 traps, e.g. 圧力 is "压强" in physics. */
-  trapZh?: string;
-  category: 'science' | 'math' | 'general' | 'reading';
-  subject?: Subject;
-  example?: { ja: string; zh?: string };
-  audio?: { word?: string; example?: string };
-  /** Alternative accepted readings. */
-  altReadings?: string[];
-  /** Display group, e.g. "物理用语 · 波动". */
-  group?: string;
-}
-
 export interface PaperInfo {
   session: string;
   label: string;
@@ -164,7 +141,6 @@ export interface ContentBundle {
   version: string;
   builtAt: string;
   items: Item[];
-  vocab: VocabEntry[];
   taxonomy: Taxonomy;
   papers: PaperInfo[];
   notes: TopicNote[];
@@ -174,21 +150,41 @@ export interface ContentBundle {
 
 export type ScoreMap = Record<Subject, number>;
 
+export interface WrittenPart {
+  id: string;
+  label: string;
+  prompt?: string;
+  points: number;
+  modelAnswer: string;
+  rubric: { text: string; points: number }[];
+  final?: string;
+}
+
+export interface WrittenResponse {
+  method: 'self' | 'ai';
+  text?: string;
+  // Points awarded for each criterion, in the order printed in the question.
+  marks: Record<string, number[]>;
+}
+
+export type Response = number | Record<string, string> | WrittenResponse | null;
+export interface Milestone {
+  date: string;
+  targets: ScoreMap;
+}
 export interface Profile {
   examDate: string;
   startDate: string;
-  targetTotal: number;
   baseline: ScoreMap;
   targets: ScoreMap;
-  /** Planned study minutes on a normal day. */
+  milestones: Milestone[];
+  schools: School[];
   dailyMinutes: number;
-  /** Per-date overrides of the daily budget (0 = rest day). */
-  dayMinutes: Record<string, number>;
-  background: string;
-  /** Taxonomy topic ids the learner considers weak (prior for the planner). */
+  weekdays: number[]; // ISO 1=Mon ... 7=Sun
   weakTopics: string[];
-  mathCourse: 1 | 2;
-  /** Has the learner confirmed the v2 setup screen? */
+  strongTopics: string[];
+  strongEarlyChemistry: boolean;
+  mathCourse: 2;
   onboarded: boolean;
 }
 
@@ -209,7 +205,7 @@ export interface Attempt {
   correct: boolean;
   /** 0..1, partial credit for blanks. */
   score: number;
-  response: number | Record<string, string> | null;
+  response: Response;
   seconds: number;
   confidence?: Confidence;
   /** First ever attempt on this item. */
@@ -231,79 +227,59 @@ export interface ItemProgress {
   inMistakes: boolean;
   /** Last correct answer took > 1.8 × targetSec: re-practice under time pressure. */
   slow?: boolean;
+  possibleGuess?: boolean;
   starred?: boolean;
   note?: string;
 }
 
-export type VocabSkill = 'read' | 'meaning';
-
-export interface VocabSkillProgress {
-  box: number;
-  due: string;
-  seen: number;
-  correct: number;
-  lastAt: string;
-  lastCorrect: boolean;
+export type BlockKind = 'learn' | 'interleave' | 'review' | 'quiz' | 'school' | 'mock' | 'break' | 'notes';
+export type MockKind = 'math' | 'science' | 'school';
+export type Phase = 'foundation' | 'reinforce' | 'integrate' | 'sprint' | 'taper' | 'off';
+export interface Why {
+  code:
+    | 'weak_focus'
+    | 'topic_focus'
+    | 'mixed_retrieval'
+    | 'spaced'
+    | 'weekly_test'
+    | 'school_practice'
+    | 'monthly_paper'
+    | 'rest'
+    | 'consolidate'
+    | 'maintenance';
+  topic?: string;
+  mastery?: number;
+  weight?: number;
+  difficulty?: number;
+  due?: string;
 }
-
-export type VocabProgress = Partial<Record<VocabSkill, VocabSkillProgress>>;
-
-export interface VocabAttempt {
-  id: string;
-  vocabId: string;
-  skill: VocabSkill;
-  at: string;
-  date: string;
-  correct: boolean;
-  response: string;
-  seconds: number;
-  /** Learner played the audio before answering. */
-  heardAudio?: boolean;
-  legacy?: boolean;
-}
-
-export type BlockKind = 'drill' | 'review' | 'vocab' | 'mock' | 'reading' | 'listening' | 'notes' | 'traps';
-export type MockKind = 'math' | 'science' | 'ja-reading' | 'ja-listening';
-
 export interface PlanBlock {
   id: string;
   kind: BlockKind;
   subject: Subject | 'mixed';
-  title: string;
-  /** Why this block is here (shown to the learner). */
-  reason: string;
   minutes: number;
-  topic?: string;
   itemIds: string[];
-  vocabCount?: number;
-  /** Timed set: exam mode (feedback at the end) with a limit of Σ targetSec. */
-  timed?: boolean;
-  /** Topics to review in a "notes" block. */
-  noteTopics?: string[];
+  topic?: string;
+  why: Why;
   mock?: { kind: MockKind; session: string };
-  /** Correction block: its items are the wrong answers of this mock, resolved when started. */
-  reviewOfMock?: { kind: MockKind; session: string };
   status: 'todo' | 'active' | 'done' | 'skipped';
   startedAt?: string;
   doneAt?: string;
-  result?: { answered: number; correct: number; seconds: number };
-  /** Added by the learner via "加练" rather than by the planner. */
-  extra?: boolean;
 }
-
-export type Phase = 'foundation' | 'practice' | 'final' | 'exam';
-
 export interface DayPlan {
   date: string;
   phase: Phase;
   budgetMinutes: number;
-  generatedAt: string;
-  plannerVersion: number;
   blocks: PlanBlock[];
+}
+export interface Calendar {
+  overrides: Record<string, 'study' | 'off'>;
+  moves: { from: string; to: string }[];
+  restWeeks: string[]; // Monday of each paused week
 }
 
 export interface SessionAnswer {
-  response: number | Record<string, string> | null;
+  response: Response;
   seconds: number;
   submitted: boolean;
   correct?: boolean;
@@ -315,6 +291,7 @@ export interface SessionAnswer {
 export interface PracticeSession {
   id: string;
   kind: 'block' | 'drill' | 'review' | 'mock' | 'free';
+  imported?: true; // historical v2 session
   title: string;
   subject: Subject | 'mixed';
   blockId?: string;
@@ -323,6 +300,7 @@ export interface PracticeSession {
   index: number;
   answers: Record<string, SessionAnswer>;
   startedAt: string;
+  sealedAt?: string; // timed responses frozen; written scripts await rubric marks
   finishedAt?: string;
   /** Exam mode: no feedback until the end, hard time limit. */
   exam: boolean;
@@ -346,7 +324,7 @@ export interface MockResult {
   /** 0..1 weighted raw score. */
   raw: number;
   /** Estimated scaled score on the EJU scale for this section. */
-  estimate: number;
+  estimate: number | null; // null for school papers
   bySubject?: Partial<Record<Subject, { correct: number; total: number; raw: number; estimate: number }>>;
 }
 
@@ -355,7 +333,6 @@ export interface DayLog {
   seconds: number;
   answered: number;
   correct: number;
-  vocab: number;
 }
 
 export interface Settings {
@@ -363,25 +340,14 @@ export interface Settings {
   musicEnabled: boolean;
   musicTrack: string;
   musicVolume: number;
-  /** Japanese multiple choice: advance automatically after choosing. */
-  autoNextJapanese: boolean;
-  /** Show the Chinese gloss of science/math stems by default. */
-  showZhGloss: boolean;
   fontScale: number;
-  pronunciationRate: number;
   coachEnabled: boolean;
-}
-
-export interface JournalEntry {
-  id: string;
-  date: string;
-  at: string;
-  text: string;
-  kind: 'note' | 'review' | 'legacy';
+  coachModel: string;
+  coachEffort: 'low' | 'medium' | 'high';
 }
 
 export interface AppState {
-  version: 2;
+  version: 3;
   revision: number;
   savedAt?: string;
   createdAt: string;
@@ -389,14 +355,14 @@ export interface AppState {
   settings: Settings;
   attempts: Attempt[];
   progress: Record<string, ItemProgress>;
-  vocabAttempts: VocabAttempt[];
-  vocab: Record<string, VocabProgress>;
+  calendar: Calendar;
   plans: Record<string, DayPlan>;
   sessions: Record<string, PracticeSession>;
   activeSessionId?: string;
   mocks: MockResult[];
   days: Record<string, DayLog>;
-  journal: JournalEntry[];
-  /** Raw v1.4 record kept verbatim for reference. */
-  legacy?: { importedAt: string; v1: unknown };
+  variants: Record<string, Item>; // accepted, independently checked coach output
+  notes: Record<string, string>; // topic -> learner note
+  /** Raw v2 record kept verbatim for reference. */
+  legacy?: { importedAt: string; v2: unknown };
 }

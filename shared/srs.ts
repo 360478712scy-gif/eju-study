@@ -1,95 +1,38 @@
-// Spaced review tuned for a short sprint (≈19 days).
-// Mistake book: wrong / given-up / guessed items come back after 2 days, then 4; two spaced
-// confident correct re-tests clear them (a next-day re-test mostly measures memory of the answer).
-// "Unsure but correct" enters one step later. Slow-but-correct answers are flagged for timed re-practice.
-// Vocabulary uses a Leitner ladder per skill.
-import type { Attempt, ItemProgress, VocabSkill, VocabSkillProgress } from './types.ts';
+import type { Attempt, ItemProgress } from './types.ts';
 import { addDays } from './dates.ts';
 
-export const MISTAKE_INTERVALS = [2, 4];
-export const MISTAKE_GRADUATE_BOX = MISTAKE_INTERVALS.length;
+export const INTERVALS = [1, 3, 7, 14, 30, 60];
 export const SLOW_FACTOR = 1.8;
-export const VOCAB_INTERVALS = [1, 1, 2, 4, 7, 12];
-export const VOCAB_MAX_BOX = VOCAB_INTERVALS.length - 1;
-
+// This signal is deliberately tentative: very fast recognition can also indicate fluency.
+export function possibleGuess(
+  a: Pick<Attempt, 'correct' | 'seconds' | 'confidence'>,
+  targetSec: number,
+  choice: boolean,
+) {
+  return choice && a.correct && a.confidence !== 'sure' && a.seconds > 0 && a.seconds < Math.min(8, targetSec * 0.1);
+}
 export function updateItemProgress(
   prev: ItemProgress | undefined,
-  attempt: Pick<Attempt, 'correct' | 'score' | 'at' | 'date'> & Partial<Pick<Attempt, 'confidence' | 'gaveUp' | 'seconds'>>,
-  targetSec?: number,
+  a: Attempt,
+  targetSec: number,
+  choice = false,
 ): ItemProgress {
-  const p: ItemProgress = prev
-    ? { ...prev }
-    : { attempts: 0, correct: 0, lastAt: attempt.at, lastCorrect: false, lastScore: 0, box: 0, inMistakes: false };
-  p.attempts += 1;
-  if (attempt.correct) p.correct += 1;
-  p.lastAt = attempt.at;
-  p.lastCorrect = attempt.correct;
-  p.lastScore = attempt.score;
-  if (attempt.correct && targetSec && attempt.seconds) p.slow = attempt.seconds > SLOW_FACTOR * targetSec;
-
-  const conf = attempt.confidence;
-  const failed = !attempt.correct || attempt.gaveUp || conf === 'guess';
-  if (failed) {
-    p.inMistakes = true;
-    p.box = 0;
-    p.due = addDays(attempt.date, MISTAKE_INTERVALS[0]);
-    return p;
-  }
-  if (!p.inMistakes) {
-    if (conf === 'unsure') {
-      p.inMistakes = true;
-      p.box = 1;
-      p.due = addDays(attempt.date, MISTAKE_INTERVALS[1]);
-    }
-    return p;
-  }
-  // Correct re-test of a mistake: it only counts when it was due and answered with confidence.
-  const due = !p.due || attempt.date >= p.due;
-  if (!due) return p;
-  if (conf === 'unsure') {
-    p.due = addDays(attempt.date, MISTAKE_INTERVALS[0]);
-    return p;
-  }
-  p.box += 1;
-  if (p.box >= MISTAKE_GRADUATE_BOX) {
-    p.inMistakes = false;
-    p.due = undefined;
-  } else {
-    p.due = addDays(attempt.date, MISTAKE_INTERVALS[p.box]);
-  }
-  return p;
+  const slow = a.correct && a.seconds > targetSec * SLOW_FACTOR;
+  const fast = possibleGuess(a, targetSec, choice);
+  const fragile = fast || !a.correct || !!a.gaveUp || a.confidence === 'guess' || a.confidence === 'unsure' || slow;
+  const due = !prev?.due || a.date >= prev.due;
+  const box = fragile ? 0 : Math.min(INTERVALS.length - 1, (prev?.box ?? 0) + Number(due));
+  return {
+    ...prev,
+    attempts: (prev?.attempts ?? 0) + 1,
+    correct: (prev?.correct ?? 0) + Number(a.correct),
+    lastAt: a.at,
+    lastCorrect: a.correct,
+    lastScore: a.score,
+    slow,
+    possibleGuess: fast,
+    box,
+    inMistakes: fragile || (!!prev?.inMistakes && box < 3),
+    due: fragile || due ? addDays(a.date, INTERVALS[box]) : prev!.due,
+  };
 }
-
-export function isDue(p: ItemProgress | undefined, date: string): boolean {
-  return !!p && p.inMistakes && !!p.due && p.due <= date;
-}
-
-export function updateVocabSkill(
-  prev: VocabSkillProgress | undefined,
-  correct: boolean,
-  at: string,
-  date: string,
-): VocabSkillProgress {
-  const p: VocabSkillProgress = prev
-    ? { ...prev }
-    : { box: 0, due: date, seen: 0, correct: 0, lastAt: at, lastCorrect: false };
-  const wasDue = !prev || prev.due <= date;
-  p.seen += 1;
-  if (correct) p.correct += 1;
-  p.lastAt = at;
-  p.lastCorrect = correct;
-  if (!correct) {
-    p.box = 0;
-    p.due = addDays(date, VOCAB_INTERVALS[0]);
-  } else if (wasDue) {
-    p.box = Math.min(VOCAB_MAX_BOX, p.box + 1);
-    p.due = addDays(date, VOCAB_INTERVALS[p.box]);
-  }
-  return p;
-}
-
-export function vocabDue(p: VocabSkillProgress | undefined, date: string): boolean {
-  return !!p && p.due <= date;
-}
-
-export const VOCAB_SKILLS: readonly VocabSkill[] = ['read', 'meaning'];

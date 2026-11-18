@@ -1,187 +1,133 @@
-// Initial state and the one-time import of the v1.4 learning record.
-// The v1 file itself is never modified; its raw content is kept under `legacy`.
-import type { AppState, JournalEntry, Profile, Settings, VocabAttempt, VocabProgress } from './types.ts';
-import { studyDate } from './dates.ts';
+import {
+  isSubject,
+  SCHOOLS,
+  type AppState,
+  type Profile,
+  type Attempt,
+  type ItemProgress,
+  type MockResult,
+  type PracticeSession,
+} from './types.ts';
+import type { BankIndex } from './bank.ts';
 
-export const EXAM_DATE = '2026-11-08';
-export const DEFAULT_DAILY_MINUTES = 360;
-
-export function defaultProfile(now: Date): Profile {
+export function defaultProfile(): Profile {
   return {
-    examDate: EXAM_DATE,
-    startDate: studyDate(now),
-    targetTotal: 630,
-    baseline: { japanese: 295, math: 121, physics: 58, chemistry: 65 },
-    targets: { japanese: 325, math: 155, physics: 72, chemistry: 78 },
-    dailyMinutes: DEFAULT_DAILY_MINUTES,
-    dayMinutes: {},
-    background:
-      '高考约580分，衡水实验班背景，难题能力尚可；主要是知识遗忘、EJU引导式填空不适应与速度慢。',
-    weakTopics: ['phys.wave', 'phys.em', 'math.calc', 'math.trig', 'chem.inorg', 'chem.org', 'ja.listening', 'ja.vocab'],
+    startDate: '2026-11-19',
+    examDate: '2027-06-20',
     mathCourse: 2,
     onboarded: false,
+    baseline: { math: 132, physics: 54, chemistry: 66 },
+    targets: { math: 190, physics: 90, chemistry: 90 },
+    milestones: [
+      { date: '2026-12-31', targets: { math: 145, physics: 62, chemistry: 72 } },
+      { date: '2027-02-28', targets: { math: 160, physics: 72, chemistry: 78 } },
+      { date: '2027-04-30', targets: { math: 178, physics: 82, chemistry: 85 } },
+      { date: '2027-06-19', targets: { math: 190, physics: 90, chemistry: 90 } },
+    ],
+    schools: [...SCHOOLS],
+    dailyMinutes: 120,
+    weekdays: [1, 2, 4, 5, 6],
+    weakTopics: [
+      'phys.em.induction',
+      'phys.em.capacitor',
+      'phys.mech.circular',
+      'phys.mech.spring',
+      'phys.mech.pendulum',
+      'chem.inorg',
+      'chem.org.basics',
+      'chem.org.aliphatic',
+      'chem.org.aromatic',
+      'chem.react.enthalpy',
+      'math.seq',
+      'math.prob.count',
+      'math.explog',
+      'math.calc.int',
+    ],
+    strongTopics: ['phys.em.circuit', 'phys.mech.kinematics', 'math.vec', 'math.quad', 'math.trig'],
+    strongEarlyChemistry: true,
   };
 }
-
-export function defaultSettings(): Settings {
+export function createInitialState(now = new Date()): AppState {
   return {
-    theme: 'system',
-    musicEnabled: false,
-    musicTrack: 'music-01',
-    musicVolume: 0.22,
-    autoNextJapanese: false,
-    showZhGloss: false,
-    fontScale: 1,
-    pronunciationRate: 1,
-    coachEnabled: true,
-  };
-}
-
-export function createInitialState(now: Date): AppState {
-  return {
-    version: 2,
+    version: 3,
     revision: 0,
     createdAt: now.toISOString(),
-    profile: defaultProfile(now),
-    settings: defaultSettings(),
+    profile: defaultProfile(),
+    settings: {
+      theme: 'system',
+      musicEnabled: false,
+      musicTrack: 'music-01',
+      musicVolume: 0.22,
+      fontScale: 1,
+      coachEnabled: true,
+      coachModel: 'gpt-6.2-astra',
+      coachEffort: 'medium',
+    },
+    calendar: { overrides: {}, moves: [], restWeeks: [] },
     attempts: [],
     progress: {},
-    vocabAttempts: [],
-    vocab: {},
     plans: {},
     sessions: {},
     mocks: [],
     days: {},
-    journal: [],
+    variants: {},
+    notes: {},
   };
 }
 
-type V1 = {
-  version?: number;
-  profile?: Record<string, unknown>;
-  attempts?: Array<Record<string, unknown>>;
-  mastery?: Record<string, { streak?: number; wrong?: number }>;
-  records?: Record<string, { date?: string; note?: string; at?: string }>;
-  blockRecords?: Record<string, { date?: string; text?: string; at?: string; blockId?: string }>;
-  vocabulary?: {
-    attempts?: Array<Record<string, unknown>>;
-    observations?: Array<{ id?: string; date?: string; text?: string; createdAt?: string }>;
+// Raw v2 is archived in full (including v1). Only attributable STEM activity enters v3 statistics.
+export function migrateV2(raw: unknown, bank: BankIndex, now = new Date()): AppState {
+  const old = raw as {
+    version: number;
+    attempts: Attempt[];
+    progress: Record<string, ItemProgress>;
+    mocks: MockResult[];
+    sessions?: Record<string, PracticeSession>;
   };
-  timer?: { label?: string; total?: number; remaining?: number };
-  preferences?: { volume?: number; track?: string };
-};
-
-// Words whose kanji→reading recall was observed in the v1 "recall" block (2026-10-06).
-const V1_READ_CORRECT = ['vx140', 'vx064', 'vx086', 'vx217', 'vx141'];
-const V1_READ_WRONG = ['vx290', 'vx291'];
-
-/**
- * Convert a v1.4 record. Day-1 vocab answers were made by listening only, so they
- * count as meaning recognition (skill "meaning"), never as reading production.
- */
-export function migrateV1(raw: unknown, now: Date): AppState {
-  const v1 = (raw || {}) as V1;
+  if (old?.version !== 2 || !Array.isArray(old.attempts) || !old.progress || !Array.isArray(old.mocks))
+    throw new Error('invalid v2 state');
   const state = createInitialState(now);
-  const today = studyDate(now);
-  const p = v1.profile || {};
-  const scores = p.scores as Record<string, number> | undefined;
-  const targets = p.targets as Record<string, number> | undefined;
-  if (scores) Object.assign(state.profile.baseline, scores);
-  if (targets) Object.assign(state.profile.targets, targets);
-  if (typeof p.target === 'number') state.profile.targetTotal = p.target;
-  if (typeof p.examDate === 'string') state.profile.examDate = p.examDate;
-  if (typeof v1.preferences?.volume === 'number') state.settings.musicVolume = v1.preferences.volume;
-  if (typeof v1.preferences?.track === 'string') state.settings.musicTrack = v1.preferences.track;
-
-  // Vocabulary history (meaning recognition by ear).
-  const vocabAttempts: VocabAttempt[] = [];
-  for (const a of v1.attempts || []) {
-    if (typeof a.questionId !== 'string') continue;
-    vocabAttempts.push({
-      id: String(a.id || `${a.questionId}-${a.at}`),
-      vocabId: a.questionId,
-      skill: 'meaning',
-      at: String(a.at || now.toISOString()),
-      date: String(a.date || today),
-      correct: a.correct === true,
-      response: String(a.answer ?? ''),
-      seconds: Number(a.seconds) || 0,
-      heardAudio: true,
-      legacy: true,
-    });
-  }
-  for (const a of v1.vocabulary?.attempts || []) {
-    if (typeof a.questionId !== 'string') continue;
-    vocabAttempts.push({
-      id: String(a.id),
-      vocabId: a.questionId,
-      skill: 'meaning',
-      at: String(a.at || now.toISOString()),
-      date: String(a.date || today),
-      correct: a.correct === true,
-      response: String(a.response ?? ''),
-      seconds: Number(a.seconds) || 0,
-      heardAudio: false,
-      legacy: true,
-    });
-  }
-  state.vocabAttempts = vocabAttempts;
-
-  // SRS: everything learned on day 1 is overdue now, so it is due today.
-  const vocab: Record<string, VocabProgress> = {};
-  for (const a of vocabAttempts) {
-    const cur = vocab[a.vocabId] || {};
-    const prev = cur.meaning;
-    cur.meaning = {
-      box: a.correct ? Math.max(1, prev?.box ?? 0) : 0,
-      due: today,
-      seen: (prev?.seen ?? 0) + 1,
-      correct: (prev?.correct ?? 0) + (a.correct ? 1 : 0),
-      lastAt: a.at,
-      lastCorrect: a.correct,
-    };
-    vocab[a.vocabId] = cur;
-  }
-  for (const id of [...V1_READ_CORRECT, ...V1_READ_WRONG]) {
-    const ok = V1_READ_CORRECT.includes(id);
-    vocab[id] = {
-      ...(vocab[id] || {}),
-      read: { box: ok ? 1 : 0, due: today, seen: 1, correct: ok ? 1 : 0, lastAt: '2026-10-06T01:43:44.805Z', lastCorrect: ok },
-    };
-  }
-  state.vocab = vocab;
-
-  // Journal: keep the learner's own words.
-  const journal: JournalEntry[] = [];
-  for (const [key, r] of Object.entries(v1.records || {})) {
-    if (r.note) journal.push({ id: `v1-${key}`, date: r.date || today, at: r.at || now.toISOString(), text: r.note, kind: 'legacy' });
-  }
-  for (const [key, r] of Object.entries(v1.blockRecords || {})) {
-    if (r.text) {
-      journal.push({
-        id: `v1-${key}`,
-        date: r.date || today,
-        at: r.at || now.toISOString(),
-        text: `【v1 ${r.blockId === 'use' ? '造句' : '回忆'}】${r.text}`,
-        kind: 'legacy',
-      });
+  state.legacy = { importedAt: now.toISOString(), v2: structuredClone(raw) };
+  state.attempts = structuredClone(
+    old.attempts.filter(
+      (a) => isSubject(a.subject) && !a.topic.startsWith('ja.') && !a.itemId.startsWith('recall-terms-'),
+    ),
+  );
+  const stemIds = new Set(state.attempts.map((a) => a.itemId));
+  const knownStem = (id: string) =>
+    stemIds.has(id) || bank.byId.has(id) || /^(?:\d{4}_\d-|recall-)(?:math|phy|phys|chem)-/.test(id);
+  for (const session of Object.values(old.sessions ?? {})) {
+    if (!isSubject(session.subject) && session.subject !== 'mixed') continue;
+    if (isSubject(session.subject)) {
+      for (const id of session.itemIds) if (!/(?:^recall-terms-|[-.]ja[-.])/.test(id)) stemIds.add(id);
     }
+    const ids = session.itemIds.filter(knownStem);
+    if (!ids.length) continue;
+    const answers = structuredClone(
+      Object.fromEntries(Object.entries(session.answers).filter(([id]) => ids.includes(id))),
+    );
+    state.sessions[session.id] = {
+      ...structuredClone(session),
+      imported: true,
+      itemIds: ids,
+      answers,
+      index: Math.max(0, ids.indexOf(session.itemIds[session.index])),
+      elapsedSec:
+        ids.length === session.itemIds.length
+          ? session.elapsedSec
+          : Object.values(answers).reduce((n, a) => n + a.seconds, 0),
+    };
+    delete state.sessions[session.id].blockId;
   }
-  for (const o of v1.vocabulary?.observations || []) {
-    if (o.text) journal.push({ id: `v1-${o.id}`, date: o.date || today, at: o.createdAt || now.toISOString(), text: o.text, kind: 'legacy' });
+  for (const [id, p] of Object.entries(old.progress)) {
+    if (knownStem(id)) state.progress[id] = { ...p };
   }
-  if (v1.timer?.label && v1.timer.total) {
-    journal.push({
-      id: 'v1-timer-2026-10-06',
-      date: '2026-10-06',
-      at: '2026-10-06T03:02:06.025Z',
-      text: `【v1 计时】${v1.timer.label} ${Math.round(v1.timer.total / 60)} 分钟，无作答记录。`,
-      kind: 'legacy',
-    });
+  state.mocks = structuredClone(old.mocks.filter((m) => m.kind === 'math' || m.kind === 'science'));
+  for (const a of state.attempts) {
+    const day = (state.days[a.date] ??= { answered: 0, correct: 0, seconds: 0 });
+    day.answered++;
+    day.correct += Number(a.correct);
+    day.seconds += a.seconds;
   }
-  journal.sort((a, b) => a.at.localeCompare(b.at));
-  state.journal = journal;
-
-  state.legacy = { importedAt: now.toISOString(), v1: raw };
   return state;
 }

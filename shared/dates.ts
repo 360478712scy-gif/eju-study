@@ -49,3 +49,10 @@ export function isValidDate(s: unknown): s is string {
   if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
   return formatDate(parseDate(s)) === s;
 }
+
+export function isoWeekday(date: string): number {
+  return parseDate(date).getDay() || 7;
+}
+export function monday(date: string): string {
+  return addDays(date, 1 - isoWeekday(date));
+}

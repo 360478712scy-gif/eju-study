@@ -2,17 +2,20 @@
 // concurrency by revision, rolling backups. The v1.4 state.json is never modified.
 import fs from 'node:fs';
 import path from 'node:path';
-import { createInitialState, migrateV1 } from '../shared/migrate.ts';
-import type { AppState } from '../shared/types.ts';
+import { createInitialState, migrateV2 } from '../shared/migrate.ts';
+import type { AppState, Item } from '../shared/types.ts';
 
-const STATE_FILE = 'state-v2.json';
-const V1_FILE = 'state.json';
-const BACKUP_DIR = 'backups-v2';
+import type { BankIndex } from '../shared/bank.ts';
+import { applyAction, type Action } from '../shared/actions.ts';
+
+const STATE_FILE = 'state-v3.json';
+const V2_FILE = 'state-v2.json';
+const BACKUP_DIR = 'backups-v3';
 const MAX_BACKUPS = 80;
 const BACKUP_INTERVAL_MS = 5 * 60 * 1000;
 
 type PutResult =
-  | { ok: true; revision: number }
+  | { ok: true; revision: number; result: unknown }
   | { ok: false; status: number; error: string; current?: AppState };
 
 export class StateStore {
@@ -21,31 +24,26 @@ export class StateStore {
   private state: AppState;
   private lastBackupAt = 0;
 
-  constructor(dir: string) {
+  constructor(dir: string, bank: BankIndex) {
     this.dir = dir;
     fs.mkdirSync(dir, { recursive: true });
     this.file = path.join(dir, STATE_FILE);
-    this.state = this.load();
+    this.state = this.load(bank);
   }
 
-  private load(): AppState {
+  private load(bank: BankIndex): AppState {
     if (fs.existsSync(this.file)) {
       const raw = fs.readFileSync(this.file, 'utf8');
       const parsed = JSON.parse(raw) as AppState;
-      if (!parsed || parsed.version !== 2 || typeof parsed.revision !== 'number') {
+      if (!parsed || parsed.version !== 3 || typeof parsed.revision !== 'number') {
         throw new Error(`学习记录 ${this.file} 格式异常，原文件已保留；请从 ${BACKUP_DIR} 恢复。`);
       }
       return parsed;
     }
-    // First v2 start: import the v1.4 record if present (read-only), else start fresh.
-    const v1Path = path.join(this.dir, V1_FILE);
-    let next: AppState;
-    if (fs.existsSync(v1Path)) {
-      const v1 = JSON.parse(fs.readFileSync(v1Path, 'utf8'));
-      next = migrateV1(v1, new Date());
-    } else {
-      next = createInitialState(new Date());
-    }
+    const source = path.join(this.dir, V2_FILE);
+    const next = fs.existsSync(source)
+      ? migrateV2(JSON.parse(fs.readFileSync(source, 'utf8')), bank)
+      : createInitialState();
     this.write(next);
     return next;
   }
@@ -54,27 +52,30 @@ export class StateStore {
     return this.state;
   }
 
-  put(baseRevision: unknown, incoming: unknown): PutResult {
-    if (typeof baseRevision !== 'number') return { ok: false, status: 400, error: 'baseRevision required' };
-    const candidate = incoming as AppState;
-    if (!candidate || typeof candidate !== 'object' || candidate.version !== 2) {
-      return { ok: false, status: 400, error: 'invalid state' };
-    }
-    if (baseRevision !== this.state.revision) {
+  transact(baseRevision: unknown, action: Action, bank: BankIndex, now = new Date(), variant?: Item): PutResult {
+    if (!Number.isInteger(baseRevision)) return { ok: false, status: 400, error: 'baseRevision required' };
+    if (baseRevision !== this.state.revision)
       return { ok: false, status: 409, error: 'revision conflict', current: this.state };
+    const next = structuredClone(this.state);
+    let result: unknown;
+    try {
+      result = applyAction(next, bank, action, now, variant);
+    } catch (err) {
+      return { ok: false, status: 400, error: err instanceof Error ? err.message : 'invalid action' };
     }
-    const next: AppState = { ...candidate, revision: this.state.revision + 1, savedAt: new Date().toISOString() };
+    next.revision++;
+    next.savedAt = now.toISOString();
     this.backupMaybe();
     this.write(next);
     this.state = next;
-    return { ok: true, revision: next.revision };
+    return { ok: true, revision: next.revision, result };
   }
 
   private write(next: AppState) {
     const tmp = `${this.file}.${process.pid}.tmp`;
     const fd = fs.openSync(tmp, 'w', 0o600);
     try {
-      fs.writeSync(fd, JSON.stringify(next));
+      fs.writeFileSync(fd, JSON.stringify(next));
       fs.fsyncSync(fd);
     } finally {
       fs.closeSync(fd);
@@ -91,7 +92,10 @@ export class StateStore {
     const stamp = new Date(now).toISOString().replace(/[:.]/g, '-');
     fs.copyFileSync(this.file, path.join(dir, `state-${stamp}-r${this.state.revision}.json`));
     this.lastBackupAt = now;
-    const entries = fs.readdirSync(dir).filter((f) => f.startsWith('state-')).sort();
+    const entries = fs
+      .readdirSync(dir)
+      .filter((f) => f.startsWith('state-'))
+      .sort();
     for (const f of entries.slice(0, Math.max(0, entries.length - MAX_BACKUPS))) {
       fs.unlinkSync(path.join(dir, f));
     }

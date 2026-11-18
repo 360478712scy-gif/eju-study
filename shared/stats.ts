@@ -1,224 +1,171 @@
-// Learner statistics and EJU score estimates.
-// JASSO publishes no raw→scaled table (scores are IRT-equated), so estimates use a
-// linear working model anchored at the learner's baseline: math 200·p, physics/chemistry
-// 100·p each, Japanese (reading+listening) 400·p. Treat them as trend indicators.
-import type { AppState, Attempt, MockKind, Subject } from './types.ts';
-import type { BankIndex } from './bank.ts';
-import { addDays, daysBetween } from './dates.ts';
+import type { AppState, Item, Subject } from './types.ts';
+import { MAX_SCORE, SUBJECTS } from './types.ts';
+import { daysBetween, studyDate } from './dates.ts';
+import { isCard, type BankIndex } from './bank.ts';
+import { SLOW_FACTOR, updateItemProgress, possibleGuess } from './srs.ts';
 
-export const SCALE_MAX: Record<Subject, number> = { math: 200, physics: 100, chemistry: 100, japanese: 400 };
-const PRIOR_N = 12;
-const WINDOW = 80;
-/** Probability of a lucky guess on an unanswered science question (≈ 5–6 options). */
-const GUESS = 0.18;
-
-export interface SubjectEstimate {
+export const matchesTopic = (list: string[], topic: string) =>
+  list.some((t) => topic === t || topic.startsWith(t + '.'));
+const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+export interface Mastery {
+  topic: string;
   subject: Subject;
-  estimate: number;
-  low: number;
-  high: number;
-  target: number;
-  baseline: number;
-  /** First-try attempts used for the estimate. */
+  weight: number;
+  value: number;
+  difficulty: number;
   samples: number;
-  accuracy: number | null;
-  /** Physics/chemistry: share of an 80-minute paper the learner would finish at current pace. */
-  completion?: number;
-  /** Japanese: separate halves (each out of 200). */
-  parts?: { reading: number; listening: number };
+  speedRatio: number | null;
+  lastDate?: string;
+  priority: number;
 }
-
-export function subjectAttempts(state: AppState, subject: Subject): Attempt[] {
-  return state.attempts.filter((a) => a.subject === subject);
-}
-
-/** Recall checks and grammar drills say little about exam score; repeats say even less. */
-export function isEvidence(a: Attempt): boolean {
-  return a.firstTry && a.mode !== 'review' && !a.itemId.startsWith('recall-') && !a.topic.startsWith('ja.vocab');
-}
-
-function weightOf(a: Attempt, bank?: BankIndex): number {
-  const it = bank?.byId.get(a.itemId);
-  let w = it && it.source.kind === 'original' ? 0.5 : 1;
-  // A long Ⅲ/Ⅳ 大問 is a bigger share of the math paper than a Ⅰ/Ⅱ 問.
-  if (a.subject === 'math' && it) w *= Math.max(0.6, Math.min(2.2, it.targetSec / 660));
-  return w;
-}
-
-function estimateFrom(attempts: Attempt[], p0: number, bank?: BankIndex): { p: number; n: number; samples: number; acc: number | null } {
-  const recent = attempts.filter(isEvidence).slice(-WINDOW);
-  let n = 0;
-  let sum = 0;
-  for (const a of recent) {
-    const w = weightOf(a, bank);
-    n += w;
-    sum += w * a.score;
+// Discount repeated retrieval, guesses and slow correct answers. Evidence decays toward
+// a conservative prior. A harder item has a lower expected success probability.
+export function mastery(state: AppState, bank: BankIndex, date: string): Mastery[] {
+  const rows = new Map<string, Mastery>();
+  for (const t of bank.topics.values()) {
+    const prior = state.profile.baseline[t.subject] / MAX_SCORE[t.subject];
+    const weak = matchesTopic(state.profile.weakTopics, t.id),
+      strong = matchesTopic(state.profile.strongTopics, t.id);
+    const value = clamp(prior + (weak ? -0.22 : strong ? 0.2 : 0), 0.12, 0.9);
+    rows.set(t.id, {
+      topic: t.id,
+      subject: t.subject,
+      weight: t.weight,
+      value,
+      samples: 0,
+      speedRatio: null,
+      difficulty: 1,
+      priority: 0,
+    });
   }
-  return { p: (PRIOR_N * p0 + sum) / (PRIOR_N + n), n, samples: recent.length, acc: recent.length ? sum / Math.max(1e-9, n) : null };
+  function decay(r: Mastery, day: string) {
+    if (!r.lastDate) return;
+    const age = Math.max(0, daysBetween(r.lastDate, day));
+    const floor = Math.min(r.value, 0.35);
+    r.value = floor + (r.value - floor) * 2 ** (-age / (42 + 3 * Math.min(r.samples, 12)));
+  }
+  for (const a of state.attempts.filter((a) => a.date <= date).sort((a, b) => a.at.localeCompare(b.at))) {
+    const r = rows.get(a.topic);
+    if (!r) continue;
+    decay(r, a.date);
+    const item = bank.byId.get(a.itemId);
+    const ratio = item && a.seconds > 0 ? a.seconds / item.targetSec : null;
+    const fast = item && possibleGuess(a, item.targetSec, item.format === 'choice');
+    const evidence = a.gaveUp
+      ? 0
+      : a.score *
+        (a.confidence === 'guess' ? 0.35 : a.confidence === 'unsure' || fast ? 0.75 : 1) *
+        (ratio && ratio > SLOW_FACTOR ? 0.8 : 1);
+    const expected = clamp(r.value + (2 - (item?.difficulty ?? 2)) * 0.13, 0.04, 0.96);
+    r.value = clamp(r.value + (a.firstTry ? 0.22 : 0.12) * (evidence - expected), 0.03, 0.98);
+    if (ratio !== null) r.speedRatio = r.speedRatio === null ? ratio : 0.7 * r.speedRatio + 0.3 * ratio;
+    r.samples++;
+    r.lastDate = a.date;
+  }
+  for (const r of rows.values()) {
+    decay(r, date);
+    r.difficulty = r.value < 0.48 ? 1 : r.value < 0.76 ? 2 : 3;
+    const emphasis = matchesTopic(state.profile.weakTopics, r.topic)
+      ? 3
+      : matchesTopic(state.profile.strongTopics, r.topic)
+        ? 0.45
+        : 1;
+    r.priority = r.weight * (1 - r.value) * emphasis * (r.speedRatio && r.speedRatio > SLOW_FACTOR ? 1.25 : 1);
+  }
+  return [...rows.values()];
 }
 
-export function estimateSubject(state: AppState, subject: Subject, bank?: BankIndex): SubjectEstimate {
-  const max = SCALE_MAX[subject];
-  const baseline = state.profile.baseline[subject];
-  const target = state.profile.targets[subject];
-  const p0 = Math.min(0.97, Math.max(0.05, baseline / max));
-  const all = subjectAttempts(state, subject);
-  if (subject === 'japanese') {
-    const r = estimateFrom(all.filter((a) => a.topic.startsWith('ja.reading')), p0, bank);
-    const l = estimateFrom(all.filter((a) => a.topic.startsWith('ja.listening')), p0, bank);
-    const p = (r.p + l.p) / 2;
-    const n = r.n + l.n;
-    const sd = Math.sqrt((p * (1 - p)) / (PRIOR_N + n / 2));
+export function predictions(state: AppState, bank: BankIndex, date: string) {
+  return SUBJECTS.map((subject) => {
+    const maximum = MAX_SCORE[subject];
+    const seen = new Set<string>(),
+      topics = new Set<string>();
+    let weight = 0,
+      sum = 0;
+    for (const a of state.attempts) {
+      const it = bank.byId.get(a.itemId);
+      if (
+        !it ||
+        a.subject !== subject ||
+        a.date > date ||
+        !a.firstTry ||
+        a.mode === 'review' ||
+        it.source.kind !== 'official' ||
+        seen.has(it.id)
+      )
+        continue;
+      seen.add(it.id);
+      topics.add(it.topic);
+      const w = 2 ** (-daysBetween(a.date, date) / 60);
+      const reliability =
+        a.confidence === 'guess'
+          ? 0.35
+          : a.confidence === 'unsure' || possibleGuess(a, it.targetSec, it.format === 'choice')
+            ? 0.75
+            : 1;
+      weight += w;
+      sum += w * a.score * reliability;
+    }
+    const base = state.profile.baseline[subject] / maximum;
+    const estimate = (4 * base + sum) / (4 + weight);
+    // Heuristic uncertainty band. Effective evidence is capped for repeated coverage of one topic.
+    const n = Math.min(weight, topics.size * 3);
+    const margin = Math.max(0.07, 0.48 / Math.sqrt(1 + n / 3));
     return {
       subject,
-      estimate: Math.round(p * max),
-      low: Math.round(Math.max(0, p - 1.3 * sd) * max),
-      high: Math.round(Math.min(1, p + 1.3 * sd) * max),
-      target,
-      baseline,
-      samples: r.samples + l.samples,
-      accuracy: r.acc === null && l.acc === null ? null : ((r.acc ?? p0) + (l.acc ?? p0)) / 2,
-      parts: { reading: Math.round(r.p * 200), listening: Math.round(l.p * 200) },
+      estimate: Math.round(estimate * maximum),
+      range: [
+        Math.floor(maximum * clamp(estimate - margin, 0, 1)),
+        Math.ceil(maximum * clamp(estimate + margin, 0, 1)),
+      ],
+      samples: seen.size,
+      topics: topics.size,
+      evidence: n < 8 ? 'sparse' : n < 24 ? 'developing' : 'broader',
+      scale: maximum,
     };
-  }
-  // Science estimates already discount unfinished questions through the pace factor, so mock
-  // questions left blank at time-up are not counted a second time as wrong.
-  const paced = subject === 'physics' || subject === 'chemistry';
-  const e = estimateFrom(paced ? all.filter((a) => !(a.mode === 'mock' && a.gaveUp)) : all, p0, bank);
-  let p = e.p;
-  let completion: number | undefined;
-  if ((subject === 'physics' || subject === 'chemistry') && bank) {
-    const pace = paceStats(state, bank)[subject];
-    if (pace.ratio !== null && pace.samples >= 10) {
-      // Exam pressure speeds people up a little; beyond that, unanswered questions are guesses.
-      completion = Math.min(1, 1.15 / pace.ratio);
-      p = p * completion + GUESS * (1 - completion);
+  });
+}
+
+export function reviewQueue(state: AppState, bank: BankIndex, date: string, scope: 'due' | 'all' = 'due') {
+  const queue: { itemId: string; topic: string; reasons: string[]; due: string | null; traps: string[] }[] = [];
+  const last = new Map(state.attempts.filter((a) => a.date <= date).map((a) => [a.itemId, a]));
+  for (const it of bank.bundle.items) {
+    let p = state.progress[it.id];
+    if (p && studyDate(new Date(p.lastAt)) > date) {
+      const earlier = state.attempts.filter((a) => a.itemId === it.id && a.date <= date);
+      if (!earlier.length && !isCard(it)) continue;
+      p = earlier.reduce(
+        (prev, a) => updateItemProgress(prev, a, it.targetSec, it.format === 'choice'),
+        undefined as typeof p | undefined,
+      )!;
     }
+    if (scope === 'due' && p?.due && p.due > date) continue;
+    const card = isCard(it),
+      reasons: string[] = [];
+    if (p?.inMistakes) reasons.push('mistake');
+    if (p?.slow) reasons.push('slow');
+    if (p?.possibleGuess) reasons.push('possible_guess');
+    if (last.get(it.id)?.confidence === 'guess') reasons.push('guess');
+    if (p?.due) reasons.push('spaced');
+    if (card && (p?.due || !p?.attempts)) reasons.push('card');
+    if (reasons.length)
+      queue.push({ itemId: it.id, topic: it.topic, reasons, due: p?.due ?? null, traps: it.explanation.traps ?? [] });
   }
-  const sd = Math.sqrt((p * (1 - p)) / (PRIOR_N + e.n));
-  return {
-    subject,
-    estimate: Math.round(p * max),
-    low: Math.round(Math.max(0, p - 1.3 * sd) * max),
-    high: Math.round(Math.min(1, p + 1.3 * sd) * max),
-    target,
-    baseline,
-    samples: e.samples,
-    accuracy: e.acc,
-    completion,
-  };
+  return queue.sort(
+    (a, b) =>
+      Number(!a.due) - Number(!b.due) ||
+      (a.due ?? '').localeCompare(b.due ?? '') ||
+      Number(b.reasons.includes('mistake')) - Number(a.reasons.includes('mistake')) ||
+      a.itemId.localeCompare(b.itemId),
+  );
 }
 
-export function estimateAll(state: AppState, bank?: BankIndex): Record<Subject, SubjectEstimate> {
-  return {
-    japanese: estimateSubject(state, 'japanese', bank),
-    math: estimateSubject(state, 'math', bank),
-    physics: estimateSubject(state, 'physics', bank),
-    chemistry: estimateSubject(state, 'chemistry', bank),
-  };
-}
-
-export function totalEstimate(est: Record<Subject, SubjectEstimate>): number {
-  return est.japanese.estimate + est.math.estimate + est.physics.estimate + est.chemistry.estimate;
-}
-
-/** Relative remaining gap (0..1) of a subject on its own scale. */
-export function gapRatio(e: SubjectEstimate): number {
-  return Math.max(0, e.target - e.estimate) / SCALE_MAX[e.subject];
-}
-
-/** Remaining points to target (every point counts the same toward the 630 total). */
-export function gapPoints(e: SubjectEstimate): number {
-  return Math.max(0, e.target - e.estimate);
-}
-
-export interface TopicStat {
-  topic: string;
-  attempts: number;
-  correct: number;
-  /** Smoothed accuracy (Laplace with subject prior). */
-  mastery: number;
-  lastDate?: string;
-  seconds: number;
-}
-
-export function topicStats(state: AppState, bank: BankIndex): Map<string, TopicStat> {
-  const prior: Record<Subject, number> = {
-    math: state.profile.baseline.math / 200,
-    physics: state.profile.baseline.physics / 100,
-    chemistry: state.profile.baseline.chemistry / 100,
-    japanese: state.profile.baseline.japanese / 400,
-  };
-  const map = new Map<string, TopicStat>();
-  for (const a of state.attempts) {
-    const t = map.get(a.topic) || { topic: a.topic, attempts: 0, correct: 0, mastery: 0, seconds: 0 };
-    t.attempts += 1;
-    t.correct += a.score;
-    t.seconds += a.seconds;
-    if (!t.lastDate || a.date > t.lastDate) t.lastDate = a.date;
-    map.set(a.topic, t);
-  }
-  for (const [id, info] of bank.topics) {
-    const t = map.get(id) || { topic: id, attempts: 0, correct: 0, mastery: 0, seconds: 0 };
-    const p0 = prior[info.subject];
-    t.mastery = (t.correct + 3 * p0) / (t.attempts + 3);
-    map.set(id, t);
-  }
-  return map;
-}
-
-export interface PaceStat {
-  subject: Subject;
-  /** Median seconds / targetSec over recent first tries; 1 = exactly EJU pace. */
-  ratio: number | null;
-  samples: number;
-}
-
-export function paceStats(state: AppState, bank: BankIndex): Record<Subject, PaceStat> {
-  const out = {} as Record<Subject, PaceStat>;
-  for (const subject of ['math', 'physics', 'chemistry', 'japanese'] as Subject[]) {
-    const ratios: number[] = [];
-    for (const a of state.attempts.slice(-300)) {
-      if (a.subject !== subject || !a.firstTry || a.seconds <= 0) continue;
-      const it = bank.byId.get(a.itemId);
-      if (it) ratios.push(a.seconds / it.targetSec);
-    }
-    ratios.sort((x, y) => x - y);
-    const mid = ratios.length ? ratios[Math.floor(ratios.length / 2)] : null;
-    out[subject] = { subject, ratio: mid, samples: ratios.length };
-  }
-  return out;
-}
-
-export function daySeconds(state: AppState, date: string): number {
-  return state.days[date]?.seconds ?? 0;
-}
-
-/** Consecutive days (ending today or yesterday) with at least 30 minutes of study. */
-export function streak(state: AppState, today: string): number {
-  let n = 0;
-  let d = today;
-  if (daySeconds(state, d) < 1800) d = addDays(d, -1);
-  while (daySeconds(state, d) >= 1800) {
-    n += 1;
-    d = addDays(d, -1);
-  }
-  return n;
-}
-
-export function daysLeft(state: AppState, date: string): number {
-  return daysBetween(date, state.profile.examDate);
-}
-
-export function mockEstimate(kind: MockKind, raw: number): number {
-  switch (kind) {
-    case 'math':
-      return Math.round(raw * 200);
-    case 'science':
-      return Math.round(raw * 200);
-    case 'ja-reading':
-      return Math.round(raw * 200);
-    case 'ja-listening':
-      return Math.round(raw * 200);
-  }
+export function earlyChemConcept(it: Item) {
+  return (
+    it.subject === 'chemistry' &&
+    it.source.kind === 'official' &&
+    (it.order ?? 99) <= 10 &&
+    it.targetSec <= 100 &&
+    !/何\s*(?:g|mol|L|mL)|求め|計算/.test(it.stem)
+  );
 }

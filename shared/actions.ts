@@ -1,438 +1,510 @@
-// Pure state transitions. Each function mutates the draft state passed in
-// (the client store clones before calling) and returns useful results.
-import type {
-  AppState,
-  Attempt,
-  AttemptMode,
-  Confidence,
-  Item,
-  MockKind,
-  MockResult,
-  PlanBlock,
-  PracticeSession,
-  Subject,
-  VocabSkill,
+// Mutate only a transaction draft. The server commits the draft after the whole action succeeds.
+import { buildDayPlan } from './planner.ts';
+import { gradeItem, isAnswered, writtenPoints } from './grading.ts';
+import { updateItemProgress } from './srs.ts';
+import { daysBetween, isValidDate, isoWeekday, monday, studyDate } from './dates.ts';
+import { hasActivity, weekDates } from './calendar.ts';
+import {
+  MAX_SCORE,
+  SCHOOLS,
+  SUBJECTS,
+  type AppState,
+  type Confidence,
+  type Item,
+  type MockKind,
+  type PracticeSession,
+  type Profile,
+  type Response,
+  type Settings,
+  type WrittenResponse,
+  type MockResult,
 } from './types.ts';
 import type { BankIndex } from './bank.ts';
-import { mockItems } from './bank.ts';
-import { gradeItem, isAnswered, type GradeResult } from './grading.ts';
-import { updateItemProgress, updateVocabSkill } from './srs.ts';
-import { buildDayPlan, PLANNER_VERSION, mockLimitFor } from './planner.ts';
-import { mockEstimate } from './stats.ts';
 
-export function uid(prefix = ''): string {
-  const c = globalThis.crypto;
-  const raw = c && 'randomUUID' in c ? c.randomUUID() : `${Date.now().toString(36)}-${Math.floor(Math.random() * 1e9).toString(36)}`;
-  return prefix ? `${prefix}-${raw}` : raw;
-}
-
-export function ensureDay(state: AppState, date: string) {
-  if (!state.days[date]) state.days[date] = { seconds: 0, answered: 0, correct: 0, vocab: 0 };
-  return state.days[date];
-}
-
-/** Today's plan, generating it on first access (or when the planner changed and nothing started). */
-export function ensurePlan(state: AppState, bank: BankIndex, date: string) {
-  const cur = state.plans[date];
-  const started = cur?.blocks.some((b) => b.status !== 'todo');
-  if (!cur || (cur.plannerVersion !== PLANNER_VERSION && !started)) {
-    state.plans[date] = buildDayPlan(state, bank, date);
-  }
-  return state.plans[date];
-}
-
-/** Rebuild today's plan keeping finished/started blocks; only the remaining time is re-planned. */
-export function regeneratePlan(state: AppState, bank: BankIndex, date: string) {
-  const old = state.plans[date];
-  const keep = (old?.blocks || []).filter((b) => b.status !== 'todo');
-  const fresh = buildDayPlan(state, bank, date, { keep });
-  fresh.blocks = [...keep, ...fresh.blocks];
-  fresh.blocks.forEach((b, i) => {
-    if (b.status === 'todo') b.id = `${date}:r${Date.now().toString(36)}${i}`;
-  });
-  state.plans[date] = fresh;
-  return fresh;
-}
-
-export interface StartOptions {
-  kind: PracticeSession['kind'];
-  title: string;
-  subject: Subject | 'mixed';
-  itemIds: string[];
-  blockId?: string;
-  mock?: { kind: MockKind; session: string };
-  exam?: boolean;
-  timeLimitSec?: number;
-}
-
-export function startSession(state: AppState, opts: StartOptions, now = new Date()): PracticeSession {
-  const s: PracticeSession = {
-    id: uid('s'),
-    kind: opts.kind,
-    title: opts.title,
-    subject: opts.subject,
-    blockId: opts.blockId,
-    mock: opts.mock,
-    itemIds: opts.itemIds,
-    index: 0,
-    answers: {},
-    startedAt: now.toISOString(),
-    exam: !!opts.exam,
-    timeLimitSec: opts.timeLimitSec,
-    elapsedSec: 0,
-  };
-  state.sessions[s.id] = s;
-  state.activeSessionId = s.id;
-  if (opts.blockId) {
-    const b = findBlock(state, opts.blockId);
-    if (b && b.status === 'todo') {
-      b.status = 'active';
-      b.startedAt = now.toISOString();
+export type Action =
+  | { type: 'profile'; patch: Partial<Profile> }
+  | { type: 'settings'; patch: Partial<Settings> }
+  | { type: 'move'; from: string; to: string }
+  | { type: 'day'; date: string; value: 'off' | 'study' | 'default' }
+  | { type: 'restWeek'; date: string; paused: boolean }
+  | { type: 'startBlock' | 'skipBlock' | 'completeBlock'; blockId: string; date: string }
+  | { type: 'startPractice'; itemIds: string[]; kind?: 'free' | 'review' | 'drill' }
+  | { type: 'startVariant'; jobId: string }
+  | { type: 'startMock'; kind: MockKind; session: string }
+  | {
+      type: 'draft' | 'answer';
+      sessionId: string;
+      itemId: string;
+      response: Response;
+      seconds: number;
+      confidence?: Confidence;
+      gaveUp?: boolean;
     }
-  }
-  return s;
+  | { type: 'tick'; sessionId?: string; seconds: number }
+  | { type: 'finish' | 'abandon'; sessionId: string }
+  | { type: 'topicNote'; topic: string; text: string }
+  | { type: 'itemNote'; itemId: string; text: string }
+  | { type: 'star'; itemId: string; value: boolean };
+export function check(value: unknown, error: string): asserts value {
+  if (!value) throw new Error(error);
 }
-
-export function findBlock(state: AppState, blockId: string): PlanBlock | undefined {
-  const date = blockId.split(':')[0];
-  return state.plans[date]?.blocks.find((b) => b.id === blockId);
+const record = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
+const integer = (n: unknown, min: number, max: number) => Number.isInteger(n) && Number(n) >= min && Number(n) <= max;
+function keys(p: object, allowed: object) {
+  check(record(p) && Object.keys(p).every((k) => Object.hasOwn(allowed, k)), 'invalid fields');
 }
-
-/** Items for a block, resolving mock-correction blocks at start time. */
-export function blockItems(state: AppState, bank: BankIndex, block: PlanBlock): Item[] {
-  if (block.reviewOfMock) {
-    const { kind, session } = block.reviewOfMock;
-    const res = [...state.mocks].reverse().find((m) => m.kind === kind && m.session === session);
-    if (!res) return [];
-    return res.itemIds
-      .filter((id) => {
-        const a = [...state.attempts].reverse().find((x) => x.itemId === id && x.mode === 'mock');
-        return !a || !a.correct || (!!a.confidence && a.confidence !== 'sure');
-      })
-      .map((id) => bank.byId.get(id))
-      .filter(Boolean) as Item[];
-  }
-  if (block.mock && !block.itemIds.length) return mockItems(bank, block.mock.kind, block.mock.session);
-  return block.itemIds.map((id) => bank.byId.get(id)).filter(Boolean) as Item[];
+function text(v: unknown, max: number) {
+  check(typeof v === 'string' && v.length <= max, 'invalid text');
 }
-
-export function startBlock(state: AppState, bank: BankIndex, block: PlanBlock, now = new Date()): PracticeSession | null {
-  const items = blockItems(state, bank, block);
-  if (!items.length) return null;
-  const isMock = block.kind === 'mock' && !!block.mock;
-  const timed = isMock || !!block.timed;
-  return startSession(
-    state,
-    {
-      kind: isMock ? 'mock' : block.kind === 'review' ? 'review' : 'block',
-      title: block.title,
-      subject: block.subject,
-      itemIds: items.map((it) => it.id),
-      blockId: block.id,
-      mock: block.mock,
-      exam: timed,
-      timeLimitSec: isMock ? mockLimitFor(block.mock!.kind, items) : timed ? items.reduce((s, it) => s + it.targetSec, 0) : undefined,
-    },
-    now,
+function validateProfile(p: Profile) {
+  check(
+    isValidDate(p.startDate) &&
+      isValidDate(p.examDate) &&
+      daysBetween(p.startDate, p.examDate) > 0 &&
+      daysBetween(p.startDate, p.examDate) <= 730,
+    'invalid dates',
+  );
+  check(
+    integer(p.dailyMinutes, 30, 360) &&
+      p.mathCourse === 2 &&
+      typeof p.onboarded === 'boolean' &&
+      typeof p.strongEarlyChemistry === 'boolean',
+    'invalid profile',
+  );
+  check(
+    Array.isArray(p.weekdays) &&
+      p.weekdays.length > 0 &&
+      new Set(p.weekdays).size === p.weekdays.length &&
+      p.weekdays.every((d) => integer(d, 1, 7)),
+    'invalid weekdays',
+  );
+  check(Array.isArray(p.schools) && p.schools.every((v) => SCHOOLS.includes(v)), 'invalid school');
+  check(
+    [p.weakTopics, p.strongTopics].every(
+      (list) =>
+        Array.isArray(list) && list.every((t) => typeof t === 'string' && /^(math|chem|phys)(\.[a-z0-9_-]+)+$/.test(t)),
+    ),
+    'invalid topics',
+  );
+  const validScores = (map: Profile['targets']) =>
+    record(map) && Object.keys(map).length === 3 && SUBJECTS.every((k) => integer(map[k], 0, MAX_SCORE[k]));
+  check(validScores(p.targets) && validScores(p.baseline), 'invalid scores');
+  check(
+    Array.isArray(p.milestones) &&
+      p.milestones.length === 4 &&
+      p.milestones.every(
+        (m, i) =>
+          isValidDate(m.date) &&
+          m.date >= p.startDate &&
+          m.date <= p.examDate &&
+          (!i || m.date > p.milestones[i - 1].date) &&
+          validScores(m.targets),
+      ),
+    'invalid milestones',
   );
 }
-
-export interface AnswerInput {
-  sessionId: string;
-  itemId: string;
-  response: number | Record<string, string> | null;
-  seconds: number;
-  confidence?: Confidence;
-  gaveUp?: boolean;
-  date: string;
-  now?: Date;
+function checkResponse(it: Item, r: Response, draft: boolean) {
+  if (r === null) return;
+  if (it.format === 'choice') check(integer(r, 0, (it.options?.length ?? 0) - 1), 'invalid choice');
+  if (it.format === 'blanks')
+    check(
+      record(r) &&
+        Object.entries(r).every(
+          ([k, v]) => Object.hasOwn(it.blanks ?? {}, k) && typeof v === 'string' && v.length <= 1,
+        ),
+      'invalid marksheet',
+    );
+  if (it.format === 'written') {
+    check(record(r), 'written response required');
+    if (r.text !== undefined) text(r.text, 16000);
+    if ('marks' in r) writtenPoints(it, r);
+    else
+      check(draft && typeof r.text === 'string' && Object.keys(r).every((k) => k === 'text'), 'written marks required');
+  }
 }
-
-function attemptMode(s: PracticeSession): AttemptMode {
-  if (s.kind === 'mock') return 'mock';
-  if (s.kind === 'review') return 'review';
-  if (s.kind === 'block') return 'block';
-  if (s.kind === 'drill') return 'drill';
-  return 'free';
-}
-
-/**
- * Submit one answer. In exam mode the response is stored but not graded until the
- * session finishes; otherwise it is graded and recorded immediately.
- */
-export function submitAnswer(state: AppState, bank: BankIndex, input: AnswerInput): GradeResult | null {
-  const s = state.sessions[input.sessionId];
-  const it = bank.byId.get(input.itemId);
-  if (!s || !it) return null;
-  const prev = s.answers[it.id];
-  if (prev?.submitted && !s.exam) return null;
-  s.answers[it.id] = {
-    response: input.response,
-    seconds: Math.round((prev?.seconds || 0) + Math.max(0, input.seconds)),
-    submitted: !s.exam,
-    confidence: input.confidence ?? prev?.confidence,
-    gaveUp: input.gaveUp,
-  };
-  if (s.exam) return null;
-  const g = recordAttempt(state, it, s, input.response, s.answers[it.id].seconds, input.confidence, input.gaveUp, input.date, input.now);
-  s.answers[it.id].correct = g.correct;
-  s.answers[it.id].score = g.score;
-  return g;
-}
-
-function recordAttempt(
-  state: AppState,
-  it: Item,
-  s: PracticeSession,
-  response: AnswerInput['response'],
-  seconds: number,
-  confidence: Confidence | undefined,
-  gaveUp: boolean | undefined,
-  date: string,
-  now = new Date(),
-): GradeResult {
-  const g = gaveUp ? { correct: false, score: 0 } : gradeItem(it, response);
-  const first = !state.attempts.some((a) => a.itemId === it.id);
-  const a: Attempt = {
-    id: uid('a'),
+function recordAttempt(s: AppState, session: PracticeSession, it: Item, now: Date) {
+  const ans = session.answers[it.id];
+  const g = ans.gaveUp ? { correct: false, score: 0 } : gradeItem(it, ans.response);
+  const date = studyDate(now);
+  const a = {
+    id: crypto.randomUUID(),
     itemId: it.id,
     subject: it.subject,
     topic: it.topic,
     at: now.toISOString(),
     date,
-    mode: attemptMode(s),
-    sessionId: s.id,
-    blockId: s.blockId,
-    correct: g.correct,
-    score: g.score,
-    response,
-    seconds: Math.round(seconds),
-    confidence,
-    firstTry: first,
-    gaveUp: gaveUp || undefined,
+    mode: session.kind,
+    sessionId: session.id,
+    blockId: session.blockId,
+    ...g,
+    response: ans.response,
+    seconds: ans.seconds,
+    confidence: ans.confidence,
+    firstTry: !s.attempts.some((a) => a.itemId === it.id),
+    gaveUp: ans.gaveUp,
   };
-  state.attempts.push(a);
-  state.progress[it.id] = updateItemProgress(state.progress[it.id], a, it.targetSec);
-  const day = ensureDay(state, date);
-  day.answered += 1;
-  day.correct += g.correct ? 1 : 0;
+  s.attempts.push(a);
+  s.progress[it.id] = updateItemProgress(s.progress[it.id], a, it.targetSec, it.format === 'choice');
+  const day = (s.days[date] ??= { seconds: 0, answered: 0, correct: 0 });
+  day.answered++;
+  day.correct += Number(g.correct);
+  Object.assign(ans, { submitted: true, correct: g.correct, score: g.score });
   return g;
 }
-
-/** Change the confidence of a not-yet-submitted answer (exam mode keeps it until grading). */
-export function setConfidence(state: AppState, sessionId: string, itemId: string, confidence: Confidence) {
-  const s = state.sessions[sessionId];
-  if (!s) return;
-  const a = s.answers[itemId];
-  if (a && a.submitted) return;
-  s.answers[itemId] = { response: a?.response ?? null, seconds: a?.seconds ?? 0, submitted: false, confidence };
-}
-
-/** Save an in-progress response (not graded) so it survives closing the window. */
-export function saveDraft(state: AppState, sessionId: string, itemId: string, response: AnswerInput['response'], seconds: number) {
-  const s = state.sessions[sessionId];
-  if (!s) return;
-  const a = s.answers[itemId];
-  if (a?.submitted && !s.exam) return;
-  s.answers[itemId] = { ...(a || { submitted: false }), response, seconds: Math.round((a?.seconds || 0) + Math.max(0, seconds)), submitted: false } as PracticeSession['answers'][string];
-}
-
-export function addStudyTime(state: AppState, sessionId: string | null, seconds: number, date: string) {
-  if (seconds <= 0) return;
-  ensureDay(state, date).seconds += seconds;
-  if (sessionId && state.sessions[sessionId]) state.sessions[sessionId].elapsedSec += seconds;
-}
-
-export interface FinishResult {
-  mock?: MockResult;
-  answered: number;
-  correct: number;
-}
-
-/** Finish a session: grade exam-mode answers, record a mock result, close the block. */
-export function finishSession(state: AppState, bank: BankIndex, sessionId: string, date: string, now = new Date()): FinishResult {
-  const s = state.sessions[sessionId];
-  if (!s) return { answered: 0, correct: 0 };
-  if (s.finishedAt) return summarize(state, s);
-  s.finishedAt = now.toISOString();
-  if (s.exam) {
-    for (const id of s.itemIds) {
-      const it = bank.byId.get(id);
-      const ans = s.answers[id];
-      if (!it) continue;
-      const answered = !!ans && isAnswered(it, ans.response) && !ans.gaveUp;
-      const response = answered ? ans!.response : null;
-      if (!answered && s.kind !== 'mock') {
-        // Left blank in a timed set (time ran out or skipped): it stays a fresh question, it is not
-        // evidence about ability and it does not go to the mistake book.
-        s.answers[id] = { response: null, seconds: ans?.seconds ?? 0, submitted: true, correct: false, score: 0, gaveUp: true };
-        continue;
-      }
-      const g = recordAttempt(state, it, s, response, ans?.seconds ?? 0, ans?.confidence, !answered, date, now);
-      s.answers[id] = { response, seconds: ans?.seconds ?? 0, submitted: true, correct: g.correct, score: g.score, confidence: ans?.confidence, gaveUp: !answered };
+function mockResult(session: PracticeSession, bank: BankIndex, now: Date): MockResult {
+  const subjects: MockResult['bySubject'] = {};
+  let earned = 0,
+    total = 0,
+    answered = 0,
+    correct = 0;
+  for (const id of session.itemIds) {
+    const it = bank.byId.get(id)!;
+    const a = session.answers[id];
+    const w =
+      it.written?.parts.reduce((sum, p) => sum + p.points, 0) ?? (it.subject === 'math' ? it.targetSec / 660 : 1);
+    total += w;
+    earned += w * (a.score ?? 0);
+    correct += Number(!!a.correct);
+    answered += Number(!a.gaveUp);
+    const sub = (subjects[it.subject] ??= { total: 0, correct: 0, raw: 0, estimate: 0 });
+    sub.total++;
+    sub.correct += Number(!!a.correct);
+    sub.raw += w * (a.score ?? 0);
+    sub.estimate += w;
+  }
+  for (const sub of SUBJECTS) {
+    const row = subjects[sub];
+    if (row) {
+      row.raw /= row.estimate;
+      row.estimate = Math.round(row.raw * MAX_SCORE[sub]);
     }
   }
-  const res = summarize(state, s);
-  if (s.kind === 'mock' && s.mock) {
-    const items = s.itemIds.map((id) => bank.byId.get(id)).filter(Boolean) as Item[];
-    // Math 大問 Ⅲ/Ⅳ are a bigger share of the paper than a Ⅰ/Ⅱ 問: weight by target time.
-    const weight = (it: Item) => (it.subject === 'math' ? it.targetSec / 660 : 1);
-    let wSum = 0;
-    let wGot = 0;
-    const bySubject: MockResult['bySubject'] = {};
-    const wsum: Partial<Record<Subject, number>> = {};
-    for (const it of items) {
-      const sc = s.answers[it.id]?.score ?? 0;
-      wSum += weight(it);
-      wGot += weight(it) * sc;
-      const b = (bySubject[it.subject] ||= { correct: 0, total: 0, raw: 0, estimate: 0 });
-      b.total += 1;
-      b.correct += s.answers[it.id]?.correct ? 1 : 0;
-      b.raw += weight(it) * sc;
-      wsum[it.subject] = (wsum[it.subject] ?? 0) + weight(it);
-    }
-    for (const [subj, b] of Object.entries(bySubject) as [Subject, NonNullable<MockResult['bySubject']>[Subject]][]) {
-      if (!b) continue;
-      b.raw = wsum[subj] ? b.raw / wsum[subj]! : 0;
-      b.estimate = Math.round(b.raw * (subj === 'math' ? 200 : subj === 'japanese' ? 200 : 100));
-    }
-    const raw = wSum ? wGot / wSum : 0;
-    const mock: MockResult = {
-      id: uid('m'),
-      kind: s.mock.kind,
-      session: s.mock.session,
-      date,
-      startedAt: s.startedAt,
-      finishedAt: s.finishedAt,
-      seconds: s.elapsedSec,
-      itemIds: s.itemIds,
-      answered: res.answered,
-      correct: res.correct,
-      total: s.itemIds.length,
-      raw,
-      estimate: mockEstimate(s.mock.kind, raw),
-      bySubject,
+  const kind = session.mock!.kind;
+  return {
+    id: session.id,
+    ...session.mock!,
+    date: studyDate(now),
+    startedAt: session.startedAt,
+    finishedAt: now.toISOString(),
+    seconds: session.elapsedSec,
+    itemIds: session.itemIds,
+    answered,
+    correct,
+    total: session.itemIds.length,
+    raw: earned / total,
+    estimate:
+      kind === 'school'
+        ? null
+        : kind === 'science'
+          ? (subjects.physics?.estimate ?? 0) + (subjects.chemistry?.estimate ?? 0)
+          : subjects.math!.estimate,
+    bySubject: kind === 'school' ? undefined : subjects,
+  };
+}
+
+export function applyAction(
+  s: AppState,
+  bank: BankIndex,
+  action: Action,
+  now = new Date(),
+  verifiedVariant?: Item,
+): unknown {
+  const today = studyDate(now);
+  const a = action;
+  check(a && typeof a.type === 'string', 'action required');
+  function mutableDay(date: string) {
+    check(isValidDate(date) && date >= s.profile.startDate && date < s.profile.examDate, 'date outside plan');
+    check(!hasActivity(s, date), 'study already started');
+    delete s.plans[date];
+  }
+  function start(
+    kind: PracticeSession['kind'],
+    ids: string[],
+    blockId?: string,
+    mock?: PracticeSession['mock'],
+    timeLimitSec?: number,
+  ) {
+    check(!s.activeSessionId, 'session already active');
+    check(
+      Array.isArray(ids) &&
+        ids.length > 0 &&
+        ids.length <= 500 &&
+        new Set(ids).size === ids.length &&
+        ids.every((id) => bank.byId.has(id) || Object.hasOwn(s.variants, id)),
+      'invalid itemIds',
+    );
+    const subjectOf = (id: string) => (bank.byId.get(id) ?? s.variants[id]).subject;
+    const subject = subjectOf(ids[0]);
+    const session: PracticeSession = {
+      id: crypto.randomUUID(),
+      kind,
+      title: kind,
+      subject: ids.every((id) => subjectOf(id) === subject) ? subject : 'mixed',
+      blockId,
+      mock,
+      itemIds: [...ids],
+      index: 0,
+      answers: {},
+      startedAt: now.toISOString(),
+      exam: !!timeLimitSec,
+      timeLimitSec,
+      elapsedSec: 0,
     };
-    state.mocks.push(mock);
-    res.mock = mock;
-    // Another unfinished attempt at the same paper would only produce a second, non-first-try result.
-    for (const other of Object.values(state.sessions)) {
-      if (other.id !== s.id && !other.finishedAt && other.mock?.kind === s.mock.kind && other.mock.session === s.mock.session) {
-        other.finishedAt = s.finishedAt;
-        if (state.activeSessionId === other.id) state.activeSessionId = undefined;
+    s.sessions[session.id] = session;
+    s.activeSessionId = session.id;
+    return session;
+  }
+  switch (a.type) {
+    case 'profile': {
+      keys(a.patch, s.profile);
+      const p = { ...s.profile, ...a.patch };
+      if (a.patch.targets && !a.patch.milestones)
+        p.milestones = p.milestones.map((m, i) => (i === 3 ? { ...m, targets: p.targets } : m));
+      validateProfile(p);
+      s.profile = p;
+      return p;
+    }
+    case 'settings': {
+      keys(a.patch, s.settings);
+      const p = { ...s.settings, ...a.patch };
+      check(
+        ['system', 'dark', 'light'].includes(p.theme) &&
+          typeof p.musicEnabled === 'boolean' &&
+          typeof p.coachEnabled === 'boolean' &&
+          Number.isFinite(p.fontScale) &&
+          p.fontScale >= 0.6 &&
+          p.fontScale <= 3 &&
+          Number.isFinite(p.musicVolume) &&
+          p.musicVolume >= 0 &&
+          p.musicVolume <= 1,
+        'invalid settings',
+      );
+      check(
+        typeof p.coachModel === 'string' &&
+          /^[a-zA-Z0-9._-]{1,80}$/.test(p.coachModel) &&
+          ['low', 'medium', 'high'].includes(p.coachEffort),
+        'invalid coach settings',
+      );
+      text(p.musicTrack, 150);
+      s.settings = p;
+      return p;
+    }
+    case 'move': {
+      check(a.from !== a.to, 'same day');
+      mutableDay(a.from);
+      mutableDay(a.to);
+      check(!s.calendar.restWeeks.includes(monday(a.to)), 'destination in rest week');
+      const sourceWeek = weekDates(s, a.from, a.from < today ? monday(a.from) : today);
+      const destWeek = weekDates(s, a.to, today);
+      check(
+        sourceWeek.includes(a.from) &&
+          (!destWeek.includes(a.to) ||
+            (!s.profile.weekdays.includes(isoWeekday(a.to)) &&
+              s.calendar.overrides[a.to] !== 'study' &&
+              !hasActivity(s, a.to))),
+        'move from study day to free day',
+      );
+      const existing = s.calendar.moves.find((m) => m.to === a.from);
+      if (existing) existing.to = a.to;
+      else s.calendar.moves.push({ from: a.from, to: a.to });
+      s.calendar.overrides[a.from] = 'off';
+      s.calendar.overrides[a.to] = 'study';
+      return s.calendar;
+    }
+    case 'day':
+      check(['off', 'study', 'default'].includes(a.value), 'invalid day');
+      mutableDay(a.date);
+      s.calendar.moves = s.calendar.moves.filter((m) => m.from !== a.date && m.to !== a.date);
+      if (a.value === 'default') delete s.calendar.overrides[a.date];
+      else s.calendar.overrides[a.date] = a.value;
+      return s.calendar;
+    case 'restWeek': {
+      check(isValidDate(a.date) && typeof a.paused === 'boolean', 'invalid week');
+      const week = monday(a.date);
+      s.calendar.restWeeks = s.calendar.restWeeks.filter((d) => d !== week);
+      if (a.paused) s.calendar.restWeeks.push(week);
+      return s.calendar;
+    }
+    case 'startVariant': {
+      const item = verifiedVariant ?? s.variants['variant-' + a.jobId];
+      check(item && item.id === 'variant-' + a.jobId, 'verified variant missing');
+      s.variants[item.id] = item;
+      return start('free', [item.id]);
+    }
+    case 'startPractice':
+      check(!a.kind || ['free', 'review', 'drill'].includes(a.kind), 'invalid kind');
+      return start(a.kind ?? 'free', a.itemIds);
+    case 'startMock': {
+      const paper = bank.papers.find((p) => p.session === a.session && p.kind === a.kind);
+      check(paper, 'paper missing');
+      return start('mock', paper.itemIds, undefined, { kind: a.kind, session: a.session }, paper.timeLimitSec);
+    }
+    case 'startBlock':
+    case 'skipBlock':
+    case 'completeBlock': {
+      check(isValidDate(a.date) && a.date === today, 'block requires current study date');
+      const plan = (s.plans[a.date] ??= buildDayPlan(s, bank, a.date, today));
+      const block = plan.blocks.find((b) => b.id === a.blockId);
+      check(block, 'block missing');
+      const manual = !block.itemIds.length;
+      if (a.type === 'completeBlock') {
+        check(manual && ['active', 'todo'].includes(block.status), 'finish session instead');
+        block.status = 'done';
+        block.doneAt = now.toISOString();
+        return block;
       }
+      check(block.status === 'todo', 'block already started');
+      if (a.type === 'skipBlock') {
+        block.status = 'skipped';
+        return block;
+      }
+      check(!s.activeSessionId && !plan.blocks.some((b) => b.status === 'active'), 'block already active');
+      block.status = 'active';
+      block.startedAt = now.toISOString();
+      if (manual) return block;
+      const paper =
+        block.mock && bank.papers.find((p) => p.kind === block.mock!.kind && p.session === block.mock!.session);
+      return start(
+        block.mock ? 'mock' : block.kind === 'review' ? 'review' : 'block',
+        block.itemIds,
+        block.id,
+        block.mock,
+        paper?.timeLimitSec ?? (block.kind === 'quiz' ? block.minutes * 60 : undefined),
+      );
     }
-  }
-  if (s.blockId) {
-    const b = findBlock(state, s.blockId);
-    if (b) {
-      b.status = 'done';
-      b.doneAt = now.toISOString();
-      b.result = { answered: res.answered, correct: res.correct, seconds: s.elapsedSec };
+    case 'topicNote':
+      text(a.text, 16000);
+      check(bank.topics.has(a.topic), 'unknown topic');
+      s.notes[a.topic] = a.text;
+      return a.text;
+    case 'star':
+    case 'itemNote': {
+      check(bank.byId.has(a.itemId), 'unknown item');
+      const p = (s.progress[a.itemId] ??= {
+        attempts: 0,
+        correct: 0,
+        lastAt: now.toISOString(),
+        lastCorrect: false,
+        lastScore: 0,
+        inMistakes: false,
+        box: 0,
+      });
+      if (a.type === 'star') {
+        check(typeof a.value === 'boolean', 'invalid star');
+        p.starred = a.value;
+      } else {
+        text(a.text, 2000);
+        p.note = a.text;
+      }
+      return p;
     }
-  }
-  if (state.activeSessionId === s.id) state.activeSessionId = undefined;
-  return res;
-}
-
-function summarize(_state: AppState, s: PracticeSession): FinishResult {
-  let answered = 0;
-  let correct = 0;
-  for (const id of s.itemIds) {
-    const a = s.answers[id];
-    if (a?.submitted && !a.gaveUp) answered++;
-    if (a?.correct) correct++;
-  }
-  // In a timed set every question counts (blanks are wrong), so report against the whole set.
-  return { answered: s.exam ? s.itemIds.length : answered, correct };
-}
-
-export function abandonSession(state: AppState, sessionId: string) {
-  const s = state.sessions[sessionId];
-  if (!s) return;
-  if (state.activeSessionId === sessionId) state.activeSessionId = undefined;
-  if (s.blockId) {
-    const b = findBlock(state, s.blockId);
-    if (b && b.status === 'active' && !Object.values(s.answers).some((a) => a.submitted)) b.status = 'todo';
-  }
-  const hasContent = (r: unknown) =>
-    r !== null && r !== undefined && (typeof r !== 'object' || Object.values(r as Record<string, unknown>).some((v) => String(v ?? '').trim() !== ''));
-  if (!Object.values(s.answers).some((a) => a.submitted || hasContent(a.response))) delete state.sessions[sessionId];
-}
-
-export function markBlock(state: AppState, blockId: string, status: PlanBlock['status'], now = new Date()) {
-  const b = findBlock(state, blockId);
-  if (!b) return;
-  b.status = status;
-  if (status === 'done') b.doneAt = now.toISOString();
-}
-
-export function recordVocab(
-  state: AppState,
-  input: { vocabId: string; skill: VocabSkill; correct: boolean; response: string; seconds: number; heardAudio?: boolean; date: string; now?: Date },
-) {
-  const now = input.now || new Date();
-  state.vocabAttempts.push({
-    id: uid('v'),
-    vocabId: input.vocabId,
-    skill: input.skill,
-    at: now.toISOString(),
-    date: input.date,
-    correct: input.correct,
-    response: input.response,
-    seconds: Math.round(input.seconds * 10) / 10,
-    heardAudio: input.heardAudio || undefined,
-  });
-  const cur = state.vocab[input.vocabId] || {};
-  cur[input.skill] = updateVocabSkill(cur[input.skill], input.correct, now.toISOString(), input.date);
-  state.vocab[input.vocabId] = cur;
-  ensureDay(state, input.date).vocab += 1;
-}
-
-export function toggleStar(state: AppState, itemId: string) {
-  const p = state.progress[itemId];
-  if (p) p.starred = !p.starred;
-  else state.progress[itemId] = { attempts: 0, correct: 0, lastAt: new Date().toISOString(), lastCorrect: false, lastScore: 0, box: 0, inMistakes: false, starred: true };
-}
-
-export function setItemNote(state: AppState, itemId: string, note: string) {
-  const p = state.progress[itemId];
-  if (p) p.note = note.slice(0, 2000);
-}
-
-/** Pull an item out of the mistake book manually ("我已掌握"). */
-export function dismissMistake(state: AppState, itemId: string) {
-  const p = state.progress[itemId];
-  if (p) {
-    p.inMistakes = false;
-    p.due = undefined;
-  }
-}
-
-export { mockItems };
-export { vocabQueue } from './planner.ts';
-
-/**
- * Math re-test: box groups answered correctly last time, as letter → value, so the player can
- * pre-fill and lock them and the learner only redoes the groups that were wrong (EJU problems
- * run in sequence, so only groups before the first wrong one are locked).
- */
-export function lockedGroups(state: AppState, bank: BankIndex, itemId: string): Record<string, string> {
-  const it = bank.byId.get(itemId);
-  if (!it || it.format !== 'blanks') return {};
-  let last: Attempt | undefined;
-  for (let i = state.attempts.length - 1; i >= 0; i--) {
-    if (state.attempts[i].itemId === itemId) {
-      last = state.attempts[i];
+    case 'tick': {
+      check(integer(a.seconds, 0, 3600), 'invalid time');
+      if (a.sessionId) {
+        const session = s.sessions[a.sessionId];
+        check(
+          session && s.activeSessionId === a.sessionId && !session.finishedAt && !session.sealedAt,
+          'session closed',
+        );
+        session.elapsedSec += a.seconds;
+      }
+      (s.days[today] ??= { seconds: 0, answered: 0, correct: 0 }).seconds += a.seconds;
+      return s.days[today];
+    }
+    case 'draft':
+    case 'answer':
+    case 'finish':
+    case 'abandon':
       break;
+    default:
+      throw new Error('unknown action');
+  }
+  const session = s.sessions[a.sessionId];
+  check(session && !session.finishedAt && s.activeSessionId === session.id, 'session closed');
+  const block = session.blockId
+    ? s.plans[session.blockId.split(':')[0]]?.blocks.find((b) => b.id === session.blockId)
+    : undefined;
+  if (a.type === 'abandon') {
+    session.finishedAt = now.toISOString();
+    delete s.activeSessionId;
+    if (block) block.status = 'todo';
+    return { abandoned: true };
+  }
+  if (a.type === 'answer' || a.type === 'draft') {
+    const it = bank.byId.get(a.itemId);
+    check(it && session.itemIds.includes(it.id), 'item not in session');
+    check(
+      integer(a.seconds, 0, 86400) &&
+        (a.confidence === undefined || ['sure', 'guess', 'unsure'].includes(a.confidence)) &&
+        (a.gaveUp === undefined || typeof a.gaveUp === 'boolean'),
+      'invalid answer',
+    );
+    const old = session.answers[it.id];
+    check(!old?.submitted, 'already submitted');
+    if (session.sealedAt) {
+      check(it.format === 'written' && old?.response && a.type === 'answer' && !a.gaveUp, 'script sealed');
+      writtenPoints(it, a.response);
+      const textBefore = (old.response as WrittenResponse).text;
+      check(textBefore === (a.response as WrittenResponse).text, 'script changed');
+      old.response = a.response;
+      return null;
+    }
+    if (session.exam) {
+      check(now.getTime() - Date.parse(session.startedAt) <= session.timeLimitSec! * 1000, 'time expired: finish');
+      if (it.format === 'written')
+        check(a.response === null || (record(a.response) && !('marks' in a.response)), 'mark after seal');
+    }
+    const draft = a.type === 'draft' || session.exam;
+    checkResponse(it, a.response, draft);
+    if (!draft && !a.gaveUp) check(isAnswered(it, a.response), 'empty answer');
+    session.answers[it.id] = {
+      response: a.response,
+      seconds: a.seconds,
+      confidence: a.confidence,
+      gaveUp: a.gaveUp,
+      submitted: false,
+    };
+    session.index = session.itemIds.indexOf(it.id);
+    return draft ? null : recordAttempt(s, session, it, now);
+  }
+  if (!session.exam)
+    check(
+      Object.values(session.answers).some((ans) => ans.submitted),
+      'empty session: abandon',
+    );
+  if (session.exam) {
+    session.sealedAt ??= now.toISOString();
+    const pending = session.itemIds.filter((id) => {
+      const ans = session.answers[id];
+      const it = bank.byId.get(id)!;
+      return (
+        it.format === 'written' &&
+        !ans?.gaveUp &&
+        !!(ans?.response as WrittenResponse)?.text?.trim() &&
+        !(ans.response as WrittenResponse).marks
+      );
+    });
+    if (pending.length) return { pendingWritten: pending };
+    for (const id of session.itemIds) {
+      const it = bank.byId.get(id)!;
+      const ans = (session.answers[id] ??= { response: null, seconds: 0, submitted: false });
+      const blank =
+        ans.gaveUp ||
+        (it.format === 'written' && !(ans.response as WrittenResponse)?.marks) ||
+        !isAnswered(it, ans.response);
+      if (blank) {
+        ans.gaveUp = true;
+        ans.response = null;
+      }
+      if (!blank || session.kind === 'mock') recordAttempt(s, session, it, new Date(session.sealedAt));
     }
   }
-  if (!last || !last.response || typeof last.response !== 'object') return {};
-  const g = gradeItem(it, last.response);
-  const out: Record<string, string> = {};
-  for (const grp of g.groups || []) {
-    if (!grp.correct) break;
-    for (const letter of grp.group) out[letter] = it.blanks![letter];
+  if (session.kind === 'mock') s.mocks.push(mockResult(session, bank, now));
+  session.finishedAt = now.toISOString();
+  delete s.activeSessionId;
+  if (block) {
+    block.status = 'done';
+    block.doneAt = session.finishedAt;
   }
-  return out;
+  return session;
 }
