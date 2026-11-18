@@ -157,7 +157,9 @@ export function validateItem(it, errors, warnings) {
     }
     if (!ex.keyPoints || ex.keyPoints.length === 0) warnings.push(`${w} no keyPoints`);
   }
-  need(it.verified && ['verified', 'disputed', 'unverified'].includes(it.verified.status), 'verified.status missing');
+  if (it.format !== 'written' || it.verified !== undefined) {
+    need(it.verified && ['verified', 'disputed', 'unverified'].includes(it.verified.status), 'verified.status missing or invalid');
+  }
 }
 
 function main() {
@@ -173,6 +175,26 @@ function main() {
       data = JSON.parse(fs.readFileSync(f, 'utf8'));
     } catch (e) {
       errors.push(`${f}: invalid JSON (${e.message})`);
+      continue;
+    }
+    if (data?.subjects && typeof data.subjects === 'object') {
+      const topicIds = new Set();
+      for (const [subject, entry] of Object.entries(data.subjects)) {
+        if (!SUBJECT_PREFIX[subject] || !Array.isArray(entry?.units)) {
+          errors.push(f + ': invalid taxonomy subject ' + subject);
+          continue;
+        }
+        for (const unit of entry.units) {
+          if (!Array.isArray(unit?.topics)) { errors.push(f + ': missing unit topics'); continue; }
+          for (const topic of unit.topics) {
+            count++;
+            if (!topic?.id?.startsWith(SUBJECT_PREFIX[subject]) || !topic.name || topicIds.has(topic.id)) {
+              errors.push(f + ': invalid or duplicate topic ' + topic?.id);
+            }
+            topicIds.add(topic?.id);
+          }
+        }
+      }
       continue;
     }
     if (data && Array.isArray(data.notes)) {

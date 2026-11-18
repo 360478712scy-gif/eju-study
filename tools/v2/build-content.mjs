@@ -14,6 +14,7 @@ const walk = (dir) =>
     : [];
 
 const taxonomy = read(path.join(ROOT, 'content/taxonomy.json'));
+delete taxonomy.subjects.japanese;
 const items = [];
 const skipped = [];
 const seen = new Set();
@@ -26,7 +27,7 @@ for (const f of walk(path.join(ROOT, 'content/bank')).sort()) {
     continue;
   }
   for (const it of data.items || []) {
-    if (it.subject === 'japanese') continue;
+    if (it.subject === 'japanese' || it.id?.startsWith('recall-terms-')) continue;
     const errors = [];
     validateItem(it, errors, []);
     if (seen.has(it.id)) errors.push('duplicate id');
@@ -39,15 +40,14 @@ for (const f of walk(path.join(ROOT, 'content/bank')).sort()) {
   }
 }
 
-const vocab = [];
 const notes = [];
-for (const f of walk(path.join(ROOT, 'content/notes')).sort()) for (const n of read(f).notes || []) if (n.topic && n.body) notes.push(n);
+for (const f of walk(path.join(ROOT, 'content/notes')).sort()) for (const n of read(f).notes || []) if (n.topic && !n.topic.startsWith('ja.') && n.body) notes.push(n);
 
 // Which mock sections each paper can provide.
 const bySession = new Map();
 for (const it of items) {
   const s = it.source.session;
-  if (!s) continue;
+  if (!s || it.source.kind !== 'official') continue;
   if (!bySession.has(s)) bySession.set(s, []);
   bySession.get(s).push(it);
 }
@@ -62,13 +62,13 @@ const papers = [...bySession.entries()]
     return { session, label: `${y}年第${k}回`, mocks };
   });
 
-const bundle = { version: '2', builtAt: new Date().toISOString(), items, vocab, taxonomy, papers, notes };
+const bundle = { version: '3', builtAt: new Date().toISOString(), items, taxonomy, papers, notes };
 fs.mkdirSync(path.join(ROOT, 'content/dist'), { recursive: true });
-const tmp = path.join(ROOT, 'content/dist/bank.json.tmp');
+const tmp = path.join(ROOT, 'content/dist', 'bank.json.' + process.pid + '.tmp');
 fs.writeFileSync(tmp, JSON.stringify(bundle));
 fs.renameSync(tmp, path.join(ROOT, 'content/dist/bank.json'));
 const count = (s) => items.filter((i) => i.subject === s).length;
-console.log(`bank.json: ${items.length} items (math ${count('math')}, physics ${count('physics')}, chemistry ${count('chemistry')}, japanese ${count('japanese')}), vocab ${vocab.length}, notes ${notes.length}, papers ${papers.length}`);
+console.log(`bank.json: ${items.length} items (math ${count('math')}, physics ${count('physics')}, chemistry ${count('chemistry')}, japanese ${count('japanese')}), notes ${notes.length}, papers ${papers.length}`);
 if (skipped.length) {
   console.log(`skipped ${skipped.length}:`);
   for (const s of skipped.slice(0, 30)) console.log('  ' + s);
