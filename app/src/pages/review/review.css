@@ -61,3 +61,4 @@
 .flash-q { font-size: var(--fs-lg); }
 .flash-a { font-size: var(--fs-xl); }
 .flash-rating { justify-content: center; flex-wrap: wrap; margin-top: var(--sp-4); }
+.review-list-more { display: flex; justify-content: center; padding: var(--sp-2); }

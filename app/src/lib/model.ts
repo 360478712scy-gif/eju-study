@@ -7,6 +7,15 @@ export const schoolNames = {
   waseda: t.practice.schoolWaseda, meiji: t.practice.schoolMeiji, aoyama: t.practice.schoolAoyama,
   rikkyo: t.practice.schoolRikkyo, chuo: t.practice.schoolChuo, hosei: t.practice.schoolHosei,
 };
+const shortSchoolNames = {
+  waseda: t.plan.schoolShortWaseda, meiji: t.plan.schoolShortMeiji, aoyama: t.plan.schoolShortAoyama,
+  rikkyo: t.plan.schoolShortRikkyo, chuo: t.plan.schoolShortChuo, hosei: t.plan.schoolShortHosei,
+};
+
+export function blockSchoolName(block: PlanBlock) {
+  const school = block.school ?? block.why.school;
+  return school && shortSchoolNames[school];
+}
 
 export const percent = (value: number) => Math.round(value * 100);
 export function shortDate(date: string) {
@@ -34,7 +43,13 @@ export function blockTitle(block: PlanBlock, bank: BankIndex) {
     case 'interleave': return t.today.taskInterleave;
     case 'review': return t.today.taskWarmupReview;
     case 'quiz': return t.today.taskWeeklyQuiz;
-    case 'school': return t.today.taskSchoolWritten(block.why.school ? schoolNames[block.why.school] : t.mock.schoolRowTitle);
+    case 'school': {
+      const school = blockSchoolName(block);
+      const purpose = block.schoolPurpose ?? block.why.schoolPurpose;
+      if (!school) return t.mock.schoolRowTitle;
+      if (!purpose) return school;
+      return t.plan.schoolTaskTitle(school, purpose === 'exam_style' ? t.plan.schoolExamStyle : t.plan.schoolExtension);
+    }
     case 'mock': return t.today.timedPaper(block.mock?.kind === 'math' ? t.common.mathFull : t.common.science);
     case 'break': return block.minutes === 5 ? t.today.taskShortBreak : t.today.breakFor(block.minutes);
     case 'notes': return t.today.consolidate;

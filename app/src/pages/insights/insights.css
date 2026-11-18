@@ -108,7 +108,7 @@
   color: var(--text-3);
   padding-left: 2px;
 }
-.forecast-evidence { font-size: var(--fs-xs); text-align: end; }
+.forecast-evidence { font-size: var(--fs-xs); justify-content: flex-end; flex-wrap: wrap; gap: var(--sp-2); text-align: end; }
 .weekly-facts { margin-top: var(--sp-3); }
 .speed-plot {
   position: relative; height: 180px; margin-block: var(--sp-3); margin-inline: var(--sp-2);

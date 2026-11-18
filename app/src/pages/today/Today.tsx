@@ -1,19 +1,34 @@
-import { useState, type CSSProperties } from 'react';
-import { hasActivity, weekDates } from '@shared/calendar.ts';
+import { useMemo, useState, type CSSProperties } from 'react';
+import type { BankIndex } from '@shared/bank.ts';
+import { budgetFor, hasActivity, weekDates } from '@shared/calendar.ts';
 import { daysBetween, dateRange, monday, addDays } from '@shared/dates.ts';
+import { buildDayPlan } from '@shared/planner.ts';
+import type { Attempt, PlanBlock } from '@shared/types.ts';
 import { t } from '../../copy/index.ts';
 import { Aside, Page } from '../../shell/Shell.tsx';
 import { Bar, Button, Card, Chip, Empty, Icon, IconButton, List, Orb, RoundPlay, Row, Sheet, Stat, SubjectGlyph, toast } from '../../ui/ui.tsx';
-import { blockReason, blockStatus, blockTitle, findItem, percent, phaseNames, shortDate, topicName, weekday } from '../../lib/model.ts';
+import { blockReason, blockSchoolName, blockStatus, blockTitle, findItem, percent, phaseNames, shortDate, topicName, weekday } from '../../lib/model.ts';
 import { go, itemLink, link } from '../../lib/navigation.ts';
 import { useStudy } from '../../lib/study.tsx';
 import './today.css';
 
 export function TodayQueue({ close }: { close?: () => void }) {
-  const { today, bank, activeBlock, active, startToday } = useStudy();
-  const blocks = today.plan.blocks;
-  const next = activeBlock ?? blocks.find(b => b.status === 'todo');
-  return <Aside title={t.today.queueTitle} actions={close
+  const { today, state, bank, date, active, startToday } = useStudy();
+  const next = today.plan.blocks.find(b => b.status === 'active') ?? today.plan.blocks.find(b => b.status === 'todo');
+  const previewDate = useMemo(() => {
+    if (next) return null;
+    const tomorrow = addDays(date, 1);
+    if (today.plan.blocks.length) return tomorrow;
+    if ('nextDate' in today.next) return today.next.nextDate;
+    // An unrelated active session can hide the next study date from todayView.
+    const first = tomorrow < state.profile.startDate ? state.profile.startDate : tomorrow;
+    return dateRange(first, state.profile.examDate).find(d => budgetFor(state, d, date) > 0);
+  }, [next, today, state, date]);
+  const preview = useMemo(() => previewDate ? buildDayPlan(state, bank, previewDate, date) : undefined, [previewDate, state, bank, date]);
+  const plan = next ? today.plan : preview;
+  const title = next ? t.today.queueTitle
+    : previewDate ? t.today.queuePreviewTitle(shortDate(previewDate)) : t.today.queueNoUpcoming;
+  return <Aside title={title} actions={close
     ? <IconButton icon="close" label={t.common.closeBtn} onClick={close} />
     : next && <RoundPlay label={t.today.queuePlayTooltip(blockTitle(next, bank))} primary onClick={() => void startToday()} size={40} />}>
     {next && <div className="queue-hero" data-tone={next.subject === 'mixed' ? 'primary' : next.subject}>
@@ -21,15 +36,55 @@ export function TodayQueue({ close }: { close?: () => void }) {
       <div className="queue-hero-title">{blockTitle(next, bank)}</div>
       <div className="queue-hero-sub">{blockReason(next, bank)}</div>
     </div>}
-    <div className="queue-meta t-3">{t.today.queueMeta(blocks.length, today.plan.budgetMinutes)}</div>
-    <List>
-      {blocks.map((block, i) => <Row key={block.id} index={i + 1} title={blockTitle(block, bank)}
-        meta={[block.subject !== 'mixed' && t.common.subjectName(block.subject), blockStatus[block.status], t.time.minutes(block.minutes)]} current={block.id === next?.id}
-        done={block.status === 'done'} trail={block.status === 'done' ? <Icon name="check" size={15} />
-          : block.id === next?.id ? <Icon name={active ? 'bolt' : 'play'} size={15} /> : null}
-        onClick={block.id === next?.id ? () => void startToday() : undefined} />)}
-    </List>
+    {plan && (plan.blocks.length ? <>
+      <div className="queue-meta t-3">{t.today.queueMeta(plan.blocks.length, plan.budgetMinutes)}</div>
+      <List>
+        {plan.blocks.map((block, i) => {
+          const current = block.id === next?.id;
+          const done = !!next && block.status === 'done';
+          return <Row key={block.id} index={i + 1} title={blockTitle(block, bank)}
+            meta={[block.subject !== 'mixed' && t.common.subjectName(block.subject), next && blockStatus[block.status], t.time.minutes(block.minutes)]}
+            current={current} done={done} trail={done ? <Icon name="check" size={15} />
+              : current ? <Icon name={active ? 'bolt' : 'play'} size={15} /> : null}
+            onClick={current ? () => void startToday() : undefined} />;
+        })}
+      </List>
+    </> : <Empty icon="coffee" title={t.today.queuePreviewNoTasks} />)}
   </Aside>;
+}
+
+function coachLine(attempts: Attempt[], blocks: PlanBlock[], bank: BankIndex, date: string, streak: number) {
+  const lastDay = attempts.reduce((last, attempt) => attempt.date < date && attempt.date > last ? attempt.date : last, '');
+  if (lastDay) {
+    const mistakes = new Map<string, number>();
+    for (const attempt of attempts) {
+      if (attempt.date === lastDay && !attempt.correct) {
+        mistakes.set(attempt.topic, (mistakes.get(attempt.topic) ?? 0) + 1);
+      }
+    }
+    const largest = [...mistakes].sort((a, b) => b[1] - a[1])[0];
+    if (largest) {
+      const [topic, count] = largest;
+      const dayLabel = lastDay === addDays(date, -1) ? t.time.daysAgo(1) : shortDate(lastDay);
+      return { topic, text: t.today.coachRecentMistakes(dayLabel, topicName(bank, topic), count) };
+    }
+  }
+  const focus = blocks.find(block => block.kind === 'learn');
+  const topic = focus?.why.topic ?? focus?.topic;
+  if (focus?.why.code === 'weak_focus' && topic && focus.why.mastery != null) {
+    return { topic, text: t.today.coachWeakFocus(topicName(bank, topic), percent(focus.why.mastery)) };
+  }
+  const schoolBlock = blocks.find(block => block.kind === 'school');
+  const school = schoolBlock && blockSchoolName(schoolBlock);
+  if (school) return { topic: schoolBlock.topic, text: t.today.coachSchoolPractice(school) };
+  return { topic, text: streak ? t.today.coachStudyStreak(streak) : t.today.coachReady };
+}
+
+function ForecastRange({ low, high, sparse }: { low: number; high: number; sparse: boolean }) {
+  return <span className="hstack forecast-summary">
+    <span>{t.insights.forecastTotalRange(low, high)}</span>
+    {sparse && <Chip tone="warn" sm>{t.insights.sparseBadge}</Chip>}
+  </span>;
 }
 
 export function Today() {
@@ -66,8 +121,7 @@ export function Today() {
   const sciences = predictions.filter(p => p.subject !== 'math');
   const scienceTotal = sciences.reduce((n, p) => n + p.estimate, 0);
   const scienceTarget = state.profile.targets.physics + state.profile.targets.chemistry;
-  const advice = day?.answered ? t.today.coachNoteFinished(percent(day.correct / day.answered))
-    : nextBlock?.topic ? t.today.coachFocus(topicName(bank, nextBlock.topic)) : t.today.coachReady;
+  const advice = useMemo(() => coachLine(state.attempts, plan.blocks, bank, date, streak), [state.attempts, plan.blocks, bank, date, streak]);
   const scriptStart = Math.max(0, Math.min(nextBlock ? plan.blocks.indexOf(nextBlock) - 1 : 0, plan.blocks.length - 4));
   const displayBlocks = plan.blocks.slice(scriptStart, scriptStart + 4);
   let scriptMinutes = plan.blocks.slice(0, scriptStart).reduce((sum, b) => sum + b.minutes, 0);
@@ -104,11 +158,11 @@ export function Today() {
         </> : <>
           <div className="t-caps today-script-heading">{t.today.scriptDuration(t.time.durationMin(plan.budgetMinutes))}</div>
           <ol className="script">
-            {displayBlocks.slice(0, 4).map((block, i) => {
+            {displayBlocks.map((block, i) => {
               const start = scriptMinutes;
               scriptMinutes += block.minutes;
               return <li key={block.id} className={`script-line${block.id === nextBlock?.id ? ' is-now' : ''}`} style={{ '--i': i } as CSSProperties}>
-                <span className="script-time num">{t.time.timerClock(start * 60)}</span>
+                <span className="script-time num">{Math.floor(start / 60)}:{String(start % 60).padStart(2, '0')}</span>
                 <span className="script-text">{blockTitle(block, bank)}<span className="script-kind">{blockReason(block, bank)} · {t.time.minutes(block.minutes)}</span></span>
               </li>;
             })}
@@ -127,14 +181,16 @@ export function Today() {
     </section>
     <Card className="coach-line enter-2" pad={false}>
       <span className="coach-line-icon"><Icon name="sparkle" size={18} /></span>
-      <p className="coach-line-text"><b>{t.today.coachNoteLabel}</b> · {advice}</p>
-      <Button variant="ghost" size="sm" iconRight="arrow-right" onClick={() => openCoach({ topic: nextBlock?.topic, page: t.nav.today })}>{t.nav.dockCoach}</Button>
+      <p className="coach-line-text"><b>{t.today.coachNoteLabel}</b> · {advice.text}</p>
+      <Button variant="ghost" size="sm" iconRight="arrow-right" onClick={() => openCoach({ topic: advice.topic ?? nextBlock?.topic, page: t.nav.today })}>{t.nav.dockCoach}</Button>
     </Card>
     <div className="grid grid-3 enter-3 today-stats">
-      <Card><Stat label={t.common.math} value={math.estimate} unit={t.common.outOf(math.scale)} sub={t.insights.forecastTotalRange(math.range[0], math.range[1])} icon="math" />
+      <Card><Stat label={t.common.math} value={math.estimate} unit={t.common.outOf(math.scale)}
+        sub={<ForecastRange low={math.range[0]} high={math.range[1]} sparse={math.evidence === 'sparse'} />} icon="math" />
         <Bar value={math.estimate} max={math.scale} mark={state.profile.targets.math} tone="math" /></Card>
       <Card><Stat label={t.common.science} value={scienceTotal} unit={t.common.outOf(200)}
-        sub={t.insights.forecastTotalRange(sciences.reduce((n,p) => n + p.range[0], 0), sciences.reduce((n,p) => n + p.range[1], 0))} icon="layers" />
+        sub={<ForecastRange low={sciences.reduce((n, p) => n + p.range[0], 0)} high={sciences.reduce((n, p) => n + p.range[1], 0)}
+          sparse={sciences.some(p => p.evidence === 'sparse')} />} icon="layers" />
         <Bar value={scienceTotal} max={200} mark={scienceTarget} tone="physics" /></Card>
       <Card><Stat label={t.today.week} value={weekly.activeDays} unit={t.common.outOf(weekly.plannedDays)} sub={t.time.durationMin(weekly.seconds / 60)} icon="calendar" />
         <div className="week-dots">{week.map((d, i) => <span key={d} className={`week-dot is-${hasActivity(state, d) ? 'done' : d === date ? 'today' : scheduled.includes(d) ? 'plan' : 'rest'}`} title={shortDate(d)}>

@@ -103,9 +103,15 @@ export function Plan() {
         {view === 'week' ? data.week.map(d => {
           const completed = !!d.blocks.length && d.blocks.every(b => b.status === 'done' || b.status === 'skipped');
           const status = d.date === date ? 'today' : d.budgetMinutes ? 'study' : d.date < date ? 'past' : 'rest';
+          const tasks = d.blocks.filter(b => b.kind !== 'break').filter((b, i) => i < 4 || b.kind === 'school');
           return <Button variant="ghost" key={d.date} className={`wday is-${status}${selected === d.date ? ' is-selected' : ''}`} aria-pressed={selected === d.date} onClick={() => select(d.date)}>
             <span className="wday-head"><span>{weekday(d.date)}</span><span className="num">{d.date.slice(5).replace('-', '/')}</span></span>
-            {d.blocks.length ? <span className="wday-tasks">{d.blocks.filter(b => b.kind !== 'break').slice(0, 4).map(b => <span className="wday-task" key={b.id}><Dot tone={b.subject === 'mixed' ? 'neutral' : b.subject} />{blockTitle(b, bank)}</span>)}</span>
+            {d.blocks.length ? <span className="wday-tasks">{tasks.map(b => {
+              const title = blockTitle(b, bank);
+              return <span className={`wday-task${b.kind === 'school' ? ' is-school' : ''}`} key={b.id} title={title}>
+                <Dot tone={b.subject === 'mixed' ? 'neutral' : b.subject} /><span className="wday-task-label">{title}</span>
+              </span>;
+            })}</span>
               : <span className="wday-rest">{d.missed ? t.plan.dayTagRescheduled : d.phase === 'off' ? t.plan.outside : <><Icon name="coffee" size={20} />{t.plan.dayTagRest}</>}</span>}
             {!!d.budgetMinutes && <span className="wday-foot num">{completed ? t.plan.dayTagCompleted : t.time.minutes(d.budgetMinutes)}</span>}
           </Button>;

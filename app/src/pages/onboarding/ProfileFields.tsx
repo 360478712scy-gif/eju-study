@@ -41,7 +41,9 @@ export function ScoreFields({ value, change, baseline = false }: { value: ScoreM
     })}
   </div>;
 }
-export function WeakFields({ value, change, bank }: { value: string[]; change: (value: string[]) => void; bank: BankIndex }) {
+export function WeakFields({ value, change, bank, moreLabel = t.common.expandBtn }: {
+  value: string[]; change: (value: string[]) => void; bank: BankIndex; moreLabel?: string;
+}) {
   const topics = [...bank.topics.values()];
   const selected = topics.filter(topic => matchesTopic(value, topic.id)).map(topic => topic.id);
   // Expand any inherited prefix before removing one child, preserving its other siblings.
@@ -61,7 +63,7 @@ export function WeakFields({ value, change, bank }: { value: string[]; change: (
           {on.map(it => <Chip key={it.id} sm tone={subject} selected onClick={() => toggle(it.id)}>{it.name}<Icon name="close" size={11} /></Chip>)}
         </div>
         {off.length > 0 && <details className="weak-more">
-          <summary><Icon name="plus" size={13} />{t.common.expandBtn}</summary>
+          <summary><Icon name="plus" size={13} />{moreLabel}</summary>
           <div className="profile-chips">
             {off.map(it => <Chip key={it.id} sm onClick={() => toggle(it.id)}>{it.name}</Chip>)}
           </div>

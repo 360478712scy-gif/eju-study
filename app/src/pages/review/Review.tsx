@@ -13,6 +13,7 @@ import './review.css';
 
 type Rating = 1 | 2 | 3;
 type Filter = 'all' | 'mistakes' | 'traps' | 'cards';
+const INITIAL_ROWS = 30;
 export const cardRating = (item: Item, rating: Rating) => ({
   response: rating === 1 ? null : item.answer ?? null,
   confidence: (rating === 1 ? 'guess' : rating === 2 ? 'unsure' : 'sure') as 'guess' | 'unsure' | 'sure',
@@ -83,6 +84,7 @@ export function FlashCard({ item, index, total, onRate, disabled = false, shortc
 export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: boolean; shortcuts?: boolean }) {
   const { state, bank, queue, date, startItems, action, active, openSession } = useStudy();
   const [filter, setFilter] = useState<Filter>(cardsOnly ? 'cards' : 'all');
+  const [showAll, setShowAll] = useState(false);
   const [rated, setRated] = useState(0);
   const [rating, setRating] = useState(false);
   const ratingLock = useRef(false);
@@ -90,6 +92,7 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
   const mistakes = queue.filter(row => row.reasons.includes('mistake') && !row.reasons.includes('card'));
   const cards = queue.filter(row => row.reasons.includes('card'));
   const shown = { all: queue, mistakes, traps, cards }[filter];
+  const visibleRows = showAll ? shown : shown.slice(0, INITIAL_ROWS);
   const item = cards.length ? bank.byId.get(cards[0].itemId) : undefined;
   const items = shown.flatMap(row => { const entry = bank.byId.get(row.itemId); return entry ? [entry] : []; });
   const rate = async (value: Rating, seconds: number) => {
@@ -119,11 +122,11 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
     {!queue.length ? <Empty icon="check" title={t.empty.reviewClearTitle} desc={t.empty.reviewClearBody}
       action={<Button onClick={() => go(link('practice'))}>{t.practice.title}</Button>} /> :
       <Section title={t.review.filterAll} desc={t.review.dueSummary(items.length, itemMinutes(items))} actions={
-        <Tabs value={filter} onChange={setFilter} options={[
+        <Tabs value={filter} onChange={value => { setFilter(value); setShowAll(false); }} options={[
           { value: 'all', label: t.review.filterAll }, { value: 'mistakes', label: t.review.filterMistakes },
           { value: 'traps', label: t.review.filterTrapsAndSlow }, { value: 'cards', label: t.review.filterFlashcards },
         ]} />}>
-        {items.length ? <Card pad={false}><List>{shown.map(row => {
+        {items.length ? <Card pad={false}><List>{visibleRows.map(row => {
           const display = bank.byId.get(row.itemId);
           if (!display) return null;
           const late = row.due ? daysBetween(row.due, date) : 0;
@@ -136,7 +139,11 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
               row.traps[0] && <RichText text={row.traps[0]} lang="zh" inline />]}
             trail={<Chip sm tone="warn">{!row.due ? t.review.newCard : late > 0 ? t.review.overdueBadge(late) : late < 0 ? t.review.dueTomorrowBadge : t.review.dueTodayBadge}</Chip>}
             onClick={() => void startItems([row.itemId], 'review')} />;
-        })}</List></Card> : <Empty title={t.empty.reviewFilterEmpty} />}
+        })}</List>
+          {!showAll && shown.length > INITIAL_ROWS && <div className="review-list-more">
+            <Button variant="ghost" iconRight="chev-down" onClick={() => setShowAll(true)}>{t.review.showAllItemsBtn(shown.length)}</Button>
+          </div>}
+        </Card> : <Empty title={t.empty.reviewFilterEmpty} />}
       </Section>}
     {!item && !!rated && <Card title={t.review.deckCompleteTitle} actions={<Icon name="check" size={18} />} />}
   </Page>;

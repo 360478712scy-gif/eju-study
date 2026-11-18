@@ -152,7 +152,7 @@ export function StudyProvider({ initialState, bundle, initialDate, initialAppear
   const weekly = useMemo(() => weeklyReview(state, bank, date), [state, bank, date]);
   const topicMastery = useMemo(() => mastery(state, bank, date), [state, bank, date]);
   const forecasts = useMemo(() => predictions(state, bank, date), [state, bank, date]);
-  const queue = useMemo(() => reviewQueue(state, bank, date), [state, bank, date]);
+  const queue = useMemo(() => reviewQueue(state, bank, date, 'due'), [state, bank, date]);
   const active = state.activeSessionId ? state.sessions[state.activeSessionId] : undefined;
   const activeBlock = active?.blockId
     ? state.plans[active.blockId.split(':')[0]]?.blocks.find(block => block.id === active.blockId)

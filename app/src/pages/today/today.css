@@ -151,5 +151,6 @@
 .queue-meta { padding-inline: var(--sp-3); }
 .today-actions { margin-top: var(--sp-5); flex-wrap: wrap; }
 .today-stats { margin-top: var(--sp-4); }
+.forecast-summary { flex-wrap: wrap; gap: var(--sp-2); }
 .today-stats .bar { margin-top: var(--sp-3); }
 @media (min-width: 1360px) { .today-queue-trigger { display: none; } }

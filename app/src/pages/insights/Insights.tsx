@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 import { addDays, daysBetween, monday, parseDate } from '@shared/dates.ts';
 import { mastery, matchesTopic } from '@shared/stats.ts';
 import { Page } from '../../shell/Shell.tsx';
-import { Button, Card, Empty, Section, Stat } from '../../ui/ui.tsx';
+import { Button, Card, Chip, Empty, Section, Stat } from '../../ui/ui.tsx';
 import { t } from '../../copy/index.ts';
 import { percent, recentDays, shortDate, topicName } from '../../lib/model.ts';
 import { useStudy } from '../../lib/study.tsx';
@@ -59,7 +59,11 @@ export function Insights() {
               </div>
               <span className="range-val num">{range[0]}–{range[1]} <span className="t-3">{t.common.outOf(scale)}</span></span>
             </div>
-            <div className="forecast-evidence t-3">{t.insights.forecastEvidence(samples, evidence === 'broader' ? t.insights.broader : evidence === 'developing' ? t.insights.developing : t.insights.sparse)} · {t.insights.forecastTargetMark(goal)}</div>
+            <div className="hstack forecast-evidence t-3">
+              <span>{evidence === 'sparse' ? t.insights.forecastSamples(samples)
+                : t.insights.forecastEvidence(samples, evidence === 'broader' ? t.insights.broader : t.insights.developing)} · {t.insights.forecastTargetMark(goal)}</span>
+              {evidence === 'sparse' && <Chip tone="warn" sm>{t.insights.sparseBadge}</Chip>}
+            </div>
           </div>;
         })}
       </Card>

@@ -173,6 +173,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.wday-task-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.wday-task.is-school .wday-task-label { white-space: normal; }
 .wday-foot {
   margin-top: auto;
   font-size: var(--fs-2xs);

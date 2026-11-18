@@ -58,7 +58,7 @@ export function Onboarding() {
         </div>}
         {step === 3 && <div className="vstack onb-fields">
           <b>{t.onboarding.baselineHeading}</b><ScoreFields baseline value={draft.baseline} change={baseline => patch({ baseline })} />
-          <b>{t.onboarding.weakTopicsHeading}</b><WeakFields value={draft.weakTopics} change={weakTopics => patch({ weakTopics })} bank={bank} />
+          <b>{t.onboarding.weakTopicsHeading}</b><WeakFields value={draft.weakTopics} change={weakTopics => patch({ weakTopics })} bank={bank} moreLabel={t.onboarding.moreTopicsBtn} />
           <p className="t-3">{t.onboarding.weakTopicsCountNote(draft.weakTopics.length)}</p>
         </div>}
         <div className="hstack onb-actions">
