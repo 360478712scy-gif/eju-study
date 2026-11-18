@@ -1,0 +1,222 @@
+/* 澄学 EJU 3.0 — design tokens.
+   Two material tones follow the scene: dark glass over night scenes, light glass over day scenes.
+   `data-tone` on <html> is set by the Scene (auto by time / season, or fixed in 设置 → 外观).
+   Pages never hard-code a color, radius, blur or shadow: add a token here instead. */
+
+:root {
+  /* type */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Hiragino Sans', 'Hiragino Sans GB', 'Helvetica Neue', sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans', sans-serif;
+  --font-ja: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'PingFang SC', sans-serif;
+  --font-num: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, monospace;
+  --fs-2xs: 11px;
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-ui: 14px;
+  --fs-base: 15px;
+  --fs-md: 17px;
+  --fs-lg: 20px;
+  --fs-xl: 26px;
+  --fs-2xl: 34px;
+  --fs-3xl: 48px;
+  --fs-orb: 64px;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --lh-tight: 1.25;
+  --lh-ui: 1.55;
+  --lh-read: 1.85;
+  --track-tight: -0.012em;
+  --track-caps: 0.06em;
+
+  /* space (4-based) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-7: 28px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* radius */
+  --r-panel: 26px;
+  --r-card: 18px;
+  --r-inner: 14px;
+  --r-ctl: 12px;
+  --r-sm: 9px;
+  --r-pill: 999px;
+
+  /* layout */
+  --nav-w: 220px;
+  --nav-w-rail: 68px;
+  --aside-w: 300px;
+  --dock-h: 56px;
+  --gap-panels: 14px;
+  --edge: 14px;
+  --titlebar-h: 30px;
+  --content-max: 1060px;
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 360ms;
+  --dur-scene: 1200ms;
+
+  /* blur */
+  --blur-panel: 34px;
+  --blur-float: 44px;
+  --blur-card: 18px;
+  --sat: 165%;
+
+  /* fixed semantic hues (tone-independent bases) */
+  --hue-ice: 212;
+  --c-math: #8ec5ff;
+  --c-physics: #c4b5ff;
+  --c-chemistry: #86efc4;
+  --c-school: #ffd08a;
+}
+
+/* ───────────── dark glass (night scenes, default) ───────────── */
+:root,
+:root[data-tone='dark'] {
+  color-scheme: dark;
+  --scene-veil: linear-gradient(180deg, rgba(6, 9, 18, 0.18) 0%, rgba(6, 9, 18, 0.34) 60%, rgba(6, 9, 18, 0.55) 100%);
+  --scene-vignette: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(3, 5, 12, 0.55) 100%);
+
+  --text: rgba(245, 248, 255, 0.96);
+  --text-2: rgba(226, 233, 248, 0.72);
+  --text-3: rgba(214, 223, 242, 0.5);
+  --text-4: rgba(214, 223, 242, 0.32);
+  --text-on-primary: #0b1424;
+
+  --glass-panel: rgba(13, 17, 27, 0.4);
+  --glass-grad: linear-gradient(165deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.015) 38%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.025) 100%);
+  --glass-panel-strong: rgba(14, 18, 29, 0.6);
+  --glass-card: rgba(255, 255, 255, 0.055);
+  --glass-card-hover: rgba(255, 255, 255, 0.085);
+  --glass-card-active: rgba(255, 255, 255, 0.12);
+  --glass-float: rgba(20, 24, 36, 0.6);
+  --glass-read: rgba(11, 14, 22, 0.72);
+  --glass-well: rgba(0, 0, 0, 0.18);
+  --glass-chip: rgba(255, 255, 255, 0.08);
+
+  --line: rgba(255, 255, 255, 0.11);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --sheen: inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  --sheen-strong: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+  --shadow-panel: 0 30px 80px -24px rgba(0, 0, 0, 0.55), 0 10px 30px -12px rgba(0, 0, 0, 0.35);
+  --shadow-float: 0 24px 60px -16px rgba(0, 0, 0, 0.6), 0 6px 18px -6px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03);
+  --shadow-press: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  --primary: #9fd0ff;
+  --primary-strong: #c7e4ff;
+  --primary-soft: rgba(143, 197, 255, 0.16);
+  --primary-line: rgba(160, 208, 255, 0.5);
+  --primary-glow: 0 0 0 1px rgba(160, 208, 255, 0.35), 0 8px 30px -6px rgba(120, 180, 255, 0.55);
+
+  --ok: #7ee2b0;
+  --ok-soft: rgba(126, 226, 176, 0.14);
+  --bad: #ff9a8a;
+  --bad-soft: rgba(255, 140, 120, 0.15);
+  --warn: #ffd27a;
+  --warn-soft: rgba(255, 210, 122, 0.14);
+
+  --track: rgba(255, 255, 255, 0.1);
+  --tick: rgba(255, 255, 255, 0.16);
+  --tick-on: rgba(206, 232, 255, 0.95);
+
+  --focus-ring: 0 0 0 2px rgba(10, 14, 24, 0.8), 0 0 0 4px rgba(160, 208, 255, 0.75);
+  --scrollbar: rgba(255, 255, 255, 0.16);
+  --selection: rgba(143, 197, 255, 0.35);
+
+  --orb-core: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.95) 0%, rgba(214, 228, 248, 0.75) 14%, rgba(132, 150, 182, 0.55) 38%, rgba(40, 50, 74, 0.6) 70%, rgba(12, 16, 28, 0.8) 100%);
+  --orb-rim: rgba(200, 220, 255, 0.35);
+}
+
+/* ───────────── light glass (day scenes) ───────────── */
+:root[data-tone='light'] {
+  color-scheme: light;
+  --scene-veil: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(240, 245, 252, 0.14) 60%, rgba(226, 234, 246, 0.3) 100%);
+  --scene-vignette: radial-gradient(120% 90% at 50% 45%, transparent 60%, rgba(30, 44, 74, 0.18) 100%);
+
+  --text: rgba(14, 22, 38, 0.94);
+  --text-2: rgba(28, 40, 64, 0.72);
+  --text-3: rgba(36, 50, 78, 0.52);
+  --text-4: rgba(36, 50, 78, 0.34);
+  --text-on-primary: #ffffff;
+
+  --glass-panel: rgba(246, 249, 254, 0.48);
+  --glass-grad: linear-gradient(165deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0) 62%, rgba(255, 255, 255, 0.18) 100%);
+  --glass-panel-strong: rgba(248, 250, 255, 0.7);
+  --glass-card: rgba(255, 255, 255, 0.42);
+  --glass-card-hover: rgba(255, 255, 255, 0.58);
+  --glass-card-active: rgba(255, 255, 255, 0.72);
+  --glass-float: rgba(250, 252, 255, 0.66);
+  --glass-read: rgba(255, 255, 255, 0.8);
+  --glass-well: rgba(30, 50, 90, 0.06);
+  --glass-chip: rgba(255, 255, 255, 0.55);
+
+  --line: rgba(255, 255, 255, 0.7);
+  --line-strong: rgba(255, 255, 255, 0.92);
+  --line-soft: rgba(30, 50, 90, 0.08);
+  --sheen: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  --sheen-strong: inset 0 1px 0 rgba(255, 255, 255, 1);
+
+  --shadow-panel: 0 30px 70px -26px rgba(30, 48, 88, 0.35), 0 8px 24px -12px rgba(30, 48, 88, 0.2);
+  --shadow-float: 0 22px 50px -18px rgba(30, 48, 88, 0.4), 0 4px 14px -6px rgba(30, 48, 88, 0.22);
+  --shadow-card: 0 1px 2px rgba(30, 48, 88, 0.06);
+  --shadow-press: inset 0 1px 2px rgba(30, 48, 88, 0.15);
+
+  --primary: #2563eb;
+  --primary-strong: #1d4fd0;
+  --primary-soft: rgba(37, 99, 235, 0.12);
+  --primary-line: rgba(37, 99, 235, 0.45);
+  --primary-glow: 0 0 0 1px rgba(37, 99, 235, 0.25), 0 10px 28px -8px rgba(37, 99, 235, 0.5);
+
+  --c-math: #2f74e0;
+  --c-physics: #7b5cf0;
+  --c-chemistry: #0e9f6e;
+  --c-school: #c77a12;
+
+  --ok: #0f9b62;
+  --ok-soft: rgba(15, 155, 98, 0.12);
+  --bad: #d9503a;
+  --bad-soft: rgba(217, 80, 58, 0.11);
+  --warn: #b7791f;
+  --warn-soft: rgba(183, 121, 31, 0.13);
+
+  --track: rgba(30, 50, 90, 0.1);
+  --tick: rgba(30, 50, 90, 0.16);
+  --tick-on: rgba(37, 99, 235, 0.95);
+
+  --focus-ring: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 0 0 4px rgba(37, 99, 235, 0.6);
+  --scrollbar: rgba(30, 50, 90, 0.2);
+  --selection: rgba(37, 99, 235, 0.2);
+
+  --orb-core: radial-gradient(circle at 34% 28%, #ffffff 0%, rgba(246, 250, 255, 0.95) 16%, rgba(196, 214, 240, 0.8) 42%, rgba(120, 146, 190, 0.7) 74%, rgba(70, 92, 140, 0.75) 100%);
+  --orb-rim: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-panel: rgba(18, 22, 34, 0.94);
+    --glass-float: rgba(22, 26, 38, 0.97);
+    --glass-read: rgba(14, 17, 26, 0.98);
+  }
+  :root[data-tone='light'] {
+    --glass-panel: rgba(246, 248, 252, 0.96);
+    --glass-float: rgba(250, 251, 254, 0.98);
+    --glass-read: rgba(255, 255, 255, 0.99);
+  }
+}
