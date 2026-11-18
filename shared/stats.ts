@@ -1,8 +1,8 @@
 import type { AppState, Item, Subject } from './types.ts';
-import { MAX_SCORE, SUBJECTS } from './types.ts';
-import { daysBetween, studyDate } from './dates.ts';
+import { DEFAULT_NEW_CARDS_PER_DAY, MAX_SCORE, SUBJECTS } from './types.ts';
+import { addDays, daysBetween, isValidDate, studyDate } from './dates.ts';
 import { isCard, type BankIndex } from './bank.ts';
-import { SLOW_FACTOR, updateItemProgress, possibleGuess } from './srs.ts';
+import { INTERVALS, SLOW_FACTOR, updateItemProgress, possibleGuess } from './srs.ts';
 
 export const matchesTopic = (list: string[], topic: string) =>
   list.some((t) => topic === t || topic.startsWith(t + '.'));
@@ -106,51 +106,113 @@ export function predictions(state: AppState, bank: BankIndex, date: string) {
       weight += w;
       sum += w * a.score * reliability;
     }
-    const base = state.profile.baseline[subject] / maximum;
-    const estimate = (4 * base + sum) / (4 + weight);
-    // Heuristic uncertainty band. Effective evidence is capped for repeated coverage of one topic.
+    const baseline = state.profile.baseline[subject];
+    // Narrow topic coverage and stale rounds both reduce usable evidence.
     const n = Math.min(weight, topics.size * 3);
-    const margin = Math.max(0.07, 0.48 / Math.sqrt(1 + n / 3));
+    const evidence = n < 15 ? 'sparse' : n < 24 ? 'developing' : 'broader';
+    const observed = weight ? (4 * baseline + maximum * sum) / (4 + weight) : baseline;
+    const estimate = baseline + (observed - baseline) * clamp((n - 15) / 30, 0, 1);
+    const margin = n < 24 ? 0.08 + 0.04 * clamp((n - 15) / 9, 0, 1) : Math.max(0.05, 0.12 * Math.sqrt(24 / n));
     return {
       subject,
-      estimate: Math.round(estimate * maximum),
+      estimate: Math.round(estimate),
       range: [
-        Math.floor(maximum * clamp(estimate - margin, 0, 1)),
-        Math.ceil(maximum * clamp(estimate + margin, 0, 1)),
+        Math.round(clamp(estimate - maximum * margin, 0, maximum)),
+        Math.round(clamp(estimate + maximum * margin, 0, maximum)),
       ],
       samples: seen.size,
       topics: topics.size,
-      evidence: n < 8 ? 'sparse' : n < 24 ? 'developing' : 'broader',
+      evidence,
       scale: maximum,
     };
   });
 }
 
+interface ReviewRow {
+  itemId: string;
+  topic: string;
+  reasons: string[];
+  due: string | null;
+  traps: string[];
+}
+
+const INORGANIC = 'chem.inorg';
+const ORGANIC = 'chem.org';
+
+function releaseNewCards(state: AppState, bank: BankIndex, date: string, cards: ReviewRow[]) {
+  const limit = state.settings.newCardsPerDay ?? DEFAULT_NEW_CARDS_PER_DAY;
+  if (!limit || !cards.length) return [];
+  const introduced = new Map<string, string>();
+  for (const attempt of state.attempts) {
+    if (attempt.date !== date || !attempt.firstTry) continue;
+    const item = bank.byId.get(attempt.itemId);
+    if (item && isCard(item)) introduced.set(item.id, item.topic);
+  }
+  const remaining = Math.max(0, limit - introduced.size);
+  if (!remaining) return [];
+
+  // Use the marked weak topics' exam weights so a rating cannot reshuffle today's share.
+  const weakWeight = (prefix: string) =>
+    [...bank.topics.values()].reduce(
+      (sum, topic) =>
+        sum + (matchesTopic([prefix], topic.id) && matchesTopic(state.profile.weakTopics, topic.id) ? topic.weight : 0),
+      0,
+    ) || 1;
+  const inorganic = weakWeight(INORGANIC);
+  const inorganicLimit = Math.round((limit * inorganic) / (inorganic + weakWeight(ORGANIC)));
+  const allot = (prefix: string, cap: number) => {
+    const used = [...introduced.values()].filter((topic) => matchesTopic([prefix], topic)).length;
+    return cards.filter((row) => matchesTopic([prefix], row.topic)).slice(0, Math.max(0, cap - used));
+  };
+  const selected = new Set(
+    [...allot(INORGANIC, inorganicLimit), ...allot(ORGANIC, limit - inorganicLimit)].slice(0, remaining),
+  );
+  // Give unused slots to the other priority group before releasing the remaining cards.
+  for (const row of [...cards.filter((card) => matchesTopic([INORGANIC, ORGANIC], card.topic)), ...cards]) {
+    if (selected.size >= remaining) break;
+    selected.add(row);
+  }
+  return [...selected];
+}
+
 export function reviewQueue(state: AppState, bank: BankIndex, date: string, scope: 'due' | 'all' = 'due') {
-  const queue: { itemId: string; topic: string; reasons: string[]; due: string | null; traps: string[] }[] = [];
+  const queue: ReviewRow[] = [];
+  const freshCards: ReviewRow[] = [];
   const last = new Map(state.attempts.filter((a) => a.date <= date).map((a) => [a.itemId, a]));
   for (const it of bank.bundle.items) {
     let p = state.progress[it.id];
+    const card = isCard(it);
     if (p && studyDate(new Date(p.lastAt)) > date) {
       const earlier = state.attempts.filter((a) => a.itemId === it.id && a.date <= date);
-      if (!earlier.length && !isCard(it)) continue;
+      if (!earlier.length && !card) continue;
       p = earlier.reduce(
         (prev, a) => updateItemProgress(prev, a, it.targetSec, it.format === 'choice'),
         undefined as typeof p | undefined,
       )!;
     }
-    if (scope === 'due' && p?.due && p.due > date) continue;
-    const card = isCard(it),
-      reasons: string[] = [];
+    const prior = last.get(it.id);
+    const isNew = card && !p?.attempts && !prior;
+    let due = p?.due;
+    if (card && !isNew && !due) {
+      // Some imported v2 cards were graded without a spaced-review date.
+      const studiedOn = prior?.date ?? studyDate(new Date(p!.lastAt));
+      if (isValidDate(studiedOn)) due = addDays(studiedOn, INTERVALS[clamp(p?.box ?? 0, 0, INTERVALS.length - 1)]);
+    }
+    if (scope === 'due' && (due ? due > date : card && !isNew)) continue;
+    const reasons: string[] = [];
     if (p?.inMistakes) reasons.push('mistake');
     if (p?.slow) reasons.push('slow');
     if (p?.possibleGuess) reasons.push('possible_guess');
-    if (last.get(it.id)?.confidence === 'guess') reasons.push('guess');
-    if (p?.due) reasons.push('spaced');
-    if (card && (p?.due || !p?.attempts)) reasons.push('card');
-    if (reasons.length)
-      queue.push({ itemId: it.id, topic: it.topic, reasons, due: p?.due ?? null, traps: it.explanation.traps ?? [] });
+    if (prior?.confidence === 'guess') reasons.push('guess');
+    if (due) reasons.push('spaced');
+    if (card && (due || isNew || scope === 'all')) reasons.push('card');
+    if (reasons.length) {
+      const row = { itemId: it.id, topic: it.topic, reasons, due: due ?? null, traps: it.explanation.traps ?? [] };
+      (scope === 'due' && isNew ? freshCards : queue).push(row);
+    }
   }
+  freshCards.sort((a, b) => a.itemId.localeCompare(b.itemId));
+  queue.push(...releaseNewCards(state, bank, date, freshCards));
   return queue.sort(
     (a, b) =>
       Number(!a.due) - Number(!b.due) ||

@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { setTimeout as delay } from 'node:timers/promises';
-import { bundle, written } from './fixtures.ts';
+import { bundle, fresh, written } from './fixtures.ts';
 
 test('loopback HTTP, seven views, CAS, persisted variants and independent coach jobs', { timeout: 20000 }, async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'eju-v3-http-'));
@@ -19,6 +19,10 @@ test('loopback HTTP, seven views, CAS, persisted variants and independent coach 
   fs.writeFileSync(path.join(site, 'index.html'), '<title>v3 fixture</title>');
   fs.writeFileSync(path.join(site, 'assets', 'site.js'), 'site asset');
   const raw = structuredClone(bundle);
+  const legacyState = fresh();
+  assert.equal(legacyState.settings.newCardsPerDay, 20);
+  Reflect.deleteProperty(legacyState.settings, 'newCardsPerDay');
+  fs.writeFileSync(path.join(dir, 'state-v3.json'), JSON.stringify(legacyState));
   fs.writeFileSync(
     file,
     JSON.stringify({
@@ -83,6 +87,13 @@ test('loopback HTTP, seven views, CAS, persisted variants and independent coach 
     const writes = await Promise.all([post('/api/action', a), post('/api/action', a)]);
     assert.deepEqual(writes.map((w) => w.status).sort(), [200, 409]);
     assert.equal((await get('/api/state')).state.revision, 1);
+    assert.equal((await get('/api/state')).state.settings.newCardsPerDay, 20);
+    const preview = await get('/api/plan?date=2026-12-01&asOf=2026-11-19');
+    const school = preview.week
+      .find((day: { date: string }) => day.date === '2026-12-01')
+      .blocks.find((block: { kind: string }) => block.kind === 'school');
+    assert.equal(school.school, 'aoyama');
+    assert.equal(school.schoolPurpose, 'exam_style');
     assert.equal(
       (await post('/api/action', { baseRevision: 1, action: { type: 'startPractice', itemIds: ['missing'] } })).status,
       400,
@@ -134,6 +145,24 @@ test('loopback HTTP, seven views, CAS, persisted variants and independent coach 
       200,
     );
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'state-v3.json'), 'utf8')).attempts[0].correct, true);
+    const patch = await post('/api/action', {
+      baseRevision: 3,
+      action: { type: 'settings', patch: { newCardsPerDay: 3 } },
+    });
+    assert.equal(patch.status, 200);
+    assert.equal((await patch.json()).result.newCardsPerDay, 3);
+    const date = '2026-11-19';
+    const due = (await get('/api/review?date=' + date)).queue;
+    const all = (await get('/api/review?scope=all&date=' + date)).queue;
+    const isCardRow = (row: { reasons: string[] }) => row.reasons.includes('card');
+    assert.equal(due.filter(isCardRow).length, 3);
+    assert.equal(all.filter(isCardRow).length, 8);
+    const today = await get('/api/today?date=' + date);
+    const review = today.plan.blocks.find((block: { kind: string }) => block.kind === 'review');
+    assert.deepEqual(
+      review.itemIds.filter((id: string) => id.startsWith('recall-')),
+      due.filter(isCardRow).map((row: { itemId: string }) => row.itemId),
+    );
     const calls = fs
       .readFileSync(trace, 'utf8')
       .trim()

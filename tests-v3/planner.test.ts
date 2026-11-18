@@ -212,3 +212,82 @@ test('resetting or reversing a cross-week move restores both weeks', () => {
     assert.deepEqual(s.calendar, { moves: [], overrides: {}, restWeeks: [] });
   }
 });
+
+test('the first 11 specialist days cover all declared weak areas before adaptive focus', () => {
+  const s = fresh();
+  const start = s.profile.startDate;
+  const schedule = mockSchedule(s, bank, start);
+  const focus = dateRange(start, '2026-12-07').flatMap((date) =>
+    buildDayPlan(s, bank, date, start, schedule).blocks.filter((block) => block.kind === 'learn'),
+  );
+  const expected = new Set([
+    'phys.em.induction',
+    'phys.em.capacitor',
+    'phys.mech.spring',
+    'phys.mech.pendulum',
+    'chem.inorg',
+    'chem.org',
+    'chem.react.enthalpy',
+    'math.seq.seq',
+    'math.prob.count',
+    'math.explog.func',
+    'math.calc.int',
+  ]);
+  const firstRound = focus.slice(0, 11);
+  assert.ok(firstRound.every((block) => block.why.code === 'weak_focus'));
+  assert.deepEqual(
+    new Set(
+      firstRound.map((block) =>
+        block.topic!.startsWith('chem.org.')
+          ? 'chem.org'
+          : block.topic!.startsWith('chem.inorg.')
+            ? 'chem.inorg'
+            : block.topic,
+      ),
+    ),
+    expected,
+  );
+  for (const [i, block] of firstRound.entries()) {
+    const priority = (item: typeof block) => item.why.weight! * (1 - item.why.mastery!);
+    if (i) assert.ok(priority(firstRound[i - 1]) >= priority(block));
+    assert.ok(block.itemIds.every((id) => bank.byId.get(id)?.topic === block.topic));
+  }
+  assert.equal(focus[11]?.why.code, 'topic_focus');
+
+  const tomorrow = addDays(start, 1);
+  assert.equal(todayView(s, bank, tomorrow).plan.blocks.find((b) => b.kind === 'learn')?.topic, firstRound[0].topic);
+  s.plans[start] = buildDayPlan(s, bank, start);
+  s.plans[start].blocks.find((b) => b.kind === 'learn')!.status = 'done';
+  assert.equal(todayView(s, bank, tomorrow).plan.blocks.find((b) => b.kind === 'learn')?.topic, firstRound[1].topic);
+});
+
+test('school tasks expose the selected item school and purpose in new and saved plans', async () => {
+  const { indexBank } = await import('../shared/bank.ts');
+  for (const [school, purpose] of [
+    ['aoyama', 'exam_style'],
+    ['waseda', 'extension'],
+  ] as const) {
+    const s = fresh();
+    const schoolBank = indexBank({
+      ...bank.bundle,
+      items: bank.bundle.items.map((it) => (it.id === written.id ? { ...it, source: { ...it.source, school } } : it)),
+    });
+    const date = '2026-12-01';
+    const plan = buildDayPlan(s, schoolBank, date, s.profile.startDate);
+    const block = plan.blocks.find((b) => b.kind === 'school')!;
+    assert.deepEqual(block.itemIds, [written.id]);
+    assert.equal(block.school, school);
+    assert.equal(block.schoolPurpose, purpose);
+
+    s.plans[date] = plan;
+    delete block.school;
+    delete block.schoolPurpose;
+    delete block.why.school;
+    delete block.why.schoolPurpose;
+    const restored = todayView(s, schoolBank, date).plan.blocks.find((b) => b.kind === 'school')!;
+    assert.equal(restored.school, school);
+    assert.equal(restored.schoolPurpose, purpose);
+    assert.equal(restored.why.school, school);
+    assert.equal(restored.why.schoolPurpose, purpose);
+  }
+});

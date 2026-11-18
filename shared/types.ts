@@ -264,6 +264,8 @@ export interface PlanBlock {
   itemIds: string[];
   topic?: string;
   why: Why;
+  school?: School;
+  schoolPurpose?: 'exam_style' | 'extension';
   mock?: { kind: MockKind; session: string };
   status: 'todo' | 'active' | 'done' | 'skipped';
   startedAt?: string;
@@ -338,6 +340,8 @@ export interface DayLog {
   correct: number;
 }
 
+export const DEFAULT_NEW_CARDS_PER_DAY = 20;
+
 export interface Settings {
   theme: 'system' | 'light' | 'dark';
   musicEnabled: boolean;
@@ -347,6 +351,7 @@ export interface Settings {
   coachEnabled: boolean;
   coachModel: string;
   coachEffort: 'low' | 'medium' | 'high';
+  newCardsPerDay: number;
 }
 
 export interface AppState {

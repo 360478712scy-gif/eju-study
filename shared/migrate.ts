@@ -1,6 +1,7 @@
 import {
   isSubject,
   SCHOOLS,
+  DEFAULT_NEW_CARDS_PER_DAY,
   type AppState,
   type Profile,
   type Attempt,
@@ -62,6 +63,7 @@ export function createInitialState(now = new Date()): AppState {
       coachEnabled: true,
       coachModel: 'gpt-6.2-astra',
       coachEffort: 'medium',
+      newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY,
     },
     calendar: { overrides: {}, moves: [], restWeeks: [] },
     attempts: [],

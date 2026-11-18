@@ -6,6 +6,7 @@ import { daysBetween, isValidDate, isoWeekday, monday, studyDate } from './dates
 import { hasActivity, weekDates } from './calendar.ts';
 import {
   MAX_SCORE,
+  DEFAULT_NEW_CARDS_PER_DAY,
   SCHOOLS,
   SUBJECTS,
   type AppState,
@@ -265,8 +266,10 @@ export function applyAction(
       return p;
     }
     case 'settings': {
-      keys(a.patch, s.settings);
-      const p = { ...s.settings, ...a.patch };
+      const current = { ...s.settings, newCardsPerDay: s.settings.newCardsPerDay ?? DEFAULT_NEW_CARDS_PER_DAY };
+      keys(a.patch, current);
+      const p = { ...current, ...a.patch };
+      check(integer(p.newCardsPerDay, 0, 500), 'invalid newCardsPerDay');
       check(
         ['system', 'dark', 'light'].includes(p.theme) &&
           typeof p.musicEnabled === 'boolean' &&
@@ -358,7 +361,7 @@ export function applyAction(
     case 'skipBlock':
     case 'completeBlock': {
       check(isValidDate(a.date) && a.date === today, 'block requires current study date');
-      const plan = (s.plans[a.date] ??= buildDayPlan(s, bank, a.date, today));
+      const plan = (s.plans[a.date] = buildDayPlan(s, bank, a.date, today));
       const block = plan.blocks.find((b) => b.id === a.blockId);
       check(block, 'block missing');
       const manual = !block.itemIds.length;

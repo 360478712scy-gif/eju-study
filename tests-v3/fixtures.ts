@@ -4,7 +4,15 @@ import type { ContentBundle, Item, Subject } from '../shared/types.ts';
 export const now = new Date('2026-11-19T10:00:00');
 export const fresh = () => createInitialState(now);
 const topicIds = {
-  math: ['math.seq.seq', 'math.calc.int', 'math.trig.func', 'math.vec.plane', 'math.geo.plane'],
+  math: [
+    'math.seq.seq',
+    'math.calc.int',
+    'math.trig.func',
+    'math.vec.plane',
+    'math.geo.plane',
+    'math.prob.count',
+    'math.explog.func',
+  ],
   physics: [
     'phys.em.induction',
     'phys.em.capacitor',
@@ -13,7 +21,7 @@ const topicIds = {
     'phys.em.circuit',
     'phys.mech.kinematics',
   ],
-  chemistry: ['chem.inorg.ions', 'chem.org.basics', 'chem.react.enthalpy', 'chem.struct.atom'],
+  chemistry: ['chem.inorg.ions', 'chem.org.basics', 'chem.org.aliphatic', 'chem.react.enthalpy', 'chem.struct.atom'],
 };
 export const written: Item = {
   id: 'school-aoyama-1',

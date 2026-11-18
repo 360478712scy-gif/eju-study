@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createInitialState, migrateV2 } from '../shared/migrate.ts';
-import type { AppState, Item } from '../shared/types.ts';
+import { DEFAULT_NEW_CARDS_PER_DAY, type AppState, type Item } from '../shared/types.ts';
 
 import type { BankIndex } from '../shared/bank.ts';
 import { applyAction, type Action } from '../shared/actions.ts';
@@ -38,6 +38,7 @@ export class StateStore {
       if (!parsed || parsed.version !== 3 || typeof parsed.revision !== 'number') {
         throw new Error(`学习记录 ${this.file} 格式异常，原文件已保留；请从 ${BACKUP_DIR} 恢复。`);
       }
+      parsed.settings.newCardsPerDay ??= DEFAULT_NEW_CARDS_PER_DAY;
       return parsed;
     }
     const source = path.join(this.dir, V2_FILE);
