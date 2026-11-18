@@ -1,0 +1,906 @@
+{
+  "title": "無機化学 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-inorganic-v3-01",
+      "subject": "chemistry",
+      "order": 1,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "白い粉末の炎色が強い黄色を示した。塩化物と仮定したとき，この観察と一致する陽イオンはどれか。",
+      "format": "choice",
+      "options": [
+        "Li⁺",
+        "Sr²⁺",
+        "K⁺",
+        "Na⁺"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "钠的特征发射使火焰显黄色。该现象提示阳离子，单凭焰色无法确定阴离子。 因此选 ④。\n\n- ① 锂的特征焰色是红色。\n- ② 锶盐显红色。\n- ③ 钾通常显淡紫色。",
+        "keyPoints": [
+          "钠的特征发射使火焰显黄色"
+        ],
+        "traps": [
+          "锂的特征焰色是红色。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "無色の水溶液に塩化物イオンを加えると白色沈殿が生じ，希アンモニア水で消えた。沈殿はどれか。",
+      "format": "choice",
+      "options": [
+        "AgI",
+        "BaSO₄",
+        "PbCl₂",
+        "AgCl"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "白色氯化银与氨生成可溶二氨合银离子，故沉淀溶去。颜色、生成条件和溶解性须同时吻合。 因此选 ④。\n\n- ① 是黄色沉淀且不易溶于氨水。\n- ② 需要硫酸根，且不被稀氨水溶解。\n- ③ 氯化铅可用热水分离，不能靠生成二氨合银离子而溶解。",
+        "keyPoints": [
+          "白色氯化银与氨生成可溶二氨合银离子，故沉淀溶去"
+        ],
+        "traps": [
+          "是黄色沉淀且不易溶于氨水。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-03",
+      "subject": "chemistry",
+      "order": 3,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "青色の硫酸銅(II)五水和物を結晶水が抜けるまで変化させた。残る無水塩の色はどれか。",
+      "format": "choice",
+      "options": [
+        "青色",
+        "白色",
+        "黒色",
+        "赤褐色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "蓝色来自水合铜离子的配位环境。脱尽结晶水的无水硫酸铜为白色。 因此选 ②。\n\n- ① 沿用水合晶体的颜色。\n- ③ 混淆无水盐与氧化铜。\n- ④ 这是氧化亚铜等固体的典型色。",
+        "keyPoints": [
+          "蓝色来自水合铜离子的配位环境"
+        ],
+        "traps": [
+          "沿用水合晶体的颜色。"
+        ],
+        "terms": [
+          {
+            "ja": "水和",
+            "kana": "すいわ",
+            "zh": "水分子与溶质粒子结合或围绕溶质粒子的过程"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-04",
+      "subject": "chemistry",
+      "order": 4,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "石灰水に少量のCO₂を通すと白く濁る。白色物質の化学式はどれか。",
+      "format": "choice",
+      "options": [
+        "Ca(HCO₃)₂",
+        "CaO",
+        "CaCO₃",
+        "CaCl₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氢氧根使少量二氧化碳转成碳酸根，再与钙离子生成难溶碳酸钙。继续通气时现象可能改变。 因此选 ③。\n\n- ① 这是过量二氧化碳作用后溶液中的盐。\n- ② 氧化钙与水会转化为氢氧化物。\n- ④ 体系无氯离子来源且氯化钙可溶。",
+        "keyPoints": [
+          "氢氧根使少量二氧化碳转成碳酸根，再与钙离子生成难溶碳酸钙"
+        ],
+        "traps": [
+          "这是过量二氧化碳作用后溶液中的盐。"
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-05",
+      "subject": "chemistry",
+      "order": 5,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "アルミニウム製品の表面に緻密な皮膜をつくり，内部を保護する主成分はどれか。",
+      "format": "choice",
+      "options": [
+        "Al(OH)₃のみ",
+        "Al₂S₃",
+        "Al₂O₃",
+        "AlCl₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "铝表面在空气中很快生成紧密氧化层。该膜减慢内部金属继续氧化，解释了活泼金属的表观耐蚀性。 因此选 ③。\n\n- ① 常温空气中致密保护层通常按氧化铝记。\n- ② 硫化物与潮湿空气不稳定。\n- ④ 氯化物易水解且不是空气中形成的保护膜。",
+        "keyPoints": [
+          "铝表面在空气中很快生成紧密氧化层"
+        ],
+        "traps": [
+          "常温空气中致密保护层通常按氧化铝记。"
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-06",
+      "subject": "chemistry",
+      "order": 6,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "高炉のスラグ中で，鉱石のSiO₂を取り込む塩基性酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "SiO₂",
+        "SO₃",
+        "CaO",
+        "CO"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "石灰石分解提供CaO，与酸性脉石SiO₂形成硅酸钙等炉渣。须分清造渣和还原两种作用。 因此选 ③。\n\n- ① 二氧化硅本身为酸性脉石。\n- ② 属于酸性氧化物。\n- ④ 一氧化碳起还原作用。",
+        "keyPoints": [
+          "石灰石分解提供CaO，与酸性脉石SiO₂形成硅酸钙等炉渣"
+        ],
+        "traps": [
+          "二氧化硅本身为酸性脉石。"
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-07",
+      "subject": "chemistry",
+      "order": 7,
+      "topic": "chem.inorg.ions",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "BaCO₃とBaSO₄の白色沈殿を別々に希塩酸と接触させる。一方だけが気体を出して溶ける。消えた沈殿と気体はどれか。",
+      "format": "choice",
+      "options": [
+        "BaSO₄，SO₂",
+        "BaSO₄，CO₂",
+        "BaCO₃，H₂",
+        "BaCO₃，CO₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "两者颜色相同，差别在阴离子。碳酸根消耗两个质子生成CO₂与水，硫酸钡在稀盐酸中难溶。 因此选 ④。\n\n- ① 稀酸不能按该路径分解硫酸钡。\n- ② 硫酸盐不含碳，不能作为该气体的碳源。\n- ③ 碳酸根遇酸放出二氧化碳而非氢气。",
+        "keyPoints": [
+          "两者颜色相同，差别在阴离子"
+        ],
+        "traps": [
+          "稀酸不能按该路径分解硫酸钡。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-08",
+      "subject": "chemistry",
+      "order": 8,
+      "topic": "chem.inorg.metal",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "Fe²⁺水溶液にOH⁻を加え，空気に触れさせた。沈殿が時間とともに赤褐色になる理由はどれか。",
+      "format": "choice",
+      "options": [
+        "鉄の酸化数は変わらず，水だけを失う",
+        "Fe(II)がFe(III)に酸化される",
+        "鉄単体が析出する",
+        "Fe(III)がFe(II)に還元される"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "浅绿或绿白色氢氧化亚铁可被空气中氧气氧化成红褐色氢氧化铁。铁的价态从+2升到+3。 因此选 ②。\n\n- ① 空气氧化使二价铁变三价。\n- ③ 氢氧化物颜色变化不代表金属生成。\n- ④ 颠倒空气氧化方向。",
+        "keyPoints": [
+          "浅绿或绿白色氢氧化亚铁可被空气中氧气氧化成红褐色氢氧化铁"
+        ],
+        "traps": [
+          "空气氧化使二价铁变三价。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-09",
+      "subject": "chemistry",
+      "order": 9,
+      "topic": "chem.inorg.ions",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水に溶けた硫酸イオンをBa²⁺で調べる。試料に炭酸イオンもあるとき，Ba²⁺を加える前に少量の希塩酸で酸性にする理由はどれか。",
+      "format": "choice",
+      "options": [
+        "硫酸イオンを新しく加える",
+        "塩化バリウムの溶解度を測る",
+        "BaSO₄を溶けやすくする",
+        "炭酸塩の白色沈殿による誤判定を避ける"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "先加稀盐酸除去干扰的碳酸根。随后留下的白色钡盐沉淀才可归因于酸中难溶的硫酸钡。 因此选 ④。\n\n- ① 盐酸未引入硫酸根。\n- ② 此处加酸的作用在于去除干扰阴离子。\n- ③ 检测正依赖其难溶性。",
+        "keyPoints": [
+          "先加稀盐酸除去干扰的碳酸根"
+        ],
+        "traps": [
+          "盐酸未引入硫酸根。"
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-10",
+      "subject": "chemistry",
+      "order": 10,
+      "topic": "chem.inorg.ions",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "銅(II)塩水溶液に少量のアンモニア水を加えると淡青色沈殿，過剰にすると深青色溶液になった。深青色の主な原因はどれか。",
+      "format": "choice",
+      "options": [
+        "CuOの生成",
+        "銅(I)への還元",
+        "水酸化銅(II)の微粒子",
+        "銅(II)のアンミン錯体"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "少量氨水提供碱性使氢氧化铜析出。过量氨作配体形成可溶的深蓝色铜氨配离子。 因此选 ④。\n\n- ① 氧化铜是黑色固体，解释不了深蓝溶液。\n- ② 配位时铜仍为+2。\n- ③ 氢氧化物对应前一步沉淀。",
+        "keyPoints": [
+          "少量氨水提供碱性使氢氧化铜析出"
+        ],
+        "traps": [
+          "氧化铜是黑色固体，解释不了深蓝溶液。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-11",
+      "subject": "chemistry",
+      "order": 11,
+      "topic": "chem.inorg.ions",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "AgClとPbCl₂を含む沈殿を熱水で処理し，熱いうちにろ過した。ろ液を冷やすと白色結晶が現れた。その主成分はどれか。",
+      "format": "choice",
+      "options": [
+        "Ag₂O",
+        "PbCl₂",
+        "AgCl",
+        "Pb"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氯化铅在热水中溶解度较大，进入热滤液，冷却后析出。留在热滤渣中的主要是氯化银。 因此选 ②。\n\n- ① 没有加入生成氧化银所需的碱。\n- ③ 氯化银在热水中仍很难溶。\n- ④ 结晶是溶解度改变的结果，过程中没有还原铅离子。",
+        "keyPoints": [
+          "氯化铅在热水中溶解度较大，进入热滤液，冷却后析出"
+        ],
+        "traps": [
+          "没有加入生成氧化银所需的碱。"
+        ],
+        "terms": [
+          {
+            "ja": "ろ液",
+            "kana": "ろえき",
+            "zh": "穿过滤纸后收集到的液体"
+          },
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-12",
+      "subject": "chemistry",
+      "order": 12,
+      "topic": "chem.inorg.industry",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "食塩水のイオン交換膜法で陽イオン交換膜を通り陰極室へ移る主なイオンはどれか。",
+      "format": "choice",
+      "options": [
+        "Na⁺",
+        "H₂",
+        "OH⁻",
+        "Cl⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "膜允许阳离子通过，钠离子迁入阴极室维持电中性，与该室生成的氢氧根构成氢氧化钠溶液。 因此选 ①。\n\n- ② 氢在阴极室生成，气体分子不是穿膜的阳离子。\n- ③ 阴极室的氢氧根主要由水还原生成。\n- ④ 膜选择性排斥阴离子。",
+        "keyPoints": [
+          "膜允许阳离子通过，钠离子迁入阴极室维持电中性，与该室生成的氢氧根构成氢氧化钠溶液"
+        ],
+        "traps": [
+          "氢在阴极室生成，气体分子不是穿膜的阳离子。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-13",
+      "subject": "chemistry",
+      "order": 13,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "ガラスの主成分SiO₂と，ドライアイスのCO₂とで，常温での状態が大きく異なる主な構造上の理由はどれか。",
+      "format": "choice",
+      "options": [
+        "SiO₂のみが金属結晶である",
+        "SiO₂は共有結合の網目，CO₂は独立分子をつくる",
+        "CO₂だけがイオン結晶である",
+        "どちらも同じ直線分子だが分子量だけが違う"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "相同化学计量比例不能推出相同结构。二氧化硅有延展的共价网络，干冰中独立分子间作用较弱。 因此选 ②。\n\n- ① 连续的硅氧网络依靠共价键维系。\n- ③ 干冰是分子晶体。\n- ④ 忽略二氧化硅的网络结构。",
+        "keyPoints": [
+          "相同化学计量比例不能推出相同结构"
+        ],
+        "traps": [
+          "连续的硅氧网络依靠共价键维系。"
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-14",
+      "subject": "chemistry",
+      "order": 14,
+      "topic": "chem.inorg.ions",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "NaCl，NaNO₃，Na₂CO₃，Na₂SO₄の水溶液を区別する。希酸で発泡せず，塩酸酸性のままBaCl₂水溶液で白濁した試料はどれか。",
+      "format": "choice",
+      "options": [
+        "NaNO₃",
+        "Na₂CO₃",
+        "NaCl",
+        "Na₂SO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "先用无气泡排除碳酸盐。在盐酸酸性下，剩余两个候选中只有硫酸根与钡离子形成白色沉淀。 因此选 ④。\n\n- ① 硝酸盐虽不与稀酸放气，但硝酸钡可溶，第二步不会白浊。\n- ② 加入稀酸时应冒泡。\n- ③ 与氯化钡混合没有难溶产物。",
+        "keyPoints": [
+          "先用无气泡排除碳酸盐"
+        ],
+        "traps": [
+          "两次观察要在同一份样品上按先后顺序解释。"
+        ],
+        "terms": [
+          {
+            "ja": "区別",
+            "kana": "くべつ",
+            "zh": "计数时将身份、位置或顺序视为不同"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-15",
+      "subject": "chemistry",
+      "order": 15,
+      "topic": "chem.inorg.ions",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "Fe³⁺，Al³⁺を含む溶液に過剰のNaOHを加えろ過する。ろ液に含まれる主な金属種と残る沈殿の組合せはどれか。",
+      "format": "choice",
+      "options": [
+        "Al³⁺，Fe(OH)₃",
+        "Fe³⁺，Al(OH)₃",
+        "[Al(OH)₄]⁻，Fe(OH)₃",
+        "[Fe(OH)₄]⁻，Al(OH)₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "两种离子先都形成氢氧化物，铝的氢氧化物呈两性，继续与OH⁻作用转入滤液。铁的红褐色沉淀留下。 因此选 ③。\n\n- ① 强碱溶液中铝主要以羟基配离子存在。\n- ② 强碱中三价铁已经沉淀，而铝转入滤液。\n- ④ 把铁和铝在过量碱中的行为对调。",
+        "keyPoints": [
+          "两种离子先都形成氢氧化物，铝的氢氧化物呈两性，继续与OH⁻作用转入滤液"
+        ],
+        "traps": [
+          "强碱溶液中铝主要以羟基配离子存在。"
+        ],
+        "terms": [
+          {
+            "ja": "ろ液",
+            "kana": "ろえき",
+            "zh": "穿过滤纸后收集到的液体"
+          },
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-16",
+      "subject": "chemistry",
+      "order": 16,
+      "topic": "chem.inorg.metal",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "NaClとKClだけの乾いた混合物1.49 gを調べた。炎色は黄色が強く，コバルトガラスを通すと淡紫色も見えた。別の分析でCl⁻の総量は0.0220 molであった。試料中のKClの物質量に最も近い値は何 molか（NaCl 58.5，KCl 74.5 g/mol）。",
+      "format": "choice",
+      "options": [
+        "0.0093",
+        "0.0220",
+        "0.0200",
+        "0.0127"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "焰色支持钠、钾共存，不能按颜色深浅定量。若全部是NaCl应重0.0220×58.5=1.287 g；每摩尔换成KCl增重16.0 g。故KCl为(1.49−1.287)/16.0≈0.0127 mol。 因此选 ④。\n\n- ① 这是用总物质的量减去KCl后得到的NaCl量。\n- ② 把总氯离子量全归给钾盐。\n- ③ 把整份样品按纯KCl换算。",
+        "keyPoints": [
+          "焰色支持钠、钾共存，不能按颜色深浅定量"
+        ],
+        "traps": [
+          "这是用总物质的量减去KCl后得到的NaCl量。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-17",
+      "subject": "chemistry",
+      "order": 17,
+      "topic": "chem.inorg.ions",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "混合沈殿AgCl，BaSO₄，CaCO₃を順に分ける。まず希硝酸を加え発泡が止まった後ろ過し，残渣に希アンモニア水を加えて再びろ過した。最後の残渣はどれか。",
+      "format": "choice",
+      "options": [
+        "Ag₂CO₃",
+        "AgCl",
+        "CaCO₃",
+        "BaSO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "第一步酸溶碳酸钙。第二步氨溶氯化银，硫酸钡对这两步均保持难溶，因而最后留下。 因此选 ④。\n\n- ① 首步足量稀硝酸会去除有反应性的碳酸盐。\n- ② 第二步会生成可溶的二氨合银离子。\n- ③ 第一步已消耗碳酸根并放出CO₂。",
+        "keyPoints": [
+          "第一步酸溶碳酸钙"
+        ],
+        "traps": [
+          "首步足量稀硝酸会去除有反应性的碳酸盐。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-18",
+      "subject": "chemistry",
+      "order": 18,
+      "topic": "chem.inorg.ions",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "Al³⁺とZn²⁺を含む溶液に，過剰のアンモニア水を加えた。ろ過後，ろ液を調べたい。主にどちらの金属がどの形で存在するか。",
+      "format": "choice",
+      "options": [
+        "Zn，Zn(OH)₂の沈殿",
+        "Al，[Al(OH)₄]⁻",
+        "Zn，[Zn(NH₃)₄]²⁺",
+        "Al，Al³⁺"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "锌可形成可溶氨配离子，铝的氢氧化物在过量氨水中保留。过滤后锌主要在液相。 因此选 ③。\n\n- ① 题问滤液，且过量氨可溶解锌的氢氧化物。\n- ② 把过量氨水与强碱混同。\n- ④ 铝以氢氧化物进入滤渣。",
+        "keyPoints": [
+          "锌可形成可溶氨配离子，铝的氢氧化物在过量氨水中保留"
+        ],
+        "traps": [
+          "题问滤液，且过量氨可溶解锌的氢氧化物。"
+        ],
+        "terms": [
+          {
+            "ja": "ろ液",
+            "kana": "ろえき",
+            "zh": "穿过滤纸后收集到的液体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-19",
+      "subject": "chemistry",
+      "order": 19,
+      "topic": "chem.inorg.ions",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "Na₂CO₃とNaHCO₃の混合物を十分加熱したところ，固体が0.620 g軽くなった。この残留物を十分な希酸で処理するとCO₂が0.0250 mol生じた。加熱前のNa₂CO₃は何 molか（H₂O 18.0，CO₂ 44.0 g/mol）。",
+      "format": "choice",
+      "options": [
+        "0.0150",
+        "0.0050",
+        "0.0100",
+        "0.0250"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "每两摩尔碳酸氢钠失去一摩尔水和一摩尔CO₂并留一摩尔碳酸钠。失重0.620 g说明生成0.0100 mol碳酸钠，残渣共有0.0250 mol，原有量为0.0150 mol。 因此选 ①。\n\n- ② 扣掉了全部原有碳酸氢钠的物质的量。\n- ③ 只算了加热中新生成的碳酸钠。\n- ④ 忽略受热新生成的碳酸钠。",
+        "keyPoints": [
+          "每两摩尔碳酸氢钠失去一摩尔水和一摩尔CO₂并留一摩尔碳酸钠"
+        ],
+        "traps": [
+          "扣掉了全部原有碳酸氢钠的物质的量。"
+        ]
+      }
+    },
+    {
+      "id": "orig-inorganic-v3-20",
+      "subject": "chemistry",
+      "order": 20,
+      "topic": "chem.inorg.industry",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 無機化学"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "イオン交換膜法で食塩水を電解し，陰極からH₂が0.100 mol発生した。陰極液にCO₂を0.060 mol吸収させる。すべて炭酸塩を生成し，副反応はない。残るOH⁻は何 molか。",
+      "format": "choice",
+      "options": [
+        "0.140",
+        "0.040",
+        "0.120",
+        "0.080"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "阴极每生成一摩尔H₂同时给出两摩尔OH⁻，初始有0.200 mol。充分过量的OH⁻使二氧化碳转为碳酸根，需消耗2×0.060 mol，余0.080 mol。 因此选 ④。\n\n- ① 每摩尔二氧化碳只扣掉一摩尔氢氧根。\n- ② 把产氢量误作最初氢氧根量，再按一比一扣除。\n- ③ 求出的是生成碳酸根所消耗的氢氧根。",
+        "keyPoints": [
+          "阴极每生成一摩尔H₂同时给出两摩尔OH⁻，初始有0.200 mol"
+        ],
+        "traps": [
+          "每摩尔二氧化碳只扣掉一摩尔氢氧根。"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,897 @@
+{
+  "title": "構造決定と合成経路 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-organic-v3-01",
+      "subject": "chemistry",
+      "order": 1,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "アルコールAを穏やかに酸化すると，炭素数3のケトンだけが得られた。Aはどれか。",
+      "format": "choice",
+      "options": [
+        "エタノール",
+        "1-プロパノール",
+        "2-プロパノール",
+        "1-ブタノール"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "温和氧化成酮指明羟基位于仲碳上。具有三个碳的仲醇只有2-丙醇。 因此选 ③。\n\n- ① 碳数少一个。\n- ② 伯醇先得到醛。\n- ④ 碳数四且伯醇不能直接给三碳酮。",
+        "keyPoints": [
+          "温和氧化成酮指明羟基位于仲碳上"
+        ],
+        "traps": [
+          "碳数少一个。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "エステルを加水分解するとメタノールとプロピオン酸が得られた。元のエステルはどれか。",
+      "format": "choice",
+      "options": [
+        "酢酸エチル",
+        "ギ酸プロピル",
+        "酢酸メチル",
+        "プロピオン酸メチル"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "酸保留丙酰部分，甲醇提供酯键氧另一侧的甲基。按酸名加烷基命名。 因此选 ④。\n\n- ① 碳总数相同但水解片段不同。\n- ② 将甲醇的一个碳错给酸端。\n- ③ 醇端正确，但酸端会给乙酸而非丙酸。",
+        "keyPoints": [
+          "酸保留丙酰部分，甲醇提供酯键氧另一侧的甲基"
+        ],
+        "traps": [
+          "碳总数相同但水解片段不同。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-03",
+      "subject": "chemistry",
+      "order": 3,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "エチレンに付加してエタンを得る段階で，二重結合1個あたり何が付加したか。",
+      "format": "choice",
+      "options": [
+        "酸素1分子",
+        "水素2分子",
+        "水素1分子",
+        "水1分子"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "比较反应物与产物碳架不变，只增加两个氢原子。一个π键消失，消耗一分子氢。 因此选 ③。\n\n- ① 乙烷的分子式中没有氧。\n- ② 把一个双键当作两处可加成。\n- ④ 水合保留氧成为醇。",
+        "keyPoints": [
+          "比较反应物与产物碳架不变，只增加两个氢原子"
+        ],
+        "traps": [
+          "乙烷的分子式中没有氧。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-04",
+      "subject": "chemistry",
+      "order": 4,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "直鎖のアルコールAを酸化するとブタナールBになる。さらにBを酸化して得られる主生成物はどれか。",
+      "format": "choice",
+      "options": [
+        "プロピオン酸",
+        "酪酸（ブタン酸）",
+        "2-ブタノン",
+        "1-ブタノール"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "同一碳链末端依次出现伯醇、醛、羧酸。丁醛的末端醛基氧化为羧基而保留四碳。 因此选 ②。\n\n- ① 无断链条件，不能少一个碳。\n- ③ 醛基的氧化不迁移到链中。\n- ④ 这是丁醛还原的方向。",
+        "keyPoints": [
+          "同一碳链末端依次出现伯醇、醛、羧酸"
+        ],
+        "traps": [
+          "无断链条件，不能少一个碳。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-05",
+      "subject": "chemistry",
+      "order": 5,
+      "topic": "chem.org.aromatic",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "フェノールと安息香酸の混合物に炭酸水素ナトリウム水溶液を加えた。二酸化炭素を生じて塩に変わる主成分はどれか。",
+      "format": "choice",
+      "options": [
+        "どちらも塩にならない",
+        "両方とも同程度",
+        "安息香酸",
+        "フェノール"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "羧酸可向碳酸氢根提供质子，生成水和二氧化碳。酚酸性弱，在该萃取条件下主要保持中性。 因此选 ③。\n\n- ① 低估了苯甲酸与碳酸氢盐的酸碱反应。\n- ② 把二者都有OH当酸性相同。\n- ④ 酚通常不足以从碳酸氢盐放出CO₂。",
+        "keyPoints": [
+          "羧酸可向碳酸氢根提供质子，生成水和二氧化碳"
+        ],
+        "traps": [
+          "低估了苯甲酸与碳酸氢盐的酸碱反应。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-06",
+      "subject": "chemistry",
+      "order": 6,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "不飽和脂肪酸Aに水素を付加しても炭素数は変わらず，分子あたり2個だけ水素原子が増えて飽和した。元の炭素間二重結合は何個か。",
+      "format": "choice",
+      "options": [
+        "4",
+        "1",
+        "0",
+        "2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "每还原一处碳碳双键，需要一分子氢，相当于两个氢原子。酸的羧基保持原状。 因此选 ②。\n\n- ① 错误地将加成的氢数再乘以2。\n- ③ 忽略了饱和前的氢增量。\n- ④ 把氢原子数直接当双键数。",
+        "keyPoints": [
+          "每还原一处碳碳双键，需要一分子氢，相当于两个氢原子"
+        ],
+        "traps": [
+          "错误地将加成的氢数再乘以2。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-07",
+      "subject": "chemistry",
+      "order": 7,
+      "topic": "chem.org.basics",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "分子式 $\\ce{C4H10O}$ のアルコールを酸化して得た化合物はカルボニル基をもち，銀鏡反応を示さない。元の骨格とOHの位置として適切なのはどれか。",
+      "format": "choice",
+      "options": [
+        "直鎖，2位",
+        "分枝鎖，末端",
+        "分枝鎖，中心の炭素",
+        "直鎖，1位"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "羰基阳性而银镜阴性提示酮，所以反推仲醇。四碳饱和一元仲醇只能是2-丁醇。 因此选 ①。\n\n- ② 支链伯醇仍先形成末端醛。\n- ③ 叔醇温和氧化不生成同碳数的酮。\n- ④ 伯醇会给能银镜反应的醛。",
+        "keyPoints": [
+          "羰基阳性而银镜阴性提示酮，所以反推仲醇"
+        ],
+        "traps": [
+          "支链伯醇仍先形成末端醛。"
+        ],
+        "terms": [
+          {
+            "ja": "銀鏡反応",
+            "kana": "ぎんきょうはんのう",
+            "zh": "银离子受还原并析出金属银的定性反应"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-08",
+      "subject": "chemistry",
+      "order": 8,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "酢酸とあるアルコールからできたエステルのモル質量は102 g/molである。アルコールのモル質量は何 g/molか（酢酸60，水18）。",
+      "format": "choice",
+      "options": [
+        "84",
+        "42",
+        "60",
+        "120"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "缩合时酸与醇合计少去一分子水。用102+18−60还原酒精的摩尔质量，得60。 因此选 ③。\n\n- ① 把酯直接减去水。\n- ② 只减酸的质量而忘记加回水。\n- ④ 加回水后忘了扣掉乙酸。",
+        "keyPoints": [
+          "缩合时酸与醇合计少去一分子水"
+        ],
+        "traps": [
+          "把酯直接减去水。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-09",
+      "subject": "chemistry",
+      "order": 9,
+      "topic": "chem.org.basics",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "AとBはともに $\\ce{C3H6O}$ である。Aを還元すると1-プロパノール，Bを還元すると2-プロパノールになる。AとBの組合せはどれか。",
+      "format": "choice",
+      "options": [
+        "プロパナール，プロパナール",
+        "アセトン，プロパナール",
+        "プロピオン酸，アセトン",
+        "プロパナール，アセトン"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "还原羰基保留其碳位置。对准醇的羟基，A须为末端醛，B须为中间酮。 因此选 ④。\n\n- ① 同一个醛还原只给同一种伯醇。\n- ② 弄反羰基所在碳的位置。\n- ③ 羧酸的氧数与题中分子式不符。",
+        "keyPoints": [
+          "还原羰基保留其碳位置"
+        ],
+        "traps": [
+          "同一个醛还原只给同一种伯醇。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-10",
+      "subject": "chemistry",
+      "order": 10,
+      "topic": "chem.org.aromatic",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "安息香酸メチルをNaOHでけん化し，その後，水相を十分酸性にした。炭素数7の主な有機生成物はどれか。",
+      "format": "choice",
+      "options": [
+        "安息香酸",
+        "安息香酸ナトリウム",
+        "ベンズアルデヒド",
+        "ベンジルアルコール"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "皂化先生成苯甲酸钠与甲醇。酸化将羧酸根转回中性的七碳苯甲酸。 因此选 ①。\n\n- ② 停在加酸之前。\n- ③ 皂化与酸化不会将苯甲酸还原成醛。\n- ④ 误把酯水解当作羰基还原。",
+        "keyPoints": [
+          "皂化先生成苯甲酸钠与甲醇"
+        ],
+        "traps": [
+          "停在加酸之前。"
+        ],
+        "terms": [
+          {
+            "ja": "けん化",
+            "kana": "けんか",
+            "zh": "酯在碱性条件下水解形成羧酸盐与醇"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-11",
+      "subject": "chemistry",
+      "order": 11,
+      "topic": "chem.org.basics",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "炭化水素Aは $\\ce{C5H10}$ で，水素付加により直鎖のペンタンとなる。付加前のAにシス・トランス異性体があるとき，Aはどれか。",
+      "format": "choice",
+      "options": [
+        "1-ペンテン",
+        "2-ペンテン",
+        "シクロペンタン",
+        "2-メチル-2-ブテン"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氢化保留碳架，故先限定为直链戊烯。双键两端各须连两个不同基团，排除1-戊烯。 因此选 ②。\n\n- ① 末端碳的两个氢相同。\n- ③ 饱和环烷烃没有题设中会发生几何异构的双键。\n- ④ 碳架分支且一个烯碳上有相同取代基。",
+        "keyPoints": [
+          "氢化保留碳架，故先限定为直链戊烯"
+        ],
+        "traps": [
+          "末端碳的两个氢相同。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-12",
+      "subject": "chemistry",
+      "order": 12,
+      "topic": "chem.org.basics",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "分子式 $\\ce{C4H8O2}$ の鎖式エステルを加水分解した。酸だけが銀鏡反応を示し，アルコールを酸化するとケトンを生じた。このエステルはどれか。",
+      "format": "choice",
+      "options": [
+        "酢酸エチル",
+        "プロピオン酸メチル",
+        "ギ酸イソプロピル",
+        "ギ酸プロピル"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "能发生银镜反应的简单羧酸是甲酸，余下三碳组成醇。能氧化成酮指明2-丙醇，因此为甲酸异丙酯。 因此选 ③。\n\n- ① 水解所得乙酸不呈银镜。\n- ② 水解不能提供甲酸或仲醇。\n- ④ 正丙醇氧化主要给醛。",
+        "keyPoints": [
+          "能发生银镜反应的简单羧酸是甲酸，余下三碳组成醇"
+        ],
+        "traps": [
+          "水解所得乙酸不呈银镜。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          },
+          {
+            "ja": "銀鏡反応",
+            "kana": "ぎんきょうはんのう",
+            "zh": "银离子受还原并析出金属银的定性反应"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-13",
+      "subject": "chemistry",
+      "order": 13,
+      "topic": "chem.org.aliphatic",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "一価カルボン酸A 0.10 molと一価アルコールBからエステルが生じ，分離できた量は0.070 molであった。Aが限界試薬のとき，理論量に対する収率は何 % か。",
+      "format": "choice",
+      "options": [
+        "70",
+        "143",
+        "30",
+        "100"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "单官能团羧酸和醇按一比一缩合，理论产量0.10 mol。实际量与理论量的比为0.70。 因此选 ①。\n\n- ② 把理论值除以实际值。\n- ③ 算成未转化或未回收比例。\n- ④ 把限量试剂的理论转化直接当成实际收率。",
+        "keyPoints": [
+          "单官能团羧酸和醇按一比一缩合，理论产量0.10 mol"
+        ],
+        "traps": [
+          "把理论值除以实际值。"
+        ],
+        "terms": [
+          {
+            "ja": "収率",
+            "kana": "しゅうりつ",
+            "zh": "实际获得量占理论获得量的比例"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-14",
+      "subject": "chemistry",
+      "order": 14,
+      "topic": "chem.org.aromatic",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "芳香族エステルの加水分解で酢酸とフェノールを得た。加水分解前の物質に含まれる結合はどれか。",
+      "format": "choice",
+      "options": [
+        "$\\ce{CH3CO-O-C6H5}$",
+        "$\\ce{C6H5CH2-O-COCH3}$",
+        "$\\ce{C6H5-O-CH2CH3}$",
+        "$\\ce{C6H5CO-O-CH3}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "乙酸提供酰基CH₃CO，酚提供直接连苯环的氧。按水解断键反向接合即得乙酸苯酯。 因此选 ①。\n\n- ② 这会得到苄醇，分子多一个碳。\n- ③ 这是醚，缺少酯羰基。\n- ④ 这是苯甲酸和甲醇的酯。",
+        "keyPoints": [
+          "乙酸提供酰基CH₃CO，酚提供直接连苯环的氧"
+        ],
+        "traps": [
+          "这会得到苄醇，分子多一个碳。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-15",
+      "subject": "chemistry",
+      "order": 15,
+      "topic": "chem.org.basics",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "鎖式アルケンAを二重結合で切断し，各炭素をアルデヒドまたはケトンにしたところ，アセトンとエタナールだけを等モル得た。元のAはどれか。",
+      "format": "choice",
+      "options": [
+        "3-メチル-1-ブテン",
+        "2-ペンテン",
+        "2-メチル-2-ブテン",
+        "2-メチル-1-ブテン"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "把两个羰基碳相连并去掉它们的氧，原双键两端取代基分别是两个甲基，以及甲基和氢。由此还原五碳支链结构。 因此选 ③。\n\n- ① 末端烯碳裂解应产生甲醛。\n- ② 裂解只产生两种醛。\n- ④ 末端双键会生成甲醛。",
+        "keyPoints": [
+          "把两个羰基碳相连并去掉它们的氧，原双键两端取代基分别是两个甲基，以及甲基和氢"
+        ],
+        "traps": [
+          "末端烯碳裂解应产生甲醛。"
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-16",
+      "subject": "chemistry",
+      "order": 16,
+      "topic": "chem.org.basics",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "エステルA（$\\ce{C5H10O2}$）を加水分解すると酸BとアルコールCになる。Cを酸化して順にアルデヒド，Bと同じ酸を得た，という報告を点検する。正しい判断はどれか。",
+      "format": "choice",
+      "options": [
+        "Cは2-プロパノールでよい",
+        "炭素数が奇数なので両断片は同じ酸になれない",
+        "Cがメタノールなら成り立つ",
+        "Bが酢酸なら成り立つ"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "伯醇逐步氧化成同碳数羧酸，因此两片段必须各含相同数量的碳。酯化不增减碳，五碳不能平分。 因此选 ②。\n\n- ① 仲醇不能经醛生成同骨架酸。\n- ③ 若醇为一碳，剩下的四碳酸不会与其氧化产物相同。\n- ④ 若两端各有两碳总碳数应为4。",
+        "keyPoints": [
+          "伯醇逐步氧化成同碳数羧酸，因此两片段必须各含相同数量的碳"
+        ],
+        "traps": [
+          "仲醇不能经醛生成同骨架酸。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-17",
+      "subject": "chemistry",
+      "order": 17,
+      "topic": "chem.org.basics",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "分子式 $\\ce{C8H8O2}$ の単環芳香族Aを加水分解すると，一方の生成物が銀鏡反応を示し，他方は酸化するとベンズアルデヒドになる。Aはどれか。",
+      "format": "choice",
+      "options": [
+        "酢酸フェニル",
+        "ギ酸ベンジル",
+        "酢酸ベンジル",
+        "安息香酸メチル"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氧化成苯甲醛的醇是苄醇，含七个碳。剩下一碳作酸端且呈银镜，正是甲酸，与苄醇重组为甲酸苄酯。 因此选 ②。\n\n- ① 给出酚及乙酸，羟基直接连环。\n- ③ 醇端吻合，但矛盾于总碳数且乙酸无银镜反应。\n- ④ 两片段均不符合甲酸与苄醇的组合。",
+        "keyPoints": [
+          "氧化成苯甲醛的醇是苄醇，含七个碳"
+        ],
+        "traps": [
+          "给出酚及乙酸，羟基直接连环。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          },
+          {
+            "ja": "銀鏡反応",
+            "kana": "ぎんきょうはんのう",
+            "zh": "银离子受还原并析出金属银的定性反应"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-18",
+      "subject": "chemistry",
+      "order": 18,
+      "topic": "chem.org.basics",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "メタノールとジカルボン酸から得たモノエステル（遊離COOHが1個）とジエステルを合わせて0.030 mol含む。完全加水分解で定量的に回収したメタノールは0.050 molであった。元の混合物を，遊離COOHだけ定量的に中和するのに必要なNaOHは何 gか（40 g/mol）。",
+      "format": "choice",
+      "options": [
+        "1.2",
+        "0.80",
+        "0.40",
+        "2.0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "若全为单酯，只给0.030 mol甲醇。额外0.020 mol甲醇来自0.020 mol二酯，故单酯为0.010 mol。只有单酯带一个游离羧基，中和耗碱0.010×40=0.40 g。 因此选 ③。\n\n- ① 把全部酯分子都视为带游离羧基的单酯。\n- ② 把二酯的物质的量当游离羧基量。\n- ④ 把水解产生的所有甲醇都当作原有游离羧基。",
+        "keyPoints": [
+          "若全为单酯，只给0.030 mol甲醇"
+        ],
+        "traps": [
+          "把全部酯分子都视为带游离羧基的单酯。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-19",
+      "subject": "chemistry",
+      "order": 19,
+      "topic": "chem.org.aromatic",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "ベンゼン環を1個もつエステルA（C₉H₁₀O₂）を加水分解した。生成物はメタノールと芳香族カルボン酸Bである。Bの環に直結する水素4個は，置換基の配置の対称性から2個ずつ2種類に分かれる。Aはどれか。",
+      "format": "choice",
+      "options": [
+        "フェニル酢酸メチル",
+        "m-トルイル酸メチル",
+        "p-トルイル酸メチル",
+        "o-トルイル酸メチル"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "甲醇贡献一碳，酸端有八个碳。它含一个羧基、苯环和一份甲基。两种不同取代基要使四个环氢两两等价，须在对位，故为对甲基苯甲酸甲酯。 因此选 ③。\n\n- ① 该酸端是单取代苯，有五个环氢。\n- ② 间位的两种取代基不同，四个环氢不能分为两对等价氢。\n- ④ 邻位的两种取代基不同，四个环氢没有两两等价的对称性。",
+        "keyPoints": [
+          "甲醇贡献一碳，酸端有八个碳"
+        ],
+        "traps": [
+          "该酸端是单取代苯，有五个环氢。"
+        ],
+        "terms": [
+          {
+            "ja": "置換",
+            "kana": "ちかん",
+            "zh": "把原积分变量改写成另一个变量"
+          },
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-organic-v3-20",
+      "subject": "chemistry",
+      "order": 20,
+      "topic": "chem.org.basics",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 構造決定と合成経路"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "直鎖ジエステルAの同じ末端2か所を加水分解すると，1 molのAからエタノール2 molと分子式 $\\ce{C4H6O4}$ のジカルボン酸1 molを得た。Aの分子式はどれか。",
+      "format": "choice",
+      "options": [
+        "$\\ce{C8H14O4}$",
+        "$\\ce{C8H16O5}$",
+        "$\\ce{C8H18O6}$",
+        "$\\ce{C6H10O4}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "把产物分子式加回后扣除参与水解的两分子水。C₄H₆O₄+2C₂H₆O−2H₂O给出C₈H₁₄O₄。 因此选 ①。\n\n- ② 重组二酯时只扣除了一分子水。\n- ③ 将两个醇和酸相加后忘记脱去两份水。\n- ④ 只恢复一个乙基的取代。",
+        "keyPoints": [
+          "把产物分子式加回后扣除参与水解的两分子水"
+        ],
+        "traps": [
+          "重组二酯时只扣除了一分子水。"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,833 @@
+{
+  "title": "場合の数 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-count-v3-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.prob.count",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "5人から記録係を1人，会計係を別に1人選ぶ。記録係の選び方は $\\bx{A}$ 通り，両係の決め方は $\\bx{BC}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "5",
+        "B": "2",
+        "C": "0"
+      },
+      "explanation": {
+        "zh": "先定记录员有5种，去掉此人后会计员有4种。职位不同，要按顺序相乘。\n\n按题干顺序填写 A=5，BC=20。",
+        "keyPoints": [
+          "先定记录员有5种，去掉此人后会计员有4种"
+        ],
+        "traps": [
+          "角色不同不能除以2。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.prob.count",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "赤3個，青2個の同じ大きさの玉を一列に並べる。同色の玉を区別しないとき，青玉の位置を決める候補は $\\bx{A}$ か所，並べ方は $\\bx{BC}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "5",
+        "B": "1",
+        "C": "0"
+      },
+      "explanation": {
+        "zh": "只选择两个蓝球所在的位置即可确定全列。五选二为10，同色球互换不产生新列。\n\n按题干顺序填写 A=5，BC=10。",
+        "keyPoints": [
+          "只选择两个蓝球所在的位置即可确定全列"
+        ],
+        "traps": [
+          "每种排列恰对应一个位置集合。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "区別",
+            "kana": "くべつ",
+            "zh": "计数时将身份、位置或顺序视为不同"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.prob.count",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "数字0，2，5，8から異なる2個を使って2桁の整数を作る。十の位は $\\bx{A}$ 通り，整数は全部で $\\bx{B}$ 個である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "9"
+      },
+      "explanation": {
+        "zh": "十位排除零，留下三个选择。个位可用零，扣除十位后也有三种。\n\n按题干顺序填写 A=3，B=9。",
+        "keyPoints": [
+          "十位排除零，留下三个选择"
+        ],
+        "traps": [
+          "个位的零仍可使用。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-04",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.prob.count",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "六角形の頂点を2個選ぶ方法は $\\bx{AB}$ 通りである。辺を除くと対角線は $\\bx{C}$ 本ある。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "5",
+        "C": "9"
+      },
+      "explanation": {
+        "zh": "每条线段对应无序的一对顶点，六选二得15。六条边各被计一次，余下九条对角线。\n\n按题干顺序填写 AB=15，C=9。",
+        "keyPoints": [
+          "每条线段对应无序的一对顶点，六选二得15"
+        ],
+        "traps": [
+          "别把线段的两端区分先后。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-05",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.prob.count",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "赤，青，白の3色で横一列の4区画を塗り，隣同士は異なる色にする。第2区画以降は各 $\\bx{A}$ 通り，全体は $\\bx{BC}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "4"
+      },
+      "explanation": {
+        "zh": "首格有三色可用。每个后继格只需排除前一格颜色，连乘三个2。\n\n按题干顺序填写 A=2，BC=24。",
+        "keyPoints": [
+          "首格有三色可用"
+        ],
+        "traps": [
+          "允许隔一个格子重复用色。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-06",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.prob.count",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "7人が円卓を囲む。回転を同じとみなし，裏返しは区別する。1人を固定した後の空席は $\\bx{A}$ 席で，座り方は $\\bx{BCD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "7",
+        "C": "2",
+        "D": "0"
+      },
+      "explanation": {
+        "zh": "固定一人消去所有旋转，其余六名各不同，在六席全排列得6!=720。\n\n按题干顺序填写 A=6，BCD=720。",
+        "keyPoints": [
+          "固定一人消去所有旋转，其余六名各不同，在六席全排列得6!=720"
+        ],
+        "traps": [
+          "镜像有别，不再除以2。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "区別",
+            "kana": "くべつ",
+            "zh": "计数时将身份、位置或顺序视为不同"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-07",
+      "subject": "math",
+      "order": 7,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "原点Aから右へ4歩，上へ3歩でBに至る最短経路を考える。全体は $\\bx{AB}$ 通り，出発後ちょうど2歩目に位置 $(1,1)$ を通るものは $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "5",
+        "C": "2",
+        "D": "0"
+      },
+      "explanation": {
+        "zh": "七步中选三步向上。经指定点时前段一右一上有2种，后段三右二上有10种。\n\n按题干顺序填写 AB=35，CD=20。",
+        "keyPoints": [
+          "七步中选三步向上"
+        ],
+        "traps": [
+          "分段计数用乘法。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-08",
+      "subject": "math",
+      "order": 8,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "異なる本6冊を一列に置く。指定した2冊が隣り合う並べ方は $\\bx{ABC}$ 通り，隣り合わないものは $\\bx{DEF}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "4",
+        "C": "0",
+        "D": "4",
+        "E": "8",
+        "F": "0"
+      },
+      "explanation": {
+        "zh": "把二书捆为一体，共五个对象全排，再乘捆内的两种次序。用6!减去240得480。\n\n按题干顺序填写 ABC=240，DEF=480。",
+        "keyPoints": [
+          "把二书捆为一体，共五个对象全排，再乘捆内的两种次序"
+        ],
+        "traps": [
+          "打包后内部顺序仍可互换。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "隣り合う",
+            "kana": "となりあう",
+            "zh": "在同一排或圆周上直接相邻"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-09",
+      "subject": "math",
+      "order": 9,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "同じ飴8個をA，B，Cにすべて配る。各人1個以上なら配り方は $\\bx{AB}$ 通り，各人2個以上なら $\\bx{C}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "6"
+      },
+      "explanation": {
+        "zh": "第一问在七个间隔放两块隔板。第二问先各给两个，余两颗分给三人，非负解数为四选二。\n\n按题干顺序填写 AB=21，C=6。",
+        "keyPoints": [
+          "第一问在七个间隔放两块隔板"
+        ],
+        "traps": [
+          "预分之后允许有人再分到零个。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "配り方",
+            "kana": "くばりかた",
+            "zh": "满足人数与份数约束的分配方式"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-10",
+      "subject": "math",
+      "order": 10,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "A，A，B，B，C を並べる。総数は $\\bx{AB}$ 通り，A同士もB同士も隣り合うものは $\\bx{C}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "0",
+        "C": "6"
+      },
+      "explanation": {
+        "zh": "总排列5!要除以两次2!。同时相邻时AA、BB、C是三个不同的对象，各有唯一内部排列。\n\n按题干顺序填写 AB=30，C=6。",
+        "keyPoints": [
+          "总排列5!要除以两次2!"
+        ],
+        "traps": [
+          "两种重复字符各除一次。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "隣り合う",
+            "kana": "となりあう",
+            "zh": "在同一排或圆周上直接相邻"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-11",
+      "subject": "math",
+      "order": 11,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "正八角形の頂点から3点を選ぶ。総数は $\\bx{AB}$ 通り，そのうち中心を通る辺をもつ三角形は $\\bx{CD}$ 個である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "5",
+        "B": "6",
+        "C": "2",
+        "D": "4"
+      },
+      "explanation": {
+        "zh": "三点总数为八选三。四条直径任选其一，第三点从另六点选，三角形至多含一条直径。\n\n按题干顺序填写 AB=56，CD=24。",
+        "keyPoints": [
+          "三点总数为八选三"
+        ],
+        "traps": [
+          "直径无方向。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-12",
+      "subject": "math",
+      "order": 12,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "1から60までの整数で，4または6の倍数は $\\bx{AB}$ 個，ちょうど一方の倍数は $\\bx{CD}$ 個である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "0",
+        "C": "1",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "两集合大小为15、10，交集是12的倍数共5个。并集扣一次交集，恰属一类再扣一次。\n\n按题干顺序填写 AB=20，CD=15。",
+        "keyPoints": [
+          "两集合大小为15、10，交集是12的倍数共5个"
+        ],
+        "traps": [
+          "或与恰好一个的重叠处理不同。"
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-13",
+      "subject": "math",
+      "order": 13,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "7席が一列に並ぶ。隣り合わない3席を選ぶ方法は $\\bx{AB}$ 通り，さらに選んだ3席に異なる3人が座る方法は $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "0",
+        "C": "6",
+        "D": "0"
+      },
+      "explanation": {
+        "zh": "有序席号i<j<k去掉必需间隔，映至1…5的三元子集，得五选三。再给三席分配三人乘3!。\n\n按题干顺序填写 AB=10，CD=60。",
+        "keyPoints": [
+          "有序席号i<j<k去掉必需间隔，映至1…5的三元子集，得五选三"
+        ],
+        "traps": [
+          "座位集合和入座顺序应分步数。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "隣り合う",
+            "kana": "となりあう",
+            "zh": "在同一排或圆周上直接相邻"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-14",
+      "subject": "math",
+      "order": 14,
+      "topic": "math.prob.count",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "4人を区別できる2室に振り分ける。空室を許せば $\\bx{AB}$ 通り，どちらの室にも人が入るものは $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "6",
+        "C": "1",
+        "D": "4"
+      },
+      "explanation": {
+        "zh": "四人分别选一室，共2⁴种。两室中有一室为空等价于四人全进同一室，仅有两种。\n\n按题干顺序填写 AB=16，CD=14。",
+        "keyPoints": [
+          "四人分别选一室，共2⁴种"
+        ],
+        "traps": [
+          "房间有编号，互换房间有别。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "区別",
+            "kana": "くべつ",
+            "zh": "计数时将身份、位置或顺序视为不同"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-15",
+      "subject": "math",
+      "order": 15,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "A，A，B，B，C，Cを並べる。AAが連続する並べ方は $\\bx{AB}$ 通りである。どの同じ文字も隣り合わないものは $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "0",
+        "C": "3",
+        "D": "0"
+      },
+      "explanation": {
+        "zh": "总数90。指定一对相邻有5!/(2!2!)=30，两对同时相邻有4!/2!=12，三对均相邻有6种。容斥得90−90+36−6=30。\n\n按题干顺序填写 AB=30，CD=30。",
+        "keyPoints": [
+          "总数90"
+        ],
+        "traps": [
+          "同时出现两个坏事件需加回。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "隣り合う",
+            "kana": "となりあう",
+            "zh": "在同一排或圆周上直接相邻"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-16",
+      "subject": "math",
+      "order": 16,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "5人がそれぞれ自分の名札を1枚ずつ箱に入れ，1枚ずつ取り出す。ちょうど3人が自分の札を得る割当ては $\\bx{AB}$ 通り，ちょうど2人なら $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "0",
+        "C": "2",
+        "D": "0"
+      },
+      "explanation": {
+        "zh": "恰三人拿对时选三人，剩余二人只能互换。恰二人拿对时选二人，剩下三人须构成一个三循环，有两个方向。\n\n按题干顺序填写 AB=10，CD=20。",
+        "keyPoints": [
+          "恰三人拿对时选三人，剩余二人只能互换"
+        ],
+        "traps": [
+          "剩余的人都必须拿错。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-17",
+      "subject": "math",
+      "order": 17,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "同じ球12個を3つの番号付き箱に配る。各箱1個以上の方法は $\\bx{AB}$ 通り，さらに各箱6個以下に限ると $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "5",
+        "B": "5",
+        "C": "2",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "正整数拆分先算十一选二。固定一箱至少7，先拿去6个，余下6个作三份正拆有10种。两箱同时超限不可能，扣30。\n\n按题干顺序填写 AB=55，CD=25。",
+        "keyPoints": [
+          "正整数拆分先算十一选二"
+        ],
+        "traps": [
+          "扣除超限时要保留原来的正整数下限。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-18",
+      "subject": "math",
+      "order": 18,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "0から5までの数字を重複なく用いる4桁の偶数を数える。一の位が0なら $\\bx{AB}$ 個，一の位が0以外の場合も合わせると $\\bx{CDE}$ 個である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "0",
+        "C": "1",
+        "D": "5",
+        "E": "6"
+      },
+      "explanation": {
+        "zh": "末位零时千位有5种，其余4×3。末位为2或4时千位仅4种，中间两位仍4×3。两类之和60+96。\n\n按题干顺序填写 AB=60，CDE=156。",
+        "keyPoints": [
+          "末位零时千位有5种，其余4×3"
+        ],
+        "traps": [
+          "末位先确定，再决定首位是否要去掉零。"
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-19",
+      "subject": "math",
+      "order": 19,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "右R，上Uを各4回用いる経路は $\\bx{AB}$ 通りある。どの途中でもUの累計がRを超えないものは $\\bx{CD}$ 通りである。",
+      "format": "blanks",
+      "blanks": {
+        "A": "7",
+        "B": "0",
+        "C": "1",
+        "D": "4"
+      },
+      "explanation": {
+        "zh": "总数八选四。坏路径到首次U超R时交换之前的U与R，得到五R三U的路径，逆映射取首次R超U处。扣除八选三得14。\n\n按题干顺序填写 AB=70，CD=14。",
+        "keyPoints": [
+          "总数八选四"
+        ],
+        "traps": [
+          "反射只作用于首次越界前缀。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-count-v3-20",
+      "subject": "math",
+      "order": 20,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 場合の数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "6人を区別しない3組に2人ずつ分ける。最年少者の相手は $\\bx{A}$ 通りで，全組の作り方は $\\bx{BC}$ 通りである。さらに各組から代表を1人ずつ出すと $\\bx{DEF}$ 通りになる。",
+      "format": "blanks",
+      "blanks": {
+        "A": "5",
+        "B": "1",
+        "C": "5",
+        "D": "1",
+        "E": "2",
+        "F": "0"
+      },
+      "explanation": {
+        "zh": "固定剩余人群中最年少者再选搭档，各步有5、3、1种。分组互无标号无需再除，每组代表二选一，乘8。\n\n按题干顺序填写 A=5，BC=15，DEF=120。",
+        "keyPoints": [
+          "固定剩余人群中最年少者再选搭档，各步有5、3、1种"
+        ],
+        "traps": [
+          "按固定规则选组长消除了组的顺序。"
+        ],
+        "terms": [
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "区別",
+            "kana": "くべつ",
+            "zh": "计数时将身份、位置或顺序视为不同"
+          }
+        ]
+      }
+    }
+  ]
+}

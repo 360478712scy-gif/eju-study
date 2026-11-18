@@ -1,0 +1,730 @@
+{
+  "title": "数列 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-seq-v3-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "等差数列の第3項は11，第7項は27である。公差は $\\bx{A}$，初項は $\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "3"
+      },
+      "explanation": {
+        "zh": "相隔四项，差值为16，故公差为4。由第三项向前退两步得11−8=3。\n\n按题干顺序填写 A=4，B=3。",
+        "keyPoints": [
+          "相隔四项，差值为16，故公差为4"
+        ],
+        "traps": [
+          "两项相隔的步数取下标之差。"
+        ],
+        "terms": [
+          {
+            "ja": "公差",
+            "kana": "こうさ",
+            "zh": "等差数列相邻两项之差"
+          },
+          {
+            "ja": "初項",
+            "kana": "しょこう",
+            "zh": "数列的第一项"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "初項が負の等比数列で，第2項は6，第4項は24である。公比は $\\bx{AB}$，第3項は $\\bx{CDE}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "-",
+        "B": "2",
+        "C": "-",
+        "D": "1",
+        "E": "2"
+      },
+      "explanation": {
+        "zh": "隔两项的比是4，公比的绝对值为2。初项负而第二项正，选负公比，再用6乘以−2。\n\n按题干顺序填写 AB=-2，CDE=-12。",
+        "keyPoints": [
+          "隔两项的比是4，公比的绝对值为2"
+        ],
+        "traps": [
+          "开平方后用符号条件筛根。"
+        ],
+        "terms": [
+          {
+            "ja": "公比",
+            "kana": "こうひ",
+            "zh": "等比数列后一项与前一项的商"
+          },
+          {
+            "ja": "初項",
+            "kana": "しょこう",
+            "zh": "数列的第一项"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "第1段に2枚，第2段に5枚，以後1段ごとに3枚ずつ多くタイルを並べる。第8段は $\\bx{AB}$ 枚，8段の合計は $\\bx{CDE}$ 枚である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "3",
+        "C": "1",
+        "D": "0",
+        "E": "0"
+      },
+      "explanation": {
+        "zh": "第八段比第一段增加七次，每次3枚。首尾配对每对25枚，共有四对。\n\n按题干顺序填写 AB=23，CDE=100。",
+        "keyPoints": [
+          "第八段比第一段增加七次，每次3枚"
+        ],
+        "traps": [
+          "第八段只经历七次增加。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-04",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=7,\\ a_{n+1}-a_n=2n$ とする。$a_3=\\bx{AB},\\ a_6=\\bx{CD}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "3",
+        "C": "3",
+        "D": "7"
+      },
+      "explanation": {
+        "zh": "从7起依次加2、4得13。到第六项共加2(1+2+3+4+5)=30。\n\n按题干顺序填写 AB=13，CD=37。",
+        "keyPoints": [
+          "从7起依次加2、4得13"
+        ],
+        "traps": [
+          "累加到 n−1。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-05",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "数列の初項から第$n$項までの和が $S_n=n(2n+1)$ である。$a_1=\\bx{A},\\ a_5=\\bx{BC}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "1",
+        "C": "9"
+      },
+      "explanation": {
+        "zh": "首项直接用总和S₁。第五项等于S₅−S₄=55−36。\n\n按题干顺序填写 A=3，BC=19。",
+        "keyPoints": [
+          "首项直接用总和S₁"
+        ],
+        "traps": [
+          "和与项的下标相同，数值通常不同。"
+        ],
+        "terms": [
+          {
+            "ja": "初項",
+            "kana": "しょこう",
+            "zh": "数列的第一项"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-06",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.seq.seq",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=2,\\ a_{n+1}=1-a_n$ とする。$a_2=\\bx{AB}$ であり，初めの11項の和は $\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "-",
+        "B": "1",
+        "C": "7"
+      },
+      "explanation": {
+        "zh": "代入得到第二项−1，再代一次回到2。两项一组和为1，五组外还留下首项2。\n\n按题干顺序填写 AB=-1，C=7。",
+        "keyPoints": [
+          "代入得到第二项−1，再代一次回到2"
+        ],
+        "traps": [
+          "奇数个项含一个未配对项。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-07",
+      "subject": "math",
+      "order": 7,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "第$n$日に $3n-1$ ページ読む。10日目までに $\\bx{ABC}$ ページ読み，合計が初めて200ページを超えるのは第 $\\bx{DE}$ 日である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "5",
+        "C": "5",
+        "D": "1",
+        "E": "2"
+      },
+      "explanation": {
+        "zh": "前n天为n(3n+1)/2页。第10、11、12天的累计分别为155、187、222页，跨越200发生在第12天。\n\n按题干顺序填写 ABC=155，DE=12。",
+        "keyPoints": [
+          "前n天为n(3n+1)/2页"
+        ],
+        "traps": [
+          "比较相邻两日的累计值。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-08",
+      "subject": "math",
+      "order": 8,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=5,\\ a_{n+1}=3a_n-4$ とする。$a_n-c$ が等比数列となる定数 $c=\\bx{A}$ を用いると，$a_5=\\bx{BCD}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "4",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "令固定点满足c=3c−4，得到2。平移后首项3，公比3，第五项要将3的五次方加回2。\n\n按题干顺序填写 A=2，BCD=245。",
+        "keyPoints": [
+          "令固定点满足c=3c−4，得到2"
+        ],
+        "traps": [
+          "平移必须在最后还原。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-09",
+      "subject": "math",
+      "order": 9,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$1,2,2,3,3,3,4,4,4,4,\\ldots$ のように $k$ を $k$ 回並べる。数7の最後の位置は第 $\\bx{AB}$ 項，第40項の値は $\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "8",
+        "C": "9"
+      },
+      "explanation": {
+        "zh": "第k块结束位置是三角数k(k+1)/2。第七块结束于28，第八块结束于36，第九块结束于45。\n\n按题干顺序填写 AB=28，C=9。",
+        "keyPoints": [
+          "第k块结束位置是三角数k(k+1)/2"
+        ],
+        "traps": [
+          "块末的项仍在该块内。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-10",
+      "subject": "math",
+      "order": 10,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=1,\\ a_{n+1}=a_n/(1+3a_n)$ である。$1/a_{n+1}-1/a_n=\\bx{A}$ であるから $a_{10}=1/\\bx{BC}$ となる。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "8"
+      },
+      "explanation": {
+        "zh": "对递推式两端取倒数，右边拆为1/aₙ+3。新数列从1起加九次3。\n\n按题干顺序填写 A=3，BC=28。",
+        "keyPoints": [
+          "对递推式两端取倒数，右边拆为1/aₙ+3"
+        ],
+        "traps": [
+          "倒数数列的公差为常数。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-11",
+      "subject": "math",
+      "order": 11,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\sum_{k=1}^{n}1/[k(k+2)]$ を考える。各項は $(1/k-1/(k+2))/\\bx{A}$ であり，$n=3$ の和は既約分数 $\\bx{BC}/\\bx{DE}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "1",
+        "D": "4",
+        "E": "0"
+      },
+      "explanation": {
+        "zh": "两分式通分后分子为2，要除以2。剩下(1+1/2−1/4−1/5)/2=21/40。\n\n按题干顺序填写 A=2，BC=21，DE=40。",
+        "keyPoints": [
+          "两分式通分后分子为2，要除以2"
+        ],
+        "traps": [
+          "错位两项，首尾各留下两项。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-12",
+      "subject": "math",
+      "order": 12,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=3,\\ a_{n+1}=2a_n+n$ とする。$b_n=a_n+n+c$ とおくと，$c=\\bx{A}$ のとき $b_{n+1}=2b_n$ となり，$a_5=\\bx{BC}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "7",
+        "C": "4"
+      },
+      "explanation": {
+        "zh": "比较bₙ₊₁与2bₙ的常数项得1+c=2c。b₁=5，b₅=80，减去5+1得74。\n\n按题干顺序填写 A=1，BC=74。",
+        "keyPoints": [
+          "比较bₙ₊₁与2bₙ的常数项得1+c=2c"
+        ],
+        "traps": [
+          "还原时的下标应随项数变化。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-13",
+      "subject": "math",
+      "order": 13,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "初項1，公差2の数列のうち，3で割って1余る項を小さい順に並べる。その公差は $\\bx{A}$，初めの8項の和は $\\bx{BCD}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "1",
+        "C": "7",
+        "D": "6"
+      },
+      "explanation": {
+        "zh": "原序列只含奇数，余1的奇数为1、7、13……。第八项43，共八项，首尾平均22。\n\n按题干顺序填写 A=6，BCD=176。",
+        "keyPoints": [
+          "原序列只含奇数，余1的奇数为1、7、13……"
+        ],
+        "traps": [
+          "先取两个条件的交集。"
+        ],
+        "terms": [
+          {
+            "ja": "公差",
+            "kana": "こうさ",
+            "zh": "等差数列相邻两项之差"
+          },
+          {
+            "ja": "初項",
+            "kana": "しょこう",
+            "zh": "数列的第一项"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-14",
+      "subject": "math",
+      "order": 14,
+      "topic": "math.seq.seq",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=1,\\ a_{n+1}=(-1)^n a_n$ とする。最小の正の周期は $\\bx{A}$，初めの22項の和は $\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "0"
+      },
+      "explanation": {
+        "zh": "逐次写出1、−1、−1、1，第五至八项重复。每四项和为0，末尾两项也互相抵消。\n\n按题干顺序填写 A=4，B=0。",
+        "keyPoints": [
+          "逐次写出1、−1、−1、1，第五至八项重复"
+        ],
+        "traps": [
+          "相邻相同的两项不构成周期。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-15",
+      "subject": "math",
+      "order": 15,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=2,\\ a_2=5,\\ a_{n+2}=4a_{n+1}-3a_n$ とする。階差の公比は $\\bx{A}$，$a_6=\\bx{BCD}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "3",
+        "C": "6",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "相邻项之差满足后差是前差的三倍。初始差为3，前五个差之和为3+9+27+81+243=363，再加2。\n\n按题干顺序填写 A=3，BCD=365。",
+        "keyPoints": [
+          "相邻项之差满足后差是前差的三倍"
+        ],
+        "traps": [
+          "递推二阶时先试作差降阶。"
+        ],
+        "terms": [
+          {
+            "ja": "階差",
+            "kana": "かいさ",
+            "zh": "相邻两项后项减前项所得的差"
+          },
+          {
+            "ja": "公比",
+            "kana": "こうひ",
+            "zh": "等比数列后一项与前一项的商"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-16",
+      "subject": "math",
+      "order": 16,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "長さ$n$の0と1の列で1が連続しないものの個数を $a_n$ とし，$a_0=1$ とする。$a_2=\\bx{A}$ であり，末尾で分類すると $a_8=\\bx{BC}$ となる。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "5",
+        "C": "5"
+      },
+      "explanation": {
+        "zh": "末尾为0可接任何长度n−1的合法串，末尾为1且长度至少2时以01结束。由1、2起迭代相加得3、5、8、13、21、34、55。\n\n按题干顺序填写 A=3，BC=55。",
+        "keyPoints": [
+          "末尾为0可接任何长度n−1的合法串，末尾为1且长度至少2时以01结束"
+        ],
+        "traps": [
+          "末尾为1要一次删去两位。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-17",
+      "subject": "math",
+      "order": 17,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=1,\\ a_{n+1}=2a_n+3^n$ とする。$a_n/3^n$ の極限は $\\bx{A}$，$a_6=\\bx{BCD}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "6",
+        "C": "6",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "特解取3ⁿ，减去后按公比2递推。初项差−2，故aₙ=3ⁿ−2ⁿ，归一化后趋于1，第六项为729−64。\n\n按题干顺序填写 A=1，BCD=665。",
+        "keyPoints": [
+          "特解取3ⁿ，减去后按公比2递推"
+        ],
+        "traps": [
+          "非齐次项的底数决定特解形式。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-18",
+      "subject": "math",
+      "order": 18,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$S_n=\\sum_{k=1}^n k\\,2^{k-1}$ とする。$2S_n-S_n=n2^n-(2^n-\\bx{A})$ である。$S_8=\\bx{BCDE}$ となる。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "1",
+        "C": "7",
+        "D": "9",
+        "E": "3"
+      },
+      "explanation": {
+        "zh": "乘2后错位相减，最高次项是n·2ⁿ，中间和首项共扣去1+2+…+2ⁿ⁻¹。代n=8得7·256+1。\n\n按题干顺序填写 A=1，BCDE=1793。",
+        "keyPoints": [
+          "乘2后错位相减，最高次项是n·2ⁿ，中间和首项共扣去1+2+…+2ⁿ⁻¹"
+        ],
+        "traps": [
+          "最高次项没有配对，须保留。"
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-19",
+      "subject": "math",
+      "order": 19,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$a_1=3,\\ a_{n+1}=(3a_n-1)/(a_n+1)$ とする。$b_n=1/(a_n-1)$ とおくと $b_{n+1}-b_n=1/\\bx{A}$ であり，$a_{12}=\\bx{B}/\\bx{C}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "7",
+        "C": "6"
+      },
+      "explanation": {
+        "zh": "先减1，分子变成2(aₙ−1)，再取倒数拆成bₙ+1/2。b₁=1/2，b₁₂=6，故a₁₂=1+1/6。\n\n按题干顺序填写 A=2，B=7，C=6。",
+        "keyPoints": [
+          "先减1，分子变成2(aₙ−1)，再取倒数拆成bₙ+1/2"
+        ],
+        "traps": [
+          "变换变量的倒数与原项相差1。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-seq-v3-20",
+      "subject": "math",
+      "order": 20,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 数列"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "正の整数$n$について $a_1=1,\\ a_{2n}=a_n,\\ a_{2n+1}=a_n+1$ とする。$a_{13}=\\bx{A}$ である。$1\\le n\\le63$ で $a_n=3$ となる $n$ は $\\bx{BC}$ 個あり，$\\sum_{n=1}^{63}a_n=\\bx{DEF}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "0",
+        "D": "1",
+        "E": "9",
+        "F": "2"
+      },
+      "explanation": {
+        "zh": "把下标写成二进制，末尾加0不改变项值，加1则项值增加1。由首项归纳得项值等于二进制中1的个数，13写为1101。把0至63补成六位，恰有三个1的写法为六选三；每一列有32个1，总和6×32，剔除0不影响结果。\n\n按题干顺序填写 A=3，BC=20，DEF=192。",
+        "keyPoints": [
+          "把下标写成二进制，末尾加0不改变项值，加1则项值增加1"
+        ],
+        "traps": [
+          "计数时允许补前导零，同一个整数仍只有一种六位写法。"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,938 @@
+{
+  "title": "単振り子 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-pendulum-v3-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さ1.0 mの単振り子を微小振動させる。$g=\\pi^2$ m/s² と近似すると周期は何 s か。",
+      "format": "choice",
+      "options": [
+        "6.3",
+        "2.0",
+        "1.0",
+        "0.50"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "小角度周期为2π√(l/g)，根号内为1/π²，与前面的π约去后得2 s。 因此选 ②。\n\n- ① 未代入重力加速度。\n- ③ 把单程摆动算作一周期。\n- ④ 给出了振动频率的数值。",
+        "keyPoints": [
+          "小角度周期为2π√(l/g)，根号内为1/π²，与前面的π约去后得2 s"
+        ],
+        "traps": [
+          "未代入重力加速度。"
+        ],
+        "terms": [
+          {
+            "ja": "単振り子",
+            "kana": "たんふりこ",
+            "zh": "以轻且不可伸长细线悬挂质点的摆"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-02",
+      "subject": "physics",
+      "order": 2,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "単振り子の糸の長さを9倍にし，同じ場所で小さく振らせる。振動数は元の何倍か。",
+      "format": "choice",
+      "options": [
+        "1/9",
+        "1",
+        "3",
+        "1/3"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "摆长变九倍，周期变三倍。频率是周期的倒数，故降至三分之一。 因此选 ④。\n\n- ① 忽略开方。\n- ② 误以为摆长仅改变轨迹而不改变频率。\n- ③ 给出周期之比。",
+        "keyPoints": [
+          "摆长变九倍，周期变三倍"
+        ],
+        "traps": [
+          "忽略开方。"
+        ],
+        "terms": [
+          {
+            "ja": "単振り子",
+            "kana": "たんふりこ",
+            "zh": "以轻且不可伸长细线悬挂质点的摆"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-03",
+      "subject": "physics",
+      "order": 3,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "おもりだけを質量が3倍のものに替え，支点から重心までの距離を保つ。微小振動の周期はどうなるか。",
+      "format": "choice",
+      "options": [
+        "3倍になる",
+        "√3倍になる",
+        "1/√3倍になる",
+        "変わらない"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "切向方程两侧均含质量，可约去。周期只由有效摆长和当地重力加速度决定。 因此选 ④。\n\n- ① 把质量直接作为周期比例。\n- ② 误用弹簧振子的质量依赖。\n- ③ 仅计重力变大而忽略惯性也变大。",
+        "keyPoints": [
+          "切向方程两侧均含质量，可约去"
+        ],
+        "traps": [
+          "把质量直接作为周期比例。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-04",
+      "subject": "physics",
+      "order": 4,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "小球が最下点を右へ通過する瞬間，重力の接線成分はどちらを向くか。",
+      "format": "choice",
+      "options": [
+        "右向き",
+        "左向き",
+        "接線成分は0",
+        "上向き"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "最低点的切线水平，重力竖直，因此切向分量为零。此刻仍存在径向加速度。 因此选 ③。\n\n- ① 把速度方向误认为力的方向。\n- ② 把回复力的方向机械地套在平衡点。\n- ④ 把径向向心合力当作重力的切向分量。",
+        "keyPoints": [
+          "最低点的切线水平，重力竖直，因此切向分量为零"
+        ],
+        "traps": [
+          "把速度方向误认为力的方向。"
+        ],
+        "terms": [
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-05",
+      "subject": "physics",
+      "order": 5,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "糸を張ったまま右端から静かに放す。最下点に初めて達するまで0.30 sであった。小振幅での周期は何 s か。",
+      "format": "choice",
+      "options": [
+        "1.20",
+        "0.30",
+        "0.60",
+        "0.075"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "一周期由端点到中心、到另一端、回中心、回原端四段组成。每段用时相同。 因此选 ①。\n\n- ② 把单段用时当作完整振动。\n- ③ 把端点到中心误作半周期。\n- ④ 把已有的四分之一周期再除以4。",
+        "keyPoints": [
+          "一周期由端点到中心、到另一端、回中心、回原端四段组成"
+        ],
+        "traps": [
+          "把单段用时当作完整振动。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-06",
+      "subject": "physics",
+      "order": 6,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "小球が鉛直から角θだけ右にある。微小角近似 $\\sin\\theta\\simeq\\theta$ を用いるとき，θに使う単位はどれか。",
+      "format": "choice",
+      "options": [
+        "メートル",
+        "回転数",
+        "ラジアン",
+        "度"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "弧度用弧长除以半径定义。正弦在零附近对弧度的导数为1，才能直接以角本身近似。 因此选 ③。\n\n- ① 把圆弧长度与圆心角混用。\n- ② 用圈数时还须乘2π。\n- ④ 度数代入会多出180/π的尺度。",
+        "keyPoints": [
+          "弧度用弧长除以半径定义"
+        ],
+        "traps": [
+          "把圆弧长度与圆心角混用。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-07",
+      "subject": "physics",
+      "order": 7,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さ0.90 mの振り子が30往復する時間は57 sであった。周期を求めて推定したgに最も近い値は何 m/s² か。",
+      "format": "choice",
+      "options": [
+        "39",
+        "0.10",
+        "9.8",
+        "2.5"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "每次往复是1.9 s。用g=4π²l/T²，代入长0.90 m得约9.84 m/s²。 因此选 ③。\n\n- ① 把周期减半，使结果四倍。\n- ② 把周期平方除以摆长与常数，求成重力倒数。\n- ④ 把往复计数误当单程，周期加倍。",
+        "keyPoints": [
+          "每次往复是1.9 s"
+        ],
+        "traps": [
+          "把周期减半，使结果四倍。"
+        ],
+        "terms": [
+          {
+            "ja": "往復",
+            "kana": "おうふく",
+            "zh": "从起点摆到另一侧再返回的完整来回"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-08",
+      "subject": "physics",
+      "order": 8,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "最下点から高さ0.050 mの位置で小球を静かに放す。抵抗を無視し $g=10$ m/s² とすると最下点の速さは何 m/s か。",
+      "format": "choice",
+      "options": [
+        "1.0",
+        "0.71",
+        "0.10",
+        "0.50"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "张力与运动垂直不做功。将mgh全部转为动能，速率为√(2gh)=1.0 m/s。 因此选 ①。\n\n- ② 将动能式中的二分之一漏掉。\n- ③ 误将高度乘2作为速度。\n- ④ 把势能除质量直接作速度。",
+        "keyPoints": [
+          "张力与运动垂直不做功"
+        ],
+        "traps": [
+          "将动能式中的二分之一漏掉。"
+        ],
+        "terms": [
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-09",
+      "subject": "physics",
+      "order": 9,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さ0.80 m，質量0.20 kgの振り子が最下点を2.0 m/sで通る。$g=10$ m/s²のとき張力は何 N か。",
+      "format": "choice",
+      "options": [
+        "4.0",
+        "3.0",
+        "1.0",
+        "2.0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "最低点径向向上，张力减重力等于mv²/l。重力2 N，所需向心力1 N，张力应为3 N。 因此选 ②。\n\n- ① 把向心项多算一倍。\n- ③ 仅给出向心合力。\n- ④ 仅保留重力。",
+        "keyPoints": [
+          "最低点径向向上，张力减重力等于mv²/l"
+        ],
+        "traps": [
+          "把向心项多算一倍。"
+        ],
+        "terms": [
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          },
+          {
+            "ja": "張力",
+            "kana": "ちょうりょく",
+            "zh": "拉紧的细线沿线施加的拉力"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-10",
+      "subject": "physics",
+      "order": 10,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さlの振り子の支点から小球中心までを誤って実際より4%長く記録した。周期を正しく測定して推定したgは真値と比べてどうなるか。",
+      "format": "choice",
+      "options": [
+        "4%小さい",
+        "変わらない",
+        "4%大きい",
+        "約2%大きい"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "由g=4π²l/T²，同一测得周期下，推算的g与记录的长度严格成正比。 因此选 ③。\n\n- ① 颠倒了摆长所在分子分母。\n- ② 长度误差仍进入用周期反演的重力值。\n- ④ 把估计g的公式错用成周期公式。",
+        "keyPoints": [
+          "由g=4π²l/T²，同一测得周期下，推算的g与记录的长度严格成正比"
+        ],
+        "traps": [
+          "颠倒了摆长所在分子分母。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-11",
+      "subject": "physics",
+      "order": 11,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "重力加速度が地球の1/6の天体で地球と同じ周期を得たい。必要な糸の長さは元の何倍か。",
+      "format": "choice",
+      "options": [
+        "1/√6",
+        "1/6",
+        "6",
+        "1"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "要让周期相等，l/g必须相等。g缩小为六分之一，摆长也应缩小到同一比例。 因此选 ②。\n\n- ① 周期固定时不必对比例开方。\n- ③ 反转摆长与重力需同向改变的关系。\n- ④ 仅保证摆长相同不能补偿重力差异。",
+        "keyPoints": [
+          "要让周期相等，l/g必须相等"
+        ],
+        "traps": [
+          "周期固定时不必对比例开方。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-12",
+      "subject": "physics",
+      "order": 12,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "鉛直上向きに一定加速度 $g/4$ で動く箱内で小さく揺らす。静止した箱での周期に対する比はどれか。",
+      "format": "choice",
+      "options": [
+        "$2/\\sqrt3$",
+        "1",
+        "$4/5$",
+        "$2/\\sqrt5$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "箱内有向下的惯性力，有效重力为5g/4。周期比为√(g/(5g/4))。 因此选 ④。\n\n- ① 惯性力方向写反。\n- ② 把等加速电梯当作匀速惯性系。\n- ③ 漏取平方根。",
+        "keyPoints": [
+          "箱内有向下的惯性力，有效重力为5g/4"
+        ],
+        "traps": [
+          "惯性力方向写反。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-13",
+      "subject": "physics",
+      "order": 13,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "2つの振り子の周期は2.0 sと2.1 sである。同じ側の端から同時に放し，初めて両方が出発した側の端に同時に戻るのは何 s 後か。",
+      "format": "choice",
+      "options": [
+        "42",
+        "2.1",
+        "4.1",
+        "21"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "回原端要求各自均完成整数个周期。用0.1 s计，20和21的最小公倍数为420。 因此选 ①。\n\n- ② 只检查较慢摆的首次往复。\n- ③ 把周期相加不能代表重合。\n- ④ 后一个完成十次时前一个在对侧。",
+        "keyPoints": [
+          "回原端要求各自均完成整数个周期"
+        ],
+        "traps": [
+          "只检查较慢摆的首次往复。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-14",
+      "subject": "physics",
+      "order": 14,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "小振幅で周期2.4 sの振り子を右端から放す。1.8 s後の位置と運動の向きはどれか。",
+      "format": "choice",
+      "options": [
+        "最下点を右へ進む",
+        "右端で止まる",
+        "左端で止まる",
+        "最下点を左へ進む"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "1.8 s是四分之三周期。先经中心向左、到左端，再回中心时方向向右。 因此选 ①。\n\n- ② 完整周期才回到起始右端。\n- ③ 误取半周期。\n- ④ 混同四分之一与四分之三周期。",
+        "keyPoints": [
+          "1.8 s是四分之三周期"
+        ],
+        "traps": [
+          "完整周期才回到起始右端。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-15",
+      "subject": "physics",
+      "order": 15,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "支点の鉛直下方にくぎを置き，糸が最下点を通ると片側だけ有効長がl/4となる。他方はlである。小振幅の一往復の周期は通常の長さlの周期の何倍か。",
+      "format": "choice",
+      "options": [
+        "3/4",
+        "5/8",
+        "1/2",
+        "√(5/8)"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "左右两侧各贡献对应长度摆的半个周期。短摆周期为原来一半，总计T/2+T/4。 因此选 ①。\n\n- ② 按摆长一次比例对两侧历时取平均。\n- ③ 把整个周期按短摆计算。\n- ④ 先平均摆长再开方。",
+        "keyPoints": [
+          "左右两侧各贡献对应长度摆的半个周期"
+        ],
+        "traps": [
+          "按摆长一次比例对两侧历时取平均。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "往復",
+            "kana": "おうふく",
+            "zh": "从起点摆到另一侧再返回的完整来回"
+          },
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          }
+        ]
+      },
+      "figures": [
+        {
+          "src": "/assets/v3/weak/peg-quarter.svg",
+          "width": 480,
+          "caption": "鉛直線上のくぎで右側だけ有効長が短くなる"
+        }
+      ]
+    },
+    {
+      "id": "orig-pendulum-v3-16",
+      "subject": "physics",
+      "order": 16,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "右向きに一定加速度3g/4で走る車内で，振り子を新しい平衡方向の近くで揺らす。静止時の周期に対する比はどれか。",
+      "format": "choice",
+      "options": [
+        "$2/\\sqrt5$",
+        "$\\sqrt5/2$",
+        "$4/5$",
+        "$2/\\sqrt7$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "重力向下、惯性加速度向左，矢量合成为5g/4。围绕新平衡方向的小振动以该模长代替g。 因此选 ①。\n\n- ② 取了频率比而非周期比。\n- ③ 求出有效重力比的倒数后未开方。\n- ④ 把垂直的加速度标量相加。",
+        "keyPoints": [
+          "重力向下、惯性加速度向左，矢量合成为5g/4"
+        ],
+        "traps": [
+          "取了频率比而非周期比。"
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-17",
+      "subject": "physics",
+      "order": 17,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さlの振り子が鉛直から60°の位置で静止している。放した後，最下点での張力は重力の何倍か。",
+      "format": "choice",
+      "options": [
+        "3",
+        "2",
+        "1.5",
+        "1"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "下降高度l(1−cos60°)=l/2，能量守恒给v²=gl。最低点张力mg+mv²/l等于2mg。 因此选 ②。\n\n- ① 把下降高度错误地当作整个摆长。\n- ③ 只将下降的高度比例加到重力上。\n- ④ 漏掉向心力。",
+        "keyPoints": [
+          "下降高度l(1−cos60°)=l/2，能量守恒给v²=gl"
+        ],
+        "traps": [
+          "把下降高度错误地当作整个摆长。"
+        ],
+        "terms": [
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          },
+          {
+            "ja": "張力",
+            "kana": "ちょうりょく",
+            "zh": "拉紧的细线沿线施加的拉力"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-18",
+      "subject": "physics",
+      "order": 18,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同じ周期で振れる2本の単振り子で，小振幅はともにAで，平衡点を通る時刻がT/4ずれている。片方の変位がA/2のとき，他方の変位の絶対値はどれか。",
+      "format": "choice",
+      "options": [
+        "$A/2$",
+        "$A$",
+        "$0$",
+        "$\\sqrt3 A/2$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "两摆的相位相差π/2，归一化位移可用同一角的正弦和余弦表示。平方和为1，故另一个位移大小为√(1−1/4)A。 因此选 ④。\n\n- ① 误按同相或反相。\n- ② 误把半振幅时刻当作过中心。\n- ③ 正交相位下另一摆为零要求第一摆在端点。",
+        "keyPoints": [
+          "两摆的相位相差π/2，归一化位移可用同一角的正弦和余弦表示"
+        ],
+        "traps": [
+          "误按同相或反相。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "平衡点",
+            "kana": "へいこうてん",
+            "zh": "回复力为零的振动中心"
+          },
+          {
+            "ja": "単振り子",
+            "kana": "たんふりこ",
+            "zh": "以轻且不可伸长细线悬挂质点的摆"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-19",
+      "subject": "physics",
+      "order": 19,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さlの振り子を鉛直から角αだけ離して放す。途中の角θでの張力を表したものはどれか。糸は常に張っている。",
+      "format": "choice",
+      "options": [
+        "$mg(2\\cos\\theta-\\cos\\alpha)$",
+        "$mg\\cos\\theta$",
+        "$mg(3\\cos\\alpha-2\\cos\\theta)$",
+        "$mg(3\\cos\\theta-2\\cos\\alpha)$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "能量关系给v²=2gl(cosθ−cosα)。径向方程张力等于mg cosθ加mv²/l，合并同类项即可。 因此选 ④。\n\n- ① 将动能中的二分之一漏掉。\n- ② 漏掉向心加速度。\n- ③ 颠倒释放角与瞬时角的角色。",
+        "keyPoints": [
+          "能量关系给v²=2gl(cosθ−cosα)"
+        ],
+        "traps": [
+          "将动能中的二分之一漏掉。"
+        ],
+        "terms": [
+          {
+            "ja": "張力",
+            "kana": "ちょうりょく",
+            "zh": "拉紧的细线沿线施加的拉力"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-pendulum-v3-20",
+      "subject": "physics",
+      "order": 20,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 単振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "質量mの小球が長さlの糸で最下点に静止している。別の質量mの粘土が水平速度vで衝突し付着した。糸が張ったまま達する最高点が最下点よりl/4高いとき，vはどれか。",
+      "format": "choice",
+      "options": [
+        "$\\sqrt{gl/2}$",
+        "$\\sqrt{2gl}$",
+        "$2\\sqrt{gl}$",
+        "$\\sqrt{gl}$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "碰撞瞬间水平动量守恒，合体速度v/2。摆升过程守恒机械能，有(v/2)²=2g(l/4)，解得初速。 因此选 ②。\n\n- ① 忽略粘附碰撞对速度的折减。\n- ③ 把上升高度按半个摆长计算。\n- ④ 碰撞过程中错误地守恒机械能。",
+        "keyPoints": [
+          "碰撞瞬间水平动量守恒，合体速度v/2"
+        ],
+        "traps": [
+          "忽略粘附碰撞对速度的折减。"
+        ],
+        "terms": [
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,923 @@
+{
+  "title": "コンデンサー · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-capacitor-v3-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.em.capacitor",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "容量4.0 μFのコンデンサーの両極板に±12 μCがある。電位差は何 V か。",
+      "format": "choice",
+      "options": [
+        "48",
+        "6.0",
+        "3.0",
+        "0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "电容定义使用单块极板上的电荷大小。以微库除以微法，12/4=3，单位为伏特。 因此选 ③。\n\n- ① 乘以电容而非相除。\n- ② 误将两极电荷绝对值相加。\n- ④ 把两极电荷代数和代入公式。",
+        "keyPoints": [
+          "电容定义使用单块极板上的电荷大小"
+        ],
+        "traps": [
+          "乘以电容而非相除。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          },
+          {
+            "ja": "電位差",
+            "kana": "でんいさ",
+            "zh": "两点间单位正电荷对应的电势能差"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-02",
+      "subject": "physics",
+      "order": 2,
+      "topic": "phys.em.capacitor",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "真空の平行板の面積を3倍，間隔を2倍にすると，容量は何倍になるか。端の効果は無視する。",
+      "format": "choice",
+      "options": [
+        "2/3",
+        "1.5",
+        "6",
+        "3"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "容量与正对面积成正比，与距离成反比。两项独立变化，合成比例为3/2。 因此选 ②。\n\n- ① 把面积和距离的作用对调。\n- ③ 把间距也作正比例。\n- ④ 忽略间距变化。",
+        "keyPoints": [
+          "容量与正对面积成正比，与距离成反比"
+        ],
+        "traps": [
+          "把面积和距离的作用对调。"
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-03",
+      "subject": "physics",
+      "order": 3,
+      "topic": "phys.em.capacitor",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "電池を外して両極を孤立させた平行板コンデンサーの間隔を2倍にする。電荷の大きさと電圧はどうなるか。",
+      "format": "choice",
+      "options": [
+        "電荷は一定，電圧は半分",
+        "どちらも一定",
+        "電荷は一定，電圧は2倍",
+        "電荷は半分，電圧は一定"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "断开电池后没有电荷迁移通路。电容减半，固定电荷下V=Q/C增至两倍。 因此选 ③。\n\n- ① 把电压与电容看成正比。\n- ② 忽略电容减半。\n- ④ 使用了电源仍接通的条件。",
+        "keyPoints": [
+          "断开电池后没有电荷迁移通路"
+        ],
+        "traps": [
+          "把电压与电容看成正比。"
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-04",
+      "subject": "physics",
+      "order": 4,
+      "topic": "phys.em.capacitor",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "2 μFと6 μFを並列にし，5 Vを加える。2 μFの正極板に蓄えられる電気量は何 μC か。",
+      "format": "choice",
+      "options": [
+        "5",
+        "40",
+        "10",
+        "30"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "并联使各支路两端都承受5 V。题问单个支路，因此只需用2乘5。 因此选 ③。\n\n- ① 误将总电压平均分配。\n- ② 算了整组的总电荷。\n- ④ 选用了另一支路的电容。",
+        "keyPoints": [
+          "并联使各支路两端都承受5 V"
+        ],
+        "traps": [
+          "误将总电压平均分配。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          },
+          {
+            "ja": "電気量",
+            "kana": "でんきりょう",
+            "zh": "以库仑为单位的电荷量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-05",
+      "subject": "physics",
+      "order": 5,
+      "topic": "phys.em.capacitor",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "2 μFと6 μFを直列にして8 Vの電池につなぐ。初め両方とも無充電のとき，2 μF側の電圧は何 V か。",
+      "format": "choice",
+      "options": [
+        "6",
+        "4",
+        "2",
+        "8"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "两器件带等量电荷，故电压反比于容量，分压比3∶1。较小电容分得总电压的四分之三。 因此选 ①。\n\n- ② 把电压平均分配。\n- ③ 取了较大电容的电压。\n- ④ 将串联当并联。",
+        "keyPoints": [
+          "两器件带等量电荷，故电压反比于容量，分压比3∶1"
+        ],
+        "traps": [
+          "把电压平均分配。"
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-06",
+      "subject": "physics",
+      "order": 6,
+      "topic": "phys.em.capacitor",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "充電済みのコンデンサーで，容量を変えずに電圧を3倍にした。静電エネルギーは何倍になるか。",
+      "format": "choice",
+      "options": [
+        "6",
+        "3",
+        "9",
+        "1/9"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "固定容量时U=CV²/2。前后的常数因子抵消，留下电压比的平方。 因此选 ③。\n\n- ① 误把平方理解为乘2。\n- ② 按电压一次方换算。\n- ④ 误套定电荷公式并颠倒比例。",
+        "keyPoints": [
+          "固定容量时U=CV²/2"
+        ],
+        "traps": [
+          "误把平方理解为乘2。"
+        ],
+        "terms": [
+          {
+            "ja": "静電エネルギー",
+            "kana": "せいでんえねるぎー",
+            "zh": "储存在电场中的能量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-07",
+      "subject": "physics",
+      "order": 7,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "真空で6 μFの平行板の面積の半分だけに，比誘電率3の板をすき間なく差し込む。容量は何 μF か。",
+      "format": "choice",
+      "options": [
+        "4.5",
+        "18",
+        "9",
+        "12"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "两部分共用上下极板，处于相同电压下。真空半边3 μF，介质半边9 μF，相加得12。 因此选 ④。\n\n- ① 把两个区域当串联。\n- ② 当作整板填满。\n- ③ 只算介质部分。",
+        "keyPoints": [
+          "两部分共用上下极板，处于相同电压下"
+        ],
+        "traps": [
+          "把两个区域当串联。"
+        ],
+        "terms": [
+          {
+            "ja": "比誘電率",
+            "kana": "ひゆうでんりつ",
+            "zh": "介质介电常数与真空值之比"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-08",
+      "subject": "physics",
+      "order": 8,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "真空で4 μFの平行板間に，間隔の半分の厚さをもつ比誘電率3の板を全面に入れる。容量は何 μF か。",
+      "format": "choice",
+      "options": [
+        "6",
+        "3",
+        "8",
+        "12"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "沿场方向是串联分层，有效距离为d/2+d/6=2d/3。容量变为原来的3/2，即6 μF。 因此选 ①。\n\n- ② 忽略两层厚度各为原来一半。\n- ③ 沿面积作并联平均。\n- ④ 把全厚度视作介质。",
+        "keyPoints": [
+          "沿场方向是串联分层，有效距离为d/2+d/6=2d/3"
+        ],
+        "traps": [
+          "忽略两层厚度各为原来一半。"
+        ],
+        "terms": [
+          {
+            "ja": "比誘電率",
+            "kana": "ひゆうでんりつ",
+            "zh": "介质介电常数与真空值之比"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-09",
+      "subject": "physics",
+      "order": 9,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "容量2 μFのコンデンサーを10 Vまで充電し電池を外す。同容量で電圧4 Vの別のコンデンサーと同符号の極板同士をつなぐ。十分後の電圧は何 V か。",
+      "format": "choice",
+      "options": [
+        "5",
+        "3",
+        "7",
+        "14"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "将相连正板看作一个孤立节点，总电荷为20+8=28 μC，总电容4 μF，终电压为7 V。 因此选 ③。\n\n- ① 忽略第二只已有电荷。\n- ② 把同号相接误作反号。\n- ④ 把电压像串联电池一样相加。",
+        "keyPoints": [
+          "将相连正板看作一个孤立节点，总电荷为20+8=28 μC，总电容4 μF，终电压为7 V"
+        ],
+        "traps": [
+          "忽略第二只已有电荷。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-10",
+      "subject": "physics",
+      "order": 10,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "容量3 μFを6 V，1 μFを10 Vで充電し，電池を外す。前者の正極と後者の負極，残る極板同士をつなぐ。3 μF側で初め正だった極板の節点は他方より何 V 高くなるか。",
+      "format": "choice",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "7"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "该节点初始净电荷为18−10=8 μC，接通后等效容量4 μF，故其电势高2 V。 因此选 ①。\n\n- ② 只取电压差。\n- ③ 得到净电荷却未除以总容量。\n- ④ 忽略极性而相加电荷。",
+        "keyPoints": [
+          "该节点初始净电荷为18−10=8 μC，接通后等效容量4 μF，故其电势高2 V"
+        ],
+        "traps": [
+          "只取电压差。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-11",
+      "subject": "physics",
+      "order": 11,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "平行板に電池をつないだまま間隔を半分にする。準静的に動かすとき，電池から流れ出た電気量は初めの片極の電気量Qの何倍か。",
+      "format": "choice",
+      "options": [
+        "1",
+        "2",
+        "1/2",
+        "0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "电压受电源固定，距离减半使电容、电荷均变为两倍。从初态Q到末态2Q，需要额外补入Q。 因此选 ①。\n\n- ② 给出末态电荷而非迁移量。\n- ③ 误认为距离减半使电容也减半。\n- ④ 把接电池看成孤立。",
+        "keyPoints": [
+          "电压受电源固定，距离减半使电容、电荷均变为两倍"
+        ],
+        "traps": [
+          "给出末态电荷而非迁移量。"
+        ],
+        "terms": [
+          {
+            "ja": "電気量",
+            "kana": "でんきりょう",
+            "zh": "以库仑为单位的电荷量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-12",
+      "subject": "physics",
+      "order": 12,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "4 μFと12 μFを並列にした組に，別の16 μFを直列につなぐ。全体を12 Vまで充電したとき4 μFに蓄えられる電荷は何 μC か。",
+      "format": "choice",
+      "options": [
+        "96",
+        "48",
+        "24",
+        "12"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "并联组等效16 μF，与外部16 μF等分电压。小支路承受6 V，电荷为4×6。 因此选 ③。\n\n- ① 算的是整个并联组的电荷。\n- ② 把全电压加在小支路上。\n- ④ 在并联内部又错误分压一次。",
+        "keyPoints": [
+          "并联组等效16 μF，与外部16 μF等分电压"
+        ],
+        "traps": [
+          "算的是整个并联组的电荷。"
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-13",
+      "subject": "physics",
+      "order": 13,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "2 μFのコンデンサーに一定電流3.0 mAを4.0 ms流し，初めの電圧0から充電する。最終電圧は何 V か。",
+      "format": "choice",
+      "options": [
+        "6",
+        "12",
+        "1.5",
+        "24"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "电流对时间的积分是电荷，3 mA×4 ms=12 μC。除以2 μF得6 V。 因此选 ①。\n\n- ② 只算电荷的微库数。\n- ③ 漏掉时间因子。\n- ④ 将电荷乘电容。",
+        "keyPoints": [
+          "电流对时间的积分是电荷，3 mA×4 ms=12 μC"
+        ],
+        "traps": [
+          "只算电荷的微库数。"
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-14",
+      "subject": "physics",
+      "order": 14,
+      "topic": "phys.em.capacitor",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "電池から切り離した平行板の間隔を保ち，比誘電率4の物質で満たす。初めのエネルギーをUとすると，静電エネルギーの減少量はどれか。",
+      "format": "choice",
+      "options": [
+        "$0$",
+        "$3U/4$",
+        "$U/4$",
+        "$3U$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "固定电荷时U=Q²/(2C)，电容变为四倍，剩余能量为U/4。用初值减末值得3U/4。 因此选 ②。\n\n- ① 误以为电荷守恒表示能量也不变。\n- ③ 只给出末态储能。\n- ④ 误按恒压时的增量。",
+        "keyPoints": [
+          "固定电荷时U=Q²/(2C)，电容变为四倍，剩余能量为U/4"
+        ],
+        "traps": [
+          "误以为电荷守恒表示能量也不变。"
+        ],
+        "terms": [
+          {
+            "ja": "比誘電率",
+            "kana": "ひゆうでんりつ",
+            "zh": "介质介电常数与真空值之比"
+          },
+          {
+            "ja": "静電エネルギー",
+            "kana": "せいでんえねるぎー",
+            "zh": "储存在电场中的能量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-15",
+      "subject": "physics",
+      "order": 15,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "容量Cの無充電のコンデンサーを，抵抗を介し電圧Vの理想電池で充電する。電池のした仕事のうち抵抗で熱になる割合はどれか。",
+      "format": "choice",
+      "options": [
+        "1/4",
+        "1/2",
+        "1",
+        "0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "电池恒压，送出CV电荷，做功CV²。终态储能为CV²/2，差额同样为CV²/2。 因此选 ②。\n\n- ① 将电荷与电压都作平均。\n- ③ 忽略电场储能。\n- ④ 误以为终态无电流意味着全程无损耗。",
+        "keyPoints": [
+          "电池恒压，送出CV电荷，做功CV²"
+        ],
+        "traps": [
+          "将电荷与电压都作平均。"
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-16",
+      "subject": "physics",
+      "order": 16,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "容量C，2Cを直列にし，左端を電位V，右端を0とする。中間の孤立導体は合計で正の電荷CVをもつ。左側がCのとき中間電位はいくらか。",
+      "format": "choice",
+      "options": [
+        "$V/3$",
+        "$V/2$",
+        "$V$",
+        "$2V/3$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "设中间电势u，节点电荷为C(u−V)+2Cu=CV。整理得3u=2V，不能套用无初始电荷的串联分压。 因此选 ④。\n\n- ① 误将中间节点净电荷设为零。\n- ② 忽略两侧电容和预置电荷。\n- ③ 忽略右侧电容对节点的贡献。",
+        "keyPoints": [
+          "设中间电势u，节点电荷为C(u−V)+2Cu=CV"
+        ],
+        "traps": [
+          "误将中间节点净电荷设为零。"
+        ]
+      },
+      "figures": [
+        {
+          "src": "/assets/v3/weak/floating-node.svg",
+          "width": 480,
+          "caption": "電荷をもつ中間導体と二つのコンデンサー"
+        }
+      ]
+    },
+    {
+      "id": "orig-capacitor-v3-17",
+      "subject": "physics",
+      "order": 17,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "平行板間隔dの真空コンデンサーに，厚さd/3の孤立した中性金属板を，どちらの極板にも触れないよう全面に入れる。電池を外して電荷を保つ。電圧は元の何倍か。",
+      "format": "choice",
+      "options": [
+        "1/3",
+        "2/3",
+        "3/2",
+        "1"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "中性金属内无场，两侧真空层的场仍由原面电荷密度确定。产生电压降的总距离为2d/3。 因此选 ②。\n\n- ① 以金属厚度作为有场距离。\n- ③ 给出的是电容比。\n- ④ 忽略金属内电场为零。",
+        "keyPoints": [
+          "中性金属内无场，两侧真空层的场仍由原面电荷密度确定"
+        ],
+        "traps": [
+          "以金属厚度作为有场距离。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-18",
+      "subject": "physics",
+      "order": 18,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "平行板を電池につないだまま，極板間をゆっくり広げて容量をCからC/2にする。電圧をVとすると，外力の仕事はどれか。",
+      "format": "choice",
+      "options": [
+        "$-CV^2/4$",
+        "$0$",
+        "$CV^2/2$",
+        "$CV^2/4$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "电场能减少CV²/4，同时有CV/2电荷返回电池，电池吸收CV²/2。外力须补足两者之差。 因此选 ④。\n\n- ① 只看电场能减少而忽略电池吸收。\n- ② 误以为恒压就无机械力。\n- ③ 把电池吸收的能量当作机械功。",
+        "keyPoints": [
+          "电场能减少CV²/4，同时有CV/2电荷返回电池，电池吸收CV²/2"
+        ],
+        "traps": [
+          "只看电场能减少而忽略电池吸收。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-19",
+      "subject": "physics",
+      "order": 19,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同じ4 μFのコンデンサー3個がある。Aを12 Vで充電し電池を外す。無充電のBと並列につないでから切り離し，次にBだけを無充電のCと並列につなぐ。最後のA，B，Cの全静電エネルギーは何 μJ か。",
+      "format": "choice",
+      "options": [
+        "72",
+        "144",
+        "36",
+        "108"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "每次同容量分享使相连两只电压变为平均值。A最终6 V，B、C各3 V，总能量为2×(36+9+9) μJ。 因此选 ④。\n\n- ① 只算保留在A中的能量。\n- ② 停在第一次分配后。\n- ③ 遗漏最后仍单独充电的A。",
+        "keyPoints": [
+          "每次同容量分享使相连两只电压变为平均值"
+        ],
+        "traps": [
+          "只算保留在A中的能量。"
+        ],
+        "terms": [
+          {
+            "ja": "静電エネルギー",
+            "kana": "せいでんえねるぎー",
+            "zh": "储存在电场中的能量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-capacitor-v3-20",
+      "subject": "physics",
+      "order": 20,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · コンデンサー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "面積S，間隔dの極板の間に比誘電率κの板が横から面積割合fだけ入り，全厚を満たす。電池を外し片極電荷Qを保つ。板がさらに入りやすい理由として適切なのはどれか（κ>1）。",
+      "format": "choice",
+      "options": [
+        "fが増すと容量が減り，電荷が逃げる",
+        "電場が一様に強くなりエネルギーが増す",
+        "電圧が一定なので電池が仕事をする",
+        "fが増すと容量が増し，静電エネルギーが減る"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "两个面积区域并联，有C=ε₀S[1+(κ−1)f]/d。插入越深，固定Q对应的Q²/(2C)越小，电场力推动介质进入。 因此选 ④。\n\n- ① 横向分区使电容增大且电荷无外路。\n- ② 固定电荷时电压随电容增大而降低。\n- ③ 题中已移开电池。",
+        "keyPoints": [
+          "两个面积区域并联，有C=ε₀S[1+(κ−1)f]/d"
+        ],
+        "traps": [
+          "横向分区使电容增大且电荷无外路。"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          },
+          {
+            "ja": "比誘電率",
+            "kana": "ひゆうでんりつ",
+            "zh": "介质介电常数与真空值之比"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,955 @@
+{
+  "title": "電磁誘導 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-induction-v3-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.em.induction",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "面積0.030 m²の枠の面の法線と0.40 Tの一様な磁場が60°をなす。磁束の大きさは何 Wb か。",
+      "format": "choice",
+      "options": [
+        "0.024",
+        "0.0060",
+        "0.012",
+        "0.0104"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "磁通量取磁场方向上的投影面积。0.40×0.030×cos60°=0.0060 Wb。 因此选 ②。\n\n- ① 除以余弦使投影变大。\n- ③ 把整个面积当作垂直截面。\n- ④ 用了角度的正弦。",
+        "keyPoints": [
+          "磁通量取磁场方向上的投影面积"
+        ],
+        "traps": [
+          "除以余弦使投影变大。"
+        ],
+        "terms": [
+          {
+            "ja": "磁束",
+            "kana": "じそく",
+            "zh": "磁场穿过有向面积的通量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-02",
+      "subject": "physics",
+      "order": 2,
+      "topic": "phys.em.induction",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "一様な静磁場中で閉じた枠全体を，向きと面積を変えずに等速で平行移動する。枠全体の誘導起電力はどうなるか。",
+      "format": "choice",
+      "options": [
+        "半周ごとに逆転する",
+        "速さに比例して増す",
+        "出発点からの距離に比例する",
+        "常に0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "完整闭合回路始终在匀强场中，磁场、面积和法线方向均不变。各边电动势的代数和为零。 因此选 ④。\n\n- ① 把平移看成了转动。\n- ② 把一条边的动生电动势直接算成全环。\n- ③ 误以为位移会不断积累磁通。",
+        "keyPoints": [
+          "完整闭合回路始终在匀强场中，磁场、面积和法线方向均不变"
+        ],
+        "traps": [
+          "把平移看成了转动。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-03",
+      "subject": "physics",
+      "order": 3,
+      "topic": "phys.em.induction",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "外部磁場が紙面の手前向きに弱くなる。紙面を正面から見た閉回路の誘導電流はどちらか。",
+      "format": "choice",
+      "options": [
+        "時計回り",
+        "一定時間ごとに逆転",
+        "反時計回り",
+        "流れない"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "原磁通朝观察者且正在减少，感应场须同向补偿。右手拇指朝自己，四指为逆时针。 因此选 ③。\n\n- ① 错误地反抗原磁场本身。\n- ② 把单调减弱误作交流。\n- ④ 忽略场强虽无运动仍可变化。",
+        "keyPoints": [
+          "原磁通朝观察者且正在减少，感应场须同向补偿"
+        ],
+        "traps": [
+          "错误地反抗原磁场本身。"
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-04",
+      "subject": "physics",
+      "order": 4,
+      "topic": "phys.em.induction",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "1巻きの枠の磁束が0.03 Wbから−0.01 Wbまで0.20 sで変化した。平均起電力の大きさは何 V か。",
+      "format": "choice",
+      "options": [
+        "0.10",
+        "0.15",
+        "0.20",
+        "0.008"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "先算带符号的终值减初值，差为−0.04 Wb。平均电动势的大小是0.04/0.20。 因此选 ③。\n\n- ① 只比较两个绝对值。\n- ② 漏掉末态磁通。\n- ④ 将磁通差乘以时间。",
+        "keyPoints": [
+          "先算带符号的终值减初值，差为−0.04 Wb"
+        ],
+        "traps": [
+          "只比较两个绝对值。"
+        ],
+        "terms": [
+          {
+            "ja": "磁束",
+            "kana": "じそく",
+            "zh": "磁场穿过有向面积的通量"
+          },
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-05",
+      "subject": "physics",
+      "order": 5,
+      "topic": "phys.em.induction",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同じ磁束変化を受ける同形のコイルA，Bの巻数は30と90である。開放端に生じる起電力の大きさの比 B/A はいくらか。",
+      "format": "choice",
+      "options": [
+        "3",
+        "9",
+        "1",
+        "1/3"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "各匝穿过相同的磁通，串联感应电动势逐匝相加。比值仅由90/30决定。 因此选 ①。\n\n- ② 把匝数的作用平方。\n- ③ 漏掉匝数。\n- ④ 把分子分母颠倒。",
+        "keyPoints": [
+          "各匝穿过相同的磁通，串联感应电动势逐匝相加"
+        ],
+        "traps": [
+          "把匝数的作用平方。"
+        ],
+        "terms": [
+          {
+            "ja": "磁束",
+            "kana": "じそく",
+            "zh": "磁场穿过有向面积的通量"
+          },
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          },
+          {
+            "ja": "巻数",
+            "kana": "まきすう",
+            "zh": "线圈的总匝数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-06",
+      "subject": "physics",
+      "order": 6,
+      "topic": "phys.em.induction",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "コイルの電流が一定の正の値を保つ間，自己誘導による起電力はどうなるか。",
+      "format": "choice",
+      "options": [
+        "0になる",
+        "電流とともに蓄積する",
+        "抵抗による電圧降下に等しい",
+        "電流に比例する"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "自感电动势为−L di/dt。恒定电流建立恒定磁场，储能可非零，感应电动势为零。 因此选 ①。\n\n- ② 混淆储存能量与感应电压。\n- ③ 把欧姆压降当作感应电动势。\n- ④ 混淆磁通与磁通的变化率。",
+        "keyPoints": [
+          "自感电动势为−L di/dt"
+        ],
+        "traps": [
+          "混淆储存能量与感应电压。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          },
+          {
+            "ja": "自己誘導",
+            "kana": "じこゆうどう",
+            "zh": "本回路电流变化在自身产生感应电动势"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-07",
+      "subject": "physics",
+      "order": 7,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "抵抗5.0 Ωの50巻きの閉コイルで，1巻きの磁束が0.012 Wb減少した。自己誘導を無視すると，断面を通過した電気量の大きさは何 C か。",
+      "format": "choice",
+      "options": [
+        "0.12",
+        "0.0024",
+        "0.60",
+        "3.0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "将欧姆定律与法拉第定律联立后对时间积分。总电荷为50×0.012/5.0 C，与经历时长无关。 因此选 ①。\n\n- ② 漏掉50匝。\n- ③ 算到磁通链变化就停止。\n- ④ 把电阻乘上而非除去。",
+        "keyPoints": [
+          "将欧姆定律与法拉第定律联立后对时间积分"
+        ],
+        "traps": [
+          "漏掉50匝。"
+        ],
+        "terms": [
+          {
+            "ja": "電気量",
+            "kana": "でんきりょう",
+            "zh": "以库仑为单位的电荷量"
+          },
+          {
+            "ja": "磁束",
+            "kana": "じそく",
+            "zh": "磁场穿过有向面积的通量"
+          },
+          {
+            "ja": "自己誘導",
+            "kana": "じこゆうどう",
+            "zh": "本回路电流变化在自身产生感应电动势"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-08",
+      "subject": "physics",
+      "order": 8,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "コイルを一様磁場で一定角速度で回す。磁束が最大の向きから30°回した瞬間の起電力の大きさは最大値の何倍か。",
+      "format": "choice",
+      "options": [
+        "1/2",
+        "0",
+        "√3/2",
+        "1"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "磁通随转角按余弦变化，电动势取其时间导数，按正弦变化。因此比例为sin30°。 因此选 ①。\n\n- ② 套用初始时刻的值。\n- ③ 求成磁通比例。\n- ④ 误认为匀速转动产生恒定电压。",
+        "keyPoints": [
+          "磁通随转角按余弦变化，电动势取其时间导数，按正弦变化"
+        ],
+        "traps": [
+          "套用初始时刻的值。"
+        ],
+        "terms": [
+          {
+            "ja": "磁束",
+            "kana": "じそく",
+            "zh": "磁场穿过有向面积的通量"
+          },
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-09",
+      "subject": "physics",
+      "order": 9,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "幅0.20 mの長方形枠が辺に垂直に速さ3.0 m/sで磁場領域へ入る。境界に平行な辺がこの幅で，磁場は面に垂直に0.50 T。抵抗0.15 Ωのとき，進入中の電流は何 A か。",
+      "format": "choice",
+      "options": [
+        "2.0",
+        "0.045",
+        "4.0",
+        "0.30"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "面积变化率为0.20×3.0，乘0.50得0.30 V。总电阻0.15 Ω，故电流为2.0 A。 因此选 ①。\n\n- ② 将电动势乘电阻。\n- ③ 漏掉磁场强度因子。\n- ④ 求得的是电压。",
+        "keyPoints": [
+          "面积变化率为0.20×3.0，乘0.50得0.30 V"
+        ],
+        "traps": [
+          "将电动势乘电阻。"
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-10",
+      "subject": "physics",
+      "order": 10,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "平行レール上の棒を一定速度で引く。全抵抗を3倍，速度を2倍にすると，磁気抵抗力の大きさは元の何倍か。磁場と棒長は一定とする。",
+      "format": "choice",
+      "options": [
+        "4/3",
+        "1/3",
+        "6",
+        "2/3"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "动生电动势正比速率，感应电流正比v/R，安培力再乘相同的BL。故力的比例为2/3。 因此选 ④。\n\n- ① 算成功率的比。\n- ② 忘记速度的变化。\n- ③ 把电阻影响方向写反。",
+        "keyPoints": [
+          "动生电动势正比速率，感应电流正比v/R，安培力再乘相同的BL"
+        ],
+        "traps": [
+          "算成功率的比。"
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-11",
+      "subject": "physics",
+      "order": 11,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "半径が時間とともに増える円形の1巻きの輪に，面に垂直な一定磁場がかかる。半径の増加速度が一定なら，半径が2倍の瞬間の起電力は元の何倍か。",
+      "format": "choice",
+      "options": [
+        "1",
+        "1/2",
+        "2",
+        "4"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "面积变化率为2πr dr/dt。在给定磁场及固定径向速度下，感应电压随当时半径成正比。 因此选 ③。\n\n- ① 忽略周长随半径变化。\n- ② 误将曲率作为比例因子。\n- ④ 使用面积比而非面积变化率比。",
+        "keyPoints": [
+          "面积变化率为2πr dr/dt"
+        ],
+        "traps": [
+          "忽略周长随半径变化。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-12",
+      "subject": "physics",
+      "order": 12,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "自己インダクタンス0.30 Hのコイルの電流が0.20 sで2 Aから−1 Aまで一様に変化する。自己誘導起電力の大きさは何 V か。",
+      "format": "choice",
+      "options": [
+        "0.18",
+        "0.90",
+        "1.5",
+        "4.5"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "电流有方向，差为−3 A。变化率大小15 A/s，再乘0.30 H得4.5 V。 因此选 ④。\n\n- ① 把变化量乘以时长。\n- ② 只算磁通链变化。\n- ③ 对电流大小作差遗漏过零。",
+        "keyPoints": [
+          "电流有方向，差为−3 A"
+        ],
+        "traps": [
+          "把变化量乘以时长。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          },
+          {
+            "ja": "自己誘導",
+            "kana": "じこゆうどう",
+            "zh": "本回路电流变化在自身产生感应电动势"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-13",
+      "subject": "physics",
+      "order": 13,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "相互インダクタンス0.08 Hの2コイルで，一次電流が毎秒25 Aずつ増える。二次側を開放したとき，二次端子間の電圧の大きさは何 V か。",
+      "format": "choice",
+      "options": [
+        "2.0",
+        "25",
+        "0",
+        "0.0032"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "二次回路开路使电流为零，端电压仍由互感产生。用M乘一次电流变化率得到2.0 V。 因此选 ①。\n\n- ② 漏乘互感系数。\n- ③ 误以为开路没有感应电压。\n- ④ 将互感除以变化率。",
+        "keyPoints": [
+          "二次回路开路使电流为零，端电压仍由互感产生"
+        ],
+        "traps": [
+          "漏乘互感系数。"
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-14",
+      "subject": "physics",
+      "order": 14,
+      "topic": "phys.em.induction",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "抵抗を無視できるコイルの電流が2 Aから6 Aになる。磁場に蓄えられたエネルギーの増加量は，初めのエネルギーの何倍か。",
+      "format": "choice",
+      "options": [
+        "3",
+        "2",
+        "8",
+        "9"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "磁能为LI²/2，电流增至三倍，末态能量为九倍。扣除原有的一份，增量为八倍。 因此选 ③。\n\n- ① 按电流一次方计算末能量。\n- ② 按电流的一次变化计算增量。\n- ④ 求了末能量比而非增加量。",
+        "keyPoints": [
+          "磁能为LI²/2，电流增至三倍，末态能量为九倍"
+        ],
+        "traps": [
+          "按电流一次方计算末能量。"
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-15",
+      "subject": "physics",
+      "order": 15,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "質量mの導体棒が抵抗Rのレール上を，外力なしに初速vで滑り，磁気制動だけで止まる極限を考える。棒長l，垂直磁場Bとして，全通過電気量の大きさはどれか。自己誘導は無視する。",
+      "format": "choice",
+      "options": [
+        "$mv/(BlR)$",
+        "$mv^2/(2Bl)$",
+        "$Blv/R$",
+        "$mv/(Bl)$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "把安培力BlI沿时间积分，磁冲量大小等于失去的动量mv。电流对时间的积分就是所求电荷。 因此选 ④。\n\n- ① 动量冲量关系中多除了一次电阻。\n- ② 把动量变化误换成动能。\n- ③ 求的是初始电流。",
+        "keyPoints": [
+          "把安培力BlI沿时间积分，磁冲量大小等于失去的动量mv"
+        ],
+        "traps": [
+          "动量冲量关系中多除了一次电阻。"
+        ],
+        "terms": [
+          {
+            "ja": "電気量",
+            "kana": "でんきりょう",
+            "zh": "以库仑为单位的电荷量"
+          },
+          {
+            "ja": "自己誘導",
+            "kana": "じこゆうどう",
+            "zh": "本回路电流变化在自身产生感应电动势"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-16",
+      "subject": "physics",
+      "order": 16,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "面積Sの枠が磁場Bの中で回る。面の法線と磁場の角が0°から60°まで時間t，続いて60°から90°まで同じ時間tで変化する。両区間の平均起電力の大きさの比（後/前）はいくらか。",
+      "format": "choice",
+      "options": [
+        "1/2",
+        "√3",
+        "1",
+        "2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "两段的磁通分别从BS降至BS/2、再降至0。磁通差同大且耗时相同，即使平均角速度不同，平均电压仍相等。 因此选 ③。\n\n- ① 只比较转角而未取余弦差。\n- ② 混入瞬时电动势的正弦。\n- ④ 把第一段余弦的终值当作第二段的变化倍数。",
+        "keyPoints": [
+          "两段的磁通分别从BS降至BS/2、再降至0"
+        ],
+        "traps": [
+          "只比较转角而未取余弦差。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-17",
+      "subject": "physics",
+      "order": 17,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同じ面積の2つのループを8の字に直列につないだ。正面から見て回路を一周すると両ループの周回方向は互いに逆である。一方には手前向きに毎秒3 T，他方には奥向きに毎秒1 Tの割合で増す磁場をかける。各面積0.020 m²のとき全起電力の大きさは何 V か。",
+      "format": "choice",
+      "options": [
+        "0.040",
+        "0.060",
+        "0.080",
+        "0.020"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "选同一回路方向时两个环的法向相反，外磁场变化也相反。两个负号相消，感应电压相加，等于0.020×(3+1)。 因此选 ③。\n\n- ① 只考虑磁场反向，未考虑绕行反向。\n- ② 漏掉较小环的贡献。\n- ④ 漏掉较大环的贡献。",
+        "keyPoints": [
+          "选同一回路方向时两个环的法向相反，外磁场变化也相反"
+        ],
+        "traps": [
+          "只考虑磁场反向，未考虑绕行反向。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-18",
+      "subject": "physics",
+      "order": 18,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "長さlの導体棒が一端を中心に，棒に垂直な一様磁場Bの中で角速度ωで回転する。中心からl/2とlの位置の間の電位差の大きさはどれか。",
+      "format": "choice",
+      "options": [
+        "$B\\omega l^2/2$",
+        "$3B\\omega l^2/8$",
+        "$B\\omega l^2/8$",
+        "$B\\omega l^2/4$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "不同半径处速度为ωr。把Bωr对r从l/2积分到l，得Bω[l²−(l/2)²]/2。 因此选 ②。\n\n- ① 求了整根棒的电压。\n- ③ 求了内半段的电压。\n- ④ 全段使用内端线速度。",
+        "keyPoints": [
+          "不同半径处速度为ωr"
+        ],
+        "traps": [
+          "求了整根棒的电压。"
+        ],
+        "terms": [
+          {
+            "ja": "電位差",
+            "kana": "でんいさ",
+            "zh": "两点间单位正电荷对应的电势能差"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-induction-v3-19",
+      "subject": "physics",
+      "order": 19,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "枠の面に垂直な一様磁場の領域へ，正方形の枠を直線境界に垂直に等速で運ぶ。頂点が先に入り，対角線は進行方向と平行である。最初の頂点が入ってから中心が境界に達する直前まで，起電力の大きさはどう変わるか。",
+      "format": "choice",
+      "options": [
+        "時間に比例して増える",
+        "時間の2乗に比例して増える",
+        "一定",
+        "時間に反比例して減る"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "进入区形状为相似三角形，其高随时间线性增长，面积正比t²。法拉第定律取面积对时间的导数，因此电压正比t。 因此选 ①。\n\n- ② 计算的是进入面积。\n- ③ 将切割弦长当作定长边。\n- ④ 把增大的弦长放到分母。",
+        "keyPoints": [
+          "进入区形状为相似三角形，其高随时间线性增长，面积正比t²"
+        ],
+        "traps": [
+          "计算的是进入面积。"
+        ],
+        "terms": [
+          {
+            "ja": "起電力",
+            "kana": "きでんりょく",
+            "zh": "电源或感应作用每单位电荷所提供的能量，以伏特表示"
+          }
+        ]
+      },
+      "figures": [
+        {
+          "src": "/assets/v3/weak/moving-boundary.svg",
+          "width": 480,
+          "caption": "磁場領域に進入する正方形の枠（上から見た図）"
+        }
+      ]
+    },
+    {
+      "id": "orig-induction-v3-20",
+      "subject": "physics",
+      "order": 20,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 電磁誘導"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "一様な磁場中のレール上に，平行な導体棒2本が距離を広げつつ同じ向きに動く。先行棒の速さは3v，後方はv，棒長l，閉回路の抵抗R。単位時間あたりのジュール熱はどれか。",
+      "format": "choice",
+      "options": [
+        "$16(Blv)^2/R$",
+        "$10(Blv)^2/R$",
+        "$4(Blv)^2/R$",
+        "$2(Blv)^2/R$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "面积变化由相对速度2v决定，全回路共享一个电流。净电动势为2Blv，功率为其平方除以R。 因此选 ③。\n\n- ① 把两棒速度相加。\n- ② 对两根棒分别平方后相加。\n- ④ 将速度差的系数漏平方。",
+        "keyPoints": [
+          "面积变化由相对速度2v决定，全回路共享一个电流"
+        ],
+        "traps": [
+          "把两棒速度相加。"
+        ]
+      }
+    }
+  ]
+}

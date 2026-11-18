@@ -1,0 +1,921 @@
+{
+  "title": "ばね振り子 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-spring-v3-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.mech.spring",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばねが自然長から3.0 cm縮むとき，ばね定数40 N/mのばねが物体を押す力の大きさは何 N か。",
+      "format": "choice",
+      "options": [
+        "0.018",
+        "1.2",
+        "120",
+        "0.75"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "力的大小等于劲度系数乘形变量，不区分压缩或拉伸。用40×0.030得到1.2 N。 因此选 ②。\n\n- ① 求的是以焦耳计的弹性势能。\n- ③ 未把厘米换成米。\n- ④ 把位移数值除以劲度，单位不再是牛顿。",
+        "keyPoints": [
+          "力的大小等于劲度系数乘形变量，不区分压缩或拉伸"
+        ],
+        "traps": [
+          "求的是以焦耳计的弹性势能。"
+        ],
+        "terms": [
+          {
+            "ja": "自然長",
+            "kana": "しぜんちょう",
+            "zh": "弹簧不受拉压时的长度"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-02",
+      "subject": "physics",
+      "order": 2,
+      "topic": "phys.mech.spring",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばね振り子を右端から静かに放した。直後の加速度はどちら向きか。",
+      "format": "choice",
+      "options": [
+        "0",
+        "右向き",
+        "左向き",
+        "下向き"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "右端位移相对平衡点为正，回复力指向左。刚释放时速度为零而加速度大小最大。 因此选 ③。\n\n- ① 把端点的零速度误认为零加速度。\n- ② 把位移方向当加速度方向。\n- ④ 物体受水平支撑，重力与支持力平衡。",
+        "keyPoints": [
+          "右端位移相对平衡点为正，回复力指向左"
+        ],
+        "traps": [
+          "把端点的零速度误认为零加速度。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-03",
+      "subject": "physics",
+      "order": 3,
+      "topic": "phys.mech.spring",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばね振り子の振幅を2倍にし，他の条件を保つ。周期は何倍か。",
+      "format": "choice",
+      "options": [
+        "1",
+        "1/2",
+        "2",
+        "√2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "线性回复力下周期只含质量与劲度。振幅增大同时增大最大速度，周期保持原值。 因此选 ①。\n\n- ② 把速度增大直接当作周期缩短。\n- ③ 误以为路程加倍而速率不变。\n- ④ 误把振幅当作质量。",
+        "keyPoints": [
+          "线性回复力下周期只含质量与劲度"
+        ],
+        "traps": [
+          "把速度增大直接当作周期缩短。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-04",
+      "subject": "physics",
+      "order": 4,
+      "topic": "phys.mech.spring",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "$x=0.040\\cos(5t)$ m で表される単振動の最大の速さは何 m/s か。",
+      "format": "choice",
+      "options": [
+        "5.0",
+        "1.0",
+        "0.008",
+        "0.20"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "对位移求时间导数，速度振幅等于角频率乘位移振幅。代入5×0.040得0.20 m/s。 因此选 ④。\n\n- ① 读出角频率却遗漏了振幅。\n- ② 算的是最大加速度。\n- ③ 把振幅除以角频率。",
+        "keyPoints": [
+          "对位移求时间导数，速度振幅等于角频率乘位移振幅"
+        ],
+        "traps": [
+          "读出角频率却遗漏了振幅。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-05",
+      "subject": "physics",
+      "order": 5,
+      "topic": "phys.mech.spring",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "鉛直ばねに0.30 kgのおもりをつるすと静止時の伸びは6.0 cmであった。$g=10$ m/s² のとき，ばね定数は何 N/m か。",
+      "format": "choice",
+      "options": [
+        "50",
+        "0.50",
+        "5",
+        "0.020"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "静止时弹力与重力平衡，伸长为0.060 m。故k=0.30×10/0.060。 因此选 ①。\n\n- ② 把厘米数直接作米数。\n- ③ 把质量直接当重力。\n- ④ 求了伸长除以重力，即劲度的倒数。",
+        "keyPoints": [
+          "静止时弹力与重力平衡，伸长为0.060 m"
+        ],
+        "traps": [
+          "把厘米数直接作米数。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-06",
+      "subject": "physics",
+      "order": 6,
+      "topic": "phys.mech.spring",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "ばね振り子が右端から初めて左端まで進む時間は0.40 sであった。振動数は何 Hz か。",
+      "format": "choice",
+      "options": [
+        "2.5",
+        "5.0",
+        "0.80",
+        "1.25"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "从一端到另一端是半周期，T=0.80 s。每秒振动次数为其倒数1.25。 因此选 ④。\n\n- ① 把半个周期当成整周期。\n- ② 将两端之间误当成两个周期。\n- ③ 给出周期而非频率。",
+        "keyPoints": [
+          "从一端到另一端是半周期，T=0.80 s"
+        ],
+        "traps": [
+          "把半个周期当成整周期。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-07",
+      "subject": "physics",
+      "order": 7,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばねの振動の全エネルギーが0.18 J，振幅が6.0 cmである。変位が3.0 cmのとき運動エネルギーは何 J か。",
+      "format": "choice",
+      "options": [
+        "0.18",
+        "0.135",
+        "0.090",
+        "0.045"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "位移为振幅一半，势能占总能的四分之一。其余四分之三为动能，即0.135 J。 因此选 ②。\n\n- ① 使用总能量，漏扣该位置的弹性势能。\n- ③ 误按位移一次方分配能量。\n- ④ 求的是此刻弹性势能。",
+        "keyPoints": [
+          "位移为振幅一半，势能占总能的四分之一"
+        ],
+        "traps": [
+          "使用总能量，漏扣该位置的弹性势能。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-08",
+      "subject": "physics",
+      "order": 8,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同じばね2本を直列にして質量mを振動させる。1本の場合と比べた周期の比はどれか。",
+      "format": "choice",
+      "options": [
+        "1/√2",
+        "1",
+        "2",
+        "√2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "同力下两根伸长量相加，等效劲度为k/2。周期反比于劲度的平方根，故增大到√2倍。 因此选 ④。\n\n- ① 把串联当作并联。\n- ② 只看到每根的劲度均未变化。\n- ③ 忽略周期与等效系数的平方根关系。",
+        "keyPoints": [
+          "同力下两根伸长量相加，等效劲度为k/2"
+        ],
+        "traps": [
+          "把串联当作并联。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-09",
+      "subject": "physics",
+      "order": 9,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "質量mの物体の左右にばね定数k，3kのばねをつけ，外端を壁に固定した。水平に微小振動するとき，kのばね1本だけの場合に対する周期の比はどれか。",
+      "format": "choice",
+      "options": [
+        "√3/2",
+        "1/4",
+        "2",
+        "1/2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "向右移x，两侧都提供向左的增量回复力，两劲度相加为4k。周期为单根的1/2。 因此选 ④。\n\n- ① 误套串联等效公式并且颠倒比值。\n- ② 忘记周期公式中的平方根。\n- ③ 用对了总劲度却把周期比例方向反了。",
+        "keyPoints": [
+          "向右移x，两侧都提供向左的增量回复力，两劲度相加为4k"
+        ],
+        "traps": [
+          "误套串联等效公式并且颠倒比值。"
+        ]
+      },
+      "figures": [
+        {
+          "src": "/assets/v3/weak/two-springs.svg",
+          "width": 480,
+          "caption": "水平面上の物体と左右のばね"
+        }
+      ]
+    },
+    {
+      "id": "orig-spring-v3-10",
+      "subject": "physics",
+      "order": 10,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "ばね振り子を平衡点から右に初速を与えて出発させる。初めて右向き変位が振幅の半分になるまでの時間は周期Tの何倍か。",
+      "format": "choice",
+      "options": [
+        "1/3",
+        "1/4",
+        "1/6",
+        "1/12"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "由平衡点向右出发用x=A sinωt。首次达到A/2需要相位π/6，占一周的1/12。 因此选 ④。\n\n- ① 取了后续经过该位移的相位分支。\n- ② 算的是到最右端的时间。\n- ③ 从右端的余弦相位出发。",
+        "keyPoints": [
+          "由平衡点向右出发用x=A sinωt"
+        ],
+        "traps": [
+          "取了后续经过该位移的相位分支。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "平衡点",
+            "kana": "へいこうてん",
+            "zh": "回复力为零的振动中心"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-11",
+      "subject": "physics",
+      "order": 11,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "鉛直ばねの自然長の位置に物体をつけ，静かに放す。静止させたときの伸びがdなら，最下点の伸びはいくらか。",
+      "format": "choice",
+      "options": [
+        "d",
+        "0",
+        "2d",
+        "d/2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "振动中心位于自然长下方d，释放时在中心上方d。对称的转向点在中心下方d，距自然长2d。 因此选 ③。\n\n- ① 把平衡位置当作转向点。\n- ② 认为没有初速就停留在释放位置。\n- ④ 把自然长到平衡点的距离当峰峰值。",
+        "keyPoints": [
+          "振动中心位于自然长下方d，释放时在中心上方d"
+        ],
+        "traps": [
+          "把平衡位置当作转向点。"
+        ],
+        "terms": [
+          {
+            "ja": "自然長",
+            "kana": "しぜんちょう",
+            "zh": "弹簧不受拉压时的长度"
+          },
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-12",
+      "subject": "physics",
+      "order": 12,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "ばね振り子の周期T，振幅Aのとき，1周期に進む道のりを用いて平均の速さを表すとどれか。",
+      "format": "choice",
+      "options": [
+        "$0$",
+        "$A/T$",
+        "$2\\pi A/T$",
+        "$4A/T$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "一周期从一端到对端再返回，每段路程2A。总路程4A除以T得到平均速率。 因此选 ④。\n\n- ① 用位移求平均速度。\n- ② 只计一段端点到中心的路程。\n- ③ 求了瞬时最大速度。",
+        "keyPoints": [
+          "一周期从一端到对端再返回，每段路程2A"
+        ],
+        "traps": [
+          "用位移求平均速度。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-13",
+      "subject": "physics",
+      "order": 13,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばねの振動で $x=3.0$ cmのとき速さ0.40 m/s，角振動数10 rad/sである。振幅は何 cm か。",
+      "format": "choice",
+      "options": [
+        "5.0",
+        "7.0",
+        "3.0",
+        "4.0"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "能量式给出A²=x²+(v/ω)²，v/ω为4 cm。两项平方和为25，振幅5 cm。 因此选 ①。\n\n- ② 把位移与v/ω直接相加。\n- ③ 只取瞬时位移，忽略仍有速度。\n- ④ 忽略此时的位移。",
+        "keyPoints": [
+          "能量式给出A²=x²+(v/ω)²，v/ω为4 cm"
+        ],
+        "traps": [
+          "把位移与v/ω直接相加。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-14",
+      "subject": "physics",
+      "order": 14,
+      "topic": "phys.mech.spring",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同じばねに異なる質量のおもりを順につけ，質量mで周期0.60 s，質量m+Δmで0.90 sとなった。Δm/mはいくらか。",
+      "format": "choice",
+      "options": [
+        "1.50",
+        "0.50",
+        "2.25",
+        "1.25"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "周期平方与质量成正比，末质量是初值的(0.90/0.60)²=2.25倍。附加量还需减1。 因此选 ④。\n\n- ① 只给出周期比。\n- ② 将周期比直接当作质量比。\n- ③ 给出末质量与原质量之比。",
+        "keyPoints": [
+          "周期平方与质量成正比，末质量是初值的(0.90/0.60)²=2.25倍"
+        ],
+        "traps": [
+          "只给出周期比。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-15",
+      "subject": "physics",
+      "order": 15,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばね振り子が平衡点を速さvで通る瞬間，同質量の粘土が真上から落ちて付着する。水平外力の衝撃を無視する。新振幅は元の何倍か。",
+      "format": "choice",
+      "options": [
+        "1",
+        "√2",
+        "1/√2",
+        "1/2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "水平动量守恒使速度减半，质量加倍使角频率除以√2。过平衡点时A=v/ω，两效应合并得1/√2。 因此选 ③。\n\n- ① 假定粘附前后振子的机械能守恒。\n- ② 漏掉完全非弹性碰撞的动量分配。\n- ④ 只计速度减半而忽略新角频率。",
+        "keyPoints": [
+          "水平动量守恒使速度减半，质量加倍使角频率除以√2"
+        ],
+        "traps": [
+          "假定粘附前后振子的机械能守恒。"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "平衡点",
+            "kana": "へいこうてん",
+            "zh": "回复力为零的振动中心"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-16",
+      "subject": "physics",
+      "order": 16,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばね振り子が右端Aで静止した瞬間から，一定の右向き外力kA/3が加わる。左端の位置は元の平衡点を原点にするとどれか。",
+      "format": "choice",
+      "options": [
+        "$A/3$",
+        "$-2A/3$",
+        "$-A/3$",
+        "$-A$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "恒力令中心右移A/3。此时物体在新中心右侧2A/3，故另一端坐标A/3−2A/3。 因此选 ③。\n\n- ① 给出新平衡点而非转向点。\n- ② 给出相对新中心的左端位移。\n- ④ 保留了旧中心。",
+        "keyPoints": [
+          "恒力令中心右移A/3"
+        ],
+        "traps": [
+          "给出新平衡点而非转向点。"
+        ],
+        "terms": [
+          {
+            "ja": "平衡点",
+            "kana": "へいこうてん",
+            "zh": "回复力为零的振动中心"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-17",
+      "subject": "physics",
+      "order": 17,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "鉛直ばねに質量2mがつり合っている。質量の半分を静かに取り去った直後，残る物体の上向き加速度はどれか。",
+      "format": "choice",
+      "options": [
+        "$g/2$",
+        "$0$",
+        "$g$",
+        "$2g$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "瞬间伸长不变，弹力仍为2mg。余下重力mg，向上合力mg除以剩余质量m得g。 因此选 ③。\n\n- ① 仍以原质量除合力。\n- ② 沿用去除前的平衡。\n- ④ 把此刻弹力单独当作合力。",
+        "keyPoints": [
+          "瞬间伸长不变，弹力仍为2mg"
+        ],
+        "traps": [
+          "仍以原质量除合力。"
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-18",
+      "subject": "physics",
+      "order": 18,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水平ばね（定数k）が物体を振幅Aで振動させている。平衡点で同じ自然長のばね（定数3k）を無衝撃で並列に追加する。新振幅はどれか。",
+      "format": "choice",
+      "options": [
+        "$2A$",
+        "$A$",
+        "$A/4$",
+        "$A/2$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "平衡点加装时两弹簧都无形变，速度连续且最大。总劲度4k使角频率加倍，故新振幅减半。 因此选 ④。\n\n- ① 将提高后的角频率放到了分子。\n- ② 忽略增加的回复力。\n- ③ 把劲度比直接当振幅反比。",
+        "keyPoints": [
+          "平衡点加装时两弹簧都无形变，速度连续且最大"
+        ],
+        "traps": [
+          "将提高后的角频率放到了分子。"
+        ],
+        "terms": [
+          {
+            "ja": "自然長",
+            "kana": "しぜんちょう",
+            "zh": "弹簧不受拉压时的长度"
+          },
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "平衡点",
+            "kana": "へいこうてん",
+            "zh": "回复力为零的振动中心"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-19",
+      "subject": "physics",
+      "order": 19,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "鉛直ばねの上端を支える台が初め静止し，物体はつり合っている。台が急に上向き加速度gで動き続ける。もとの伸びdを用いて，台から見た最大の伸びはどれか。",
+      "format": "choice",
+      "options": [
+        "3d",
+        "2d",
+        "d",
+        "4d"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "台上有效重力变为2g，新平衡伸长为2d。初始相对速度零、伸长d，另一端关于2d对称，达3d。 因此选 ①。\n\n- ② 取了新平衡伸长。\n- ③ 沿用支座静止时的状态。\n- ④ 把新平衡伸长本身当振幅。",
+        "keyPoints": [
+          "台上有效重力变为2g，新平衡伸长为2d"
+        ],
+        "traps": [
+          "取了新平衡伸长。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-spring-v3-20",
+      "subject": "physics",
+      "order": 20,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · ばね振り子"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "粗い水平面上で，ばね定数kのばねを自然長からAだけ伸ばし，物体を放した。動摩擦力fが一定で，物体は自然長を越える。次に止まるときの圧縮量はどれか。",
+      "format": "choice",
+      "options": [
+        "$A$",
+        "$\\sqrt{A^2-2fA/k}$",
+        "$A-2f/k$",
+        "$A-f/k$"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "设压缩量b。弹性势能损失k(A²−b²)/2等于摩擦功的大小f(A+b)，约去A+b解得b。 因此选 ③。\n\n- ① 误以为机械能守恒。\n- ② 摩擦做功使用的路程漏掉了越过自然长后的压缩段。\n- ④ 漏掉转向两侧位移差带来的系数2。",
+        "keyPoints": [
+          "设压缩量b"
+        ],
+        "traps": [
+          "误以为机械能守恒。"
+        ],
+        "terms": [
+          {
+            "ja": "自然長",
+            "kana": "しぜんちょう",
+            "zh": "弹簧不受拉压时的长度"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 205" width="480" height="205" role="img">
+<title>電荷をもつ中間導体と二つのコンデンサー</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#26445c"/></marker></defs>
+<rect width="480" height="205" rx="8" fill="#fff"/><g fill="none" stroke="#26445c" stroke-width="2" stroke-linejoin="round"><path d="M48 105H129 M129 75V135 M143 75V135 M143 105H320 M320 75V135 M334 75V135 M334 105H432" /><circle cx="48" cy="105" r="4" fill="#26445c"/><circle cx="432" cy="105" r="4" fill="#26445c"/><circle cx="230" cy="105" r="4" fill="#26445c"/><text x="38" y="143">V</text><text x="427" y="143">0</text><text x="125" y="61">C</text><text x="314" y="61">2C</text><text x="156" y="167">中間導体の全電荷：+CV</text></g>
+<style>text {font: 16px -apple-system, sans-serif; fill:#173346;stroke:none}</style></svg>

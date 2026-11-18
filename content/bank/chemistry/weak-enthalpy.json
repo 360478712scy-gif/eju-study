@@ -1,0 +1,894 @@
+{
+  "title": "反応エンタルピー · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-enthalpy-v3-01",
+      "subject": "chemistry",
+      "order": 1,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "$\\ce{CO(g) + 1/2 O2(g) -> CO2(g)}$ の $\\Delta H=-283$ kJ（反応式に示した物質量に対する値）である。CO 0.20 molが燃えるときの系のエンタルピー変化は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "+56.6",
+        "−1415",
+        "−56.6",
+        "−283"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "方程按一摩尔CO计量，实际反应为其0.20倍。体系放热取负，故ΔH=−283×0.20 kJ。 因此选 ③。\n\n- ① 把向外放热量写作体系的焓增。\n- ② 把每摩尔反应焓除以物质的量。\n- ④ 直接写一摩尔的反应焓。",
+        "keyPoints": [
+          "方程按一摩尔CO计量，实际反应为其0.20倍"
+        ],
+        "traps": [
+          "把向外放热量写作体系的焓增。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "$\\ce{2H2O(l) -> 2H2(g) + O2(g)}$ の $\\Delta H=+572$ kJである。水1 molを同じ状態の単体からつくるときの $\\Delta H$ は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "+572",
+        "−286",
+        "+286",
+        "−572"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "先反转反应使液态水成为生成物，焓变换号。再按1 mol水将系数和焓变都减半。 因此选 ②。\n\n- ① 采用原式方向与原式生成量。\n- ③ 只减半不反转方向。\n- ④ 只改变方向不改物质的量。",
+        "keyPoints": [
+          "先反转反应使液态水成为生成物，焓变换号"
+        ],
+        "traps": [
+          "采用原式方向与原式生成量。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-03",
+      "subject": "chemistry",
+      "order": 3,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水の融解エンタルピーは +6.0 kJ/molである。0 ℃で氷36 gがすべて解けるとき系の $\\Delta H$ は何 kJ か（水18 g/mol）。",
+      "format": "choice",
+      "options": [
+        "+216",
+        "+3",
+        "+12",
+        "−12"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "36 g冰是2 mol，熔化吸热。物质的量乘正的摩尔熔化焓得到+12 kJ。 因此选 ③。\n\n- ① 把以克计的质量直接当作摩尔数。\n- ② 错误地用摩尔质量除以样品质量。\n- ④ 把熔化写成凝固。",
+        "keyPoints": [
+          "36 g冰是2 mol，熔化吸热"
+        ],
+        "traps": [
+          "把以克计的质量直接当作摩尔数。"
+        ],
+        "terms": [
+          {
+            "ja": "融解",
+            "kana": "ゆうかい",
+            "zh": "物质由固态转为液态的相变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-04",
+      "subject": "chemistry",
+      "order": 4,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "溶解時の $\\Delta H=-15$ kJ/molの固体を0.040 mol溶かした。外部へ熱が逃げないとき，溶液と容器が受け取る熱量は何 J か。",
+      "format": "choice",
+      "options": [
+        "0.60",
+        "600",
+        "−600",
+        "15"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "溶解体系的焓变为−0.60 kJ，周围接受等量正热。千焦换为焦耳乘1000。 因此选 ②。\n\n- ① 忘记kJ到J换算。\n- ③ 使用了反应体系的符号。\n- ④ 只取了摩尔焓的绝对值而没有按样品量及单位换算。",
+        "keyPoints": [
+          "溶解体系的焓变为−0.60 kJ，周围接受等量正热"
+        ],
+        "traps": [
+          "忘记kJ到J换算。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-05",
+      "subject": "chemistry",
+      "order": 5,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水の蒸発エンタルピーを+44 kJ/molとする。同温で水蒸気0.50 molが液体になるときの $\\Delta H$ は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "−88",
+        "+22",
+        "+88",
+        "−22"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "由气态回到液态会释放能量，符号反转。半摩尔对应一半的反向焓变。 因此选 ④。\n\n- ① 除以0.50而非相乘。\n- ② 忽略凝结是蒸发的逆过程。\n- ③ 同时用错相变方向和物质的量换算。",
+        "keyPoints": [
+          "由气态回到液态会释放能量，符号反转"
+        ],
+        "traps": [
+          "除以0.50而非相乘。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-06",
+      "subject": "chemistry",
+      "order": 6,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 1,
+      "targetSec": 65,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "炭酸カルシウムの分解 $\\ce{CaCO3(s) -> CaO(s) + CO2(g)}$ の $\\Delta H=+178$ kJである。CO₂ 0.25 molを生じる反応に必要な熱は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "4.45",
+        "712",
+        "44.5",
+        "178"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "式中CaCO₃和CO₂为一比一，生成0.25 mol对应四分之一份反应。吸热量为178/4。 因此选 ③。\n\n- ① 把0.25小数点多向左移了一位。\n- ② 把所需摩尔数当除数。\n- ④ 直接使用整式的热量。",
+        "keyPoints": [
+          "式中CaCO₃和CO₂为一比一，生成0.25 mol对应四分之一份反应"
+        ],
+        "traps": [
+          "把0.25小数点多向左移了一位。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-07",
+      "subject": "chemistry",
+      "order": 7,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "同温で黒鉛とダイヤモンドの燃焼エンタルピーが順に−394，−396 kJ/molである。黒鉛からダイヤモンドへの $\\Delta H$ は何 kJ/mol か。",
+      "format": "choice",
+      "options": [
+        "+2",
+        "+790",
+        "−790",
+        "−2"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "两种单质燃烧都到相同CO₂。石墨燃烧再逆转金刚石燃烧，焓变为−394+396=+2。 因此选 ①。\n\n- ② 把两条燃烧焓都反向相加，路径没有共同终点抵消。\n- ③ 相加而没有消去共同产物。\n- ④ 反向使用两条燃烧路径。",
+        "keyPoints": [
+          "两种单质燃烧都到相同CO₂"
+        ],
+        "traps": [
+          "把两条燃烧焓都反向相加，路径没有共同终点抵消。"
+        ],
+        "terms": [
+          {
+            "ja": "燃焼エンタルピー",
+            "kana": "ねんしょうえんたるぴー",
+            "zh": "一摩尔物质完全燃烧且产物物态指定时的焓变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-08",
+      "subject": "chemistry",
+      "order": 8,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "$\\ce{2SO2(g) + O2(g) -> 2SO3(g)}$ の $\\Delta H=-198$ kJ。SO₂が3.0 mol，O₂が1.0 molだけある。反応が限界まで進んだときの $\\Delta H$ は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "−297",
+        "−396",
+        "−99",
+        "−198"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "系数比2∶1，氧气仅够一份反应，消耗2 mol SO₂，余1 mol。用一份反应焓即可。 因此选 ④。\n\n- ① 假设过量的SO₂全部反应。\n- ② 误将SO₂系数2再乘在已按整式给出的焓变上。\n- ③ 错误地把1 mol氧气对应半份反应。",
+        "keyPoints": [
+          "系数比2∶1，氧气仅够一份反应，消耗2 mol SO₂，余1 mol"
+        ],
+        "traps": [
+          "假设过量的SO₂全部反应。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-09",
+      "subject": "chemistry",
+      "order": 9,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "一定圧力で発熱反応を行い，溶液100 gの温度が4.0 ℃上昇した。比熱4.2 J/(g K)，反応した試料0.020 mol，容器の熱容量は無視する。試料1 molあたりの $\\Delta H$ は何 kJ/mol か。",
+      "format": "choice",
+      "options": [
+        "−1.68",
+        "+84",
+        "−8.4",
+        "−84"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "溶液吸热100×4.2×4=1680 J。反应放热1.68 kJ，除以0.020 mol得到−84 kJ/mol。 因此选 ④。\n\n- ① 只算本次实验总反应焓。\n- ② 把溶液吸热写成反应吸热。\n- ③ 混用kJ与J或将反应量写为0.20 mol。",
+        "keyPoints": [
+          "溶液吸热100×4.2×4=1680 J"
+        ],
+        "traps": [
+          "只算本次实验总反应焓。"
+        ],
+        "terms": [
+          {
+            "ja": "熱容量",
+            "kana": "ねつようりょう",
+            "zh": "物体升温一个单位所需的热量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-10",
+      "subject": "chemistry",
+      "order": 10,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "反応で生成する水を液体とすると $\\Delta H=-572$ kJ，水は2 molである。水をすべて気体とする同温の反応の $\\Delta H$ は何 kJ か（水の蒸発 +44 kJ/mol）。",
+      "format": "choice",
+      "options": [
+        "−484",
+        "+484",
+        "−528",
+        "−660"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "由液态产物再吸热汽化，两摩尔共需88 kJ。反应总焓变上调为−572+88。 因此选 ①。\n\n- ② 将仍然放热的体系写成吸热。\n- ③ 只计一摩尔水的相变。\n- ④ 把汽化写作放热。",
+        "keyPoints": [
+          "由液态产物再吸热汽化，两摩尔共需88 kJ"
+        ],
+        "traps": [
+          "将仍然放热的体系写成吸热。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-11",
+      "subject": "chemistry",
+      "order": 11,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "$\\ce{CaO(s) + H2O(l) -> Ca(OH)2(s)}$ に対し，各標準生成エンタルピーは順に−635，−286，−986 kJ/molである。反応の $\\Delta H$ は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "−351",
+        "−65",
+        "−1921",
+        "+65"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "用生成物焓减去所有反应物焓。−986−(−635−286)=−65 kJ，每种物质系数均为1。 因此选 ②。\n\n- ① 漏减水的生成焓。\n- ③ 把三个生成焓直接相加。\n- ④ 做成反应物减生成物。",
+        "keyPoints": [
+          "用生成物焓减去所有反应物焓"
+        ],
+        "traps": [
+          "漏减水的生成焓。"
+        ],
+        "terms": [
+          {
+            "ja": "生成エンタルピー",
+            "kana": "せいせいえんたるぴー",
+            "zh": "从元素基准单质生成一摩尔指定物态物质时的焓变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-12",
+      "subject": "chemistry",
+      "order": 12,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "塩の結晶を気体イオンに分ける変化は +770 kJ/mol，気体イオンが水和する変化の合計は−790 kJ/molである。溶解の $\\Delta H$ は何 kJ/mol か。",
+      "format": "choice",
+      "options": [
+        "−1560",
+        "+20",
+        "+1560",
+        "−20"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "由晶体到溶液可拆为拆晶格与水合两步，两步在同一方向相加，得770−790。 因此选 ④。\n\n- ① 将拆晶格也算作放热。\n- ② 交换水合与拆晶格的正负号。\n- ③ 将水合的放热步骤也按正值相加。",
+        "keyPoints": [
+          "由晶体到溶液可拆为拆晶格与水合两步，两步在同一方向相加，得770−790"
+        ],
+        "traps": [
+          "将拆晶格也算作放热。"
+        ],
+        "terms": [
+          {
+            "ja": "水和",
+            "kana": "すいわ",
+            "zh": "水分子与溶质粒子结合或围绕溶质粒子的过程"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-13",
+      "subject": "chemistry",
+      "order": 13,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "気体反応 $\\ce{H2 + I2 -> 2HI}$ で結合解離エンタルピーは H–H 436，I–I 151，H–I 299 kJ/molとする。見積もった $\\Delta H$ は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "+288",
+        "+587",
+        "−11",
+        "+11"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "断一根H—H共价键和一根I—I需587 kJ，成两根H—I释放598 kJ。净焓变−11 kJ。 因此选 ③。\n\n- ① 少计了一根生成的HI键。\n- ② 只计算断键能量。\n- ④ 形成减断裂的顺序反了。",
+        "keyPoints": [
+          "断一根H—H共价键和一根I—I需587 kJ，成两根H—I释放598 kJ"
+        ],
+        "traps": [
+          "少计了一根生成的HI键。"
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-14",
+      "subject": "chemistry",
+      "order": 14,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 2,
+      "targetSec": 120,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "水150 gと熱容量70 J/Kの容器がともに2.0 K上昇した。比熱4.2 J/(g K)，熱損失なしとして，発熱反応の $\\Delta H$ は何 kJ か。",
+      "format": "choice",
+      "options": [
+        "−1.40",
+        "+1.40",
+        "−1.26",
+        "−0.14"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "两部分具有相同温升，总热容量为150×4.2+70=700 J/K。体系放出的热为−1400 J。 因此选 ①。\n\n- ② 算出了容器和水的吸热，符号未转成反应体系。\n- ③ 漏掉容器吸热。\n- ④ 只算了容器吸热。",
+        "keyPoints": [
+          "两部分具有相同温升，总热容量为150×4.2+70=700 J/K"
+        ],
+        "traps": [
+          "算出了容器和水的吸热，符号未转成反应体系。"
+        ],
+        "terms": [
+          {
+            "ja": "熱容量",
+            "kana": "ねつようりょう",
+            "zh": "物体升温一个单位所需的热量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-15",
+      "subject": "chemistry",
+      "order": 15,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "COとH₂の混合気体1.00 molを完全燃焼させ，水を液体として284.2 kJの熱を得た。燃焼エンタルピーは順に−283，−286 kJ/mol。H₂は何 molか。",
+      "format": "choice",
+      "options": [
+        "0.80",
+        "0.60",
+        "0.0042",
+        "0.40"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "设氢气为x，则正的放热量为283(1−x)+286x。相对全CO多1.2 kJ，每换一摩尔多3 kJ，故x=0.40。 因此选 ④。\n\n- ① 将单位替代所增加的热量错减半。\n- ② 求出的是CO的量。\n- ③ 将多出的1.2 kJ直接除以氢的286 kJ/mol，漏计被替代的CO也会放热。",
+        "keyPoints": [
+          "设氢气为x，则正的放热量为283(1−x)+286x"
+        ],
+        "traps": [
+          "将单位替代所增加的热量错减半。"
+        ],
+        "terms": [
+          {
+            "ja": "燃焼エンタルピー",
+            "kana": "ねんしょうえんたるぴー",
+            "zh": "一摩尔物质完全燃烧且产物物态指定时的焓变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-16",
+      "subject": "chemistry",
+      "order": 16,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "燃焼熱量の80%だけが水に伝わる装置で水200 gを21 K温めた。水の比熱4.0 J/(g K)，燃料の燃焼エンタルピー−840 kJ/mol。燃えた燃料は何 molか。",
+      "format": "choice",
+      "options": [
+        "0.25",
+        "0.016",
+        "0.025",
+        "0.020"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "水吸收16.8 kJ，实际燃料放热16.8/0.80=21 kJ。除以每摩尔840 kJ得到0.025 mol。 因此选 ③。\n\n- ① 把焦耳与千焦换算后的数值多计十倍。\n- ② 反向使用效率。\n- ④ 默认无热损耗。",
+        "keyPoints": [
+          "水吸收16.8 kJ，实际燃料放热16.8/0.80=21 kJ"
+        ],
+        "traps": [
+          "把焦耳与千焦换算后的数值多计十倍。"
+        ],
+        "terms": [
+          {
+            "ja": "燃焼エンタルピー",
+            "kana": "ねんしょうえんたるぴー",
+            "zh": "一摩尔物质完全燃烧且产物物态指定时的焓变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-17",
+      "subject": "chemistry",
+      "order": 17,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "無水塩Xの溶解は−72 kJ/mol，結晶水5個の水和物の溶解は−12 kJ/mol（十分な水で同じ最終状態）。$\\ce{X(s) + 5H2O(l) -> X.5H2O(s)}$ の $\\Delta H$ は何 kJ/molか。",
+      "format": "choice",
+      "options": [
+        "−84",
+        "+84",
+        "+60",
+        "−60"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "从无水盐到溶液可直接走−72，也可先结晶水合再走−12。两路线等高差，所以结晶水合为−72+12。 因此选 ④。\n\n- ① 将两次溶解直接相加。\n- ② 逆向使用两条路径且未正确消去同一溶液。\n- ③ 求了水合物脱水方向。",
+        "keyPoints": [
+          "从无水盐到溶液可直接走−72，也可先结晶水合再走−12"
+        ],
+        "traps": [
+          "将两次溶解直接相加。"
+        ],
+        "terms": [
+          {
+            "ja": "水和",
+            "kana": "すいわ",
+            "zh": "水分子与溶质粒子结合或围绕溶质粒子的过程"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-18",
+      "subject": "chemistry",
+      "order": 18,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "元素Mの固体を気体原子にするのに+110，電離に+500，塩素原子を1 mol得るのに塩素分子から+120，電子を塩素原子に与えて−350 kJを伴う。MCl固体1 molの標準生成エンタルピーは−400 kJ/mol。気体イオンから結晶を作る $\\Delta H$ は何 kJ/molか。",
+      "format": "choice",
+      "options": [
+        "−1130",
+        "−780",
+        "+780",
+        "−660"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "先将各气态离子形成步骤求和为+380 kJ。到固体总焓为−400，剩余成晶步等于−400−380。 因此选 ②。\n\n- ① 漏计电子结合放热会使成晶焓的推算偏离。\n- ③ 给出晶体分离成气态离子的反向焓。\n- ④ 漏掉氯原子化步骤。",
+        "keyPoints": [
+          "先将各气态离子形成步骤求和为+380 kJ"
+        ],
+        "traps": [
+          "漏计电子结合放热会使成晶焓的推算偏离。"
+        ],
+        "terms": [
+          {
+            "ja": "生成エンタルピー",
+            "kana": "せいせいえんたるぴー",
+            "zh": "从元素基准单质生成一摩尔指定物态物质时的焓变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-19",
+      "subject": "chemistry",
+      "order": 19,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "ある発熱反応を断熱容器で行う。溶液100 gと熱容量80 J/Kの容器が5 K上昇した。溶液の比熱4.0 J/(g K)，試料0.030 molの80%が反応した。反応した試料1 molあたりの $\\Delta H$ は何 kJ/molか。",
+      "format": "choice",
+      "options": [
+        "+100",
+        "−80",
+        "−100",
+        "−83.3"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "总吸热(400+80)×5=2400 J。实际参与反应0.024 mol，故反应焓为−2.4/0.024。 因此选 ③。\n\n- ① 以热量计为体系取了吸热正号。\n- ② 按投入量而非反应量折算。\n- ④ 忽略容器的热容量。",
+        "keyPoints": [
+          "总吸热(400+80)×5=2400 J"
+        ],
+        "traps": [
+          "以热量计为体系取了吸热正号。"
+        ],
+        "terms": [
+          {
+            "ja": "熱容量",
+            "kana": "ねつようりょう",
+            "zh": "物体升温一个单位所需的热量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-enthalpy-v3-20",
+      "subject": "chemistry",
+      "order": 20,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 220,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 反応エンタルピー"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立作答，逐项核对选项；数值用 Python 复算"
+      },
+      "stem": "液体エタノールと液体エタナールの燃焼エンタルピーは−1367，−1167 kJ/mol，水（液体）の標準生成エンタルピーは−286 kJ/molとする。$\\ce{C2H5OH(l) -> CH3CHO(l) + H2(g)}$ の $\\Delta H$ は何 kJ/molか。",
+      "format": "choice",
+      "options": [
+        "+200",
+        "−200",
+        "−86",
+        "+86"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "两条路径都燃烧到相同的CO₂和液态水。故−1367=ΔH−1167−286，整理得到+86 kJ/mol。 因此选 ④。\n\n- ① 只做两燃烧焓的反向差，漏掉氢燃烧的贡献。\n- ② 漏算氢气也可以继续燃烧。\n- ③ 把转化方向写反。",
+        "keyPoints": [
+          "两条路径都燃烧到相同的CO₂和液态水"
+        ],
+        "traps": [
+          "只做两燃烧焓的反向差，漏掉氢燃烧的贡献。"
+        ],
+        "terms": [
+          {
+            "ja": "生成エンタルピー",
+            "kana": "せいせいえんたるぴー",
+            "zh": "从元素基准单质生成一摩尔指定物态物质时的焓变"
+          },
+          {
+            "ja": "燃焼エンタルピー",
+            "kana": "ねんしょうえんたるぴー",
+            "zh": "一摩尔物质完全燃烧且产物物态指定时的焓变"
+          }
+        ]
+      }
+    }
+  ]
+}

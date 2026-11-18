@@ -1,0 +1,694 @@
+{
+  "title": "指数・対数 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-log-v3-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$27^{2/3}$ を求める。$27^{1/3}=\\bx{A}$ なので，求める値は $\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "9"
+      },
+      "explanation": {
+        "zh": "先开三次方得3，再平方得9。分母决定开几次方，分子决定乘方。\n\n按题干顺序填写 A=3，B=9。",
+        "keyPoints": [
+          "先开三次方得3，再平方得9"
+        ],
+        "traps": [
+          "分数指数的分子和分母作用不同。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$2^{x+1}=1/16$ を満たす実数を求める。$1/16=2^{\\bx{AB}}$ より $x=\\bx{CD}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "-",
+        "B": "4",
+        "C": "-",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "先写成同底，倒数对应指数变号。令x+1=−4解得−5。\n\n按题干顺序填写 AB=-4，CD=-5。",
+        "keyPoints": [
+          "先写成同底，倒数对应指数变号"
+        ],
+        "traps": [
+          "移项前先处理倒数。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_3(x-2)=2$ の真数条件は $x>\\bx{A}$ であり，解は $x=\\bx{BC}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1",
+        "C": "1"
+      },
+      "explanation": {
+        "zh": "真数必须为正。改写为x−2=3²，再加回2，所得11满足取值范围。\n\n按题干顺序填写 A=2，BC=11。",
+        "keyPoints": [
+          "真数必须为正"
+        ],
+        "traps": [
+          "真数不能等于零。"
+        ],
+        "terms": [
+          {
+            "ja": "真数",
+            "kana": "しんすう",
+            "zh": "出现在对数符号内且必须为正的量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-04",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$5^a=2$ ならば $5^{2a+1}=\\bx{AB}$，$5^{1-a}=\\bx{C}/\\bx{D}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "0",
+        "C": "5",
+        "D": "2"
+      },
+      "explanation": {
+        "zh": "把指数中的加减拆成乘除。第一式为5·2²，第二式为5/2。\n\n按题干顺序填写 AB=20，C=5，D=2。",
+        "keyPoints": [
+          "把指数中的加减拆成乘除"
+        ],
+        "traps": [
+          "指数相加对应底数幂相乘。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-05",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "底が $1/3$ のとき，$\\log_{1/3}9=\\bx{AB}$ である。また $\\log_{1/3}x>-2$ は $0<x<\\bx{C}$ と同値である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "-",
+        "B": "2",
+        "C": "9"
+      },
+      "explanation": {
+        "zh": "三分之一的负二次幂为9。底在零与一之间，对数严格递减，故真数必须小于9。\n\n按题干顺序填写 AB=-2，C=9。",
+        "keyPoints": [
+          "三分之一的负二次幂为9"
+        ],
+        "traps": [
+          "比较前先判底数与1的大小。"
+        ],
+        "terms": [
+          {
+            "ja": "底",
+            "kana": "てい",
+            "zh": "幂或对数使用的底数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-06",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.explog.func",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_4 8=\\bx{A}/\\bx{B}$ を用いると，$\\log_8 4=\\bx{C}/\\bx{D}$ を得る。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "2",
+        "D": "3"
+      },
+      "explanation": {
+        "zh": "都换成以2为底，对数是指数3与2的比。互换底和真数后取倒数。\n\n按题干顺序填写 A=3，B=2，C=2，D=3。",
+        "keyPoints": [
+          "都换成以2为底，对数是指数3与2的比"
+        ],
+        "traps": [
+          "对数值为比值，不是指数差。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-07",
+      "subject": "math",
+      "order": 7,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$4^x-5\\cdot2^x+4=0$ とする。$t=2^x$ の取り得る解は小さい順に $\\bx{A},\\bx{B}$ で，大きい方の $x$ は $\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "4",
+        "C": "2"
+      },
+      "explanation": {
+        "zh": "换元后二次式为(t−1)(t−4)，两根都为正。由2ˣ=4得到较大解2。\n\n按题干顺序填写 A=1，B=4，C=2。",
+        "keyPoints": [
+          "换元后二次式为(t−1)(t−4)，两根都为正"
+        ],
+        "traps": [
+          "换元后的根要再还原。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-08",
+      "subject": "math",
+      "order": 8,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_2(x-1)+\\log_2(x-3)=3$ を解く。真数条件は $x>\\bx{A}$，条件を満たす解は $x=\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "5"
+      },
+      "explanation": {
+        "zh": "真数都为正才可合并，两式乘积为8。展开得(x−5)(x+1)=0，只保留5。\n\n按题干顺序填写 A=3，B=5。",
+        "keyPoints": [
+          "真数都为正才可合并，两式乘积为8"
+        ],
+        "traps": [
+          "乘积正不能替代每个因子为正。"
+        ],
+        "terms": [
+          {
+            "ja": "真数",
+            "kana": "しんすう",
+            "zh": "出现在对数符号内且必须为正的量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-09",
+      "subject": "math",
+      "order": 9,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$2^x+2^{-x}=5$ ならば $4^x+4^{-x}=\\bx{AB}$，$8^x+8^{-x}=\\bx{CDE}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "3",
+        "C": "1",
+        "D": "1",
+        "E": "0"
+      },
+      "explanation": {
+        "zh": "令两项为u、v，乘积为1。平方和为25−2，立方和为125−3·5。\n\n按题干顺序填写 AB=23，CDE=110。",
+        "keyPoints": [
+          "令两项为u、v，乘积为1"
+        ],
+        "traps": [
+          "平方与立方展开都有交叉项。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-10",
+      "subject": "math",
+      "order": 10,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$1\\le x\\le16$ のとき $y=(\\log_2 x)^2-4\\log_2x+7$ は $x=\\bx{A}$ で最小値 $\\bx{B}$ をとる。",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "3"
+      },
+      "explanation": {
+        "zh": "令t=log₂x，区间为[0,4]。平方补齐得(t−2)²+3，顶点对应x=4。\n\n按题干顺序填写 A=4，B=3。",
+        "keyPoints": [
+          "令t=log₂x，区间为[0,4]"
+        ],
+        "traps": [
+          "顶点横坐标属于换元后的变量。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-11",
+      "subject": "math",
+      "order": 11,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_{10}2=0.30103$ とする。$5^{12}$ は $\\bx{A}$ 桁，最高位の数字は $\\bx{B}$ である。ただし $\\log_{10}3=0.47712$ とする。",
+      "format": "blanks",
+      "blanks": {
+        "A": "9",
+        "B": "2"
+      },
+      "explanation": {
+        "zh": "常用对数是12(1−0.30103)=8.38764。整数部分决定九位，小数部分介于log₁₀2=0.30103和log₁₀3之间，首位为2。\n\n按题干顺序填写 A=9，B=2。",
+        "keyPoints": [
+          "常用对数是12(1−0.30103)=8.38764"
+        ],
+        "traps": [
+          "位数与首位数字由不同部分决定。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-12",
+      "subject": "math",
+      "order": 12,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$x>0,\\ x\\ne1$ とする。$\\log_x16=2\\log_2 x$ ならば，$t=\\log_2 x$ は $t^2=\\bx{A}$ を満たし，二つの $x$ の積は $\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1"
+      },
+      "explanation": {
+        "zh": "换底将左边化为4/t，方程成为2t²=4。两指数互为相反数，以2为底的幂互为倒数。\n\n按题干顺序填写 A=2，B=1。",
+        "keyPoints": [
+          "换底将左边化为4/t，方程成为2t²=4"
+        ],
+        "traps": [
+          "可变底数要排除1。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-13",
+      "subject": "math",
+      "order": 13,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$3^{x+1}+3^{x-1}=90$ の左辺は $\\bx{AB}\\cdot3^{x-1}$ と書けるので，$x=\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "0",
+        "C": "3"
+      },
+      "explanation": {
+        "zh": "提取指数较小的一项，剩下3²+1=10。于是3的x−1次幂等于9。\n\n按题干顺序填写 AB=10，C=3。",
+        "keyPoints": [
+          "提取指数较小的一项，剩下3²+1=10"
+        ],
+        "traps": [
+          "指数相差2而非1。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-14",
+      "subject": "math",
+      "order": 14,
+      "topic": "math.explog.func",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_2x<\\log_4(8x)$ を満たす範囲は $0<x<\\bx{A}$ である。この範囲の正の整数は $\\bx{B}$ 個である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "8",
+        "B": "7"
+      },
+      "explanation": {
+        "zh": "改用底2，右侧为(3+log₂x)/2。整理得log₂x<3，整数可取1到7。\n\n按题干顺序填写 A=8，B=7。",
+        "keyPoints": [
+          "改用底2，右侧为(3+log₂x)/2"
+        ],
+        "traps": [
+          "严格不等式排除8。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-15",
+      "subject": "math",
+      "order": 15,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$2^x+2^{1-x}=a$ とする。実数解がただ一つとなるとき，$a=\\bx{A}\\sqrt{\\bx{B}}$，そのとき $x=1/\\bx{C}$ である。 根号内は最小の正の整数とする。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "2"
+      },
+      "explanation": {
+        "zh": "令t=2ˣ>0，和为t+2/t，最小值2√2仅在t=√2达到。超过该值的水平线与曲线有两个交点。\n\n按题干顺序填写 A=2，B=2，C=2。",
+        "keyPoints": [
+          "令t=2ˣ>0，和为t+2/t，最小值2√2仅在t=√2达到"
+        ],
+        "traps": [
+          "须说明最小值以上总有两解。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-16",
+      "subject": "math",
+      "order": 16,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_2x\\,\\log_2(8/x)=2$ の二つの解の和は $\\bx{A}$，積は $\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "8"
+      },
+      "explanation": {
+        "zh": "令t=log₂x，则t(3−t)=2，得到t=1或2。还原为x=2或4后求和、积。\n\n按题干顺序填写 A=6，B=8。",
+        "keyPoints": [
+          "令t=log₂x，则t(3−t)=2，得到t=1或2"
+        ],
+        "traps": [
+          "换元根与原方程根不能混用。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-17",
+      "subject": "math",
+      "order": 17,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\log_2(x^2-5x+6)\\ge1$ を満たさない整数 $x$ は最小が $\\bx{A}$，最大が $\\bx{B}$ で，個数は $\\bx{C}$ である。真数が正でない整数も「満たさない」に含める。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "3",
+        "C": "2"
+      },
+      "explanation": {
+        "zh": "底数递增，成立等价于真数至少2，自动保证定义域。整理为(x−1)(x−4)≥0，遗漏的整数只有2和3。\n\n按题干顺序填写 A=2，B=3，C=2。",
+        "keyPoints": [
+          "底数递增，成立等价于真数至少2，自动保证定义域"
+        ],
+        "traps": [
+          "补集按题意包含未定义处。"
+        ],
+        "terms": [
+          {
+            "ja": "真数",
+            "kana": "しんすう",
+            "zh": "出现在对数符号内且必须为正的量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-18",
+      "subject": "math",
+      "order": 18,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$y=(\\log_2x)^2-4\\log_2x$ と $y=a$ が，$1\\le x_1<x_2\\le16$ で交わる。このとき $x_1x_2=\\bx{AB}$ であり，$x_2/x_1=4$ なら $a=\\bx{CD}$ である。比の条件を外したとき，可能な整数 $a$ は $\\bx{E}$ 個ある。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "6",
+        "C": "-",
+        "D": "3",
+        "E": "4"
+      },
+      "explanation": {
+        "zh": "令t=log₂x，两根之和4，所以原横坐标之积为16。若比为4，则两指数差2，解得指数1和3，代入为−3。两根均在[0,4]且不重合，对应水平线高度大于顶点−4且不超过两端的0，整数共有4个。\n\n按题干顺序填写 AB=16，CD=-3，E=4。",
+        "keyPoints": [
+          "令t=log₂x，两根之和4，所以原横坐标之积为16"
+        ],
+        "traps": [
+          "变量还原后，指数的差对应横坐标的比。"
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-19",
+      "subject": "math",
+      "order": 19,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "整数 $n\\ge1$ について，$2^n$ と $5^n$ の桁数の和を $d_n$ とする。$\\log_{10}2$ が無理数であることを用いると，$d_n-n=\\bx{A}$ であり，$d_{37}=\\bx{BC}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "3",
+        "C": "8"
+      },
+      "explanation": {
+        "zh": "两个对数之和恰为n，且都不是整数，所以两个整数部分之和为n−1。求各自位数还要各加1。\n\n按题干顺序填写 A=1，BC=38。",
+        "keyPoints": [
+          "两个对数之和恰为n，且都不是整数，所以两个整数部分之和为n−1"
+        ],
+        "traps": [
+          "分别向下取整再相加会少1。"
+        ],
+        "terms": [
+          {
+            "ja": "桁数",
+            "kana": "けたすう",
+            "zh": "十进制表示中的数字位数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-log-v3-20",
+      "subject": "math",
+      "order": 20,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 指数・対数"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$4^x-(a+1)2^x+a=0$ が $0\\le x\\le2$ に異なる2解をもつ整数 $a$ は，最小が $\\bx{A}$，最大が $\\bx{B}$ で，全部で $\\bx{C}$ 個である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "4",
+        "C": "3"
+      },
+      "explanation": {
+        "zh": "以t=2ˣ换元得到(t−1)(t−a)=0。区间对应1≤t≤4，根1始终有效，另一根须在区间内且异于1。\n\n按题干顺序填写 A=2，B=4，C=3。",
+        "keyPoints": [
+          "以t=2ˣ换元得到(t−1)(t−a)=0"
+        ],
+        "traps": [
+          "端点允许，但重根只算一个。"
+        ]
+      }
+    }
+  ]
+}

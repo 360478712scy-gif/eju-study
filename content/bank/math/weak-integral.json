@@ -1,0 +1,758 @@
+{
+  "title": "置換積分 · 薄弱专题",
+  "items": [
+    {
+      "id": "orig-integral-v3-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^1 3x^2(1+x^3)^2\\,dx$ で $u=1+x^3$ とおく。積分区間は $1\\le u\\le\\bx{A}$，値は $\\bx{B}/\\bx{C}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "7",
+        "C": "3"
+      },
+      "explanation": {
+        "zh": "微分给出du=3x²dx，恰好消去原式的乘子。新积分是u²从1到2，代原函数u³/3得7/3。\n\n按题干顺序填写 A=2，B=7，C=3。",
+        "keyPoints": [
+          "微分给出du=3x²dx，恰好消去原式的乘子"
+        ],
+        "traps": [
+          "换元后上下限也要改变。"
+        ],
+        "terms": [
+          {
+            "ja": "積分区間",
+            "kana": "せきぶんくかん",
+            "zh": "定积分上下限所限定的范围"
+          },
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^2 (5-2x)^2\\,dx$ において $u=5-2x$ とする。$x=2$ のとき $u=\\bx{A}$，積分値は $\\bx{BC}/\\bx{D}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "6",
+        "C": "2",
+        "D": "3"
+      },
+      "explanation": {
+        "zh": "u从5降至1，dx=−du/2。交换限后取(125−1)/6=62/3。\n\n按题干顺序填写 A=1，BC=62，D=3。",
+        "keyPoints": [
+          "u从5降至1，dx=−du/2"
+        ],
+        "traps": [
+          "交换积分限只需变号一次。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^{\\pi/6}\\cos x\\, e^{\\sin x}\\,dx$ は，$u=\\sin x$ とおくと上端が $1/\\bx{A}$ となり，$e^{1/2}-\\bx{B}$ に等しい。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "1"
+      },
+      "explanation": {
+        "zh": "正弦的导数正是余弦，变量替换后直接积指数函数。下限u=0给出e⁰=1。\n\n按题干顺序填写 A=2，B=1。",
+        "keyPoints": [
+          "正弦的导数正是余弦，变量替换后直接积指数函数"
+        ],
+        "traps": [
+          "下限代入原函数后通常不为零。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-04",
+      "subject": "math",
+      "order": 4,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_1^e(\\log x)^3/x\\,dx$ で $u=\\log x$ とおくと，下端は $\\bx{A}$，積分値は $1/\\bx{B}$ である。ここで $\\log$ は自然対数である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "0",
+        "B": "4"
+      },
+      "explanation": {
+        "zh": "对数的导数为1/x，上限为1。对u³积分得到u⁴/4，在0与1作差。\n\n按题干顺序填写 A=0，B=4。",
+        "keyPoints": [
+          "对数的导数为1/x，上限为1"
+        ],
+        "traps": [
+          "微分配对后原式中不应留下x。"
+        ],
+        "terms": [
+          {
+            "ja": "下端",
+            "kana": "かたん",
+            "zh": "积分区间的起始端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-05",
+      "subject": "math",
+      "order": 5,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^3 x/\\sqrt{1+x^2}\\,dx$ で $u=1+x^2$ の上端は $\\bx{AB}$，値は $\\sqrt{10}-\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "0",
+        "C": "1"
+      },
+      "explanation": {
+        "zh": "du=2x dx，积分成为二分之一乘u的负半次方的积分。原函数是√u，下端值1。\n\n按题干顺序填写 AB=10，C=1。",
+        "keyPoints": [
+          "du=2x dx，积分成为二分之一乘u的负半次方的积分"
+        ],
+        "traps": [
+          "不要漏掉换元的因子2。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-06",
+      "subject": "math",
+      "order": 6,
+      "topic": "math.calc.int",
+      "difficulty": 1,
+      "targetSec": 150,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^{\\log 3}e^{2x}\\,dx$ で $u=e^x$ とおく。上端は $\\bx{A}$，残る積分は $\\int_1^3u\\,du=\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "4"
+      },
+      "explanation": {
+        "zh": "用dx=du/u，原来的u²被约去一个u。积分后上下限平方差为8，再除以2。\n\n按题干顺序填写 A=3，B=4。",
+        "keyPoints": [
+          "用dx=du/u，原来的u²被约去一个u"
+        ],
+        "traps": [
+          "指数换元后须改写微分。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-07",
+      "subject": "math",
+      "order": 7,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$I=\\int_0^1 x^3/(1+x^2)\\,dx$ とする。$u=x^2$ のとき $I=\\frac1{\\bx{A}}\\int_0^1u/(1+u)\\,du=(1-\\log \\bx{B})/2$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2"
+      },
+      "explanation": {
+        "zh": "拆成x²乘x dx即可换元。分式写成1−1/(1+u)，两项分别积分得1与log 2。\n\n按题干顺序填写 A=2，B=2。",
+        "keyPoints": [
+          "拆成x²乘x dx即可换元"
+        ],
+        "traps": [
+          "分子比分母低一次也可先作拆分。"
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-08",
+      "subject": "math",
+      "order": 8,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^{\\pi/4}\\tan x\\,dx$ で $u=\\cos x$ とおく。上端は $1/\\sqrt{\\bx{A}}$，積分値は $(\\log 2)/\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2"
+      },
+      "explanation": {
+        "zh": "把正切写成正弦除以余弦，分子配出−du。于是原函数为−log u，代入1/√2得正值。\n\n按题干顺序填写 A=2，B=2。",
+        "keyPoints": [
+          "把正切写成正弦除以余弦，分子配出−du"
+        ],
+        "traps": [
+          "正切在此区间非负，结果须为正。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-09",
+      "subject": "math",
+      "order": 9,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^1dx/(1+\\sqrt x)$ において $u=\\sqrt x$ とする。$dx=\\bx{A}u\\,du$ であり，積分値は $\\bx{B}-2\\log \\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "2"
+      },
+      "explanation": {
+        "zh": "用x=u²消去根号，所得2u/(1+u)=2−2/(1+u)。积分区间仍为0至1。\n\n按题干顺序填写 A=2，B=2，C=2。",
+        "keyPoints": [
+          "用x=u²消去根号，所得2u/(1+u)=2−2/(1+u)"
+        ],
+        "traps": [
+          "积分限巧合相同不意味着dx也相同。"
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-10",
+      "subject": "math",
+      "order": 10,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^{\\pi/2}\\sin^3x\\cos^2x\\,dx$ において $u=\\cos x$ とおくと $\\int_0^1(u^2-u^{\\bx{A}})\\,du=\\bx{B}/\\bx{CD}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "2",
+        "C": "1",
+        "D": "5"
+      },
+      "explanation": {
+        "zh": "保留单独一个sin x与dx配对，其余sin²x=1−u²。交换下降的上下限，积分为1/3−1/5。\n\n按题干顺序填写 A=4，B=2，CD=15。",
+        "keyPoints": [
+          "保留单独一个sin x与dx配对，其余sin²x=1−u²"
+        ],
+        "traps": [
+          "选择奇数次的一侧拆出微分。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-11",
+      "subject": "math",
+      "order": 11,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^2 x\\sqrt{4-x^2}\\,dx$ で $u=4-x^2$ とする。$x=0$ のとき $u=\\bx{A}$，積分値は $\\bx{B}/\\bx{C}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "8",
+        "C": "3"
+      },
+      "explanation": {
+        "zh": "x dx=−du/2，u从4到0递减。积分为$(1/2)(2/3)4^{3/2}$，算得8/3。\n\n按题干顺序填写 A=4，B=8，C=3。",
+        "keyPoints": [
+          "x dx=−du/2，u从4到0递减"
+        ],
+        "traps": [
+          "根式积分后指数为3/2。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-12",
+      "subject": "math",
+      "order": 12,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_1^2(1+x^{-2})(x-x^{-1})^2\\,dx$ で $u=x-x^{-1}$ とすると，上端は $\\bx{A}/\\bx{B}$，積分値は $\\bx{C}/\\bx{D}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "9",
+        "D": "8"
+      },
+      "explanation": {
+        "zh": "微分系数为1+x⁻²，新的下端为0。上端的三次方除以3，即(27/8)/3=9/8。\n\n按题干顺序填写 A=3，B=2，C=9，D=8。",
+        "keyPoints": [
+          "微分系数为1+x⁻²，新的下端为0"
+        ],
+        "traps": [
+          "负幂求导时两个负号相消。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          },
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-13",
+      "subject": "math",
+      "order": 13,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^1 e^x/(2+e^x)\\,dx$ は $u=2+e^x$ とおくと下端が $\\bx{A}$ となり，$\\log((e+\\bx{B})/\\bx{C})$ に等しい。",
+      "format": "blanks",
+      "blanks": {
+        "A": "3",
+        "B": "2",
+        "C": "3"
+      },
+      "explanation": {
+        "zh": "分子正是分母的导数，积分变为du/u。用上端e+2的对数扣除下端3的对数，再合并成商。\n\n按题干顺序填写 A=3，B=2，C=3。",
+        "keyPoints": [
+          "分子正是分母的导数，积分变为du/u"
+        ],
+        "traps": [
+          "对数之差对应商。"
+        ],
+        "terms": [
+          {
+            "ja": "下端",
+            "kana": "かたん",
+            "zh": "积分区间的起始端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-14",
+      "subject": "math",
+      "order": 14,
+      "topic": "math.calc.int",
+      "difficulty": 2,
+      "targetSec": 360,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^1 x/(1+x^2)^2\\,dx$ において $u=1/(1+x^2)$ とする。$du/dx=-\\bx{A}x/(1+x^2)^2$ だから，積分値は $1/\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "4"
+      },
+      "explanation": {
+        "zh": "倒数换元把整个被积式化为−du/2。u从1变到1/2，两次数值相减得1/4。\n\n按题干顺序填写 A=2，B=4。",
+        "keyPoints": [
+          "倒数换元把整个被积式化为−du/2"
+        ],
+        "traps": [
+          "新上端可以比新下端小。"
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-15",
+      "subject": "math",
+      "order": 15,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$I=\\int_0^\\pi x\\sin^3x\\,dx$ とする。$t=\\pi-x$ とおいて元の式と加えると $2I=\\pi\\int_0^\\pi\\sin^3x\\,dx$ となる。右辺の積分は $\\bx{A}/\\bx{B}$，したがって $I=\\bx{C}\\pi/\\bx{D}$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "4",
+        "B": "3",
+        "C": "2",
+        "D": "3"
+      },
+      "explanation": {
+        "zh": "反射后正弦不变，配对使线性因子之和为π。再令u=cos x，积分(1−u²)从−1到1得4/3，最后除以2。\n\n按题干顺序填写 A=4，B=3，C=2，D=3。",
+        "keyPoints": [
+          "反射后正弦不变，配对使线性因子之和为π"
+        ],
+        "traps": [
+          "配对求出的首先是两倍的积分。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-16",
+      "subject": "math",
+      "order": 16,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$I=\\int_1^4 dx/(\\sqrt x+x)$ とする。$u=\\sqrt x$ によって $I=\\int_1^{\\bx{A}}\\bx{B}/(1+u)\\,du=\\log(\\bx{C}/\\bx{D})$ である。 分数は既約分数で表すこと。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "2",
+        "C": "9",
+        "D": "4"
+      },
+      "explanation": {
+        "zh": "把分母写成u(1+u)，微分中的2u恰消去u。取对数得2log(3/2)=log(9/4)。\n\n按题干顺序填写 A=2，B=2，C=9，D=4。",
+        "keyPoints": [
+          "把分母写成u(1+u)，微分中的2u恰消去u"
+        ],
+        "traps": [
+          "对数前的系数变为真数的幂。"
+        ],
+        "terms": [
+          {
+            "ja": "既約分数",
+            "kana": "きやくぶんすう",
+            "zh": "分子与分母已无大于1的公因数"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-17",
+      "subject": "math",
+      "order": 17,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "半径2の半円 $y=\\sqrt{4-x^2}$ の $0\\le x\\le1$ の部分の下の面積を考える。$x=2\\sin t$ により上端は $\\pi/\\bx{A}$，面積は $\\pi/\\bx{B}+\\sqrt{3}/\\bx{C}$ となる。",
+      "format": "blanks",
+      "blanks": {
+        "A": "6",
+        "B": "3",
+        "C": "2"
+      },
+      "explanation": {
+        "zh": "第一象限内根号化为2cos t，再乘微分得到4cos²t。用倍角积分给出2t+sin2t，在π/6处求值。\n\n按题干顺序填写 A=6，B=3，C=2。",
+        "keyPoints": [
+          "第一象限内根号化为2cos t，再乘微分得到4cos²t"
+        ],
+        "traps": [
+          "根号化余弦需确定角的范围。"
+        ],
+        "terms": [
+          {
+            "ja": "上端",
+            "kana": "じょうたん",
+            "zh": "积分区间的终止端点"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-18",
+      "subject": "math",
+      "order": 18,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$I=\\int_0^1 x^5/(1+x^2)\\,dx$ とする。$u=x^2$ とおくと $2I=\\int_0^1(u-\\bx{A}+1/(1+u))\\,du$ となり，$I=(\\log 2)/\\bx{B}-1/\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "1",
+        "B": "2",
+        "C": "4"
+      },
+      "explanation": {
+        "zh": "先分出x dx，余下x⁴=u²。用多项式除法化为u−1+1/(1+u)，积分后再除以2。\n\n按题干顺序填写 A=1，B=2，C=4。",
+        "keyPoints": [
+          "先分出x dx，余下x⁴=u²"
+        ],
+        "traps": [
+          "商和余数都须保留。"
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-19",
+      "subject": "math",
+      "order": 19,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$F(a)=\\int_0^1\\lvert x^2-a\\rvert x\\,dx\\ (0\\le a\\le1)$ とする。$u=x^2$ による置換後は $u=\\bx{A}$ から $u=1$ までを $a$ で分ける。最小となる $a=1/\\bx{B}$，最小値は $1/\\bx{C}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "0",
+        "B": "2",
+        "C": "8"
+      },
+      "explanation": {
+        "zh": "积分是两块直角三角形的面积和再减半，为[a²+(1−a)²]/4。配方可见a=1/2时最小为1/8。\n\n按题干顺序填写 A=0，B=2，C=8。",
+        "keyPoints": [
+          "积分是两块直角三角形的面积和再减半，为[a²+(1−a)²]/4"
+        ],
+        "traps": [
+          "绝对值零点要在新变量中确定。"
+        ],
+        "terms": [
+          {
+            "ja": "置換",
+            "kana": "ちかん",
+            "zh": "把原积分变量改写成另一个变量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orig-integral-v3-20",
+      "subject": "math",
+      "order": 20,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 660,
+      "source": {
+        "kind": "original",
+        "label": "薄弱专题 · 置換積分"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏键值独立求解，Python 逐组对照填空"
+      },
+      "stem": "$\\int_0^{\\log 2}\\! dx/(e^x+e^{-x})$ において $u=e^x$ とおくと $\\int_1^{\\bx{A}}du/(1+u^2)$ となる。この値を $I$ とすると $\\tan I=1/\\bx{B}$ である。",
+      "format": "blanks",
+      "blanks": {
+        "A": "2",
+        "B": "3"
+      },
+      "explanation": {
+        "zh": "分子分母先乘eˣ，换元得到反正切之差arctan 2−π/4。用正切差公式得(2−1)/(1+2)=1/3。\n\n按题干顺序填写 A=2，B=3。",
+        "keyPoints": [
+          "分子分母先乘eˣ，换元得到反正切之差arctan 2−π/4"
+        ],
+        "traps": [
+          "区分积分值I和它的正切。"
+        ]
+      }
+    }
+  ]
+}
