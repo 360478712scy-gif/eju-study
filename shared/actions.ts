@@ -305,19 +305,34 @@ export function applyAction(
         'move from study day to free day',
       );
       const existing = s.calendar.moves.find((m) => m.to === a.from);
-      if (existing) existing.to = a.to;
-      else s.calendar.moves.push({ from: a.from, to: a.to });
-      s.calendar.overrides[a.from] = 'off';
+      const origin = existing?.from ?? a.from;
+      if (existing) {
+        s.calendar.moves = s.calendar.moves.filter((m) => m !== existing);
+        delete s.calendar.overrides[a.from];
+      }
+      if (origin === a.to) {
+        delete s.calendar.overrides[origin];
+        return s.calendar;
+      }
+      check(!s.calendar.moves.some((m) => m.from === a.to), 'destination already transferred');
+      s.calendar.moves.push({ from: origin, to: a.to });
+      s.calendar.overrides[origin] = 'off';
       s.calendar.overrides[a.to] = 'study';
       return s.calendar;
     }
-    case 'day':
+    case 'day': {
       check(['off', 'study', 'default'].includes(a.value), 'invalid day');
       mutableDay(a.date);
-      s.calendar.moves = s.calendar.moves.filter((m) => m.from !== a.date && m.to !== a.date);
+      const transfer = s.calendar.moves.find((m) => m.from === a.date || m.to === a.date);
+      if (transfer) {
+        s.calendar.moves = s.calendar.moves.filter((m) => m !== transfer);
+        delete s.calendar.overrides[transfer.from];
+        delete s.calendar.overrides[transfer.to];
+      }
       if (a.value === 'default') delete s.calendar.overrides[a.date];
       else s.calendar.overrides[a.date] = a.value;
       return s.calendar;
+    }
     case 'restWeek': {
       check(isValidDate(a.date) && typeof a.paused === 'boolean', 'invalid week');
       const week = monday(a.date);
@@ -499,7 +514,28 @@ export function applyAction(
       if (!blank || session.kind === 'mock') recordAttempt(s, session, it, new Date(session.sealedAt));
     }
   }
-  if (session.kind === 'mock') s.mocks.push(mockResult(session, bank, now));
+  if (session.kind === 'mock') {
+    s.mocks.push(mockResult(session, bank, now));
+    const followUp =
+      session.blockId &&
+      s.plans[session.blockId.split(':')[0]]?.blocks.find(
+        (b) => b.why.code === 'mock_correction' && b.status === 'todo',
+      );
+    if (followUp) {
+      let remaining = followUp.minutes * 60;
+      for (const id of session.itemIds) {
+        if (!s.progress[id]?.inMistakes) continue;
+        const it = bank.byId.get(id)!;
+        if (it.targetSec > remaining) continue;
+        followUp.itemIds.push(id);
+        remaining -= it.targetSec;
+      }
+      if (followUp.itemIds.length) {
+        followUp.kind = 'review';
+        followUp.topic = bank.byId.get(followUp.itemIds[0])!.topic;
+      }
+    }
+  }
   session.finishedAt = now.toISOString();
   delete s.activeSessionId;
   if (block) {

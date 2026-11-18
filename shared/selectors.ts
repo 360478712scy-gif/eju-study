@@ -1,6 +1,6 @@
 import type { AppState } from './types.ts';
 import type { BankIndex } from './bank.ts';
-import { budgetFor, phaseFor, weekDates } from './calendar.ts';
+import { budgetFor, hasActivity, phaseFor, weekDates } from './calendar.ts';
 import { addDays, dateRange, monday } from './dates.ts';
 import { buildDayPlan, mockSchedule } from './planner.ts';
 import { mastery, predictions, reviewQueue } from './stats.ts';
@@ -21,14 +21,29 @@ export function todayView(s: AppState, bank: BankIndex, date: string) {
 }
 export function planView(s: AppState, bank: BankIndex, date: string, asOf: string) {
   const schedule = mockSchedule(s, bank, asOf);
-  const roadmap = dateRange(s.profile.startDate, s.profile.examDate).map((d) => ({
-    date: d,
-    phase: phaseFor(s, d),
-    minutes: s.plans[d]?.budgetMinutes ?? budgetFor(s, d, d < asOf ? s.profile.startDate : asOf),
-  }));
-  const week = dateRange(monday(date), addDays(monday(date), 6)).map((d) =>
-    buildDayPlan(s, bank, d, d < asOf ? s.profile.startDate : asOf, schedule),
-  );
+  function dayInfo(d: string) {
+    const planned = s.plans[d]?.budgetMinutes ?? budgetFor(s, d, d < asOf ? s.profile.startDate : asOf);
+    const missed = d < asOf && planned > 0 && !hasActivity(s, d);
+    return { date: d, phase: phaseFor(s, d), minutes: missed ? 0 : planned, plannedMinutes: planned, missed };
+  }
+  const roadmap = dateRange(s.profile.startDate, s.profile.examDate).map(dayInfo);
+  const week = dateRange(monday(date), addDays(monday(date), 6)).map((d) => {
+    const info = dayInfo(d);
+    if (info.missed)
+      return {
+        date: d,
+        phase: info.phase,
+        budgetMinutes: 0,
+        blocks: [],
+        missed: true,
+        plannedMinutes: info.plannedMinutes,
+      };
+    return {
+      ...buildDayPlan(s, bank, d, d < asOf ? s.profile.startDate : asOf, schedule),
+      missed: false,
+      plannedMinutes: info.plannedMinutes,
+    };
+  });
   return {
     roadmap,
     week,

@@ -183,3 +183,16 @@ test('rich content still preserves printed boxes, math and tables', () => {
   assert.equal(collectMath(stem).length, 1);
   assert.ok(parseBlocks('| a | b |\n|---|---|\n| 1 | 2 |').some((b) => b.type === 'table'));
 });
+
+test('a scheduled full-paper finish wires correction to the same paper and separates it from the next day', () => {
+  const s = fresh();
+  const d = '2026-11-26',
+    morning = new Date(d + 'T10:00:00');
+  const block = buildDayPlan(s, bank, d, d).blocks.find((b) => b.kind === 'mock')!;
+  const session = applyAction(s, bank, { type: 'startBlock', date: d, blockId: block.id }, morning) as PracticeSession;
+  applyAction(s, bank, { type: 'finish', sessionId: session.id }, morning);
+  const correction = s.plans[d].blocks.find((b) => b.why.code === 'mock_correction')!;
+  assert.equal(correction.kind, 'review');
+  assert.ok(correction.itemIds.length && correction.itemIds.every((id) => session.itemIds.includes(id)));
+  assert.equal(buildDayPlan(s, bank, '2026-11-27', '2026-11-27').blocks.find((b) => b.mock)?.mock?.kind, 'science');
+});

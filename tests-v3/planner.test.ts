@@ -132,3 +132,83 @@ test('results change difficulty, weak-topic priority, spaced retrieval, speed an
   assert.ok(reviewQueue(s, bank, d).some((r) => r.reasons.includes('card')));
   assert.ok(bank.papers.some((p) => p.kind === 'school' && p.itemIds.includes(written.id)));
 });
+
+test('published STEM bank supports the full route and allocates more actual question time per weak topic', async (t) => {
+  const fs = await import('node:fs');
+  const { indexBank } = await import('../shared/bank.ts');
+  const file = new URL('../content/dist/bank.json', import.meta.url);
+  if (!fs.existsSync(file)) {
+    t.skip('build:content creates the local distribution');
+    return;
+  }
+  const actual = indexBank(JSON.parse(fs.readFileSync(file, 'utf8'))),
+    s = fresh(),
+    start = s.profile.startDate;
+  const schedule = mockSchedule(s, actual, start);
+  assert.equal(schedule.length, 16);
+  let weak = 0,
+    strong = 0,
+    days = 0,
+    taper = 0,
+    early = 0,
+    late = 0;
+  for (const d of dateRange(start, s.profile.examDate)) {
+    const plan = buildDayPlan(s, actual, d, start, schedule);
+    if (!plan.budgetMinutes) continue;
+    days++;
+    if (plan.phase === 'taper') taper++;
+    assert.equal(
+      plan.blocks.reduce((n, b) => n + b.minutes, 0),
+      plan.phase === 'taper' ? 60 : 120,
+    );
+    for (const block of plan.blocks) {
+      if (block.kind === 'school') {
+        if (d < '2027-01') early += block.minutes;
+        if (d.slice(0, 7) === '2027-04') late += block.minutes;
+      }
+      if (block.kind === 'mock') continue;
+      for (const id of block.itemIds) {
+        const it = actual.byId.get(id)!;
+        assert.ok(['math', 'physics', 'chemistry'].includes(it.subject));
+        if (matchesTopic(s.profile.weakTopics, it.topic)) weak += it.targetSec;
+        if (matchesTopic(s.profile.strongTopics, it.topic)) strong += it.targetSec;
+      }
+    }
+  }
+  const count = (list: string[]) => [...actual.topics.keys()].filter((topic) => matchesTopic(list, topic)).length;
+  assert.equal(days, 153);
+  assert.equal(taper, 5);
+  assert.ok(weak / count(s.profile.weakTopics) > (1.5 * strong) / count(s.profile.strongTopics));
+  if (actual.bundle.items.some((it) => it.source.kind === 'school' && it.targetSec <= 1320))
+    assert.ok(early > 0 && late > early);
+});
+
+test('long due math items get a retrieval slot even when their original paper is reserved', () => {
+  const s = fresh(),
+    it = { ...bank.byId.get('paper10math0')!, targetSec: 1200 };
+  const longBank = { ...bank, byId: new Map(bank.byId).set(it.id, it) };
+  s.progress[it.id] = {
+    attempts: 1,
+    correct: 0,
+    lastCorrect: false,
+    lastAt: '2026-11-17T05:00:00Z',
+    lastScore: 0,
+    due: '2026-11-18',
+    inMistakes: true,
+    box: 0,
+  };
+  const plan = buildDayPlan(s, longBank, '2026-11-19');
+  assert.ok(plan.blocks.some((b) => b.kind === 'review' && b.itemIds.includes(it.id) && b.minutes >= 20));
+});
+
+test('resetting or reversing a cross-week move restores both weeks', () => {
+  for (const undo of ['day', 'reverse']) {
+    const s = fresh(),
+      from = '2026-11-30',
+      to = '2026-12-09';
+    applyAction(s, bank, { type: 'move', from, to }, now);
+    if (undo === 'day') applyAction(s, bank, { type: 'day', date: to, value: 'default' }, now);
+    else applyAction(s, bank, { type: 'move', from: to, to: from }, now);
+    assert.deepEqual(s.calendar, { moves: [], overrides: {}, restWeeks: [] });
+  }
+});

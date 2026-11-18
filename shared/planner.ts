@@ -1,6 +1,6 @@
 import type { AppState, DayPlan, Item, PlanBlock, Why } from './types.ts';
 import { addDays, dateRange, daysBetween, monday } from './dates.ts';
-import { isCard, type BankIndex, type Paper } from './bank.ts';
+import { isCard, schoolPurpose, type BankIndex, type Paper } from './bank.ts';
 import { budgetFor, phaseFor, weekDates } from './calendar.ts';
 import { earlyChemConcept, mastery, matchesTopic, reviewQueue } from './stats.ts';
 
@@ -96,11 +96,13 @@ export function buildDayPlan(
     items.forEach((it) => used.add(it.id));
     left -= minutes;
   }
-  function fit(items: Item[], minutes: number) {
+  function fit(items: Item[], minutes: number, reviewing = false) {
     const picked: Item[] = [];
     let seconds = minutes * 60;
     for (const it of items) {
-      if (used.has(it.id) || reserved.has(it.id) || it.targetSec > seconds) continue;
+      if (used.has(it.id) || it.targetSec > seconds) continue;
+      if (reserved.has(it.id) && !(reviewing && s.progress[it.id]?.attempts)) continue;
+      if (!reviewing && (s.progress[it.id]?.due ?? '') > date) continue;
       picked.push(it);
       seconds -= it.targetSec;
     }
@@ -173,14 +175,20 @@ export function buildDayPlan(
       mock.paper,
     );
     add('break', Math.min(5, left), { code: 'rest' });
-    add('notes', left, { code: 'consolidate' });
+    add('notes', left, { code: 'mock_correction' });
     return plan;
   }
   const minutes = (n: number) => Math.round((budget * n) / 120);
-  const reviewMin = minutes(phase === 'taper' ? 32 : phase === 'sprint' ? 20 : 15);
+  const firstDue = queue.find((row) => row.due && row.reasons.includes('mistake'));
+  const longReview = firstDue ? Math.ceil(bank.byId.get(firstDue.itemId)!.targetSec / 60) : 0;
+  const reviewMin = Math.max(
+    minutes(phase === 'taper' ? 32 : phase === 'sprint' ? 20 : 15),
+    Math.min(minutes(40), longReview),
+  );
   const review = fit(
-    queue.map((x) => bank.byId.get(x.itemId)!),
+    (firstDue ? [firstDue, ...queue.filter((x) => x !== firstDue)] : queue).map((x) => bank.byId.get(x.itemId)!),
     reviewMin,
+    true,
   );
   if (review.length)
     add('review', reviewMin, { code: 'spaced', topic: review[0].topic, due: s.progress[review[0].id]?.due }, review);
@@ -196,16 +204,35 @@ export function buildDayPlan(
         date.slice(0, 7) >= addDays(s.profile.milestones[1].date, 32).slice(0, 7) &&
         phase !== 'foundation'));
   if (schoolDay) {
-    const size = minutes(phase === 'foundation' || phase === 'reinforce' ? 22 : 32);
+    const preferred = minutes(phase === 'foundation' || phase === 'reinforce' ? 22 : 32);
+    const available = left - minutes(10);
+    const rankSchool = (it: Item) =>
+      (s.progress[it.id]?.attempts ?? 0) * 2 + Number(schoolPurpose(it) === 'extension') + randomFraction(date + it.id);
     const candidates = bank.bundle.items
-      .filter((it) => it.source.school && s.profile.schools.includes(it.source.school))
-      .sort(
-        (a, b) =>
-          (s.progress[a.id]?.attempts ?? 0) - (s.progress[b.id]?.attempts ?? 0) ||
-          randomFraction(date + a.id) - randomFraction(date + b.id),
+      .filter(
+        (it) =>
+          it.source.school &&
+          s.profile.schools.includes(it.source.school) &&
+          it.targetSec <= available * 60 &&
+          !used.has(it.id) &&
+          (s.progress[it.id]?.due ?? '') <= date,
+      )
+      .sort((a, b) => rankSchool(a) - rankSchool(b));
+    const first = candidates[0];
+    if (first) {
+      const size = Math.min(available, Math.max(preferred, Math.ceil(first.targetSec / 60)));
+      const purpose = schoolPurpose(first);
+      const picked = fit(
+        candidates.filter((it) => it.source.school === first.source.school && schoolPurpose(it) === purpose),
+        size,
       );
-    const picked = fit(candidates, size);
-    if (picked.length) add('school', size, { code: 'school_practice', topic: picked[0].topic }, picked);
+      add(
+        'school',
+        size,
+        { code: 'school_practice', topic: first.topic, school: first.source.school, schoolPurpose: purpose },
+        picked,
+      );
+    }
   }
   const quiz = date === week.filter((d) => !schedule.some((e) => e.date === d)).at(-1);
   focus(

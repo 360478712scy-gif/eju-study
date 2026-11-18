@@ -5,6 +5,7 @@ import {
   type ContentBundle,
   type Item,
   type Subject,
+  type School,
   type TaxonomyTopic,
   type TopicNote,
   type MockKind,
@@ -16,6 +17,8 @@ export interface Paper {
   label: string;
   itemIds: string[];
   timeLimitSec: number;
+  school?: School;
+  schoolPurpose?: 'exam_style' | 'extension';
 }
 export interface BankIndex {
   bundle: ContentBundle;
@@ -26,6 +29,13 @@ export interface BankIndex {
   papers: Paper[];
 }
 
+export function schoolPurpose(it: Item): 'exam_style' | 'extension' {
+  // Undergraduate foreign-student route; see design/school-exams.md for sources and year.
+  if (/拔高|拓展|水準|水平/.test(it.source.label)) return 'extension';
+  return it.source.school === 'aoyama' || (it.source.school === 'meiji' && it.subject === 'math')
+    ? 'exam_style'
+    : 'extension';
+}
 export function isCard(item: Item) {
   return (
     item.id.startsWith('recall-') || item.tags?.some((tag) => ['recall', 'flashcard', 'card'].includes(tag)) === true
@@ -80,6 +90,8 @@ export function indexBank(raw: ContentBundle): BankIndex {
     catalog.push({
       session,
       kind: 'school',
+      school: qs[0].source.school,
+      schoolPurpose: qs.every((it) => schoolPurpose(it) === 'exam_style') ? 'exam_style' : 'extension',
       label: qs[0].source.label,
       itemIds: qs.sort(order).map((it) => it.id),
       timeLimitSec: qs.reduce((sum, it) => sum + it.targetSec, 0),

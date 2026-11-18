@@ -243,11 +243,14 @@ export interface Why {
     | 'spaced'
     | 'weekly_test'
     | 'school_practice'
+    | 'mock_correction'
     | 'monthly_paper'
     | 'rest'
     | 'consolidate'
     | 'maintenance';
   topic?: string;
+  school?: School;
+  schoolPurpose?: 'exam_style' | 'extension';
   mastery?: number;
   weight?: number;
   difficulty?: number;
