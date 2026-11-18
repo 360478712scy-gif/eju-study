@@ -486,3 +486,10 @@
     translate: 0 10px;
   }
 }
+
+/* the assistant sheet takes the aside's place instead of stacking two glass layers */
+body:has(.sheet) .pane-aside {
+  opacity: 0;
+  scale: 0.97;
+  pointer-events: none;
+}
