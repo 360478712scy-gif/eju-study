@@ -1,3 +1,5 @@
+> 归档路径为 `legacy/web-v2/`。下文中的 `web/` 指 2.0 原工作树，需搭配其 v2 引擎。
+
 # 澄学 EJU v2 — frontend spec (for every page)
 
 ## Who this is for
@@ -24,7 +26,7 @@ Calm, bright, generous whitespace, 1 accent (indigo `--primary`) + subject color
 ```
 cd ~/Projects/eju-study
 npx tsc --noEmit -p tsconfig.json          # must have no errors in your files
-npx vite build --config web/vite.config.ts --outDir <your-tmp>/dist --emptyOutDir
+EJU_V2_SHARED_DIR=<v2-checkout>/shared npx vite build --config legacy/web-v2/vite.config.ts --outDir <your-tmp>/dist --emptyOutDir
 mkdir -p <your-tmp>/data && cp content/fixtures/seeded/state-v2.json <your-tmp>/data/
 EJU_DATA_DIR=<your-tmp>/data EJU_WEB_DIST=<your-tmp>/dist PORT=<your-port> node server.mjs &   # your own port
 node tools/v2/shot.mjs "http://127.0.0.1:<your-port>/#/<route>" <your-tmp>/x.png [--dark] [--width=920 --height=650] [--full] [--click=<css>]

@@ -27,7 +27,7 @@
 //           days, the last day (no new words, 考前一页纸, 考点速记, everything resolved → 加练)
 // The real data/ folder is never written. Prints PASS/FAIL per step (WARN for non-fatal UX issues)
 // and exits 1 on any failure; the browser console must stay free of errors.
-import { chromium } from '~/Projects/eju-study/node_modules/playwright/index.mjs';
+import { chromium } from 'playwright';
 import { spawn, spawnSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -55,9 +55,9 @@ import { blankGroups } from '../shared/grading.ts';
 import { lockedGroups } from '../shared/actions.ts';
 import { isDue, MISTAKE_INTERVALS, SLOW_FACTOR } from '../shared/srs.ts';
 import { estimateAll } from '../shared/stats.ts';
-import { SUBJECT_NAME, fmtDateShort, fmtMinutes, pct } from '../web/src/lib/format.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const WEB = process.env.EJU_V2_FRONTEND ? path.resolve(process.env.EJU_V2_FRONTEND) : path.join(ROOT, 'web');
 
 // A few presentation helpers of the web app (跟学 order, warm-up topics, shown scores, option glosses)
 // import "@shared/…": resolve that alias the way Vite does, so the test can use them as its oracle.
@@ -67,9 +67,10 @@ registerHooks({
     return next(spec, context);
   },
 });
-const { flowOrder, warmupTopics } = await import('../web/src/pages/flow/flowState.ts');
-const { shownScore, SCORE_ORDER } = await import('../web/src/pages/today/scores.ts');
-const { gloss } = await import('../web/src/pages/vocab/run.ts');
+const { SUBJECT_NAME, fmtDateShort, fmtMinutes, pct } = await import(pathToFileURL(path.join(WEB, 'src/lib/format.ts')).href);
+const { flowOrder, warmupTopics } = await import(pathToFileURL(path.join(WEB, 'src/pages/flow/flowState.ts')).href);
+const { shownScore, SCORE_ORDER } = await import(pathToFileURL(path.join(WEB, 'src/pages/today/scores.ts')).href);
+const { gloss } = await import(pathToFileURL(path.join(WEB, 'src/pages/vocab/run.ts')).href);
 
 const PORT = Number(process.env.E2E_PORT || 18829);
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -553,7 +554,7 @@ async function main() {
   if (!dist) {
     dist = path.join(TMP, 'dist');
     const vite = path.join(ROOT, 'node_modules', '.bin', 'vite');
-    const r = spawnSync(vite, ['build', '--config', 'web/vite.config.ts', '--outDir', dist, '--emptyOutDir', '--logLevel', 'warn'], { cwd: ROOT, encoding: 'utf8' });
+    const r = spawnSync(vite, ['build', '--config', path.join(WEB, 'vite.config.ts'), '--outDir', dist, '--emptyOutDir', '--logLevel', 'warn'], { cwd: ROOT, encoding: 'utf8' });
     if (r.status !== 0) throw new Error(`web build failed:\n${r.stdout}\n${r.stderr}`);
   }
   assert(fs.existsSync(path.join(dist, 'index.html')), `no index.html in ${dist}`);
