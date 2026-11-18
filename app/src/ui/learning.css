@@ -111,9 +111,25 @@
 .opt-text {
   flex: 1;
 }
-.marks-cell { display: grid; justify-items: center; gap: var(--sp-1); }
-.marks-cell input {
-  width: var(--sp-8); height: var(--sp-10); text-align: center; background: var(--glass-read);
-  border: 1px solid var(--line); border-radius: var(--r-ctl); font-size: var(--fs-lg);
+.marks-cell { position: relative; display: grid; justify-items: center; gap: var(--sp-1); }
+.marks-cell > span {
+  position: absolute; top: 4px; left: 6px; z-index: 1; pointer-events: none;
+  font-size: var(--fs-2xs); font-weight: var(--fw-semibold); color: var(--text-4);
 }
-.marks-cell b { color: var(--tone); }
+.marks-cell input {
+  width: 42px; height: 52px; padding: 10px 0 0; text-align: center;
+  font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--text); caret-color: var(--primary);
+  background: var(--glass-read); border: 0; border-radius: var(--r-ctl);
+  box-shadow: inset 0 0 0 1px var(--line), var(--sheen);
+  transition: box-shadow var(--dur-fast) var(--ease), background var(--dur-fast);
+}
+.marks-cell input:focus { box-shadow: inset 0 0 0 1.5px var(--primary), 0 0 0 4px var(--primary-soft); }
+.marks-cell input:disabled { opacity: 1; color: var(--text-2); }
+.marks-cell b { font-size: var(--fs-sm); color: var(--tone); }
+.marks-cell:has(b[data-tone='ok']) input { box-shadow: inset 0 0 0 1.5px var(--ok); background: var(--ok-soft); }
+.marks-cell:has(b[data-tone='bad']) input { box-shadow: inset 0 0 0 1.5px var(--bad); background: var(--bad-soft); }
+.marks-tag {
+  justify-self: start; padding: 1px 7px; border-radius: 6px;
+  font-size: var(--fs-2xs); font-weight: var(--fw-semibold); letter-spacing: 0.06em; color: var(--text-2);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}

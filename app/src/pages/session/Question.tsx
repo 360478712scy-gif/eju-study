@@ -72,7 +72,7 @@ export function Marks({ item, response, reveal, disabled, onChange, onEnter }: {
     {!disabled && <p className="t-3">{t.session.mathSheetHint}</p>}
     <div className="marks-rows">
       {groups.map((group, i) => <div className="marks-group" key={group + i}>
-        <span className="t-3">{t.session.mathBoxGroupLabel(group)}</span>
+        <span className="marks-tag num" aria-label={t.session.mathBoxGroupLabel(group)}>{group}</span>
         <div className="hstack">
           {[...group].map((letter, j) => <MarkCell key={letter + j} marker={letter}
             label={t.session.blankLabel(letter)} value={values[letter] ?? ''} expected={reveal ? item.blanks?.[letter] : undefined}

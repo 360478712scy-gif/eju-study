@@ -26,3 +26,21 @@
 .mock-papers summary { padding: var(--sp-2); }
 .mock-summary { display: flex; align-items: center; gap: var(--sp-5); }
 .mock-breakdown-bar { display: block; width: 120px; }
+
+.mock-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mock-name .t-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+.mock-schools .mock-card {
+  gap: var(--sp-3);
+}

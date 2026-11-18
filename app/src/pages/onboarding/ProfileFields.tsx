@@ -1,7 +1,7 @@
 import { MAX_SCORE, SCHOOLS, SUBJECTS, type ScoreMap, type School } from '@shared/types.ts';
 import { matchesTopic } from '@shared/stats.ts';
 import type { BankIndex } from '@shared/bank.ts';
-import { Chip, Field, SubjectGlyph } from '../../ui/ui.tsx';
+import { Chip, Icon, IconButton, SubjectGlyph } from '../../ui/ui.tsx';
 import { t } from '../../copy/index.ts';
 import { schoolNames } from '../../lib/model.ts';
 
@@ -15,27 +15,58 @@ export function SchoolFields({ value, change }: { value: School[]; change: (valu
   </div>;
 }
 export function ScoreFields({ value, change, baseline = false }: { value: ScoreMap; change: (value: ScoreMap) => void; baseline?: boolean }) {
-  return <div className="grid grid-3 profile-scores">
-    {SUBJECTS.map(subject => <div key={subject} className="profile-score">
-      <div className="hstack"><SubjectGlyph subject={subject} size="sm" /><span>{(baseline ? baselineLabels : targetLabels)[subject]}</span></div>
-      <Field type="number" value={String(value[subject])} ariaLabel={(baseline ? baselineLabels : targetLabels)[subject]}
-        min={0} max={MAX_SCORE[subject]} onChange={input => change({ ...value, [subject]: Math.max(0, Math.min(MAX_SCORE[subject], Math.round(Number(input)) || 0)) })} />
-    </div>)}
+  const labels = baseline ? baselineLabels : targetLabels;
+  const set = (subject: (typeof SUBJECTS)[number], n: number) =>
+    change({ ...value, [subject]: Math.max(0, Math.min(MAX_SCORE[subject], Math.round(n) || 0)) });
+  return <div className="score-tiles">
+    {SUBJECTS.map(subject => {
+      const step = MAX_SCORE[subject] >= 200 ? 5 : 2;
+      return <div key={subject} className="score-tile" data-tone={subject}>
+        <div className="score-tile-head">
+          <SubjectGlyph subject={subject} size="sm" />
+          <span>{t.common.subjectName(subject)}</span>
+        </div>
+        <div className="score-tile-value">
+          <input className="num" type="number" inputMode="numeric" aria-label={labels[subject]} min={0} max={MAX_SCORE[subject]}
+            value={String(value[subject])} onChange={event => set(subject, Number(event.currentTarget.value))}
+            onFocus={event => event.currentTarget.select()} />
+          <span className="num">/ {MAX_SCORE[subject]}</span>
+        </div>
+        <div className="score-tile-steps">
+          <IconButton icon="minus" size="sm" label={labels[subject]} onClick={() => set(subject, value[subject] - step)} />
+          <span className="score-tile-bar"><span style={{ width: `${(value[subject] / MAX_SCORE[subject]) * 100}%` }} /></span>
+          <IconButton icon="plus" size="sm" label={labels[subject]} onClick={() => set(subject, value[subject] + step)} />
+        </div>
+      </div>;
+    })}
   </div>;
 }
 export function WeakFields({ value, change, bank }: { value: string[]; change: (value: string[]) => void; bank: BankIndex }) {
   const topics = [...bank.topics.values()];
-  return <div className="vstack profile-topics">
-    {SUBJECTS.map(subject => <details key={subject} open>
-      <summary>{t.common.subjectName(subject)}</summary>
-      <div className="hstack profile-chips">
-        {topics.filter(it => it.subject === subject).map(it => <Chip key={it.id} sm tone={subject}
-          selected={matchesTopic(value, it.id)} onClick={() => {
-            // Expand any inherited prefix before removing one child, preserving its other siblings.
-            const selected = topics.filter(topic => matchesTopic(value, topic.id)).map(topic => topic.id);
-            change(selected.includes(it.id) ? selected.filter(id => id !== it.id) : [...selected, it.id]);
-          }}>{it.name}</Chip>)}
-      </div>
-    </details>)}
+  const selected = topics.filter(topic => matchesTopic(value, topic.id)).map(topic => topic.id);
+  // Expand any inherited prefix before removing one child, preserving its other siblings.
+  const toggle = (id: string) => change(selected.includes(id) ? selected.filter(x => x !== id) : [...selected, id]);
+  return <div className="weak-fields">
+    {SUBJECTS.map(subject => {
+      const mine = topics.filter(it => it.subject === subject);
+      const on = mine.filter(it => selected.includes(it.id));
+      const off = mine.filter(it => !selected.includes(it.id));
+      return <div key={subject} className="weak-subject">
+        <div className="weak-subject-head">
+          <SubjectGlyph subject={subject} size="sm" />
+          <b>{t.common.subjectName(subject)}</b>
+          <span className="num t-3">{on.length}</span>
+        </div>
+        <div className="profile-chips">
+          {on.map(it => <Chip key={it.id} sm tone={subject} selected onClick={() => toggle(it.id)}>{it.name}<Icon name="close" size={11} /></Chip>)}
+        </div>
+        {off.length > 0 && <details className="weak-more">
+          <summary><Icon name="plus" size={13} />{t.common.expandBtn}</summary>
+          <div className="profile-chips">
+            {off.map(it => <Chip key={it.id} sm onClick={() => toggle(it.id)}>{it.name}</Chip>)}
+          </div>
+        </details>}
+      </div>;
+    })}
   </div>;
 }

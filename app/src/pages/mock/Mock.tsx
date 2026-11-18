@@ -56,7 +56,9 @@ export function Mock({ reportId }: { reportId?: string | null }) {
       })}</div>
     </Section>
     <Section title={t.mock.schoolRowTitle} desc={t.mock.schoolRowSubtitle}>
-      <div className="grid grid-3">{bank.papers.filter(p => p.kind === 'school').map(p => paperCard(p, true))}</div>
+      <div className="grid grid-2 mock-schools">{bank.papers.filter(p => p.kind === 'school')
+        .sort((a, b) => Number(b.schoolPurpose === 'exam_style') - Number(a.schoolPurpose === 'exam_style'))
+        .map(p => paperCard(p, true))}</div>
       {!bank.papers.some(p => p.kind === 'school') && <Empty title={t.practice.noPapers} />}
       <p className="t-3">{t.mock.schoolPolicyNote}</p>
     </Section>

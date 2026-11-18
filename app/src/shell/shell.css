@@ -17,7 +17,6 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: blur(0);
 }
 .scene-img img {
   width: 100%;
@@ -80,7 +79,7 @@
   min-height: 0;
   transform-style: preserve-3d;
   transition: transform 600ms var(--ease), opacity var(--dur-slow) var(--ease), filter var(--dur-slow) var(--ease);
-  animation: fade-up 520ms var(--ease) both;
+  animation: pane-in 520ms var(--ease) both;
 }
 .pane-nav {
   transform-origin: 100% 50%;
@@ -129,7 +128,7 @@
 .stage.is-focus .pane-aside {
   opacity: 0;
   pointer-events: none;
-  filter: blur(10px);
+  scale: 0.97;
 }
 .stage.is-focus .pane-main {
   transform: none;
@@ -477,4 +476,13 @@
 }
 .dock-start .round-play {
   --s: 30px;
+}
+
+/* panes carry backdrop-filter: animate opacity/translate only (a filter on a backdrop-filtered
+   element can leave it unpainted until the next invalidation). */
+@keyframes pane-in {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
 }
