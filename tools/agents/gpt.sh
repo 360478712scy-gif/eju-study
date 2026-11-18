@@ -2,13 +2,16 @@
 # GPT（codex CLI，gpt-6.2-astra xhigh）跑一份委托书。用户 2026-11-18：代码与知识内容交给 GPT；不用重置卡，超了直接用现有额度。
 #   tools/agents/gpt.sh <name> <brief.md>     新开会话执行委托书，会话编号记在 design/agents/<name>.thread
 #   tools/agents/gpt.sh <name> - "追加指令"   在同一会话里继续
+#   GPT_TIER=exec tools/agents/gpt.sh …      简单的执行层面（接线、套样式、批量改文件、出图）：gpt-6.2-sol high
+#   默认（需要智力的：计划器、学习科学、出题与核验、架构）：gpt-6.2-astra xhigh   —— 用户 2026-11-18 的分工
 # 日志：design/agents/<name>.jsonl，最后一条回复：design/agents/<name>.last.md
 set -uo pipefail
 cd "$(dirname "$0")/../.."
 name=$1; brief=$2; extra=${3:-}
 dir=design/agents; mkdir -p $dir
 log=$dir/$name.jsonl; last=$dir/$name.last.md; tfile=$dir/$name.thread
-model=${GPT_MODEL:-gpt-6.2-astra}; effort=${GPT_EFFORT:-xhigh}
+if [[ ${GPT_TIER:-} == exec ]]; then model=${GPT_MODEL:-gpt-6.2-sol}; effort=${GPT_EFFORT:-high}
+else model=${GPT_MODEL:-gpt-6.2-astra}; effort=${GPT_EFFORT:-xhigh}; fi
 common=(-m $model -c web_search=\"live\" -c model_reasoning_effort=\"$effort\" --dangerously-bypass-approvals-and-sandbox --skip-git-repo-check --json -o $last)
 run() {
   if [[ -s $tfile && ( $brief == - || -n ${RESUME:-} ) ]]; then
