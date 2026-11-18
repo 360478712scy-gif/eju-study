@@ -36,13 +36,12 @@ def ensure_server():
         (ROOT/'data').mkdir(exist_ok=True)
         with (ROOT/'data/server.log').open('ab') as log:
             env=os.environ.copy()
-            env.pop('EJU_DATA_DIR',None)
             env['PORT']='18763'
             subprocess.Popen([node,str(ROOT/'server.mjs')],cwd=ROOT,stdin=subprocess.DEVNULL,stdout=log,stderr=log,start_new_session=True,env=env)
         for _ in range(80):
             if healthy():break
             time.sleep(.1)
-        else:raise RuntimeError('学习空间未能启动。请查看项目 data/server.log；不要删除 data/state.json。')
+        else:raise RuntimeError('学习空间未能启动。请查看项目 data/server.log；学习记录保存在 state-v3.json。')
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--server-only',action='store_true')

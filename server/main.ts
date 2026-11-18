@@ -1,7 +1,3 @@
-// 澄学 EJU v2 local server.
-// Thin by design: serves the built web app, the content bank and media assets,
-// and persists the learner state atomically with rolling backups.
-// All study logic (planner, grading, SRS) lives in shared/ and runs in the client.
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,20 +5,31 @@ import { fileURLToPath } from 'node:url';
 import { StateStore } from './store.ts';
 import { createCoach } from './coach.ts';
 
+import { indexBank, type BankIndex } from '../shared/bank.ts';
+import { bankReader } from './content.ts';
+import { todayView, planView, practiceView, statsView, weeklyReview } from '../shared/selectors.ts';
+import { reviewQueue } from '../shared/stats.ts';
+import { studyDate, isValidDate } from '../shared/dates.ts';
+
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_DIR = process.env.EJU_DATA_DIR || path.join(ROOT, 'data');
 const PORT = Number(process.env.PORT || 18763);
 const HOST = '127.0.0.1';
 function readVersion(): string {
   try {
-    return fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim() || '2.0.0';
+    return fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim() || '3.0.0';
   } catch {
-    return '2.0.0';
+    return '3.0.0';
   }
 }
 export const APP_VERSION = readVersion();
 
-const WEB_DIST = process.env.EJU_WEB_DIST ? path.resolve(process.env.EJU_WEB_DIST) : path.join(ROOT, 'web', 'dist');
+const appDist = path.join(ROOT, 'app', 'dist');
+const WEB_DIST = process.env.EJU_WEB_DIST
+  ? path.resolve(process.env.EJU_WEB_DIST)
+  : fs.existsSync(appDist)
+    ? appDist
+    : path.join(ROOT, 'web', 'dist');
 const ASSETS_DIR = path.join(ROOT, 'public', 'assets');
 const CONTENT_DIST = path.join(ROOT, 'content', 'dist');
 
@@ -53,8 +60,29 @@ const MIME: Record<string, string> = {
   '.txt': 'text/plain; charset=utf-8',
 };
 
-const store = new StateStore(DATA_DIR);
-const coach = createCoach({ root: ROOT, dataDir: DATA_DIR });
+const contentBank = bankReader(process.env.EJU_CONTENT_FILE || path.join(CONTENT_DIST, 'bank.json'));
+const store = new StateStore(DATA_DIR, contentBank());
+let augmented: { base: BankIndex; count: number; index: BankIndex } | undefined;
+function getBank() {
+  const base = contentBank(),
+    variants = Object.values(store.get().variants);
+  if (!variants.length) return base;
+  if (!augmented || augmented.base !== base || augmented.count !== variants.length) {
+    augmented = {
+      base,
+      count: variants.length,
+      index: indexBank({ ...base.bundle, items: [...base.bundle.items, ...variants] }),
+    };
+  }
+  return augmented.index;
+}
+const coach = createCoach({
+  root: ROOT,
+  getItem: (id) => getBank().byId.get(id),
+  config: () => ({ model: store.get().settings.coachModel, effort: store.get().settings.coachEffort }),
+  weekly: (date) => weeklyReview(store.get(), getBank(), date),
+  enabled: () => store.get().settings.coachEnabled,
+});
 
 function sendJson(res: http.ServerResponse, status: number, value: unknown, extra: Record<string, string> = {}) {
   const body = JSON.stringify(value);
@@ -75,7 +103,6 @@ function readBody(req: http.IncomingMessage, limit = 32 * 1024 * 1024): Promise<
       size += chunk.length;
       if (size > limit) {
         reject(new Error('body too large'));
-        req.destroy();
         return;
       }
       chunks.push(chunk);
@@ -87,15 +114,17 @@ function readBody(req: http.IncomingMessage, limit = 32 * 1024 * 1024): Promise<
 
 // Only accept requests addressed to this machine (blocks DNS-rebinding from web pages).
 function hostAllowed(req: http.IncomingMessage): boolean {
+  const port = req.socket.localPort;
   const host = (req.headers.host || '').toLowerCase();
-  return host === `127.0.0.1:${PORT}` || host === `localhost:${PORT}`;
+  return host === `127.0.0.1:${port}` || host === `localhost:${port}`;
 }
 
 // Mutating requests must come from our own origin (or from no browser origin at all, e.g. curl/tests).
 function originAllowed(req: http.IncomingMessage): boolean {
+  const port = req.socket.localPort;
   const origin = req.headers.origin;
   if (!origin || origin === 'null') return !origin;
-  return origin === `http://127.0.0.1:${PORT}` || origin === `http://localhost:${PORT}`;
+  return origin === `http://127.0.0.1:${port}` || origin === `http://localhost:${port}`;
 }
 
 function safeJoin(base: string, rel: string): string | null {
@@ -188,19 +217,55 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse, ur
     return sendJson(res, 200, { state: store.get() });
   }
 
-  if (p === '/api/state' && method === 'PUT') {
-    if (!String(req.headers['content-type'] || '').includes('application/json')) {
-      return sendJson(res, 415, { error: 'json required' });
-    }
-    let body: { baseRevision?: unknown; state?: unknown };
+  if (
+    method === 'POST' &&
+    String(req.headers['content-type'] || '')
+      .split(';')[0]
+      .trim()
+      .toLowerCase() !== 'application/json'
+  ) {
+    return sendJson(res, 415, { error: 'json required' });
+  }
+  if (p === '/api/action' && method === 'POST') {
+    let body;
     try {
-      body = JSON.parse(await readBody(req));
+      body = JSON.parse(await readBody(req, 512 * 1024));
     } catch {
       return sendJson(res, 400, { error: 'invalid json' });
     }
-    const result = store.put(body.baseRevision, body.state);
-    if (!result.ok) return sendJson(res, result.status, { error: result.error, state: result.current });
-    return sendJson(res, 200, { revision: result.revision });
+    const r = store.transact(
+      body?.baseRevision,
+      body?.action,
+      getBank(),
+      new Date(),
+      body?.action?.type === 'startVariant' ? coach.variant(body.action.jobId) : undefined,
+    );
+    if (!r.ok) return sendJson(res, r.status, { error: r.error, state: r.current });
+    return sendJson(res, 200, { revision: r.revision, result: r.result });
+  }
+  if (method === 'GET') {
+    const date = url.searchParams.get('date') ?? studyDate();
+    const asOf = url.searchParams.get('asOf') ?? studyDate();
+    if (!isValidDate(date) || !isValidDate(asOf)) return sendJson(res, 400, { error: 'invalid date' });
+    const s = store.get(),
+      bank = getBank();
+    if (p === '/api/today') return sendJson(res, 200, todayView(s, bank, date));
+    if (p === '/api/plan') return sendJson(res, 200, planView(s, bank, date, asOf));
+    if (p === '/api/practice') return sendJson(res, 200, practiceView(bank, Object.fromEntries(url.searchParams)));
+    if (p === '/api/review')
+      return sendJson(res, 200, {
+        queue: reviewQueue(s, bank, date, url.searchParams.get('scope') === 'all' ? 'all' : 'due'),
+      });
+    if (p === '/api/mocks') return sendJson(res, 200, { papers: bank.papers, results: s.mocks });
+    if (p === '/api/notes')
+      return sendJson(res, 200, {
+        notes: [...bank.topics.keys()].map((topic) => ({
+          topic,
+          body: bank.notesByTopic.get(topic)?.body ?? '',
+          text: s.notes[topic] ?? '',
+        })),
+      });
+    if (p === '/api/stats') return sendJson(res, 200, statsView(s, bank, date));
   }
 
   if (p === '/api/export' && method === 'GET') {
@@ -230,9 +295,18 @@ const server = http.createServer(async (req, res) => {
     if (req.method !== 'GET' && req.method !== 'HEAD') return sendJson(res, 405, { error: 'method not allowed' });
 
     if (p.startsWith('/assets/')) {
+      const built = safeJoin(WEB_DIST, p.slice(1));
+      if (built && fs.existsSync(built) && fs.statSync(built).isFile()) return serveFile(req, res, built, 'no-cache');
       const file = safeJoin(ASSETS_DIR, p.slice('/assets/'.length));
       if (!file) return sendJson(res, 400, { error: 'bad path' });
       return serveFile(req, res, file, 'public, max-age=86400');
+    }
+    if (p === '/content/bank.json') {
+      if (req.method === 'HEAD') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end();
+      }
+      return sendJson(res, 200, getBank().bundle);
     }
     if (p.startsWith('/content/')) {
       const file = safeJoin(CONTENT_DIST, p.slice('/content/'.length));
@@ -255,7 +329,10 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`[${new Date().toISOString()}] 澄学 EJU ${APP_VERSION} listening on http://${HOST}:${PORT}`);
+  const address = server.address();
+  console.log(
+    `[${new Date().toISOString()}] 澄学 EJU ${APP_VERSION} listening on http://${HOST}:${typeof address === 'object' && address ? address.port : PORT}`,
+  );
 });
 
 function shutdown() {
