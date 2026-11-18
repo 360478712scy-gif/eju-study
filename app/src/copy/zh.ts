@@ -2,12 +2,18 @@
 export const zh = {
   // 导航面板、窗口顶栏倒计时、底部悬浮胶囊与全局快捷键面板
   nav: {
+    // 程序标题和网页标题。
+    appTitle: '澄学 EJU 3.0',
     // 左侧导航面板顶部品牌主标题
     brand: '澄学',
     // 左侧导航面板品牌旁科目定位小字
     brandSub: 'EJU 数理化',
     // 左侧导航面板顶部距考天数胶囊
     examCountdown: (days: number) => `距考 ${days} 天`,
+    // 倒计时数字右侧。
+    countdownUnit: '天后开考',
+    // 开始学习前的等待文案。
+    upcoming: (date: string) => `计划从 ${date} 正式开跑，这会儿先安心歇着养足精神。`,
     // 考试当天导航面板顶部的状态提示
     examToday: '今天上考场，稳住就赢',
     // 考试日期过后导航面板顶部的状态提示
@@ -55,7 +61,7 @@ export const zh = {
     // 底部悬浮胶囊在今日任务全部完成后的状态文案
     dockTodayDone: '今天这 2 小时已拿下，歇会儿吧',
     // 底部悬浮胶囊在休息日空闲时的快捷入口文案
-    dockRestDay: '今天休息 · 去挑两道题热身',
+    dockRestDay: '今天休息 · 去翻几张卡热身',
     // 底部悬浮胶囊进行中：切换到上一节任务按钮提示
     dockPrevTask: '切回上一节',
     // 底部悬浮胶囊进行中：暂停计时按钮提示
@@ -68,22 +74,12 @@ export const zh = {
     dockActiveSummary: (taskTitle: string, leftMin: number) => `${taskTitle} · 剩 ${leftMin} 分钟`,
     // 底部悬浮胶囊右侧第一个图标按钮提示：打开 AI 助教
     dockCoach: '呼出 AI 助教',
-    // 按住悬浮胶囊助教图标时的语音预留提示
-    dockCoachHoldHint: '先用键盘打字问我，按住说话随后就到',
     // 底部悬浮胶囊右侧第二个图标按钮提示：打开速查笔记抽屉
     dockQuickNotes: '速查考点笔记',
-    // 底部悬浮胶囊右侧第三个图标按钮提示：环境背景音菜单
-    dockMusic: '切换环境音',
-    // 悬浮胶囊环境音菜单：关闭状态选项
-    dockMusicOff: '关闭环境音',
-    // 悬浮胶囊环境音菜单：夜雨白噪音选项
-    dockMusicRain: '夜雨敲窗',
-    // 悬浮胶囊环境音菜单：安静自习室选项
-    dockMusicStudyRoom: '深夜自习室',
-    // 悬浮胶囊环境音菜单：林间微风选项
-    dockMusicForest: '清晨林间',
-    // 悬浮胶囊环境音开启时的悬停状态提示
-    dockMusicPlaying: (trackName: string) => `正在轻播 · ${trackName}`,
+    // 底部悬浮胶囊右侧第三个图标按钮提示：轻钢琴背景音乐抽屉
+    dockMusic: '切换背景音乐',
+    // 悬浮胶囊与设置页背景音乐：关闭状态选项
+    dockMusicOff: '关闭音乐',
     // 顶栏或快捷键触发的全局搜索框入口按钮
     globalSearchBtn: '搜索题目与笔记',
     // ⌘K 全局搜索弹窗输入框占位提示
@@ -97,7 +93,7 @@ export const zh = {
     // 快捷键弹窗条目：⌘1–7
     shortcutNavSections: '在「今天」到「数据」七个区之间切换',
     // 快捷键弹窗条目：Space（主页与胶囊）
-    shortcutSpaceStudy: '开始或暂停今天的 2 小时学习',
+    shortcutSpaceStudy: '开始或暂停今天的学习',
     // 快捷键弹窗条目：⌘K
     shortcutGlobalSearch: '随时搜索题目与考点笔记',
     // 快捷键弹窗条目：做题器 1–9
@@ -122,16 +118,26 @@ export const zh = {
     title: '今天',
     // 学习日尚未开始时页面标题下方的一行说明
     subtitleReady: '今天的 2 小时给你排好了，点一下开始，按顺序往下走就行。',
+    // 自定义时长的今日未开始说明。
+    ready: (duration: string) => `今天的 ${duration}给你排好了，点一下开始，按顺序往下走就行。`,
     // 学习进行中页面标题下方的一行说明
     subtitleInProgress: (leftMin: number) => `正在节奏里，今天还剩大约 ${leftMin} 分钟。`,
     // 今日 120 分钟全部完成后页面标题下方的一行说明
     subtitleCompleted: '今天这 2 小时稳稳拿下了，合上电脑去放松吧。',
+    // 自定义时长的今日完成状态。
+    completed: '今天的份量稳稳拿下，去歇会儿吧',
     // 非学习日（休息日）页面标题下方的一行说明
     subtitleRest: '今天是休息日，不排硬任务，让脑子消化一下前几天的东西。',
+    // 有连续学习记录时的标题区提示。
+    streak: (n: number) => `已连学 ${n} 天`,
+    // 今日统计卡上的本周标题。
+    week: '本周进度',
     // 页面标题区右侧次要操作：把今天临时改成休息日
     switchTodayToRestBtn: '把今天改成休息日',
     // 窄屏时页面标题区右侧打开今日队列抽屉的按钮
     openQueueDrawerBtn: '查看今日队列',
+    // 台本前几项以外的任务统一入口。
+    showTasks: '展开今日全部安排',
     // 中央磨砂光球空闲时球心上方的距考小标签
     orbCountdownLabel: '距离 6/20 考场',
     // 中央磨砂光球空闲或通用槽位的距考天数文字
@@ -146,14 +152,24 @@ export const zh = {
     orbRestDayLabel: '好好休息',
     // 「今天」页面未开始时的主操作按钮
     startTodayBtn: '开始今天的 2 小时',
+    // 时长自定义后的开始按钮。
+    startFor: (duration: string) => `开始今天这 ${duration}`,
     // 「今天」页面学习暂停或中途返回时的主操作按钮
     resumeTodayBtn: '接着刚才的进度学',
     // 「今天」页面单节刚结束、准备进下一节时的主操作按钮
     startNextTaskBtn: (taskTitle: string) => `开始下一节：${taskTitle}`,
+    // 休息块结束后的主按钮。
+    finishBreak: '结束休息，进入下一节',
+    // 手动整理任务的完成按钮。
+    finishManual: '记完重点，进入下一节',
     // 「今天」页面全部完成后供回看的主按钮
     reviewTodayWorkBtn: '回看今天做过的题',
+    // 回看今天记录时的标题。
+    todayWorkHeading: '今日作答回看',
     // 主面板右半「今天的三件事」台本区小标题
     scriptHeading: '今日台本',
+    // 今日任务台本和时长。
+    scriptDuration: (duration: string) => `今日台本 · 共 ${duration}`,
     // 台本行左侧的节次编号标签
     scriptStepIndex: (index: number, total: number) =>
       `${String(index).padStart(2, '0')} / ${String(total).padStart(2, '0')}`,
@@ -161,6 +177,14 @@ export const zh = {
     taskWarmupReview: '到期错题与热身巩固',
     // 台本与队列任务类型名：薄弱考点专项推进
     taskWeakFocus: (topicName: string) => `主攻弱项 · ${topicName}`,
+    // 今日专项、笔记任务、模考和订正标题。
+    focus: (name: string) => `专题精练 · ${name}`,
+    // 今日笔记整理任务标题。
+    consolidate: '回顾考点笔记与错因小结',
+    // 今日模考任务名称。
+    timedPaper: (name: string) => `${name} · 整卷掐表模考`,
+    // 今日模考订正任务名称。
+    correctPaper: '复盘订正刚考完的整卷错题',
     // 台本与队列任务类型名：跨科交错练习
     taskInterleave: '数理化交错实战练',
     // 台本与队列任务类型名：无机与有机背诵卡
@@ -171,6 +195,8 @@ export const zh = {
     taskSchoolWritten: (schoolName: string) => `${schoolName} · 记述推导练`,
     // 台本与队列任务类型名：中场小憩
     taskShortBreak: '起身喝口水 · 歇 5 分钟',
+    // 休息任务超出默认时长时的实际分钟数。
+    breakFor: (n: number) => `离开屏幕 · 歇 ${n} 分钟`,
     // 任务安排理由（why）：高权重薄弱考点优先投入
     whyWeakHighWeight: (topicName: string) => `${topicName} 在 EJU 分值重、近期丢分多，今天集中啃透一类题型。`,
     // 任务安排理由（why）：间隔复习恰好到达遗忘临界点
@@ -183,10 +209,16 @@ export const zh = {
     whySchoolTaste: '提前练纸上完整推导，既备校内考也能吃下 EJU 压轴题。',
     // 任务安排理由（why）：中场休息科学间隔
     whyBreak: '刚高强度算完一轮，离开屏幕歇 5 分钟，下一节脑子更清楚。',
+    // 休息任务时长变化时的理由。
+    breakReason: '连着算了一阵，站起来活动下肩颈，换换脑子再进下一节。',
     // 主面板下方 AI 助教一句话点评前缀标签
     coachNoteLabel: '助教叮嘱',
     // 首次打开尚未做题时助教一句话点评的默认文案
     coachNoteFirstDay: '第一天不用追求刷得多快，先把 電磁誘導 和数列的每一步算踏实。',
+    // 未练到题时的助教句。
+    coachFocus: (topic: string) => `待会儿先拿「${topic}」开刀，别图快，把列式和符号一步步写稳。`,
+    // 有数据但尚无本日作答时的助教句。
+    coachReady: '今天先热身找手感，遇到卡壳超过 3 分钟的题先做记号，别硬耗。',
     // 完成今日学习后助教一句话点评的反馈文案
     coachNoteFinished: (accuracyPct: number) => `今天整体正确率 ${accuracyPct}%，卡壳的题我已经排进后几天的复习里了。`,
     // 右侧倾斜侧面板「今日队列」标题
@@ -229,12 +261,16 @@ export const zh = {
     title: '计划',
     // 「计划」页面标题下方的一行说明
     subtitle: '从 11 月 19 日到明年 6 月 20 日，30 周的推进节奏都在这张图上。',
+    // 每周天数和实际每日预算。
+    schedule: (days: number, minutes: number) => `每周 ${days} 天 · 单日 ${minutes} 分钟`,
     // 路线图区块标题
     roadmapTitle: '到 6/20 的备考路线图',
     // 横向时间轴上当前日期亮点下方的标记词
     todayPin: '今天',
     // 横向时间轴终点旗标文字
     examDayPin: '6/20 EJU 正式考',
+    // 月历与时间轴的月份数字。
+    monthLabel: (n: number) => `${n} 月`,
     // 第一阶段名称（11月下旬–12月底）
     phase1Name: '靶向补弱',
     // 第一阶段起止时间标签
@@ -268,14 +304,16 @@ export const zh = {
       index === 1 ? '靶向补弱' : index === 2 ? '专题攻坚' : index === 3 ? '套卷与校内考' : '实战定型',
     // 时间轴里程碑旗标悬停标题
     milestonesHeading: '阶段里程碑',
+    // 路线图进度下的各科数字，按实际档案生成。
+    milestoneScores: (math: number, physics: number, chemistry: number) => `数学 ${math} · 物理 ${physics} · 化学 ${chemistry}`,
     // 12 月底里程碑旗标文案
-    milestone1Label: '12 月底 · 11 个弱项过完首轮，数学站稳 150、理科站稳 145',
+    milestone1Label: '12 月底 · 11 个弱项过完首轮，冲数学 145 · 物理 62 · 化学 72',
     // 2 月底里程碑旗标文案
-    milestone2Label: '2 月底 · 标准题基本不丢分，数学摸到 170、理科摸到 165',
+    milestone2Label: '2 月底 · 标准题基本不丢分，冲数学 160 · 物理 72 · 化学 78',
     // 4 月底里程碑旗标文案
-    milestone3Label: '4 月底 · 整卷时间充裕，记述题拿稳步骤分，三科冲 360+',
+    milestone3Label: '4 月底 · 整卷时间充裕，记述题拿稳步骤分，冲数学 178 · 物理 82 · 化学 85',
     // 6 月考前里程碑旗标文案
-    milestone4Label: '6 月考前 · 冲刺数学 190+、物理 90+、化学 90+',
+    milestone4Label: '6 月考前 · 站稳目标线：数学 190 · 物理 90 · 化学 90',
     // 页面右上角学习日胶囊开关组标题
     studyDaysPickerLabel: '每周学习日',
     // 学习日胶囊开关组下方的小字说明
@@ -283,13 +321,21 @@ export const zh = {
     // 当用户选少于或多于 5 天时的温和提示
     studyDaysCountTip: '长线备考最推荐每周 5 天，留 2 天给生活和脑子缓冲。',
     // 下半部分周视图标题
-    weekStripTitle: '周视图与单日安排',
+    weekStripTitle: '日程与单日安排',
+    // 周月切换和月份箭头。
+    week: '按周',
+    // 月历切换按钮。
+    month: '按月',
     // 周视图切换按钮：看上一周
     prevWeekBtn: '看上一周',
     // 周视图切换按钮：回到本周
     backToThisWeekBtn: '回到本周',
     // 周视图切换按钮：看下一周
     nextWeekBtn: '看下一周',
+    // 月历返回前一月。
+    previousMonth: '切到上个月',
+    // 月历进入后一月。
+    nextMonth: '切到下个月',
     // 周视图竖条卡状态标签：正常学习日
     dayTagStudy: '学习日',
     // 周视图竖条卡状态标签：休息日
@@ -300,6 +346,8 @@ export const zh = {
     dayTagRescheduled: '已顺延',
     // 周视图竖条卡状态标签：考前减量日
     dayTagTaper: '减量日',
+    // 日期状态已经超出计划。
+    outside: '非备考期',
     // 周视图点击某一天后底部或侧边展开面板的标题
     dayDetailHeading: (monthDay: string, weekday: string) => `${monthDay}（${weekday}）的安排`,
     // 展开某一天后将该学习日改为休息日的按钮
@@ -308,12 +356,18 @@ export const zh = {
     setDayAsStudyBtn: '把这天设为学习日',
     // 展开某一天后把当天任务平移到另一天的按钮
     moveDayTasksBtn: '挪到另一天去学',
+    // 单日重新补学。
+    catchUp: '补练这天落下的题',
     // 挪日弹窗标题
-    moveModalTitle: '要把这天的 2 小时挪到哪天？',
+    moveModalTitle: '要把这天的安排挪到哪天？',
     // 挪日弹窗说明正文
     moveModalBody: '挑一个近期空闲的休息日就行，错题复习和模考节点会自动跟着顺延，不会乱套。',
+    // 计划挪动日期输入。
+    moveDate: '选择要挪去的日期',
     // 挪日弹窗确认按钮
     confirmMoveDayBtn: '确认挪到这一天',
+    // 无法挪到目标日时的反馈。
+    cannotMove: '只能挪到考前还没开学的空闲日期，换一天试试',
   },
 
   // 「练习」页面（#/practice）：科目分段、考点掌握度地图、真题卷、校内考拔高与考点详情侧栏
@@ -330,6 +384,10 @@ export const zh = {
     tabPapers: '按真题卷',
     // 视图切换分段控件：早稻田与 MARCH 校内考
     tabSchools: '校内考拔高',
+    // 单元标题下的考点个数。
+    topicCount: (n: number) => `共 ${n} 个细分考点`,
+    // 考点侧栏标题。
+    topicHeading: '考点掌握详情',
     // 掌握度地图顶部图例：薄弱待补强（低亮度玻璃砖）
     legendWeak: '待补强',
     // 掌握度地图顶部图例：熟悉进阶中（中亮度玻璃砖）
@@ -350,6 +408,10 @@ export const zh = {
     detailAvgTimeLabel: '平均耗时',
     // 考点详情侧面板：EJU 出题权重标签
     detailWeightLabel: '考纲权重',
+    // 考点近期答题对错。
+    recent: '近期作答对错',
+    // 考点细分难度展示。
+    difficulty: '按难度挑题',
     // 考点详情侧面板：针对薄弱考点的学长建议文案
     detailWeakTip: '这块是你的提分大户。如果概念还有点模糊，先花 3 分钟扫一眼考点笔记再开刷。',
     // 考点详情侧面板：针对优势考点的学长建议文案
@@ -368,6 +430,8 @@ export const zh = {
     startTopicPracticeBtn: (topicName: string) => `开始练「${topicName}」`,
     // 考点视图顶部快捷按钮：随机抽一组弱项题
     quickWeakSetBtn: '抽 10 道主攻弱项练手',
+    // 分批做整卷练习、复习队列时的反馈。
+    batch: (n: number) => `题量比较多，这一节先帮你装前 ${n} 道开练`,
     // 真题卷列表卡片标题格式
     paperTitle: (year: number, round: 1 | 2) => `${year} 年第 ${round} 回 EJU 真题`,
     // 真题卷列表卡片完成度副标题
@@ -376,6 +440,8 @@ export const zh = {
     startPaperDrillBtn: '拆开单题练这卷',
     // 真题卷列表底部的整卷模考引导提示
     paperMockTip: '想留着整套掐表测真实水平？去「模考」区开考更有考场感。',
+    // 真题或校内卷结果为空。
+    noPapers: '这科暂时还没有收录整套试卷',
     // 校内考视图顶部一行说明
     schoolViewIntro: '收录早稻田与 MARCH 理工留学生入试风格题，用来练纸上推导步骤、顺带吃透 EJU 难题。',
     // 六校名称：早稻田
@@ -430,6 +496,10 @@ export const zh = {
     filterTrapsAndSlow: '易错与超时',
     // 列表筛选标签：无机与有机背诵卡
     filterFlashcards: '背诵卡',
+    // 卡片数据尚无标签时的通用名。
+    card: '速记背诵卡',
+    // 新卡尚无到期日期。
+    newCard: '新背诵卡',
     // 队列行右侧到期状态：今天刚到期
     dueTodayBadge: '今天到期',
     // 队列行右侧到期状态：已超期天数
@@ -438,12 +508,12 @@ export const zh = {
     dueTomorrowBadge: '明天到期',
     // 队列行标记：上次答对但用时超过目标 1.8 倍
     slowAttemptTag: '上次做慢了',
+    // 易错和猜测标签。
+    possibleGuess: '疑似蒙对 · 需复测',
     // 队列行标记：上次做题时标了没把握或蒙的
     unsureAttemptTag: '上次没把握',
     // 队列行连对次数进度说明
     streakProgress: (streak: number) => `已连对 ${streak} 次`,
-    // 队列行更多操作：彻底掌握移出高频复习
-    graduateItemBtn: '移出高频复习队列',
     // 背诵卡翻卡模式顶部卡组标签：无机化学
     deckInorganic: '無機化学 · 颜色/沉淀/气体制法',
     // 背诵卡翻卡模式顶部卡组标签：有机化学
@@ -499,14 +569,26 @@ export const zh = {
     schoolRowTitle: '校内考限时套卷',
     // 第二排区块右侧说明小字
     schoolRowSubtitle: '备好草稿纸手写完整推导，交卷后逐题核对评分细则或让助教批改',
+    // 校内题按入试目的显示标签。
+    examStyle: '校内笔试风格',
+    // 校内题按入试目的显示标签。
+    extension: '名校压轴拔高',
     // 校内考套卷底部的募集要项核对提醒
     schoolPolicyNote: '注：各校年度入试科目与时长可能调整，出愿前请务必核对当年官方募集要项。',
+    // 模考成绩历史的标题。
+    history: '历次模考记录',
     // 模考卡片上的上次成绩展示文字
     lastScore: (score: number, maxScore: number) => `上次成绩：${score} / ${maxScore}`,
+    // 校内卷分值使用评分点原始分。
+    rawScore: (score: number) => `实得 ${score}%`,
+    // 模考率分和空题数据。
+    answered: (n: number, total: number) => `已作答 ${n} / ${total} 题`,
     // 模考卡片尚未考过时的占位状态文字
     neverTaken: '尚未模考',
     // 模考卡片上的下次计划模考日期文字
     nextScheduled: (dateText: string) => `计划日期：${dateText}`,
+    // 学习计划中暂时无这套卷的日期。
+    unscheduled: '随时可考',
     // 模考卡片主按钮：开始整卷计时
     startMockBtn: '开始整卷计时模考',
     // 模考卡片存在未交卷存档时的恢复按钮
@@ -530,6 +612,8 @@ export const zh = {
     reportBreakdownTitle: '各考点得分与失分明细',
     // 成绩回看失分集中考点的自动诊断提示
     reportLossSummary: (topicsText: string) => `本卷失分主要在 ${topicsText}，已同步调高后面两周的对应权重。`,
+    // 从模考诊断打开历史题。
+    reviewQuestion: '逐题作答与解析回看',
     // 成绩回看底部主按钮：逐题复盘错题
     reviewMockMistakesBtn: '逐题复盘本卷错题',
     // 成绩回看底部次按钮：返回模考主页
@@ -562,6 +646,14 @@ export const zh = {
     headingSelfCheck: '30 秒合书自检',
     // 笔记正文小节标题：日语题干术语对照
     headingTerms: '题干常见日语表述',
+    // 题库尚未为此考点添加正文。
+    missingNote: '这篇考纲精要还在整理中，可以先在下面记你自己的总结，或点右边让助教现讲一遍。',
+    // 个人考点笔记编辑框标题。
+    personal: '我的随手批注',
+    // 个人考点笔记编辑框占位。
+    personalHint: '记下你自己的口诀、常掉的符号坑，或者做错过的题号…',
+    // 保存个人笔记成功时的提示。
+    personalSaved: '你的批注已存好，全局搜索也能搜到',
     // 笔记阅读区底部主按钮：去刷该考点的题
     practiceFromNoteBtn: (topicName: string) => `开始练几道「${topicName}」`,
     // 笔记阅读区底部次按钮：针对这篇笔记提问助教
@@ -580,8 +672,8 @@ export const zh = {
     subtitle: '每张图只回答一个真问题：你现在大概多少分、哪块涨了、哪块还慢。',
     // 顶部左卡：预测分区间卡片标题
     forecastTitle: '当前实力区间估计',
-    // 预测分卡副标题说明（满分 400）
-    forecastSubtitle: '基于近期正确率、题目难度与考场限时的保守推算（满分 400）',
+    // 预测分卡副标题说明
+    forecastSubtitle: '结合近期正确率、题目难度与作答速度的保守推算',
     // 预测分总分大号区间文字
     forecastTotalRange: (low: number, high: number) => `${low} – ${high} 分`,
     // 预测分单科区间行文字
@@ -591,15 +683,31 @@ export const zh = {
     forecastTargetMark: (targetScore: number) => `目标线 ${targetScore}`,
     // 预测分区间条上的 11 月基线刻度说明
     forecastBaselineMark: (baseScore: number) => `11 月起点 ${baseScore}`,
+    // 预测样本量与证据量。
+    forecastEvidence: (n: number, evidence: string) => `基于 ${n} 道首刷题 · ${evidence}`,
+    // 预测证据三档。
+    sparse: '样本还少，区间偏宽',
+    // 预测证据三档。
+    developing: '题量积累中，逐渐收窄',
+    // 预测证据三档。
+    broader: '考点覆盖较全，参考度高',
     // 做题样本较少时预测分卡底部的诚实说明
     forecastLowDataNote: '目前积累的限时题量还不多，区间会留得宽一些；多打两场小测和模考就会越收越实。',
     // 样本充足时预测分卡底部的趋势说明
     forecastSteadyNote: '按近两周的真实作答速度和准确率推算，继续稳住每周 10 小时就能一步步逼近目标线。',
     // 顶部右卡：每周复盘卡片标题
     weeklyReviewTitle: '本周复盘',
+    // 周复盘统计的完成天数。
+    completedDays: '已学天数',
+    // 周复盘统计的学习时长。
+    hours: '本周投入',
+    // 周复盘统计的掌握度上涨考点数。
+    gains: '涨分考点',
     // 每周复盘卡：本周计划完成度行
     weeklyCompletionRow: (doneMin: number, plannedMin: number) =>
       `有效投入 ${Math.round((doneMin / 60) * 10) / 10} / ${Math.round((plannedMin / 60) * 10) / 10} 小时`,
+    // 周复盘尚无作答。
+    noWeeklyAttempts: '这周还没开始刷题，今天点「开始」跑完第一节就有记录了。',
     // 每周复盘卡：本周进步最明显的考点
     weeklyBestGain: (topicName: string, gainPct: number) => `涨势最猛：${topicName}（+${gainPct}%）`,
     // 每周复盘卡：下周最需要补的考点
@@ -614,6 +722,8 @@ export const zh = {
     heatmapTitle: '考点掌握度演进（按周）',
     // 掌握度热力图只回答的那一个问题（副标题）
     heatmapQuestion: '这 11 个主攻弱项是一周比一周亮，还是停在原地？',
+    // 热力图每周日期。
+    weekColumn: (n: number) => `第${n}周`,
     // 下方图表二标题：每日学习时长柱状图
     hoursChartTitle: '每日有效学习时长',
     // 每日时长柱状图只回答的那一个问题（副标题）
@@ -624,6 +734,15 @@ export const zh = {
     speedScatterTitle: '各考点速度与准确率分布',
     // 速度散点图只回答的那一个问题（副标题）
     speedScatterQuestion: '哪些考点虽然能算对，但在考场上太吃时间？',
+    // 速度图暂无计时作答。
+    noSpeed: '做完几组带计时的练习后，各考点的快慢与准度就会落在这张图上',
+    // 速度散点横轴。
+    speedAxis: '耗时比（越靠左越快，1.0 为考场标准节奏）',
+    // 速度散点纵轴。
+    accuracyAxis: '得分率（越靠上越稳）',
+    // 速度散点悬停提示。
+    speedPoint: (topic: string, speed: number, accuracy: number) =>
+      `${topic} · 标准用时的 ${speed} 倍 · 得分率 ${accuracy}%`,
     // 速度散点图象限标签：高准确 + 快于目标用时
     quadrantFastSolid: '又快又稳',
     // 速度散点图象限标签：高准确 + 慢于目标用时
@@ -636,8 +755,14 @@ export const zh = {
 
   // 「做题器（专注模式）」（#/session/:id）：选择题、数学答题卡、记述题自评与 AI 批改、解析与胶囊控制
   session: {
+    // 未找到或过期的会话。
+    missing: '没找到这节练习记录，可能已经结束或清理掉了',
     // 专注模式左上角暂存退出按钮
     pauseAndExitBtn: '暂存并退出',
+    // 回到来源页面。
+    returnToOrigin: '回到刚才的页面',
+    // 停在会话页面时的暂停提示。
+    paused: '已暂停计时',
     // 整卷模考途中点退出时的确认弹窗标题
     exitMockModalTitle: '模考还在倒计时，要先退出来吗？',
     // 整卷模考途中点退出时的确认弹窗说明
@@ -648,16 +773,28 @@ export const zh = {
     confirmSaveExitBtn: '暂存进度并离开',
     // 整卷模考右上角主按钮：立即交卷
     submitMockPaperBtn: '立即交卷看成绩',
+    // 模考剩余时间归零。
+    timeUp: '到点停笔啦，核对一眼就开始交卷结算吧',
+    // 答题卡空题确认信息。
+    finishWithUnanswered: (n: number) => `还有 ${n} 道题空着没答，确定现在就结算吗？`,
+    // 完卷时的确认按钮。
+    confirmFinish: '确认结算本节',
     // 顶部题号进度指示
     questionProgress: (current: number, total: number) => `第 ${current} / ${total} 题`,
     // 单题目标参考用时提示
     targetTimeHint: (seconds: number) => `参考节奏 ${Math.max(1, Math.round(seconds / 60))} 分钟`,
     // 单题耗时明显超出目标时的温和提醒
     overTimeNudge: '这题花的时间有点久了，考场上可以先标「没把握」往后走',
+    // 历史题面里的中文对照开关。
+    translation: '展开题干中文对照',
     // 真题附带原卷 PDF 时的查看按钮
     openSourcePdfBtn: '对照原卷 PDF',
+    // 图片缺少原始说明时的替代文本。
+    figure: (n: number) => `题目配图 ${n}`,
     // 理科选择题作答区顶部的操作微提示
     choiceKeyHint: '按数字键 1–9 直接选，Enter 提交',
+    // 表格型选择题选项提示。
+    seeOptionsTable: '对照题干表内对应组合',
     // 选择题与填空题提交当前题按钮
     submitItemBtn: '提交本题作答',
     // 已提交后进入下一题的主按钮
@@ -666,18 +803,16 @@ export const zh = {
     prevQuestionBtn: '回到上一题',
     // 最后一题作答完结本节的主按钮
     finishSessionBtn: '完成本节并结算',
+    // 学习段总结的继续按钮。
+    continue: '进入今天下一节',
     // EJU 数学引导式填空答题卡区块标题
     mathSheetTitle: 'EJU 数学答题卡',
     // EJU 数学答题卡填写规则一行说明
-    mathSheetHint: '按题干方框里的字母顺序逐格填入 0–9 或负号，同一方框全对才得分',
+    mathSheetHint: '按题干方框字母顺序逐格键入数字或符号（- / ±），同一方框全对才得分',
     // 数学答题卡单组方框标签（如 空 [AB]）
     mathBoxGroupLabel: (letters: string) => `空 [${letters}]`,
-    // 数学答题卡软键盘按钮：填入负号 -
-    mathKeyMinus: '填入负号 -',
-    // 数学答题卡软键盘按钮：填入正负号 ±
-    mathKeyPlusMinus: '填入正负 ±',
-    // 数学答题卡清空当前选中格按钮
-    mathClearCellBtn: '清空此格',
+    // 切换题目时的下一格提示。
+    blankLabel: (name: string) => `答题卡方格 ${name}`,
     // 数学答题卡清空整题所有空格按钮
     mathClearAllBtn: '重填全部空格',
     // 数学答题卡还有未填格时的提示
@@ -688,6 +823,19 @@ export const zh = {
     mathPartialBadge: (rightGroups: number, totalGroups: number) => `答对 ${rightGroups} / ${totalGroups} 组`,
     // 校内考记述题题干顶部的纸笔作答提示条
     writtenHeaderBadge: '校内考记述题 · 请先在草稿纸上完整写出设元、定律与推导过程',
+    // 模考进行中的文字答题草稿。
+    examWrittenDraft: '考场作答留底（敲入关键式，或点下方标明已在纸上写完）',
+    // 模考纸面作答按钮。
+    paperDraft: '标记已在草稿纸写完',
+    // 模考纸面已作答的引擎占位文本。
+    paperDraftText: '（已在草稿纸完成作答，请用「按评分点自评」逐条核对得分）',
+    // 模考记述题草稿已实时保存的状态提示。
+    draftStored: '草稿已实时暂存',
+    // 封卷后待评的题目数量。
+    pendingWritten: (n: number) =>
+      n > 0 ? `卷面已封存，还有 ${n} 道记述题等你对照细则打分` : '记述题已全部打完分，点右边正式出成绩单吧',
+    // 批改或自评后题目已保存。
+    writtenSaved: '这题分数记下了，接着评下一道记述题',
     // 记述题大题总分标注
     writtenTotalPoints: (points: number) => `本题共 ${points} 分`,
     // 记述题各小问分值标注
@@ -728,10 +876,6 @@ export const zh = {
     flagUnsureBtn: '标记没把握',
     // 专注模式底部悬浮胶囊按钮：已标记没把握激活态
     flagUnsureActive: '已标没把握',
-    // 专注模式底部悬浮胶囊按钮：标记纯蒙（猜题检测）
-    flagGuessBtn: '标记蒙的',
-    // 专注模式底部悬浮胶囊按钮：已标记蒙的激活态
-    flagGuessActive: '已标蒙的',
     // 专注模式底部悬浮胶囊按钮：带着本题呼出助教（快捷键 /）
     askCoachInSessionBtn: '问助教这道题',
     // 专注模式底部悬浮胶囊按钮：展开题号总览卡
@@ -811,14 +955,20 @@ export const zh = {
     contextQuestion: (itemLabel: string) => `已带入题目 · ${itemLabel}`,
     // 助教面板顶部上下文胶囊：带入了当前考点笔记
     contextNote: (topicName: string) => `已带入笔记 · ${topicName}`,
+    // 页面级上下文标签。
+    contextPage: (name: string) => `正在浏览 · ${name}`,
     // 助教面板顶部上下文胶囊：全局备考对话
     contextGlobal: '数理化备考助教',
+    // 绝对禁止考中看题解时的文案。
+    lockedDuringExam: '现在是正式掐表模考，我得先闭嘴避嫌。等交完卷，哪步没算顺我们再细盘！',
     // 平时在主页或练习页打开助教时的欢迎语
     welcomeGeneral: '今天哪块学着别扭？不管是公式总记混、某类题下不去笔，还是想聊聊早大和 MARCH 的节奏，直接跟我说。',
     // 做题器里带着当前题目打开助教时的欢迎语
     welcomeWithQuestion: '这道题我已经看到了。说说你推到哪一步卡住了，或者哪个干扰项让你纠结，我们顺着你的草稿往下理。',
     // 阅读考点笔记时打开助教的欢迎语
     welcomeWithNote: '这篇笔记里哪条公式或反应条件看着绕？我可以给你换个更直白的物理/化学图景讲一遍，或者当场考你一小问。',
+    // 没有题号时的可执行提示。
+    chooseQuestion: '想聊具体某道题的话，先点进那道题或对应考点笔记再叫我；现在也可以点下面让我做本周复盘。',
     // 建议问题胶囊列表上方的引导短语
     suggestionsLabel: '点一下直接问：',
     // 建议问题 1：做题破题切入点
@@ -835,6 +985,10 @@ export const zh = {
     suggestAnotherOne: '照着这个考法再给我出一道变式题练手',
     // 建议问题 7：结合本周数据聊调整
     suggestWeeklyPlan: '看我这周的表现，接下来几天最该优先补哪块？',
+    // 启动已验算变式练习。
+    startVariant: '开始做这道变式题',
+    // 练完当前题段后可启动独立变式。
+    variantAfterSession: '先把眼前这节做完或暂存，出来就能单练这道变式题。',
     // 助教底部输入框占位文字
     inputPlaceholder: '写下你的疑问或卡住的式子，按 Enter 发送…',
     // 助教底部发送按钮
@@ -845,12 +999,18 @@ export const zh = {
     thinkingVariantCheck: '正在出题并做第二次独立求解验算，确保答案万无一失…',
     // 助教正在批改记述题答案时的状态文字
     thinkingRubricGrade: '正在对照评分细则核对你的推导步骤…',
+    // 取消助教运行任务。
+    cancelJob: '停下这次推演',
+    // 助教任务取消后的状态。
+    cancelled: '已经停下刚才的推演了，想问别的随时发给我。',
+    // 助教忙时的状态。
+    busy: '我还在算上一道题，等这步出结果了再问下一条吧。',
     // 助教请求失败时的通用温和提示
     errorGeneral: '助教刚刚走神没接上话，点下面重发一次就好。',
     // 助教推理超时时的提示
     errorTimeout: '这道题推演花的时间有点超了，连接断了，点一下重试吧。',
-    // 本机 codex 服务未就绪或未登录时的提示
-    errorServiceUnavailable: '没连上本机助教服务，请确认终端里 codex 已登录，再点重试。',
+    // 本机 Codex 服务未就绪、未开启或未登录时的提示
+    errorServiceUnavailable: '暂时没连上助教，请检查设置里是否已开启助教、以及本机 Codex 是否已登录。',
     // 变式题两次独立求解答案不一致被安全拦截时的提示
     errorVariantUnverified: '刚编的变式题两次验算结果没对上，为了不坑你已拦下，再点一次重出一道。',
     // 失败消息气泡下方的重试按钮
@@ -868,7 +1028,7 @@ export const zh = {
     // 第一步大标题：目标院校与目标分
     step1Title: '先把明年 6 月的目标立住',
     // 第一步副标题说明
-    step1Subtitle: '奔着早稻田理工和 MARCH 上位校去，目标不设上限；之后随时能在设置里改。',
+    step1Subtitle: '已按早稻田理工与 MARCH 稳妥线预填（数学 190 · 物理 90 · 化学 90），随时能在设置里改。',
     // 第一步目标院校方向字段标题
     targetSchoolsLabel: '目标院校范围',
     // 第一步目标院校选项：早稻田理工三学部
@@ -908,7 +1068,7 @@ export const zh = {
     // 第三步大标题：确认上次成绩起点与重点弱项
     step3Title: '核对你的起点与主攻短板',
     // 第三步副标题说明
-    step3Subtitle: '已按你 2026 年 11 月 EJU 的成绩和薄弱点预填好了。从明天起好钢全用在刀刃上。',
+    step3Subtitle: '已按上次实战成绩（数学 132 · 物理 54 · 化学 66，理科合计 120）和薄弱点预填好了，好钢全用在刀刃上。',
     // 第三步起点分数区小标题
     baselineHeading: '上次实战起点（用于校准初始难度）',
     // 第三步数学起点输入标签
@@ -925,12 +1085,12 @@ export const zh = {
     completeOnboardingBtn: '生成 30 周计划，开始第一天',
   },
 
-  // 「设置」页面（#/settings）：目标与弱项、学习日作息、场景/粒子/玻璃主题、AI 助教配置与数据备份
+  // 「设置」页面（#/settings）：目标与弱项、学习日作息、六张季节场景/天气粒子/轻钢琴音乐、AI 助教与备份
   settings: {
     // 「设置」页面主面板大标题
     title: '设置',
     // 「设置」页面标题下方的一行说明
-    subtitle: '调整目标、每周作息、空间场景和助教偏好，所有学习记录都安心存在本机。',
+    subtitle: '调整目标、每周作息、季节场景和助教偏好，所有学习记录都安心存在本机。',
     // 第一组标题：目标与薄弱考点
     groupGoalTitle: '目标与主攻弱项',
     // 第一组说明文字
@@ -971,28 +1131,30 @@ export const zh = {
     fieldDailyMinutes: '单日计划时长',
     // 设置项说明：每日投入时长
     fieldDailyMinutesDesc: '默认 120 分钟（光球一圈 120 格刻度），含中场 5 分钟小憩。',
-    // 设置项标签：考前减量周开关
-    fieldFinalTaper: '考前最后一周自动减量',
-    // 设置项说明：考前减量周开关
-    fieldFinalTaperDesc: '开启后考前 7 天自动缩减新题量，只做错题回顾与手感保温。',
-    // 第三组标题：外观、场景与动效
+    // 第三组标题：外观、六张季节场景、天气粒子与背景音乐
     groupAppearanceTitle: '外观与空间场景',
     // 第三组说明文字
-    groupAppearanceDesc: '调节背景插画时段、毛玻璃明暗与环境粒子；进入做题器后粒子和视差会自动暂停。',
-    // 设置项标签：背景场景时段
+    groupAppearanceDesc: '切换冬春初夏六张季节场景、天气粒子、毛玻璃明暗与轻钢琴背景乐；进入做题器后粒子和视差自动静止。',
+    // 设置项标签：背景场景模式
     fieldSceneMode: '背景场景',
-    // 设置项说明：背景场景时段
-    fieldSceneModeDesc: '默认跟随本机时间在清晨、白昼、黄昏、夜晚四景之间平滑切换。',
-    // 背景场景选项：按时间自动切换
-    sceneOptionAuto: '随时间自动切换',
-    // 背景场景选项：固定清晨
-    sceneOptionDawn: '固定 · 清晨微光',
-    // 背景场景选项：固定白天
-    sceneOptionDay: '固定 · 晴朗白昼',
-    // 背景场景选项：固定黄昏
-    sceneOptionDusk: '固定 · 傍晚暮色',
-    // 背景场景选项：固定夜晚
-    sceneOptionNight: '固定 · 静谧深夜',
+    // 设置项说明：背景场景模式
+    fieldSceneModeDesc: '默认随备考季节（冬 → 春 → 初夏）与昼夜时间自动流转，也可手动固定成其中一张。',
+    // 场景自动和固定分段。
+    sceneAuto: '随时间流转',
+    // 场景固定分段。
+    sceneFixed: '手动固定',
+    // 场景缩略图按季节时段标记。
+    winterDay: '冬日晴雪',
+    // 场景缩略图按季节时段标记。
+    winterNight: '冬夜静雪',
+    // 场景缩略图按季节时段标记。
+    springDay: '春日落樱',
+    // 场景缩略图按季节时段标记。
+    springNight: '春夜樱风',
+    // 场景缩略图按季节时段标记。
+    summerDay: '初夏晴光',
+    // 场景缩略图按季节时段标记。
+    summerNight: '夏夜流萤',
     // 设置项标签：毛玻璃明暗主题
     fieldGlassTheme: '毛玻璃材质明暗',
     // 设置项说明：毛玻璃明暗主题
@@ -1003,28 +1165,26 @@ export const zh = {
     themeOptionDark: '夜 · 暗色毛玻璃',
     // 玻璃主题选项：亮玻璃
     themeOptionLight: '昼 · 亮色毛玻璃',
-    // 设置项标签：漂浮粒子效果
-    fieldParticles: '环境微粒',
-    // 设置项说明：漂浮粒子效果
-    fieldParticlesDesc: '低密度细雪或星尘，专注做题时自动静止不抢视线。',
-    // 粒子选项：细雪
-    particlesOptionSnow: '冬夜细雪',
-    // 粒子选项：星尘
-    particlesOptionStardust: '微光星尘',
-    // 粒子选项：关闭
-    particlesOptionOff: '关闭微粒',
+    // 设置项标签：天气粒子开关
+    fieldParticles: '天气粒子',
+    // 设置项说明：雪/花瓣/萤火三种天气粒子
+    fieldParticlesDesc: '随季节飘落冬雪、春樱花瓣或夏夜萤火，专注做题时自动静止不抢视线。',
     // 设置项标签：鼠标视差摆动
     fieldParallax: '面板轻微视差',
     // 设置项说明：鼠标视差摆动
     fieldParallaxDesc: '鼠标移动时玻璃面板微幅跟随；若系统开启了「减少动态效果」会自动关闭。',
-    // 设置项标签：完成提示音效
-    fieldChimeSound: '节点完成轻提示音',
-    // 设置项说明：完成提示音效
-    fieldChimeSoundDesc: '每完成一节学习或模考到点时播放一声轻柔提示。',
+    // 背景音乐区标题。
+    music: '轻钢琴背景乐',
+    // 音乐音量滑杆标签。
+    volume: '背景乐音量',
+    // 已有钢琴曲目的显示名。
+    pianoTrack: (n: number) => (n === 1 ? '轻钢琴一' : n === 2 ? '轻钢琴二' : n === 3 ? '轻钢琴三' : `轻钢琴 ${n}`),
     // 第四组标题：AI 助教参数
     groupCoachTitle: 'AI 助教',
     // 第四组说明文字
-    groupCoachDesc: '使用本机已登录的 codex 在只读沙箱中为你讲题、批改记述步骤和出变式题。',
+    groupCoachDesc: '调用这台电脑上已登录的 Codex 为你拆解题思路、批改记述步骤、出变式题与做每周复盘。',
+    // 助教开关的标签。
+    coachEnabled: '开启 AI 助教',
     // 设置项标签：助教模型名称
     fieldCoachModel: '助教推理模型',
     // 设置项说明：助教模型名称
@@ -1041,26 +1201,23 @@ export const zh = {
     effortOptionHigh: '深入推演',
     // 测试助教连通性按钮
     testCoachBtn: '测试本机助教连接',
+    // 助教状态检查确认发现本机 CLI。
+    coachCliFound: '已连上本机 Codex 助教，做题时随时可以发问',
     // 第五组标题：本地数据与导出备份
     groupDataTitle: '学习记录与备份',
     // 第五组说明文字
     groupDataDesc: '你的历史作答、错题本和计划状态只保存在这台电脑上，定期导出一份备份更踏实。',
     // 导出学习数据备份按钮
     exportBackupBtn: '导出学习备份文件',
-    // 从备份文件恢复按钮
-    importBackupBtn: '从备份文件恢复记录',
-    // 导入覆盖前的确认弹窗标题
-    importModalTitle: '确定用这份备份替换当前学习记录吗？',
-    // 导入覆盖前的确认弹窗正文说明
-    importModalBody: '恢复备份后，当前电脑上的最新做题记录和计划进度会被覆盖。不确定时可以先点取消，导出一份当前备份再操作。',
-    // 导入确认弹窗中的确认执行按钮
-    confirmImportBackupBtn: '确认恢复这份备份',
-    // 仅重排未来计划（不动历史记录）项标题
-    recalibratePlanField: '按最新掌握度重排未来计划',
-    // 仅重排未来计划说明
-    recalibratePlanDesc: '完整保留所有刷题和错题记录，只把明天起的日程重新洗牌排布。',
-    // 仅重排未来计划按钮
-    recalibratePlanBtn: '重新编排后续日程',
+    // 检查备份文件并准备恢复按钮
+    importBackupBtn: '检查并恢复备份文件',
+    // 备份校验后的确认状态。
+    importVerified: '备份文件核对无误',
+    // 原生备份恢复入口暂时没有服务写入支持。
+    importStaged:
+      '这份备份完好可用。先点下面存为 state-v3.json，关掉澄学后用它替换项目 data 文件夹里的同名文件，重新打开就恢复好了（替换前建议先把旧文件留个底）。',
+    // 备份检查后导出导入用的文件。
+    saveImportCopy: '保存 state-v3.json 恢复文件',
     // 设置页底部的软件版本与本地存储说明
     footerVersionNote: (version: string) => `澄学 EJU ${version} · 数据保存在本机`,
   },
@@ -1083,6 +1240,20 @@ export const zh = {
     // 难度等级标签映射函数
     difficultyName: (level: 1 | 2 | 3) =>
       level === 1 ? '基础入门' : level === 2 ? 'EJU 标准' : '难题与拔高',
+    // 同时存在学习会话时，从其他入口提示继续或结束。
+    activeSession: '手头还有一节练习没收尾，先回到那边做完吧。',
+    // 失效或已移出题库的题目标识。
+    missingItem: '这道题已从题库移出，直接跳过即可',
+    // 保存时另一窗口已更新档案。
+    staleState: '另一个窗口刚更新过学习进度，已帮你同步到最新，再点一次就行',
+    // 日期选取及数据不足时的短占位。
+    noValue: '—',
+    // 各处科目分数总分。
+    outOf: (max: number) => `/ ${max}`,
+    // 主动结束无作答的会话。
+    abandon: '放弃本次练习',
+    // 主动结束后保留的记录说明。
+    abandonNote: '已经提交过的题目都记入掌握度了；点暂存离开后，下次回来还能接着做。',
     // 通用弹窗确认按钮
     confirmBtn: '确认选择',
     // 通用弹窗取消按钮
@@ -1100,9 +1271,9 @@ export const zh = {
     // 通用查看全部按钮
     viewAllBtn: '查看全部内容',
     // 通用展开折叠区按钮
-    expandBtn: '展开详细内容',
+    expandBtn: '展开更多考点',
     // 通用收起折叠区按钮
-    collapseBtn: '收起详细内容',
+    collapseBtn: '收起对照内容',
     // 通用知晓关闭提示按钮
     gotItBtn: '收起提示',
     // 页面或面板骨架加载中的说明文字
@@ -1150,7 +1321,7 @@ export const zh = {
     // 「练习」搜索无匹配题目时的空状态建议
     practiceNoMatchBody: '换个日语考纲原词（比如 電磁誘導、場合の数）或者删掉几个字再搜搜看。',
     // 「练习」某考点在当前难度筛选下无题目的提示
-    practiceFilterEmpty: '这个难度档位下暂时没有未做的题，切回「全部梯度」看看。',
+    practiceFilterEmpty: '这个难度档位下暂时没有题目，切回「全部梯度」看看。',
     // 「模考」尚未做过任何整卷时的历史成绩空状态标题
     mockNoRecordTitle: '还没有整卷模考成绩单',
     // 「模考」尚未做过任何整卷时的空状态说明
@@ -1169,7 +1340,7 @@ export const zh = {
     globalSearchEmpty: '没搜到对应的题目或笔记，换个考点词试试。',
   },
 
-  // 顶部/底部轻提示（Toast）：保存、挪日、重排、标记、备份导入导出与助教状态通知
+  // 顶部/底部轻提示（Toast）：保存、挪日、重排、标记、备份导出与助教状态通知
   toast: {
     // 设置保存成功提示
     settingsSaved: '设置已保存，后面的日程已跟着更新好了',
@@ -1178,31 +1349,25 @@ export const zh = {
     // 当天切换为休息日成功提示
     markedRestDay: '已把今天改为休息日，任务平摊到后面几天了',
     // 休息日切换为学习日成功提示
-    markedStudyDay: '今天已设为学习日，2 小时安排就绪',
-    // 计划重新校准完成提示
-    planRecalibrated: '后续计划已按你最新的掌握度重新排好',
+    markedStudyDay: '今天已设为学习日，今日安排已就绪',
     // 题目标记为「没把握」提示
     markedUnsure: '已记下「没把握」，过两天换个时间再抽查你',
     // 取消「没把握」标记提示
     clearedUnsure: '已取消「没把握」标记',
     // 答错自动加入间隔复习队列提示
     addedToReviewQueue: '这道题已放进间隔复习队列，到遗忘临界点会提醒你',
-    // 手动从复习队列移出已掌握题提示
-    graduatedFromReview: '已移出高频复习队列，把时间留给更需要的硬骨头',
     // 做题中途暂存退出成功提示
     sessionSaved: '当前进度已存好，回来随时接着做',
     // 同类变式题生成并双验算成功提示
-    variantReady: '同类变式题已生成并通过两次独立验算',
+    variantReady: '同类变式题已就绪，开始巩固吧',
     // 导出本地备份成功提示
     backupExported: '学习记录备份已导出到本地文件夹',
-    // 恢复本地备份成功提示
-    backupRestored: '备份恢复成功，所有刷题进度已就位',
     // 备份文件校验不通过时的错误提示
-    backupInvalid: '这份备份文件格式不对，没法读取，请确认选的是澄学导出的备份文件',
+    backupInvalid: '这份文件不是有效的澄学备份，请核对后再选一次',
     // 测试 AI 助教连接成功提示
     coachConnected: '助教连接畅通，随时可以发问',
     // 测试 AI 助教连接失败提示
-    coachUnreachable: '没连上助教，请先在终端确认 codex 已正常登录',
+    coachUnreachable: '没连上助教，请确认已开启助教且本机 Codex 已正常登录',
     // 复制公式或文本成功提示
     copied: '已复制到剪贴板',
   },
@@ -1266,7 +1431,7 @@ export const zh = {
     monthDay: (month: number, day: number) => `${month} 月 ${day} 日`,
     // 年月日完整格式（如 2027 年 6 月 20 日）
     fullDate: (year: number, month: number, day: number) => `${year} 年 ${month} 月 ${day} 日`,
-    // 按一天当中的小时数给出的温和问候（配合清晨/白昼/黄昏/夜晚四景）
+    // 按一天当中的小时数给出的温和问候（配合昼夜季节场景）
     sceneGreeting: (hour: number) =>
       hour < 5
         ? '夜深了，收完这一小节就早点睡'
