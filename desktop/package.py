@@ -5,10 +5,10 @@ The bundle carries: the native shell, a stripped Node runtime, the server + shar
 directly by Node), the built front end, the content bank, only the assets the bank references, the piano
 tracks, and a seed of the current study record. Data lives in ~/Library/Application Support/澄学 EJU.
 
-    python3 desktop/package.py          → desktop/release/澄学 EJU.app and 澄学EJU-<version>.zip
+    python3 desktop/package.py          → desktop/release/澄学 EJU.app and Chengxue-EJU-<version>.zip
 """
 from pathlib import Path
-import json, os, plistlib, re, shutil, subprocess
+import hashlib, json, os, plistlib, re, shutil, subprocess
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -20,6 +20,25 @@ NODE = Path(os.environ.get('EJU_NODE', shutil.which('node') or ''))
 
 def run(*args, **kw):
     subprocess.run(list(map(str, args)), check=True, **kw)
+
+
+def update_repo():
+    slug = os.environ.get('EJU_UPDATE_REPO')
+    if slug is None:
+        try:
+            remote = subprocess.check_output(['git', 'remote', 'get-url', 'origin'], cwd=ROOT, text=True,
+                                             stderr=subprocess.DEVNULL).strip()
+        except (OSError, subprocess.CalledProcessError):
+            remote = ''
+        for prefix in ('https://github.com/', 'git@github.com:'):
+            if remote.startswith(prefix):
+                slug = remote[len(prefix):].removesuffix('.git')
+                break
+    slug = (slug or '').strip()
+    if re.fullmatch(r'[A-Za-z0-9-]+/[A-Za-z0-9_.-]+', slug) and slug.split('/')[1] not in ('.', '..'):
+        return {'ChengxueUpdateRepo': slug}
+    print('警告：无法解析 GitHub 更新源，请检查 origin 或 EJU_UPDATE_REPO。', flush=True)
+    return {}
 
 
 def main():
@@ -80,6 +99,7 @@ def main():
         'LSMinimumSystemVersion': '13.0', 'NSHighResolutionCapable': True, 'LSApplicationCategoryType': 'public.app-category.education',
         'NSAppTransportSecurity': {'NSAllowsLocalNetworking': True, 'NSAllowsArbitraryLoadsInWebContent': True},
         'NSHumanReadableCopyright': '澄学 EJU',
+        **update_repo(),
     }
     with (APP / 'Contents/Info.plist').open('wb') as f:
         plistlib.dump(info, f)
@@ -88,13 +108,19 @@ def main():
     run('/usr/bin/codesign', '--force', '--deep', '--sign', '-', APP)
     run('/usr/bin/codesign', '--verify', '--deep', '--strict', APP)
 
-    zip_path = OUT / f'澄学EJU-{VERSION}.zip'
+    zip_path = OUT / f'Chengxue-EJU-{VERSION}.zip'
     if zip_path.exists():
         zip_path.unlink()
     run('/usr/bin/ditto', '-c', '-k', '--sequesterRsrc', '--keepParent', APP, zip_path)
+    checksum_path = zip_path.with_suffix('.zip.sha256')
+    with zip_path.open('rb') as f:
+        checksum = hashlib.sha256()
+        for chunk in iter(lambda: f.read(1024 * 1024), b''):
+            checksum.update(chunk)
+    checksum_path.write_text(f'{checksum.hexdigest()}  {zip_path.name}\n', encoding='ascii')
 
     size = lambda p: sum(f.stat().st_size for f in Path(p).rglob('*') if f.is_file())
-    print(json.dumps({'app': str(APP), 'zip': str(zip_path), 'appMB': round(size(APP) / 1e6, 1),
+    print(json.dumps({'app': str(APP), 'zip': str(zip_path), 'sha256': str(checksum_path), 'appMB': round(size(APP) / 1e6, 1),
                       'zipMB': round(zip_path.stat().st_size / 1e6, 1), 'assets': copied, 'version': VERSION}, ensure_ascii=False))
 
 

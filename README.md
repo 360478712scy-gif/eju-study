@@ -1,13 +1,23 @@
-# 澄学 EJU 3.0
+# 澄学 EJU
 
 面向 2027 年 6 月 20 日 EJU 数学コース 2、物理和化学的本机学习助手。打开「今天」即可按顺序跟学，也可以单独刷考点、复习或限时模考。
+
+## 下载与更新
+
+- 到 [Releases](https://github.com/360478712scy-gif/eju-study/releases/latest) 下载 `Chengxue-EJU-<版本>.zip`，解压后把「澄学 EJU.app」拖进「应用程序」。需要 Apple 芯片的 Mac、macOS 13 以上。
+- 应用没有 Apple 开发者签名：第一次打开时右键点它选「打开」，或在「系统设置 → 隐私与安全性」里点「仍要打开」。
+- 之后的新版本在 app 的「设置 → 版本与更新」里一键安装（启动时也会提示）。学习记录保存在 `~/Library/Application Support/澄学 EJU`，更新不会动它。
+- AI 助教调用这台 Mac 上已登录的 [Codex CLI](https://github.com/openai/codex)；没装时其他功能照常可用。
+- 发版流程见 [desktop/README.md](desktop/README.md)。
+
+## 从源码运行
 
 ```sh
 npm run build
 npm start
 ```
 
-打开浏览器访问 `http://127.0.0.1:18763`。开发前端用 `npm run dev:app`，它将 API、题库和媒体请求转发到本机服务。若测试服务使用 18765，启动 Vite 时可设 `EJU_APP_API_PORT=18765`。设计参考仍在 `#/proto/today` 等原型路由。
+打开浏览器访问 `http://127.0.0.1:18763`。开发前端用 `npm run dev:app`，它将 API、题库和媒体请求转发到本机服务。若测试服务使用 18765，启动 Vite 时可设 `EJU_APP_API_PORT=18765`。题目插图和背景音乐（`public/assets/`）不在仓库里，安装包里带着。
 
 - `app/` 是正式前端，产物在 `app/dist/`。
 - `shared/` 和 `server/` 提供计划、题库、评分、学习档案及助教接口。

@@ -3,7 +3,10 @@ import { isCard } from '@shared/bank.ts';
 import { blankGroups, isAnswered } from '@shared/grading.ts';
 import type { Confidence, PracticeSession, Response, SessionAnswer, WrittenResponse } from '@shared/types.ts';
 import { Page } from '../../shell/Shell.tsx';
-import { Button, Card, Chip, Empty, Icon, IconButton, Modal, SubjectGlyph, TextArea, toast } from '../../ui/ui.tsx';
+import { Button, Card, Chip, Empty, Icon, IconButton, Modal, Sheet, SubjectGlyph, TextArea, toast } from '../../ui/ui.tsx';
+import { BallMenu } from '../../shell/BallMenu.tsx';
+import { MusicPlayer } from '../../shell/Music.tsx';
+import { Settings } from '../settings/Settings.tsx';
 import { t } from '../../copy/index.ts';
 import { findItem, pendingScripts, topicName } from '../../lib/model.ts';
 import { go, isTyping, link } from '../../lib/navigation.ts';
@@ -70,6 +73,9 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
   const [showExplanation, setShowExplanation] = useState<boolean | null>(null);
   const [revealWritten, setRevealWritten] = useState(false);
   const [busy, setBusy] = useState(false);
+  // Ball menu (bottom left): its column, and the music window / settings sheet it opens.
+  const [ballOpen, setBallOpen] = useState(false);
+  const [panel, setPanel] = useState<'' | 'music' | 'settings'>('');
   const locked = useRef(false);
   const deadlineHandled = useRef(false);
   const itemId = session.itemIds[index];
@@ -255,7 +261,7 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
 
   const keys = useEffectEvent((event: KeyboardEvent) => {
     if (!shortcuts || event.defaultPrevented || event.repeat || event.metaKey || event.ctrlKey || event.altKey ||
-      isTyping(event) || overlay || busy || !item) return;
+      isTyping(event) || overlay || ballOpen || panel || busy || !item) return;
     const control = (event.target as HTMLElement)?.closest('button, a, summary');
     if (control && (event.code === 'Space' || (event.key === 'Enter' && !control.matches('.opt')))) return;
     if (card && (event.code === 'Space' || /^[123]$/.test(event.key))) return;
@@ -296,6 +302,14 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
       else toast(t.toast.sessionSaved, 'ok');
       returnTo();
     });
+  };
+
+  // 暂离: save and go back to the main screen. A mock keeps its own exit dialog (its clock and sealing rules).
+  const leave = () => {
+    setPanel('');
+    if (!isLive) returnTo();
+    else if (exam) setOverlay('exit');
+    else void exit();
   };
 
   const report = state.mocks.find(mock => mock.id === session.id);
@@ -419,6 +433,17 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
           setOverlay('');
         }}>{t.session.reviewWrongJustNowBtn}</Button>}
     </Modal>
+    <BallMenu label={t.ball.menu} closeLabel={t.ball.close} onOpenChange={setBallOpen} items={[
+      { id: 'settings', icon: 'gear', label: t.ball.settings, on: panel === 'settings', onClick: () => setPanel(panel === 'settings' ? '' : 'settings') },
+      { id: 'note', icon: 'edit', label: t.ball.note, onClick: () => { setPanel(''); openQuickNote(item?.topic); } },
+      { id: 'music', icon: 'music', label: t.ball.music, on: panel === 'music', className: 'music-trigger', onClick: () => setPanel(panel === 'music' ? '' : 'music') },
+      { id: 'home', icon: 'home', label: t.ball.home, onClick: leave },
+    ]} />
+    <MusicPlayer open={panel === 'music'} onClose={() => setPanel('')} className="is-by-ball" />
+    <Sheet open={panel === 'settings'} label={t.ball.settings} onClose={() => setPanel('')} className="sheet-settings">
+      <IconButton className="sheet-settings-close" icon="close" label={t.common.closeBtn} onClick={() => setPanel('')} />
+      <Settings />
+    </Sheet>
     {!isLive && isGuided(session) && <div className="ses-actions"><Button variant="primary" iconRight="arrow-right" onClick={summaryNext}>{t.session.continue}</Button></div>}
   </Page>);
 }

@@ -1,5 +1,5 @@
-// Background piano: plays as soon as the app opens, switches tracks, and exposes live levels for the
-// equalizer layer behind the glass. Built-in tracks plus the learner's own (server media, kind=music).
+// Background piano: plays as soon as the app opens and switches tracks.
+// Built-in tracks plus the learner's own (server media, kind=music).
 import { useSyncExternalStore } from 'react';
 import { t } from '../copy/index.ts';
 
@@ -39,9 +39,6 @@ export const useMusic = () =>
   );
 
 let audio: HTMLAudioElement | undefined;
-let ctx: AudioContext | undefined;
-let analyser: AnalyserNode | undefined;
-let bins: Uint8Array<ArrayBuffer> | undefined;
 let persist: (trackId: string, volume: number) => void = () => {};
 let wantPlay = true;
 let hidden = false;
@@ -59,25 +56,6 @@ function element() {
     if (snap.tracks.length > 1) next();
   });
   return audio;
-}
-
-/** Route the element through an analyser. Must happen after a user gesture, or WebKit keeps the context suspended. */
-function wireAnalyser() {
-  if (ctx || !audio) return;
-  try {
-    ctx = new AudioContext();
-    const source = ctx.createMediaElementSource(audio);
-    analyser = ctx.createAnalyser();
-    analyser.fftSize = 256;
-    analyser.smoothingTimeConstant = 0.82;
-    source.connect(analyser);
-    analyser.connect(ctx.destination);
-    bins = new Uint8Array(analyser.frequencyBinCount);
-    void ctx.resume();
-  } catch {
-    ctx = undefined;
-    analyser = undefined;
-  }
 }
 
 function load(index: number) {
@@ -108,11 +86,8 @@ export function start(opts: { trackId?: string; volume?: number; save: (trackId:
   const i = Math.max(0, snap.tracks.findIndex((tr) => tr.id === opts.trackId));
   load(i);
   tryPlay();
-  const gesture = () => {
-    wireAnalyser();
-    if (ctx?.state === 'suspended') void ctx.resume();
-    tryPlay();
-  };
+  // WebKit may refuse autoplay until the first click or key press.
+  const gesture = () => tryPlay();
   window.addEventListener('pointerdown', gesture, { once: true, capture: true });
   window.addEventListener('keydown', gesture, { once: true, capture: true });
 }
@@ -124,7 +99,6 @@ export function setVisible(visible: boolean) {
 }
 
 export function toggle() {
-  wireAnalyser();
   if (snap.playing) {
     wantPlay = false;
     audio?.pause();
@@ -146,7 +120,6 @@ export function prev() {
   tryPlay();
 }
 export function play(trackId: string) {
-  wireAnalyser();
   wantPlay = true;
   load(snap.tracks.findIndex((tr) => tr.id === trackId));
   tryPlay();
@@ -171,21 +144,6 @@ export function setCustomTracks(items: MediaItem[]) {
   if (!tracks.some((tr) => tr.id === current)) load(0);
 }
 
-/** Levels 0–1 for `n` bars (log-spaced bands). Null until the analyser is wired (the layer then breathes on its own). */
-export function levels(n: number): number[] | null {
-  if (!analyser || !bins || !snap.playing) return null;
-  analyser.getByteFrequencyData(bins);
-  const out: number[] = [];
-  const max = bins.length * 0.72;
-  for (let i = 0; i < n; i++) {
-    const a = Math.floor(Math.pow(i / n, 1.6) * max);
-    const b = Math.max(a + 1, Math.floor(Math.pow((i + 1) / n, 1.6) * max));
-    let s = 0;
-    for (let k = a; k < b; k++) s += bins[k];
-    out.push(Math.min(1, s / (b - a) / 210));
-  }
-  return out;
-}
 export const isPlaying = () => snap.playing;
 
 /* ───────── learner media (backgrounds + piano) ───────── */

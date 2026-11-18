@@ -1,83 +1,14 @@
-// Music: the equalizer layer between the scene and the glass, and the small player window opened from the nav.
+// Music: the small player window opened from the nav (and from the ball menu while practising).
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { t } from '../copy/index.ts';
 import * as music from '../lib/music.ts';
 import { Button, Icon, IconButton, Slider, cx, toast } from '../ui/ui.tsx';
 
-/** Vertical bars that rise and fall with the music, drawn between the background and the panels. */
-export function MusicBars({ dim }: { dim?: boolean }) {
-  const ref = useRef<HTMLCanvasElement>(null);
-  const { playing } = music.useMusic();
-  useEffect(() => {
-    const cv = ref.current;
-    if (!cv || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const g = cv.getContext('2d')!;
-    let raf = 0;
-    let last = 0;
-    let w = 0,
-      h = 0,
-      dpr = 1;
-    const N = 56;
-    const cur = new Array(N).fill(0);
-    const seed = Array.from({ length: N }, (_, i) => ({ a: 0.6 + ((i * 37) % 11) / 22, p: (i * 1.7) % 6.28, s: 0.7 + ((i * 13) % 7) / 10 }));
-    const resize = () => {
-      dpr = Math.min(2, devicePixelRatio || 1);
-      w = cv.clientWidth;
-      h = cv.clientHeight;
-      cv.width = w * dpr;
-      cv.height = h * dpr;
-      g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    addEventListener('resize', resize);
-    const draw = (now: number) => {
-      raf = requestAnimationFrame(draw);
-      if (now - last < 33) return; // ~30 fps is plenty behind frosted glass
-      last = now;
-      const live = music.levels(N);
-      const on = music.isPlaying();
-      const tsec = now / 1000;
-      for (let i = 0; i < N; i++) {
-        // Without an analyser yet (autoplay before the first click) the bars breathe on their own.
-        const target = !on ? 0 : live ? live[i] : 0.18 + 0.32 * seed[i].a * (0.5 + 0.5 * Math.sin(tsec * 1.6 * seed[i].s + seed[i].p)) * (0.6 + 0.4 * Math.sin(tsec * 0.5 + i * 0.3));
-        cur[i] += (target - cur[i]) * (target > cur[i] ? 0.35 : 0.12);
-      }
-      g.clearRect(0, 0, w, h);
-      const style = getComputedStyle(document.documentElement);
-      const tint = style.getPropertyValue('--music-bar').trim() || 'rgba(170,210,255,0.5)';
-      const gap = w / N;
-      const bw = Math.max(3, gap * 0.42);
-      const maxH = h * 0.46;
-      for (let i = 0; i < N; i++) {
-        const bh = Math.max(4, cur[i] * maxH);
-        const x = i * gap + (gap - bw) / 2;
-        const y = h - bh - h * 0.04;
-        const grad = g.createLinearGradient(0, y, 0, h);
-        grad.addColorStop(0, tint);
-        grad.addColorStop(1, 'rgba(255,255,255,0)');
-        g.fillStyle = grad;
-        g.beginPath();
-        g.roundRect(x, y, bw, bh, bw / 2);
-        g.fill();
-      }
-      if (!on && cur.every((v) => v < 0.005)) {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
-    };
-    raf = requestAnimationFrame(draw);
-    return () => {
-      cancelAnimationFrame(raf);
-      removeEventListener('resize', resize);
-    };
-  }, [playing]);
-  return <canvas ref={ref} className={cx('music-bars', playing && 'is-on', dim && 'is-dim')} aria-hidden />;
-}
-
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
 /** The small player window: switch tracks, play/pause, volume, and the music folder (add / delete). */
-export function MusicPlayer({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function MusicPlayer({ open, onClose, className }: { open: boolean; onClose: () => void; className?: string }) {
   const m = music.useMusic();
   const [folder, setFolder] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -109,8 +40,8 @@ export function MusicPlayer({ open, onClose }: { open: boolean; onClose: () => v
     setBusy(false);
     toast(ok ? t.music.added(ok) : t.music.addFailed, ok ? 'ok' : 'warn');
   };
-  return (
-    <div ref={box} className="glass-float music-pop" role="dialog" aria-label={t.music.title}>
+  const pop = (
+    <div ref={box} className={cx('glass-float music-pop', className)} role="dialog" aria-label={t.music.title}>
       <div className="music-pop-head">
         <span className={cx('music-eq', m.playing && 'is-on')} aria-hidden>
           <span /><span /><span /><span />
@@ -173,4 +104,6 @@ export function MusicPlayer({ open, onClose }: { open: boolean; onClose: () => v
       )}
     </div>
   );
+  // Portalled: inside a glass pane (backdrop-filter) `position: fixed` would follow the pane, not the window.
+  return typeof document === 'undefined' ? pop : createPortal(pop, document.body);
 }

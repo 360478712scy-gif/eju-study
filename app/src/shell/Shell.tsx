@@ -3,7 +3,6 @@
 import type { ReactNode } from 'react';
 import { Badge, Bar, Button, Icon, Glass, Tooltip, cx, type IconName } from '../ui/ui.tsx';
 import { Scene, type CustomScene, type SceneMode, type Weather } from './Scene.tsx';
-import { MusicBars } from './Music.tsx';
 import './shell.css';
 
 export interface NavItem {
@@ -44,7 +43,6 @@ export function Shell({
   return (
     <>
       <Scene mode={scene} weather={weather} calm={focus} parallax={parallax} tone={tone} custom={sceneCustom} />
-      <MusicBars dim={focus} />
       <div className="titlebar" />
       <div className={cx('stage', !aside && 'no-aside', focus && 'is-focus')}>
         <Glass as="nav" className="pane pane-nav" inert={focus || undefined}>

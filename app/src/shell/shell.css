@@ -538,26 +538,6 @@ body:has(.sheet) .assistant-fab {
 }
 
 /* ───────── music: equalizer layer between the scene and the glass ───────── */
-.music-bars {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 900ms var(--ease);
-}
-.music-bars.is-on {
-  opacity: 0.9;
-}
-.music-bars.is-dim.is-on {
-  opacity: 0.35;
-}
-:root[data-tone='light'] .music-bars.is-on {
-  opacity: 0.7;
-}
-
 /* nav footer: music key left of 设置 */
 .nav-foot {
   flex-wrap: nowrap;
@@ -734,4 +714,158 @@ body:has(.sheet) .assistant-fab {
 @keyframes eq {
   from { height: 20%; }
   to { height: 100%; }
+}
+
+/* ───────── ball menu (question player, bottom left) ───────── */
+.ball-menu {
+  position: fixed;
+  z-index: 36;
+  left: calc(var(--edge) + 14px);
+  bottom: calc(var(--edge) + 14px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  pointer-events: none;
+}
+.ball {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: var(--text-2);
+  transition: transform var(--dur-fast) var(--ease), color var(--dur-fast), background var(--dur-fast);
+}
+.ball-main {
+  width: 50px;
+  height: 50px;
+  color: var(--primary);
+  pointer-events: auto;
+  animation: fade-up 400ms var(--ease) 200ms both;
+}
+.ball-main:hover {
+  transform: translateY(-2px);
+}
+.ball-main:active {
+  transform: scale(0.95);
+}
+.ball-main.is-on {
+  color: var(--text);
+}
+.ball-main-icon {
+  display: grid;
+  transition: transform var(--dur) var(--ease-spring);
+}
+.ball-main.is-on .ball-main-icon {
+  transform: rotate(90deg);
+}
+.ball-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-left: 4px;
+}
+.ball-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(calc(14px + var(--i) * 6px)) scale(0.7);
+  transform-origin: 21px 50%;
+  transition: opacity 160ms var(--ease), transform 200ms var(--ease);
+}
+.ball-menu.is-open .ball-item {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition: opacity 220ms var(--ease) calc(var(--i) * 40ms), transform 380ms var(--ease-spring) calc(var(--i) * 40ms);
+}
+.ball-label {
+  height: 30px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  white-space: nowrap;
+  opacity: 0;
+  translate: -6px 0;
+  transition: opacity 160ms var(--ease), translate 200ms var(--ease);
+}
+.ball-menu.is-open .ball-label {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 240ms var(--ease) calc(80ms + var(--i) * 40ms), translate 300ms var(--ease) calc(80ms + var(--i) * 40ms);
+}
+.ball-item:hover .ball,
+.ball-item:focus-visible .ball {
+  color: var(--primary);
+  transform: scale(1.07);
+}
+.ball-item.is-on .ball {
+  color: var(--text-on-primary);
+  background: var(--primary);
+}
+body:has(.modal) .ball-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ball-item,
+  .ball-menu.is-open .ball-item,
+  .ball-label,
+  .ball-menu.is-open .ball-label {
+    transition: opacity 120ms linear;
+    transform: none;
+    translate: none;
+  }
+}
+
+/* the music window opened from the ball sits beside it */
+.music-pop.is-by-ball {
+  left: calc(var(--edge) + 76px);
+  bottom: calc(var(--edge) + 14px);
+}
+
+/* settings opened from the ball: the whole settings page in a wide sheet */
+.sheet-settings {
+  --w: 660px;
+  padding: 0;
+  overflow: hidden;
+}
+.sheet-settings .page {
+  height: 100%;
+}
+.sheet-settings-close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  z-index: 2;
+}
+
+/* settings item: a new version is waiting */
+.nav-item .nav-dot {
+  width: 7px;
+  height: 7px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+  flex: none;
+}
+.sheet-settings .sec-head {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-1);
+}
+.sheet-settings .page-head {
+  padding-right: var(--sp-10);
 }

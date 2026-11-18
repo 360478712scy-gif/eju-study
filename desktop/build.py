@@ -7,6 +7,7 @@ import json
 import plistlib
 import shutil
 import subprocess
+from package import update_repo
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -24,6 +25,7 @@ def main():
     shutil.copy2(HERE/'icon'/'AppIcon.icns', resources/'AppIcon.icns')
     (resources/'runtime.json').write_text(json.dumps({'projectRoot': str(ROOT)}, ensure_ascii=False), encoding='utf-8')
     info = {'CFBundleDisplayName': '澄学 EJU', 'CFBundleName': '澄学 EJU', 'CFBundleExecutable': 'Chengxue', 'CFBundleIdentifier': f'local.{getpass.getuser()}.eju-study', 'CFBundlePackageType': 'APPL', 'CFBundleVersion': (ROOT / 'VERSION').read_text().strip(), 'CFBundleShortVersionString': (ROOT / 'VERSION').read_text().strip(), 'CFBundleIconFile': 'AppIcon', 'NSHighResolutionCapable': True, 'LSUIElement': False, 'NSAppTransportSecurity': {'NSAllowsLocalNetworking': True, 'NSAllowsArbitraryLoadsInWebContent': True}, 'NSHumanReadableCopyright': '澄学 EJU — 个人学习空间'}
+    info.update(update_repo())
     with (STAGED/'Contents/Info.plist').open('wb') as f:
         plistlib.dump(info, f)
     # Original icons / Finder-created app folders can carry FinderInfo or resource

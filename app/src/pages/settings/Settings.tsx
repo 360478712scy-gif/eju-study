@@ -1,8 +1,9 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { AppState, Profile } from '@shared/types.ts';
 import { isValidDate } from '@shared/dates.ts';
 import { Page } from '../../shell/Shell.tsx';
-import { Button, Card, Field, Icon, IconButton, Modal, Section, Segmented, Toggle, toast } from '../../ui/ui.tsx';
+import { Bar, Button, Card, Field, Icon, IconButton, Modal, Section, Segmented, Toggle, toast } from '../../ui/ui.tsx';
+import { canCheck, check, install, loadVersion, useUpdate } from '../../lib/update.ts';
 import { DayPicker } from '../../ui/Learning.tsx';
 import { t } from '../../copy/index.ts';
 import { request } from '../../lib/api.ts';
@@ -17,6 +18,47 @@ import './settings.css';
 
 function SettingsRow({ label, desc, children }: { label: string; desc?: string; children: ReactNode }) {
   return <div className="set-row"><div className="set-text"><b>{label}</b>{desc && <span>{desc}</span>}</div>{children}</div>;
+}
+
+/** Release notes arrive as markdown; show them as plain lines. */
+const plainNotes = (md: string) => md.split('\n').map(line => line.replace(/^#+\s*/, '').replace(/^\s*[-*]\s+/, '· ').replace(/\*\*|__|`/g, '')).join('\n').trim();
+
+/** 版本与更新: current version, check, install from GitHub (standalone build), with progress. */
+function UpdateSection() {
+  const u = useUpdate();
+  const native = canCheck();
+  useEffect(() => {
+    void loadVersion();
+    if (native) void check();
+  }, [native]);
+  const info = u.info;
+  const working = u.phase === 'download' || u.phase === 'verify' || u.phase === 'install';
+  const size = info?.size ? Math.round(info.size / 1e6) : 0;
+  const status = u.phase === 'checking' ? t.update.checking
+    : u.phase === 'download' ? t.update.downloading(Math.round(u.fraction * 100))
+    : u.phase === 'verify' ? t.update.verifying
+    : u.phase === 'install' ? t.update.installing
+    : u.phase === 'error' ? u.message || t.update.failed
+    : !native ? t.update.browserHint
+    : info?.error ? info.error
+    : info?.available && info.latest ? t.update.available(info.latest, size)
+    : info ? t.update.upToDate : undefined;
+  return <Section title={t.update.groupTitle} desc={t.update.groupDesc}>
+    <Card pad={false}>
+      <SettingsRow label={t.update.current} desc={status}><span className="num">{info?.current || u.version || ''}</span></SettingsRow>
+      {working && <div className="set-row"><Bar value={u.phase === 'download' ? u.fraction : 1} /></div>}
+      {info?.available && info.latest && info.notes && <div className="set-row set-update-notes">
+        <b>{t.update.notesTitle(info.latest)}</b>
+        <div className="set-notes">{plainNotes(info.notes)}</div>
+      </div>}
+      {native && <div className="set-row set-update-actions">
+        <Button icon="refresh" disabled={u.phase === 'checking' || working} onClick={() => void check(true)}>{t.update.checkBtn}</Button>
+        {info?.available && info.mode === 'standalone' && <Button variant="primary" icon="download" loading={working} disabled={working}
+          onClick={() => void install()}>{t.update.installBtn}</Button>}
+        {info?.available && info.mode === 'dev' && <span className="t-3">{t.update.devHint}</span>}
+      </div>}
+    </Card>
+  </Section>;
 }
 
 function checkedBackup(input: unknown): input is AppState {
@@ -174,7 +216,7 @@ export function Settings() {
         </div>
       </Card>
     </Section>
-    <p className="set-version t-3">{t.settings.footerVersionNote('3.0.0')}</p>
+    <UpdateSection />
     <Modal open={!!backup} onClose={() => setBackup(undefined)} title={t.settings.importVerified} closeLabel={t.common.closeBtn}
       footer={<Button variant="primary" icon="download" onClick={async () => {
         if (backup && await saveTextFile('state-v3.json', backup)) setBackup(undefined);

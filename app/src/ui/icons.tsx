@@ -59,6 +59,20 @@ const P: Record<string, ReactNode> = {
       <circle cx="8.8" cy="16.8" r="2.2" />
     </>
   ),
+  home: (
+    <>
+      <path d="M3.8 11 12 4.4l8.2 6.6" />
+      <path d="M6.3 9.2v9a1.8 1.8 0 0 0 1.8 1.8h7.8a1.8 1.8 0 0 0 1.8-1.8v-9" />
+      <path d="M10 20v-4.6a2 2 0 0 1 4 0V20" />
+    </>
+  ),
+  'dots-v': (
+    <>
+      <circle {...F} cx="12" cy="6" r="1.7" />
+      <circle {...F} cx="12" cy="12" r="1.7" />
+      <circle {...F} cx="12" cy="18" r="1.7" />
+    </>
+  ),
   gear: (
     <>
       <circle cx="12" cy="12" r="3.1" />

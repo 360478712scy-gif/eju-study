@@ -160,7 +160,6 @@
   --scrollbar: rgba(255, 255, 255, 0.16);
   --selection: rgba(143, 197, 255, 0.35);
 
-  --music-bar: rgba(176, 214, 255, 0.55);
   --orb-core: radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.95) 0%, rgba(214, 228, 248, 0.75) 14%, rgba(132, 150, 182, 0.55) 38%, rgba(40, 50, 74, 0.6) 70%, rgba(12, 16, 28, 0.8) 100%);
   --orb-rim: rgba(200, 220, 255, 0.35);
 }
@@ -225,7 +224,6 @@
   --scrollbar: rgba(30, 50, 90, 0.2);
   --selection: rgba(37, 99, 235, 0.2);
 
-  --music-bar: rgba(255, 255, 255, 0.75);
   --orb-core: radial-gradient(circle at 34% 28%, #ffffff 0%, rgba(246, 250, 255, 0.95) 16%, rgba(196, 214, 240, 0.8) 42%, rgba(120, 146, 190, 0.7) 74%, rgba(70, 92, 140, 0.75) 100%);
   --orb-rim: rgba(255, 255, 255, 0.9);
 }

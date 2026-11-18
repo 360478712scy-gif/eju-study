@@ -57,3 +57,11 @@ const text = await window.ejuNative.readClipboard();
 保存 QA 顺序：先 `save-panel-prepare` 指定本次测试目标，再通过页面备份按钮、桥调用或下载打开真实面板。`save-panel-info` 返回面板实际 URL、目录、文件名、窗口状态。确认 URL 与目标完全相同后，`save-panel` 使用 AppKit 公共 `endSheet(returnCode: .OK)` 结束真实面板；保存仍由正常的桥或 WKDownload completion 执行，诊断代码不直接写备份。取消使用 `.cancel`，应确认文件未写入。此预置仅存在于 `--qa`，避免当前 macOS 远程面板在打开后修改路径属性却不更新实际 URL、缺少默认按钮且不响应合成 Return 的问题。正常使用仍由用户操作系统保存窗口。
 
 确认文件存在、内容可解析，且窗口 URL 保持不变。真实窗口验收应覆盖：首次自动 BGM、暂停偏好、CmdW 关窗停音与重开、页面快捷键/草稿、系统编辑、菜单/右键、备份面板与取消，以及禁用浏览器导航键。
+
+## 更新
+
+在应用的「设置」里检查更新。独立版发现新版本后可以下载安装，校验通过后应用会退出并重新打开。学习记录仍保存在 `~/Library/Application Support/澄学 EJU/data`。开发版也可以检查版本，更新时请在项目目录里更新代码，再运行 `python3 desktop/build.py`。
+
+发版时先提高根目录的 `VERSION`，再写 `desktop/release-notes/<版本>.md`。将版本、说明和需要发布的改动提交到 `main`，确认已跟踪文件没有改动，并用 `gh auth status` 确认已登录。运行 `python3 desktop/release.py` 会打包、推送 `main` 和新版本标签，并创建 GitHub Release。加 `--dry-run` 可只检查和打包。安装包和校验文件在 `desktop/release/`，文件名为 `Chengxue-EJU-<版本>.zip` 和 `Chengxue-EJU-<版本>.zip.sha256`。
+
+更新源默认取 GitHub `origin` 的仓库名，编译或打包时可通过 `EJU_UPDATE_REPO=所有者/仓库` 覆盖。安装过程遇到错误会在设置页显示原因。应用退出后若没有重新打开，请查看 `~/Library/Application Support/澄学 EJU/update.log`。

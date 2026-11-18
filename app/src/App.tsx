@@ -4,7 +4,7 @@ import { daysBetween } from '@shared/dates.ts';
 import type { AppState, ContentBundle } from '@shared/types.ts';
 import { t } from './copy/index.ts';
 import { AssistantFab, NavPanel, Page, Shell, StudyBar, type NavItem } from './shell/Shell.tsx';
-import { Button, Empty, Field, Icon, IconButton, Kbd, List, Modal, Row, Section, Sheet, SubjectGlyph, Toaster } from './ui/ui.tsx';
+import { Button, Empty, Field, Icon, IconButton, Kbd, List, Modal, Row, Section, Sheet, SubjectGlyph, Toaster, toast } from './ui/ui.tsx';
 import { RichText } from './ui/RichText.tsx';
 import { StudyProvider, useStudy, type CoachContext } from './lib/study.tsx';
 import { blockTitle } from './lib/model.ts';
@@ -12,6 +12,7 @@ import { go, isTyping, link, noteLink, parseRoute, routes, type SectionName } fr
 import { isNative, onShellCommand, onWindowVisibility, SHELL_PAGES } from './lib/native.ts';
 import { type Appearance } from './lib/preferences.ts';
 import * as music from './lib/music.ts';
+import * as update from './lib/update.ts';
 import { MusicPlayer } from './shell/Music.tsx';
 import { Today } from './pages/today/Today.tsx';
 import { Plan } from './pages/plan/Plan.tsx';
@@ -102,6 +103,15 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     void music.refreshMedia();
     return onWindowVisibility(music.setVisible);
   }, []);
+  // A new release on GitHub: say so once, a few seconds after launch; the settings item keeps a dot.
+  useEffect(() => {
+    if (!update.canCheck()) return;
+    const timer = setTimeout(() => void update.check().then(info => {
+      if (info?.available && info.latest) toast(t.update.toastAvailable(info.latest), 'primary', 'download');
+    }), 6000);
+    return () => clearTimeout(timer);
+  }, []);
+  const updateState = update.useUpdate();
   const media = music.useMediaItems();
   const customScene = appearance.scene.startsWith('custom:') ? media.find(item => `custom:${item.id}` === appearance.scene) : undefined;
   const musicState = music.useMusic();
@@ -171,6 +181,7 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
         on={overlay?.name === 'music'} onClick={() => overlay?.name === 'music' ? close() : show({ name: 'music' })} />
       <a href={link('settings')} className={`nav-item${page === 'settings' ? ' is-on' : ''}`} aria-current={page === 'settings' ? 'page' : undefined}>
         <Icon name="gear" size={19} /><span className="nav-label">{t.nav.settings}</span>
+        {updateState.info?.available && <span className="nav-dot" aria-label={t.update.navDot} />}
       </a>
     </>} />;
   const stepIndex = activeBlock ? today.plan.blocks.findIndex(b => b.id === activeBlock.id) + 1 : 0;

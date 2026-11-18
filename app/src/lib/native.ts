@@ -5,6 +5,9 @@ declare global {
       saveText(name: string, text: string): Promise<{ saved?: boolean; cancelled?: boolean; filename?: string }>;
       writeClipboard(text: string): Promise<boolean>;
       readClipboard(): Promise<string>;
+      /** GitHub updates (see lib/update.ts); absent in older shells. */
+      checkUpdate?(): Promise<import('./update.ts').UpdateInfo>;
+      installUpdate?(): Promise<{ started: boolean }>;
     };
   }
 }

@@ -102,3 +102,25 @@
 .scene-thumb.is-custom.is-on {
   box-shadow: 0 0 0 2px var(--primary), 0 0 0 5px var(--primary-soft);
 }
+
+/* 版本与更新 */
+.set-update-notes {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sp-2);
+}
+.set-notes {
+  white-space: pre-wrap;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-read);
+  color: var(--text-2);
+  max-height: 220px;
+  overflow: auto;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-inner);
+  background: var(--glass-well);
+}
+.set-update-actions {
+  justify-content: flex-start;
+  gap: var(--sp-2);
+}
