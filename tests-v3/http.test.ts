@@ -119,7 +119,7 @@ test('loopback HTTP, seven views, CAS, persisted variants and independent coach 
     assert.equal((await post('/api/coach/cancel', { id: ask.id })).status, 200);
     assert.equal((await poll(ask.id)).status, 'cancelled');
     for (const kind of ['ask', 'grade', 'weekly']) {
-      const job = await poll((await enqueue(kind, { itemId: written.id, text: 'BLv', date: '2026-11-19' })).id);
+      const job = await poll((await enqueue(kind, { itemId: written.id, question: '先观察什么？', text: 'BLv', date: '2026-11-19' })).id);
       assert.equal(job.status, 'done', kind);
       if (kind === 'grade') assert.equal(job.result.earned, 10);
     }
