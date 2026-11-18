@@ -40,6 +40,9 @@ def main():
     node = res / 'node'
     shutil.copy2(os.path.realpath(NODE), node)
     run('/usr/bin/strip', '-x', node)
+    # strip invalidates Node's signature and --deep does not re-sign executables under Resources.
+    run('/usr/bin/codesign', '--force', '--sign', '-', node)
+    run(node, '--version')
 
     # Program: server + shared engine + built front end + content.
     for name in ['server.mjs', 'package.json', 'VERSION']:

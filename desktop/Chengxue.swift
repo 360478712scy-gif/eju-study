@@ -78,7 +78,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         add("帮助", [menuItem("键盘快捷键", "/", #selector(shortcutsMenu), target: self)])
         NSApp.mainMenu = bar
     }
-    @objc func about() { NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "澄学 EJU", .applicationVersion: "3.0.0", .credits: NSAttributedString(string: "2027 年 6 月 20 日 · 第 1 回 EJU")]) }
+    @objc func about() { NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "澄学 EJU", .applicationVersion: (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "3", .credits: NSAttributedString(string: "2027 年 6 月 20 日 · 第 1 回 EJU")]) }
     @objc func navigateMenu(_ item: NSMenuItem) { command("navigate", page: Self.pages[item.tag]) }
     static let pages = ["today", "plan", "practice", "review", "mock", "notes", "insights", "settings"]
     @objc func musicMenu() { command("toggle-music") }
