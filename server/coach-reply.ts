@@ -47,49 +47,56 @@ function checkPlot(plot: Extract<CoachBlock, { type: 'plot' }>) {
 export function cleanReply(raw: unknown, modes: CoachMode[]): CoachReply {
   const r = decode(replySchema(modes), raw) as CoachReply;
   r.summary = r.summary.replace(/\s+/g, ' ');
+  // Repair what can be repaired instead of discarding the whole reply; only unsafe or broken blocks are dropped.
+  const kept: CoachBlock[] = [];
   for (const b of r.blocks) {
     switch (b.type) {
       case 'choice':
-        if (b.answer < 0 || b.answer >= b.options.length || b.feedback.length !== b.options.length) invalid();
+        if (b.answer < 0 || b.answer >= b.options.length) continue;
+        while (b.feedback.length < b.options.length) b.feedback.push('');
+        b.feedback = b.feedback.slice(0, b.options.length);
         break;
       case 'table':
-        if (b.rows.some((row) => row.length !== b.head.length)) invalid();
+        b.rows = b.rows.map((row) => [...row, ...Array(Math.max(0, b.head.length - row.length)).fill('')].slice(0, b.head.length));
         break;
       case 'plot':
-        checkPlot(b);
+        try {
+          checkPlot(b);
+        } catch {
+          continue;
+        }
         break;
       case 'widget':
-        b.html = cleanWidget(b.html);
+        try {
+          b.html = cleanWidget(b.html);
+        } catch {
+          continue;
+        }
         b.height = Math.min(640, Math.max(120, Math.round(b.height)));
         break;
       case 'actions':
-        if (
-          b.items.some((a) => (a.do === 'ask' && !a.prompt) || ((a.do === 'note' || a.do === 'practice') && !a.topic))
-        )
-          invalid();
+        b.items = b.items
+          .map((a) => (a.do === 'ask' && !a.prompt ? { ...a, prompt: a.label } : a))
+          .filter((a) => !((a.do === 'note' || a.do === 'practice') && !a.topic));
+        if (!b.items.length) continue;
         break;
       case 'steps':
-        if (r.mode !== 'reveal') invalid();
+        // Worked steps would give the solution away while the student is still thinking.
+        if (r.mode === 'hint') continue;
     }
+    kept.push(b);
   }
-  const has = (type: CoachBlock['type']) => r.blocks.some((b) => b.type === type);
-  const last = r.blocks.at(-1)!;
+  r.blocks = kept;
+  if (!r.blocks.length) invalid();
   if (r.mode === 'hint') {
-    if (!has('question') || r.blocks.filter((b) => b.type === 'hints').length !== 1 || last.type !== 'actions')
-      invalid();
-    const reveal = last.items.filter((a) => a.do === 'reveal');
-    const followups = last.items.filter((a) => a.do === 'ask');
-    if (reveal.length !== 1 || followups.length < 1 || followups.length > 2) invalid();
-    reveal[0].label = '我想看答案';
-  }
-  if (
-    r.mode === 'reveal' &&
-    (!has('steps') || !r.blocks.some((b) => b.type === 'callout' && b.tone === 'trap') || last.type !== 'question')
-  )
-    invalid();
-  if (r.mode === 'concept') {
-    const lesson = r.blocks.filter((b) => b.type !== 'actions');
-    if (lesson.length < 2 || !['choice', 'question'].includes(lesson.at(-1)!.type)) invalid();
+    let last = r.blocks.at(-1)!;
+    if (last.type !== 'actions') {
+      last = { type: 'actions', items: [] };
+      r.blocks.push(last);
+    }
+    const asks = last.items.filter((a) => a.do === 'ask').slice(0, 2);
+    const others = last.items.filter((a) => a.do !== 'ask' && a.do !== 'reveal');
+    last.items = [{ label: '我想看答案', do: 'reveal', prompt: null as unknown as string, topic: null as unknown as string }, ...asks, ...others];
   }
   return r;
 }

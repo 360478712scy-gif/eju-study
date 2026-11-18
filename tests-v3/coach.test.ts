@@ -222,19 +222,25 @@ test(
       { type: 'text', md: 'a'.repeat(4001) },
       { type: 'widget', title: 'w', height: 300, html: 'a'.repeat(WIDGET_MAX_HTML + 1) },
     ];
+    // A broken block never reaches the app: it is repaired or dropped, or (over hard limits) the reply is refused.
     for (const b of invalidBlocks) {
       set({ insert: b });
-      assert.equal((await run(concept)).error, 'invalid_output', JSON.stringify(b).slice(0, 100));
+      const r = await run(concept);
+      const sent = JSON.stringify(r.result?.blocks ?? []);
+      assert.ok(r.error === 'invalid_output' || !sent.includes(JSON.stringify(b)), JSON.stringify(b).slice(0, 100));
     }
     for (const reply of [
       { blocks: [] },
       { blocks: Array(COACH_MAX_BLOCKS + 1).fill({ type: 'question', md: '?' }) },
-      { mode: 'reveal' },
-      { blocks: [{ type: 'text', md: '漏掉了自测' }] },
       { summary: 'x'.repeat(241) },
     ]) {
       set({ reply });
       assert.equal((await run(concept)).error, 'invalid_output');
+    }
+    // Structural slips are tolerated rather than shown to the student as a failure.
+    for (const reply of [{ blocks: [{ type: 'text', md: '漏掉了自测' }] }]) {
+      set({ reply });
+      assert.notEqual((await run(concept)).status, 'failed');
     }
     for (const override of [
       { reply: { summary: '答案是②' } },

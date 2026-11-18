@@ -183,7 +183,9 @@ function run(
                 : 'cli_failed',
           );
         if (fs.statSync(out).size > 1024 * 1024) throw new Error('invalid_output');
-        const value = JSON.parse(fs.readFileSync(out, 'utf8'));
+        const raw = fs.readFileSync(out, 'utf8');
+        if (process.env.EJU_COACH_DUMP) fs.appendFileSync(process.env.EJU_COACH_DUMP, raw + '\n');
+        const value = JSON.parse(raw);
         if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error();
         resolve(value);
       } catch (e) {
