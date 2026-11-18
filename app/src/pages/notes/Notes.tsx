@@ -83,7 +83,7 @@ function NoteBody({ topic, quick, close }: { topic: string; quick?: boolean; clo
     </div>}
     <div className="hstack notes-actions">
       {quick ? <Button icon="notes" onClick={() => { close?.(); go(noteLink(topic)); }}>{t.notes.openInNotesPageBtn}</Button>
-        : <Button icon="play" variant="primary" disabled={!items.length} onClick={() => void startItems(items.slice(0, 5).map(it => it.id), 'drill')}>{t.notes.practiceFromNoteBtn(entry.name)}</Button>}
+        : <Button icon="practice" variant="primary" disabled={!items.length} onClick={() => void startItems(items.slice(0, 5).map(it => it.id), 'drill')}>{t.notes.practiceFromNoteBtn(entry.name)}</Button>}
       <Button icon="coach" onClick={() => { close?.(); openCoach({ topic, page: t.nav.notes }); }}>{t.notes.askCoachFromNoteBtn}</Button>
     </div>
   </Glass>;

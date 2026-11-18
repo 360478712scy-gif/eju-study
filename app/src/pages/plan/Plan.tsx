@@ -134,7 +134,7 @@ export function Plan() {
             setDestination(dateRange(date, addDays(date, 14)).find(d => d !== selected && d < profile.examDate && !budgetFor(state, d, date)) ?? '');
             setMoving(true);
           }}>{t.plan.moveDayTasksBtn}</Button>}
-          {!!catchUp.length && <Button size="sm" icon="play" onClick={() => void startItems(catchUp, 'drill')}>{t.plan.catchUp}</Button>}
+          {!!catchUp.length && <Button size="sm" icon="practice" onClick={() => void startItems(catchUp, 'drill')}>{t.plan.catchUp}</Button>}
           {selected === date && details.blocks.find(b => b.status === 'todo') && <Button size="sm" variant="ghost" onClick={async () => {
             const block = details.blocks.find(b => b.status === 'todo');
             if (block) await action({ type: 'skipBlock', date, blockId: block.id });

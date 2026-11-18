@@ -3,15 +3,15 @@ import { practiceView } from '@shared/selectors.ts';
 import { daysBetween } from '@shared/dates.ts';
 import type { AppState, ContentBundle } from '@shared/types.ts';
 import { t } from './copy/index.ts';
-import { Aside, Dock, NavPanel, Page, Shell, type NavItem } from './shell/Shell.tsx';
+import { Aside, AssistantFab, NavPanel, Page, Shell, StudyBar, type NavItem } from './shell/Shell.tsx';
 import { Button, Empty, Field, IconButton, Kbd, List, Modal, Row, Section, Sheet, SubjectGlyph, Toaster } from './ui/ui.tsx';
 import { RichText } from './ui/RichText.tsx';
 import { StudyProvider, useStudy, type CoachContext } from './lib/study.tsx';
 import { blockTitle, schoolNames } from './lib/model.ts';
-import { go, isTyping, itemLink, link, noteLink, parseRoute, routes, type SectionName } from './lib/navigation.ts';
+import { go, isTyping, link, noteLink, parseRoute, routes, type SectionName } from './lib/navigation.ts';
 import { isNative, onShellCommand, SHELL_PAGES } from './lib/native.ts';
 import { setMusic, tracks, useMusic, type Appearance } from './lib/preferences.ts';
-import { Today, TodayQueue } from './pages/today/Today.tsx';
+import { Today } from './pages/today/Today.tsx';
 import { Plan } from './pages/plan/Plan.tsx';
 import { Practice, PracticeDetail, defaultPractice } from './pages/practice/Practice.tsx';
 import { Review } from './pages/review/Review.tsx';
@@ -47,7 +47,7 @@ export function App({ state, bundle, hash, date, appearance }: {
 
 function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Overlay; close: () => void; show: (overlay: Overlay) => void }) {
   const { state, bank, date, active, activeBlock, today, queue, paused, seconds, appearance,
-    openCoach, openSearch, openQuickNote, startToday, action, openSession, completeManual, togglePause } = useStudy();
+    openCoach, openSearch, startToday, action, openSession, completeManual, togglePause } = useStudy();
   const { name, id, params } = parseRoute(hash);
   const isSession = name === 'session';
   const onboard = !state.profile.onboarded || name === 'onboarding';
@@ -153,17 +153,6 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     : active?.mock ? (active.mock.kind === 'math' ? t.mock.ejuMathTitle : active.mock.kind === 'science' ? t.mock.ejuScienceTitle : t.mock.schoolRowTitle)
     : active ? t.nav.practice : '';
   const answered = active ? Object.values(active.answers).filter(answer => answer.submitted || answer.response != null).length : 0;
-  const nextBlock = today.plan.blocks.find(b => b.status === 'todo');
-  const pendingMinutes = today.plan.blocks.filter(b => b.status === 'todo' || b.status === 'active').reduce((sum, block) => sum + block.minutes, 0);
-  const previousSession = today.plan.blocks.slice().reverse().flatMap(block => {
-    if (block.status !== 'done' || block.id === activeBlock?.id) return [];
-    const saved = Object.values(state.sessions).find(s => s.blockId === block.id && s.finishedAt);
-    return saved ? [saved] : [];
-  })[0];
-  const idleLabel = today.next.code === 'day_complete' ? t.today.completed
-    : nextBlock ? today.plan.blocks.some(b => b.status !== 'todo') ? t.nav.dockResumeToday(pendingMinutes)
-      : pendingMinutes === 120 ? t.nav.dockStartToday : t.today.startFor(t.time.durationMin(pendingMinutes))
-      : t.nav.dockRestDay;
   const currentTime = active?.exam && active.timeLimitSec != null && !active.sealedAt
     ? Math.max(0, Math.ceil((Date.parse(active.startedAt) + active.timeLimitSec * 1000 - dockNow) / 1000))
     : activeBlock ? Math.max(0, activeBlock.minutes * 60 - seconds) : seconds;
@@ -177,32 +166,33 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
       <span className="nav-goal-text"><span className="nav-goal-title">{state.profile.schools.length
         ? state.profile.schools.length === Object.keys(schoolNames).length ? t.nav.targetSchoolLabel : state.profile.schools.map(school => schoolNames[school]).join(' · ')
         : t.nav.settings}</span><span className="nav-goal-sub">{t.nav.targetSubjectsLabel}</span></span>
-    </a><IconButton icon="settings" label={t.nav.settings} on={page === 'settings'} onClick={() => go(link('settings'))} /></>} />;
-  const dock = <Dock running={Boolean(active || activeBlock)} paused={paused || (!!active && !isSession)} title={activeTitle}
-    sub={active ? t.session.questionProgress(Math.min(active.index + 1, active.itemIds.length), active.itemIds.length) : activeBlock && t.time.minutes(activeBlock.minutes)}
-    time={t.time.timerClock(currentTime)} glyph={activeBlock && <SubjectGlyph subject={activeBlock.subject} size="sm" />}
+    </a><IconButton icon="music" label={t.nav.musicToggle} on={state.settings.musicEnabled} onClick={() => show({ name: 'music' })} />
+    <IconButton icon="settings" label={t.nav.settings} on={page === 'settings'} onClick={() => go(link('settings'))} /></>} />;
+  const stepIndex = activeBlock ? today.plan.blocks.findIndex(b => b.id === activeBlock.id) + 1 : 0;
+  const bar = (active && !isSession) || activeBlock ? <StudyBar
+    label={t.nav.barStudying}
+    glyph={activeBlock ? <SubjectGlyph subject={activeBlock.subject} size="sm" /> : undefined}
+    title={activeTitle}
+    sub={active ? t.session.questionProgress(Math.min(active.index + 1, active.itemIds.length), active.itemIds.length)
+      : activeBlock ? t.nav.barStep(stepIndex, today.plan.blocks.length) : undefined}
+    time={active?.exam || activeBlock ? t.nav.barRemaining(t.time.timerClock(currentTime)) : t.time.timerClock(currentTime)}
     progress={active ? answered / active.itemIds.length : activeBlock ? seconds / (activeBlock.minutes * 60) : undefined}
-    showToggle={!active?.exam} onToggle={() => active ? openSession(active) : togglePause()}
-    onPrev={previousSession ? () => go(itemLink(previousSession.id)) : undefined}
-    onNext={activeBlock && !active ? () => void completeManual() : active ? () => go(itemLink(active.id) + '?end=1') : undefined}
-    onOpen={() => active ? openSession(active) : go(link('today'))}
-    startLabel={idleLabel} onStart={nextBlock ? () => void startToday() : today.next.code === 'rest' ? () => go(link('review')) : undefined}
-    labels={{ prev: t.nav.dockPrevTask, next: t.nav.dockNextTask, play: t.nav.dockResume, pause: t.nav.dockPause }}
-    tools={[
-      { icon: 'coach', label: t.nav.dockCoach, on: overlay?.name === 'coach', onClick: openCoachDefault },
-      { icon: 'notes', label: t.nav.dockQuickNotes, on: overlay?.name === 'notes', onClick: () => openQuickNote(topic) },
-      { icon: 'music', label: t.nav.dockMusic, on: state.settings.musicEnabled, onClick: () => show({ name: 'music' }) },
-    ]} />;
+    paused={paused || (!!active && !isSession)}
+    onToggle={!active && activeBlock ? togglePause : undefined}
+    toggleLabels={{ pause: t.nav.barPauseBtn, resume: t.nav.barResumeBtn }}
+    primary={active ? { label: t.nav.barOpenBtn, onClick: () => openSession(active) }
+      : activeBlock ? { label: t.nav.barFinishBtn, onClick: () => void completeManual() } : undefined} /> : undefined;
+  const fab = <AssistantFab label={t.nav.fabCoach} kbd="/" on={overlay?.name === 'coach'} onClick={openCoachDefault} />;
   const main: Record<SectionName, ReactNode> = {
     today: <Today />, plan: <Plan />, practice: <Practice selection={practice} setSelection={setPractice} />,
     review: <Review key={params.get('deck')} cardsOnly={params.get('deck') === 'cards'} shortcuts={!overlay} />,
     mock: <Mock reportId={params.get('report')} />, notes: <Notes topic={params.get('topic') ?? undefined} />,
     insights: <Insights />, settings: <Settings />,
   };
-  const frame = (body: ReactNode, currentDock?: ReactNode) => <Shell nav={nav} focus={isSession || immersive}
+  const frame = (body: ReactNode) => <Shell nav={nav} focus={isSession || immersive}
     scene={appearance.scene} tone={state.settings.theme} parallax={appearance.parallax} weather={appearance.particles ? 'auto' : 'off'}
-    aside={!isSession && !immersive ? page === 'today' ? <TodayQueue /> : page === 'practice' && practice.tab === 'topic' ? <PracticeDetail key={practice.topic} topic={practice.topic} /> : undefined : undefined}
-    dock={currentDock ?? dock}>{body}</Shell>;
+    aside={!isSession && !immersive && page === 'practice' && practice.tab === 'topic' ? <PracticeDetail key={practice.topic} topic={practice.topic} /> : undefined}
+    bar={bar} fab={fab}>{body}</Shell>;
 
   return <>
     {isSession ? <Session id={id} selectedItem={params.get('item')} initialOverlay={params.get('end') === '1' ? 'finish' : params.get('overview') === '1' ? 'overview' : undefined}

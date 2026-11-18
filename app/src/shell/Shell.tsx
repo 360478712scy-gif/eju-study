@@ -1,7 +1,7 @@
-// Shell: scene + floating panels (nav · main · optional aside) + the dock.
+// Shell: scene + glass panels (nav · main · optional detail column), a study status strip and the assistant button.
 // Pages render into <Page>; a page that has context to show passes `aside`.
 import type { ReactNode } from 'react';
-import { Badge, Bar, Icon, IconButton, Glass, cx, type IconName } from '../ui/ui.tsx';
+import { Badge, Bar, Button, Icon, Glass, Tooltip, cx, type IconName } from '../ui/ui.tsx';
 import { Scene, type SceneMode, type Weather } from './Scene.tsx';
 import './shell.css';
 
@@ -19,7 +19,8 @@ export function Shell({
   nav,
   children,
   aside,
-  dock,
+  bar,
+  fab,
   focus,
   scene = 'auto',
   weather = 'auto',
@@ -29,7 +30,8 @@ export function Shell({
   nav: ReactNode;
   children: ReactNode;
   aside?: ReactNode;
-  dock?: ReactNode;
+  bar?: ReactNode;
+  fab?: ReactNode;
   focus?: boolean;
   scene?: SceneMode;
   weather?: Weather;
@@ -45,6 +47,7 @@ export function Shell({
           {nav}
         </Glass>
         <Glass as="main" className="pane pane-main">
+          {bar && !focus && <div className="study-bar-slot">{bar}</div>}
           {children}
         </Glass>
         {aside && (
@@ -53,7 +56,7 @@ export function Shell({
           </Glass>
         )}
       </div>
-      {dock}
+      {fab}
     </>
   );
 }
@@ -77,7 +80,9 @@ export function NavPanel({
   return (
     <div className="nav">
       <div className="nav-brand">
-        <span className="nav-mark" aria-hidden />
+        <span className="nav-mark" aria-hidden>
+          <BrandMark />
+        </span>
         <div>
           <div className="nav-name">{brand}</div>
           {sub && <div className="nav-sub">{sub}</div>}
@@ -166,91 +171,85 @@ export function Aside({ title, actions, children }: { title?: ReactNode; actions
   );
 }
 
-/** The floating capsule at the bottom. Running: transport + now-playing; idle: a start shortcut. */
-export function Dock({
-  running,
-  paused,
+/** Study status strip: shown at the top of the main pane while a task is running (not in the question player). */
+export function StudyBar({
+  label,
   title,
   sub,
   time,
   progress,
   glyph,
-  onPrev,
+  paused,
   onToggle,
-  onNext,
-  onOpen,
-  startLabel,
-  onStart,
-  tools,
-  labels,
-  showToggle = true,
+  toggleLabels,
+  primary,
 }: {
-  running: boolean;
-  paused?: boolean;
-  title?: ReactNode;
+  label: ReactNode;
+  title: ReactNode;
   sub?: ReactNode;
   time?: ReactNode;
   progress?: number;
   glyph?: ReactNode;
-  onPrev?: () => void;
+  paused?: boolean;
   onToggle?: () => void;
-  onNext?: () => void;
-  onOpen?: () => void;
-  startLabel?: ReactNode;
-  onStart?: () => void;
-  tools?: { icon: IconName; label: string; on?: boolean; onClick: () => void; kbd?: string }[];
-  showToggle?: boolean;
-  labels: { prev: string; next: string; play: string; pause: string };
+  toggleLabels: { pause: string; resume: string };
+  primary?: { label: string; onClick: () => void };
 }) {
   return (
-    <div className="glass-float dock" role="toolbar">
-      {running ? (
-        <>
-          <div className="dock-transport">
-            <IconButton icon="prev" label={labels.prev} onClick={onPrev} disabled={!onPrev} />
-            {showToggle && <button type="button" className="icon-btn dock-play" aria-label={paused ? labels.play : labels.pause} onClick={onToggle} style={{ '--s': '40px' } as React.CSSProperties}>
-              <Icon name={paused ? 'play' : 'pause'} size={20} />
-            </button>}
-            <IconButton icon="next" label={labels.next} onClick={onNext} disabled={!onNext} />
-          </div>
-          <button type="button" className="dock-now" onClick={onOpen} disabled={!onOpen}>
-            {glyph}
-            <span className="dock-now-text">
-              <span className="dock-now-title" style={{ display: 'block' }}>
-                {title}
-              </span>
-              {sub && (
-                <span className="dock-now-sub" style={{ display: 'block' }}>
-                  {sub}
-                </span>
-              )}
-            </span>
-            {time && <span className="dock-now-time num">{time}</span>}
-            {progress != null && (
-              <span className="dock-progress">
-                <span style={{ width: `${Math.max(0, Math.min(1, progress)) * 100}%` }} />
-              </span>
-            )}
-          </button>
-        </>
-      ) : (
-        startLabel && (
-          <button type="button" className="btn btn-ghost dock-start" onClick={onStart} disabled={!onStart}>
-            <span className="round-play is-primary" style={{ '--s': '30px' } as React.CSSProperties} aria-hidden>
-              <Icon name="play" size={12} />
-            </span>
-            {startLabel}
-          </button>
-        )
+    <div className={cx('study-bar', paused && 'is-paused')} role="status">
+      <span className="study-bar-pulse" aria-hidden />
+      <span className="study-bar-label">{label}</span>
+      {glyph}
+      <span className="study-bar-text">
+        <span className="study-bar-title">{title}</span>
+        {sub && <span className="study-bar-sub">{sub}</span>}
+      </span>
+      {progress != null && (
+        <span className="study-bar-progress" aria-hidden>
+          <span style={{ width: `${Math.max(0, Math.min(1, progress)) * 100}%` }} />
+        </span>
       )}
-      {tools && tools.length > 0 && (
-        <>
-          <span className="dock-sep" />
-          {tools.map((t) => (
-            <IconButton key={t.icon} icon={t.icon} label={t.label} on={t.on} kbd={t.kbd} onClick={t.onClick} />
-          ))}
-        </>
+      {time && <span className="study-bar-time num">{time}</span>}
+      {onToggle && (
+        <Button size="sm" variant="ghost" icon={paused ? 'arrow-right' : 'clock'} onClick={onToggle}>
+          {paused ? toggleLabels.resume : toggleLabels.pause}
+        </Button>
+      )}
+      {primary && (
+        <Button size="sm" variant="primary" onClick={primary.onClick}>
+          {primary.label}
+        </Button>
       )}
     </div>
+  );
+}
+
+/** Floating assistant button (bottom right). */
+export function AssistantFab({ label, kbd, on, onClick }: { label: string; kbd?: string; on?: boolean; onClick: () => void }) {
+  return (
+    <Tooltip label={label} kbd={kbd} side="left">
+      <button type="button" className={cx('glass-float assistant-fab', on && 'is-on')} aria-label={label} aria-pressed={on} onClick={onClick}>
+        <Icon name="coach" size={22} />
+      </button>
+    </Tooltip>
+  );
+}
+
+/** The app mark: a frosted sheet behind an opaque worksheet with a check — the same as the app icon. */
+export function BrandMark({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden>
+      <defs>
+        <linearGradient id="bm-bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#3f6fd8" />
+          <stop offset="1" stopColor="#1b2d63" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="9" fill="url(#bm-bg)" />
+      <rect x="9.5" y="5.5" width="15" height="18" rx="3.2" fill="rgba(255,255,255,0.28)" transform="rotate(10 17 14.5)" />
+      <rect x="7" y="8" width="15" height="18" rx="3.2" fill="#f5f8ff" />
+      <path d="M10.2 13.2h8.6M10.2 16.6h5.6" stroke="#b8c7e6" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M11 21.2l2.4 2.4 5.2-5.6" stroke="#2f6fea" strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }

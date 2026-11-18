@@ -57,7 +57,7 @@ export function PracticeDetail({ topic, close }: { topic: string; close?: () => 
       </div>;
     })}
     <div className="vstack practice-cta">
-      <Button variant="primary" block icon="play" disabled={!practice.length} onClick={() => void startItems(practice.map(it => it.id), 'drill')}>{t.practice.startTopicPracticeBtn(info.name)}</Button>
+      <Button variant="primary" block icon="practice" disabled={!practice.length} onClick={() => void startItems(practice.map(it => it.id), 'drill')}>{t.practice.startTopicPracticeBtn(info.name)}</Button>
       {practice.length ? <span className="t-3">{t.common.questionCount(practice.length)} · {t.time.minutes(itemMinutes(practice))}</span> : <span className="t-3">{t.empty.practiceFilterEmpty}</span>}
       <Button block icon="notes" onClick={() => go(noteLink(topic))}>{t.practice.openTopicNoteBtn}</Button>
     </div>
@@ -116,7 +116,7 @@ export function Practice({ selection, setSelection }: { selection: PracticeSelec
       <Sheet open={showDetails} label={t.practice.topicHeading} onClose={() => setShowDetails(false)}>
         <PracticeDetail key={topic} topic={topic} close={() => setShowDetails(false)} />
       </Sheet>
-      {!!weak.length && <Section><Button icon="play" onClick={() => void startItems(weak.map(it => it.id), 'drill')}>{t.practice.quickWeakSetBtn}</Button></Section>}
+      {!!weak.length && <Section><Button icon="practice" onClick={() => void startItems(weak.map(it => it.id), 'drill')}>{t.practice.quickWeakSetBtn}</Button></Section>}
     </> : <Section title={tab === 'paper' ? t.practice.tabPapers : t.practice.tabSchools} desc={tab === 'paper' ? t.practice.paperMockTip : t.practice.schoolViewIntro}>
       {!((tab === 'paper' ? papers : school).length) && <Empty title={t.practice.noPapers} />}
       <div className="grid grid-2">
@@ -124,14 +124,14 @@ export function Practice({ selection, setSelection }: { selection: PracticeSelec
           const official = /^(\d{4})_([12])$/.exec(key);
           return <Card key={key} title={official ? t.practice.paperTitle(Number(official[1]), Number(official[2]) as 1 | 2) : key}
             sub={t.practice.paperProgress(practiced(items, state), items.length)}>
-            <Button icon="play" size="sm" onClick={() => void startItems(items.slice().sort((a,b) => (a.order ?? 0) - (b.order ?? 0)).map(it => it.id), 'drill')}>{t.practice.startPaperDrillBtn}</Button>
+            <Button icon="practice" size="sm" onClick={() => void startItems(items.slice().sort((a,b) => (a.order ?? 0) - (b.order ?? 0)).map(it => it.id), 'drill')}>{t.practice.startPaperDrillBtn}</Button>
           </Card>;
         }) : school.map(paper => {
           const items = paper.itemIds.flatMap(id => { const item = bank.byId.get(id); return item?.subject === subject ? [item] : []; });
           return <Card key={paper.session} title={paper.school ? schoolNames[paper.school] : paper.label} sub={paper.label}>
             <div className="hstack practice-difficulty"><Chip tone="school" sm>{items.every(it => schoolPurpose(it) === 'exam_style') ? t.practice.sourceKindSchoolStyle : t.practice.sourceKindBoost}</Chip>
               {items.some(it => it.format === 'written') && <Chip sm>{t.practice.writtenFormatTag}</Chip>}</div>
-            <Button icon="play" size="sm" onClick={() => void startItems(items.map(it => it.id), 'drill')}>{t.practice.startSchoolPracticeBtn}</Button>
+            <Button icon="practice" size="sm" onClick={() => void startItems(items.map(it => it.id), 'drill')}>{t.practice.startSchoolPracticeBtn}</Button>
           </Card>;
         })}
       </div>

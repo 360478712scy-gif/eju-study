@@ -1,5 +1,5 @@
 import './lib/qaClock.ts';
-import { StrictMode, lazy, Suspense, useEffect, useState } from 'react';
+import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { AppState, ContentBundle } from '@shared/types.ts';
 import './styles/tokens.css';
@@ -10,7 +10,6 @@ import { fetchBank, fetchState } from './lib/api.ts';
 import { useHash } from './lib/navigation.ts';
 import { readAppearance } from './lib/preferences.ts';
 
-const Proto = lazy(() => import('./proto/ProtoApp.tsx').then(exports => ({ default: exports.Proto })));
 
 function LiveApp({ hash }: { hash: string }) {
   const [loading, setLoading] = useState(0);
@@ -33,7 +32,7 @@ function LiveApp({ hash }: { hash: string }) {
 
 function Root() {
   const hash = useHash();
-  return hash.startsWith('#/proto/') ? <Suspense fallback={<Startup />}><Proto /></Suspense> : <LiveApp hash={hash} />;
+  return <LiveApp hash={hash} />;
 }
 
 document.title = t.nav.appTitle;

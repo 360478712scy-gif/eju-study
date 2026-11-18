@@ -1,5 +1,6 @@
-// 澄学 EJU 3.0 app icon: a frosted orb inside a ring of radial ticks over a night sky.
-// Full-bleed square (macOS applies its own mask). Usage: swift make_icon.swift <out.png> [size]
+// 澄学 EJU 3.0 app icon: a frosted (translucent) glass sheet behind an opaque glass worksheet with a check —
+// the app's two materials, and a study mark. Full-bleed square; macOS applies its own mask.
+// Usage: swift make_icon.swift <out.png> [size]
 import AppKit
 import CoreGraphics
 
@@ -12,81 +13,52 @@ let ctx = CGContext(data: nil, width: Int(S), height: Int(S), bitsPerComponent: 
 ctx.translateBy(x: 0, y: S); ctx.scaleBy(x: 1, y: -1) // top-left origin
 func c(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat = 1) -> CGColor { CGColor(colorSpace: cs, components: [r / 255, g / 255, b / 255, a])! }
 func grad(_ stops: [(CGFloat, CGColor)]) -> CGGradient { CGGradient(colorsSpace: cs, colors: stops.map { $0.1 } as CFArray, locations: stops.map { $0.0 })! }
-
+func rounded(_ r: CGRect, _ radius: CGFloat) -> CGPath { CGPath(roundedRect: r, cornerWidth: radius, cornerHeight: radius, transform: nil) }
 let full = CGRect(x: 0, y: 0, width: S, height: S)
-// sky
-ctx.setFillColor(c(14, 20, 44)); ctx.fill(full)
-ctx.drawLinearGradient(grad([(0, c(38, 62, 122)), (0.55, c(18, 28, 64)), (1, c(8, 11, 26))]), start: CGPoint(x: S * 0.3, y: 0), end: CGPoint(x: S * 0.7, y: S), options: [.drawsBeforeStartLocation, .drawsAfterEndLocation])
-// aurora-ish glow behind the orb
-ctx.drawRadialGradient(grad([(0, c(110, 160, 255, 0.55)), (0.45, c(70, 110, 230, 0.18)), (1, c(40, 60, 160, 0))]), startCenter: CGPoint(x: 512 * k, y: 500 * k), startRadius: 0, endCenter: CGPoint(x: 512 * k, y: 500 * k), endRadius: 520 * k, options: [])
-ctx.drawRadialGradient(grad([(0, c(255, 190, 220, 0.16)), (1, c(255, 190, 220, 0))]), startCenter: CGPoint(x: 830 * k, y: 860 * k), startRadius: 0, endCenter: CGPoint(x: 830 * k, y: 860 * k), endRadius: 420 * k, options: [])
 
-// snow / stars (deterministic)
-var seed: UInt64 = 0x9E3779B97F4A7C15
-func rnd() -> CGFloat { seed = seed &* 6364136223846793005 &+ 1442695040888963407; return CGFloat((seed >> 33) % 100000) / 100000 }
-for _ in 0..<90 {
-  let x = rnd() * S, y = rnd() * S, r = (0.6 + rnd() * 2.6) * k, a = 0.12 + rnd() * 0.5
-  let d = hypot(x - 512 * k, y - 512 * k)
-  if d < 420 * k { continue }
-  ctx.setFillColor(c(255, 255, 255, a))
-  ctx.fillEllipse(in: CGRect(x: x - r, y: y - r, width: r * 2, height: r * 2))
-}
+// background: deep blue with a soft light from the top-left
+ctx.setFillColor(c(22, 36, 86)); ctx.fill(full)
+ctx.drawLinearGradient(grad([(0, c(70, 116, 226)), (0.55, c(34, 58, 140)), (1, c(16, 26, 70))]), start: .zero, end: CGPoint(x: S, y: S), options: [.drawsBeforeStartLocation, .drawsAfterEndLocation])
+ctx.drawRadialGradient(grad([(0, c(150, 200, 255, 0.45)), (1, c(150, 200, 255, 0))]), startCenter: CGPoint(x: 260 * k, y: 200 * k), startRadius: 0, endCenter: CGPoint(x: 260 * k, y: 200 * k), endRadius: 620 * k, options: [])
 
-let C = CGPoint(x: 512 * k, y: 512 * k)
-// tick ring
-let ticks = 120, lit = 46
+// back sheet: frosted translucent glass, rotated
+ctx.saveGState()
+ctx.translateBy(x: 560 * k, y: 470 * k); ctx.rotate(by: 0.17)
+let back = CGRect(x: -230 * k, y: -290 * k, width: 460 * k, height: 580 * k)
+ctx.setShadow(offset: CGSize(width: 0, height: 20 * k), blur: 60 * k, color: c(0, 8, 40, 0.12))
+ctx.addPath(rounded(back, 64 * k)); ctx.setFillColor(c(255, 255, 255, 0.22)); ctx.fillPath()
+ctx.setShadow(offset: .zero, blur: 0, color: nil)
+ctx.addPath(rounded(back, 64 * k)); ctx.clip()
+ctx.drawLinearGradient(grad([(0, c(255, 255, 255, 0.32)), (0.5, c(255, 255, 255, 0.08)), (1, c(255, 255, 255, 0.16))]), start: CGPoint(x: back.minX, y: back.minY), end: CGPoint(x: back.maxX, y: back.maxY), options: [])
+ctx.resetClip()
+ctx.addPath(rounded(back.insetBy(dx: 1.5 * k, dy: 1.5 * k), 63 * k)); ctx.setStrokeColor(c(255, 255, 255, 0.55)); ctx.setLineWidth(3 * k); ctx.strokePath()
+ctx.restoreGState()
+
+// front sheet: opaque glass worksheet
+let front = CGRect(x: 250 * k, y: 290 * k, width: 460 * k, height: 580 * k)
+ctx.saveGState()
+ctx.setShadow(offset: CGSize(width: 0, height: 30 * k), blur: 70 * k, color: c(0, 6, 36, 0.5))
+ctx.addPath(rounded(front, 64 * k)); ctx.setFillColor(c(246, 249, 255)); ctx.fillPath()
+ctx.restoreGState()
+ctx.saveGState()
+ctx.addPath(rounded(front, 64 * k)); ctx.clip()
+ctx.drawLinearGradient(grad([(0, c(255, 255, 255)), (1, c(226, 234, 250))]), start: CGPoint(x: front.minX, y: front.minY), end: CGPoint(x: front.minX, y: front.maxY), options: [])
+ctx.restoreGState()
+ctx.addPath(rounded(front.insetBy(dx: 1.5 * k, dy: 1.5 * k), 63 * k)); ctx.setStrokeColor(c(255, 255, 255, 0.9)); ctx.setLineWidth(3 * k); ctx.strokePath()
+
+// ruled lines
 ctx.setLineCap(.round)
-for i in 0..<ticks {
-  let a = CGFloat(i) / CGFloat(ticks) * .pi * 2 - .pi / 2
-  let long = i % 10 == 0
-  let r1 = 338 * k, r2 = (long ? 392 : 376) * k
-  let p1 = CGPoint(x: C.x + cos(a) * r1, y: C.y + sin(a) * r1)
-  let p2 = CGPoint(x: C.x + cos(a) * r2, y: C.y + sin(a) * r2)
-  ctx.saveGState()
-  if i < lit {
-    ctx.setShadow(offset: .zero, blur: 14 * k, color: c(140, 200, 255, 0.9))
-    ctx.setStrokeColor(c(214, 236, 255, 0.98))
-    ctx.setLineWidth((long ? 9 : 7) * k)
-  } else {
-    ctx.setStrokeColor(c(255, 255, 255, long ? 0.3 : 0.18))
-    ctx.setLineWidth((long ? 8 : 6) * k)
-  }
-  ctx.move(to: p1); ctx.addLine(to: p2); ctx.strokePath()
-  ctx.restoreGState()
-}
+ctx.setStrokeColor(c(178, 196, 230)); ctx.setLineWidth(26 * k)
+ctx.move(to: CGPoint(x: 330 * k, y: 420 * k)); ctx.addLine(to: CGPoint(x: 630 * k, y: 420 * k)); ctx.strokePath()
+ctx.move(to: CGPoint(x: 330 * k, y: 510 * k)); ctx.addLine(to: CGPoint(x: 540 * k, y: 510 * k)); ctx.strokePath()
 
-// orb shadow
-let R = 262 * k
+// check mark
 ctx.saveGState()
-ctx.setShadow(offset: CGSize(width: 0, height: 34 * k), blur: 70 * k, color: c(0, 4, 20, 0.7))
-ctx.setFillColor(c(30, 40, 70))
-ctx.fillEllipse(in: CGRect(x: C.x - R, y: C.y - R, width: R * 2, height: R * 2))
+ctx.setShadow(offset: CGSize(width: 0, height: 8 * k), blur: 20 * k, color: c(40, 100, 240, 0.45))
+ctx.setLineJoin(.round); ctx.setLineCap(.round)
+ctx.setStrokeColor(c(44, 104, 236)); ctx.setLineWidth(52 * k)
+ctx.move(to: CGPoint(x: 352 * k, y: 676 * k)); ctx.addLine(to: CGPoint(x: 440 * k, y: 762 * k)); ctx.addLine(to: CGPoint(x: 612 * k, y: 580 * k)); ctx.strokePath()
 ctx.restoreGState()
-
-// orb body
-ctx.saveGState()
-ctx.addEllipse(in: CGRect(x: C.x - R, y: C.y - R, width: R * 2, height: R * 2)); ctx.clip()
-let hl = CGPoint(x: C.x - R * 0.36, y: C.y - R * 0.44)
-ctx.drawRadialGradient(grad([(0, c(255, 255, 255)), (0.16, c(226, 236, 252)), (0.42, c(150, 168, 204)), (0.74, c(58, 72, 108)), (1, c(16, 22, 42))]), startCenter: hl, startRadius: 0, endCenter: C, endRadius: R * 1.08, options: [.drawsAfterEndLocation])
-// cool reflection lower right
-ctx.drawRadialGradient(grad([(0, c(120, 175, 255, 0.55)), (1, c(120, 175, 255, 0))]), startCenter: CGPoint(x: C.x + R * 0.5, y: C.y + R * 0.62), startRadius: 0, endCenter: CGPoint(x: C.x + R * 0.5, y: C.y + R * 0.62), endRadius: R * 0.8, options: [])
-// frosted bands
-ctx.setBlendMode(.screen)
-ctx.drawLinearGradient(grad([(0, c(255, 255, 255, 0)), (0.5, c(255, 255, 255, 0.08)), (1, c(255, 255, 255, 0))]), start: CGPoint(x: C.x - R, y: C.y + R * 0.1), end: CGPoint(x: C.x + R, y: C.y - R * 0.3), options: [])
-ctx.setBlendMode(.normal)
-// soft specular highlight (elliptical radial)
-ctx.saveGState()
-ctx.translateBy(x: hl.x + R * 0.02, y: hl.y + R * 0.02); ctx.rotate(by: -0.5); ctx.scaleBy(x: 1.0, y: 0.62)
-ctx.setBlendMode(.screen)
-ctx.drawRadialGradient(grad([(0, c(255, 255, 255, 0.85)), (0.35, c(255, 255, 255, 0.35)), (1, c(255, 255, 255, 0))]), startCenter: .zero, startRadius: 0, endCenter: .zero, endRadius: R * 0.42, options: [])
-ctx.restoreGState()
-// inner shade bottom
-ctx.drawRadialGradient(grad([(0.7, c(0, 0, 0, 0)), (1, c(0, 6, 24, 0.5))]), startCenter: CGPoint(x: C.x - R * 0.2, y: C.y - R * 0.25), startRadius: 0, endCenter: C, endRadius: R, options: [])
-ctx.restoreGState()
-// rim
-ctx.setStrokeColor(c(220, 235, 255, 0.5))
-ctx.setLineWidth(3 * k)
-ctx.strokeEllipse(in: CGRect(x: C.x - R, y: C.y - R, width: R * 2, height: R * 2).insetBy(dx: 1.5 * k, dy: 1.5 * k))
 
 let img = ctx.makeImage()!
 let rep = NSBitmapImageRep(cgImage: img)

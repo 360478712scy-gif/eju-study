@@ -142,32 +142,6 @@ export function IconButton({
   );
 }
 
-export function RoundPlay({
-  playing,
-  onClick,
-  label,
-  size = 52,
-  primary,
-}: {
-  playing?: boolean;
-  onClick?: () => void;
-  label: string;
-  size?: number;
-  primary?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      className={cx('round-play', primary && 'is-primary', playing && 'is-pause')}
-      style={{ '--s': `${size}px` } as CSSProperties}
-      aria-label={label}
-      onClick={onClick}
-    >
-      <Icon name={playing ? 'pause' : 'play'} size={Math.round(size * 0.4)} />
-    </button>
-  );
-}
-
 /* ───────── chips, badges ───────── */
 
 export function Chip({
@@ -315,75 +289,6 @@ export function Ring({ value, max = 1, size = 44, stroke = 4, tone, children }: 
       </svg>
       {children}
     </span>
-  );
-}
-
-/** The frosted orb with a ring of radial ticks — the visual centre of 今天. `ticks` = total, `lit` = done, `now` = current index. */
-export function Orb({
-  size = 220,
-  ticks = 120,
-  lit = 0,
-  now,
-  value,
-  unit,
-  children,
-}: {
-  size?: number;
-  ticks?: number;
-  lit?: number;
-  now?: number;
-  value?: ReactNode;
-  unit?: ReactNode;
-  children?: ReactNode;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const move = (e: PointerEvent) => {
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
-      const y = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
-      el.style.setProperty('--hx', String(Math.max(-1, Math.min(1, x * 2))));
-      el.style.setProperty('--hy', String(Math.max(-1, Math.min(1, y * 2))));
-    };
-    window.addEventListener('pointermove', move, { passive: true });
-    return () => window.removeEventListener('pointermove', move);
-  }, []);
-  const outer = size * 1.42;
-  const c = outer / 2;
-  const r1 = size / 2 + size * 0.1;
-  const r2 = r1 + size * 0.075;
-  const lines = [];
-  for (let i = 0; i < ticks; i++) {
-    const a = (i / ticks) * Math.PI * 2 - Math.PI / 2;
-    const long = i % 10 === 0;
-    const rr2 = long ? r2 + size * 0.025 : r2;
-    lines.push(
-      <line
-        key={i}
-        x1={c + Math.cos(a) * r1}
-        y1={c + Math.sin(a) * r1}
-        x2={c + Math.cos(a) * rr2}
-        y2={c + Math.sin(a) * rr2}
-        className={i === now ? 'is-now' : i < lit ? 'is-on' : undefined}
-        style={{ transitionDelay: `${Math.min(i, 60) * 6}ms` }}
-      />,
-    );
-  }
-  return (
-    <div className="orb-wrap" ref={ref} style={{ width: outer, height: outer }}>
-      <svg className="orb-ticks" width={outer} height={outer} viewBox={`0 0 ${outer} ${outer}`} aria-hidden>
-        {lines}
-      </svg>
-      <div className="orb" style={{ width: size, height: size }}>
-        <div className="orb-label">
-          {value != null && <div className="orb-value">{value}</div>}
-          {unit != null && <span className="orb-unit">{unit}</span>}
-          {children}
-        </div>
-      </div>
-    </div>
   );
 }
 

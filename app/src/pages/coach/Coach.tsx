@@ -91,7 +91,7 @@ export function Coach({ open, onClose, context }: { open: boolean; onClose: () =
               {message.pitfall && <Callout tone="warn" icon="alert" label={t.session.explainTrapsHeading}><RichText text={message.pitfall} lang="zh" /></Callout>}
               {message.variant && <div className="coach-variant">
                 <RichText text={message.variant.item.stem} lang="ja" />
-                <Button size="sm" icon="play" disabled={!!active} onClick={async () => {
+                <Button size="sm" icon="practice" disabled={!!active} onClick={async () => {
                   const session = await action<PracticeSession>({ type: 'startVariant', jobId: message.variant!.id });
                   if (session) { onClose(); openSession(session); toast(t.toast.variantReady, 'ok'); }
                 }}>{t.coach.startVariant}</Button>

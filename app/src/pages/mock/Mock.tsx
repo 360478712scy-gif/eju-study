@@ -40,7 +40,7 @@ export function Mock({ reportId }: { reportId?: string | null }) {
     </Card>;
   };
 
-  return <Page title={t.mock.title} desc={t.mock.subtitle} actions={active?.exam && <Button icon="play" onClick={() => openSession(active)}>{t.mock.resumeMockBtn}</Button>}>
+  return <Page title={t.mock.title} desc={t.mock.subtitle} actions={active?.exam && <Button icon="mock" onClick={() => openSession(active)}>{t.mock.resumeMockBtn}</Button>}>
     <Section title={t.mock.ejuRowTitle} desc={t.mock.ejuRowSubtitle}>
       <div className="grid grid-2">{(['math','science'] as const).map(kind => {
         const papers = bank.papers.filter(p => p.kind === kind);
@@ -71,7 +71,7 @@ export function Mock({ reportId }: { reportId?: string | null }) {
       </List>}
     </Section>
     <Modal open={!!selected} onClose={() => select(undefined)} closeLabel={t.common.closeBtn} title={t.mock.confirmStartTitle}
-      footer={selected && <Button variant="primary" icon="play" loading={busy} disabled={busy} onClick={async () => {
+      footer={selected && <Button variant="primary" icon="mock" loading={busy} disabled={busy} onClick={async () => {
         if (active) { select(undefined); openSession(active); return; }
         setBusy(true);
         try {

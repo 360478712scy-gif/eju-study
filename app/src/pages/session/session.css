@@ -83,3 +83,46 @@
 .written-part, .written-rubric, .written-results, .written-draft .btn { margin-top: var(--sp-4); }
 .written-final { margin-top: var(--sp-2); }
 .written-draft .t-3 { margin-inline-start: var(--sp-2); }
+
+/* header controls (replaces the old bottom capsule) */
+.ses-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--r-pill);
+  background: var(--glass-well);
+  box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.ses-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--r-pill);
+  background: var(--glass-chip);
+  box-shadow: inset 0 0 0 1px var(--line-soft);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  transition: background var(--dur-fast);
+}
+.ses-timer:not(:disabled):hover {
+  background: var(--glass-card-active);
+}
+.ses-timer .num {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+.ses-timer-act {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  padding-left: 6px;
+  border-left: 1px solid var(--line-soft);
+}
+.ses-timer.is-paused {
+  box-shadow: inset 0 0 0 1px var(--warn);
+}
+.ses-timer.is-warn .num {
+  color: var(--warn);
+}

@@ -110,7 +110,7 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
     } finally { ratingLock.current = false; setRating(false); }
   };
   return <Page title={t.review.title} desc={t.review.subtitle}
-    actions={!!queue.length && <Button variant="primary" icon="play" disabled={!items.length} onClick={() => void startItems(items.map(it => it.id), 'review')}>{t.review.startReviewQueueBtn(items.length)}</Button>}>
+    actions={!!queue.length && <Button variant="primary" icon="review" disabled={!items.length} onClick={() => void startItems(items.map(it => it.id), 'review')}>{t.review.startReviewQueueBtn(items.length)}</Button>}>
     <div className="grid grid-3 enter">
       <Card><Stat label={t.review.statMistakesLabel} value={mistakes.length} icon="history" /></Card>
       <Card><Stat label={t.review.statTrapsLabel} value={traps.length} icon="alert" /></Card>

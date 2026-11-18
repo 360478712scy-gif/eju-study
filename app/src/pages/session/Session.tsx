@@ -2,8 +2,8 @@ import { useEffect, useEffectEvent, useRef, useState, type ReactNode } from 'rea
 import { isCard } from '@shared/bank.ts';
 import { blankGroups, isAnswered } from '@shared/grading.ts';
 import type { Confidence, PracticeSession, Response, SessionAnswer, WrittenResponse } from '@shared/types.ts';
-import { Dock, Page } from '../../shell/Shell.tsx';
-import { Button, Card, Chip, Empty, IconButton, Modal, SubjectGlyph, TextArea, toast } from '../../ui/ui.tsx';
+import { Page } from '../../shell/Shell.tsx';
+import { Button, Card, Chip, Empty, Icon, IconButton, Modal, SubjectGlyph, TextArea, toast } from '../../ui/ui.tsx';
 import { t } from '../../copy/index.ts';
 import { findItem, pendingScripts, topicName } from '../../lib/model.ts';
 import { go, isTyping, link } from '../../lib/navigation.ts';
@@ -315,18 +315,6 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
   const status = (answer?: SessionAnswer) => answer?.submitted
     ? answer.correct ? 'is-done' : 'is-bad'
     : answer?.response != null ? (answer.confidence && answer.confidence !== 'sure' ? 'is-unsure' : 'is-done') : '';
-  const frameDock = <Dock running paused={paused} title={header} sub={t.session.questionProgress(index + 1, session.itemIds.length)}
-    time={t.time.timerClock(displayTime)} progress={session.itemIds.length ? numberAnswered / session.itemIds.length : 0}
-    glyph={item && <SubjectGlyph subject={item.subject} size="sm" />} showToggle={isLive && !exam}
-    onPrev={index > 0 ? previous : undefined} onNext={index + 1 < session.itemIds.length ? next : undefined}
-    onToggle={togglePause} onOpen={() => setOverlay('overview')}
-    labels={{ prev: t.session.prevQuestionBtn, next: t.session.nextQuestionBtn, play: t.nav.dockResume, pause: t.nav.dockPause }}
-    tools={[
-      ...(item && canEdit && !card ? [{ icon: 'flag' as const, label: t.session.flagUnsureBtn, on: confidence === 'unsure', onClick: () => flag('unsure'), kbd: 'F' }] : []),
-      { icon: 'coach', label: t.session.askCoachInSessionBtn, onClick: () => askCoach(), kbd: '/' },
-      { icon: 'notes', label: t.nav.dockQuickNotes, onClick: () => { if (!exam) openQuickNote(item?.topic); else askCoach(); } },
-      { icon: 'list', label: t.session.openSheetOverviewBtn, onClick: () => setOverlay('overview') },
-    ]} />;
   return frame(<Page>
     <div className="ses-top">
       <IconButton icon="close" label={isLive ? t.session.pauseAndExitBtn : t.session.returnToOrigin}
@@ -337,9 +325,19 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
       <div className="ses-progress">
         {session.itemIds.map((id, i) => <span key={id} className={i === index ? 'is-now' : status(session.answers[id])} />)}
       </div>
-      <Chip icon="clock" tone={expired ? 'warn' : undefined}><span className="num">{t.time.timerClock(displayTime)}</span></Chip>
+      <div className="ses-nav">
+        <IconButton icon="chev-left" label={t.session.prevQuestionBtn} disabled={index === 0} onClick={previous} />
+        <IconButton icon="chev-right" label={t.session.nextQuestionBtn} disabled={index + 1 >= session.itemIds.length} onClick={next} />
+        <IconButton icon="sheet" label={t.session.headSheetBtn} onClick={() => setOverlay('overview')} />
+      </div>
+      <button type="button" className={`ses-timer${expired ? ' is-warn' : ''}${paused ? ' is-paused' : ''}`}
+        disabled={!(isLive && !exam)} onClick={togglePause}
+        aria-label={paused ? t.session.headResumeBtn : t.session.headPauseBtn}>
+        <Icon name="clock" size={14} /><span className="num">{t.time.timerClock(displayTime)}</span>
+        {isLive && !exam && <span className="ses-timer-act">{paused ? t.session.headResumeBtn : t.session.headPauseBtn}</span>}
+      </button>
     </div>
-    {paused && isLive && !exam && <Chip icon="pause">{t.session.paused}</Chip>}
+    {paused && isLive && !exam && <Chip icon="clock">{t.session.paused}</Chip>}
     {expired && <Card title={t.session.timeUp}><Button onClick={() => void finish(true)}>{t.session.submitMockPaperBtn}</Button></Card>}
     {sealed && <Card className="session-sealed" title={t.session.pendingWritten(pending.length)}>
       {!!pending.length && <Button size="sm" onClick={() => void select(session.itemIds.indexOf(pending[0]), false)}>{t.session.nextQuestionBtn}</Button>}
@@ -362,7 +360,8 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
             text={writtenText(response)} onSubmit={value => void submit(value)} />}
         <div className="hstack ses-actions">
           {canEdit && !exam && <Button variant="ghost" icon="flag" aria-pressed={confidence === 'unsure'} kbd="F" onClick={() => flag('unsure')}>{confidence === 'unsure' ? t.session.flagUnsureActive : t.session.flagUnsureBtn}</Button>}
-          {!exam && <Button variant="ghost" icon="coach" onClick={() => askCoach()}>{t.session.askCoachInSessionBtn}</Button>}
+          {!exam && <Button variant="ghost" icon="coach" kbd="/" onClick={() => askCoach()}>{t.session.askCoachInSessionBtn}</Button>}
+          {!exam && <Button variant="ghost" icon="notes" onClick={() => openQuickNote(item.topic)}>{t.nav.dockQuickNotes}</Button>}
           {showAnswer && <Button variant="ghost" size="sm" aria-expanded={explanation} kbd="E" onClick={() => setShowExplanation(!explanation)}>{explanation ? t.session.collapseExplainBtn : t.session.expandExplainBtn}</Button>}
           <span className="spacer" />
           {item.format === 'written' && !exam && !readOnly && !revealWritten
@@ -421,5 +420,5 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
         }}>{t.session.reviewWrongJustNowBtn}</Button>}
     </Modal>
     {!isLive && isGuided(session) && <div className="ses-actions"><Button variant="primary" iconRight="arrow-right" onClick={summaryNext}>{t.session.continue}</Button></div>}
-  </Page>, frameDock);
+  </Page>);
 }
