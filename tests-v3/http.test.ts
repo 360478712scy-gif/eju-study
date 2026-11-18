@@ -71,7 +71,7 @@ test('loopback HTTP, seven views, CAS, persisted variants and independent coach 
         headers: { 'Content-Type': 'application/json', ...headers },
         body: JSON.stringify(body),
       });
-    assert.equal((await get('/api/health')).version, '3.0.0');
+    assert.equal((await get('/api/health')).version, fs.readFileSync(new URL('../VERSION', import.meta.url), 'utf8').trim());
     assert.equal(await (await fetch(url + '/deep/client/route')).text(), '<title>v3 fixture</title>');
     assert.equal(await (await fetch(url + '/assets/site.js')).text(), 'site asset');
     const bank = await get('/content/bank.json');
