@@ -50,6 +50,9 @@
   --r-inner: 14px;
   --r-ctl: 12px;
   --r-sm: 9px;
+  --r-tiny: 2px;
+  --r-xs: 5px;
+  --r-smallest: 6px;
   --r-pill: 999px;
 
   /* layout */
@@ -75,6 +78,21 @@
   --blur-float: 44px;
   --blur-card: 18px;
   --sat: 165%;
+
+  /* selection and progress shadows */
+  --shadow-inset-sheen: inset 0 0 0 1px var(--line-soft), var(--sheen);
+  --shadow-inset-soft: inset 0 0 0 1px var(--line-soft);
+  --shadow-inset-line: inset 0 0 0 1px var(--line);
+  --shadow-inset-primary: inset 0 0 0 1px var(--primary-line);
+  --shadow-scene-selected: 0 0 0 2px var(--primary), 0 0 0 5px var(--primary-soft);
+  --shadow-dot-done: 0 0 10px -2px var(--ok);
+  --shadow-dot-today: inset 0 0 0 2px var(--primary);
+  --shadow-dot-planned: inset 0 0 0 1.5px var(--text-3);
+  --shadow-road-pin: 0 0 0 4px var(--primary-soft), 0 0 18px var(--primary);
+  --shadow-day-selected: inset 0 0 0 1.5px var(--primary-line), 0 0 0 4px var(--primary-soft);
+  --shadow-option-picked: inset 0 0 0 1.5px var(--primary), 0 0 0 4px var(--primary-soft);
+  --shadow-option-right: inset 0 0 0 1.5px var(--ok);
+  --shadow-option-wrong: inset 0 0 0 1.5px var(--bad);
 
   /* fixed semantic hues (tone-independent bases) */
   --hue-ice: 212;

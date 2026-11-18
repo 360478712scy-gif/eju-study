@@ -29,7 +29,7 @@ export function resolveScene(mode: SceneMode, d = new Date()): { season: Season;
 }
 
 /** Re-evaluates every minute so the scene turns to night by itself. */
-export function useScene(mode: SceneMode) {
+export function useScene(mode: SceneMode, tone: 'system' | 'light' | 'dark' = 'system') {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
     const t = setInterval(() => setNow(new Date()), 60_000);
@@ -37,14 +37,14 @@ export function useScene(mode: SceneMode) {
   }, []);
   const s = resolveScene(mode, now);
   useEffect(() => {
-    document.documentElement.setAttribute('data-tone', s.part === 'day' ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-tone', tone === 'system' ? (s.part === 'day' ? 'light' : 'dark') : tone);
     document.documentElement.setAttribute('data-season', s.season);
-  }, [s.part, s.season]);
+  }, [s.part, s.season, tone]);
   return s;
 }
 
-export function Scene({ mode = 'auto', weather = 'auto', calm = false }: { mode?: SceneMode; weather?: Weather; calm?: boolean }) {
-  const s = useScene(mode);
+export function Scene({ mode = 'auto', weather = 'auto', calm = false, parallax = true, tone = 'system' }: { mode?: SceneMode; weather?: Weather; calm?: boolean; parallax?: boolean; tone?: 'system' | 'light' | 'dark' }) {
+  const s = useScene(mode, tone);
   const [layers, setLayers] = useState<{ key: string; ready: boolean }[]>([{ key: s.key, ready: false }]);
   const bgRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +59,7 @@ export function Scene({ mode = 'auto', weather = 'auto', calm = false }: { mode?
 
   // pointer parallax (background moves against the pointer; panels read --px/--py from the stage)
   useEffect(() => {
-    if (calm || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (calm || !parallax || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.style.setProperty('--px', '0');
       document.documentElement.style.setProperty('--py', '0');
       return;
@@ -87,7 +87,7 @@ export function Scene({ mode = 'auto', weather = 'auto', calm = false }: { mode?
       window.removeEventListener('pointermove', move);
       cancelAnimationFrame(raf);
     };
-  }, [calm]);
+  }, [calm, parallax]);
 
   return (
     <div className="scene" aria-hidden>
@@ -115,7 +115,8 @@ function Particles({ season, part, paused }: { season: Season; part: DayPart; pa
     const cv = ref.current;
     if (!cv) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const ctx = cv.getContext('2d')!;
+    const ctx = cv.getContext('2d');
+    if (!ctx) return;
     let w = 0,
       h = 0,
       dpr = 1,

@@ -1,0 +1,64 @@
+/* ───────── 助教 ───────── */
+.coach {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 10px;
+}
+.coach-ctx {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  padding: 6px 10px;
+  border-radius: var(--r-pill);
+  background: var(--glass-well);
+  align-self: flex-start;
+}
+.bubble {
+  max-width: 88%;
+  padding: 10px 14px;
+  border-radius: var(--sp-4) var(--sp-4) var(--sp-4) var(--r-smallest);
+  background: var(--glass-card);
+  box-shadow: var(--shadow-inset-sheen);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--text-2);
+  animation: fade-up var(--dur) var(--ease) both;
+}
+.bubble b {
+  color: var(--text);
+}
+.bubble.is-me {
+  align-self: flex-end;
+  border-radius: var(--sp-4) var(--sp-4) var(--r-smallest) var(--sp-4);
+  background: var(--primary-soft);
+  box-shadow: var(--shadow-inset-primary);
+  color: var(--text);
+}
+.bubble.is-thinking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-3);
+}
+.coach-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.coach-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px 14px;
+  border-top: 1px solid var(--line-soft);
+}
+.coach-input .field {
+  flex: 1;
+}
+.sheet.coach-pinned { right: 0; bottom: 0; top: var(--titlebar-h); border-radius: var(--r-panel) 0 0 var(--r-panel); }
+.coach .callout, .coach-variant .btn { margin-top: var(--sp-2); }
+.coach .bubble { overflow-wrap: anywhere; }

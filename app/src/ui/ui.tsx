@@ -5,7 +5,9 @@ import {
   type CSSProperties,
   type ReactNode,
   useEffect,
+  useEffectEvent,
   useLayoutEffect,
+  useId,
   useRef,
   useState,
   useSyncExternalStore,
@@ -494,6 +496,9 @@ export function Field({
   onEnter,
   type = 'text',
   inputRef,
+  ariaLabel,
+  min,
+  max,
   style,
 }: {
   value: string;
@@ -506,6 +511,9 @@ export function Field({
   onEnter?: () => void;
   type?: string;
   inputRef?: React.Ref<HTMLInputElement>;
+  ariaLabel?: string;
+  min?: number | string;
+  max?: number | string;
   style?: CSSProperties;
 }) {
   return (
@@ -514,6 +522,9 @@ export function Field({
       <input
         ref={inputRef}
         type={type}
+        aria-label={ariaLabel ?? placeholder}
+        min={min}
+        max={max}
         value={value}
         placeholder={placeholder}
         autoFocus={autoFocus}
@@ -599,6 +610,8 @@ export function Modal({
   closeLabel: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const titleId = useId();
+  const close = useEffectEvent(onClose);
   useEffect(() => {
     if (!open) return;
     const prev = document.activeElement as HTMLElement | null;
@@ -609,7 +622,18 @@ export function Modal({
     const key = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.stopPropagation();
-        onClose();
+        close();
+      } else if (e.key === 'Tab' && ref.current) {
+        const controls = [...ref.current.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), textarea:not(:disabled), a[href], select:not(:disabled), summary')]
+          .filter(control => control.getClientRects().length > 0);
+        const first = controls[0];
+        const last = controls.at(-1);
+        if (!first || !last) { e.preventDefault(); return; }
+        if (!ref.current.contains(document.activeElement) || document.activeElement === ref.current ||
+            document.activeElement === (e.shiftKey ? first : last)) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
+        }
       }
     };
     window.addEventListener('keydown', key, true);
@@ -618,40 +642,41 @@ export function Modal({
       window.removeEventListener('keydown', key, true);
       prev?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
   if (!open) return null;
-  return createPortal(
+  const content = (
     <div className="overlay" onPointerDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div ref={ref} tabIndex={-1} role="dialog" aria-modal="true" className="glass-float modal" style={{ '--w': width ? `${width}px` : undefined } as CSSProperties}>
+      <div ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby={title ? titleId : undefined} className="glass-float modal" style={{ '--w': width ? `${width}px` : undefined } as CSSProperties}>
         {(title || icon) && (
           <div className="modal-head">
             {icon}
-            <h2 className="modal-title">{title}</h2>
+            <h2 id={titleId} className="modal-title">{title}</h2>
             <IconButton icon="close" label={closeLabel} size="sm" onClick={onClose} />
           </div>
         )}
         <div className="modal-body">{children}</div>
         {footer && <div className="modal-foot">{footer}</div>}
       </div>
-    </div>,
-    document.body,
+    </div>
   );
+  return typeof document === 'undefined' ? content : createPortal(content, document.body);
 }
 
-export function Sheet({ open, onClose, children, width, label }: { open: boolean; onClose: () => void; children: ReactNode; width?: number; label: string }) {
+export function Sheet({ open, onClose, children, width, label, className }: { open: boolean; onClose: () => void; children: ReactNode; width?: number; label: string; className?: string }) {
+  const close = useEffectEvent(onClose);
   useEffect(() => {
     if (!open) return;
-    const key = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const key = (e: KeyboardEvent) => e.key === 'Escape' && close();
     window.addEventListener('keydown', key);
     return () => window.removeEventListener('keydown', key);
-  }, [open, onClose]);
+  }, [open]);
   if (!open) return null;
-  return createPortal(
-    <aside className="glass-float sheet" role="complementary" aria-label={label} style={{ '--w': width ? `${width}px` : undefined } as CSSProperties}>
+  const content = (
+    <aside className={cx('glass-float sheet', className)} role="complementary" aria-label={label} style={{ '--w': width ? `${width}px` : undefined } as CSSProperties}>
       {children}
-    </aside>,
-    document.body,
+    </aside>
   );
+  return typeof document === 'undefined' ? content : createPortal(content, document.body);
 }
 
 /* ───────── toast ───────── */
@@ -676,7 +701,9 @@ export function Toaster() {
       return () => toastSubs.delete(f);
     },
     () => toasts,
+    () => toasts,
   );
+  if (typeof document === 'undefined') return null;
   return createPortal(
     <div className="toasts" role="status" aria-live="polite">
       {list.map((t) => (

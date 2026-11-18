@@ -1,0 +1,43 @@
+/* ───────── 笔记 ───────── */
+.notes {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.notes-toc {
+  position: sticky;
+  top: 0;
+}
+.notes-read {
+  padding: 30px 40px 36px;
+  max-width: 760px;
+}
+.notes-read h3 {
+  font-size: var(--fs-md);
+  margin: 22px 0 8px;
+}
+.notes-read p,
+.notes-read li {
+  font-size: var(--fs-base);
+  line-height: var(--lh-read);
+  color: var(--text-2);
+}
+.notes-read ul {
+  padding-left: 20px;
+  margin: 0;
+}
+.notes-read b {
+  color: var(--text);
+}
+.notes-heading { margin: var(--sp-4) var(--sp-2) var(--sp-2); }
+.notes-unit { padding-inline: var(--sp-3); margin-block: var(--sp-2); }
+.notes-toc summary { padding: var(--sp-2); }
+.notes-title { margin-bottom: var(--sp-4); }
+.notes-title .ja { font-size: .6em; }
+.notes-read .rt { max-width: 680px; }
+.notes-terms, .notes-personal, .notes-actions { margin-top: var(--sp-4); }
+.notes-actions { flex-wrap: wrap; }
+.notes-terms dt { font-weight: var(--fw-medium); }
+.notes-terms dd { margin-inline-start: var(--sp-4); }
+.notes-personal .btn { margin-top: var(--sp-2); }

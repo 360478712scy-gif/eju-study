@@ -1,0 +1,28 @@
+/* ───────── 模考 ───────── */
+.mock-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+  width: 100%;
+}
+.mock-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+}
+.mock-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+.mock-kind { min-width: 0; }
+.mock-heading { gap: var(--sp-3); }
+.mock-name { flex: 1; min-width: 0; }
+.mock-foot { flex-wrap: wrap; }
+.mock-papers { margin-top: var(--sp-2); }
+.mock-papers summary { padding: var(--sp-2); }
+.mock-summary { display: flex; align-items: center; gap: var(--sp-5); }
+.mock-breakdown-bar { display: block; width: 120px; }

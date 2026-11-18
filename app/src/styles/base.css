@@ -228,3 +228,7 @@ svg {
     transition-duration: 1ms !important;
   }
 }
+
+#root { zoom: var(--app-zoom, 1); }
+.nav-goal-title, .nav-goal-sub { display: block; }
+.nav-goal-text { min-width: 0; }

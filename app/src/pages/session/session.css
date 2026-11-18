@@ -1,0 +1,79 @@
+/* ───────── session ───────── */
+.ses-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.ses-progress {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+.ses-progress span {
+  flex: 1;
+  height: 4px;
+  border-radius: var(--sp-1);
+  background: var(--track);
+}
+.ses-progress span.is-done {
+  background: var(--ok);
+}
+.ses-progress span.is-bad {
+  background: var(--bad);
+}
+.ses-progress span.is-now {
+  background: var(--primary);
+}
+.stem {
+  padding: 24px 28px;
+  font-size: var(--fs-md);
+  line-height: 1.95;
+}
+.stem p + p {
+  margin-top: 10px;
+}
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+.explain {
+  margin-top: 18px;
+  padding: 22px 26px;
+  animation: fade-up var(--dur-slow) var(--ease) both;
+}
+.explain h4 {
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  margin: 16px 0 6px;
+}
+.explain h4:first-child {
+  margin-top: 0;
+}
+.explain p,
+.explain li {
+  font-size: var(--fs-base);
+  color: var(--text-2);
+  line-height: var(--lh-read);
+}
+.ses-info { min-width: 0; font-size: var(--fs-ui); }
+.ses-info .t-3 { font-size: var(--fs-xs); }
+.ses-progress { flex: 1; min-width: var(--sp-6); overflow: hidden; }
+.ses-progress span { min-width: 2px; }
+.ses-progress .is-unsure { background: var(--warn); }
+.ses-actions { margin-top: var(--sp-4); flex-wrap: wrap; }
+.session-sealed, .session-variant, .session-terms, .question-sources, .written-prompt, .written-draft { margin-top: var(--sp-3); }
+.marks { padding: var(--sp-4); margin-top: var(--sp-4); }
+.marks-rows { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-block: var(--sp-3); }
+.marks-group { display: grid; gap: var(--sp-1); font-size: var(--fs-xs); }
+.session-overview { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.session-overview .is-done { color: var(--ok); }
+.session-overview .is-bad { color: var(--bad); }
+.session-overview .is-unsure { color: var(--warn); }
+.written-heading, .written-original { margin-block: var(--sp-3); }
+.written-part, .written-rubric, .written-results, .written-draft .btn { margin-top: var(--sp-4); }
+.written-final { margin-top: var(--sp-2); }
+.written-draft .t-3 { margin-inline-start: var(--sp-2); }

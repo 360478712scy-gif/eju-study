@@ -1,0 +1,11 @@
+.rt { overflow-wrap: anywhere; line-height: var(--lh-read); }
+.rt > * + * { margin-top: var(--sp-3); }
+.rt ul, .rt ol { padding-inline-start: var(--sp-6); }
+.rt-inline { line-height: inherit; }
+.rt-math-display { display: block; overflow-x: auto; }
+.rt .katex-display { margin: var(--sp-3) 0; }
+.rt-table-wrap { overflow-x: auto; }
+.rt-table { width: 100%; border-collapse: collapse; font-size: var(--fs-ui); }
+.rt-table th, .rt-table td { border: 1px solid var(--line); padding: var(--sp-2); text-align: center; }
+.rt-table th { background: var(--glass-card); }
+.rt-box { display: inline-block; min-width: 1.5em; border: 1px solid var(--line-strong); border-radius: var(--r-sm); text-align: center; padding-inline: var(--sp-1); }

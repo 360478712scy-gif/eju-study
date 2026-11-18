@@ -5,10 +5,10 @@
   "private": true,
   "scripts": {
     "start": "node server.mjs",
-    "build": "npm run build:content && npm run build:web",
+    "build": "npm run build:content && npm run build:app",
     "build:content": "node tools/v2/build-content.mjs",
-    "build:web": "vite build app",
-    "dev": "vite app",
+    "build:web": "npm run build:app",
+    "dev": "npm run dev:app",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "validate": "node tools/v2/validate.mjs",
     "test": "node --test tests-v3/*.test.ts",

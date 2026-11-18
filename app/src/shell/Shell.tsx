@@ -11,6 +11,7 @@ export interface NavItem {
   label: string;
   href: string;
   count?: number;
+  hint?: string;
   group?: string;
 }
 
@@ -22,6 +23,8 @@ export function Shell({
   focus,
   scene = 'auto',
   weather = 'auto',
+  parallax,
+  tone,
 }: {
   nav: ReactNode;
   children: ReactNode;
@@ -30,13 +33,15 @@ export function Shell({
   focus?: boolean;
   scene?: SceneMode;
   weather?: Weather;
+  parallax?: boolean;
+  tone?: 'system' | 'light' | 'dark';
 }) {
   return (
     <>
-      <Scene mode={scene} weather={weather} calm={focus} />
+      <Scene mode={scene} weather={weather} calm={focus} parallax={parallax} tone={tone} />
       <div className="titlebar" />
       <div className={cx('stage', !aside && 'no-aside', focus && 'is-focus')}>
-        <Glass as="nav" className="pane pane-nav">
+        <Glass as="nav" className="pane pane-nav" inert={focus || undefined}>
           {nav}
         </Glass>
         <Glass as="main" className="pane pane-main">
@@ -63,7 +68,7 @@ export function NavPanel({
 }: {
   brand: string;
   sub?: string;
-  countdown?: { value: number; label: string; progress?: number };
+  countdown?: { value: number | string; label?: string; progress?: number };
   items: NavItem[];
   active: string;
   foot?: ReactNode;
@@ -97,7 +102,7 @@ export function NavPanel({
         return (
           <div key={it.id} style={{ display: 'contents' }}>
             {head}
-            <a href={it.href} className={cx('nav-item', active === it.id && 'is-on')} aria-current={active === it.id ? 'page' : undefined}>
+            <a href={it.href} title={it.hint} aria-label={it.label} className={cx('nav-item', active === it.id && 'is-on')} aria-current={active === it.id ? 'page' : undefined}>
               <Icon name={it.icon} size={19} />
               <span className="nav-label">{it.label}</span>
               {!!it.count && <Badge tone="warn">{it.count}</Badge>}
@@ -178,6 +183,7 @@ export function Dock({
   onStart,
   tools,
   labels,
+  showToggle = true,
 }: {
   running: boolean;
   paused?: boolean;
@@ -193,6 +199,7 @@ export function Dock({
   startLabel?: ReactNode;
   onStart?: () => void;
   tools?: { icon: IconName; label: string; on?: boolean; onClick: () => void; kbd?: string }[];
+  showToggle?: boolean;
   labels: { prev: string; next: string; play: string; pause: string };
 }) {
   return (
@@ -200,13 +207,13 @@ export function Dock({
       {running ? (
         <>
           <div className="dock-transport">
-            <IconButton icon="prev" label={labels.prev} onClick={onPrev} />
-            <button type="button" className="icon-btn dock-play" aria-label={paused ? labels.play : labels.pause} onClick={onToggle} style={{ '--s': '40px' } as React.CSSProperties}>
+            <IconButton icon="prev" label={labels.prev} onClick={onPrev} disabled={!onPrev} />
+            {showToggle && <button type="button" className="icon-btn dock-play" aria-label={paused ? labels.play : labels.pause} onClick={onToggle} style={{ '--s': '40px' } as React.CSSProperties}>
               <Icon name={paused ? 'play' : 'pause'} size={20} />
-            </button>
-            <IconButton icon="next" label={labels.next} onClick={onNext} />
+            </button>}
+            <IconButton icon="next" label={labels.next} onClick={onNext} disabled={!onNext} />
           </div>
-          <button type="button" className="dock-now" onClick={onOpen}>
+          <button type="button" className="dock-now" onClick={onOpen} disabled={!onOpen}>
             {glyph}
             <span className="dock-now-text">
               <span className="dock-now-title" style={{ display: 'block' }}>
@@ -228,7 +235,7 @@ export function Dock({
         </>
       ) : (
         startLabel && (
-          <button type="button" className="btn btn-ghost dock-start" onClick={onStart}>
+          <button type="button" className="btn btn-ghost dock-start" onClick={onStart} disabled={!onStart}>
             <span className="round-play is-primary" style={{ '--s': '30px' } as React.CSSProperties} aria-hidden>
               <Icon name="play" size={12} />
             </span>

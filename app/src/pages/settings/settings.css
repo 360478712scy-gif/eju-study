@@ -1,0 +1,55 @@
+/* ───────── 设置 ───────── */
+.set-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+}
+.set-row + .set-row,
+.scene-picker + .set-row {
+  border-top: 1px solid var(--line-soft);
+}
+.set-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.set-text b {
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-medium);
+}
+.set-text span {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.scene-picker {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  padding: 0 22px 18px;
+}
+.scene-thumb.btn {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--r-inner);
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow-inset-line);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur);
+}
+.scene-thumb:hover {
+  transform: translateY(-2px);
+}
+.scene-thumb.is-on {
+  box-shadow: var(--shadow-scene-selected);
+}
+.set-row > :not(.set-text) { min-width: 0; }
+.set-row .profile-scores, .set-row .profile-chips, .set-weak { max-width: 66%; }
+.set-row .profile-chips { justify-content: flex-end; }
+.set-volume { width: 200px; }
+.set-backups { flex-wrap: wrap; }
+.set-version { margin-block: var(--sp-5); }

@@ -1,0 +1,123 @@
+/* ───────── 数据 ───────── */
+.range-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 76px;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 0;
+}
+.range-name {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.range-track {
+  position: relative;
+  height: 8px;
+  border-radius: var(--sp-2);
+  background: var(--track);
+}
+.range-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--sp-2);
+  background: color-mix(in srgb, var(--tone) 45%, transparent);
+}
+.range-mid {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: var(--r-pill);
+  background: var(--tone);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tone) 25%, transparent);
+}
+.range-goal {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: var(--r-tiny);
+  background: var(--text);
+  opacity: 0.75;
+}
+.range-val {
+  text-align: right;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+}
+.heat {
+  display: grid;
+  gap: 4px;
+  align-items: center;
+}
+.heat-col {
+  font-size: var(--fs-2xs);
+  color: var(--text-4);
+  text-align: center;
+}
+.heat-name {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+.heat-cell {
+  height: 22px;
+  border-radius: var(--r-smallest);
+  background: color-mix(in srgb, var(--primary) calc(var(--v) * 85%), var(--glass-well));
+}
+.heat-cell.is-empty {
+  background: transparent;
+  box-shadow: var(--shadow-inset-soft);
+}
+.bars {
+  position: relative;
+  height: 160px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  padding: 0 0 20px;
+}
+.bars-col {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.bars-bar {
+  width: 100%;
+  max-width: 26px;
+  border-radius: var(--sp-2) var(--sp-2) var(--r-xs) var(--r-xs);
+  background: linear-gradient(180deg, var(--primary-strong), color-mix(in srgb, var(--primary) 50%, transparent));
+}
+.bars-x {
+  position: absolute;
+  bottom: -20px;
+  font-size: var(--fs-2xs);
+  color: var(--text-4);
+}
+.bars-goal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed var(--line-strong);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  padding-left: 2px;
+}
+.forecast-evidence { font-size: var(--fs-xs); text-align: end; }
+.weekly-facts { margin-top: var(--sp-3); }
+.speed-plot {
+  position: relative; height: 180px; margin-block: var(--sp-3); margin-inline: var(--sp-2);
+  border-inline-start: 1px solid var(--line-strong); border-block-end: 1px solid var(--line-strong);
+}
+.speed-guide { position: absolute; border-color: var(--line-strong); border-style: dashed; }
+.speed-guide.is-vertical { height: 100%; border-width: 0 0 0 1px; }
+.speed-guide.is-horizontal { width: 100%; border-width: 0 0 1px; }
+.speed-point {
+  position: absolute; width: var(--sp-2); height: var(--sp-2); border-radius: var(--r-pill); background: var(--tone);
+  transform: translate(-50%, 50%); box-shadow: var(--sheen);
+}

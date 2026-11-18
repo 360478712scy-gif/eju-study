@@ -1,0 +1,47 @@
+/* ───────── 引导 ───────── */
+.onb {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+}
+.onb-card {
+  width: min(600px, calc(100vw - 48px));
+  padding: 34px 40px 28px;
+  text-align: center;
+}
+.onb-card .hstack:last-child {
+  text-align: left;
+}
+.onb-steps {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+.onb-steps span {
+  width: 28px;
+  height: 4px;
+  border-radius: var(--sp-1);
+  background: var(--track);
+}
+.onb-steps span.is-on {
+  background: var(--primary);
+}
+.onb-minutes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+.onb-scroll { max-height: calc(100vh - var(--titlebar-h) - var(--sp-8)); }
+.onb-title { margin-top: var(--sp-2); }
+.onb-fields { margin-top: var(--sp-5); --gap: var(--sp-3); }
+.onb-fields .day-picker { justify-content: center; }
+.onb-actions { margin-top: var(--sp-6); }
+.profile-chips { flex-wrap: wrap; gap: var(--sp-2); }
+.profile-score .field { margin-top: var(--sp-2); }
+.profile-topics details { padding: var(--sp-2); }
+.profile-topics summary { margin-bottom: var(--sp-2); }

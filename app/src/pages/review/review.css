@@ -1,0 +1,63 @@
+/* ───────── 复习 · 背诵卡 ───────── */
+.flash {
+  perspective: 1400px;
+  height: 230px;
+  max-width: 620px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.flash-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 560ms var(--ease);
+}
+.flash.is-flipped .flash-inner {
+  transform: rotateY(180deg);
+}
+.flash-face {
+  position: absolute;
+  inset: 0;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--r-panel);
+  box-shadow: var(--shadow-float), var(--sheen-strong);
+}
+.flash-back {
+  transform: rotateY(180deg);
+}
+.flash-q {
+  margin: auto 0;
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+.flash-a {
+  margin-top: auto;
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-semibold);
+  color: var(--c-chemistry);
+}
+.flash-more {
+  margin-bottom: auto;
+  color: var(--text-2);
+  font-size: var(--fs-base);
+}
+.flash-hint {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: var(--fs-xs);
+}
+.flash { height: auto; min-height: 230px; }
+.flash-inner { display: grid; grid-template-columns: minmax(0, 1fr); }
+.flash-face { position: relative; min-height: 230px; grid-area: 1 / 1; }
+.flash-q { font-size: var(--fs-lg); }
+.flash-a { font-size: var(--fs-xl); }
+.flash-rating { justify-content: center; flex-wrap: wrap; margin-top: var(--sp-4); }

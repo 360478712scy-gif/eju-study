@@ -1,0 +1,198 @@
+/* ───────── 计划 · 路线图 ───────── */
+.road {
+  padding: 22px 26px 18px;
+}
+.road-months {
+  position: relative;
+  height: 18px;
+  margin: 0 0 8px;
+}
+.road-months span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+}
+.road-track {
+  position: relative;
+  height: 14px;
+  border-radius: var(--r-pill);
+  background: var(--glass-well);
+  box-shadow: var(--shadow-inset-soft);
+}
+.road-phase {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--tone) 26%, transparent);
+  overflow: hidden;
+  margin: 0 1.5px;
+}
+.road-phase-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--tone);
+  border-radius: inherit;
+}
+.road-flag {
+  position: absolute;
+  top: -5px;
+  width: 2px;
+  height: 24px;
+  margin-left: -1px;
+  border-radius: var(--r-tiny);
+  background: var(--text-2);
+}
+.road-today {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: var(--r-pill);
+  background: var(--primary);
+  box-shadow: var(--shadow-road-pin);
+}
+.road-today-label {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-2xs);
+  color: var(--primary);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+.road-phases {
+  position: relative;
+  height: 54px;
+  margin-top: 26px;
+}
+.road-phase-card {
+  position: absolute;
+  top: 0;
+  padding: 0 10px 0 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  min-width: 0;
+  overflow: hidden;
+}
+.road-phase-card b {
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+.road-phase-card span:last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.road-miles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-soft);
+}
+.road-mile {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--text-3);
+}
+.road-mile-title {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.road-mile-sub {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+/* week view */
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+.wday {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 176px;
+  padding: 12px;
+  border-radius: var(--r-card);
+  background: var(--glass-card);
+  box-shadow: var(--shadow-inset-sheen);
+  text-align: left;
+  transition: transform var(--dur) var(--ease), background var(--dur-fast);
+}
+.wday:hover {
+  transform: translateY(-2px);
+  background: var(--glass-card-hover);
+}
+.wday-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.wday-head span:first-child {
+  color: var(--text-2);
+  font-weight: var(--fw-semibold);
+}
+.wday.is-today {
+  background: var(--glass-card-active);
+  box-shadow: var(--shadow-day-selected);
+}
+.wday.is-today .wday-head span:first-child {
+  color: var(--primary);
+}
+.wday.is-rest,
+.wday.is-past {
+  background: transparent;
+  box-shadow: var(--shadow-inset-soft);
+}
+.wday-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.wday-task {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wday-foot {
+  margin-top: auto;
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+}
+.wday-rest {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-4);
+}
+.road-phase-card .hstack { gap: var(--sp-2); }
+.road-phase-card > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wday.btn { height: auto; min-height: 120px; display: flex; align-items: stretch; justify-content: flex-start; }
+.wday.is-selected { box-shadow: var(--focus-ring); }
+.month-grid { gap: var(--sp-2); }
+.month-day.is-outside { opacity: .45; }
+.plan-detail { margin-top: var(--sp-4); }
+.plan-actions { flex-wrap: wrap; }
+.plan-detail .plan-actions { margin-top: var(--sp-3); }
