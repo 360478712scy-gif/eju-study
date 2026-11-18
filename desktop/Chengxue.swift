@@ -69,16 +69,18 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         let bar = NSMenu()
         func add(_ title: String, _ items: [NSMenuItem]) { let holder = NSMenuItem(title: title, action: nil, keyEquivalent: ""); let menu = NSMenu(title: title); items.forEach { menu.addItem($0) }; holder.submenu = menu; bar.addItem(holder) }
         add("澄学 EJU", [menuItem("关于澄学 EJU", "", #selector(about), target: self), .separator(), menuItem("隐藏澄学 EJU", "h", #selector(NSApplication.hide(_:)), target: NSApp), menuItem("隐藏其他", "h", #selector(NSApplication.hideOtherApplications(_:)), mask: [.command, .option], target: NSApp), .separator(), menuItem("退出澄学 EJU", "q", #selector(NSApplication.terminate(_:)), target: NSApp)])
-        let navigation = ["今日", "题库练习", "错题本", "学习数据"].enumerated().map { i, name -> NSMenuItem in let item = menuItem(name, String(i + 1), #selector(navigateMenu(_:)), target: self); item.tag = i; return item }
-        add("学习", navigation + [.separator(), menuItem("播放／暂停音乐", "m", #selector(musicMenu), mask: [.command, .shift], target: self), menuItem("专注模式", "f", #selector(focusMenu), mask: [.command, .shift], target: self)])
+        let navigation = ["今天", "计划", "练习", "复习", "模考", "笔记", "数据"].enumerated().map { i, name -> NSMenuItem in let item = menuItem(name, String(i + 1), #selector(navigateMenu(_:)), target: self); item.tag = i; return item }
+        let settingsItem = menuItem("设置", ",", #selector(navigateMenu(_:)), target: self); settingsItem.tag = 7
+        add("学习", navigation + [.separator(), settingsItem, .separator(), menuItem("播放／暂停音乐", "m", #selector(musicMenu), mask: [.command, .shift], target: self), menuItem("专注模式", "f", #selector(focusMenu), mask: [.command, .shift], target: self)])
         add("显示", [menuItem("放大", "=", #selector(zoomIn), target: self), menuItem("缩小", "-", #selector(zoomOut), target: self), menuItem("实际大小", "0", #selector(zoomReset), target: self)])
         add("编辑", [menuItem("撤销", "z", Selector(("undo:"))), menuItem("重做", "z", Selector(("redo:")), mask: [.command, .shift]), .separator(), menuItem("剪切", "x", Selector(("cut:"))), menuItem("复制", "c", Selector(("copy:"))), menuItem("粘贴", "v", Selector(("paste:"))), menuItem("全选", "a", Selector(("selectAll:")))])
         add("窗口", [menuItem("关闭窗口", "w", #selector(closeStudyWindow), target: self), menuItem("最小化", "m", #selector(NSWindow.performMiniaturize(_:))), menuItem("缩放", "", #selector(NSWindow.performZoom(_:))), menuItem("进入／退出全屏", "f", #selector(NSWindow.toggleFullScreen(_:)), mask: [.command, .control])])
         add("帮助", [menuItem("键盘快捷键", "/", #selector(shortcutsMenu), target: self)])
         NSApp.mainMenu = bar
     }
-    @objc func about() { NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "澄学 EJU", .applicationVersion: "2.0.0", .credits: NSAttributedString(string: "19 天冲刺，每天一步。")]) }
-    @objc func navigateMenu(_ item: NSMenuItem) { command("navigate", page: ["today", "learning", "notebook", "report"][item.tag]) }
+    @objc func about() { NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "澄学 EJU", .applicationVersion: "3.0.0", .credits: NSAttributedString(string: "2027 年 6 月 20 日 · 第 1 回 EJU")]) }
+    @objc func navigateMenu(_ item: NSMenuItem) { command("navigate", page: Self.pages[item.tag]) }
+    static let pages = ["today", "plan", "practice", "review", "mock", "notes", "insights", "settings"]
     @objc func musicMenu() { command("toggle-music") }
     @objc func zoomIn() { setZoom(web.pageZoom + 0.1) }
     @objc func zoomOut() { setZoom(web.pageZoom - 0.1) }
@@ -97,7 +99,8 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         guard flags.contains(.command), !flags.contains(.control) else { return false }
         let key = (event.charactersIgnoringModifiers ?? "").lowercased()
         if !flags.contains(.option) {
-            if !flags.contains(.shift), let number = Int(key), (1...4).contains(number) { if !event.isARepeat { command("navigate", page: ["today", "learning", "notebook", "report"][number - 1]) }; return true }
+            if !flags.contains(.shift), let number = Int(key), (1...7).contains(number) { if !event.isARepeat { command("navigate", page: Self.pages[number - 1]) }; return true }
+            if !flags.contains(.shift), key == "," { if !event.isARepeat { command("navigate", page: "settings") }; return true }
             if flags.contains(.shift), ["m", "f"].contains(key) { if !event.isARepeat { command(key == "m" ? "toggle-music" : "toggle-focus") }; return true }
             if key == "/", !flags.contains(.shift) { if !event.isARepeat { command("shortcuts") }; return true }
         }
