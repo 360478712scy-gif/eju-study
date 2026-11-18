@@ -1,6 +1,6 @@
 // 澄学 EJU 3.0 全量中文界面文案（按 ux-spec 第 9 节的 16 个区分组组织）
 export const zh = {
-  // 导航面板、窗口顶栏倒计时、底部悬浮胶囊与全局快捷键面板
+  // 导航面板、学习状态栏、右下角助教按钮与全局快捷键面板
   nav: {
     // 程序标题和网页标题。
     appTitle: '澄学 EJU 3.0',
@@ -54,32 +54,50 @@ export const zh = {
     collapseSidebar: '收起导航栏',
     // 图标栏状态下展开导航面板按钮的悬停提示
     expandSidebar: '展开导航栏',
-    // 底部悬浮胶囊空闲状态（学习日未开始）的快捷主入口按钮
+    // 快捷入口按钮：学习日尚未开始
     dockStartToday: '开始今天的 2 小时',
-    // 底部悬浮胶囊空闲状态（已学完今日部分但未结束）的继续按钮
+    // 快捷入口按钮：今日已开始但尚未全部完成
     dockResumeToday: (leftMin: number) => `继续今天的学习 · 剩 ${leftMin} 分钟`,
-    // 底部悬浮胶囊在今日任务全部完成后的状态文案
+    // 今日任务全部完成后的快捷状态文案
     dockTodayDone: '今天这 2 小时已拿下，歇会儿吧',
-    // 底部悬浮胶囊在休息日空闲时的快捷入口文案
+    // 休息日空闲时的快捷入口文案
     dockRestDay: '今天休息 · 去翻几张卡热身',
-    // 底部悬浮胶囊进行中：切换到上一节任务按钮提示
-    dockPrevTask: '切回上一节',
-    // 底部悬浮胶囊进行中：暂停计时按钮提示
+    // 学习控制：切回上一项任务按钮提示
+    dockPrevTask: '切回上一项',
+    // 学习控制：暂停学习计时按钮提示
     dockPause: '暂停学习计时',
-    // 底部悬浮胶囊进行中：继续计时按钮提示
+    // 学习控制：继续学习计时按钮提示
     dockResume: '继续学习计时',
-    // 底部悬浮胶囊进行中：切到下一节任务按钮提示
-    dockNextTask: '进入下一节',
-    // 底部悬浮胶囊中间显示的当前任务与进度摘要
+    // 学习控制：进入下一项任务按钮提示
+    dockNextTask: '进入下一项',
+    // 当前正在学习的任务与剩余分钟摘要
     dockActiveSummary: (taskTitle: string, leftMin: number) => `${taskTitle} · 剩 ${leftMin} 分钟`,
-    // 底部悬浮胶囊右侧第一个图标按钮提示：打开 AI 助教
-    dockCoach: '呼出 AI 助教',
-    // 底部悬浮胶囊右侧第二个图标按钮提示：打开速查笔记抽屉
+    // 打开 AI 助教面板按钮提示
+    dockCoach: '问 AI 助教',
+    // 打开速查考点笔记抽屉按钮
     dockQuickNotes: '速查考点笔记',
-    // 底部悬浮胶囊右侧第三个图标按钮提示：轻钢琴背景音乐抽屉
+    // 打开轻钢琴背景音乐抽屉按钮提示
     dockMusic: '切换背景音乐',
-    // 悬浮胶囊与设置页背景音乐：关闭状态选项
+    // 背景音乐关闭状态选项
     dockMusicOff: '关闭音乐',
+    // 学习进行中时主面板顶部状态栏左侧的小标签
+    barStudying: '正在专注',
+    // 状态栏：当前一项在今天安排里的位置
+    barStep: (i: number, n: number) => `今日第 ${i} / ${n} 项`,
+    // 状态栏：本项剩余时间
+    barRemaining: (clock: string) => `还剩 ${clock}`,
+    // 状态栏：暂停按钮
+    barPauseBtn: '暂停计时',
+    // 状态栏：继续按钮
+    barResumeBtn: '继续计时',
+    // 状态栏：手动任务（休息、整理笔记）完成按钮
+    barFinishBtn: '完成这一项',
+    // 状态栏：回到正在做的题目
+    barOpenBtn: '回到做题页',
+    // 右下角悬浮的助教按钮
+    fabCoach: '问 AI 助教',
+    // 导航底部的背景音乐开关
+    musicToggle: '切换轻钢琴背景乐',
     // 顶栏或快捷键触发的全局搜索框入口按钮
     globalSearchBtn: '搜索题目与笔记',
     // ⌘K 全局搜索弹窗输入框占位提示
@@ -92,7 +110,7 @@ export const zh = {
     shortcutsTitle: '键盘快捷键',
     // 快捷键弹窗条目：⌘1–7
     shortcutNavSections: '在「今天」到「数据」七个区之间切换',
-    // 快捷键弹窗条目：Space（主页与胶囊）
+    // 快捷键弹窗条目：Space（今天页与顶部学习状态栏）
     shortcutSpaceStudy: '开始或暂停今天的学习',
     // 快捷键弹窗条目：⌘K
     shortcutGlobalSearch: '随时搜索题目与考点笔记',
@@ -112,10 +130,42 @@ export const zh = {
     shortcutFlashcard: '空格翻开背诵卡背面，按 1 / 2 / 3 自评熟练度',
   },
 
-  // 「今天」页面（#/）：进度光球、今日台本、助教点评、侧边今日队列、休息日与漏学重排
+  // 「今天」页面（#/）：今日学习清单、时间条、右侧倒计时/预测分/本周打卡卡、助教叮嘱与休息日
   today: {
     // 「今天」页面主面板大标题
     title: '今天',
+    // 今天页左侧主卡的标题（今天的学习清单）
+    planCardTitle: '今天的学习安排',
+    // 主卡标题旁的总量：项数与总分钟
+    planCardMeta: (count: number, minutes: number) => `共 ${count} 项 · ${minutes} 分钟`,
+    // 今天学完后主卡的标题
+    doneTitle: '今天的安排全部拿下了',
+    // 清单里每一项的类型标签（learn 专项新学 / review 到期复习 / interleave 交错练习 / quiz 限时小测 / school 校内考记述题 / mock 整卷模考 / break 休息 / notes 整理笔记）
+    kindLabel: (kind: string) =>
+      (({
+        learn: '专项突破',
+        review: '到期复习',
+        interleave: '交错巩固',
+        quiz: '限时小测',
+        school: '校内考',
+        mock: '整卷模考',
+        break: '小憩',
+        notes: '笔记复盘',
+      }) as Record<string, string>)[kind] ?? kind,
+    // 清单当前一项右侧的开始按钮
+    startThisBtn: '开始这项',
+    // 清单当前一项右侧的继续按钮（已开始过）
+    continueThisBtn: '继续这项',
+    // 右侧倒计时卡的标题
+    countdownTitle: '距离 6/20 考场',
+    // 倒计时卡里的全程进度说明：当前阶段名 + 已走过的百分比
+    phaseProgress: (phase: string, pct: number) => `${phase} · 全程已推进 ${pct}%`,
+    // 右侧预测分卡的标题
+    forecastTitle: '当前实力估计',
+    // 预测分条右侧的目标值
+    forecastTarget: (n: number) => `目标 ${n} 分`,
+    // 休息日时主卡里下一次学习的预告标题
+    restNextTitle: (date: string) => `下一场安排 · ${date}`,
     // 学习日尚未开始时页面标题下方的一行说明
     subtitleReady: '今天的 2 小时给你排好了，点一下开始，按顺序往下走就行。',
     // 自定义时长的今日未开始说明。
@@ -134,21 +184,21 @@ export const zh = {
     week: '本周进度',
     // 页面标题区右侧次要操作：把今天临时改成休息日
     switchTodayToRestBtn: '把今天改成休息日',
-    // 窄屏时页面标题区右侧打开今日队列抽屉的按钮
-    openQueueDrawerBtn: '查看今日队列',
-    // 台本前几项以外的任务统一入口。
+    // 查看今日学习清单抽屉的按钮
+    openQueueDrawerBtn: '查看今日清单',
+    // 展开今日全部学习项的统一入口。
     showTasks: '展开今日全部安排',
-    // 中央磨砂光球空闲时球心上方的距考小标签
+    // 距考倒计时小标签
     orbCountdownLabel: '距离 6/20 考场',
-    // 中央磨砂光球空闲或通用槽位的距考天数文字
+    // 距考天数文字
     leftDays: (n: number) => (n > 0 ? `还有 ${n} 天` : n === 0 ? '今天开考' : `考后 ${Math.abs(n)} 天`),
-    // 中央磨砂光球进行中球心上方的当前节剩余时间标签
-    orbRemainingLabel: '本节剩余',
-    // 中央磨砂光球外圈 120 格放射刻度的悬停进度说明
-    orbTicksTooltip: (doneMin: number, totalMin: number) => `今日已完成 ${doneMin} / ${totalMin} 分钟`,
-    // 中央磨砂光球在今日全部完成时球心显示的短句
-    orbAllDoneLabel: '今日达成',
-    // 中央磨砂光球在休息日球心显示的短句
+    // 当前学习项剩余时间标签
+    orbRemainingLabel: '本项剩余',
+    // 今日累计已学分钟与计划总分钟提示
+    orbTicksTooltip: (doneMin: number, totalMin: number) => `今日已学 ${doneMin} / ${totalMin} 分钟`,
+    // 今日全部完成状态短句
+    orbAllDoneLabel: '今日已完成',
+    // 休息日状态短句
     orbRestDayLabel: '好好休息',
     // 「今天」页面未开始时的主操作按钮
     startTodayBtn: '开始今天的 2 小时',
@@ -156,26 +206,26 @@ export const zh = {
     startFor: (duration: string) => `开始今天这 ${duration}`,
     // 「今天」页面学习暂停或中途返回时的主操作按钮
     resumeTodayBtn: '接着刚才的进度学',
-    // 「今天」页面单节刚结束、准备进下一节时的主操作按钮
-    startNextTaskBtn: (taskTitle: string) => `开始下一节：${taskTitle}`,
+    // 「今天」页面单项刚结束、准备进下一项时的主操作按钮
+    startNextTaskBtn: (taskTitle: string) => `开始下一项：${taskTitle}`,
     // 休息块结束后的主按钮。
-    finishBreak: '结束休息，进入下一节',
+    finishBreak: '结束休息，进入下一项',
     // 手动整理任务的完成按钮。
-    finishManual: '记完重点，进入下一节',
+    finishManual: '记完重点，进入下一项',
     // 「今天」页面全部完成后供回看的主按钮
     reviewTodayWorkBtn: '回看今天做过的题',
     // 回看今天记录时的标题。
     todayWorkHeading: '今日作答回看',
-    // 主面板右半「今天的三件事」台本区小标题
-    scriptHeading: '今日台本',
-    // 今日任务台本和时长。
-    scriptDuration: (duration: string) => `今日台本 · 共 ${duration}`,
-    // 台本行左侧的节次编号标签
+    // 今日学习清单标题
+    scriptHeading: '今日学习清单',
+    // 今日学习安排标题与总时长。
+    scriptDuration: (duration: string) => `今日安排 · 共 ${duration}`,
+    // 学习清单项序号标签
     scriptStepIndex: (index: number, total: number) =>
       `${String(index).padStart(2, '0')} / ${String(total).padStart(2, '0')}`,
-    // 台本与队列任务类型名：到期错题与速算热身
+    // 今日清单任务名称：到期错题与速算热身
     taskWarmupReview: '到期错题与热身巩固',
-    // 台本与队列任务类型名：薄弱考点专项推进
+    // 今日清单任务名称：薄弱考点专项推进
     taskWeakFocus: (topicName: string) => `主攻弱项 · ${topicName}`,
     // 今日专项、笔记任务、模考和订正标题。
     focus: (name: string) => `专题精练 · ${name}`,
@@ -185,15 +235,15 @@ export const zh = {
     timedPaper: (name: string) => `${name} · 整卷掐表模考`,
     // 今日模考订正任务名称。
     correctPaper: '复盘订正刚考完的整卷错题',
-    // 台本与队列任务类型名：跨科交错练习
+    // 今日清单任务名称：跨科交错练习
     taskInterleave: '数理化交错实战练',
-    // 台本与队列任务类型名：无机与有机背诵卡
+    // 今日清单任务名称：无机与有机背诵卡
     taskFlashcards: '無機・有機 必背速记卡',
-    // 台本与队列任务类型名：每周限时小测
+    // 今日清单任务名称：每周限时小测
     taskWeeklyQuiz: '限时提速小测',
-    // 台本与队列任务类型名：校内考记述题尝鲜与演练
+    // 今日清单任务名称：校内考记述题尝鲜与演练
     taskSchoolWritten: (schoolName: string) => `${schoolName} · 记述推导练`,
-    // 台本与队列任务类型名：中场小憩
+    // 今日清单任务名称：中场小憩
     taskShortBreak: '起身喝口水 · 歇 5 分钟',
     // 休息任务超出默认时长时的实际分钟数。
     breakFor: (n: number) => `离开屏幕 · 歇 ${n} 分钟`,
@@ -233,28 +283,28 @@ export const zh = {
     coachReady: '今天先热身找手感，遇到卡壳超过 3 分钟的题先做记号，别硬耗。',
     // 完成今日学习后助教一句话点评的反馈文案
     coachNoteFinished: (accuracyPct: number) => `今天整体正确率 ${accuracyPct}%，卡壳的题我已经排进后几天的复习里了。`,
-    // 右侧倾斜侧面板「今日队列」标题
-    queueTitle: '今日队列',
-    // 今天页侧面板及窄屏抽屉的未来任务预览标题。
-    queuePreviewTitle: (date: string) => `${date} · 排课预告`,
+    // 今日学习清单标题
+    queueTitle: '今日学习清单',
+    // 下一个学习日任务预览标题。
+    queuePreviewTitle: (date: string) => `${date} · 学习安排预告`,
     // 今天已学完但明天休息时，预览列表中的空状态。
     queuePreviewNoTasks: '这天轮休不排课，安心放松就行',
-    // 休息日之后没有学习日时，今天页侧面板的标题。
+    // 休息日之后没有学习日时的空状态标题。
     queueNoUpcoming: '后续日程已全部走完',
-    // 右侧侧面板「今日队列」副标题统计
-    queueMeta: (taskCount: number, totalMin: number) => `${taskCount} 节安排 · 共 ${totalMin} 分钟`,
-    // 队列条目状态标签：尚未开始
+    // 今日学习清单项数与总时长统计
+    queueMeta: (taskCount: number, totalMin: number) => `共 ${taskCount} 项 · ${totalMin} 分钟`,
+    // 学习项状态标签：尚未开始
     queueStatePending: '待开始',
-    // 队列条目状态标签：当前正在进行
+    // 学习项状态标签：当前正在进行
     queueStateActive: '进行中',
-    // 队列条目状态标签：已完成
+    // 学习项状态标签：已完成
     queueStateDone: '已完成',
-    // 队列条目状态标签：主动跳过
+    // 学习项状态标签：主动跳过
     queueStateSkipped: '已跳过',
-    // 队列条目右侧圆形播放键的悬停说明
-    queuePlayTooltip: (taskTitle: string) => `直接开始「${taskTitle}」`,
-    // 队列条目更多菜单：跳过本节放到改天
-    queueSkipBtn: '跳过这节，改天再补',
+    // 开始某一项学习任务的悬停说明
+    queuePlayTooltip: (taskTitle: string) => `开始学习「${taskTitle}」`,
+    // 单日安排操作：跳过当前项放到改天
+    queueSkipBtn: '跳过这项，改天再补',
     // 休息日主面板中央卡片标题
     restCardTitle: '今天不用赶进度，安心休息',
     // 休息日主面板中央卡片说明正文
@@ -386,23 +436,23 @@ export const zh = {
     confirmMoveDayBtn: '确认挪到这一天',
     // 无法挪到目标日时的反馈。
     cannotMove: '只能挪到考前还没开学的空闲日期，换一天试试',
-    // 今天台本、队列和计划周视图里的校内考任务标题。
+    // 今日清单和计划周视图里的校内考任务标题。
     schoolTaskTitle: (school: string, purpose: string) => `${school} · ${purpose}`,
     // 校内任务采用真考形式时的短标签。
     schoolExamStyle: '笔试风格',
     // 校内任务用于院校拔高时的短标签。
     schoolExtension: '名校拔高',
-    // 今日台本、队列、助教一句话与计划周视图用的早稻田短名。
+    // 今日清单、助教叮嘱与计划周视图用的早稻田短名。
     schoolShortWaseda: '早大',
-    // 今日台本、队列、助教一句话与计划周视图用的明治短名。
+    // 今日清单、助教叮嘱与计划周视图用的明治短名。
     schoolShortMeiji: '明治',
-    // 今日台本、队列、助教一句话与计划周视图用的青山学院短名。
+    // 今日清单、助教叮嘱与计划周视图用的青山学院短名。
     schoolShortAoyama: '青学',
-    // 今日台本、队列、助教一句话与计划周视图用的立教短名。
+    // 今日清单、助教叮嘱与计划周视图用的立教短名。
     schoolShortRikkyo: '立教',
-    // 今日台本、队列、助教一句话与计划周视图用的中央短名。
+    // 今日清单、助教叮嘱与计划周视图用的中央短名。
     schoolShortChuo: '中央',
-    // 今日台本、队列、助教一句话与计划周视图用的法政短名。
+    // 今日清单、助教叮嘱与计划周视图用的法政短名。
     schoolShortHosei: '法政',
   },
 
@@ -696,7 +746,7 @@ export const zh = {
     practiceFromNoteBtn: (topicName: string) => `开始练几道「${topicName}」`,
     // 笔记阅读区底部次按钮：针对这篇笔记提问助教
     askCoachFromNoteBtn: '请助教换个讲法举例',
-    // 悬浮胶囊呼出的「速查笔记」侧抽屉标题
+    // 做题器中打开的「速查笔记」侧抽屉标题
     quickDrawerTitle: '速查考点笔记',
     // 速查笔记抽屉右上角跳转到完整笔记页的按钮
     openInNotesPageBtn: '打开完整笔记页',
@@ -795,8 +845,14 @@ export const zh = {
     quadrantNeedFoundation: '概念待补强',
   },
 
-  // 「做题器（专注模式）」（#/session/:id）：选择题、数学答题卡、记述题自评与 AI 批改、解析与胶囊控制
+  // 「做题器（专注模式）」（#/session/:id）：顶栏翻题与计时、选择题、数学答题卡、记述题自评与 AI 批改、解析
   session: {
+    // 做题器顶部：暂停计时
+    headPauseBtn: '暂停计时',
+    // 做题器顶部：继续计时
+    headResumeBtn: '继续计时',
+    // 做题器顶部：打开答题卡总览
+    headSheetBtn: '查看答题卡',
     // 未找到或过期的会话。
     missing: '没找到这节练习记录，可能已经结束或清理掉了',
     // 专注模式左上角暂存退出按钮
@@ -914,13 +970,13 @@ export const zh = {
     aiGradeFeedbackLabel: '逐条点评与补分建议',
     // 采纳 AI 批改得分并进入下一题的按钮
     acceptAiGradeBtn: '记入批改成绩并继续',
-    // 专注模式底部悬浮胶囊按钮：标记没把握（快捷键 F）
+    // 专注模式底部操作栏按钮：标记没把握（快捷键 F）
     flagUnsureBtn: '标记没把握',
-    // 专注模式底部悬浮胶囊按钮：已标记没把握激活态
+    // 专注模式底部操作栏按钮：已标记没把握激活态
     flagUnsureActive: '已标没把握',
-    // 专注模式底部悬浮胶囊按钮：带着本题呼出助教（快捷键 /）
+    // 专注模式底部操作栏按钮：带着本题呼出助教（快捷键 /）
     askCoachInSessionBtn: '问助教这道题',
-    // 专注模式底部悬浮胶囊按钮：展开题号总览卡
+    // 专注模式打开答题卡总览按钮
     openSheetOverviewBtn: '展开答题卡总览',
     // 答题卡总览浮层标题
     overviewPopoverTitle: '本节题目总览',
@@ -983,7 +1039,7 @@ export const zh = {
     reviewWrongJustNowBtn: '回看刚才做错的题',
   },
 
-  // 「AI 助教」对话面板（从悬浮胶囊弹出或贴靠右侧）：欢迎语、思考中、失败重试与建议问题
+  // 「AI 助教」对话面板（右下角悬浮按钮打开，贴靠右侧）：欢迎语、思考中、失败重试与建议问题
   coach: {
     // 助教面板顶部标题
     title: 'AI 助教',
@@ -1174,7 +1230,7 @@ export const zh = {
     // 设置项标签：每日投入时长
     fieldDailyMinutes: '单日计划时长',
     // 设置项说明：每日投入时长
-    fieldDailyMinutesDesc: '默认 120 分钟（光球一圈 120 格刻度），含中场 5 分钟小憩。',
+    fieldDailyMinutesDesc: '默认 120 分钟，按专项段与 5 分钟中场小憩自动切分今日时间条。',
     // 第三组标题：外观、六张季节场景、天气粒子与背景音乐
     groupAppearanceTitle: '外观与空间场景',
     // 第三组说明文字
