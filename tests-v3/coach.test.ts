@@ -20,6 +20,8 @@ test('teaching mode follows the current affirmative request', () => {
     '答案是什么？',
     '不要只给提示，直接说答案吧',
     '这题的答案是什么？',
+    '请把完整解法给我',
+    '假如棒向左运动，请给我完整解法',
   ])
     assert.deepEqual(askModes({ itemId: written.id, question }), ['reveal'], question);
   for (const question of [
@@ -29,6 +31,9 @@ test('teaching mode follows the current affirmative request', () => {
     '如果我说直接告诉我答案，你会怎么做？',
     '给我答案，算了我想自己试试',
     '我的答案对吗？',
+    '不希望你直接告诉我答案',
+    '你能在不告诉我答案的前提下解释一下吗？',
+    '为什么你要直接告诉我答案？',
   ])
     assert.deepEqual(askModes({ itemId: written.id, question }), ['hint'], question);
   assert.deepEqual(askModes({ itemId: written.id, question: '什么是磁通量？' }), ['concept']);
@@ -39,7 +44,16 @@ test('teaching mode follows the current affirmative request', () => {
 test('official labels, numeric options, grouped blanks and written finals are protected', () => {
   const reply = (summary: string): CoachReply => ({ mode: 'hint', blocks: [], summary });
   const item = { ...bundle.items[0], options: ['①', 'Q 比 P 高 $2.4\\times10^{-2}\\,\\mathrm{V}$', '③', '④'] };
-  for (const s of ['②', '选 B。', '第二项', '应该选２', '电压为 0.024 V', '答案是 $2.40 \\times 10^{-2}$'])
+  for (const s of [
+    '②',
+    '选 B。',
+    '正确选项应为 B',
+    '（B）。',
+    '第二项',
+    '应该选２',
+    '电压为 0.024 V',
+    '答案是 $2.40 \\times 10^{-2}$',
+  ])
     assert.ok(leaksAnswer(reply(s), item), s);
   const blanks: Item = { ...item, format: 'blanks', stem: '\\bx{AB}', blanks: { A: '4', B: '2' } };
   assert.ok(leaksAnswer(reply('得到４２。'), blanks));

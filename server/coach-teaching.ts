@@ -12,15 +12,30 @@ review（周复盘）：只引用当周汇总中确有的数据，样本不足�
 
 function requestsSolution(question: string) {
   const ownWords = question.replace(/[“「『"‘][^”」』"’]*[”」』"’]/g, '');
-  if (/(?:如果(?!可以)|假如|假设|要是|当我说|按钮|这句话|这句指令|这几个字)/.test(ownWords)) return false;
-  const affirmative =
-    /(?:告诉我|给我|我想(?:要|看|知道)|我要(?:看)?|直接(?:给|看|说)|请(?:给出|展示)|给出|查看|揭晓|公布|说出|求)(?:我|一下|这道?题的?|本题的?|的|正确|最终|完整|详细|标准|参考|全部|个|\s)*(?:答案|正确选项|解法|解答|解题步骤|解析|解题过程)|(?:^|这道?题的?|本题的?)(?:答案(?:是什么|呢)?|完整(?:解法|解答|解析))(?:吧|吗)?$|(?:give|show|tell) me (?:the |a )?(?:(?:complete|full) solution|(?:final )?answer)/i;
-  const negative =
-    /(?:不要|不想|不需要|不用|不必|不许|别|先不|不准|不能|没(?:说|让|要求)|不(?:是|要)让).*(?:答案|解法|解析|解答)|只(?:给|要|想要)(?:一点)?提示|想自己(?:做|算|想|试)|don't|do not/i;
+  // Match a request clause as a whole. Merely mentioning "告诉我答案" in a
+  // complaint, hypothetical or negated question must never unlock the key.
+  const prefix =
+    /^(?:请问|请你|请您|请|麻烦你|麻烦|能不能|可不可以|可以|能否|能|你|您|那就|那|这次|现在|还是|直接|这道题的?|这题的?|本题的?|我想要|我想|我要|我希望)\s*/;
+  const request =
+    /^(?:(?:告诉我|给我|给出|展示|解释|提供|发我|公布|说出|揭晓|写出|查看|看|知道|求|给|说)(?:一下)?)?(?:这道?题的?|本题的?)?(?:(?:正确|最终|完整|详细|标准|参考)的?)?(?:答案|正确选项|解法|解答|解题步骤|解析|解题过程|最终结果|最终数值)(?:是什么)?$/;
+  const handOver =
+    /^把(?:这道?题的?|本题的?)?(?:完整的?|详细的?|正确的?)?(?:答案|解法|解题过程)(?:告诉我|给我|发给我)$/;
+  const english =
+    /^(?:please )?(?:give|show|tell) me (?:the |a )?(?:(?:complete|full) solution|(?:final )?answer)(?: please)?$/i;
+  const decline =
+    /(?:别|勿|避免|不用|无需|不必|不要|不想|不希望|不需要|不(?:直接)?(?:告诉|说|给)|没(?:有)?(?:说|让|要求)).*(?:答案|解[法答]|解析)|只(?:想)?(?:给|要).*提示|想自己.*(?:做|算|想|试)|don't|do not/i;
   let reveal = false;
-  for (const part of ownWords.split(/[，,。！？?!；;\n]|不过|但是/)) {
-    if (negative.test(part)) reveal = false;
-    else if (affirmative.test(part.trim())) reveal = true;
+  for (const part of ownWords.split(/[，,。！？?!.；;\n]|不过|但是|并(?:解释|说明)/)) {
+    if (decline.test(part)) {
+      reveal = false;
+      continue;
+    }
+    let clause = part
+      .trim()
+      .replace(/(?:好不好|可以吗|好吗|吧|吗|呢|呀|啊)$/, '')
+      .trim();
+    while (prefix.test(clause)) clause = clause.replace(prefix, '');
+    if (request.test(clause) || handOver.test(clause) || english.test(clause)) reveal = true;
   }
   return reveal;
 }

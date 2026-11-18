@@ -143,14 +143,20 @@ export function leaksAnswer(reply: CoachReply, it: Item): boolean {
     if (
       copy.some((s) => s.includes(String.fromCodePoint(0x245f + index))) ||
       new RegExp(
-        '(?:第|选(?:项|择)?|答案(?:应?该?是|为)?|正解|option|answer)\\s*[:：=]?\\s*(?:' +
+        '(?:第|选(?:项|择)?|答案|正解|正确的|option|answer)\\s*(?:应该|应当|应|就)?(?:是|为|is)?\\s*[:：=]?\\s*(?:' +
           ordinal +
           ')(?![a-z\\d])|(?:' +
           ordinal +
           ')\\s*(?:项|号选项|是(?:对的|正确)|is correct)',
         'i',
       ).test(prose) ||
-      copy.some((s) => [String(index), letter, label].includes(normalize(s).trim()))
+      copy.some((s) =>
+        [String(index), letter, label].includes(
+          normalize(s)
+            .trim()
+            .replace(/^[([]|[)\].。!！]+$/g, ''),
+        ),
+      )
     )
       return true;
     // A bare displayed number, even without "选项", may identify the answer.
