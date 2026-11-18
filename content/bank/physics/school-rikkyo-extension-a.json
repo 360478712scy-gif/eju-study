@@ -1,0 +1,94 @@
+{
+  "title": "立教大学 理学部 院校水平拔高题 · 原创 A",
+  "items": [
+    {
+      "id": "school-rikkyo-extension-a-03",
+      "subject": "physics",
+      "order": 3,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "rikkyo",
+        "label": "立教大学 理学部 院校水平拔高题 · 原创 A",
+        "url": "https://www.rikkyo.ac.jp/admissions/faq/admissions2.html",
+        "session": "extension-a"
+      },
+      "stem": "ある小振幅振り子で，糸の見かけの長さを $s$，真の支点・重心間距離を $s+d$ とする。$s=0.40,0.90$ mで測定した $T^2$ はそれぞれ1.8，3.8 s²である。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$T^2$ を $s$ の一次式で表し，傾きと切片を数値で求めよ。",
+            "points": 10,
+            "modelAnswer": "$T^2=(4\\pi^2/g)(s+d)$。傾きは $(3.8-1.8)/(0.90-0.40)=4.0$ s²/m，切片は $1.8-4.0(0.40)=0.20$ s²。",
+            "rubric": [
+              {
+                "text": "建立含偏置的一次关系",
+                "points": 5
+              },
+              {
+                "text": "计算斜率与截距",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$g,d$ を推定せよ。",
+            "points": 10,
+            "modelAnswer": "$4\\pi^2/g=4.0$ より $g=\\pi^2$ m/s²。$4.0d=0.20$ より $d=0.050$ m。",
+            "rubric": [
+              {
+                "text": "斜率还原重力加速度",
+                "points": 5
+              },
+              {
+                "text": "截距除斜率得长度",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$d$ を無視して $s=0.40$ mの1点だけから求める $g'$ は，真値の何倍か。",
+            "points": 10,
+            "modelAnswer": "同じ周期なら $g'/g=s/(s+d)=0.40/0.45=8/9$。長さを短く見積もるため過小評価である。",
+            "rubric": [
+              {
+                "text": "在相同周期下列比",
+                "points": 5
+              },
+              {
+                "text": "给出比例及偏差方向",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "周期平方与记录长度的关系含一个截距。从斜率推重力，从截距恢复长度校正，再用两组实测数据检查校正方向。\n\n(1) 用 $T^2=(4\\pi^2/g)(s+d)$ 作图，两实测点给斜率4.0 s²/m，外推 $s=0$ 时截距为0.20 s²。\n\n(2) 斜率给出 $g=\\pi^2$ m/s²，截距是斜率乘 $d$，所以长度校正 $d=0.050$ m。\n\n(3) 同一测量周期下推算的 $g$ 正比于代入的摆长。忽略校正时取0.40 m，实际为0.45 m，结果低估至真值的 $8/9$。",
+        "keyPoints": [
+          "周期平方与记录长度的关系含一个截距"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

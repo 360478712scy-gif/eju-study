@@ -1,0 +1,306 @@
+{
+  "title": "青山学院大学 理工学部 留学生理科笔试风格 · 物理原创 B",
+  "items": [
+    {
+      "id": "school-aoyama-physics-b-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.em.capacitor",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "aoyama",
+        "label": "青山学院大学 理工学部 留学生理科笔试风格 · 物理原创 B",
+        "url": "https://www.aoyama.ac.jp/wp-content/uploads/2026/07/ad_2027_internationalstudent_20260709_e1Nf5.pdf",
+        "session": "physics-b"
+      },
+      "stem": "面積S，間隔dの平行板コンデンサーに電圧Vを加えてから電池を外す。比誘電率3の板をすき間なく側方から挿入し，面積の割合 $x$ を覆う。端効果と摩擦は無視し，$C_0=\\varepsilon_0S/d$ とする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$C(x)$ と極板間電圧 $V(x)$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "二領域は並列なので $C(x)=C_0[(1-x)+3x]=C_0(1+2x)$。$Q=C_0V$ が一定で $V(x)=V/(1+2x)$。",
+            "rubric": [
+              {
+                "text": "写出并联区域电容",
+                "points": 5
+              },
+              {
+                "text": "用电荷守恒求电压",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "板を $x=1/2$ まで静かに入れる外力の仕事を求めよ。",
+            "points": 10,
+            "modelAnswer": "電池との授受はない。$U(x)=C_0V^2/[2(1+2x)]$ より $W_\\text{外}=U(1/2)-U(0)=-C_0V^2/4$。",
+            "rubric": [
+              {
+                "text": "写出固定电荷的能量",
+                "points": 5
+              },
+              {
+                "text": "取终减初并解释负功",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "挿入方向の全長をL，進んだ長さを $s=Lx$ とする。電気力の向きと大きさを $x$ で表せ。",
+            "points": 10,
+            "modelAnswer": "$F=-dU/ds=-(dU/dx)/L=C_0V^2/[L(1+2x)^2]$。正なので板を引き込む向き。",
+            "rubric": [
+              {
+                "text": "能量对实际位移求负导数",
+                "points": 5
+              },
+              {
+                "text": "得出力及插入方向",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "同厚度的两块区域共用电压，先并联求电容。断电后电荷固定，外力功由能量差得到，最后可由功对位置的导数判断力的趋势。\n\n(1) 两块区域并联，故 $C=(1+2x)C_0$。总电荷自断电起为 $C_0V$，实际极板电压为 $V/(1+2x)$。\n\n(2) 固定电荷写 $U=Q^2/(2C)$，插到一半时电容翻倍。末态能量是初态的一半，外力在准静态下做功 $-C_0V^2/4$。\n\n(3) 把 $x=s/L$ 代入能量再对 $s$ 求负导数，得到 $C_0V^2/[L(1+2x)^2]$。力取正号，方向与介质向内的位移相同。",
+        "keyPoints": [
+          "同厚度的两块区域共用电压，先并联求电容"
+        ],
+        "terms": [
+          {
+            "ja": "極板",
+            "kana": "きょくばん",
+            "zh": "电容器上承载电荷的一块导体板"
+          },
+          {
+            "ja": "比誘電率",
+            "kana": "ひゆうでんりつ",
+            "zh": "介质介电常数与真空值之比"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      },
+      "figures": [
+        {
+          "src": "/assets/v3/weak/dielectric-side.svg",
+          "width": 480,
+          "caption": "極板を真横から見た断面（奥行きは一定）"
+        }
+      ]
+    },
+    {
+      "id": "school-aoyama-physics-b-02",
+      "subject": "physics",
+      "order": 2,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "aoyama",
+        "label": "青山学院大学 理工学部 留学生理科笔试风格 · 物理原创 B",
+        "url": "https://www.aoyama.ac.jp/wp-content/uploads/2026/07/ad_2027_internationalstudent_20260709_e1Nf5.pdf",
+        "session": "physics-b"
+      },
+      "stem": "水平平行レールの間隔l，垂直磁場B，全抵抗R，棒の質量mとする。摩擦・自己誘導を無視する。静止していた棒を一定外力Fで引き始める。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "運動方程式を立て，終端速度 $v_\\infty$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "電流 $I=Blv/R$，磁気力は運動と逆。$m\\,dv/dt=F-B^2l^2v/R$，従って $v_\\infty=FR/(B^2l^2)$。",
+            "rubric": [
+              {
+                "text": "从动生电压求反向安培力",
+                "points": 5
+              },
+              {
+                "text": "写方程并令加速度为零",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$\\tau=mR/(B^2l^2)$ とし，$v(t)=v_\\infty(1-e^{-t/\\tau})$ が初期条件と運動方程式を満たすことを示せ。",
+            "points": 10,
+            "modelAnswer": "$t=0$ で0。左辺は $m v_\\infty e^{-t/\\tau}/\\tau=Fe^{-t/\\tau}$，右辺も $F-F(1-e^{-t/\\tau})=Fe^{-t/\\tau}$。",
+            "rubric": [
+              {
+                "text": "检查初始速度",
+                "points": 5
+              },
+              {
+                "text": "直接微分并核对方程两边",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$v=v_\\infty/2$ の瞬間，外力の仕事率の何割がジュール熱になるか。",
+            "points": 10,
+            "modelAnswer": "$P_J/P_F=(B^2l^2v^2/R)/(Fv)=v/v_\\infty=1/2$。すなわち5割で，残りは運動エネルギーの増加となる。",
+            "rubric": [
+              {
+                "text": "分别写热功率与外力功率",
+                "points": 5
+              },
+              {
+                "text": "约去公共因子并得比例",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "电磁阻力随速度增加。将动力学方程化成“距终端速度的差”满足指数衰减，再用功率平衡解释能量去向。\n\n(1) 电动势 $Blv$ 驱动电流 $Blv/R$，安培力与拖动方向相反。故 $m\\dot v=F-B^2l^2v/R$，令加速度为零得到 $v_\\infty=FR/(B^2l^2)$。\n\n(2) 把试探解代入，初值为零。其导数乘 $m$ 为 $mv_\\infty e^{-t/\\tau}/\\tau=Fe^{-t/\\tau}$，与外力扣去磁阻力的结果相同。\n\n(3) 电流热功率除以外力功率，得 $I^2R/(Fv)=v/v_\\infty$。在半终速时一半变成热，一半增加动能。",
+        "keyPoints": [
+          "电磁阻力随速度增加"
+        ],
+        "terms": [
+          {
+            "ja": "自己誘導",
+            "kana": "じこゆうどう",
+            "zh": "本回路电流变化在自身产生感应电动势"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    },
+    {
+      "id": "school-aoyama-physics-b-03",
+      "subject": "physics",
+      "order": 3,
+      "topic": "phys.mech.pendulum",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "aoyama",
+        "label": "青山学院大学 理工学部 留学生理科笔试风格 · 物理原创 B",
+        "url": "https://www.aoyama.ac.jp/wp-content/uploads/2026/07/ad_2027_internationalstudent_20260709_e1Nf5.pdf",
+        "session": "physics-b"
+      },
+      "stem": "質量m，長さLの単振り子を左端で鉛直から小さい角αだけ離して放す。支点の真下に細いくぎがあり，右側を振れるときだけ有効長が $L/3$ になる。糸は伸びず，抵抗を無視する。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "最下点の速さ $v_0$ と，右端の振れ角βの満たす式を求めよ。",
+            "points": 10,
+            "modelAnswer": "$v_0^2=2gL(1-\\cos\\alpha)$。右側での上昇より $(L/3)(1-\\cos\\beta)=L(1-\\cos\\alpha)$。よって $v_0=\\sqrt{2gL(1-\\cos\\alpha)}$。",
+            "rubric": [
+              {
+                "text": "由落高求最低点速度",
+                "points": 5
+              },
+              {
+                "text": "两侧升高相等写出角度关系",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "左右とも小振幅として，一往復の周期を求めよ。",
+            "points": 10,
+            "modelAnswer": "各側はその長さの単振り子の半周期を占める。合計は $\\pi\\sqrt{L/g}(1+1/\\sqrt3)$。",
+            "rubric": [
+              {
+                "text": "分出两个半周期",
+                "points": 5
+              },
+              {
+                "text": "代入两种摆长并相加",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "最下点でくぎにかかる直前・直後の張力の差（直後ひく直前）を求めよ。",
+            "points": 10,
+            "modelAnswer": "半径のみが変わり速さは連続。$T_+-T_-=mv_0^2(3/L-1/L)=4mg(1-\\cos\\alpha)$（$m$ は小球質量）。",
+            "rubric": [
+              {
+                "text": "使用同一速度和不同曲率半径",
+                "points": 5
+              },
+              {
+                "text": "在张力差中消去重力并化简",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "最低点处速度连续，最高点的升高量相同，但两侧曲率半径不同。张力要分别使用两侧的径向方程，不能认为接触钉前后也连续。\n\n(1) 长摆下降高度 $L(1-\\cos\\alpha)$，最低点速率为 $\\sqrt{2gL(1-\\cos\\alpha)}$。短摆上升到同一高度，故 $1-\\cos\\beta=3(1-\\cos\\alpha)$。\n\n(2) 一次往返中，两侧各贡献对应摆长的半个完整周期，合计 $\\pi\\sqrt{L/g}(1+1/\\sqrt3)$。\n\n(3) 过最低点速率不变，但向心力随半径缩短而增大。张力差为 $mv_0^2(3/L-1/L)=4mg(1-\\cos\\alpha)$。",
+        "keyPoints": [
+          "最低点处速度连续，最高点的升高量相同，但两侧曲率半径不同"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "往復",
+            "kana": "おうふく",
+            "zh": "从起点摆到另一侧再返回的完整来回"
+          },
+          {
+            "ja": "最下点",
+            "kana": "さいかてん",
+            "zh": "摆球轨迹中高度最低的位置"
+          },
+          {
+            "ja": "張力",
+            "kana": "ちょうりょく",
+            "zh": "拉紧的细线沿线施加的拉力"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      },
+      "figures": [
+        {
+          "src": "/assets/v3/weak/peg-third.svg",
+          "width": 480,
+          "caption": "長い側から最下点を通り，右側でくぎにかかる"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "title": "中央大学 理工三学部 院校水平拔高题 · 口头试问推导练习 A",
+  "items": [
+    {
+      "id": "school-chuo-extension-a-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.em.induction",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "chuo",
+        "label": "中央大学 理工三学部 院校水平拔高题 · 口头试问推导练习 A",
+        "url": "https://www.chuo-u.ac.jp/common_d/connect/admission/2027/special/12_1_6.pdf",
+        "session": "extension-a"
+      },
+      "stem": "1巻きの抵抗Rの枠を面に垂直な磁場中に置く。正方向の磁束が $0\\le t\\le T$ で $\\Phi(t)=\\Phi_0(t/T)(1-t/T)$ と変わる。$\\Phi_0>0$，自己誘導は無視する。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "電流の正方向を磁束の正法線に対する右ねじの向きとし，$I(t)$ と反転時刻を求めよ。",
+            "points": 10,
+            "modelAnswer": "$I=-\\Phi_0(1-2t/T)/(RT)$。よって $t=T/2$ で負から正に変わる。",
+            "rubric": [
+              {
+                "text": "用法拉第定律带符号求导",
+                "points": 5
+              },
+              {
+                "text": "给出反转时刻与方向",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$\\int_0^T I\\,dt$ と $\\int_0^T \\lvert I\\rvert\\,dt$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "始終の磁束が0なので前者は0。折返点の磁束は $\\Phi_0/4$。各半区間の通過量は $\\Phi_0/(4R)$ で，絶対量の和は $\\Phi_0/(2R)$。",
+            "rubric": [
+              {
+                "text": "说明代数电荷为零",
+                "points": 5
+              },
+              {
+                "text": "在反转点分段求绝对量",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "全ジュール熱を求め，磁束の始終値だけで決まるか説明せよ。",
+            "points": 10,
+            "modelAnswer": "$u=t/T$ とおくと $Q_J=\\Phi_0^2/(RT)\\int_0^1(1-2u)^2du=\\Phi_0^2/(3RT)$。変化時間にも依存し，始終値だけでは決まらない。",
+            "rubric": [
+              {
+                "text": "建立平方电流积分",
+                "points": 5
+              },
+              {
+                "text": "积分并解释时间依赖",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "带符号总电荷和往返通过截面的电荷量要分别计算。磁通回到初值时，感应电流改变过方向，焦耳热仍能积累。\n\n(1) 磁通对时间求负导数再除以电阻，$I=-\\Phi_0(1-2t/T)/(RT)$。由负转正的时刻是 $T/2$。\n\n(2) 前后磁通同为零，所以代数电荷为零；磁通最大值 $\\Phi_0/4$。两段电荷绝对值相等，合计 $\\Phi_0/(2R)$。\n\n(3) 把 $I^2R$ 对时间积分，令 $u=t/T$，用 $\\int_0^1(1-2u)^2du=1/3$ 得到 $\\Phi_0^2/(3RT)$。时长改变会改变焦耳热。",
+        "keyPoints": [
+          "带符号总电荷和往返通过截面的电荷量要分别计算"
+        ],
+        "terms": [
+          {
+            "ja": "磁束",
+            "kana": "じそく",
+            "zh": "磁场穿过有向面积的通量"
+          },
+          {
+            "ja": "自己誘導",
+            "kana": "じこゆうどう",
+            "zh": "本回路电流变化在自身产生感应电动势"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

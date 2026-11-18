@@ -1,0 +1,87 @@
+{
+  "title": "中央大学 理工三学部 院校水平拔高题 · 口头试问推导练习 A",
+  "items": [
+    {
+      "id": "school-chuo-extension-a-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.inorg.ions",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "chuo",
+        "label": "中央大学 理工三学部 院校水平拔高题 · 口头试问推导练习 A",
+        "url": "https://www.chuo-u.ac.jp/common_d/connect/admission/2027/special/12_1_6.pdf",
+        "session": "extension-a"
+      },
+      "stem": "混合物は $\\ce{CaCO3}$ と $\\ce{CaSO4}$ のみからなり，両者合わせて4.72 gである。十分な希塩酸を加えると $\\ce{CO2}$ が0.020 mol生じた。モル質量は順に100，136 g/molとする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "気体を生じる正味の反応を，電荷と原子数に注意して示せ。",
+            "points": 10,
+            "modelAnswer": "$\\ce{CaCO3(s) + 2H+ -> Ca^2+ + CO2 + H2O}$。CaSO₄の硫酸イオンはこの条件でCO₂を与えない。",
+            "rubric": [
+              {
+                "text": "配平离子反应",
+                "points": 5
+              },
+              {
+                "text": "说明选择性来自哪种阴离子",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "初めの各塩の物質量を求めよ。",
+            "points": 10,
+            "modelAnswer": "CO₂と等モルの炭酸塩は0.020 mol，2.00 g。硫酸塩は差の2.72 gで，$2.72/136=0.020$ mol。",
+            "rubric": [
+              {
+                "text": "由气体求碳酸盐",
+                "points": 5
+              },
+              {
+                "text": "质量差换算另一盐",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "別に取った試料の水抽出液を使って硫酸イオンを確かめたい。酸性にする酸とその後に加える試薬を選び，陽性の観察を述べよ。",
+            "points": 10,
+            "modelAnswer": "希塩酸で炭酸イオンを除き，塩化バリウム水溶液を加える。酸性でも残る白いBaSO₄沈殿が陽性。硫酸で酸性にすると試薬自身が硫酸イオンを加えてしまう。",
+            "rubric": [
+              {
+                "text": "选择不引入目标离子的酸和钡盐",
+                "points": 5
+              },
+              {
+                "text": "说明沉淀现象与干扰控制",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "利用只有碳酸盐产气的选择性还原组成。检验剩余阴离子时留意所加试剂不能引入被检离子，检验结果才能支持结论。\n\n(1) 每摩尔碳酸钙消耗两摩尔氢离子，形成钙离子、水和一摩尔二氧化碳。硫酸钙没有碳，不能参与这一产气过程。\n\n(2) 气体给出碳酸钙0.020 mol即2.00 g。余下2.72 g为硫酸钙，用136 g/mol换算也是0.020 mol。\n\n(3) 另取水浸液，用稀盐酸去除碳酸根干扰，加氯化钡后若有耐稀酸的白色沉淀即支持检出硫酸根。酸化若用硫酸会人为引入待检离子。",
+        "keyPoints": [
+          "利用只有碳酸盐产气的选择性还原组成"
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

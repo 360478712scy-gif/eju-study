@@ -1,0 +1,99 @@
+{
+  "title": "早稻田大学 理工三学部 院校水平拔高题 · 数理综合原创 A",
+  "items": [
+    {
+      "id": "school-waseda-extension-a-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "waseda",
+        "label": "早稻田大学 理工三学部 院校水平拔高题 · 数理综合原创 A",
+        "url": "https://www.waseda.jp/fsci/admissions_us/application/",
+        "session": "extension-a"
+      },
+      "stem": "液体燃料X，Yの燃焼エンタルピーは順に−600，−900 kJ/molである。各燃料1 molから生成する水は2 mol，3 molで，上の燃焼エンタルピーの値は水を液体とした値である。混合試料0.20 molを完全燃焼させ，水がすべて液体なら150 kJが放出される。蒸発エンタルピーを+40 kJ/molとする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "X，Yの物質量を求めよ。",
+            "points": 10,
+            "modelAnswer": "$x+y=0.20,\\ 600x+900y=150$ より $x=y=0.10$ mol。",
+            "rubric": [
+              {
+                "text": "列出总量和正的放热量方程",
+                "points": 5
+              },
+              {
+                "text": "解出两种燃料用量",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "生成水のうち0.20 molが気体にとどまったとき，反応系の $\\Delta H$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "合計水量は $2x+3y=0.50$ mol。このうち0.20 molの気化分だけ $+8$ kJを加え，$\\Delta H=-142$ kJ。",
+            "rubric": [
+              {
+                "text": "确认水量与气态部分",
+                "points": 5
+              },
+              {
+                "text": "按正确方向叠加汽化焓",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "熱量計が放出熱の90%を受け取ったら，熱容量3.0 kJ/Kの熱量計の温度上昇はいくらか。",
+            "points": 10,
+            "modelAnswer": "熱量計の吸熱は $142\\times0.90=127.8$ kJ。温度上昇は $127.8/3.0=42.6$ K。",
+            "rubric": [
+              {
+                "text": "把反应放热换成实际吸热",
+                "points": 5
+              },
+              {
+                "text": "用热容量求温升并写单位",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "把燃烧后水的物态当作可单独接在盖斯路径上的一步。组成、总水量和能量损失各自只有一个未知，必须按顺序恢复。\n\n(1) 若全部为X，0.20 mol放热120 kJ；实测多30 kJ，每用一摩尔Y替代X多300 kJ，故Y为0.10 mol，X也为0.10 mol。\n\n(2) 燃烧共生成0.50 mol水，其中只有0.20 mol需要补计汽化焓，故 $\\Delta H=-150+0.20\\times40=-142$ kJ。\n\n(3) 热量计接受的正热量为 $142\\times0.90=127.8$ kJ。用3.0 kJ/K除进得到温升42.6 K。",
+        "keyPoints": [
+          "把燃烧后水的物态当作可单独接在盖斯路径上的一步"
+        ],
+        "terms": [
+          {
+            "ja": "熱容量",
+            "kana": "ねつようりょう",
+            "zh": "物体升温一个单位所需的热量"
+          },
+          {
+            "ja": "燃焼エンタルピー",
+            "kana": "ねんしょうえんたるぴー",
+            "zh": "一摩尔物质完全燃烧且产物物态指定时的焓变"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

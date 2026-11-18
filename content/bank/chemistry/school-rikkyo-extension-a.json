@@ -1,0 +1,104 @@
+{
+  "title": "立教大学 理学部 院校水平拔高题 · 原创 A",
+  "items": [
+    {
+      "id": "school-rikkyo-extension-a-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.org.basics",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "rikkyo",
+        "label": "立教大学 理学部 院校水平拔高题 · 原创 A",
+        "url": "https://www.rikkyo.ac.jp/admissions/faq/admissions2.html",
+        "session": "extension-a"
+      },
+      "stem": "Aは分子式 $\\ce{C5H10O2}$ の鎖式エステルである。加水分解で酸BとアルコールCを得た。Bは2炭素，Cを温和に酸化して得るDはヨードホルム反応陽性で銀鏡反応陰性である。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "BとCそれぞれの炭素数を確定し，Cになりうる飽和アルコールをすべて書け。",
+            "points": 10,
+            "modelAnswer": "Bは2炭素。炭素は加水分解で失われずCは3炭素で，候補は1-プロパノールと2-プロパノール。",
+            "rubric": [
+              {
+                "text": "用碳守恒得三碳醇",
+                "points": 5
+              },
+              {
+                "text": "列全两个位置异构体",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "D，C，Aの構造を根拠とともに決めよ。",
+            "points": 10,
+            "modelAnswer": "銀鏡陰性でヨードホルム陽性の3炭素のカルボニル化合物はアセトン。Cは2-プロパノール。Bは酢酸より，Aは $\\ce{CH3COOCH(CH3)2}$。",
+            "rubric": [
+              {
+                "text": "以两项检验反推D和C",
+                "points": 5
+              },
+              {
+                "text": "正确接回两碳酰基",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "A 5.10 gを完全にけん化した。必要なNaOHの最小質量と，理論上得られるCの質量を求めよ（A 102，C 60，NaOH 40 g/mol）。",
+            "points": 10,
+            "modelAnswer": "Aは $5.10/102=0.0500$ mol。エステル結合1個につきNaOHもCも等モル。NaOH 2.00 g，C 3.00 g。",
+            "rubric": [
+              {
+                "text": "从酯键数推出物质的量关系",
+                "points": 5
+              },
+              {
+                "text": "得到两项质量及单位",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "先从总碳数决定酸端和醇端长度。两种性质检验的是氧化产物D，不能直接套到原来的酯A上。\n\n(1) 五个碳分给两碳酸和三碳醇，醇端仅有1-丙醇和2-丙醇两个饱和醇候选。\n\n(2) 两项检验指向甲基酮丙酮，反推醇为2-丙醇。酸为乙酸，酯为 $\\ce{CH3COOCH(CH3)2}$。\n\n(3) 5.10 g对应0.0500 mol酯，每份酯消耗一份碱并给一份醇。以40与60 g/mol换算，分别为2.00和3.00 g。",
+        "keyPoints": [
+          "先从总碳数决定酸端和醇端长度"
+        ],
+        "terms": [
+          {
+            "ja": "加水分解",
+            "kana": "かすいぶんかい",
+            "zh": "水参与断键并形成新的分子或离子"
+          },
+          {
+            "ja": "けん化",
+            "kana": "けんか",
+            "zh": "酯在碱性条件下水解形成羧酸盐与醇"
+          },
+          {
+            "ja": "銀鏡反応",
+            "kana": "ぎんきょうはんのう",
+            "zh": "银离子受还原并析出金属银的定性反应"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

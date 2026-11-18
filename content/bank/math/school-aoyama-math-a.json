@@ -1,0 +1,265 @@
+{
+  "title": "青山学院大学 理工学部 留学生数学笔试风格 · 原创 A",
+  "items": [
+    {
+      "id": "school-aoyama-math-a-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "aoyama",
+        "label": "青山学院大学 理工学部 留学生数学笔试风格 · 原创 A",
+        "url": "https://www.aoyama.ac.jp/wp-content/uploads/2026/07/ad_2027_internationalstudent_20260709_e1Nf5.pdf",
+        "session": "math-a"
+      },
+      "stem": "正の定数 $a$ について，曲線 $y=2^x+a2^{-x}$ と直線 $y=3$ の交点を考える。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "交点の個数を $a$ により分類せよ。",
+            "points": 10,
+            "modelAnswer": "$t=2^x>0$ とすると $t^2-3t+a=0$。$a>0$ で実根があれば和3，積正より全て正。$a<9/4$ で2個，等号で1個，超えると0個。",
+            "rubric": [
+              {
+                "text": "换元并判断根的符号",
+                "points": 5
+              },
+              {
+                "text": "按判别式给出所有边界",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "異なる二つの交点がともに $0\\le x\\le1$ にある条件を求めよ。",
+            "points": 10,
+            "modelAnswer": "対応する区間は $1\\le t\\le2$ で軸は $3/2$。端での値はともに $a-2$，頂点は $a-9/4$。条件は $2\\le a<9/4$。",
+            "rubric": [
+              {
+                "text": "将范围和顶点对应到新变量",
+                "points": 5
+              },
+              {
+                "text": "同时处理端点与重根",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "二交点の $x$ 座標の差が1であるとき $a$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "大きい根を $t_2$ とすると $\\log_2(t_2/t_1)=1$ より $t_2=2t_1$。和3から $t_1=1,t_2=2$，積より $a=2$。",
+            "rubric": [
+              {
+                "text": "由横坐标差得到根的比",
+                "points": 5
+              },
+              {
+                "text": "用根的和与积确定参数",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "横坐标先换为正数t。交点所在的横坐标区间要整体换成t的区间，用抛物线与两个端点的位置判断。\n\n(1) 换元 $t=2^x>0$ 后，每个正根对应恰一个交点。方程 $t^2-3t+a=0$ 的实根之和3、积正，所以有实根即为正根。对于正的 $a$，低于、等于、高于 $9/4$ 时依次有2、1、0个交点。\n\n(2) $x\\in[0,1]$ 对应 $t\\in[1,2]$。轴在区间正中，两端函数值同为 $a-2$，要让两根都落在区间内须 $a\\ge2$，两根相异还须 $a<9/4$。\n\n(3) 横坐标之差1意味着两正根之比为2。用根之和3得两根1和2，积给出 $a=2$。",
+        "keyPoints": [
+          "横坐标先换为正数t"
+        ],
+        "terms": [
+          {
+            "ja": "交点",
+            "kana": "こうてん",
+            "zh": "两个函数在同一横坐标下取相同值的位置"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    },
+    {
+      "id": "school-aoyama-math-a-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "aoyama",
+        "label": "青山学院大学 理工学部 留学生数学笔试风格 · 原创 A",
+        "url": "https://www.aoyama.ac.jp/wp-content/uploads/2026/07/ad_2027_internationalstudent_20260709_e1Nf5.pdf",
+        "session": "math-a"
+      },
+      "stem": "$0\\le a\\le1$ とし，$F(a)=\\int_0^1 |x^2-a|\\,x^3\\,dx$ とする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$u=x^2$ とおき，$F(a)$ を $a$ の多項式で表せ。",
+            "points": 10,
+            "modelAnswer": "$x^3dx=u\\,du/2$ なので $F=\\frac12[\\int_0^a(a-u)u\\,du+\\int_a^1(u-a)u\\,du]=a^3/6-a/4+1/6$。",
+            "rubric": [
+              {
+                "text": "变换微分且保留因子u",
+                "points": 5
+              },
+              {
+                "text": "展开绝对值并正确积分",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$F(a)$ を最小にする $a$ とその最小値を求めよ。",
+            "points": 10,
+            "modelAnswer": "$F'(a)=a^2/2-1/4$ は $1/\\sqrt2$ の前で負，後で正。最小値は $F(1/\\sqrt2)=(1-1/\\sqrt2)/6$。",
+            "rubric": [
+              {
+                "text": "求驻点并判断两侧增减",
+                "points": 5
+              },
+              {
+                "text": "代回求出最小值",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$a=1$ のほかに $F(a)=F(1)$ を満たす $a$ があるか。あればすべて求めよ。",
+            "points": 10,
+            "modelAnswer": "$F(1)=1/12$。$2a^3-3a+1=(a-1)(2a^2+2a-1)=0$。条件を満たす別解は $(\\sqrt3-1)/2$ のみ。",
+            "rubric": [
+              {
+                "text": "化为三次方程并除去已知因子",
+                "points": 5
+              },
+              {
+                "text": "检查定义域并保留唯一另一解",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "(1) 换元时分出 $x\\,dx=du/2$，另一个 $x^2$ 变为权重 $u$。在 $u=a$ 处分段积分，得 $F=a^3/6-a/4+1/6$。\n\n(2) 导数 $a^2/2-1/4$ 从负变正，因此 $a=1/\\sqrt2$ 取唯一最小值 $(1-1/\\sqrt2)/6$。离1较近的一端权重较大，这也解释了最优参数为何大于一半。\n\n(3) 取 $F(1)=1/12$ 并清分母，得到 $2a^3-3a+1=0$。除去已知根1对应的因子，再解二次方程，另有且仅有 $a=(\\sqrt3-1)/2$ 位于区间内。",
+        "keyPoints": [
+          "换元后保留权重，由分段积分得到参数三次函数。"
+        ],
+        "terms": [
+          {
+            "ja": "積分区間",
+            "kana": "せきぶんくかん",
+            "zh": "定积分上下限所限定的范围"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    },
+    {
+      "id": "school-aoyama-math-a-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "aoyama",
+        "label": "青山学院大学 理工学部 留学生数学笔试风格 · 原创 A",
+        "url": "https://www.aoyama.ac.jp/wp-content/uploads/2026/07/ad_2027_internationalstudent_20260709_e1Nf5.pdf",
+        "session": "math-a"
+      },
+      "stem": "白球1個から始める。各段階で，白球1個を白球1個と黒球2個に，黒球1個を白球2個と黒球1個に同時に置き換える。第$n$段階の個数を $W_n,B_n$ とし，初期を $n=0$ とする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$W_{n+1},B_{n+1}$ を前段の個数で表せ。",
+            "points": 10,
+            "modelAnswer": "白は白から1，黒から2生じるので $W_{n+1}=W_n+2B_n$。黒は $B_{n+1}=2W_n+B_n$。",
+            "rubric": [
+              {
+                "text": "按来源计白球",
+                "points": 5
+              },
+              {
+                "text": "按来源计黑球",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$W_n+B_n$ および $W_n-B_n$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "加えると総数は毎回3倍，初め1なので $3^n$。引くと差は毎回符号が変わり，初め1なので $(-1)^n$。",
+            "rubric": [
+              {
+                "text": "求总数通项",
+                "points": 5
+              },
+              {
+                "text": "求差数通项并用初值",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "白球の割合と $1/2$ の差の絶対値が初めて $1/100$ 未満となる段階を求めよ。",
+            "points": 10,
+            "modelAnswer": "$W_n=(3^n+(-1)^n)/2$。割合の偏りは $1/(2\\cdot3^n)$。$3^3=27\\le50<81=3^4$ より第4段階。",
+            "rubric": [
+              {
+                "text": "由和差恢复比例偏差",
+                "points": 5
+              },
+              {
+                "text": "解严格不等式并检查前一阶段",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "总数与差数各自满足一阶递推。由两者恢复两色数量，可继续判定白球比例何时接近一半。\n\n(1) 按原颜色计各自贡献，$W_{n+1}=W_n+2B_n$，$B_{n+1}=2W_n+B_n$。初始总数和白减黑的差都为1。\n\n(2) 两方程相加，总数每次变三倍；相减，差数每次变号。第 $n$ 步分别为 $3^n$ 与 $(-1)^n$。\n\n(3) 白球数是总数与差的半和，故白球比例与一半的绝对偏差为 $1/(2\\cdot3^n)$。条件是 $3^n>50$，首次发生在第4步。",
+        "keyPoints": [
+          "总数与差数各自满足一阶递推"
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

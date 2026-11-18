@@ -1,0 +1,87 @@
+{
+  "title": "立教大学 理学部 院校水平拔高题 · 原创 A",
+  "items": [
+    {
+      "id": "school-rikkyo-extension-a-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "rikkyo",
+        "label": "立教大学 理学部 院校水平拔高题 · 原创 A",
+        "url": "https://www.rikkyo.ac.jp/admissions/faq/admissions2.html",
+        "session": "extension-a"
+      },
+      "stem": "$n$ を正の整数として $J_n=\\int_0^1 x^n/(1+x)\\,dx$ とおく。積分値そのものに加え，有限和の誤差を評価せよ。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$J_n+J_{n-1}$ を求めよ。ただし $J_0=\\int_0^1 dx/(1+x)$ とする。",
+            "points": 10,
+            "modelAnswer": "分子の和は $x^{n-1}(x+1)$。約分して $\\int_0^1x^{n-1}dx=1/n$。",
+            "rubric": [
+              {
+                "text": "合并相邻被积式",
+                "points": 5
+              },
+              {
+                "text": "约分后正确积分",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$S_n=1-1/2+\\cdots+(-1)^{n-1}/n$ とする。$J_n=(-1)^n(\\log2-S_n)$ を示せ。",
+            "points": 10,
+            "modelAnswer": "$J_0=\\log2$ から $J_n=1/n-J_{n-1}$ を繰り返す。または $S_n=S_{n-1}+(-1)^{n-1}/n$ を用いて帰納すれば同式になる。",
+            "rubric": [
+              {
+                "text": "给出初值及递推展开或归纳式",
+                "points": 5
+              },
+              {
+                "text": "正确保留余项符号",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$0\\le x\\le1$ で $1/(1+x)\\le1-x/2$ を示せ。この評価を積分して，$n=50$ のとき $|\\log2-S_n|<0.01$ が保証されることを示せ。",
+            "points": 10,
+            "modelAnswer": "$(1+x)(1-x/2)-1=x(1-x)/2\\ge0$。従って $J_n\\le\\int_0^1 x^n(1-x/2)\\,dx=1/(n+1)-1/[2(n+2)]$。$n=50$ なら上界は $53/5304<1/100$。",
+            "rubric": [
+              {
+                "text": "由乘积差的符号证明界函数成立",
+                "points": 5
+              },
+              {
+                "text": "积分并用精确分数证明误差小于百分之一",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "分母乘回后能把相邻两个积分消去。交错级数的误差留成正积分，估算时用分母在区间内的上下界。\n\n(1) 相邻积分相加恰好约去因子 $1+x$，留下 $x^{n-1}$ 在0到1上的积分，即 $1/n$。\n\n(2) 由 $J_n=1/n-J_{n-1}$ 反复代回直至 $J_0=\\log2$，各项交替变号，所以 $J_n=(-1)^n(\\log2-S_n)$。\n\n(3) 两边乘正数 $1+x$，右边减1得到 $x(1-x)/2\\ge0$。将这个上界乘 $x^n$ 再积分，得 $J_n\\le1/(n+1)-1/[2(n+2)]$。在第50项，右侧为 $53/5304$；交叉相乘有 $5300<5304$，无需四舍五入就能确认误差小于0.01。",
+        "keyPoints": [
+          "分母乘回后能把相邻两个积分消去"
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

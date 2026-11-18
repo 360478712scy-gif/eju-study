@@ -1,0 +1,99 @@
+{
+  "title": "早稻田大学 理工三学部 院校水平拔高题 · 数理综合原创 A",
+  "items": [
+    {
+      "id": "school-waseda-extension-a-01",
+      "subject": "physics",
+      "order": 1,
+      "topic": "phys.mech.spring",
+      "difficulty": 3,
+      "targetSec": 1200,
+      "source": {
+        "kind": "school",
+        "school": "waseda",
+        "label": "早稻田大学 理工三学部 院校水平拔高题 · 数理综合原创 A",
+        "url": "https://www.waseda.jp/fsci/admissions_us/application/",
+        "session": "extension-a"
+      },
+      "stem": "質量m，ばね定数kの水平ばね振り子が，時刻0に平衡点から右向き速さvで出発する。最初に変位が $v/(2\\omega)$ になった瞬間，それまで働かなかった一定の右向きの力Fを加え続ける。$\\omega=\\sqrt{k/m}$ とする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "切り替え時刻とそのときの速度を求めよ。",
+            "points": 10,
+            "modelAnswer": "$x=(v/\\omega)\\sin\\omega t$ より最初は $\\omega t=\\pi/6$。$t=\\pi/(6\\omega)$，速度は $v\\cos(\\pi/6)=\\sqrt3 v/2$。",
+            "rubric": [
+              {
+                "text": "建立初相正确的振动式",
+                "points": 5
+              },
+              {
+                "text": "选首次到达并求速度",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "切り替え後の振幅をFの関数で表せ。",
+            "points": 10,
+            "modelAnswer": "新中心は $F/k$。初変位と速度から $A_F^2=(v/(2\\omega)-F/k)^2+3v^2/(4\\omega^2)$。振幅は右辺の正の平方根。",
+            "rubric": [
+              {
+                "text": "确定新平衡点",
+                "points": 5
+              },
+              {
+                "text": "合成相对位移和速度贡献",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "新しい振幅を最小にするFを求め，そのとき最初に右端に達する時刻を時刻0から測って答えよ。",
+            "points": 10,
+            "modelAnswer": "平方項を0とする $F=kv/(2\\omega)$。切り替え時は新中心を右向きに通るので，さらに $\\pi/(2\\omega)$ 後に右端。時刻は $2\\pi/(3\\omega)$。",
+            "rubric": [
+              {
+                "text": "由平方项给出最优力",
+                "points": 5
+              },
+              {
+                "text": "用新相位求历时并加回起始段",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "先把切换时的位置和速度保留下来。恒力只平移振动中心，新振幅由相对新中心的位置和速度共同决定，可以反求使振幅最小的力。\n\n(1) 从中心出发取正弦相位，位移 $x=(v/\\omega)\\sin\\omega t$。第一次达到指定位置时相位为 $\\pi/6$，速度为 $\\sqrt3v/2$。\n\n(2) 恒力把平衡点移到 $F/k$，速度在切换时连续。用新位移与速度得到 $A^2=(v/(2\\omega)-F/k)^2+3v^2/(4\\omega^2)$。\n\n(3) 使第一项为零，得 $F=kv/(2\\omega)$。此时由新中心向右再行四分之一周期到右端，总时刻为 $\\pi/(6\\omega)+\\pi/(2\\omega)=2\\pi/(3\\omega)$。",
+        "keyPoints": [
+          "先把切换时的位置和速度保留下来"
+        ],
+        "terms": [
+          {
+            "ja": "振幅",
+            "kana": "しんぷく",
+            "zh": "物体相对振动中心所能达到的最大距离"
+          },
+          {
+            "ja": "平衡点",
+            "kana": "へいこうてん",
+            "zh": "回复力为零的振动中心"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

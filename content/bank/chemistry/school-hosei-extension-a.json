@@ -1,0 +1,94 @@
+{
+  "title": "法政大学 理工学部 院校水平拔高题 · 面试基础学力推导 A",
+  "items": [
+    {
+      "id": "school-hosei-extension-a-02",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.react.enthalpy",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "hosei",
+        "label": "法政大学 理工学部 院校水平拔高题 · 面试基础学力推导 A",
+        "url": "https://nyushi.hosei.ac.jp/news/article/20260630_02/",
+        "session": "extension-a"
+      },
+      "stem": "塩Xの無水塩と二水和物について，十分な水に同じ最終濃度まで溶かす。溶解の $\\Delta H$ は無水塩−38，二水和物+6 kJ/molで，一連の条件で一定とみなせる。混合試料はXの式量単位で合計0.100 molを含む。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "無水塩1 molと液体の水から二水和物をつくる $\\Delta H$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "水和してから溶かしても最終状態は同じ。$\\Delta H_\\mathrm{hyd}+6=-38$ より結晶生成は−44 kJ/mol。",
+            "rubric": [
+              {
+                "text": "使用共同终态写盖斯路径",
+                "points": 5
+              },
+              {
+                "text": "得到带符号焓变",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "混合試料の溶解で2.04 kJが放出された。両塩の物質量を求めよ。",
+            "points": 10,
+            "modelAnswer": "無水塩を$x$ molとおくと $-38x+6(0.100-x)=-2.04$。よって $x=0.060$ mol，二水和物0.040 mol。",
+            "rubric": [
+              {
+                "text": "列有符号的混合焓式",
+                "points": 5
+              },
+              {
+                "text": "解出两盐摩尔数",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "同量の別の試料を完全な無水塩にしてから溶かした。溶解段階だけで，元の試料より何kJ多く放出するか。",
+            "points": 10,
+            "modelAnswer": "式量単位数は0.100 molのままなので3.80 kJ放出する。差は $3.80-2.04=1.76$ kJ。これは $0.040\\times44$ とも一致する。",
+            "rubric": [
+              {
+                "text": "脱水后守恒盐的式量单位",
+                "points": 5
+              },
+              {
+                "text": "求出并比较两次放热",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "结晶水的作用可通过两条到达同一终态的路径比较。混合量热实验要用带正负号的焓变求和，不能先把两个数都换成绝对值。\n\n(1) 先从无水盐生成二水盐，再溶解到同一终点。两步共−38 kJ/mol，第二步为+6，所以第一步是−44 kJ/mol。\n\n(2) 设无水盐为 $x$ mol，列 $-38x+6(0.100-x)=-2.04$，得无水盐0.060 mol、二水盐0.040 mol。\n\n(3) 脱水后盐的式量单位仍共0.100 mol，放热3.80 kJ。比原样品多1.76 kJ，恰等于0.040 mol乘两条溶解路径之差44 kJ/mol。",
+        "keyPoints": [
+          "结晶水的作用可通过两条到达同一终态的路径比较"
+        ],
+        "terms": [
+          {
+            "ja": "水和",
+            "kana": "すいわ",
+            "zh": "水分子与溶质粒子结合或围绕溶质粒子的过程"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

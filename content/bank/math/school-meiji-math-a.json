@@ -1,0 +1,275 @@
+{
+  "title": "明治大学 理工学部 数学科・情報科学科 数学笔试风格 · 原创 A",
+  "items": [
+    {
+      "id": "school-meiji-math-a-01",
+      "subject": "math",
+      "order": 1,
+      "topic": "math.seq.seq",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "meiji",
+        "label": "明治大学 理工学部 数学科・情報科学科 数学笔试风格 · 原创 A",
+        "url": "https://www.meiji.ac.jp/cip/prospective/admission_exams/pastexams.html",
+        "session": "math-a"
+      },
+      "stem": "整数列を $a_1=1,\\ a_{n+1}=2a_n+2n-1$ で定める。数値の観察だけで結論せず，式で示せ。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$b_n=a_n+pn+q$ が $b_{n+1}=2b_n$ を満たすように $p,q$ を決めよ。",
+            "points": 10,
+            "modelAnswer": "係数を比べると $2+p=2p$，$-1+p+q=2q$。したがって $p=2,q=1$。",
+            "rubric": [
+              {
+                "text": "列出一次项和常数项两组关系",
+                "points": 5
+              },
+              {
+                "text": "得到两系数并代回",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$a_n$ の一般項を導き，初期条件も確認せよ。",
+            "points": 10,
+            "modelAnswer": "$b_1=4$ より $b_n=4\\cdot2^{n-1}$。ゆえに $a_n=2^{n+1}-2n-1$。$n=1$ では $4-2-1=1$。",
+            "rubric": [
+              {
+                "text": "由初值求等比通项",
+                "points": 5
+              },
+              {
+                "text": "还原原数列并验首项",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$1\\le n\\le60$ で $a_n$ が7の倍数となる $n$ の個数を求めよ。",
+            "points": 10,
+            "modelAnswer": "$2^3\\equiv1\\pmod7$。$n=3k,3k+1,3k+2$ の順に $a_n\\equiv1-6k,1-6k,-4-6k\\pmod7$。よって解は $n\\equiv18,19,14\\pmod{21}$（第3の場合は $k\\equiv4$）。1～60では $14,18,19,35,39,40,56,60$ の8個。",
+            "rubric": [
+              {
+                "text": "按指数周期与线性项结合模21分类",
+                "points": 5
+              },
+              {
+                "text": "给出余类并正确数含端点的个数",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "先用线性函数消掉递推中的非齐次项，再从通项判定整除性。最后一问的模数很小，可以用三项周期代替大数取余。\n\n(1) 要使新数列每次恰好翻倍，把 $a_{n+1}=2a_n+2n-1$ 代进 $b_{n+1}-2b_n$，要求 $(2-p)n+p-q-1$ 恒为零，得到 $p=2,q=1$。\n\n(2) $b_1=4$，所以 $b_n=2^{n+1}$。减掉平移项即 $a_n=2^{n+1}-2n-1$，代入 $n=1$ 返回1。\n\n(3) 指数模7以3为周期，线性项模7以7为周期，故只要筛一个长度21的区间。$n=3k,3k+1,3k+2$ 时分别要求 $k\\equiv6,6,4\\pmod7$。相应正数从18、19、14起各隔21，数到60共有8个。",
+        "keyPoints": [
+          "先用线性函数消掉递推中的非齐次项，再从通项判定整除性"
+        ],
+        "terms": [
+          {
+            "ja": "一般項",
+            "kana": "いっぱんこう",
+            "zh": "以项号表示该项的公式"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    },
+    {
+      "id": "school-meiji-math-a-02",
+      "subject": "math",
+      "order": 2,
+      "topic": "math.prob.count",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "meiji",
+        "label": "明治大学 理工学部 数学科・情報科学科 数学笔试风格 · 原创 A",
+        "url": "https://www.meiji.ac.jp/cip/prospective/admission_exams/pastexams.html",
+        "session": "math-a"
+      },
+      "stem": "$1$ から $n$ までの番号札から隣り合う番号を含まないように何枚か選ぶ。空集合も1通りとし，総数を $F_n$ とする。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$F_0,F_1$ と $n\\ge2$ の漸化式を示せ。",
+            "points": 10,
+            "modelAnswer": "空集合だけなら $F_0=1$，札1枚なら $F_1=2$。札$n$を使わない場合は $F_{n-1}$，使う場合は$n-1$を除くので $F_{n-2}$。両者は重ならない。",
+            "rubric": [
+              {
+                "text": "区分选与不选末牌",
+                "points": 5
+              },
+              {
+                "text": "给出初值及完整递推",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "ちょうど $r$ 枚選ぶ方法が $\\binom{n-r+1}{r}$ 通りであることを，一対一対応を示して証明せよ。 ただし $0\\le r\\le (n+1)/2$ とする。",
+            "points": 10,
+            "modelAnswer": "選んだ番号 $i_1<\\cdots<i_r$ を $j_k=i_k-(k-1)$ に移す。$1\\le j_1<\\cdots<j_r\\le n-r+1$。逆に $i_k=j_k+k-1$ で差が2以上に戻る。",
+            "rubric": [
+              {
+                "text": "建立压缩映射并写新范围",
+                "points": 5
+              },
+              {
+                "text": "证明可逆并得组合数",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$n=10$ で偶数枚を選ぶ方法を求めよ。",
+            "points": 10,
+            "modelAnswer": "最大5枚で偶数は0,2,4枚。$1+\\binom92+\\binom74=1+36+35=72$。",
+            "rubric": [
+              {
+                "text": "确定可取的偶数牌数含零",
+                "points": 5
+              },
+              {
+                "text": "分别计数并求和",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "同一限制有两种处理。按最大牌是否被选可得递推，固定牌数则把严格的间隔条件压缩成普通组合。\n\n(1) 空集算一种，故 $F_0=1,F_1=2$。不选末牌留下前 $n-1$ 张自由选择，选末牌则必须跳过倒数第二张，所以 $F_n=F_{n-1}+F_{n-2}$。\n\n(2) 将第 $k$ 张所选号码 $i_k$ 减去 $k-1$，新数列仍严格递增，最大值至多 $n-r+1$。反过来逐项加回 $k-1$ 就能恢复间隔，由此得到所求组合数。\n\n(3) 十张牌最多选5张。偶数枚可取0、2、4，对应数量为 $1,\\binom92,\\binom74$，相加为72。",
+        "keyPoints": [
+          "同一限制有两种处理"
+        ],
+        "terms": [
+          {
+            "ja": "漸化式",
+            "kana": "ぜんかしき",
+            "zh": "由已知项推出下一项的关系式"
+          },
+          {
+            "ja": "通り",
+            "kana": "とおり",
+            "zh": "计数时表示一种可能的做法或结果"
+          },
+          {
+            "ja": "隣り合う",
+            "kana": "となりあう",
+            "zh": "在同一排或圆周上直接相邻"
+          }
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    },
+    {
+      "id": "school-meiji-math-a-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.calc.int",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "meiji",
+        "label": "明治大学 理工学部 数学科・情報科学科 数学笔试风格 · 原创 A",
+        "url": "https://www.meiji.ac.jp/cip/prospective/admission_exams/pastexams.html",
+        "session": "math-a"
+      },
+      "stem": "$a>0$ とし，$I(a)=\\int_0^1 x/(a+x^2)\\,dx$ とする。以下の極限と不等式には根拠を添えよ。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$I(a)$ を求めよ。",
+            "points": 10,
+            "modelAnswer": "$u=a+x^2$ とおくと $I=\\frac12\\int_a^{a+1}du/u=\\frac12\\log(1+1/a)$。",
+            "rubric": [
+              {
+                "text": "正确替换微分和端点",
+                "points": 5
+              },
+              {
+                "text": "求出闭式",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$a$ を増やすと $aI(a)$ が狭義単調増加することを示せ。",
+            "points": 10,
+            "modelAnswer": "$aI(a)=\\int_0^1 ax/(a+x^2)\\,dx$。$x>0$ で $a/(a+x^2)=1/(1+x^2/a)$ は $a$ とともに狭義増加するので，積分も狭義増加する。",
+            "rubric": [
+              {
+                "text": "把参数移入积分并比较",
+                "points": 5
+              },
+              {
+                "text": "说明正长度区间上严格成立",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "$\\lim_{a\\to\\infty}aI(a)$ をはさみうちで求めよ。",
+            "points": 10,
+            "modelAnswer": "$0\\le x\\le1$ で $ax/(a+1)\\le ax/(a+x^2)\\le x$。積分すると $a/[2(a+1)]\\le aI(a)\\le1/2$ より極限は $1/2$。",
+            "rubric": [
+              {
+                "text": "构造可积分的上下界",
+                "points": 5
+              },
+              {
+                "text": "积分并由夹逼求极限",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "先用分母作变量求闭式。证明严格不等式时直接比较被积函数能避开对数估值，而极限可用同一比较产生上下界。\n\n(1) 用 $u=a+x^2$ 作变量，微分给出系数 $1/2$，新端点为 $a,a+1$。故 $I(a)=\\frac12\\log((a+1)/a)$。\n\n(2) 固定任一 $x>0$，$ax/(a+x^2)=x/(1+x^2/a)$ 随 $a$ 增加而严格增加，积分区间内这一比较处处成立（端点0除外），故积分严格增加。\n\n(3) 将分母 $a+x^2$ 夹在 $a$ 和 $a+1$ 之间。积分后得到 $a/[2(a+1)]\\le aI(a)\\le1/2$，两边都趋于 $1/2$。",
+        "keyPoints": [
+          "先用分母作变量求闭式"
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}

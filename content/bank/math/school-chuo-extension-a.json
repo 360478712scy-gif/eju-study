@@ -1,0 +1,87 @@
+{
+  "title": "中央大学 理工三学部 院校水平拔高题 · 口头试问推导练习 A",
+  "items": [
+    {
+      "id": "school-chuo-extension-a-03",
+      "subject": "math",
+      "order": 3,
+      "topic": "math.explog.func",
+      "difficulty": 3,
+      "targetSec": 900,
+      "source": {
+        "kind": "school",
+        "school": "chuo",
+        "label": "中央大学 理工三学部 院校水平拔高题 · 口头试问推导练习 A",
+        "url": "https://www.chuo-u.ac.jp/common_d/connect/admission/2027/special/12_1_6.pdf",
+        "session": "extension-a"
+      },
+      "stem": "実数 $a>1$ に対し $f_a(x)=\\log_a x+\\log_x a$（$x>1$）とする。解の組を図に頼らず説明せよ。",
+      "format": "written",
+      "written": {
+        "parts": [
+          {
+            "id": "1",
+            "label": "(1)",
+            "prompt": "$t=\\log_a x$ を用いて $f_a$ を表し，最小値と等号条件を求めよ。",
+            "points": 10,
+            "modelAnswer": "$t>0,\\ f_a=t+1/t$。$(t-1)^2/t\\ge0$ より最小2は $t=1$，すなわち $x=a$。",
+            "rubric": [
+              {
+                "text": "换底确定正变量",
+                "points": 5
+              },
+              {
+                "text": "证明下界并还原等号",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "label": "(2)",
+            "prompt": "$f_a(x)=5/2$ の二つの解を $a$ で表せ。",
+            "points": 10,
+            "modelAnswer": "$2t^2-5t+2=0$ より $t=2,1/2$。従って $x=a^2,\\sqrt a$。",
+            "rubric": [
+              {
+                "text": "解二次方程",
+                "points": 5
+              },
+              {
+                "text": "还原两解并核查范围",
+                "points": 5
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "label": "(3)",
+            "prompt": "上の二解のうち大きい方が小さい方の8倍ならば $a$ を決めよ。",
+            "points": 10,
+            "modelAnswer": "$a>1$ なので $a^2/\\sqrt a=a^{3/2}=8$，ゆえに $a=8^{2/3}=4$。",
+            "rubric": [
+              {
+                "text": "确定大小并建立比例",
+                "points": 5
+              },
+              {
+                "text": "解出允许的底数",
+                "points": 5
+              }
+            ]
+          }
+        ]
+      },
+      "explanation": {
+        "zh": "底数与真数互换产生倒数。令t为其中一个对数，先说明允许范围，再由二次方程的正根判断原方程的解数。\n\n(1) 以 $t=\\log_a x>0$ 换元，函数为 $t+1/t$。减2后为 $(t-1)^2/t$，仅 $t=1$ 即 $x=a$ 取到最小值2。\n\n(2) 由 $2t^2-5t+2=0$ 得 $t=2,1/2$，换回为 $a^2,\\sqrt a$。\n\n(3) 因 $a>1$，前者较大，两根之比为 $a^{3/2}=8$，所以 $a=4$。",
+        "keyPoints": [
+          "底数与真数互换产生倒数"
+        ]
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏评分标准后逐问重解，复核推导和配分；数值用 Python 核算"
+      }
+    }
+  ]
+}
