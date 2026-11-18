@@ -47,8 +47,15 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         web.navigationDelegate = self; web.uiDelegate = self
         web.allowsBackForwardNavigationGestures = false
         if #available(macOS 13.3, *) { web.isInspectable = false }
-        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1280, height: 850), styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
-        window.title = "澄学 EJU"; window.minSize = NSSize(width: 920, height: 680); window.tabbingMode = .disallowed; window.isReleasedWhenClosed = false; window.delegate = self; window.contentView = web
+        // 3.0: the scene fills the whole window; the traffic lights float over a transparent title bar.
+        web.setValue(false, forKey: "drawsBackground")
+        if #available(macOS 12.0, *) { web.underPageBackgroundColor = NSColor(red: 0.04, green: 0.055, blue: 0.094, alpha: 1) }
+        let vis = NSScreen.main?.visibleFrame.size ?? NSSize(width: 1440, height: 900)
+        let startSize = NSSize(width: min(1440, vis.width - 80), height: min(900, vis.height - 60))
+        window = NSWindow(contentRect: NSRect(origin: .zero, size: startSize), styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView], backing: .buffered, defer: false)
+        window.titlebarAppearsTransparent = true; window.titleVisibility = .hidden
+        window.backgroundColor = NSColor(red: 0.04, green: 0.055, blue: 0.094, alpha: 1)
+        window.title = "澄学 EJU"; window.minSize = NSSize(width: 960, height: 680); window.tabbingMode = .disallowed; window.isReleasedWhenClosed = false; window.delegate = self; window.contentView = web
         window.setFrameAutosaveName(qa ? "ChengxueQA" : "ChengxueStudyWindow"); window.center()
         makeOverlay(); showWindow()
         if !qa { DistributedNotificationCenter.default().addObserver(self, selector: #selector(reopenNotification), name: NSNotification.Name("local.user.eju-study.reopen"), object: nil) }
@@ -111,7 +118,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
     func applicationWillTerminate(_ notification: Notification) { restoreClipboard(); emit("eju-window-hidden"); web?.pauseAllMediaPlayback {} }
     func makeOverlay() {
-        overlay = NSView(frame: web.bounds); overlay.autoresizingMask = [.width, .height]; overlay.wantsLayer = true; overlay.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        overlay = NSView(frame: web.bounds); overlay.appearance = NSAppearance(named: .darkAqua); overlay.autoresizingMask = [.width, .height]; overlay.wantsLayer = true; overlay.layer?.backgroundColor = NSColor(red: 0.04, green: 0.055, blue: 0.094, alpha: 1).cgColor
         let stack = NSStackView(); stack.orientation = .vertical; stack.spacing = 20; stack.translatesAutoresizingMaskIntoConstraints = false
         statusLabel = NSTextField(wrappingLabelWithString: "正在打开你的学习空间…"); statusLabel.font = .systemFont(ofSize: 19, weight: .medium); statusLabel.alignment = .center
         retryButton = NSButton(title: "重新连接", target: self, action: #selector(retry)); retryButton.isHidden = true
