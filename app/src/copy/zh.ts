@@ -215,6 +215,18 @@ export const zh = {
     coachNoteLabel: '助教叮嘱',
     // 首次打开尚未做题时助教一句话点评的默认文案
     coachNoteFirstDay: '第一天不用追求刷得多快，先把 電磁誘導 和数列的每一步算踏实。',
+    // 今天页助教一句话：最近一个有作答的学习日里失分最多的考点。
+    coachRecentMistakes: (date: string, topic: string, count: number) =>
+      `${date}在「${topic}」错了 ${count} 道，今天动笔多盯一眼符号和边界条件。`,
+    // 今天页助教一句话：首个专项是弱项时显示该考点的掌握度。
+    coachWeakFocus: (topic: string, mastery: number) =>
+      `今天先啃「${topic}」（当前掌握度 ${mastery}%），别图快，把列式最容易卡的那一步写顺。`,
+    // 今天页助教一句话：有校内考任务时提示计划内的学校。
+    coachSchoolPractice: (school: string) =>
+      `今天排了${school}水准的题，草稿纸上把设元和关键推导写清楚，练稳步骤分。`,
+    // 今天页助教一句话：无更优先线索时提示连续学习天数。
+    coachStudyStreak: (days: number) =>
+      days === 1 ? '已经开好头了，稳住每天这 2 小时的手感比什么都强。' : `已经连着推进 ${days} 天了，不用猛冲，稳住这个节奏往下走就赢了。`,
     // 未练到题时的助教句。
     coachFocus: (topic: string) => `待会儿先拿「${topic}」开刀，别图快，把列式和符号一步步写稳。`,
     // 有数据但尚无本日作答时的助教句。
@@ -223,6 +235,12 @@ export const zh = {
     coachNoteFinished: (accuracyPct: number) => `今天整体正确率 ${accuracyPct}%，卡壳的题我已经排进后几天的复习里了。`,
     // 右侧倾斜侧面板「今日队列」标题
     queueTitle: '今日队列',
+    // 今天页侧面板及窄屏抽屉的未来任务预览标题。
+    queuePreviewTitle: (date: string) => `${date} · 排课预告`,
+    // 今天已学完但明天休息时，预览列表中的空状态。
+    queuePreviewNoTasks: '这天轮休不排课，安心放松就行',
+    // 休息日之后没有学习日时，今天页侧面板的标题。
+    queueNoUpcoming: '后续日程已全部走完',
     // 右侧侧面板「今日队列」副标题统计
     queueMeta: (taskCount: number, totalMin: number) => `${taskCount} 节安排 · 共 ${totalMin} 分钟`,
     // 队列条目状态标签：尚未开始
@@ -368,6 +386,24 @@ export const zh = {
     confirmMoveDayBtn: '确认挪到这一天',
     // 无法挪到目标日时的反馈。
     cannotMove: '只能挪到考前还没开学的空闲日期，换一天试试',
+    // 今天台本、队列和计划周视图里的校内考任务标题。
+    schoolTaskTitle: (school: string, purpose: string) => `${school} · ${purpose}`,
+    // 校内任务采用真考形式时的短标签。
+    schoolExamStyle: '笔试风格',
+    // 校内任务用于院校拔高时的短标签。
+    schoolExtension: '名校拔高',
+    // 今日台本、队列、助教一句话与计划周视图用的早稻田短名。
+    schoolShortWaseda: '早大',
+    // 今日台本、队列、助教一句话与计划周视图用的明治短名。
+    schoolShortMeiji: '明治',
+    // 今日台本、队列、助教一句话与计划周视图用的青山学院短名。
+    schoolShortAoyama: '青学',
+    // 今日台本、队列、助教一句话与计划周视图用的立教短名。
+    schoolShortRikkyo: '立教',
+    // 今日台本、队列、助教一句话与计划周视图用的中央短名。
+    schoolShortChuo: '中央',
+    // 今日台本、队列、助教一句话与计划周视图用的法政短名。
+    schoolShortHosei: '法政',
   },
 
   // 「练习」页面（#/practice）：科目分段、考点掌握度地图、真题卷、校内考拔高与考点详情侧栏
@@ -514,6 +550,8 @@ export const zh = {
     unsureAttemptTag: '上次没把握',
     // 队列行连对次数进度说明
     streakProgress: (streak: number) => `已连对 ${streak} 次`,
+    // 复习列表底部，展开当前筛选下超过 30 条的全部今日队列。
+    showAllItemsBtn: (count: number) => `展开全部 ${count} 项待复习`,
     // 背诵卡翻卡模式顶部卡组标签：无机化学
     deckInorganic: '無機化学 · 颜色/沉淀/气体制法',
     // 背诵卡翻卡模式顶部卡组标签：有机化学
@@ -685,6 +723,10 @@ export const zh = {
     forecastBaselineMark: (baseScore: number) => `11 月起点 ${baseScore}`,
     // 预测样本量与证据量。
     forecastEvidence: (n: number, evidence: string) => `基于 ${n} 道首刷题 · ${evidence}`,
+    // 数据页低证据预测区间下方的首刷样本数，证据由同一行的小标签说明。
+    forecastSamples: (count: number) => (count > 0 ? `刚测过 ${count} 道首刷题，区间较宽` : '先按起点估算，做几节就会收窄'),
+    // 今天预测分卡与数据页各科预测证据为 sparse 时的小标签。
+    sparseBadge: '题量尚少',
     // 预测证据三档。
     sparse: '样本还少，区间偏宽',
     // 预测证据三档。
@@ -1079,6 +1121,8 @@ export const zh = {
     baselineChemistryField: '化学起点（/ 100）',
     // 第三步预选薄弱考点区标题
     weakTopicsHeading: '优先倾斜时间的主攻弱项（可点选增减）',
+    // 首次引导第三步，每科弱项折叠区展开其他考点的按钮。
+    moreTopicsBtn: '加选其他薄弱考点',
     // 第三步已选弱项数量说明
     weakTopicsCountNote: (count: number) => `已圈定 ${count} 个重点突破考点；强项只排少量间隔复习保手感`,
     // 第三步完成引导的主按钮
