@@ -349,16 +349,16 @@ function SessionPlayer({ session, selectedItem, initialOverlay, frame, shortcuts
       onRate={value => { const rate = cardRating(item, value); void submit(rate.response, rate.gaveUp, rate.confidence); }} disabled={busy} shortcuts={shortcuts && !overlay} />
       : <>
         {item.format === 'written' && <Chip tone="school">{t.session.writtenHeaderBadge}</Chip>}
-        <Stem key={itemId} item={item} />
+        <Stem key={`stem-${itemId}`} item={item} />
         {item.format === 'choice' && <Choices item={item} response={response} reveal={showAnswer} disabled={!canEdit} choose={updateResponse} />}
-        {item.format === 'blanks' && <Marks key={itemId} item={item} response={response} reveal={showAnswer} disabled={!canEdit} onChange={updateResponse} onEnter={primary} />}
+        {item.format === 'blanks' && <Marks key={`marks-${itemId}`} item={item} response={response} reveal={showAnswer} disabled={!canEdit} onChange={updateResponse} onEnter={primary} />}
         {item.format === 'written' && exam && !sealed && <Card className="written-draft" title={t.session.examWrittenDraft}>
           <TextArea value={writtenText(response)} onChange={text => updateResponse(textDraft(text))} placeholder={t.session.aiGradePlaceholder} />
           <Button size="sm" disabled={!canEdit} onClick={() => updateResponse(textDraft(t.session.paperDraftText))}>{t.session.paperDraft}</Button>
           {writtenText(response) && <span className="t-3">{t.session.draftStored}</span>}
         </Card>}
         {item.format === 'written' && (showAnswer || (!exam && revealWritten) || (sealed && (pending.includes(itemId) || Boolean((saved?.response as WrittenResponse | null)?.marks))))
-          && <WrittenGrade key={itemId + Boolean(sealed)} item={item} saved={saved} sealed={sealed} disabled={busy || !isLive}
+          && <WrittenGrade key={`grade-${itemId}-${Boolean(sealed)}`} item={item} saved={saved} sealed={sealed} disabled={busy || !isLive}
             text={writtenText(response)} onSubmit={value => void submit(value)} />}
         <div className="hstack ses-actions">
           {canEdit && !exam && <Button variant="ghost" icon="flag" aria-pressed={confidence === 'unsure'} kbd="F" onClick={() => flag('unsure')}>{confidence === 'unsure' ? t.session.flagUnsureActive : t.session.flagUnsureBtn}</Button>}

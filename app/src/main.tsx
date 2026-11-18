@@ -1,3 +1,4 @@
+import './lib/qaClock.ts';
 import { StrictMode, lazy, Suspense, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { AppState, ContentBundle } from '@shared/types.ts';
