@@ -56,6 +56,14 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
   const topic = (page === 'practice' && practice.tab === 'topic' ? practice.topic : params.get('topic')) || activeBlock?.topic || (page === 'today' ? today.plan.blocks.find(block => block.status === 'todo')?.topic : undefined);
   const [immersive, setImmersive] = useState(false);
   const [zoom, setZoom] = useState<number>();
+  const [dockNow, setDockNow] = useState(() => Date.now());
+  const examClock = !isSession && !!active?.exam && !active.sealedAt;
+  useEffect(() => {
+    if (!examClock) return;
+    setDockNow(Date.now());
+    const timer = setInterval(() => setDockNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, [examClock]);
   const origin = useRef<string>('#/');
   const previous = useRef(hash);
 
@@ -147,14 +155,17 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
   const answered = active ? Object.values(active.answers).filter(answer => answer.submitted || answer.response != null).length : 0;
   const nextBlock = today.plan.blocks.find(b => b.status === 'todo');
   const pendingMinutes = today.plan.blocks.filter(b => b.status === 'todo' || b.status === 'active').reduce((sum, block) => sum + block.minutes, 0);
-  const previousFinishedBlock = today.plan.blocks.slice().reverse().find(block => block.status === 'done' && block.id !== activeBlock?.id);
-  const previousSession = previousFinishedBlock && Object.values(state.sessions).find(s => s.blockId === previousFinishedBlock.id && s.finishedAt);
+  const previousSession = today.plan.blocks.slice().reverse().flatMap(block => {
+    if (block.status !== 'done' || block.id === activeBlock?.id) return [];
+    const saved = Object.values(state.sessions).find(s => s.blockId === block.id && s.finishedAt);
+    return saved ? [saved] : [];
+  })[0];
   const idleLabel = today.next.code === 'day_complete' ? t.today.completed
     : nextBlock ? today.plan.blocks.some(b => b.status !== 'todo') ? t.nav.dockResumeToday(pendingMinutes)
       : pendingMinutes === 120 ? t.nav.dockStartToday : t.today.startFor(t.time.durationMin(pendingMinutes))
       : t.nav.dockRestDay;
   const currentTime = active?.exam && active.timeLimitSec != null && !active.sealedAt
-    ? Math.max(0, Math.ceil((Date.parse(active.startedAt) + active.timeLimitSec * 1000 - Date.now()) / 1000))
+    ? Math.max(0, Math.ceil((Date.parse(active.startedAt) + active.timeLimitSec * 1000 - dockNow) / 1000))
     : activeBlock ? Math.max(0, activeBlock.minutes * 60 - seconds) : seconds;
 
   const nav = <NavPanel active={page} brand={t.nav.brand} sub={t.nav.brandSub}
