@@ -7,6 +7,7 @@ import { RichText } from '../../ui/RichText.tsx';
 import { t } from '../../copy/index.ts';
 import { itemMinutes, topicName } from '../../lib/model.ts';
 import { isTyping, link, go } from '../../lib/navigation.ts';
+import { onWindowVisibility } from '../../lib/native.ts';
 import { useStudy } from '../../lib/study.tsx';
 import './review.css';
 
@@ -18,11 +19,27 @@ export const cardRating = (item: Item, rating: Rating) => ({
   gaveUp: rating === 1 || item.answer == null,
 });
 
-export function FlashCard({ item, index, total, onRate, disabled = false, shortcuts = true }: {
-  item: Item; index: number; total: number; onRate: (rating: Rating) => void; disabled?: boolean; shortcuts?: boolean;
+export function FlashCard({ item, index, total, onRate, disabled = false, shortcuts = true, trackTime = false }: {
+  item: Item; index: number; total: number; onRate: (rating: Rating, seconds: number) => void; disabled?: boolean; shortcuts?: boolean; trackTime?: boolean;
 }) {
   const [flipped, setFlipped] = useState(false);
   const { bank } = useStudy();
+  const time = useRef({ start: 0, elapsed: 0 });
+  useEffect(() => {
+    if (!trackTime || !shortcuts) return;
+    const update = (visible: boolean) => {
+      const watch = time.current;
+      if (watch.start) watch.elapsed += performance.now() - watch.start;
+      watch.start = visible ? performance.now() : 0;
+    };
+    update(!document.hidden);
+    const remove = onWindowVisibility(update);
+    return () => { update(false); remove(); };
+  }, [shortcuts, trackTime]);
+  const rate = (rating: Rating) => {
+    const { start, elapsed } = time.current;
+    onRate(rating, Math.min(3600, Math.floor((elapsed + (start ? performance.now() - start : 0)) / 1000)));
+  };
   useEffect(() => {
     if (!shortcuts) return;
     const listener = (event: KeyboardEvent) => {
@@ -33,7 +50,7 @@ export function FlashCard({ item, index, total, onRate, disabled = false, shortc
         setFlipped(value => !value);
       } else if (flipped && /^[123]$/.test(event.key)) {
         event.preventDefault();
-        onRate(Number(event.key) as Rating);
+        rate(Number(event.key) as Rating);
       }
     };
     window.addEventListener('keydown', listener);
@@ -56,9 +73,9 @@ export function FlashCard({ item, index, total, onRate, disabled = false, shortc
       </div>
     </div>
     <div className="hstack flash-rating">
-      <Button disabled={!flipped || disabled} onClick={() => onRate(1)}>{t.review.rateAgainBtn}</Button>
-      <Button disabled={!flipped || disabled} onClick={() => onRate(2)}>{t.review.rateHardBtn}</Button>
-      <Button variant="primary" disabled={!flipped || disabled} onClick={() => onRate(3)}>{t.review.rateGoodBtn}</Button>
+      <Button disabled={!flipped || disabled} onClick={() => rate(1)}>{t.review.rateAgainBtn}</Button>
+      <Button disabled={!flipped || disabled} onClick={() => rate(2)}>{t.review.rateHardBtn}</Button>
+      <Button variant="primary" disabled={!flipped || disabled} onClick={() => rate(3)}>{t.review.rateGoodBtn}</Button>
     </div>
   </>;
 }
@@ -75,7 +92,7 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
   const shown = { all: queue, mistakes, traps, cards }[filter];
   const item = cards.length ? bank.byId.get(cards[0].itemId) : undefined;
   const items = shown.flatMap(row => { const entry = bank.byId.get(row.itemId); return entry ? [entry] : []; });
-  const rate = async (value: Rating) => {
+  const rate = async (value: Rating, seconds: number) => {
     if (!item || ratingLock.current) return;
     if (active) { toast(t.common.activeSession, 'warn'); openSession(active); return; }
     ratingLock.current = true;
@@ -83,7 +100,8 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
     try {
       const session = await action<PracticeSession>({ type: 'startPractice', itemIds: [item.id], kind: 'review' });
       if (!session) return;
-      const saved = await action({ type: 'answer', sessionId: session.id, itemId: item.id, seconds: 0, ...cardRating(item, value) });
+      if (seconds) await action({ type: 'tick', sessionId: session.id, seconds });
+      const saved = await action({ type: 'answer', sessionId: session.id, itemId: item.id, seconds, ...cardRating(item, value) });
       if (saved !== undefined && await action({ type: 'finish', sessionId: session.id })) setRated(n => n + 1);
       else openSession(session);
     } finally { ratingLock.current = false; setRating(false); }
@@ -96,7 +114,7 @@ export function Review({ cardsOnly = false, shortcuts = true }: { cardsOnly?: bo
       <Card><Stat label={t.review.statCardsLabel} value={cards.length} icon="cards" /></Card>
     </div>
     {item && (filter === 'all' || filter === 'cards') && <Section title={t.review.card} desc={t.review.cardFrontPrompt}>
-      <FlashCard key={item.id} item={item} index={rated + 1} total={rated + cards.length} onRate={rate} disabled={rating} shortcuts={shortcuts} />
+      <FlashCard key={item.id} item={item} index={rated + 1} total={rated + cards.length} onRate={rate} disabled={rating} shortcuts={shortcuts} trackTime />
     </Section>}
     {!queue.length ? <Empty icon="check" title={t.empty.reviewClearTitle} desc={t.empty.reviewClearBody}
       action={<Button onClick={() => go(link('practice'))}>{t.practice.title}</Button>} /> :

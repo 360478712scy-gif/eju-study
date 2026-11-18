@@ -74,7 +74,6 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     }
   }, [isSession, id]);
   useEffect(() => {
-    document.title = t.nav.appTitle;
     try {
       const value = Number(localStorage.getItem('eju-v3-zoom'));
       if (value >= .7 && value <= 1.6) setZoom(value);

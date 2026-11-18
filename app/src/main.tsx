@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import type { AppState, ContentBundle } from '@shared/types.ts';
 import './styles/tokens.css';
 import './styles/base.css';
+import { t } from './copy/index.ts';
 import { App, Startup } from './App.tsx';
 import { fetchBank, fetchState } from './lib/api.ts';
 import { useHash } from './lib/navigation.ts';
@@ -34,4 +35,5 @@ function Root() {
   return hash.startsWith('#/proto/') ? <Suspense fallback={<Startup />}><Proto /></Suspense> : <LiveApp hash={hash} />;
 }
 
+document.title = t.nav.appTitle;
 createRoot(document.getElementById('root')!).render(<StrictMode><Root /></StrictMode>);

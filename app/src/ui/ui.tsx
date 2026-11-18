@@ -339,7 +339,7 @@ export function Orb({
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const move = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();
       const x = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;

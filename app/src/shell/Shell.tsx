@@ -102,7 +102,7 @@ export function NavPanel({
         return (
           <div key={it.id} style={{ display: 'contents' }}>
             {head}
-            <a href={it.href} title={it.hint} aria-label={it.label} className={cx('nav-item', active === it.id && 'is-on')} aria-current={active === it.id ? 'page' : undefined}>
+            <a href={it.href} title={it.hint ?? it.label} aria-label={it.label} className={cx('nav-item', active === it.id && 'is-on')} aria-current={active === it.id ? 'page' : undefined}>
               <Icon name={it.icon} size={19} />
               <span className="nav-label">{it.label}</span>
               {!!it.count && <Badge tone="warn">{it.count}</Badge>}
