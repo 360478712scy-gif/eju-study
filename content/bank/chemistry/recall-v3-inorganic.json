@@ -1,0 +1,5043 @@
+{
+  "title": "无机背诵卡 · 原创",
+  "items": [
+    {
+      "id": "recall-inorganic-v3-001",
+      "subject": "chemistry",
+      "order": 1,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "リチウム塩の特徴的な炎色はどれか。",
+      "format": "choice",
+      "options": [
+        "黄緑色",
+        "淡紫色",
+        "赤色",
+        "青緑色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "锂盐给出鲜明的红色火焰，辨认时留意它与钙的橙红色、钠的黄色有别。 因此选 ③。\n\n- ① 钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。\n- ② 钾的特征是淡紫色，微量钠的强黄光容易盖过它。\n- ④ 铜的代表焰色为蓝绿色，区别于钡的黄绿色。",
+        "keyPoints": [
+          "锂盐给出鲜明的红色火焰，辨认时留意它与钙的橙红色、钠的黄色有别"
+        ],
+        "traps": [
+          "钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-002",
+      "subject": "chemistry",
+      "order": 2,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "カリウム塩をナトリウムの混入のない状態で炎に入れた。炎色はどれか。",
+      "format": "choice",
+      "options": [
+        "黄緑色",
+        "青緑色",
+        "淡紫色",
+        "赤色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "钾的特征是淡紫色，微量钠的强黄光容易盖过它。 因此选 ③。\n\n- ① 钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。\n- ② 铜的代表焰色为蓝绿色，区别于钡的黄绿色。\n- ④ 锂盐给出鲜明的红色火焰，辨认时留意它与钙的橙红色、钠的黄色有别。",
+        "keyPoints": [
+          "钾的特征是淡紫色，微量钠的强黄光容易盖过它"
+        ],
+        "traps": [
+          "钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-003",
+      "subject": "chemistry",
+      "order": 3,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "バリウム塩で観察される特徴的な炎色はどれか。",
+      "format": "choice",
+      "options": [
+        "淡紫色",
+        "黄緑色",
+        "青緑色",
+        "赤色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。 因此选 ②。\n\n- ① 钾的特征是淡紫色，微量钠的强黄光容易盖过它。\n- ③ 铜的代表焰色为蓝绿色，区别于钡的黄绿色。\n- ④ 锂盐给出鲜明的红色火焰，辨认时留意它与钙的橙红色、钠的黄色有别。",
+        "keyPoints": [
+          "钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨"
+        ],
+        "traps": [
+          "钾的特征是淡紫色，微量钠的强黄光容易盖过它。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-004",
+      "subject": "chemistry",
+      "order": 4,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "銅を含む試料が示す代表的な炎色はどれか。",
+      "format": "choice",
+      "options": [
+        "黄緑色",
+        "青緑色",
+        "淡紫色",
+        "赤色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "铜的代表焰色为蓝绿色，区别于钡的黄绿色。 因此选 ②。\n\n- ① 钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。\n- ③ 钾的特征是淡紫色，微量钠的强黄光容易盖过它。\n- ④ 锂盐给出鲜明的红色火焰，辨认时留意它与钙的橙红色、钠的黄色有别。",
+        "keyPoints": [
+          "铜的代表焰色为蓝绿色，区别于钡的黄绿色"
+        ],
+        "traps": [
+          "钡盐呈黄绿色，含绿色调的焰色要结合黄色或蓝色倾向分辨。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-005",
+      "subject": "chemistry",
+      "order": 5,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "橙赤色（れんが色）の炎色を示す元素はどれか。",
+      "format": "choice",
+      "options": [
+        "ナトリウム",
+        "バリウム",
+        "カルシウム",
+        "ストロンチウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "钙的砖红色带橙色调，教材常称橙赤色。 因此选 ③。\n\n- ① 钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。\n- ② 碱土金属中的钡具有鲜明的黄绿色焰色，钙和锶的色调偏红。\n- ④ 锶属于碱土金属，盐在火焰中呈红色，原子序数38可与同为红色的锂区分。",
+        "keyPoints": [
+          "钙的砖红色带橙色调，教材常称橙赤色"
+        ],
+        "traps": [
+          "钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-006",
+      "subject": "chemistry",
+      "order": 6,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "紅色の炎色を示し，アルカリ土類金属で原子番号38の元素はどれか。",
+      "format": "choice",
+      "options": [
+        "ストロンチウム",
+        "ナトリウム",
+        "カルシウム",
+        "バリウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "锶属于碱土金属，盐在火焰中呈红色，原子序数38可与同为红色的锂区分。 因此选 ①。\n\n- ② 钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。\n- ③ 钙的砖红色带橙色调，教材常称橙赤色。\n- ④ 碱土金属中的钡具有鲜明的黄绿色焰色，钙和锶的色调偏红。",
+        "keyPoints": [
+          "锶属于碱土金属，盐在火焰中呈红色，原子序数38可与同为红色的锂区分"
+        ],
+        "traps": [
+          "钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-007",
+      "subject": "chemistry",
+      "order": 7,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "黄色のD線が特徴的で，試料の汚染でも炎色が目立つ元素はどれか。",
+      "format": "choice",
+      "options": [
+        "ストロンチウム",
+        "カルシウム",
+        "バリウム",
+        "ナトリウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。 因此选 ④。\n\n- ① 锶属于碱土金属，盐在火焰中呈红色，原子序数38可与同为红色的锂区分。\n- ② 钙的砖红色带橙色调，教材常称橙赤色。\n- ③ 碱土金属中的钡具有鲜明的黄绿色焰色，钙和锶的色调偏红。",
+        "keyPoints": [
+          "钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色"
+        ],
+        "traps": [
+          "锶属于碱土金属，盐在火焰中呈红色，原子序数38可与同为红色的锂区分。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-008",
+      "subject": "chemistry",
+      "order": 8,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アルカリ土類金属で，花火などにみられる黄緑色の炎色の原因となる元素はどれか。",
+      "format": "choice",
+      "options": [
+        "ナトリウム",
+        "カルシウム",
+        "ストロンチウム",
+        "バリウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "碱土金属中的钡具有鲜明的黄绿色焰色，钙和锶的色调偏红。 因此选 ④。\n\n- ① 钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。\n- ② 钙的砖红色带橙色调，教材常称橙赤色。\n- ③ 锶属于碱土金属，盐在火焰中呈红色，原子序数38可与同为红色的锂区分。",
+        "keyPoints": [
+          "碱土金属中的钡具有鲜明的黄绿色焰色，钙和锶的色调偏红"
+        ],
+        "traps": [
+          "钠发出很强的黄色特征光，即使含量低也容易遮蔽其他焰色。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-009",
+      "subject": "chemistry",
+      "order": 9,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "クロム酸イオンと銀イオンの反応で生じる赤褐色沈殿はどれか。",
+      "format": "choice",
+      "options": [
+        "Ag₂CrO₄",
+        "Ag₂O",
+        "PbI₂",
+        "AgBr"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "铬酸根带两个负电荷，需要两个银离子，所得铬酸银呈砖红至红褐色。 因此选 ①。\n\n- ② 氢氧化银不稳定，通常观察到棕褐色氧化银，配平需要两个银原子。\n- ③ 一份铅离子结合两份碘离子成黄色碘化铅，热水冷却后可析出金黄色晶体。\n- ④ 溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间。",
+        "keyPoints": [
+          "铬酸根带两个负电荷，需要两个银离子，所得铬酸银呈砖红至红褐色"
+        ],
+        "traps": [
+          "氢氧化银不稳定，通常观察到棕褐色氧化银，配平需要两个银原子。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-010",
+      "subject": "chemistry",
+      "order": 10,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "淡黄色で，写真感光材料にも用いる臭化物はどれか。",
+      "format": "choice",
+      "options": [
+        "AgBr",
+        "PbI₂",
+        "Ag₂O",
+        "Ag₂CrO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间。 因此选 ①。\n\n- ② 一份铅离子结合两份碘离子成黄色碘化铅，热水冷却后可析出金黄色晶体。\n- ③ 氢氧化银不稳定，通常观察到棕褐色氧化银，配平需要两个银原子。\n- ④ 铬酸根带两个负电荷，需要两个银离子，所得铬酸银呈砖红至红褐色。",
+        "keyPoints": [
+          "溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间"
+        ],
+        "traps": [
+          "一份铅离子结合两份碘离子成黄色碘化铅，热水冷却后可析出金黄色晶体。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-011",
+      "subject": "chemistry",
+      "order": 11,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "鉛(II)イオンとヨウ化物イオンから生じる黄色の固体はどれか。",
+      "format": "choice",
+      "options": [
+        "AgBr",
+        "PbI₂",
+        "Ag₂CrO₄",
+        "Ag₂O"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "一份铅离子结合两份碘离子成黄色碘化铅，热水冷却后可析出金黄色晶体。 因此选 ②。\n\n- ① 溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间。\n- ③ 铬酸根带两个负电荷，需要两个银离子，所得铬酸银呈砖红至红褐色。\n- ④ 氢氧化银不稳定，通常观察到棕褐色氧化银，配平需要两个银原子。",
+        "keyPoints": [
+          "一份铅离子结合两份碘离子成黄色碘化铅，热水冷却后可析出金黄色晶体"
+        ],
+        "traps": [
+          "溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-012",
+      "subject": "chemistry",
+      "order": 12,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "銀イオンにOH⁻を加えたとき，常温で残る褐色の固体はどれか。",
+      "format": "choice",
+      "options": [
+        "AgBr",
+        "Ag₂CrO₄",
+        "PbI₂",
+        "Ag₂O"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "氢氧化银不稳定，通常观察到棕褐色氧化银，配平需要两个银原子。 因此选 ④。\n\n- ① 溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间。\n- ② 铬酸根带两个负电荷，需要两个银离子，所得铬酸银呈砖红至红褐色。\n- ③ 一份铅离子结合两份碘离子成黄色碘化铅，热水冷却后可析出金黄色晶体。",
+        "keyPoints": [
+          "氢氧化银不稳定，通常观察到棕褐色氧化银，配平需要两个银原子"
+        ],
+        "traps": [
+          "溴化银是淡黄色感光沉淀，颜色介于白色氯化银和黄色碘化银之间。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-013",
+      "subject": "chemistry",
+      "order": 13,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "亜鉛イオンから生じる硫化亜鉛沈殿の色はどれか。",
+      "format": "choice",
+      "options": [
+        "白色",
+        "黒色",
+        "黄色",
+        "淡赤色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "硫化锌属白色沉淀，是金属硫化物颜色中常考的例外。 因此选 ①。\n\n- ② 硫化铜是黑色沉淀，蓝色水合铜离子转成固态硫化物后颜色改变。\n- ③ 硫化镉呈鲜黄色，可与同属难溶硫化物的白色硫化锌区分。\n- ④ 新生成的硫化锰呈肉色或浅粉红色，不同于二氧化锰的黑褐色。",
+        "keyPoints": [
+          "硫化锌属白色沉淀，是金属硫化物颜色中常考的例外"
+        ],
+        "traps": [
+          "硫化铜是黑色沉淀，蓝色水合铜离子转成固态硫化物后颜色改变。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-014",
+      "subject": "chemistry",
+      "order": 14,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "硫化カドミウムの沈殿の色はどれか。",
+      "format": "choice",
+      "options": [
+        "黄色",
+        "淡赤色",
+        "黒色",
+        "白色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "硫化镉呈鲜黄色，可与同属难溶硫化物的白色硫化锌区分。 因此选 ①。\n\n- ② 新生成的硫化锰呈肉色或浅粉红色，不同于二氧化锰的黑褐色。\n- ③ 硫化铜是黑色沉淀，蓝色水合铜离子转成固态硫化物后颜色改变。\n- ④ 硫化锌属白色沉淀，是金属硫化物颜色中常考的例外。",
+        "keyPoints": [
+          "硫化镉呈鲜黄色，可与同属难溶硫化物的白色硫化锌区分"
+        ],
+        "traps": [
+          "新生成的硫化锰呈肉色或浅粉红色，不同于二氧化锰的黑褐色。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-015",
+      "subject": "chemistry",
+      "order": 15,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "硫化マンガン(II)の新しい沈殿の代表的な色はどれか。",
+      "format": "choice",
+      "options": [
+        "淡赤色",
+        "白色",
+        "黄色",
+        "黒色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "新生成的硫化锰呈肉色或浅粉红色，不同于二氧化锰的黑褐色。 因此选 ①。\n\n- ② 硫化锌属白色沉淀，是金属硫化物颜色中常考的例外。\n- ③ 硫化镉呈鲜黄色，可与同属难溶硫化物的白色硫化锌区分。\n- ④ 硫化铜是黑色沉淀，蓝色水合铜离子转成固态硫化物后颜色改变。",
+        "keyPoints": [
+          "新生成的硫化锰呈肉色或浅粉红色，不同于二氧化锰的黑褐色"
+        ],
+        "traps": [
+          "硫化锌属白色沉淀，是金属硫化物颜色中常考的例外。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-016",
+      "subject": "chemistry",
+      "order": 16,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "銅(II)イオンから生じる硫化銅(II)の沈殿の色はどれか。",
+      "format": "choice",
+      "options": [
+        "白色",
+        "黒色",
+        "黄色",
+        "淡赤色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "硫化铜是黑色沉淀，蓝色水合铜离子转成固态硫化物后颜色改变。 因此选 ②。\n\n- ① 硫化锌属白色沉淀，是金属硫化物颜色中常考的例外。\n- ③ 硫化镉呈鲜黄色，可与同属难溶硫化物的白色硫化锌区分。\n- ④ 新生成的硫化锰呈肉色或浅粉红色，不同于二氧化锰的黑褐色。",
+        "keyPoints": [
+          "硫化铜是黑色沉淀，蓝色水合铜离子转成固态硫化物后颜色改变"
+        ],
+        "traps": [
+          "硫化锌属白色沉淀，是金属硫化物颜色中常考的例外。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-017",
+      "subject": "chemistry",
+      "order": 17,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "希塩酸に溶ける際にCO₂を放ち，石灰岩の主成分でもある白色塩はどれか。",
+      "format": "choice",
+      "options": [
+        "AgCl",
+        "CaCO₃",
+        "BaSO₄",
+        "PbCl₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。 因此选 ②。\n\n- ① 氯化银白色、感光，可因生成二氨合银离子而溶于稀氨水。\n- ③ 硫酸钡在稀酸中仍很难溶，检测时酸化可以先排除碳酸根干扰。\n- ④ 氯化铅的溶解度随温度上升明显增大，可以利用热水与冷水的差异分离。",
+        "keyPoints": [
+          "碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成"
+        ],
+        "traps": [
+          "氯化银白色、感光，可因生成二氨合银离子而溶于稀氨水。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-018",
+      "subject": "chemistry",
+      "order": 18,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "希塩酸にも難溶で，硫酸イオン確認の根拠となるバリウム塩はどれか。",
+      "format": "choice",
+      "options": [
+        "CaCO₃",
+        "PbCl₂",
+        "AgCl",
+        "BaSO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "硫酸钡在稀酸中仍很难溶，检测时酸化可以先排除碳酸根干扰。 因此选 ④。\n\n- ① 碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。\n- ② 氯化铅的溶解度随温度上升明显增大，可以利用热水与冷水的差异分离。\n- ③ 氯化银白色、感光，可因生成二氨合银离子而溶于稀氨水。",
+        "keyPoints": [
+          "硫酸钡在稀酸中仍很难溶，检测时酸化可以先排除碳酸根干扰"
+        ],
+        "traps": [
+          "碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-019",
+      "subject": "chemistry",
+      "order": 19,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "熱水に比較的よく溶け，冷却で再結晶する白色の鉛塩はどれか。",
+      "format": "choice",
+      "options": [
+        "CaCO₃",
+        "PbCl₂",
+        "AgCl",
+        "BaSO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氯化铅的溶解度随温度上升明显增大，可以利用热水与冷水的差异分离。 因此选 ②。\n\n- ① 碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。\n- ③ 氯化银白色、感光，可因生成二氨合银离子而溶于稀氨水。\n- ④ 硫酸钡在稀酸中仍很难溶，检测时酸化可以先排除碳酸根干扰。",
+        "keyPoints": [
+          "氯化铅的溶解度随温度上升明显增大，可以利用热水与冷水的差异分离"
+        ],
+        "traps": [
+          "碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-020",
+      "subject": "chemistry",
+      "order": 20,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "同じ銀塩でも，白色で光により暗色になり，希アンモニア水に溶けるものはどれか。",
+      "format": "choice",
+      "options": [
+        "CaCO₃",
+        "PbCl₂",
+        "AgCl",
+        "BaSO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氯化银白色、感光，可因生成二氨合银离子而溶于稀氨水。 因此选 ③。\n\n- ① 碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。\n- ② 氯化铅的溶解度随温度上升明显增大，可以利用热水与冷水的差异分离。\n- ④ 硫酸钡在稀酸中仍很难溶，检测时酸化可以先排除碳酸根干扰。",
+        "keyPoints": [
+          "氯化银白色、感光，可因生成二氨合银离子而溶于稀氨水"
+        ],
+        "traps": [
+          "碳酸钙遇稀酸时碳酸根转成二氧化碳，石灰岩主要由这种盐构成。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-021",
+      "subject": "chemistry",
+      "order": 21,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水酸化鉄(III)沈殿を肉眼で見た代表的な色はどれか。",
+      "format": "choice",
+      "options": [
+        "赤褐色",
+        "緑白色",
+        "白色",
+        "淡青色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "三价铁的氢氧化物为红褐色，空气氧化亚铁沉淀时也可见到。 因此选 ①。\n\n- ② 新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色。\n- ③ 氢氧化铝呈白色胶状，能被酸或过量强碱溶解。\n- ④ 氢氧化铜沉淀呈浅蓝色，与铜氨配离子的深蓝溶液有明显区别。",
+        "keyPoints": [
+          "三价铁的氢氧化物为红褐色，空气氧化亚铁沉淀时也可见到"
+        ],
+        "traps": [
+          "新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-022",
+      "subject": "chemistry",
+      "order": 22,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "新たに生じた水酸化鉄(II)の沈殿を，空気による酸化前に観察した。色はどれか。",
+      "format": "choice",
+      "options": [
+        "淡青色",
+        "白色",
+        "緑白色",
+        "赤褐色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色。 因此选 ③。\n\n- ① 氢氧化铜沉淀呈浅蓝色，与铜氨配离子的深蓝溶液有明显区别。\n- ② 氢氧化铝呈白色胶状，能被酸或过量强碱溶解。\n- ④ 三价铁的氢氧化物为红褐色，空气氧化亚铁沉淀时也可见到。",
+        "keyPoints": [
+          "新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色"
+        ],
+        "traps": [
+          "氢氧化铜沉淀呈浅蓝色，与铜氨配离子的深蓝溶液有明显区别。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-023",
+      "subject": "chemistry",
+      "order": 23,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水酸化銅(II)の沈殿の色はどれか。",
+      "format": "choice",
+      "options": [
+        "白色",
+        "赤褐色",
+        "淡青色",
+        "緑白色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氢氧化铜沉淀呈浅蓝色，与铜氨配离子的深蓝溶液有明显区别。 因此选 ③。\n\n- ① 氢氧化铝呈白色胶状，能被酸或过量强碱溶解。\n- ② 三价铁的氢氧化物为红褐色，空气氧化亚铁沉淀时也可见到。\n- ④ 新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色。",
+        "keyPoints": [
+          "氢氧化铜沉淀呈浅蓝色，与铜氨配离子的深蓝溶液有明显区别"
+        ],
+        "traps": [
+          "氢氧化铝呈白色胶状，能被酸或过量强碱溶解。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-024",
+      "subject": "chemistry",
+      "order": 24,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水酸化アルミニウムのゲル状沈殿の色はどれか。",
+      "format": "choice",
+      "options": [
+        "緑白色",
+        "淡青色",
+        "白色",
+        "赤褐色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氢氧化铝呈白色胶状，能被酸或过量强碱溶解。 因此选 ③。\n\n- ① 新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色。\n- ② 氢氧化铜沉淀呈浅蓝色，与铜氨配离子的深蓝溶液有明显区别。\n- ④ 三价铁的氢氧化物为红褐色，空气氧化亚铁沉淀时也可见到。",
+        "keyPoints": [
+          "氢氧化铝呈白色胶状，能被酸或过量强碱溶解"
+        ],
+        "traps": [
+          "新鲜氢氧化亚铁常描述为绿白色，暴露空气后会逐渐转为红褐色。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-025",
+      "subject": "chemistry",
+      "order": 25,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水溶液中で赤色～血赤色を示し，Fe³⁺の確認に用いる配位子はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "SCN⁻",
+        "I₂",
+        "OH⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "硫氰酸根与三价铁配位形成红色溶液，观察的是溶液显色。 因此选 ②。\n\n- ① 铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。\n- ③ 碘在碘化物存在下形成多碘物种，与淀粉产生特征蓝紫色。\n- ④ 铝的白色氢氧化物在过量氢氧根中生成四羟基合铝酸根。",
+        "keyPoints": [
+          "硫氰酸根与三价铁配位形成红色溶液，观察的是溶液显色"
+        ],
+        "traps": [
+          "铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-026",
+      "subject": "chemistry",
+      "order": 26,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "デンプン溶液が青紫色を示す原因となるハロゲン（ヨウ化物存在下）はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "I₂",
+        "SCN⁻",
+        "OH⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "碘在碘化物存在下形成多碘物种，与淀粉产生特征蓝紫色。 因此选 ②。\n\n- ① 铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。\n- ③ 硫氰酸根与三价铁配位形成红色溶液，观察的是溶液显色。\n- ④ 铝的白色氢氧化物在过量氢氧根中生成四羟基合铝酸根。",
+        "keyPoints": [
+          "碘在碘化物存在下形成多碘物种，与淀粉产生特征蓝紫色"
+        ],
+        "traps": [
+          "铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-027",
+      "subject": "chemistry",
+      "order": 27,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アンモニアを過剰に加えた銅(II)溶液で，深青色の錯イオンの配位子はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "OH⁻",
+        "SCN⁻",
+        "I₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。 因此选 ①。\n\n- ② 铝的白色氢氧化物在过量氢氧根中生成四羟基合铝酸根。\n- ③ 硫氰酸根与三价铁配位形成红色溶液，观察的是溶液显色。\n- ④ 碘在碘化物存在下形成多碘物种，与淀粉产生特征蓝紫色。",
+        "keyPoints": [
+          "铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色"
+        ],
+        "traps": [
+          "铝的白色氢氧化物在过量氢氧根中生成四羟基合铝酸根。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-028",
+      "subject": "chemistry",
+      "order": 28,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Al(OH)₃が過剰の強塩基に溶けるとき，四配位の錯イオンをつくる配位子はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "OH⁻",
+        "SCN⁻",
+        "I₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "铝的白色氢氧化物在过量氢氧根中生成四羟基合铝酸根。 因此选 ②。\n\n- ① 铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。\n- ③ 硫氰酸根与三价铁配位形成红色溶液，观察的是溶液显色。\n- ④ 碘在碘化物存在下形成多碘物种，与淀粉产生特征蓝紫色。",
+        "keyPoints": [
+          "铝的白色氢氧化物在过量氢氧根中生成四羟基合铝酸根"
+        ],
+        "traps": [
+          "铜氨配离子中的配体是中性氨分子，配位使水溶液显深蓝色。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-029",
+      "subject": "chemistry",
+      "order": 29,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "ジアンミン銀(I)イオンの電荷を含めた式はどれか。",
+      "format": "choice",
+      "options": [
+        "[Ag(NH₃)₂]⁺",
+        "[Ag(NH₃)₂]²⁺",
+        "[Ag(NH₃)₄]⁺",
+        "[Ag(OH)₂]⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "银为+1价，两份氨都是中性分子，故整体电荷仍为+1。 因此选 ①。\n\n- ② 氨电中性，两份氨不让一价银变成二价。\n- ③ 通常二氨合银的配位数为2。\n- ④ 配体是氨而非氢氧根。",
+        "keyPoints": [
+          "银为+1价，两份氨都是中性分子，故整体电荷仍为+1"
+        ],
+        "traps": [
+          "氨电中性，两份氨不让一价银变成二价。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-030",
+      "subject": "chemistry",
+      "order": 30,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "テトラアンミン亜鉛(II)イオンの式はどれか。",
+      "format": "choice",
+      "options": [
+        "[Zn(NH₃)₂]²⁺",
+        "[Zn(NH₃)₄]⁴⁺",
+        "[Zn(OH)₄]²⁻",
+        "[Zn(NH₃)₄]²⁺"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "一份二价锌与四个中性氨配位，中心价态和络离子电荷均为+2。 因此选 ④。\n\n- ① 漏掉四配位中的两份氨。\n- ② 把配位数当离子电荷。\n- ③ 这是过量强碱中的羟基配离子。",
+        "keyPoints": [
+          "一份二价锌与四个中性氨配位，中心价态和络离子电荷均为+2"
+        ],
+        "traps": [
+          "漏掉四配位中的两份氨。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-031",
+      "subject": "chemistry",
+      "order": 31,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "強塩基中に溶けた亜鉛を表す四配位のヒドロキシド錯体はどれか。",
+      "format": "choice",
+      "options": [
+        "[Zn(OH)₄]²⁻",
+        "[Zn(OH)₄]⁴⁻",
+        "[Zn(OH)₂]",
+        "[Zn(NH₃)₄]²⁺"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "二价锌与四个带负电荷的氢氧根配位，总电荷为−2。 因此选 ①。\n\n- ② 只算配体电荷未计二价锌。\n- ③ 这是沉淀阶段的组成。\n- ④ 氨配离子需要氨分子参与。",
+        "keyPoints": [
+          "二价锌与四个带负电荷的氢氧根配位，总电荷为−2"
+        ],
+        "traps": [
+          "只算配体电荷未计二价锌。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-032",
+      "subject": "chemistry",
+      "order": 32,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水溶液中のヘキサシアニド鉄(II)酸イオンの式はどれか。",
+      "format": "choice",
+      "options": [
+        "[Fe(CN)₆]³⁻",
+        "[Fe(CN)₄]²⁻",
+        "[Fe(CN)₆]²⁺",
+        "[Fe(CN)₆]⁴⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "六个一价负配体配上二价铁，电荷合计为−4；三价铁对应的则为−3。 因此选 ④。\n\n- ① 这是三价铁的配离子。\n- ② 六配位要求六个配体。\n- ③ 漏计六个氰配体的负电荷。",
+        "keyPoints": [
+          "六个一价负配体配上二价铁，电荷合计为−4；三价铁对应的则为−3"
+        ],
+        "traps": [
+          "这是三价铁的配离子。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-033",
+      "subject": "chemistry",
+      "order": 33,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "酸性でCu²⁺とZn²⁺を含む溶液に硫化物の選択沈殿が起こった。先に固相に移るものはどれか。",
+      "format": "choice",
+      "options": [
+        "CuS",
+        "ZnS",
+        "Cu(OH)₂",
+        "Zn(OH)₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "在适度酸性条件下硫离子浓度低，极难溶的硫化铜可先析出，而锌主要留在溶液中。 因此选 ①。\n\n- ② 酸性条件压低硫离子浓度，锌比铜更难在此时析出。\n- ③ 酸性环境和硫化物的加入不支持氢氧化物沉淀。\n- ④ 混淆硫化物选择沉淀与加碱分析。",
+        "keyPoints": [
+          "在适度酸性条件下硫离子浓度低，极难溶的硫化铜可先析出，而锌主要留在溶液中"
+        ],
+        "traps": [
+          "酸性条件压低硫离子浓度，锌比铜更难在此时析出。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-034",
+      "subject": "chemistry",
+      "order": 34,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Ag⁺とNa⁺を含む溶液に希塩酸を加え，ろ過した。ろ液に主に残る金属イオンはどれか。",
+      "format": "choice",
+      "options": [
+        "Ag⁺",
+        "Na⁺",
+        "Ag⁺とNa⁺の両方",
+        "どちらも残らない"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "银形成难溶氯化物被过滤掉；钠盐在这里可溶，钠离子留在滤液。 因此选 ②。\n\n- ① 银离子因生成氯化银而主要进入滤渣。\n- ③ 忽略氯化银的难溶性。\n- ④ NaCl易溶，钠仍留在滤液。",
+        "keyPoints": [
+          "银形成难溶氯化物被过滤掉；钠盐在这里可溶，钠离子留在滤液"
+        ],
+        "traps": [
+          "银离子因生成氯化银而主要进入滤渣。"
+        ],
+        "terms": [
+          {
+            "ja": "ろ液",
+            "kana": "ろえき",
+            "zh": "穿过滤纸后收集到的液体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-035",
+      "subject": "chemistry",
+      "order": 35,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Al³⁺，Fe³⁺の混合液に過剰のNaOHを加えた後，ろ紙上に残りやすいものはどれか。",
+      "format": "choice",
+      "options": [
+        "Al(OH)₃",
+        "[Al(OH)₄]⁻",
+        "Fe(OH)₃",
+        "Fe(OH)₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "铝溶于过量强碱成为羟基配离子，铁的红褐色氢氧化物仍为固体。 因此选 ③。\n\n- ① 白色氢氧化铝在过量强碱中会转为可溶配离子。\n- ② 该物种存在于滤液。\n- ④ 铁从开始就是三价，试剂没有将其还原。",
+        "keyPoints": [
+          "铝溶于过量强碱成为羟基配离子，铁的红褐色氢氧化物仍为固体"
+        ],
+        "traps": [
+          "白色氢氧化铝在过量强碱中会转为可溶配离子。"
+        ],
+        "terms": [
+          {
+            "ja": "ろ紙",
+            "kana": "ろし",
+            "zh": "过滤时截留固体的滤纸"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-036",
+      "subject": "chemistry",
+      "order": 36,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Al³⁺，Zn²⁺の混合液に過剰のアンモニア水を加えてろ過した。ろ紙上の白色物質はどれか。",
+      "format": "choice",
+      "options": [
+        "Zn(OH)₂",
+        "[Zn(NH₃)₄]²⁺",
+        "[Al(OH)₄]⁻",
+        "Al(OH)₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "锌进入可溶氨配离子，铝的氢氧化物在过量氨水中仍留在滤纸上。 因此选 ④。\n\n- ① 在过量氨水中锌可形成可溶氨配离子。\n- ② 这是滤液中的物种。\n- ③ 需要过量强碱，且配离子在溶液中。",
+        "keyPoints": [
+          "锌进入可溶氨配离子，铝的氢氧化物在过量氨水中仍留在滤纸上"
+        ],
+        "traps": [
+          "在过量氨水中锌可形成可溶氨配离子。"
+        ],
+        "terms": [
+          {
+            "ja": "ろ紙",
+            "kana": "ろし",
+            "zh": "过滤时截留固体的滤纸"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-037",
+      "subject": "chemistry",
+      "order": 37,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "消えかかった線香を激しく燃えさせる気体はどれか。",
+      "format": "choice",
+      "options": [
+        "HCl",
+        "NH₃",
+        "O₂",
+        "CO₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氧气支持燃烧，使带火星的线香复燃，现象反映助燃性。 因此选 ③。\n\n- ① 氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶。\n- ② 氨溶于纸上的水使溶液显碱性，所以红色石蕊变蓝。\n- ④ 二氧化碳先生成碳酸钙，过量时转成可溶的碳酸氢盐，出现先浑浊后澄清。",
+        "keyPoints": [
+          "氧气支持燃烧，使带火星的线香复燃，现象反映助燃性"
+        ],
+        "traps": [
+          "氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-038",
+      "subject": "chemistry",
+      "order": 38,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "赤色リトマス紙を湿らせて近づけると青くなる塩基性気体はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "HCl",
+        "CO₂",
+        "O₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "氨溶于纸上的水使溶液显碱性，所以红色石蕊变蓝。 因此选 ①。\n\n- ② 氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶。\n- ③ 二氧化碳先生成碳酸钙，过量时转成可溶的碳酸氢盐，出现先浑浊后澄清。\n- ④ 氧气支持燃烧，使带火星的线香复燃，现象反映助燃性。",
+        "keyPoints": [
+          "氨溶于纸上的水使溶液显碱性，所以红色石蕊变蓝"
+        ],
+        "traps": [
+          "氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-039",
+      "subject": "chemistry",
+      "order": 39,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "少量を石灰水に通すと白濁し，その後過剰に通すと白濁が消える気体はどれか。",
+      "format": "choice",
+      "options": [
+        "CO₂",
+        "O₂",
+        "HCl",
+        "NH₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "二氧化碳先生成碳酸钙，过量时转成可溶的碳酸氢盐，出现先浑浊后澄清。 因此选 ①。\n\n- ② 氧气支持燃烧，使带火星的线香复燃，现象反映助燃性。\n- ③ 氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶。\n- ④ 氨溶于纸上的水使溶液显碱性，所以红色石蕊变蓝。",
+        "keyPoints": [
+          "二氧化碳先生成碳酸钙，过量时转成可溶的碳酸氢盐，出现先浑浊后澄清"
+        ],
+        "traps": [
+          "氧气支持燃烧，使带火星的线香复燃，现象反映助燃性。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-040",
+      "subject": "chemistry",
+      "order": 40,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水に溶けると強酸を生じ，アンモニアと出会うと白煙を生じる水素化物はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "HCl",
+        "CO₂",
+        "O₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶。 因此选 ②。\n\n- ① 氨溶于纸上的水使溶液显碱性，所以红色石蕊变蓝。\n- ③ 二氧化碳先生成碳酸钙，过量时转成可溶的碳酸氢盐，出现先浑浊后澄清。\n- ④ 氧气支持燃烧，使带火星的线香复燃，现象反映助燃性。",
+        "keyPoints": [
+          "氯化氢与氨结合成微小氯化铵固体颗粒，白烟来自盐的气溶胶"
+        ],
+        "traps": [
+          "氨溶于纸上的水使溶液显碱性，所以红色石蕊变蓝。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-041",
+      "subject": "chemistry",
+      "order": 41,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "過酸化水素が分解したとき，水とともに生成する気体はどれか。",
+      "format": "choice",
+      "options": [
+        "アンモニア",
+        "二酸化炭素",
+        "水素",
+        "酸素"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中。 因此选 ④。\n\n- ① 铵离子将质子交给氢氧根生成氨和水，反映铵盐与碱的酸碱反应。\n- ② 石灰石中的碳酸根被质子化后生成二氧化碳与水，碳仍处于+4价。\n- ③ 水或氢离子在阴极接受电子，形成氢气；两电极气体的体积比为二比一。",
+        "keyPoints": [
+          "过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中"
+        ],
+        "traps": [
+          "铵离子将质子交给氢氧根生成氨和水，反映铵盐与碱的酸碱反应。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-042",
+      "subject": "chemistry",
+      "order": 42,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "石灰石と希酸の反応で，炭酸塩の炭素が移る気体はどれか。",
+      "format": "choice",
+      "options": [
+        "酸素",
+        "水素",
+        "アンモニア",
+        "二酸化炭素"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "石灰石中的碳酸根被质子化后生成二氧化碳与水，碳仍处于+4价。 因此选 ④。\n\n- ① 过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中。\n- ② 水或氢离子在阴极接受电子，形成氢气；两电极气体的体积比为二比一。\n- ③ 铵离子将质子交给氢氧根生成氨和水，反映铵盐与碱的酸碱反应。",
+        "keyPoints": [
+          "石灰石中的碳酸根被质子化后生成二氧化碳与水，碳仍处于+4价"
+        ],
+        "traps": [
+          "过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-043",
+      "subject": "chemistry",
+      "order": 43,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アンモニウムイオンが水酸化物イオンと反応したとき，窒素を含む分子として生じるのはどれか。",
+      "format": "choice",
+      "options": [
+        "水素",
+        "酸素",
+        "二酸化炭素",
+        "アンモニア"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "铵离子将质子交给氢氧根生成氨和水，反映铵盐与碱的酸碱反应。 因此选 ④。\n\n- ① 水或氢离子在阴极接受电子，形成氢气；两电极气体的体积比为二比一。\n- ② 过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中。\n- ③ 石灰石中的碳酸根被质子化后生成二氧化碳与水，碳仍处于+4价。",
+        "keyPoints": [
+          "铵离子将质子交给氢氧根生成氨和水，反映铵盐与碱的酸碱反应"
+        ],
+        "traps": [
+          "水或氢离子在阴极接受电子，形成氢气；两电极气体的体积比为二比一。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-044",
+      "subject": "chemistry",
+      "order": 44,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水の電気分解で，陰極側の気体はどれか。",
+      "format": "choice",
+      "options": [
+        "酸素",
+        "水素",
+        "二酸化炭素",
+        "アンモニア"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "水或氢离子在阴极接受电子，形成氢气；两电极气体的体积比为二比一。 因此选 ②。\n\n- ① 过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中。\n- ③ 石灰石中的碳酸根被质子化后生成二氧化碳与水，碳仍处于+4价。\n- ④ 铵离子将质子交给氢氧根生成氨和水，反映铵盐与碱的酸碱反应。",
+        "keyPoints": [
+          "水或氢离子在阴极接受电子，形成氢气；两电极气体的体积比为二比一"
+        ],
+        "traps": [
+          "过氧化氢分解为水和氧，氧元素发生歧化；催化剂不出现在净反应的产物中。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-045",
+      "subject": "chemistry",
+      "order": 45,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水上置換で気体を集めるのに特に適した性質はどれか。",
+      "format": "choice",
+      "options": [
+        "水によく溶ける",
+        "水に溶けにくく水と反応しない",
+        "水と速やかに反応する",
+        "空気より軽いことだけで決まる"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "水上置换利用气体把水排开，低溶解度和对水稳定能减少收集损失。 因此选 ②。\n\n- ① 可溶气体会大量进入水中导致收集损失。\n- ③ 气体会被转化成别的物质。\n- ④ 排水法的首要条件是对水的溶解性和稳定性。",
+        "keyPoints": [
+          "水上置换利用气体把水排开，低溶解度和对水稳定能减少收集损失"
+        ],
+        "traps": [
+          "可溶气体会大量进入水中导致收集损失。"
+        ],
+        "terms": [
+          {
+            "ja": "置換",
+            "kana": "ちかん",
+            "zh": "把原积分变量改写成另一个变量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-046",
+      "subject": "chemistry",
+      "order": 46,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "上方置換でNH₃を集める際に利用する，空気との密度関係はどれか。",
+      "format": "choice",
+      "options": [
+        "空気と同じ密度である",
+        "水蒸気より軽ければよい",
+        "空気より重い",
+        "空気より軽い"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "氨易溶于水且比空气轻，因此可利用它向上聚集并排开空气。 因此选 ④。\n\n- ① 相同密度无法提供定向置换的优势。\n- ② 比较对象是被排出的空气。\n- ③ 重气体会在容器下部聚集。",
+        "keyPoints": [
+          "氨易溶于水且比空气轻，因此可利用它向上聚集并排开空气"
+        ],
+        "traps": [
+          "相同密度无法提供定向置换的优势。"
+        ],
+        "terms": [
+          {
+            "ja": "置換",
+            "kana": "ちかん",
+            "zh": "把原积分变量改写成另一个变量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-047",
+      "subject": "chemistry",
+      "order": 47,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "気体洗浄びんで，洗浄液全体に気体を通すための導入口はどれか。",
+      "format": "choice",
+      "options": [
+        "液面と同じ高さの管",
+        "液面より上の短い管",
+        "液に浸かった長い管",
+        "出口から液を逆流させる管"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "气体由长管到达液面以下，形成气泡上升，与洗涤液有充分接触。 因此选 ③。\n\n- ① 末端未可靠浸没，气体可从液面逸过。\n- ② 由此进入时难以鼓泡通过洗液。\n- ④ 倒吸会把洗液带回上游。",
+        "keyPoints": [
+          "气体由长管到达液面以下，形成气泡上升，与洗涤液有充分接触"
+        ],
+        "traps": [
+          "末端未可靠浸没，气体可从液面逸过。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-048",
+      "subject": "chemistry",
+      "order": 48,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水上置換した気体の圧力から乾いた気体の分圧を求めるとき，差し引く量はどれか。",
+      "format": "choice",
+      "options": [
+        "乾いた気体の分圧",
+        "水の密度",
+        "水蒸気圧",
+        "大気圧そのもの"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "在相同液面高度下，总压含有水蒸气分压；求干燥气体的分压要扣除此项。 因此选 ③。\n\n- ① 该分压正是待求量。\n- ② 密度与压力的量纲不同。\n- ④ 等液面时大气压近似等于湿气体总压。",
+        "keyPoints": [
+          "在相同液面高度下，总压含有水蒸气分压；求干燥气体的分压要扣除此项"
+        ],
+        "traps": [
+          "该分压正是待求量。"
+        ],
+        "terms": [
+          {
+            "ja": "置換",
+            "kana": "ちかん",
+            "zh": "把原积分变量改写成另一个变量"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-049",
+      "subject": "chemistry",
+      "order": 49,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アンモニア合成で平衡を生成物側に移す圧力条件はどれか。",
+      "format": "choice",
+      "options": [
+        "窒素だけを減圧する",
+        "圧力は平衡に影響しない",
+        "高圧",
+        "低圧"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氮气与氢气合计四份气体生成两份氨，升压有利于气体物质的量较少的一侧。 因此选 ③。\n\n- ① 降低反应物分压不利于氨的形成。\n- ② 该反应气体计量数会变化。\n- ④ 降压有利于气体总物质的量较大的一侧。",
+        "keyPoints": [
+          "氮气与氢气合计四份气体生成两份氨，升压有利于气体物质的量较少的一侧"
+        ],
+        "traps": [
+          "降低反应物分压不利于氨的形成。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-050",
+      "subject": "chemistry",
+      "order": 50,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "接触法でSO₂からSO₃への酸化に用いる代表的な触媒はどれか。",
+      "format": "choice",
+      "options": [
+        "二酸化マンガン",
+        "五酸化バナジウム",
+        "白金・ロジウム合金",
+        "鉄系触媒"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "接触法以五氧化二钒促进二氧化硫的氧化，触媒只改变达到平衡的速度。 因此选 ②。\n\n- ① 常用于催化过氧化氢分解。\n- ③ 对应氨催化氧化。\n- ④ 这是合成氨常用的催化体系。",
+        "keyPoints": [
+          "接触法以五氧化二钒促进二氧化硫的氧化，触媒只改变达到平衡的速度"
+        ],
+        "traps": [
+          "常用于催化过氧化氢分解。"
+        ],
+        "terms": [
+          {
+            "ja": "触媒",
+            "kana": "しょくばい",
+            "zh": "改变反应速度且在反应循环后再生的物质"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-051",
+      "subject": "chemistry",
+      "order": 51,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "オストワルト法の出発物質で，最初に触媒上で酸化される窒素化合物はどれか。",
+      "format": "choice",
+      "options": [
+        "NO",
+        "NO₂",
+        "アンモニア",
+        "HNO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "奥斯特瓦尔德法由氨出发，经一氧化氮和二氧化氮转为硝酸。 因此选 ③。\n\n- ① 一氧化氮是氨氧化的中间产物。\n- ② 二氧化氮出现在进一步氧化的阶段。\n- ④ 硝酸是最终产品。",
+        "keyPoints": [
+          "奥斯特瓦尔德法由氨出发，经一氧化氮和二氧化氮转为硝酸"
+        ],
+        "traps": [
+          "一氧化氮是氨氧化的中间产物。"
+        ],
+        "terms": [
+          {
+            "ja": "触媒",
+            "kana": "しょくばい",
+            "zh": "改变反应速度且在反应循环后再生的物质"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-052",
+      "subject": "chemistry",
+      "order": 52,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アンモニアソーダ法で難溶性を利用して先に分ける固体はどれか。",
+      "format": "choice",
+      "options": [
+        "塩化カルシウム",
+        "炭酸ナトリウム",
+        "炭酸水素ナトリウム",
+        "塩化アンモニウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "溶液中先析出碳酸氢钠，分离并热分解后才得到目标碳酸钠。 因此选 ③。\n\n- ① 主要在回收氨的步骤作为副产物出现。\n- ② 这是热分解所得产品。\n- ④ 该盐主要留在母液中。",
+        "keyPoints": [
+          "溶液中先析出碳酸氢钠，分离并热分解后才得到目标碳酸钠"
+        ],
+        "traps": [
+          "主要在回收氨的步骤作为副产物出现。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-053",
+      "subject": "chemistry",
+      "order": 53,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アルミニウム製錬の融解塩電解で，アルミナを溶かす浴の主成分はどれか。",
+      "format": "choice",
+      "options": [
+        "氷晶石",
+        "ボーキサイト",
+        "黒鉛",
+        "石灰石"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "冰晶石使氧化铝在低于其自身熔点的温度下形成可电解的熔体。 因此选 ①。\n\n- ② 铝土矿是氧化铝的矿物来源。\n- ③ 可作电极材料，不能充当熔盐浴。\n- ④ 炼铁时常用来提供造渣剂。",
+        "keyPoints": [
+          "冰晶石使氧化铝在低于其自身熔点的温度下形成可电解的熔体"
+        ],
+        "traps": [
+          "铝土矿是氧化铝的矿物来源。"
+        ],
+        "terms": [
+          {
+            "ja": "融解",
+            "kana": "ゆうかい",
+            "zh": "物质由固态转为液态的相变"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-054",
+      "subject": "chemistry",
+      "order": 54,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "鉄の高炉で，酸化鉄を還元する代表的な気体はどれか。",
+      "format": "choice",
+      "options": [
+        "二酸化炭素",
+        "窒素",
+        "酸素",
+        "一酸化炭素"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "高炉中的一氧化碳从铁氧化物取得氧，生成二氧化碳，铁被还原。 因此选 ④。\n\n- ① 这是CO取得氧后的主要产物。\n- ② 随鼓风进入并非主要还原气体。\n- ③ 是氧化剂。",
+        "keyPoints": [
+          "高炉中的一氧化碳从铁氧化物取得氧，生成二氧化碳，铁被还原"
+        ],
+        "traps": [
+          "这是CO取得氧后的主要产物。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-055",
+      "subject": "chemistry",
+      "order": 55,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "粗銅の電解精錬で，金や銀が主に集まる場所はどれか。",
+      "format": "choice",
+      "options": [
+        "電解液中の陽イオン",
+        "陽極の上方の気体",
+        "陽極泥",
+        "陰極板の銅結晶"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "比铜贵重的杂质在常用精炼条件下不易氧化溶出，随粗铜溶解沉积成阳极泥。 因此选 ③。\n\n- ① 更活泼的杂质才容易溶出进入溶液。\n- ② 金银在这里没有生成挥发性产物。\n- ④ 阴极上主要沉积精铜。",
+        "keyPoints": [
+          "比铜贵重的杂质在常用精炼条件下不易氧化溶出，随粗铜溶解沉积成阳极泥"
+        ],
+        "traps": [
+          "更活泼的杂质才容易溶出进入溶液。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-056",
+      "subject": "chemistry",
+      "order": 56,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "食塩水の電解で，陰極室に残る工業製品はどれか。",
+      "format": "choice",
+      "options": [
+        "水酸化ナトリウム水溶液",
+        "塩酸",
+        "炭酸ナトリウム水溶液",
+        "次亜塩素酸ナトリウム水溶液"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "阴极由水生成氢氧根；钠离子迁入，所得液相产品是烧碱溶液。 因此选 ①。\n\n- ② 阴极水还原使液体呈碱性。\n- ③ 没有碳源生成碳酸根。\n- ④ 阳离子交换膜隔开氯气和碱。",
+        "keyPoints": [
+          "阴极由水生成氢氧根；钠离子迁入，所得液相产品是烧碱溶液"
+        ],
+        "traps": [
+          "阴极水还原使液体呈碱性。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-057",
+      "subject": "chemistry",
+      "order": 57,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アンモニアソーダ法で石灰乳と塩化アンモニウムから回収し，循環利用する物質はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "CO₂",
+        "NaHCO₃",
+        "CaCl₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "铵盐与碱反应可重新释放氨，回收氨是这一生产循环的重要环节。 因此选 ①。\n\n- ② 煅烧碳酸氢钠时可回收CO₂，本步是铵盐再生氨。\n- ③ 碳酸氢钠是分离出的固体中间产物。\n- ④ 氯化钙是回收氨步骤的副产盐。",
+        "keyPoints": [
+          "铵盐与碱反应可重新释放氨，回收氨是这一生产循环的重要环节"
+        ],
+        "traps": [
+          "煅烧碳酸氢钠时可回收CO₂，本步是铵盐再生氨。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-058",
+      "subject": "chemistry",
+      "order": 58,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "高炉でSiO₂を含む脈石と反応させるために石灰石から供給される酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "CaO",
+        "CaCO₃",
+        "CO₂",
+        "CaSiO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "石灰石受热分解生成氧化钙，碱性氧化物与酸性脉石结合进入炉渣。 因此选 ①。\n\n- ② 石灰石中的碳酸钙先分解后提供碱性氧化物。\n- ③ 这是石灰石分解的另一产物，不能与酸性脉石同样造渣。\n- ④ 硅酸钙是结合脉石后的产物。",
+        "keyPoints": [
+          "石灰石受热分解生成氧化钙，碱性氧化物与酸性脉石结合进入炉渣"
+        ],
+        "traps": [
+          "石灰石中的碳酸钙先分解后提供碱性氧化物。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-059",
+      "subject": "chemistry",
+      "order": 59,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "硫酸製造でSO₃を濃硫酸に吸収させて得る中間製品はどれか。",
+      "format": "choice",
+      "options": [
+        "発煙硫酸",
+        "亜硫酸水溶液",
+        "硫酸アンモニウム",
+        "希硫酸"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "三氧化硫被浓硫酸吸收形成发烟硫酸，后续调整含水量得到所需浓度。 因此选 ①。\n\n- ② 亚硫酸对应二氧化硫。\n- ③ 本步未引入氨。\n- ④ 吸收三氧化硫提高酸酐含量。",
+        "keyPoints": [
+          "三氧化硫被浓硫酸吸收形成发烟硫酸，后续调整含水量得到所需浓度"
+        ],
+        "traps": [
+          "亚硫酸对应二氧化硫。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-060",
+      "subject": "chemistry",
+      "order": 60,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "ガラス原料で，網目の骨格を構成する主要な酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "Na₂O",
+        "SiO₂",
+        "CaO",
+        "CO₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "硅氧四面体联结为网络，是普通玻璃的主要骨架；其余成分可调熔融等性质。 因此选 ②。\n\n- ① 普通玻璃中钠成分主要修饰网络。\n- ③ 钙成分可提高耐水性，但不构成主要的硅氧骨架。\n- ④ 碳酸盐原料可放出二氧化碳，气体不是骨架。",
+        "keyPoints": [
+          "硅氧四面体联结为网络，是普通玻璃的主要骨架；其余成分可调熔融等性质"
+        ],
+        "traps": [
+          "普通玻璃中钠成分主要修饰网络。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-061",
+      "subject": "chemistry",
+      "order": 61,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "赤鉄鉱の主成分はどれか。",
+      "format": "choice",
+      "options": [
+        "Fe₃O₄",
+        "FeS₂",
+        "Fe₂O₃",
+        "FeCO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "赤铁矿主要含三氧化二铁，铁为+3价，化学式与磁铁矿不同。 因此选 ③。\n\n- ① 这是磁铁矿的主要成分。\n- ② 这是黄铁矿中的二硫化亚铁。\n- ④ 这是菱铁矿的主要成分。",
+        "keyPoints": [
+          "赤铁矿主要含三氧化二铁，铁为+3价，化学式与磁铁矿不同"
+        ],
+        "traps": [
+          "这是磁铁矿的主要成分。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-062",
+      "subject": "chemistry",
+      "order": 62,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "磁鉄鉱の主成分で，2価と3価の鉄をともに含むものはどれか。",
+      "format": "choice",
+      "options": [
+        "Fe₂O₃",
+        "FeO",
+        "FeCO₃",
+        "Fe₃O₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "磁铁矿可写作FeO·Fe₂O₃，每个化学式单位含一份亚铁和两份三价铁。 因此选 ④。\n\n- ① 赤铁矿中的铁全为三价。\n- ② 氧化亚铁中的铁为二价。\n- ③ 碳酸亚铁不含三价铁。",
+        "keyPoints": [
+          "磁铁矿可写作FeO·Fe₂O₃，每个化学式单位含一份亚铁和两份三价铁"
+        ],
+        "traps": [
+          "赤铁矿中的铁全为三价。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-063",
+      "subject": "chemistry",
+      "order": 63,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "生石灰を水と反応させたときに得られる消石灰はどれか。",
+      "format": "choice",
+      "options": [
+        "CaO",
+        "CaCO₃",
+        "CaSO₄",
+        "Ca(OH)₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "生石灰为氧化钙，加水转为氢氧化钙；其澄清水溶液称石灰水。 因此选 ④。\n\n- ① 生石灰是加水前的原料。\n- ② 这是石灰石成分以及消石灰碳化产物。\n- ③ 硫酸盐的生成需要硫源。",
+        "keyPoints": [
+          "生石灰为氧化钙，加水转为氢氧化钙；其澄清水溶液称石灰水"
+        ],
+        "traps": [
+          "生石灰是加水前的原料。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-064",
+      "subject": "chemistry",
+      "order": 64,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "せっこうの主成分で，結晶水を2個もつ塩はどれか。",
+      "format": "choice",
+      "options": [
+        "CaSO₄·½H₂O",
+        "CaSO₄",
+        "CaSO₄·2H₂O",
+        "CaCO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "石膏为二水硫酸钙，烧石膏的含水量则较少，两者可利用水合相互转化。 因此选 ③。\n\n- ① 这是半水石膏。\n- ② 无水硫酸钙没有结晶水。\n- ④ 碳酸钙是石灰岩成分。",
+        "keyPoints": [
+          "石膏为二水硫酸钙，烧石膏的含水量则较少，两者可利用水合相互转化"
+        ],
+        "traps": [
+          "这是半水石膏。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-065",
+      "subject": "chemistry",
+      "order": 65,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "酸化銅(II)の粉末の色はどれか。",
+      "format": "choice",
+      "options": [
+        "白色",
+        "赤色～赤褐色",
+        "黒色",
+        "青色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上。 因此选 ③。\n\n- ① 氯化亚铜是白色固体，铜的氧化数和阴离子都影响颜色。\n- ② 斐林反应中二价铜被还原成氧化亚铜，特征为砖红色沉淀。\n- ④ 含结晶水的硫酸铜呈蓝色，无水物呈白色，与氧化亚铜的砖红色要分开记。",
+        "keyPoints": [
+          "二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上"
+        ],
+        "traps": [
+          "氯化亚铜是白色固体，铜的氧化数和阴离子都影响颜色。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-066",
+      "subject": "chemistry",
+      "order": 66,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "塩化銅(I)の新しい沈殿の代表的な色はどれか。",
+      "format": "choice",
+      "options": [
+        "黒色",
+        "白色",
+        "青色",
+        "赤色～赤褐色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氯化亚铜是白色固体，铜的氧化数和阴离子都影响颜色。 因此选 ②。\n\n- ① 二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上。\n- ③ 含结晶水的硫酸铜呈蓝色，无水物呈白色，与氧化亚铜的砖红色要分开记。\n- ④ 斐林反应中二价铜被还原成氧化亚铜，特征为砖红色沉淀。",
+        "keyPoints": [
+          "氯化亚铜是白色固体，铜的氧化数和阴离子都影响颜色"
+        ],
+        "traps": [
+          "二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-067",
+      "subject": "chemistry",
+      "order": 67,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "フェーリング反応でも生じる酸化銅(I)沈殿の色はどれか。",
+      "format": "choice",
+      "options": [
+        "青色",
+        "黒色",
+        "赤色～赤褐色",
+        "白色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "斐林反应中二价铜被还原成氧化亚铜，特征为砖红色沉淀。 因此选 ③。\n\n- ① 含结晶水的硫酸铜呈蓝色，无水物呈白色，与氧化亚铜的砖红色要分开记。\n- ② 二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上。\n- ④ 氯化亚铜是白色固体，铜的氧化数和阴离子都影响颜色。",
+        "keyPoints": [
+          "斐林反应中二价铜被还原成氧化亚铜，特征为砖红色沉淀"
+        ],
+        "traps": [
+          "含结晶水的硫酸铜呈蓝色，无水物呈白色，与氧化亚铜的砖红色要分开记。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-068",
+      "subject": "chemistry",
+      "order": 68,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "硫酸銅(II)五水和物の結晶の色はどれか。",
+      "format": "choice",
+      "options": [
+        "黒色",
+        "赤色～赤褐色",
+        "白色",
+        "青色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "含结晶水的硫酸铜呈蓝色，无水物呈白色，与氧化亚铜的砖红色要分开记。 因此选 ④。\n\n- ① 二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上。\n- ② 斐林反应中二价铜被还原成氧化亚铜，特征为砖红色沉淀。\n- ③ 氯化亚铜是白色固体，铜的氧化数和阴离子都影响颜色。",
+        "keyPoints": [
+          "含结晶水的硫酸铜呈蓝色，无水物呈白色，与氧化亚铜的砖红色要分开记"
+        ],
+        "traps": [
+          "二价铜的氧化物是黑色粉末，不能把铜盐水溶液的蓝色照搬到氧化物上。"
+        ],
+        "terms": [
+          {
+            "ja": "水和",
+            "kana": "すいわ",
+            "zh": "水分子与溶质粒子结合或围绕溶质粒子的过程"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-069",
+      "subject": "chemistry",
+      "order": 69,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "鉄を主成分とし，Crを含むことで耐食性が高い合金はどれか。",
+      "format": "choice",
+      "options": [
+        "青銅",
+        "ステンレス鋼",
+        "ジュラルミン",
+        "黄銅"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "不锈钢以铁为基体，铬有助于表面形成保护膜，有的牌号还含镍。 因此选 ②。\n\n- ① 青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同。\n- ③ 硬铝以铝为基体并添加铜、镁等，可兼具较低密度和较高强度。\n- ④ 黄铜的主要组分为铜和锌，常见日语别名为真鍮。",
+        "keyPoints": [
+          "不锈钢以铁为基体，铬有助于表面形成保护膜，有的牌号还含镍"
+        ],
+        "traps": [
+          "青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-070",
+      "subject": "chemistry",
+      "order": 70,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "CuとZnを主成分とする合金はどれか。",
+      "format": "choice",
+      "options": [
+        "黄銅",
+        "青銅",
+        "ステンレス鋼",
+        "ジュラルミン"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "黄铜的主要组分为铜和锌，常见日语别名为真鍮。 因此选 ①。\n\n- ② 青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同。\n- ③ 不锈钢以铁为基体，铬有助于表面形成保护膜，有的牌号还含镍。\n- ④ 硬铝以铝为基体并添加铜、镁等，可兼具较低密度和较高强度。",
+        "keyPoints": [
+          "黄铜的主要组分为铜和锌，常见日语别名为真鍮"
+        ],
+        "traps": [
+          "青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-071",
+      "subject": "chemistry",
+      "order": 71,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "CuとSnを主成分とする合金はどれか。",
+      "format": "choice",
+      "options": [
+        "ステンレス鋼",
+        "青銅",
+        "ジュラルミン",
+        "黄銅"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同。 因此选 ②。\n\n- ① 不锈钢以铁为基体，铬有助于表面形成保护膜，有的牌号还含镍。\n- ③ 硬铝以铝为基体并添加铜、镁等，可兼具较低密度和较高强度。\n- ④ 黄铜的主要组分为铜和锌，常见日语别名为真鍮。",
+        "keyPoints": [
+          "青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同"
+        ],
+        "traps": [
+          "不锈钢以铁为基体，铬有助于表面形成保护膜，有的牌号还含镍。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-072",
+      "subject": "chemistry",
+      "order": 72,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Alを主成分とし，Cu，Mgなどを含む軽合金はどれか。",
+      "format": "choice",
+      "options": [
+        "ジュラルミン",
+        "黄銅",
+        "青銅",
+        "ステンレス鋼"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "硬铝以铝为基体并添加铜、镁等，可兼具较低密度和较高强度。 因此选 ①。\n\n- ② 黄铜的主要组分为铜和锌，常见日语别名为真鍮。\n- ③ 青铜传统上以铜、锡为主要成分，与用锌制得的黄铜不同。\n- ④ 不锈钢以铁为基体，铬有助于表面形成保护膜，有的牌号还含镍。",
+        "keyPoints": [
+          "硬铝以铝为基体并添加铜、镁等，可兼具较低密度和较高强度"
+        ],
+        "traps": [
+          "黄铜的主要组分为铜和锌，常见日语别名为真鍮。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-073",
+      "subject": "chemistry",
+      "order": 73,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "室温で赤褐色の液体であるハロゲン単体はどれか。",
+      "format": "choice",
+      "options": [
+        "Br₂",
+        "I₂",
+        "Cl₂",
+        "F₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型。 因此选 ①。\n\n- ② 碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体。\n- ③ 氯单质呈黄绿色气体，不能与黄绿色的焰色或溶液颜色混为一谈。\n- ④ 氟单质为淡黄色气体，卤素单质的氧化能力由氟向碘总体减弱。",
+        "keyPoints": [
+          "溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型"
+        ],
+        "traps": [
+          "碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-074",
+      "subject": "chemistry",
+      "order": 74,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "室温で黒紫色の固体，蒸気は紫色となるハロゲンはどれか。",
+      "format": "choice",
+      "options": [
+        "I₂",
+        "Br₂",
+        "F₂",
+        "Cl₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体。 因此选 ①。\n\n- ② 溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型。\n- ③ 氟单质为淡黄色气体，卤素单质的氧化能力由氟向碘总体减弱。\n- ④ 氯单质呈黄绿色气体，不能与黄绿色的焰色或溶液颜色混为一谈。",
+        "keyPoints": [
+          "碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体"
+        ],
+        "traps": [
+          "溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-075",
+      "subject": "chemistry",
+      "order": 75,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "室温で淡黄色の気体で，ハロゲン中で最も酸化力が強いものはどれか。",
+      "format": "choice",
+      "options": [
+        "Br₂",
+        "Cl₂",
+        "I₂",
+        "F₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "氟单质为淡黄色气体，卤素单质的氧化能力由氟向碘总体减弱。 因此选 ④。\n\n- ① 溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型。\n- ② 氯单质呈黄绿色气体，不能与黄绿色的焰色或溶液颜色混为一谈。\n- ③ 碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体。",
+        "keyPoints": [
+          "氟单质为淡黄色气体，卤素单质的氧化能力由氟向碘总体减弱"
+        ],
+        "traps": [
+          "溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-076",
+      "subject": "chemistry",
+      "order": 76,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "室温で黄緑色の気体であるハロゲンはどれか。",
+      "format": "choice",
+      "options": [
+        "I₂",
+        "Cl₂",
+        "Br₂",
+        "F₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氯单质呈黄绿色气体，不能与黄绿色的焰色或溶液颜色混为一谈。 因此选 ②。\n\n- ① 碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体。\n- ③ 溴在室温为红褐色液体，是常见卤素单质中状态辨认的典型。\n- ④ 氟单质为淡黄色气体，卤素单质的氧化能力由氟向碘总体减弱。",
+        "keyPoints": [
+          "氯单质呈黄绿色气体，不能与黄绿色的焰色或溶液颜色混为一谈"
+        ],
+        "traps": [
+          "碘晶体呈黑紫色，加热可见紫色蒸气，属于分子晶体。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-077",
+      "subject": "chemistry",
+      "order": 77,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "電気を通し，層が滑りやすい炭素の同素体はどれか。",
+      "format": "choice",
+      "options": [
+        "黒鉛",
+        "グラフェン",
+        "ダイヤモンド",
+        "フラーレンC₆₀"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "石墨层内有可移动电子，层间作用较弱，因而可导电并易沿层滑动。 因此选 ①。\n\n- ② 石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。\n- ③ 金刚石中的碳形成三维四配位共价网络，硬度高，常态下电导率低。\n- ④ 富勒烯的基本单位是独立笼状分子，与延伸成层或成网的碳材料有结构差别。",
+        "keyPoints": [
+          "石墨层内有可移动电子，层间作用较弱，因而可导电并易沿层滑动"
+        ],
+        "traps": [
+          "石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-078",
+      "subject": "chemistry",
+      "order": 78,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "各炭素原子の周囲に4原子が正四面体状に結合した単体はどれか。",
+      "format": "choice",
+      "options": [
+        "グラフェン",
+        "フラーレンC₆₀",
+        "ダイヤモンド",
+        "黒鉛"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "金刚石中的碳形成三维四配位共价网络，硬度高，常态下电导率低。 因此选 ③。\n\n- ① 石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。\n- ② 富勒烯的基本单位是独立笼状分子，与延伸成层或成网的碳材料有结构差别。\n- ④ 石墨层内有可移动电子，层间作用较弱，因而可导电并易沿层滑动。",
+        "keyPoints": [
+          "金刚石中的碳形成三维四配位共价网络，硬度高，常态下电导率低"
+        ],
+        "traps": [
+          "石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-079",
+      "subject": "chemistry",
+      "order": 79,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "60個の炭素原子が球状の独立分子をつくる物質はどれか。",
+      "format": "choice",
+      "options": [
+        "フラーレンC₆₀",
+        "グラフェン",
+        "ダイヤモンド",
+        "黒鉛"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "富勒烯的基本单位是独立笼状分子，与延伸成层或成网的碳材料有结构差别。 因此选 ①。\n\n- ② 石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。\n- ③ 金刚石中的碳形成三维四配位共价网络，硬度高，常态下电导率低。\n- ④ 石墨层内有可移动电子，层间作用较弱，因而可导电并易沿层滑动。",
+        "keyPoints": [
+          "富勒烯的基本单位是独立笼状分子，与延伸成层或成网的碳材料有结构差别"
+        ],
+        "traps": [
+          "石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-080",
+      "subject": "chemistry",
+      "order": 80,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "炭素原子1層からなる，六角網目状のシートはどれか。",
+      "format": "choice",
+      "options": [
+        "黒鉛",
+        "グラフェン",
+        "ダイヤモンド",
+        "フラーレンC₆₀"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨。 因此选 ②。\n\n- ① 石墨层内有可移动电子，层间作用较弱，因而可导电并易沿层滑动。\n- ③ 金刚石中的碳形成三维四配位共价网络，硬度高，常态下电导率低。\n- ④ 富勒烯的基本单位是独立笼状分子，与延伸成层或成网的碳材料有结构差别。",
+        "keyPoints": [
+          "石墨烯是单层蜂窝状碳片，许多这样的层堆叠可形成石墨"
+        ],
+        "traps": [
+          "石墨层内有可移动电子，层间作用较弱，因而可导电并易沿层滑动。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-081",
+      "subject": "chemistry",
+      "order": 81,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "酸素の同素体で，折れ線形の三原子分子をつくるのはどれか。",
+      "format": "choice",
+      "options": [
+        "P₄",
+        "N₂",
+        "O₃",
+        "S₈"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "臭氧由三个氧原子构成弯曲形分子，与普通氧气属于同素异形体。 因此选 ③。\n\n- ① 白磷或黄磷的分子含四个磷原子，位于四面体的顶点。\n- ② 氮气由双原子组成，氮氮三键较强，是干燥空气中含量最高的组分。\n- ④ 斜方硫为分子晶体，以八元环硫分子为基本单位，区别于长链硫。",
+        "keyPoints": [
+          "臭氧由三个氧原子构成弯曲形分子，与普通氧气属于同素异形体"
+        ],
+        "traps": [
+          "白磷或黄磷的分子含四个磷原子，位于四面体的顶点。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-082",
+      "subject": "chemistry",
+      "order": 82,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "常温で最も安定な斜方硫黄を構成する代表的な環状分子はどれか。",
+      "format": "choice",
+      "options": [
+        "S₈",
+        "N₂",
+        "O₃",
+        "P₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "斜方硫为分子晶体，以八元环硫分子为基本单位，区别于长链硫。 因此选 ①。\n\n- ② 氮气由双原子组成，氮氮三键较强，是干燥空气中含量最高的组分。\n- ③ 臭氧由三个氧原子构成弯曲形分子，与普通氧气属于同素异形体。\n- ④ 白磷或黄磷的分子含四个磷原子，位于四面体的顶点。",
+        "keyPoints": [
+          "斜方硫为分子晶体，以八元环硫分子为基本单位，区别于长链硫"
+        ],
+        "traps": [
+          "氮气由双原子组成，氮氮三键较强，是干燥空气中含量最高的组分。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-083",
+      "subject": "chemistry",
+      "order": 83,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "黄リンの正四面体形分子の化学式はどれか。",
+      "format": "choice",
+      "options": [
+        "O₃",
+        "S₈",
+        "P₄",
+        "N₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "白磷或黄磷的分子含四个磷原子，位于四面体的顶点。 因此选 ③。\n\n- ① 臭氧由三个氧原子构成弯曲形分子，与普通氧气属于同素异形体。\n- ② 斜方硫为分子晶体，以八元环硫分子为基本单位，区别于长链硫。\n- ④ 氮气由双原子组成，氮氮三键较强，是干燥空气中含量最高的组分。",
+        "keyPoints": [
+          "白磷或黄磷的分子含四个磷原子，位于四面体的顶点"
+        ],
+        "traps": [
+          "臭氧由三个氧原子构成弯曲形分子，与普通氧气属于同素异形体。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-084",
+      "subject": "chemistry",
+      "order": 84,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "空気中に体積で約78%含まれ，分子内に三重結合をもつ単体はどれか。",
+      "format": "choice",
+      "options": [
+        "S₈",
+        "N₂",
+        "O₃",
+        "P₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氮气由双原子组成，氮氮三键较强，是干燥空气中含量最高的组分。 因此选 ②。\n\n- ① 斜方硫为分子晶体，以八元环硫分子为基本单位，区别于长链硫。\n- ③ 臭氧由三个氧原子构成弯曲形分子，与普通氧气属于同素异形体。\n- ④ 白磷或黄磷的分子含四个磷原子，位于四面体的顶点。",
+        "keyPoints": [
+          "氮气由双原子组成，氮氮三键较强，是干燥空气中含量最高的组分"
+        ],
+        "traps": [
+          "斜方硫为分子晶体，以八元环硫分子为基本单位，区别于长链硫。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-085",
+      "subject": "chemistry",
+      "order": 85,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "無色で空気に触れると赤褐色になる窒素酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "NO₂",
+        "N₂O₄",
+        "NH₃",
+        "NO"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "无色一氧化氮在空气中进一步氧化为红褐色二氧化氮。 因此选 ④。\n\n- ① 红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。\n- ② 缔合保留原子总数，两份NO₂正好给出N₂O₄，氮的平均价态不变。\n- ③ 氨与水各有十个电子；氨中氮带一对孤电子对，三个氢构成三角锥。",
+        "keyPoints": [
+          "无色一氧化氮在空气中进一步氧化为红褐色二氧化氮"
+        ],
+        "traps": [
+          "红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-086",
+      "subject": "chemistry",
+      "order": 86,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "赤褐色で，冷却すると無色の二量体との平衡が移動する気体はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "N₂O₄",
+        "NO",
+        "NO₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。 因此选 ④。\n\n- ① 氨与水各有十个电子；氨中氮带一对孤电子对，三个氢构成三角锥。\n- ② 缔合保留原子总数，两份NO₂正好给出N₂O₄，氮的平均价态不变。\n- ③ 无色一氧化氮在空气中进一步氧化为红褐色二氧化氮。",
+        "keyPoints": [
+          "红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合"
+        ],
+        "traps": [
+          "氨与水各有十个电子；氨中氮带一对孤电子对，三个氢构成三角锥。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-087",
+      "subject": "chemistry",
+      "order": 87,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "二酸化窒素2分子の会合でできる無色の分子はどれか。",
+      "format": "choice",
+      "options": [
+        "N₂O₄",
+        "NO₂",
+        "NO",
+        "NH₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "缔合保留原子总数，两份NO₂正好给出N₂O₄，氮的平均价态不变。 因此选 ①。\n\n- ② 红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。\n- ③ 无色一氧化氮在空气中进一步氧化为红褐色二氧化氮。\n- ④ 氨与水各有十个电子；氨中氮带一对孤电子对，三个氢构成三角锥。",
+        "keyPoints": [
+          "缔合保留原子总数，两份NO₂正好给出N₂O₄，氮的平均价态不变"
+        ],
+        "traps": [
+          "红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-088",
+      "subject": "chemistry",
+      "order": 88,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水の分子と同じ電子数をもち，三角錐形をとる窒素の水素化物はどれか。",
+      "format": "choice",
+      "options": [
+        "NH₃",
+        "NO₂",
+        "NO",
+        "N₂O₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "氨与水各有十个电子；氨中氮带一对孤电子对，三个氢构成三角锥。 因此选 ①。\n\n- ② 红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。\n- ③ 无色一氧化氮在空气中进一步氧化为红褐色二氧化氮。\n- ④ 缔合保留原子总数，两份NO₂正好给出N₂O₄，氮的平均价态不变。",
+        "keyPoints": [
+          "氨与水各有十个电子；氨中氮带一对孤电子对，三个氢构成三角锥"
+        ],
+        "traps": [
+          "红褐色二氧化氮分子可缔合成几乎无色的四氧化二氮，冷却有利于缔合。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-089",
+      "subject": "chemistry",
+      "order": 89,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水溶液が弱酸性で，水中で段階的に電離し，炭酸水素イオンを生じる酸はどれか。",
+      "format": "choice",
+      "options": [
+        "H₂CO₃",
+        "H₃PO₄",
+        "H₂SO₄",
+        "HNO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "碳酸是二元弱酸，第一次电离生成碳酸氢根，第二次再给碳酸根。 因此选 ①。\n\n- ② 磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连。\n- ③ 硫酸中硫为+6价，硫酸根为二价阴离子并可与钡离子沉淀。\n- ④ 硝酸只有一个可电离的氢；按氧为−2、氢为+1计算，氮为+5。",
+        "keyPoints": [
+          "碳酸是二元弱酸，第一次电离生成碳酸氢根，第二次再给碳酸根"
+        ],
+        "traps": [
+          "磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-090",
+      "subject": "chemistry",
+      "order": 90,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "三価の酸で，陰イオンの骨格が正四面体のオキソ酸はどれか。",
+      "format": "choice",
+      "options": [
+        "H₂SO₄",
+        "HNO₃",
+        "H₂CO₃",
+        "H₃PO₄"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连。 因此选 ④。\n\n- ① 硫酸中硫为+6价，硫酸根为二价阴离子并可与钡离子沉淀。\n- ② 硝酸只有一个可电离的氢；按氧为−2、氢为+1计算，氮为+5。\n- ③ 碳酸是二元弱酸，第一次电离生成碳酸氢根，第二次再给碳酸根。",
+        "keyPoints": [
+          "磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连"
+        ],
+        "traps": [
+          "硫酸中硫为+6价，硫酸根为二价阴离子并可与钡离子沉淀。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-091",
+      "subject": "chemistry",
+      "order": 91,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "中心原子の酸化数が+6で，Ba²⁺と難溶性塩をつくる二価の酸はどれか。",
+      "format": "choice",
+      "options": [
+        "H₃PO₄",
+        "H₂CO₃",
+        "H₂SO₄",
+        "HNO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "硫酸中硫为+6价，硫酸根为二价阴离子并可与钡离子沉淀。 因此选 ③。\n\n- ① 磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连。\n- ② 碳酸是二元弱酸，第一次电离生成碳酸氢根，第二次再给碳酸根。\n- ④ 硝酸只有一个可电离的氢；按氧为−2、氢为+1计算，氮为+5。",
+        "keyPoints": [
+          "硫酸中硫为+6价，硫酸根为二价阴离子并可与钡离子沉淀"
+        ],
+        "traps": [
+          "磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-092",
+      "subject": "chemistry",
+      "order": 92,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "中心原子の酸化数が+5の一価の窒素のオキソ酸はどれか。",
+      "format": "choice",
+      "options": [
+        "H₂CO₃",
+        "H₂SO₄",
+        "H₃PO₄",
+        "HNO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "硝酸只有一个可电离的氢；按氧为−2、氢为+1计算，氮为+5。 因此选 ④。\n\n- ① 碳酸是二元弱酸，第一次电离生成碳酸氢根，第二次再给碳酸根。\n- ② 硫酸中硫为+6价，硫酸根为二价阴离子并可与钡离子沉淀。\n- ③ 磷酸有三个可逐级解离的质子，磷酸根以磷为中心与四个氧相连。",
+        "keyPoints": [
+          "硝酸只有一个可电离的氢；按氧为−2、氢为+1计算，氮为+5"
+        ],
+        "traps": [
+          "碳酸是二元弱酸，第一次电离生成碳酸氢根，第二次再给碳酸根。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-093",
+      "subject": "chemistry",
+      "order": 93,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "スズをめっきした鉄板の名称はどれか。",
+      "format": "choice",
+      "options": [
+        "トタン",
+        "ブリキ",
+        "不動態",
+        "犠牲陽極"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "马口铁是镀锡铁板；保护层完整时主要靠隔绝空气和水防锈。 因此选 ②。\n\n- ① 镀锌铁破损时，较活泼的锌优先失电子，使铁受到牺牲保护。\n- ③ 钝态是表面致密膜使后续反应受到抑制的状态，涉及表面条件。\n- ④ 镁优先氧化，向铁提供电子；氧化处为阳极，故称牺牲阳极。",
+        "keyPoints": [
+          "马口铁是镀锡铁板；保护层完整时主要靠隔绝空气和水防锈"
+        ],
+        "traps": [
+          "镀锌铁破损时，较活泼的锌优先失电子，使铁受到牺牲保护。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-094",
+      "subject": "chemistry",
+      "order": 94,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "亜鉛をめっきし，傷があっても亜鉛が先に酸化して鉄を守る鉄板はどれか。",
+      "format": "choice",
+      "options": [
+        "不動態",
+        "トタン",
+        "犠牲陽極",
+        "ブリキ"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "镀锌铁破损时，较活泼的锌优先失电子，使铁受到牺牲保护。 因此选 ②。\n\n- ① 钝态是表面致密膜使后续反应受到抑制的状态，涉及表面条件。\n- ③ 镁优先氧化，向铁提供电子；氧化处为阳极，故称牺牲阳极。\n- ④ 马口铁是镀锡铁板；保护层完整时主要靠隔绝空气和水防锈。",
+        "keyPoints": [
+          "镀锌铁破损时，较活泼的锌优先失电子，使铁受到牺牲保护"
+        ],
+        "traps": [
+          "钝态是表面致密膜使后续反应受到抑制的状态，涉及表面条件。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-095",
+      "subject": "chemistry",
+      "order": 95,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "鉄の防食でMg片を電気的に接続した場合のMg片の役割はどれか。",
+      "format": "choice",
+      "options": [
+        "保護される陰極",
+        "犠牲陽極",
+        "被覆材としての絶縁膜",
+        "電解液"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "镁优先氧化，向铁提供电子；氧化处为阳极，故称牺牲阳极。 因此选 ②。\n\n- ① 受保护的阴极是铁。\n- ③ 镁必须与铁导通才能提供电子。\n- ④ 镁片是金属电极，不能代替离子导体。",
+        "keyPoints": [
+          "镁优先氧化，向铁提供电子；氧化处为阳极，故称牺牲阳极"
+        ],
+        "traps": [
+          "受保护的阴极是铁。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-096",
+      "subject": "chemistry",
+      "order": 96,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "酸化物の緻密な皮膜で鉄などが反応しにくくなった状態はどれか。",
+      "format": "choice",
+      "options": [
+        "アマルガム",
+        "不動態",
+        "同素体",
+        "超伝導状態"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "钝态是表面致密膜使后续反应受到抑制的状态，涉及表面条件。 因此选 ②。\n\n- ① 汞与其他金属形成的合金称汞齐。\n- ③ 同素异形指同一种元素存在不同单质结构。\n- ④ 这是电阻等物性改变，与表面钝化无关。",
+        "keyPoints": [
+          "钝态是表面致密膜使后续反应受到抑制的状态，涉及表面条件"
+        ],
+        "traps": [
+          "汞与其他金属形成的合金称汞齐。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-097",
+      "subject": "chemistry",
+      "order": 97,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "常温で液体である金属単体はどれか。",
+      "format": "choice",
+      "options": [
+        "マグネシウム",
+        "アルミニウム",
+        "カリウム",
+        "水銀"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "汞在通常室温下为液态金属，与同为液体的非金属溴要区分。 因此选 ④。\n\n- ① 镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位。\n- ② 铝与镁同处第三周期，铝的氧化物和氢氧化物都具有两性。\n- ③ 钾是第四周期的碱金属，价电子一个，盐类呈淡紫焰色。",
+        "keyPoints": [
+          "汞在通常室温下为液态金属，与同为液体的非金属溴要区分"
+        ],
+        "traps": [
+          "镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-098",
+      "subject": "chemistry",
+      "order": 98,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "炎色が淡紫色で，第4周期・第1族の金属はどれか。",
+      "format": "choice",
+      "options": [
+        "アルミニウム",
+        "カリウム",
+        "マグネシウム",
+        "水銀"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "钾是第四周期的碱金属，价电子一个，盐类呈淡紫焰色。 因此选 ②。\n\n- ① 铝与镁同处第三周期，铝的氧化物和氢氧化物都具有两性。\n- ③ 镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位。\n- ④ 汞在通常室温下为液态金属，与同为液体的非金属溴要区分。",
+        "keyPoints": [
+          "钾是第四周期的碱金属，价电子一个，盐类呈淡紫焰色"
+        ],
+        "traps": [
+          "铝与镁同处第三周期，铝的氧化物和氢氧化物都具有两性。"
+        ],
+        "terms": [
+          {
+            "ja": "炎色",
+            "kana": "えんしょく",
+            "zh": "样品在火焰中表现的特征颜色"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-099",
+      "subject": "chemistry",
+      "order": 99,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "第3周期・第2族で，燃焼すると強い白色光を発する軽金属はどれか。",
+      "format": "choice",
+      "options": [
+        "水銀",
+        "マグネシウム",
+        "アルミニウム",
+        "カリウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位。 因此选 ②。\n\n- ① 汞在通常室温下为液态金属，与同为液体的非金属溴要区分。\n- ③ 铝与镁同处第三周期，铝的氧化物和氢氧化物都具有两性。\n- ④ 钾是第四周期的碱金属，价电子一个，盐类呈淡紫焰色。",
+        "keyPoints": [
+          "镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位"
+        ],
+        "traps": [
+          "汞在通常室温下为液态金属，与同为液体的非金属溴要区分。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-100",
+      "subject": "chemistry",
+      "order": 100,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "第3周期・第13族で，酸化物が両性を示す軽金属はどれか。",
+      "format": "choice",
+      "options": [
+        "マグネシウム",
+        "カリウム",
+        "水銀",
+        "アルミニウム"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "铝与镁同处第三周期，铝的氧化物和氢氧化物都具有两性。 因此选 ④。\n\n- ① 镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位。\n- ② 钾是第四周期的碱金属，价电子一个，盐类呈淡紫焰色。\n- ③ 汞在通常室温下为液态金属，与同为液体的非金属溴要区分。",
+        "keyPoints": [
+          "铝与镁同处第三周期，铝的氧化物和氢氧化物都具有两性"
+        ],
+        "traps": [
+          "镁燃烧发出强白光并主要生成氧化镁，周期和族的信息也可定位。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-101",
+      "subject": "chemistry",
+      "order": 101,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Mg²⁺を含む水にOH⁻を加えてできる，過剰のNaOHにも難溶な白色沈殿はどれか。",
+      "format": "choice",
+      "options": [
+        "CuO",
+        "Fe₂O₃",
+        "Mg(OH)₂",
+        "CaCO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "氢氧化镁难溶，在通常定性分析条件下不因过量氢氧化钠而转入滤液。 因此选 ③。\n\n- ① 氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。\n- ② 氢氧化铁脱水形成氧化铁和水，铁保持+3价，固体化学式为Fe₂O₃。\n- ④ 暂时硬水中的碳酸氢钙受热析出碳酸钙，并产生水和二氧化碳。",
+        "keyPoints": [
+          "氢氧化镁难溶，在通常定性分析条件下不因过量氢氧化钠而转入滤液"
+        ],
+        "traps": [
+          "氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-102",
+      "subject": "chemistry",
+      "order": 102,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "炭酸水素カルシウムを含む水を煮沸すると生じる白い沈着物はどれか。",
+      "format": "choice",
+      "options": [
+        "CuO",
+        "CaCO₃",
+        "Mg(OH)₂",
+        "Fe₂O₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "暂时硬水中的碳酸氢钙受热析出碳酸钙，并产生水和二氧化碳。 因此选 ②。\n\n- ① 氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。\n- ③ 氢氧化镁难溶，在通常定性分析条件下不因过量氢氧化钠而转入滤液。\n- ④ 氢氧化铁脱水形成氧化铁和水，铁保持+3价，固体化学式为Fe₂O₃。",
+        "keyPoints": [
+          "暂时硬水中的碳酸氢钙受热析出碳酸钙，并产生水和二氧化碳"
+        ],
+        "traps": [
+          "氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-103",
+      "subject": "chemistry",
+      "order": 103,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "赤褐色の水酸化鉄(III)沈殿を十分加熱して脱水すると残る酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "CuO",
+        "Mg(OH)₂",
+        "CaCO₃",
+        "Fe₂O₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "氢氧化铁脱水形成氧化铁和水，铁保持+3价，固体化学式为Fe₂O₃。 因此选 ④。\n\n- ① 氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。\n- ② 氢氧化镁难溶，在通常定性分析条件下不因过量氢氧化钠而转入滤液。\n- ③ 暂时硬水中的碳酸氢钙受热析出碳酸钙，并产生水和二氧化碳。",
+        "keyPoints": [
+          "氢氧化铁脱水形成氧化铁和水，铁保持+3价，固体化学式为Fe₂O₃"
+        ],
+        "traps": [
+          "氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-104",
+      "subject": "chemistry",
+      "order": 104,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "青色の水酸化銅(II)を加熱した後に残る黒色固体はどれか。",
+      "format": "choice",
+      "options": [
+        "Mg(OH)₂",
+        "CuO",
+        "CaCO₃",
+        "Fe₂O₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2。 因此选 ②。\n\n- ① 氢氧化镁难溶，在通常定性分析条件下不因过量氢氧化钠而转入滤液。\n- ③ 暂时硬水中的碳酸氢钙受热析出碳酸钙，并产生水和二氧化碳。\n- ④ 氢氧化铁脱水形成氧化铁和水，铁保持+3价，固体化学式为Fe₂O₃。",
+        "keyPoints": [
+          "氢氧化铜分解为黑色氧化铜和水，铜的价态维持+2"
+        ],
+        "traps": [
+          "氢氧化镁难溶，在通常定性分析条件下不因过量氢氧化钠而转入滤液。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-105",
+      "subject": "chemistry",
+      "order": 105,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水に溶けて酸性を示し，酸性過マンガン酸イオンを還元して脱色する硫黄酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "CO₂",
+        "CO",
+        "SO₂",
+        "SO₃"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "二氧化硫中硫为+4价，可继续氧化为+6，因而能还原酸性高锰酸根。 因此选 ③。\n\n- ① 二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。\n- ② 一氧化碳中的碳可由+2升为+4，取得金属氧化物中的氧。\n- ④ 三氧化硫是硫酸的酸酐，硫已处于常见最高价态+6。",
+        "keyPoints": [
+          "二氧化硫中硫为+4价，可继续氧化为+6，因而能还原酸性高锰酸根"
+        ],
+        "traps": [
+          "二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-106",
+      "subject": "chemistry",
+      "order": 106,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水と反応して硫酸になる，硫黄の酸化数が+6の酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "SO₃",
+        "CO₂",
+        "SO₂",
+        "CO"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "三氧化硫是硫酸的酸酐，硫已处于常见最高价态+6。 因此选 ①。\n\n- ② 二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。\n- ③ 二氧化硫中硫为+4价，可继续氧化为+6，因而能还原酸性高锰酸根。\n- ④ 一氧化碳中的碳可由+2升为+4，取得金属氧化物中的氧。",
+        "keyPoints": [
+          "三氧化硫是硫酸的酸酐，硫已处于常见最高价态+6"
+        ],
+        "traps": [
+          "二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-107",
+      "subject": "chemistry",
+      "order": 107,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "元素の酸化数が+4で，石灰水を白濁させる炭素酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "SO₃",
+        "CO",
+        "CO₂",
+        "SO₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。 因此选 ③。\n\n- ① 三氧化硫是硫酸的酸酐，硫已处于常见最高价态+6。\n- ② 一氧化碳中的碳可由+2升为+4，取得金属氧化物中的氧。\n- ④ 二氧化硫中硫为+4价，可继续氧化为+6，因而能还原酸性高锰酸根。",
+        "keyPoints": [
+          "二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙"
+        ],
+        "traps": [
+          "三氧化硫是硫酸的酸酐，硫已处于常见最高价态+6。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-108",
+      "subject": "chemistry",
+      "order": 108,
+      "topic": "chem.inorg.nonmetal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "元素の酸化数が+2で，高炉中で還元剤として働く炭素酸化物はどれか。",
+      "format": "choice",
+      "options": [
+        "CO₂",
+        "SO₃",
+        "CO",
+        "SO₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "一氧化碳中的碳可由+2升为+4，取得金属氧化物中的氧。 因此选 ③。\n\n- ① 二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。\n- ② 三氧化硫是硫酸的酸酐，硫已处于常见最高价态+6。\n- ④ 二氧化硫中硫为+4价，可继续氧化为+6，因而能还原酸性高锰酸根。",
+        "keyPoints": [
+          "一氧化碳中的碳可由+2升为+4，取得金属氧化物中的氧"
+        ],
+        "traps": [
+          "二氧化碳中碳为+4价；少量通入石灰水形成白色碳酸钙。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-109",
+      "subject": "chemistry",
+      "order": 109,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "Br⁻を含む水溶液にCl₂を加えると遊離するハロゲン単体はどれか。",
+      "format": "choice",
+      "options": [
+        "Cl₂",
+        "I₂",
+        "BrClだけ",
+        "Br₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "氯的氧化性强于溴，溴离子被氧化成溴，氯本身还原成氯离子。 因此选 ④。\n\n- ① 氯气是加入的氧化剂。\n- ② 题中没有碘离子。\n- ③ 常规定性置换的还原剂是溴离子，生成溴单质。",
+        "keyPoints": [
+          "氯的氧化性强于溴，溴离子被氧化成溴，氯本身还原成氯离子"
+        ],
+        "traps": [
+          "氯气是加入的氧化剂。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-110",
+      "subject": "chemistry",
+      "order": 110,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "I⁻を含む水溶液にBr₂を加えると遊離するハロゲン単体はどれか。",
+      "format": "choice",
+      "options": [
+        "Br₂",
+        "Cl₂",
+        "F₂",
+        "I₂"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "溴可从碘离子夺取电子，产物碘与淀粉可显蓝紫色。 因此选 ④。\n\n- ① 溴是投入的氧化剂。\n- ② 题中没有氯离子。\n- ③ 既没有氟来源，也不符合氧化能力顺序。",
+        "keyPoints": [
+          "溴可从碘离子夺取电子，产物碘与淀粉可显蓝紫色"
+        ],
+        "traps": [
+          "溴是投入的氧化剂。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-111",
+      "subject": "chemistry",
+      "order": 111,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "硝酸で酸性にした試料にAgNO₃を加え，白色のAgClが生じた。検出された陰イオンはどれか。",
+      "format": "choice",
+      "options": [
+        "F⁻",
+        "Cl⁻",
+        "Br⁻",
+        "I⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "氯化银由Ag⁺与Cl⁻组成，检测时选硝酸酸化可避免由试剂引入氯离子。 因此选 ②。\n\n- ① 氟化银可溶。\n- ③ 溴化银为淡黄色，成分也不符。\n- ④ 碘化银为黄色。",
+        "keyPoints": [
+          "氯化银由Ag⁺与Cl⁻组成，检测时选硝酸酸化可避免由试剂引入氯离子"
+        ],
+        "traps": [
+          "氟化银可溶。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-112",
+      "subject": "chemistry",
+      "order": 112,
+      "topic": "chem.inorg.ions",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "AgNO₃を加えてもハロゲン化銀の沈殿を作らないハロゲン化物イオンはどれか。",
+      "format": "choice",
+      "options": [
+        "F⁻",
+        "Cl⁻",
+        "Br⁻",
+        "I⁻"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "氟化银可溶，用银离子普遍沉淀卤离子的规律在氟离子处有例外。 因此选 ①。\n\n- ② 与银形成白色氯化银。\n- ③ 与银形成淡黄色溴化银。\n- ④ 与银形成黄色碘化银。",
+        "keyPoints": [
+          "氟化银可溶，用银离子普遍沉淀卤离子的规律在氟离子处有例外"
+        ],
+        "traps": [
+          "与银形成白色氯化银。"
+        ],
+        "terms": [
+          {
+            "ja": "沈殿",
+            "kana": "ちんでん",
+            "zh": "由溶液析出的难溶固体"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-113",
+      "subject": "chemistry",
+      "order": 113,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アルカリ金属Naの単体を得るのに，水溶液の代わりに用いる電解質の状態はどれか。",
+      "format": "choice",
+      "options": [
+        "水溶液",
+        "乾燥した固体塩",
+        "蒸留水",
+        "融解塩"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 3,
+      "explanation": {
+        "zh": "水溶液中阴极优先还原水，制钠使用熔融盐以排除水的竞争。 因此选 ④。\n\n- ① 水会先在阴极还原。\n- ② 固体离子不能自由迁移维持稳态电流。\n- ③ 水不提供制取钠所需的钠离子。",
+        "keyPoints": [
+          "水溶液中阴极优先还原水，制钠使用熔融盐以排除水的竞争"
+        ],
+        "traps": [
+          "水会先在阴极还原。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-114",
+      "subject": "chemistry",
+      "order": 114,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "銅の電解精錬で，純銅の薄板を接続する電極はどれか。",
+      "format": "choice",
+      "options": [
+        "陰極",
+        "陽極",
+        "塩橋",
+        "隔膜"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "铜离子在阴极得到电子并沉积，纯铜板因此逐渐增重。 因此选 ①。\n\n- ② 粗铜作为阳极被氧化溶解。\n- ③ 盐桥供离子迁移，非铜沉积电极。\n- ④ 隔膜起分隔作用，不能充作沉积用金属板。",
+        "keyPoints": [
+          "铜离子在阴极得到电子并沉积，纯铜板因此逐渐增重"
+        ],
+        "traps": [
+          "粗铜作为阳极被氧化溶解。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-115",
+      "subject": "chemistry",
+      "order": 115,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "アンモニア合成で，反応しなかった窒素と水素の主な扱いはどれか。",
+      "format": "choice",
+      "options": [
+        "すべて水に溶かして廃棄する",
+        "分離後に反応器へ戻す",
+        "すべて酸化して硝酸にする",
+        "全量を製品に混ぜる"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 1,
+      "explanation": {
+        "zh": "凝出产物氨后，将未反应气体循环使用能提高原料的总体利用率。 因此选 ②。\n\n- ① 不利于原料利用率且两种气体难溶。\n- ③ 这并非合成氨回路处理未反应原料的步骤。\n- ④ 产品需要从未反应原料中分离。",
+        "keyPoints": [
+          "凝出产物氨后，将未反应气体循环使用能提高原料的总体利用率"
+        ],
+        "traps": [
+          "不利于原料利用率且两种气体难溶。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-116",
+      "subject": "chemistry",
+      "order": 116,
+      "topic": "chem.inorg.industry",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "ボーキサイトからアルミナを得る際，両性を利用してアルミニウム成分を溶かす液はどれか。",
+      "format": "choice",
+      "options": [
+        "水酸化ナトリウム水溶液",
+        "水",
+        "塩化ナトリウム水溶液",
+        "アンモニア水"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "铝的氧化物或水合物能溶于强碱，利用这一性质可与铁氧化物等杂质分离。 因此选 ①。\n\n- ② 不足以选择性溶解铝的氧化物。\n- ③ 中性盐水没有溶铝所需的强碱性。\n- ④ 弱碱不能像过量氢氧化钠那样有效溶解氢氧化铝。",
+        "keyPoints": [
+          "铝的氧化物或水合物能溶于强碱，利用这一性质可与铁氧化物等杂质分离"
+        ],
+        "traps": [
+          "不足以选择性溶解铝的氧化物。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-117",
+      "subject": "chemistry",
+      "order": 117,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "水を含む硫酸鉄(II)結晶の代表的な色はどれか。",
+      "format": "choice",
+      "options": [
+        "赤紫色",
+        "橙色",
+        "淡緑色",
+        "黄色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "水合亚铁盐常呈浅绿色，鉴别时留意其暴露空气后可能逐渐氧化。 因此选 ③。\n\n- ① 高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失。\n- ② 重铬酸根通常呈橙色，加碱平衡移向黄色铬酸根，两者铬价态均为+6。\n- ④ 铬酸根的黄色与重铬酸根的橙色成对记忆，酸碱可使平衡改变。",
+        "keyPoints": [
+          "水合亚铁盐常呈浅绿色，鉴别时留意其暴露空气后可能逐渐氧化"
+        ],
+        "traps": [
+          "高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-118",
+      "subject": "chemistry",
+      "order": 118,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "酸性側の二クロム酸イオン水溶液の色はどれか。",
+      "format": "choice",
+      "options": [
+        "橙色",
+        "赤紫色",
+        "黄色",
+        "淡緑色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 0,
+      "explanation": {
+        "zh": "重铬酸根通常呈橙色，加碱平衡移向黄色铬酸根，两者铬价态均为+6。 因此选 ①。\n\n- ② 高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失。\n- ③ 铬酸根的黄色与重铬酸根的橙色成对记忆，酸碱可使平衡改变。\n- ④ 水合亚铁盐常呈浅绿色，鉴别时留意其暴露空气后可能逐渐氧化。",
+        "keyPoints": [
+          "重铬酸根通常呈橙色，加碱平衡移向黄色铬酸根，两者铬价态均为+6"
+        ],
+        "traps": [
+          "高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-119",
+      "subject": "chemistry",
+      "order": 119,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "酸化還元滴定で用いる過マンガン酸カリウム水溶液の色はどれか。",
+      "format": "choice",
+      "options": [
+        "黄色",
+        "淡緑色",
+        "赤紫色",
+        "橙色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失。 因此选 ③。\n\n- ① 铬酸根的黄色与重铬酸根的橙色成对记忆，酸碱可使平衡改变。\n- ② 水合亚铁盐常呈浅绿色，鉴别时留意其暴露空气后可能逐渐氧化。\n- ④ 重铬酸根通常呈橙色，加碱平衡移向黄色铬酸根，两者铬价态均为+6。",
+        "keyPoints": [
+          "高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失"
+        ],
+        "traps": [
+          "铬酸根的黄色与重铬酸根的橙色成对记忆，酸碱可使平衡改变。"
+        ]
+      }
+    },
+    {
+      "id": "recall-inorganic-v3-120",
+      "subject": "chemistry",
+      "order": 120,
+      "topic": "chem.inorg.metal",
+      "difficulty": 1,
+      "targetSec": 30,
+      "source": {
+        "kind": "original",
+        "label": "无机背诵卡 · 原创"
+      },
+      "verified": {
+        "status": "verified",
+        "method": "隐藏答案与解析后逐卡辨认，并逐项检查干扰选项"
+      },
+      "stem": "クロム酸カリウム水溶液中のクロム酸イオンの色はどれか。",
+      "format": "choice",
+      "options": [
+        "淡緑色",
+        "橙色",
+        "黄色",
+        "赤紫色"
+      ],
+      "optionLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "answer": 2,
+      "explanation": {
+        "zh": "铬酸根的黄色与重铬酸根的橙色成对记忆，酸碱可使平衡改变。 因此选 ③。\n\n- ① 水合亚铁盐常呈浅绿色，鉴别时留意其暴露空气后可能逐渐氧化。\n- ② 重铬酸根通常呈橙色，加碱平衡移向黄色铬酸根，两者铬价态均为+6。\n- ④ 高锰酸根呈浓紫红色，酸性还原成二价锰后特征紫色消失。",
+        "keyPoints": [
+          "铬酸根的黄色与重铬酸根的橙色成对记忆，酸碱可使平衡改变"
+        ],
+        "traps": [
+          "水合亚铁盐常呈浅绿色，鉴别时留意其暴露空气后可能逐渐氧化。"
+        ]
+      }
+    }
+  ]
+}
