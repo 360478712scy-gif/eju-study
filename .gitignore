@@ -24,3 +24,16 @@ legacy/web-v2/dist/
 data/state-v2.json
 data/backups-v2/
 desktop/release/
+data/state-v3.json
+data/backups-v3/
+data/upgrades/
+data/media/
+design/agents/*.jsonl
+design/agents/*.thread
+design/agents/*.last.md
+design/agents/*.out
+design/agents/.carbon_conversation
+design/agents/limits.log
+desktop/update-token
+design/scenes/_jobs/
+design/scenes/_sheet.jpg

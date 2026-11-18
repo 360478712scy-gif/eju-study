@@ -221,7 +221,7 @@ test('markup parser: math, boxes, emphasis, tables', () => {
 });
 
 test('v1 migration keeps the learner record', () => {
-  const p = '~/Projects/eju-study/data/state.json';
+  const p = new URL('../data/state.json', import.meta.url).pathname;
   if (!fs.existsSync(p)) return;
   const v1 = JSON.parse(fs.readFileSync(p, 'utf8'));
   const s = migrateV1(v1, NOW);
