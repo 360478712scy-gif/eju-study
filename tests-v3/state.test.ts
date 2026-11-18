@@ -13,6 +13,27 @@ import { todayView } from '../shared/selectors.ts';
 import { parseBlocks, parseInline, collectMath } from '../shared/markup.ts';
 import type { Item, PracticeSession } from '../shared/types.ts';
 
+test('coach defaults migrate once on disk, preserving custom models and effort', (t) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'eju-coach-settings-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, 'state-v3.json');
+  assert.equal(fresh().settings.coachModel, 'gpt-6.2-sol');
+  assert.equal(fresh().settings.coachEffort, 'medium');
+  for (const model of ['gpt-6.2-astra', 'custom-model']) {
+    const state = fresh();
+    delete state.coachDefaultsVersion;
+    state.settings.coachModel = model;
+    state.settings.coachEffort = 'high';
+    fs.writeFileSync(file, JSON.stringify(state));
+    const store = new StateStore(dir, bank);
+    assert.equal(store.get().settings.coachModel, model === 'custom-model' ? model : 'gpt-6.2-sol');
+    assert.equal(store.get().settings.coachEffort, 'high');
+    assert.deepEqual(JSON.parse(fs.readFileSync(file, 'utf8')), store.get());
+    assert.ok(store.transact(0, { type: 'settings', patch: { coachModel: 'gpt-6.2-astra' } }, bank).ok);
+    assert.equal(new StateStore(dir, bank).get().settings.coachModel, 'gpt-6.2-astra');
+  }
+});
+
 test('migrate a copy of the actual v2 file, verify every STEM row, preserve archive, reload v3 and CAS', (t) => {
   const original = new URL('../data/state-v2.json', import.meta.url);
   if (!fs.existsSync(original)) {

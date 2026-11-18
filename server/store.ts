@@ -2,7 +2,7 @@
 // concurrency by revision, rolling backups. The v1.4 state.json is never modified.
 import fs from 'node:fs';
 import path from 'node:path';
-import { createInitialState, migrateV2 } from '../shared/migrate.ts';
+import { createInitialState, migrateCoachDefaults, migrateV2 } from '../shared/migrate.ts';
 import { DEFAULT_NEW_CARDS_PER_DAY, type AppState, type Item } from '../shared/types.ts';
 
 import type { BankIndex } from '../shared/bank.ts';
@@ -39,6 +39,7 @@ export class StateStore {
         throw new Error(`学习记录 ${this.file} 格式异常，原文件已保留；请从 ${BACKUP_DIR} 恢复。`);
       }
       parsed.settings.newCardsPerDay ??= DEFAULT_NEW_CARDS_PER_DAY;
+      if (migrateCoachDefaults(parsed)) this.write(parsed);
       return parsed;
     }
     const source = path.join(this.dir, V2_FILE);

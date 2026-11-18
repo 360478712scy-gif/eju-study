@@ -356,6 +356,7 @@ export interface Settings {
 
 export interface AppState {
   version: 3;
+  coachDefaultsVersion?: 2;
   revision: number;
   savedAt?: string;
   createdAt: string;

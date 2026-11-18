@@ -11,6 +11,19 @@ import {
 } from './types.ts';
 import type { BankIndex } from './bank.ts';
 
+export const DEFAULT_COACH_MODEL = 'gpt-6.2-sol';
+export const DEFAULT_COACH_EFFORT = 'medium';
+
+/** Run once, so a later explicit selection of Astra survives a restart. */
+export function migrateCoachDefaults(state: AppState): boolean {
+  if (state.coachDefaultsVersion === 2) return false;
+  if (!state.settings.coachModel || state.settings.coachModel === 'gpt-6.2-astra')
+    state.settings.coachModel = DEFAULT_COACH_MODEL;
+  state.settings.coachEffort ??= DEFAULT_COACH_EFFORT;
+  state.coachDefaultsVersion = 2;
+  return true;
+}
+
 export function defaultProfile(): Profile {
   return {
     startDate: '2026-11-19',
@@ -51,6 +64,7 @@ export function defaultProfile(): Profile {
 export function createInitialState(now = new Date()): AppState {
   return {
     version: 3,
+    coachDefaultsVersion: 2,
     revision: 0,
     createdAt: now.toISOString(),
     profile: defaultProfile(),
@@ -61,8 +75,8 @@ export function createInitialState(now = new Date()): AppState {
       musicVolume: 0.22,
       fontScale: 1,
       coachEnabled: true,
-      coachModel: 'gpt-6.2-astra',
-      coachEffort: 'medium',
+      coachModel: DEFAULT_COACH_MODEL,
+      coachEffort: DEFAULT_COACH_EFFORT,
       newCardsPerDay: DEFAULT_NEW_CARDS_PER_DAY,
     },
     calendar: { overrides: {}, moves: [], restWeeks: [] },

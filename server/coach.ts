@@ -9,6 +9,7 @@ import { randomUUID } from 'node:crypto';
 import type { Item, WrittenResponse } from '../shared/types.ts';
 import { writtenPoints } from '../shared/grading.ts';
 import { isValidDate, studyDate } from '../shared/dates.ts';
+import { DEFAULT_COACH_MODEL, DEFAULT_COACH_EFFORT } from '../shared/migrate.ts';
 
 const string = { type: 'string' },
   number = { type: 'number' },
@@ -178,7 +179,10 @@ export function createCoach(opts: Options) {
   let running: { job: Job; controller: AbortController } | null = null;
   function config() {
     const saved = opts.config();
-    return { model: process.env.EJU_COACH_MODEL || saved.model, effort: process.env.EJU_COACH_EFFORT || saved.effort };
+    return {
+      model: process.env.EJU_COACH_MODEL || saved.model || DEFAULT_COACH_MODEL,
+      effort: process.env.EJU_COACH_EFFORT || saved.effort || DEFAULT_COACH_EFFORT,
+    };
   }
   function figures(it: Item) {
     const base = path.join(opts.root, 'public', 'assets');
