@@ -35,6 +35,7 @@ export const useMusic = () =>
       return () => subs.delete(f);
     },
     () => snap,
+    () => snap,
   );
 
 let audio: HTMLAudioElement | undefined;
@@ -244,6 +245,7 @@ export const useMediaItems = () =>
       mediaSubs.add(f);
       return () => mediaSubs.delete(f);
     },
+    () => mediaItems,
     () => mediaItems,
   );
 export async function refreshMedia() {
