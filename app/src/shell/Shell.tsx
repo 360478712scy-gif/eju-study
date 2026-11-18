@@ -2,7 +2,8 @@
 // Pages render into <Page>; a page that has context to show passes `aside`.
 import type { ReactNode } from 'react';
 import { Badge, Bar, Button, Icon, Glass, Tooltip, cx, type IconName } from '../ui/ui.tsx';
-import { Scene, type SceneMode, type Weather } from './Scene.tsx';
+import { Scene, type CustomScene, type SceneMode, type Weather } from './Scene.tsx';
+import { MusicBars } from './Music.tsx';
 import './shell.css';
 
 export interface NavItem {
@@ -26,6 +27,7 @@ export function Shell({
   weather = 'auto',
   parallax,
   tone,
+  sceneCustom,
 }: {
   nav: ReactNode;
   children: ReactNode;
@@ -37,10 +39,12 @@ export function Shell({
   weather?: Weather;
   parallax?: boolean;
   tone?: 'system' | 'light' | 'dark';
+  sceneCustom?: CustomScene;
 }) {
   return (
     <>
-      <Scene mode={scene} weather={weather} calm={focus} parallax={parallax} tone={tone} />
+      <Scene mode={scene} weather={weather} calm={focus} parallax={parallax} tone={tone} custom={sceneCustom} />
+      <MusicBars dim={focus} />
       <div className="titlebar" />
       <div className={cx('stage', !aside && 'no-aside', focus && 'is-focus')}>
         <Glass as="nav" className="pane pane-nav" inert={focus || undefined}>

@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 
 export type Season = 'winter' | 'spring' | 'summer';
 export type DayPart = 'day' | 'night';
-export type SceneMode = 'auto' | `${Season}-${DayPart}`;
+export type SceneMode = 'auto' | `${Season}-${DayPart}` | `custom:${string}`;
+export interface CustomScene {
+  url: string;
+  tone: 'light' | 'dark';
+}
 export type Weather = 'auto' | 'off';
 
 export function seasonOf(d = new Date()): Season {
@@ -18,7 +22,11 @@ export function dayPartOf(d = new Date()): DayPart {
   const h = d.getHours() + d.getMinutes() / 60;
   return h >= 6.5 && h < 17.5 ? 'day' : 'night';
 }
-export function resolveScene(mode: SceneMode, d = new Date()): { season: Season; part: DayPart; key: string } {
+export function resolveScene(mode: SceneMode, d = new Date(), custom?: CustomScene): { season: Season; part: DayPart; key: string; src?: string } {
+  if (mode.startsWith('custom:')) {
+    if (custom) return { season: seasonOf(d), part: custom.tone === 'light' ? 'day' : 'night', key: mode, src: custom.url };
+    mode = 'auto';
+  }
   if (mode !== 'auto') {
     const [season, part] = mode.split('-') as [Season, DayPart];
     return { season, part, key: mode };
@@ -29,13 +37,13 @@ export function resolveScene(mode: SceneMode, d = new Date()): { season: Season;
 }
 
 /** Re-evaluates every minute so the scene turns to night by itself. */
-export function useScene(mode: SceneMode, tone: 'system' | 'light' | 'dark' = 'system') {
+export function useScene(mode: SceneMode, tone: 'system' | 'light' | 'dark' = 'system', custom?: CustomScene) {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
     const t = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(t);
   }, []);
-  const s = resolveScene(mode, now);
+  const s = resolveScene(mode, now, custom);
   useEffect(() => {
     document.documentElement.setAttribute('data-tone', tone === 'system' ? (s.part === 'day' ? 'light' : 'dark') : tone);
     document.documentElement.setAttribute('data-season', s.season);
@@ -43,15 +51,15 @@ export function useScene(mode: SceneMode, tone: 'system' | 'light' | 'dark' = 's
   return s;
 }
 
-export function Scene({ mode = 'auto', weather = 'auto', calm = false, parallax = true, tone = 'system' }: { mode?: SceneMode; weather?: Weather; calm?: boolean; parallax?: boolean; tone?: 'system' | 'light' | 'dark' }) {
-  const s = useScene(mode, tone);
-  const [layers, setLayers] = useState<{ key: string; ready: boolean }[]>([{ key: s.key, ready: false }]);
+export function Scene({ mode = 'auto', weather = 'auto', calm = false, parallax = true, tone = 'system', custom }: { mode?: SceneMode; weather?: Weather; calm?: boolean; parallax?: boolean; tone?: 'system' | 'light' | 'dark'; custom?: CustomScene }) {
+  const s = useScene(mode, tone, custom);
+  const [layers, setLayers] = useState<{ key: string; src?: string; ready: boolean }[]>([{ key: s.key, src: s.src, ready: false }]);
   const bgRef = useRef<HTMLDivElement>(null);
 
   // cross-fade when the scene changes
   useEffect(() => {
-    setLayers((ls) => (ls[ls.length - 1]?.key === s.key ? ls : [...ls.slice(-1), { key: s.key, ready: false }]));
-  }, [s.key]);
+    setLayers((ls) => (ls[ls.length - 1]?.key === s.key && ls[ls.length - 1]?.src === s.src ? ls : [...ls.slice(-1).filter((l) => l.key !== s.key), { key: s.key, src: s.src, ready: false }]));
+  }, [s.key, s.src]);
   const onLoad = (key: string) => {
     setLayers((ls) => ls.map((l) => (l.key === key ? { ...l, ready: true } : l)));
     setTimeout(() => setLayers((ls) => (ls.length > 1 && ls[ls.length - 1].key === key ? ls.slice(-1) : ls)), 1400);
@@ -93,8 +101,8 @@ export function Scene({ mode = 'auto', weather = 'auto', calm = false, parallax 
     <div className="scene" aria-hidden>
       <div className="scene-bg" ref={bgRef}>
         {layers.map((l) => (
-          <div key={l.key} className={`scene-img${l.ready ? ' is-ready' : ''}`} style={{ backgroundImage: `url(/scenes/${l.key}.thumb.jpg)` }}>
-            <img src={`/scenes/${l.key}.jpg`} alt="" onLoad={() => onLoad(l.key)} draggable={false} />
+          <div key={l.key} className={`scene-img${l.ready ? ' is-ready' : ''}`} style={l.key.startsWith('custom:') ? undefined : { backgroundImage: `url(/scenes/${l.key}.thumb.jpg)` }}>
+            <img src={l.src ?? `/scenes/${l.key}.jpg`} alt="" onLoad={() => onLoad(l.key)} draggable={false} />
           </div>
         ))}
       </div>

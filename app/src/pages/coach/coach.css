@@ -62,3 +62,11 @@
 .sheet.coach-pinned { right: 0; bottom: 0; top: var(--titlebar-h); border-radius: var(--r-panel) 0 0 var(--r-panel); }
 .coach .callout, .coach-variant .btn { margin-top: var(--sp-2); }
 .coach .bubble { overflow-wrap: anywhere; }
+
+/* rich replies take the full width of the panel */
+.bubble.is-rich {
+  max-width: 100%;
+  width: 100%;
+  padding: 12px 14px 14px;
+  background: var(--glass-read);
+}

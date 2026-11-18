@@ -53,3 +53,52 @@
 .set-volume { width: 200px; }
 .set-backups { flex-wrap: wrap; }
 .set-version { margin-block: var(--sp-5); }
+
+/* scene picker: built-in scenes, the learner's own pictures, and an add tile */
+.scene-thumb.is-custom {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+.scene-thumb-hit {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.scene-thumb-del {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  opacity: 0;
+  background: var(--glass-float) !important;
+  transition: opacity var(--dur-fast);
+}
+.scene-thumb.is-custom:hover .scene-thumb-del {
+  opacity: 1;
+}
+.scene-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  background: var(--glass-well);
+  box-shadow: inset 0 0 0 1px var(--line-soft);
+  border: 1.5px dashed var(--line-strong);
+}
+.scene-add:hover {
+  color: var(--text);
+  background: var(--glass-card-hover);
+}
+.scene-thumb.is-custom,
+.scene-add {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--r-inner);
+}
+.scene-thumb.is-custom.is-on {
+  box-shadow: 0 0 0 2px var(--primary), 0 0 0 5px var(--primary-soft);
+}

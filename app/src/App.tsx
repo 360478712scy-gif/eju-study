@@ -3,14 +3,16 @@ import { practiceView } from '@shared/selectors.ts';
 import { daysBetween } from '@shared/dates.ts';
 import type { AppState, ContentBundle } from '@shared/types.ts';
 import { t } from './copy/index.ts';
-import { Aside, AssistantFab, NavPanel, Page, Shell, StudyBar, type NavItem } from './shell/Shell.tsx';
-import { Button, Empty, Field, IconButton, Kbd, List, Modal, Row, Section, Sheet, SubjectGlyph, Toaster } from './ui/ui.tsx';
+import { AssistantFab, NavPanel, Page, Shell, StudyBar, type NavItem } from './shell/Shell.tsx';
+import { Button, Empty, Field, Icon, IconButton, Kbd, List, Modal, Row, Section, Sheet, SubjectGlyph, Toaster } from './ui/ui.tsx';
 import { RichText } from './ui/RichText.tsx';
 import { StudyProvider, useStudy, type CoachContext } from './lib/study.tsx';
-import { blockTitle, schoolNames } from './lib/model.ts';
+import { blockTitle } from './lib/model.ts';
 import { go, isTyping, link, noteLink, parseRoute, routes, type SectionName } from './lib/navigation.ts';
-import { isNative, onShellCommand, SHELL_PAGES } from './lib/native.ts';
-import { setMusic, tracks, useMusic, type Appearance } from './lib/preferences.ts';
+import { isNative, onShellCommand, onWindowVisibility, SHELL_PAGES } from './lib/native.ts';
+import { type Appearance } from './lib/preferences.ts';
+import * as music from './lib/music.ts';
+import { MusicPlayer } from './shell/Music.tsx';
 import { Today } from './pages/today/Today.tsx';
 import { Plan } from './pages/plan/Plan.tsx';
 import { Practice, PracticeDetail, defaultPractice } from './pages/practice/Practice.tsx';
@@ -91,15 +93,18 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     const value = zoom ?? state.settings.fontScale;
     document.getElementById('root')?.style.setProperty('--app-zoom', String(value));
   }, [zoom, state.settings.fontScale]);
-  useMusic(state.settings);
-
-  const changeMusic = (track?: string) => {
-    const current = state.settings;
-    const musicEnabled = track ? track !== 'off' : !current.musicEnabled;
-    const musicTrack = track && track !== 'off' ? track : current.musicTrack;
-    setMusic(musicEnabled, musicTrack, current.musicVolume);
-    void action({ type: 'settings', patch: { musicEnabled, musicTrack } });
-  };
+  // Background piano starts with the app; track and volume are remembered.
+  useEffect(() => {
+    music.start({
+      trackId: state.settings.musicTrack, volume: state.settings.musicVolume,
+      save: (musicTrack, musicVolume) => void action({ type: 'settings', patch: { musicTrack, musicVolume, musicEnabled: true } }),
+    });
+    void music.refreshMedia();
+    return onWindowVisibility(music.setVisible);
+  }, []);
+  const media = music.useMediaItems();
+  const customScene = appearance.scene.startsWith('custom:') ? media.find(item => `custom:${item.id}` === appearance.scene) : undefined;
+  const musicState = music.useMusic();
 
   const shellCommand = useEffectEvent((command: { action: string; page?: string }) => {
     if (onboard) return;
@@ -107,7 +112,7 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
       const destination = SHELL_PAGES[command.page] ?? command.page;
       if (routes.includes(destination as typeof routes[number]) || destination === 'settings') go(link(destination as SectionName));
     }
-    if (command.action === 'toggle-music') changeMusic();
+    if (command.action === 'toggle-music') music.toggle();
     if (command.action === 'toggle-focus' && !isSession) setImmersive(value => !value);
     if (command.action === 'shortcuts') show({ name: 'shortcuts' });
   });
@@ -117,7 +122,7 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     if (event.metaKey || event.ctrlKey) {
       if (!event.shiftKey && /^[1-7]$/.test(key)) { event.preventDefault(); go(link(routes[Number(key) - 1])); }
       else if (key === 'k') { event.preventDefault(); openSearch(); }
-      else if (event.shiftKey && key === 'm') { event.preventDefault(); changeMusic(); }
+      else if (event.shiftKey && key === 'm') { event.preventDefault(); music.toggle(); }
       else if (event.shiftKey && key === 'f' && !isSession) { event.preventDefault(); setImmersive(value => !value); }
       else if (!isNative() && ['=', '+', '-', '0'].includes(key)) {
         event.preventDefault();
@@ -161,13 +166,13 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     countdown={countdown > 0 ? { value: countdown, label: t.nav.countdownUnit, progress: 1 - countdown / Math.max(countdown, daysBetween(state.profile.startDate, state.profile.examDate)) }
       : { value: '', label: countdown === 0 ? t.nav.examToday : t.nav.examPassed }}
     items={navItems}
-    foot={<><a className="nav-goal" href={link('settings')} aria-label={t.nav.settings}>
-      <SubjectGlyph subject="school" size="sm" />
-      <span className="nav-goal-text"><span className="nav-goal-title">{state.profile.schools.length
-        ? state.profile.schools.length === Object.keys(schoolNames).length ? t.nav.targetSchoolLabel : state.profile.schools.map(school => schoolNames[school]).join(' · ')
-        : t.nav.settings}</span><span className="nav-goal-sub">{t.nav.targetSubjectsLabel}</span></span>
-    </a><IconButton icon="music" label={t.nav.musicToggle} on={state.settings.musicEnabled} onClick={() => show({ name: 'music' })} />
-    <IconButton icon="settings" label={t.nav.settings} on={page === 'settings'} onClick={() => go(link('settings'))} /></>} />;
+    foot={<>
+      <IconButton icon="music" className={`music-trigger${musicState.playing ? ' is-playing' : ''}`} label={t.music.title}
+        on={overlay?.name === 'music'} onClick={() => overlay?.name === 'music' ? close() : show({ name: 'music' })} />
+      <a href={link('settings')} className={`nav-item${page === 'settings' ? ' is-on' : ''}`} aria-current={page === 'settings' ? 'page' : undefined}>
+        <Icon name="gear" size={19} /><span className="nav-label">{t.nav.settings}</span>
+      </a>
+    </>} />;
   const stepIndex = activeBlock ? today.plan.blocks.findIndex(b => b.id === activeBlock.id) + 1 : 0;
   const bar = (active && !isSession) || activeBlock ? <StudyBar
     label={t.nav.barStudying}
@@ -192,6 +197,7 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
   const frame = (body: ReactNode) => <Shell nav={nav} focus={isSession || immersive}
     scene={appearance.scene} tone={state.settings.theme} parallax={appearance.parallax} weather={appearance.particles ? 'auto' : 'off'}
     aside={!isSession && !immersive && page === 'practice' && practice.tab === 'topic' ? <PracticeDetail key={practice.topic} topic={practice.topic} /> : undefined}
+    sceneCustom={customScene?.url ? { url: customScene.url, tone: customScene.tone ?? 'dark' } : undefined}
     bar={bar} fab={fab}>{body}</Shell>;
 
   return <>
@@ -202,14 +208,7 @@ function Workspace({ hash, overlay, close, show }: { hash: string; overlay?: Ove
     <Sheet open={overlay?.name === 'notes'} label={t.notes.quickDrawerTitle} onClose={close}>
       <Notes key={overlay?.topic} topic={overlay?.topic} quick close={close} />
     </Sheet>
-    <Sheet open={overlay?.name === 'music'} label={t.settings.music} onClose={close} width={320}>
-      <Aside title={t.settings.music} actions={<IconButton icon="close" label={t.common.closeBtn} onClick={close} />}>
-        <List>
-          <Row title={t.nav.dockMusicOff} current={!state.settings.musicEnabled} onClick={() => changeMusic('off')} />
-          {tracks.map(track => <Row key={track.id} title={track.label} current={state.settings.musicEnabled && state.settings.musicTrack === track.id} onClick={() => changeMusic(track.id)} />)}
-        </List>
-      </Aside>
-    </Sheet>
+    <MusicPlayer open={overlay?.name === 'music'} onClose={close} />
     <Shortcuts open={overlay?.name === 'shortcuts'} close={close} />
   </>;
 }

@@ -25,14 +25,14 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
     var qaSaveURL: URL?
     let qa = CommandLine.arguments.contains("--qa")
     var baseURL = URL(string: "http://127.0.0.1:18763")!
-    var projectRoot = "~/Projects/eju-study"
+    var projectRoot = ""
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         if let configURL = Bundle.main.url(forResource: "runtime", withExtension: "json"), let data = try? Data(contentsOf: configURL), let config = try? JSONSerialization.jsonObject(with: data) as? [String: String], let root = config["projectRoot"] { projectRoot = root }
-        if qa { baseURL = URL(string: "http://127.0.0.1:18764")! }
+        if qa { baseURL = URL(string: "http://127.0.0.1:18764")! } else if embeddedRoot != nil { baseURL = URL(string: "http://127.0.0.1:18773")! }
         if qa, let index = CommandLine.arguments.firstIndex(of: "--qa-url"), CommandLine.arguments.count > index + 1, let url = URL(string: CommandLine.arguments[index + 1]), url.scheme == "http", ["127.0.0.1", "localhost"].contains(url.host ?? ""), url.port != 18763 { baseURL = url }
         if !qa, let identifier = Bundle.main.bundleIdentifier, let other = NSRunningApplication.runningApplications(withBundleIdentifier: identifier).first(where: { $0.processIdentifier != getpid() }) {
-            other.activate(options: [.activateAllWindows]); DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("local.user.eju-study.reopen"), object: nil, userInfo: nil, deliverImmediately: true); NSApp.terminate(nil); return
+            other.activate(options: [.activateAllWindows]); DistributedNotificationCenter.default().postNotificationName(NSNotification.Name((Bundle.main.bundleIdentifier ?? "eju-study") + ".reopen"), object: nil, userInfo: nil, deliverImmediately: true); NSApp.terminate(nil); return
         }
         NSWindow.allowsAutomaticWindowTabbing = false
         makeMenus()
@@ -43,9 +43,10 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         configuration.userContentController.add(self, name: "ejuNative")
         configuration.userContentController.addUserScript(WKUserScript(source: bridgeScript, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         web = WKWebView(frame: .zero, configuration: configuration)
-        let savedZoom = UserDefaults.standard.double(forKey: "pageZoom"); if savedZoom > 0 { web.pageZoom = CGFloat(savedZoom) }
+        web.pageZoom = 1
         web.navigationDelegate = self; web.uiDelegate = self
         web.allowsBackForwardNavigationGestures = false
+        web.allowsLinkPreview = false; web.allowsMagnification = false
         if #available(macOS 13.3, *) { web.isInspectable = false }
         // 3.0: the scene fills the whole window; the traffic lights float over a transparent title bar.
         web.setValue(false, forKey: "drawsBackground")
@@ -58,7 +59,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         window.title = "澄学 EJU"; window.minSize = NSSize(width: 960, height: 680); window.tabbingMode = .disallowed; window.isReleasedWhenClosed = false; window.delegate = self; window.contentView = web
         window.setFrameAutosaveName(qa ? "ChengxueQA" : "ChengxueStudyWindow"); window.center()
         makeOverlay(); showWindow()
-        if !qa { DistributedNotificationCenter.default().addObserver(self, selector: #selector(reopenNotification), name: NSNotification.Name("local.user.eju-study.reopen"), object: nil) }
+        if !qa { DistributedNotificationCenter.default().addObserver(self, selector: #selector(reopenNotification), name: NSNotification.Name((Bundle.main.bundleIdentifier ?? "eju-study") + ".reopen"), object: nil) }
         if qa { startQA() }
         startBackend()
     }
@@ -72,7 +73,6 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         let navigation = ["今天", "计划", "练习", "复习", "模考", "笔记", "数据"].enumerated().map { i, name -> NSMenuItem in let item = menuItem(name, String(i + 1), #selector(navigateMenu(_:)), target: self); item.tag = i; return item }
         let settingsItem = menuItem("设置", ",", #selector(navigateMenu(_:)), target: self); settingsItem.tag = 7
         add("学习", navigation + [.separator(), settingsItem, .separator(), menuItem("播放／暂停音乐", "m", #selector(musicMenu), mask: [.command, .shift], target: self), menuItem("专注模式", "f", #selector(focusMenu), mask: [.command, .shift], target: self)])
-        add("显示", [menuItem("放大", "=", #selector(zoomIn), target: self), menuItem("缩小", "-", #selector(zoomOut), target: self), menuItem("实际大小", "0", #selector(zoomReset), target: self)])
         add("编辑", [menuItem("撤销", "z", Selector(("undo:"))), menuItem("重做", "z", Selector(("redo:")), mask: [.command, .shift]), .separator(), menuItem("剪切", "x", Selector(("cut:"))), menuItem("复制", "c", Selector(("copy:"))), menuItem("粘贴", "v", Selector(("paste:"))), menuItem("全选", "a", Selector(("selectAll:")))])
         add("窗口", [menuItem("关闭窗口", "w", #selector(closeStudyWindow), target: self), menuItem("最小化", "m", #selector(NSWindow.performMiniaturize(_:))), menuItem("缩放", "", #selector(NSWindow.performZoom(_:))), menuItem("进入／退出全屏", "f", #selector(NSWindow.toggleFullScreen(_:)), mask: [.command, .control])])
         add("帮助", [menuItem("键盘快捷键", "/", #selector(shortcutsMenu), target: self)])
@@ -104,7 +104,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
             if flags.contains(.shift), ["m", "f"].contains(key) { if !event.isARepeat { command(key == "m" ? "toggle-music" : "toggle-focus") }; return true }
             if key == "/", !flags.contains(.shift) { if !event.isARepeat { command("shortcuts") }; return true }
         }
-        if !flags.contains(.option), ["+", "=", "-", "0"].contains(key) { if !event.isARepeat { key == "-" ? zoomOut() : key == "0" ? zoomReset() : zoomIn() }; return true }
+        if !flags.contains(.option), ["+", "=", "-", "0"].contains(key) { blockedCount += 1; return true }
         if ["r", "l", "t", "n", "p", "f", "[", "]", "{", "}", "+", "=", "-", "0"].contains(key) || (flags.contains(.option) && ["i", "j", "c", "u"].contains(key)) { blockedCount += 1; return true }
         return false
     }
@@ -119,7 +119,7 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
     func applicationDidUnhide(_ notification: Notification) { showWindow() }
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool { showWindow(); return true }
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
-    func applicationWillTerminate(_ notification: Notification) { restoreClipboard(); emit("eju-window-hidden"); web?.pauseAllMediaPlayback {} }
+    func applicationWillTerminate(_ notification: Notification) { restoreClipboard(); emit("eju-window-hidden"); web?.pauseAllMediaPlayback {}; embeddedServer?.terminate() }
     func makeOverlay() {
         overlay = NSView(frame: web.bounds); overlay.appearance = NSAppearance(named: .darkAqua); overlay.autoresizingMask = [.width, .height]; overlay.wantsLayer = true; overlay.layer?.backgroundColor = NSColor(red: 0.04, green: 0.055, blue: 0.094, alpha: 1).cgColor
         let stack = NSStackView(); stack.orientation = .vertical; stack.spacing = 20; stack.translatesAutoresizingMaskIntoConstraints = false
@@ -130,9 +130,53 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         web.addSubview(overlay)
     }
     @objc func retry() { startBackend() }
+    // Standalone build: the bundle carries its own node runtime and the whole app under Resources/app,
+    // keeps the learner's data in ~/Library/Application Support/澄学 EJU, and serves on its own port.
+    var embeddedServer: Process?
+    var embeddedRoot: URL? {
+        guard let res = Bundle.main.resourceURL else { return nil }
+        let root = res.appendingPathComponent("app")
+        return FileManager.default.fileExists(atPath: root.appendingPathComponent("server.mjs").path) ? root : nil
+    }
+    func startEmbedded(_ root: URL) {
+        let fm = FileManager.default
+        let support = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("澄学 EJU", isDirectory: true)
+        let data = support.appendingPathComponent("data", isDirectory: true)
+        try? fm.createDirectory(at: data, withIntermediateDirectories: true)
+        let seed = root.appendingPathComponent("seed/state-v3.json")
+        if !fm.fileExists(atPath: data.appendingPathComponent("state-v3.json").path), !fm.fileExists(atPath: data.appendingPathComponent("state-v2.json").path), fm.fileExists(atPath: seed.path) {
+            try? fm.copyItem(at: seed, to: data.appendingPathComponent("state-v3.json"))
+        }
+        let health = baseURL.appendingPathComponent("api/health")
+        func healthy() -> Bool {
+            var ok = false; let sem = DispatchSemaphore(value: 0)
+            var req = URLRequest(url: health); req.timeoutInterval = 1.5
+            URLSession.shared.dataTask(with: req) { body, resp, _ in
+                if (resp as? HTTPURLResponse)?.statusCode == 200, let body = body, let json = try? JSONSerialization.jsonObject(with: body) as? [String: Any], json["app"] as? String == "eju-study" { ok = true }
+                sem.signal()
+            }.resume(); _ = sem.wait(timeout: .now() + 2); return ok
+        }
+        DispatchQueue.global(qos: .userInitiated).async {
+            if !healthy() {
+                let p = Process(); p.executableURL = Bundle.main.resourceURL!.appendingPathComponent("node"); p.arguments = [root.appendingPathComponent("server.mjs").path]
+                p.currentDirectoryURL = root
+                var env = ProcessInfo.processInfo.environment; env["PORT"] = String(self.baseURL.port ?? 18773); env["EJU_DATA_DIR"] = data.path
+                env["PATH"] = (env["PATH"] ?? "") + ":/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:" + NSHomeDirectory() + "/.local/bin"
+                p.environment = env
+                let log = support.appendingPathComponent("server.log"); fm.createFile(atPath: log.path, contents: nil)
+                if let h = try? FileHandle(forWritingTo: log) { p.standardOutput = h; p.standardError = h }
+                do { try p.run(); self.embeddedServer = p } catch { DispatchQueue.main.async { self.loadingBackend = false; self.showError(error.localizedDescription) }; return }
+                var ready = false
+                for _ in 0..<60 { if healthy() { ready = true; break }; Thread.sleep(forTimeInterval: 0.25) }
+                if !ready { DispatchQueue.main.async { self.loadingBackend = false; self.showError("启动服务超时。") }; return }
+            }
+            DispatchQueue.main.async { self.loadingBackend = false; self.web.load(URLRequest(url: self.baseURL)) }
+        }
+    }
     func startBackend() {
         guard !loadingBackend else { return }; loadingBackend = true; overlay.isHidden = false; statusLabel.stringValue = "正在打开你的学习空间…"; retryButton.isHidden = true
         if qa { loadingBackend = false; web.load(URLRequest(url: baseURL)); return }
+        if let root = embeddedRoot { startEmbedded(root); return }
         DispatchQueue.global(qos: .userInitiated).async {
             let process = Process(); process.executableURL = URL(fileURLWithPath: "/usr/bin/python3"); process.arguments = [self.projectRoot + "/launch.py", "--server-only", "--json", "--no-error-dialog"]
             let pipe = Pipe(); process.standardOutput = pipe; process.standardError = pipe
@@ -156,6 +200,10 @@ final class StudyApp: NSObject, NSApplicationDelegate, NSWindowDelegate, WKNavig
         decisionHandler(.cancel)
     }
     func webView(_ webView: WKWebView, decidePolicyFor response: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) { if let http = response.response as? HTTPURLResponse, http.value(forHTTPHeaderField: "Content-Disposition")?.lowercased().contains("attachment") == true { decisionHandler(.download) } else { decisionHandler(response.canShowMIMEType ? .allow : .cancel) } }
+    func webView(_ webView: WKWebView, runOpenPanelWith parameters: WKOpenPanelParameters, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping ([URL]?) -> Void) {
+        let panel = NSOpenPanel(); panel.allowsMultipleSelection = parameters.allowsMultipleSelection; panel.canChooseDirectories = false; panel.canChooseFiles = true
+        panel.beginSheetModal(for: window) { response in completionHandler(response == .OK ? panel.urls : nil) }
+    }
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for action: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? { if let url = action.request.url, ["http", "https", "mailto"].contains(url.scheme ?? "") { NSWorkspace.shared.open(url) }; return nil }
     func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload) { retainDownload(download) }
     func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload) { retainDownload(download) }

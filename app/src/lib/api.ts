@@ -1,3 +1,4 @@
+import type { CoachReply } from '@shared/coach-ui.ts';
 import type { Action } from '@shared/actions.ts';
 import type { AppState, ContentBundle, Item, WrittenResponse } from '@shared/types.ts';
 
@@ -29,10 +30,10 @@ export const saveAction = (baseRevision: number, action: Action) =>
   request<{ revision: number; result: unknown }>('/api/action', { baseRevision, action });
 
 export interface CoachResults {
-  ask: { answer: string; steps: string[]; keyPoint: string; pitfall: string };
+  ask: CoachReply;
   grade: { response: WrittenResponse; earned: number; possible: number; rows: { partId: string; points: number; feedback: string }[]; summary: string };
   variant: { item: Item };
-  weekly: { summary: string; nextSteps: string[] };
+  weekly: CoachReply;
 }
 
 export interface CoachJob<K extends keyof CoachResults = keyof CoachResults> {

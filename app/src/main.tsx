@@ -1,4 +1,6 @@
 import './lib/qaClock.ts';
+import { lockdown } from './lib/lockdown.ts';
+lockdown();
 import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { AppState, ContentBundle } from '@shared/types.ts';

@@ -2,13 +2,14 @@ import { useRef, useState, type ReactNode } from 'react';
 import type { AppState, Profile } from '@shared/types.ts';
 import { isValidDate } from '@shared/dates.ts';
 import { Page } from '../../shell/Shell.tsx';
-import { Button, Card, Field, Modal, Section, Segmented, Slider, Toggle, toast } from '../../ui/ui.tsx';
+import { Button, Card, Field, Icon, IconButton, Modal, Section, Segmented, Toggle, toast } from '../../ui/ui.tsx';
 import { DayPicker } from '../../ui/Learning.tsx';
 import { t } from '../../copy/index.ts';
 import { request } from '../../lib/api.ts';
 import { saveTextFile } from '../../lib/native.ts';
 import { shortDate } from '../../lib/model.ts';
-import { scenes, setMusic, tracks } from '../../lib/preferences.ts';
+import { scenes } from '../../lib/preferences.ts';
+import { addMedia, measureTone, refreshMedia, removeMedia, useMediaItems } from '../../lib/music.ts';
 import { useStudy } from '../../lib/study.tsx';
 import { resolveScene, type SceneMode } from '../../shell/Scene.tsx';
 import { SchoolFields, ScoreFields, WeakFields } from '../onboarding/ProfileFields.tsx';
@@ -36,7 +37,6 @@ export function Settings() {
   const { settings, profile } = state;
   const [draft, setDraft] = useState<Partial<Profile>>({});
   const [model, setModel] = useState<string | null>(null);
-  const [volume, setVolume] = useState<number | null>(null);
   const [backup, setBackup] = useState<string>();
   const [busy, setBusy] = useState(false);
   const file = useRef<HTMLInputElement>(null);
@@ -53,10 +53,20 @@ export function Settings() {
     } finally { setBusy(false); }
   };
   const activeScene = appearance.scene === 'auto' ? resolveScene('auto').key : appearance.scene;
-  const music = (id: string) => {
-    const enabled = id !== 'off';
-    setMusic(enabled, enabled ? id : settings.musicTrack, settings.musicVolume);
-    void action({ type: 'settings', patch: { musicEnabled: enabled, ...(enabled ? { musicTrack: id } : {}) } });
+  const media = useMediaItems();
+  const backgrounds = media.filter(item => item.kind === 'background');
+  const picture = useRef<HTMLInputElement>(null);
+  const [adding, setAdding] = useState(false);
+  const addPicture = async (files: FileList | null) => {
+    const f = files?.[0];
+    if (!f) return;
+    setAdding(true);
+    const tone = await measureTone(f);
+    const item = await addMedia(f, 'background', { tone });
+    await refreshMedia();
+    setAdding(false);
+    if (item) { setAppearance({ ...appearance, scene: `custom:${item.id}` }); toast(t.settings.backgroundAdded, 'ok'); }
+    else toast(t.settings.backgroundAddFailed, 'warn');
   };
   return <Page title={t.settings.title} desc={t.settings.subtitle}>
     <Section title={t.settings.groupAppearanceTitle} desc={t.settings.groupAppearanceDesc}>
@@ -65,33 +75,34 @@ export function Settings() {
           <Segmented value={appearance.scene === 'auto' ? 'auto' : 'fixed'} onChange={value => setAppearance({ ...appearance, scene: value === 'auto' ? 'auto' : activeScene as SceneMode })}
             options={[{ value: 'auto', label: t.settings.sceneAuto }, { value: 'fixed', label: t.settings.sceneFixed }]} />
         </SettingsRow>
-        <div className="scene-picker">{scenes.map(scene => <Button key={scene.id} variant="ghost" className={`scene-thumb${scene.id === activeScene ? ' is-on' : ''}`}
-          style={{ backgroundImage: `url(/scenes/${scene.id}.thumb.jpg)` }} title={scene.label}
-          aria-label={scene.label} aria-pressed={appearance.scene === scene.id} onClick={() => setAppearance({ ...appearance, scene: scene.id })} />)}</div>
+        <div className="scene-picker">
+          {scenes.map(scene => <Button key={scene.id} variant="ghost" className={`scene-thumb${scene.id === activeScene ? ' is-on' : ''}`}
+            style={{ backgroundImage: `url(/scenes/${scene.id}.thumb.jpg)` }}
+            aria-label={scene.label} aria-pressed={appearance.scene === scene.id} onClick={() => setAppearance({ ...appearance, scene: scene.id })} />)}
+          {backgrounds.map(item => {
+            const id = `custom:${item.id}` as SceneMode;
+            return <div key={item.id} className={`scene-thumb is-custom${appearance.scene === id ? ' is-on' : ''}`}>
+              <button type="button" className="scene-thumb-hit" style={{ backgroundImage: `url(${item.url})` }} aria-label={item.name}
+                aria-pressed={appearance.scene === id} onClick={() => setAppearance({ ...appearance, scene: id })} />
+              <IconButton icon="close" size="sm" className="scene-thumb-del" label={t.settings.backgroundRemove} onClick={async () => {
+                if (appearance.scene === id) setAppearance({ ...appearance, scene: 'auto' });
+                if (await removeMedia(item.id)) await refreshMedia();
+              }} />
+            </div>;
+          })}
+          <button type="button" className="scene-thumb scene-add" disabled={adding} onClick={() => picture.current?.click()} aria-label={t.settings.backgroundAdd}>
+            <Icon name="plus" size={20} /><span>{t.settings.backgroundAdd}</span>
+          </button>
+          <input ref={picture} type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" hidden
+            onChange={e => { void addPicture(e.currentTarget.files); e.currentTarget.value = ''; }} />
+        </div>
         <SettingsRow label={t.settings.fieldParticles} desc={t.settings.fieldParticlesDesc}>
           <Toggle label={t.settings.fieldParticles} on={appearance.particles} onChange={particles => setAppearance({ ...appearance, particles })} />
-        </SettingsRow>
-        <SettingsRow label={t.settings.fieldParallax} desc={t.settings.fieldParallaxDesc}>
-          <Toggle label={t.settings.fieldParallax} on={appearance.parallax} onChange={parallax => setAppearance({ ...appearance, parallax })} />
         </SettingsRow>
         <SettingsRow label={t.settings.fieldGlassTheme}>
           <Segmented value={settings.theme} onChange={theme => void action({ type: 'settings', patch: { theme } })} options={[
             { value: 'system', label: t.settings.themeOptionAuto }, { value: 'light', label: t.settings.themeOptionLight }, { value: 'dark', label: t.settings.themeOptionDark },
           ]} />
-        </SettingsRow>
-        <SettingsRow label={t.settings.music}>
-          <Segmented value={settings.musicEnabled ? tracks.find(track => track.id === settings.musicTrack)?.id ?? tracks[0].id : 'off'} onChange={music}
-            options={[{ value: 'off', label: t.nav.dockMusicOff }, ...tracks.map(track => ({ value: track.id, label: track.label }))]} />
-        </SettingsRow>
-        <SettingsRow label={t.settings.volume}>
-          <div className="set-volume" onBlur={() => {
-            if (volume == null) return;
-            void action({ type: 'settings', patch: { musicVolume: volume } }).then(() => setVolume(null));
-          }} onPointerUp={event => event.currentTarget.querySelector('input')?.blur()}>
-            <Slider value={volume ?? settings.musicVolume} label={t.settings.volume} onChange={musicVolume => {
-              setVolume(musicVolume); setMusic(settings.musicEnabled, settings.musicTrack, musicVolume);
-            }} />
-          </div>
         </SettingsRow>
       </Card>
     </Section>

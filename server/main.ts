@@ -10,6 +10,7 @@ import { bankReader } from './content.ts';
 import { todayView, planView, practiceView, statsView, weeklyReview } from '../shared/selectors.ts';
 import { reviewQueue } from '../shared/stats.ts';
 import { studyDate, isValidDate } from '../shared/dates.ts';
+import { createMedia } from './media.ts';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_DIR = process.env.EJU_DATA_DIR || path.join(ROOT, 'data');
@@ -62,6 +63,7 @@ const MIME: Record<string, string> = {
 
 const contentBank = bankReader(process.env.EJU_CONTENT_FILE || path.join(CONTENT_DIST, 'bank.json'));
 const store = new StateStore(DATA_DIR, contentBank());
+const media = createMedia(DATA_DIR);
 let augmented: { base: BankIndex; count: number; index: BankIndex } | undefined;
 function getBank() {
   const base = contentBank(),
@@ -217,6 +219,10 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse, ur
     return sendJson(res, 200, { state: store.get() });
   }
 
+  if (p === '/api/media' || p === '/api/media/delete') {
+    return media.handle(req, res, url, { sendJson, serveFile, readBody });
+  }
+
   if (
     method === 'POST' &&
     String(req.headers['content-type'] || '')
@@ -294,6 +300,7 @@ const server = http.createServer(async (req, res) => {
     if (p.startsWith('/api/')) return await handleApi(req, res, url);
     if (req.method !== 'GET' && req.method !== 'HEAD') return sendJson(res, 405, { error: 'method not allowed' });
 
+    if (p.startsWith('/media/')) return media.serve(req, res, p, { sendJson, serveFile, readBody });
     if (p.startsWith('/assets/')) {
       const built = safeJoin(WEB_DIST, p.slice(1));
       if (built && fs.existsSync(built) && fs.statSync(built).isFile()) return serveFile(req, res, built, 'no-cache');

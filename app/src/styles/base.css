@@ -35,9 +35,7 @@ body {
   cursor: default;
 }
 
-/* Reading surfaces allow selection (copying a formula, a term). */
-.selectable,
-.rt,
+/* Only text fields can be selected; the app never selects like a web page. */
 input,
 textarea {
   user-select: text;
@@ -230,3 +228,13 @@ svg {
 #root { zoom: var(--app-zoom, 1); }
 .nav-goal-title, .nav-goal-sub { display: block; }
 .nav-goal-text { min-width: 0; }
+
+img,
+svg,
+a {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+* {
+  -webkit-touch-callout: none;
+}
