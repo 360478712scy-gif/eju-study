@@ -90,6 +90,8 @@
   --shadow-dot-planned: inset 0 0 0 1.5px var(--text-3);
   --shadow-road-pin: 0 0 0 4px var(--primary-soft), 0 0 18px var(--primary);
   --shadow-day-selected: inset 0 0 0 1.5px var(--primary-line), 0 0 0 4px var(--primary-soft);
+  --shadow-forecast-marker: 0 0 0 3px;
+  --forecast-marker-opacity: 25%;
   --shadow-option-picked: inset 0 0 0 1.5px var(--primary), 0 0 0 4px var(--primary-soft);
   --shadow-option-right: inset 0 0 0 1.5px var(--ok);
   --shadow-option-wrong: inset 0 0 0 1.5px var(--bad);

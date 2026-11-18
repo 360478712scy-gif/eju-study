@@ -31,7 +31,7 @@
   margin: -6px 0 0 -6px;
   border-radius: var(--r-pill);
   background: var(--tone);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tone) 25%, transparent);
+  box-shadow: var(--shadow-forecast-marker) color-mix(in srgb, var(--tone) var(--forecast-marker-opacity), transparent);
 }
 .range-goal {
   position: absolute;
